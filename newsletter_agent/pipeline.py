@@ -317,8 +317,8 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
                 print(f"    [warn] index_base_date parse failed: {e}")
                 index_base_date = None
 
-        # Auto-apply indexing when y_label signals multi-unit comparison
-        if "base=100" in y_label.lower() or "indexed" in y_label.lower():
+        # Auto-apply indexing when y_label signals multi-unit comparison (Danish: "indekseret", English: "indexed")
+        if "base=100" in y_label.lower() or "basis=100" in y_label.lower() or "indexed" in y_label.lower() or "indekseret" in y_label.lower():
             base_date_ts = pd.Timestamp(index_base_date) if index_base_date else None
             if base_date_ts is not None and base_date_ts in merged.index:
                 merged = index_to_100(merged, base_date=base_date_ts)
