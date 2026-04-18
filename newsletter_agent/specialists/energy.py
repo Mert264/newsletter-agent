@@ -70,7 +70,7 @@ def _fetch_eia(msn: str, label: str, api_key: str, frequency: str = "annual"):
         return None
 
 
-def _fetch_eia_mix(msn_codes: dict, api_key: str) -> pd.DataFrame | None:
+def _fetch_eia_mix(msn_codes: dict, api_key: str):
     """
     Fetch multiple EIA MSN codes and return a wide DataFrame suitable for Type F stacked chart.
     msn_codes: {label: msn_code} dict, e.g. {"Olie": "PATOBUS", ...}
