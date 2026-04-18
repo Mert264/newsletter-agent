@@ -686,17 +686,13 @@ function setPeriod(btn) {
 }
 
 // ── Visualization type panel ──
-let activeVizTypes = new Set(['A']);
-let activeBarSub = 'B';  // default Søjlediagram sub-type
+let activeVizTypes = new Set(['A']);  // Figur on by default (D always paired with A)
+let barActive = false;
 
 function toggleVizOpt(key) {
   if (key === 'bar') {
     const el = document.getElementById('vopt-bar-parent');
-    const subs = document.getElementById('bar-subopts');
-    const isActive = el.classList.toggle('active');
-    subs.style.display = isActive ? 'flex' : 'none';
-    if (isActive) activeVizTypes.add(activeBarSub);
-    else { ['B','G','F'].forEach(k => activeVizTypes.delete(k)); }
+    barActive = el.classList.toggle('active');
   } else {
     const el = document.getElementById(`vopt-${key}`);
     const isActive = el.classList.toggle('active');
@@ -705,18 +701,13 @@ function toggleVizOpt(key) {
   }
 }
 
-function selectBarSub(subKey) {
-  ['B','G','F'].forEach(k => {
-    document.getElementById(`vsub-${k}`)?.classList.remove('active');
-    activeVizTypes.delete(k);
-  });
-  document.getElementById(`vsub-${subKey}`)?.classList.add('active');
-  activeBarSub = subKey;
-  activeVizTypes.add(subKey);
-}
-
 function getPreferredTypes() {
-  return [...activeVizTypes];
+  const types = [...activeVizTypes];
+  // Tabel (D) always accompanies Figur (A)
+  if (types.includes('A') && !types.includes('D')) types.push('D');
+  // Søjlediagram: send all three subtypes, LLM picks the most appropriate one
+  if (barActive) types.push('B', 'G', 'F');
+  return types;
 }
 
 // ── Per-figure re-render ──
