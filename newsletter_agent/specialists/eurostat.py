@@ -230,7 +230,7 @@ KNOWN_DATASETS = {
     # parse_mode="product_wide" → uses _parse_product_wide (time × product DataFrame)
     "eu_energy_mix": {
         "dataset":    "nrg_bal_c",
-        "params":     {"freq": "A", "unit": "KTOE", "nrg_bal": "GIC2020", "geo": "EU27_2020"},
+        "params":     {"freq": "A", "unit": "KTOE", "nrg_bal": "GIC", "geo": "EU27_2020"},
         "parse_mode": "product_wide",
         "label_map":  _EU_ENERGY_LABEL_MAP,
     },
