@@ -267,6 +267,12 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
     if conv_note:
         existing_note = render_spec.get("note", "").rstrip(". ")
         render_spec = {**render_spec, "note": f"{existing_note} {conv_note}".strip()}
+        # If conversions harmonised units but LLM still wrote "Indekseret/Indexed" as y_label,
+        # override it with "USD/MWh" — the conversion guarantees this is now the correct unit.
+        cur_ylabel = render_spec.get("y_label", "")
+        if "indekseret" in cur_ylabel.lower() or "indexed" in cur_ylabel.lower() or "basis=100" in cur_ylabel.lower():
+            render_spec = {**render_spec, "y_label": "USD/MWh"}
+            chart_spec  = {**chart_spec,  "y_label": "USD/MWh"}
     merged_for_events = None  # populated for Type A charts; used by event impact table
 
     # ── Type D — Snapshot / before-after table ────────────────────────────
