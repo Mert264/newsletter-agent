@@ -8,9 +8,12 @@ import re
 import anthropic
 from newsletter_agent.config import API_KEYS, REVIEWER_MODEL
 
-REVIEWER_PROMPT = """You are a financial chart reviewer for a macroeconomic investor newsletter.
-You will receive metadata about a chart or table. Flag ONLY real, substantive issues that would
-mislead or confuse an investor. Do NOT flag minor stylistic preferences.
+REVIEWER_PROMPT = """Du er kvalitetskontrollør af finansielle grafer til et makroøkonomisk investornewsletter.
+Du modtager metadata om en graf eller tabel. Markér KUN reelle, substantielle fejl, der ville
+vildlede eller forvirre en investor. Markér IKKE mindre stilistiske præferencer.
+
+SPROG: Dansk er det primære sprog. Titler, noter og etiketter forventes på dansk. Markér IKKE fraværet af engelske labels — dansk er korrekt.
+Returner altid JSON på engelsk (status/reason-felterne) uanset inputsproget.
 
 APPROVE if all of these pass:
 1. Title is present and describes what the chart shows.
