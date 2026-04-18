@@ -100,6 +100,67 @@ def start_run():
     return jsonify({"status": "started"})
 
 
+@app.route("/rerender", methods=["POST"])
+def rerender_figure():
+    """
+    Re-render a single figure with a different chart type.
+    Accepts JSON: {figure_id, chart_type, specialist, series_specs, chart_spec}
+    Returns JSON: {path, title, note} or {error}.
+    """
+    data = request.json or {}
+    figure_id    = data.get("figure_id", 0)
+    chart_type   = data.get("chart_type", "A")
+    specialist   = data.get("specialist")
+    series_specs = data.get("series_specs", [])
+    chart_spec   = data.get("chart_spec", {})
+
+    if not specialist:
+        return jsonify({"error": "specialist is required"}), 400
+
+    # Override chart type in spec
+    chart_spec = {**chart_spec, "type": chart_type}
+
+    try:
+        from newsletter_agent.pipeline import SPECIALIST_MAP, _render_figure
+        from newsletter_agent.processors.converters import apply_conversions
+        import os as _os
+
+        # Build mini task for this specialist
+        mini_task = {"series": series_specs, "charts": [chart_spec]}
+
+        # Re-fetch data
+        if specialist not in SPECIALIST_MAP:
+            return jsonify({"error": f"Unknown specialist: {specialist}"}), 400
+        result = SPECIALIST_MAP[specialist](mini_task)
+        result["chart_specs"] = [chart_spec]
+
+        # Apply conversions
+        period_days = chart_spec.get("period_days", 730)
+        converted_dfs, conv_note = apply_conversions(result["dataframes"], series_specs, period_days)
+        result["dataframes"] = converted_dfs
+        if conv_note:
+            existing = chart_spec.get("note", "").rstrip(". ")
+            chart_spec = {**chart_spec, "note": f"{existing} {conv_note}".strip()}
+            result["chart_specs"] = [chart_spec]
+
+        # Render to same output path as original (overwrites)
+        output_path = _os.path.join(OUTPUT_DIR, f"figure_{figure_id:02d}.png")
+        package = _render_figure(chart_spec, result, output_path)
+
+        if package is None:
+            return jsonify({"error": "No renderable data for this chart type"}), 422
+
+        return jsonify({
+            "path":  _os.path.basename(package["path"]),
+            "title": package["metadata"]["title"],
+            "note":  package["metadata"]["note"],
+        })
+
+    except Exception as exc:
+        import traceback
+        return jsonify({"error": str(exc), "detail": traceback.format_exc()}), 500
+
+
 @app.route("/stream")
 def stream():
     def generate():
