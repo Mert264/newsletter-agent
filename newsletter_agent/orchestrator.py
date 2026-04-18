@@ -225,9 +225,13 @@ Rules:
 - When series have DIFFERENT units or very different scales, set y_label to
   "Indekseret (basis=100)" — the pipeline will normalize all series to 100 at the start date.
 - Chart type C (seasonal/historical range) is NOT supported — do NOT use it. Use type A instead.
-- Chart type F (100% stacked bar) — use when the user asks for energy mix, fuel composition, or
-  percentage breakdown across categories over multiple years. Always pair with source="eia_mix"
-  (energy specialist) or source="eurostat_mix" (eurostat specialist). The x-axis shows years.
+- Chart type F (100% stacked bar) — use when the user asks for energy mix or composition OVER TIME
+  (multiple years on x-axis). Always pair with source="eia_mix" (energy specialist) or
+  source="eurostat_mix" (eurostat specialist).
+- Chart type P (pie chart) — use when the user asks for energy mix or composition for A SINGLE YEAR
+  snapshot. Also pair with source="eurostat_mix" for eu_energy_mix. The pipeline picks the most
+  recent available year. Use P when the brief says "cirkeldiagram", "pie", or asks for a single-year
+  composition snapshot. Use F when asking for composition over multiple years.
 - Chart type G (horizontal bar) — use when comparing a single metric across many sectors, countries,
   or companies (e.g. "AI-adoption rate by sector", "renewable share by country"). Bars are sorted
   descending so largest is at top. Single value column per entity/row.
