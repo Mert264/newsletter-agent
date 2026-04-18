@@ -230,7 +230,7 @@ EVENT MARKERS:
 - If the brief describes a cycle, trend, era, or named period WITHOUT a specific date
   (e.g. "Fed tightening cycle", "ECB hiking cycle", "since the Ukraine war"), do NOT add events.
 - Do NOT invent or infer dates that are not explicitly stated in the brief.
-- Each event: {"date": "YYYY-MM-DD", "label": "Short label (≤5 words, English)"}.
+- Each event: {"date": "YYYY-MM-DD", "label": "Kort dansk label (maks. 5 ord)"}.
 - Add the events array to EVERY chart spec whose date range covers that event date.
 - If no explicitly-dated events are mentioned, omit the "events" field entirely.
 - CRITICAL: period_days MUST cover the event date with at least 30 days of history before it.
