@@ -244,6 +244,93 @@
       position: absolute; top: 18px; right: 24px;
       color: #fff; font-size: 28px; cursor: pointer; line-height: 1;
     }
+    /* ── Viz type panel ── */
+    #topRow {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 20px;
+    }
+    #vizPanel .card-header {
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: .05em;
+    }
+    .viz-section-label {
+      font-size: 9px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: .06em;
+      margin-bottom: 6px;
+    }
+    .viz-opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      padding: 7px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 4px;
+      border: 1.5px solid #d1d5db;
+      background: #fff;
+      transition: border-color .15s, background .15s;
+    }
+    .viz-opt.active {
+      border: 2px solid #11716c;
+      background: #f0faf9;
+    }
+    .viz-opt-labels { flex: 1; }
+    .viz-opt-name { font-weight: 600; font-size: 11px; color: #374151; }
+    .viz-opt.active .viz-opt-name { color: #11716c; }
+    .viz-opt-desc { font-size: 9px; color: #6b7280; }
+    .viz-check { color: #11716c; font-size: 12px; font-weight: 700; display: none; }
+    .viz-opt.active .viz-check { display: block; }
+    .viz-sub { margin: 4px 0 2px 23px; display: flex; flex-direction: column; gap: 3px; }
+    .viz-sub-opt {
+      display: flex; align-items: center; gap: 7px;
+      padding: 5px 8px; border-radius: 4px; font-size: 10px; cursor: pointer;
+      background: #f9fafb; border: 1.5px solid #e5e7eb; color: #6b7280;
+    }
+    .viz-sub-opt.active {
+      background: #e8f7f6; border-color: #11716c; color: #11716c; font-weight: 600;
+    }
+    .viz-sub-dot { width: 6px; height: 6px; border-radius: 50%; background: #d1d5db; flex-shrink: 0; }
+    .viz-sub-opt.active .viz-sub-dot { background: #11716c; }
+    .viz-hint {
+      margin-top: 8px; padding-top: 6px;
+      border-top: 1px solid #f3f4f6;
+      font-size: 9px; color: #9ca3af; line-height: 1.5;
+    }
+
+    /* ── Re-render buttons on figure cards ── */
+    .rerender-row {
+      padding: 8px 12px;
+      background: #f8fafa;
+      border-top: 1px solid #e4eaea;
+    }
+    .rerender-label {
+      font-size: 10px; font-weight: 600; color: #374151; margin-bottom: 5px;
+    }
+    .rerender-btns { display: flex; gap: 4px; flex-wrap: wrap; }
+    .rr-btn {
+      border-radius: 4px; padding: 4px 8px; font-size: 10px; cursor: pointer;
+      border: 1px solid #d1d5db; background: #f3f4f6; color: #374151;
+      transition: background .1s;
+    }
+    .rr-btn.active { background: #11716c; color: #fff; border-color: #11716c; }
+    .rr-btn:disabled { opacity: .5; cursor: not-allowed; }
+    .fig-spinner {
+      display: none;
+      align-items: center; justify-content: center;
+      height: 60px; color: #11716c; font-size: 12px; gap: 8px;
+    }
+    .fig-spinner.visible { display: flex; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner-ring {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 2px solid #d1d5db; border-top-color: #11716c;
+      animation: spin .7s linear infinite;
+    }
   </style>
 </head>
 <body>
