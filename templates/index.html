@@ -281,14 +281,16 @@
       display: flex;
       align-items: flex-start;
       gap: 9px;
-      padding: 7px 10px;
-      border-radius: 5px;
+      padding: 9px 10px;
+      border-radius: 6px;
       cursor: pointer;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
       border: 1.5px solid #d1d5db;
       background: #fff;
-      transition: border-color .15s, background .15s;
+      transition: border-color .12s, background .12s;
+      min-height: 38px;
     }
+    .viz-opt:hover:not(.active) { border-color: #a7d9d5; background: #fafefe; }
     .viz-opt.active {
       border: 2px solid #11716c;
       background: #f0faf9;
