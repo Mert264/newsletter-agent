@@ -450,7 +450,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
     routing_hint = get_routing_hint(brief)
     if routing_hint:
         print(f"      [routing] Hint injected: {routing_hint.strip()[:80]}...")
-    manifest = build_task_manifest(brief, preferred_types=preferred_types, routing_hint=routing_hint)
+    manifest = build_task_manifest(brief, preferred_types=preferred_types, routing_hint=routing_hint, period_days=period_days)
     specialists = manifest.get("specialists", [])
     print(f"      Specialists activated: {', '.join(specialists)}")
 
