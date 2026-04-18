@@ -429,18 +429,22 @@ def _run_specialist(name: str, task: dict) -> tuple[str, dict]:
     return name, result
 
 
-def run(brief: str, output_dir: str = "output") -> list:
+def run(brief: str, output_dir: str = "output", preferred_types: list = None) -> list:
     """
     Main pipeline entry point.
     brief: free-form topic string from department.
     output_dir: where to save PNG files and manifest.json.
+    preferred_types: optional list of chart type codes e.g. ["A", "G"] — passed to orchestrator.
     Returns list of FigurePackage dicts: [{"path": str, "metadata": dict}, ...]
     """
     os.makedirs(output_dir, exist_ok=True)
 
     # Step 1: Orchestrate — 1 LLM call → TaskManifest
     print("\n[1/4] Orchestrating — asking Lead Agent to plan figures...")
-    manifest = build_task_manifest(brief)
+    routing_hint = get_routing_hint(brief)
+    if routing_hint:
+        print(f"      [routing] Hint injected: {routing_hint.strip()[:80]}...")
+    manifest = build_task_manifest(brief, preferred_types=preferred_types, routing_hint=routing_hint)
     specialists = manifest.get("specialists", [])
     print(f"      Specialists activated: {', '.join(specialists)}")
 
