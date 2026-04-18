@@ -38,13 +38,23 @@ def _parse_timeseries(raw: dict, label: str):
     try:
         values = raw["value"]
         dims = raw["dimension"]
-        time_dim = next((k for k in dims if k.lower() in ("time", "time_period")), None)
+        # Use "id" for correct dimension order (JSON-stat spec)
+        dim_keys_ts = raw.get("id", list(dims.keys()))
+        dim_sizes_ts = raw.get("size", [1] * len(dim_keys_ts))
+        time_dim = next((k for k in dim_keys_ts if k.lower() in ("time", "time_period")), None)
         if not time_dim:
             return None
         time_cats = list(dims[time_dim]["category"]["index"].keys())
+        # Compute stride for the time dimension
+        t_idx_ts = dim_keys_ts.index(time_dim)
+        strides_ts = [1] * len(dim_keys_ts)
+        for i in range(len(dim_keys_ts) - 2, -1, -1):
+            strides_ts[i] = strides_ts[i + 1] * dim_sizes_ts[i + 1]
+        time_stride = strides_ts[t_idx_ts]
         records = []
-        for i, t in enumerate(time_cats):
-            val = values.get(str(i))
+        for t_i, t in enumerate(time_cats):
+            flat = t_i * time_stride  # all other dims fixed at 0
+            val = values[flat] if isinstance(values, list) else values.get(str(flat))
             if val is not None:
                 records.append((t, float(val)))
         if not records:
