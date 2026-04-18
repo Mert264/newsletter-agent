@@ -122,7 +122,34 @@ Other:
   CLVMEURSCAB1GQEA19 (Eurozone real GDP, quarterly)
   LRHUTTTTEZM156S (Eurozone unemployment rate, monthly)
 
-NOT available: GIE gas storage, EIA API, CME FedWatch probability data, Bloomberg data
+US ENERGY MIX — EIA (US Energy Information Administration, free API):
+Use specialist "energy" with source="eia" to fetch individual US energy series by MSN code:
+  - PATOBUS  (Petroleum — total US consumption, Quadrillion BTU, annual)
+  - NNTCBUS  (Natural gas — total US consumption, Quadrillion BTU, annual)
+  - CLTCBUS  (Coal — total US consumption, Quadrillion BTU, annual)
+  - NUETBUS  (Nuclear — total US electricity consumption, Quadrillion BTU, annual)
+  - RETCBUS  (Renewables — total US consumption, Quadrillion BTU, annual)
+Use source="eia_mix" with a single series entry (label="Energimix USA") to auto-fetch ALL five
+sources above as a single wide DataFrame ready for a Type F stacked chart. No msn_codes needed.
+Example eia_mix series entry:
+  {"ticker": "eia_mix", "source": "eia_mix", "label": "Energimix USA", "unit": "Quadrillion BTU"}
+Example Type F chart spec for energy mix:
+  {"type": "F", "title": "Sammensætning af USA's energiforbrug", "x_label": "År",
+   "y_label": "Pct. af total", "period_days": 3650, "series_labels": ["Energimix USA"],
+   "note": "USA's samlede energiforbrug opdelt på brændstofstype. Kilde: EIA."}
+
+EU STATISTICAL DATA — Eurostat (free, no API key):
+Use specialist "eurostat" with the following dataset shortcuts (set "ticker" to the shortcut name):
+  "eu_energy_mix"   → EU27 energy consumption by product (stacked/composition, Type F)
+  "eu_gdp_growth"   → EU27 real GDP growth (annual %, Type A or B)
+  "eu_unemployment" → EU27 unemployment rate (monthly %, Type A)
+  "eu_hicp"         → EU27 HICP inflation (monthly % change, Type A)
+Or provide a raw Eurostat dataset ID in "ticker" with custom "params" dict.
+Source type: "eurostat_ts" for time series, "eurostat_mix" for cross-sectional (Type F/G).
+Example eurostat entry:
+  {"ticker": "eu_unemployment", "source": "eurostat_ts", "label": "EU27 ledighed (%)", "unit": "%"}
+
+NOT available: GIE gas storage, CME FedWatch probability data, Bloomberg data, BlackRock, JPMorgan, ICE real-time data
 
 Rules:
 - Maximum 2 charts per specialist.
