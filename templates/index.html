@@ -644,6 +644,13 @@ function startRun() {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ brief, preferred_types: getPreferredTypes() }),
+  }).then(r => {
+    if (r.status === 429) {
+      document.getElementById('statusMsg').textContent = 'En kørsel er allerede i gang — vent venligst.';
+      document.getElementById('statusMsg').className = 'error';
+      document.getElementById('runBtn').disabled = false;
+      if (eventSource) { eventSource.close(); eventSource = null; }
+    }
   }).catch(err => {
     appendLog('Network error: ' + err);
     document.getElementById('runBtn').disabled = false;
