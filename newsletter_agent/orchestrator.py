@@ -28,7 +28,7 @@ Given a free-form topic brief, return a JSON TaskManifest with exactly this stru
     ],
     "charts": [
       {
-        "type": "A",                  // A=time series, B=cross-country bar, D=table, E=before-after bar (NOT C)
+        "type": "A",                  // A=time series, B=cross-country bar, D=table, E=before-after bar, F=100%-stacked bar (energy mix), G=horizontal bar (sector/country ranking)
         "title": "Oil price, USD/barrel",
         "x_label": "Date",
         "y_label": "USD/barrel",
