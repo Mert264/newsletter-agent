@@ -252,10 +252,12 @@
     }
     /* ── Period selector ── */
     .period-btn {
-      padding: 5px 12px; border-radius: 5px; font-size: 11px; cursor: pointer;
+      padding: 7px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;
       border: 1.5px solid #d1d5db; background: #fff; color: #374151;
       transition: background .12s, border-color .12s;
+      min-height: 34px; font-weight: 500;
     }
+    .period-btn:hover:not(.active) { border-color: #a7d9d5; background: #f0faf9; }
     .period-btn.active { background: #11716c; color: #fff; border-color: #11716c; }
 
     /* ── Viz type panel ── */
