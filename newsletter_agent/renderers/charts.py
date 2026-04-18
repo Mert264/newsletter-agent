@@ -486,6 +486,59 @@ def render_type_g(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     return output_path
 
 
+def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> str:
+    """
+    Type P — Pie chart (single-year composition snapshot).
+    df: index = category labels, single value column.
+        OR wide df (index=years, columns=categories) — uses snapshot_year row or latest.
+    Values are normalised to 100% internally.
+    """
+    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
+
+    # Wide df: pick one row
+    if df.shape[1] > 1:
+        snapshot_year = str(spec.get("snapshot_year", df.index[-1]))
+        row = df.loc[snapshot_year] if snapshot_year in df.index else df.iloc[-1]
+        series = row.dropna()
+        title_str = f"{spec['title']} ({snapshot_year})"
+    else:
+        series = df.iloc[:, 0].dropna()
+        title_str = spec["title"]
+
+    series = series[series > 0]
+    if series.empty:
+        plt.close(fig)
+        return output_path
+
+    colors = [_color_for(i) for i in range(len(series))]
+    wedges, _, autotexts = ax.pie(
+        series.values,
+        labels=None,
+        autopct=lambda p: f"{p:.1f}%" if p >= 5 else "",
+        colors=colors,
+        startangle=90,
+        wedgeprops={"edgecolor": "white", "linewidth": 1.2},
+        pctdistance=0.75,
+    )
+    for at in autotexts:
+        at.set_fontsize(7)
+        at.set_color("white")
+        at.set_fontweight("600")
+
+    ax.set_title(title_str, fontsize=BRAND["font_size_title"],
+                 fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
+    fig.patch.set_facecolor(BRAND["background"])
+
+    ax.legend(wedges, series.index, fontsize=BRAND["font_size_label"],
+              loc="center left", bbox_to_anchor=(1.0, 0.5), frameon=False)
+
+    bottom_frac = _add_footer(fig, spec)
+    plt.tight_layout(rect=[0.0, bottom_frac, 0.78, 1.0])
+    fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
+    plt.close(fig)
+    return output_path
+
+
 def render_type_e(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     """
     Type E — Before/after grouped bar chart.
