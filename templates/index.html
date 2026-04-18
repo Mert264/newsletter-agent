@@ -702,10 +702,40 @@ function renderFigures(figures) {
 // ── Period selector ──
 let selectedPeriodDays = 0;  // 0 = LLM bestemmer (default)
 
-function setPeriod(btn) {
-  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  selectedPeriodDays = parseInt(btn.dataset.days, 10);
+function onSliderChange(slider) {
+  const years = parseInt(slider.value, 10);
+  selectedPeriodDays = years * 365;
+  document.getElementById('periodLabel').textContent = years + ' år';
+  const llm = document.getElementById('llmBtn');
+  llm.style.background = '#fff';
+  llm.style.color = '#6b7280';
+  llm.style.borderColor = '#d1d5db';
+}
+
+function setLLMPeriod() {
+  selectedPeriodDays = 0;
+  document.getElementById('periodLabel').textContent = '—';
+  document.getElementById('periodSlider').value = 2;
+  const llm = document.getElementById('llmBtn');
+  llm.style.background = '#11716c';
+  llm.style.color = '#fff';
+  llm.style.borderColor = '#11716c';
+}
+
+// Called by setQuick to sync slider + LLM button
+function setPeriodDays(days) {
+  if (days === 0) {
+    setLLMPeriod();
+  } else {
+    const years = Math.max(1, Math.min(10, Math.round(days / 365)));
+    document.getElementById('periodSlider').value = years;
+    selectedPeriodDays = years * 365;
+    document.getElementById('periodLabel').textContent = years + ' år';
+    const llm = document.getElementById('llmBtn');
+    llm.style.background = '#fff';
+    llm.style.color = '#6b7280';
+    llm.style.borderColor = '#d1d5db';
+  }
 }
 
 // ── Visualization type panel ──
