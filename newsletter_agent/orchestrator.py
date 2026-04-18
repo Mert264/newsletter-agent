@@ -230,6 +230,16 @@ Rules:
 - Chart type G (horizontal bar) — use when comparing a single metric across many sectors, countries,
   or companies (e.g. "AI-adoption rate by sector", "renewable share by country"). Bars are sorted
   descending so largest is at top. Single value column per entity/row.
+- Chart type B (vertical bar) — use for small cross-entity comparisons with ≤6 items (e.g. comparing
+  GDP growth across 4 major economies, or 3 central bank rates). Prefer G over B when entities > 6.
+- CHOOSING BETWEEN B, G, F when all three appear in preferred_types:
+  * F (stacked bar): data represents COMPOSITION/SHARES over multiple time periods (energy mix,
+    trade structure, portfolio allocation over years). The x-axis is TIME, y-axis is "Pct. af total".
+  * G (horizontal bar): RANKING of many entities (>6 countries, sectors, companies) on a single metric.
+    The x-axis is the metric value, each row is an entity. No time dimension.
+  * B (vertical bar): FEW entities (≤6) compared on a single metric, or year-by-year comparison of
+    one entity. The x-axis is the entity or year, y-axis is the metric.
+  Pick exactly ONE type per chart based on data shape. Do not produce one chart of each type.
 - Every series in a chart must come from the SAME specialist's data. Do not reference series
   that belong to a different specialist in a chart spec.
 - CRITICAL — COMBINED FIGURES: When the user explicitly requests multiple series to appear in
