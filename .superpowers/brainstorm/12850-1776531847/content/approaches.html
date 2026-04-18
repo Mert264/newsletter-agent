@@ -1,0 +1,44 @@
+<h2>Tre tilgange til visualiseringsvalg + dataoverblik</h2>
+<p class="subtitle">Hvilket flow passer bedst til, hvordan du forestiller dig det?</p>
+
+<div class="options">
+
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>2-trins flow: Plan → Vælg → Kør</h3>
+      <p>LLM'en parser briefen og viser en <strong>plan</strong> (hvilke dataserier, hvilke tidsperioder) <em>inden</em> du kører. Du kan så klikke på visualiseringstype for hvert figur-slot — og derefter klikke "Generer". Det kræver ét ekstra LLM-kald til planlægning, men giver fuld kontrol.</p>
+      <div class="pros-cons" style="margin-top:10px">
+        <div class="pros"><h4>Fordele</h4><ul><li>Fuld kontrol over hver figur</li><li>Dataoverblik inden kørsel</li><li>Ingen overraskelser i output</li></ul></div>
+        <div class="cons"><h4>Ulemper</h4><ul><li>Ekstra klik/vent inden kørsel</li><li>Mere kompleks UI</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Global præference-panel: Vælg type FØR brief</h3>
+      <p>Et fast panel (sidebar eller toolbar) hvor du vælger <em>globale præferencer</em>: "Jeg vil gerne have søjlediagrammer frem for tidsserie", "vis altid en tabel". LLM'en respekterer disse præferencer automatisk. Ingen ekstra vent — klikker du "Figur + Søjlediagram", beder prompten LLM'en vælge disse typer.</p>
+      <div class="pros-cons" style="margin-top:10px">
+        <div class="pros"><h4>Fordele</h4><ul><li>Ingen ekstra ventetid</li><li>Simpelt one-page flow</li><li>Virker til alle briefs</li></ul></div>
+        <div class="cons"><h4>Ulemper</h4><ul><li>Kun globale præferencer — ikke per figur</li><li>LLM kan stadig afvige fra typen</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Hybrid: Global panel + per-figur justering efter kørsel</h3>
+      <p>Du sætter globale præferencer i et sidebar-panel <em>inden</em> kørsel (som B). Efter figurerne er genereret, kan du klikke på en figur og vælge en alternativ visualiseringstype — pipeline re-renderer <em>kun</em> den ene figur uden at genstarte hele kørslen.</p>
+      <div class="pros-cons" style="margin-top:10px">
+        <div class="pros"><h4>Fordele</h4><ul><li>Hurtig kørsel + fleksibel justering</li><li>Re-render kun ét figur, ikke alt</li><li>Dataoverblik-panel kan vises ved siden af</li></ul></div>
+        <div class="cons"><h4>Ulemper</h4><ul><li>Mere backend-arbejde (partial re-render)</li><li>Lidt mere kompleks at bygge</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="margin-top:16px;font-size:13px;color:#6b7280">💡 Tip: Klik for at vælge en tilgang. Du kan vælge mere end én hvis du vil kombinere elementer fra flere.</p>
