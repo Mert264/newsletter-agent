@@ -728,6 +728,15 @@ function renderFigures(figures) {
   document.getElementById('figuresPanel').scrollIntoView({ behavior: 'smooth' });
 }
 
+// ── Period selector ──
+let selectedPeriodDays = 365;
+
+function setPeriod(btn) {
+  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedPeriodDays = parseInt(btn.dataset.days, 10);
+}
+
 // ── Visualization type panel ──
 let activeVizTypes = new Set(['A']);
 let activeBarSub = 'B';  // default Søjlediagram sub-type
