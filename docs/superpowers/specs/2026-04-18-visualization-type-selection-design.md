@@ -163,17 +163,13 @@ If no rule matches, the LLM orchestrator selects the specialist and source freel
 ## 3. Architecture Changes
 
 ### Files to create:
-- `newsletter_agent/renderers/charts.py` — add `render_type_p` (pie)
 - `newsletter_agent/processors/converters.py` — unit conversion logic (date-matched FX)
 - `newsletter_agent/routing.py` — keyword-based dataset routing
 
 ### Files to modify:
-- `newsletter_agent/pipeline.py` — wire Type P, handle `conversion` field per series, call routing
+- `newsletter_agent/renderers/charts.py` — add `render_type_p` (pie); F and G already done
+- `newsletter_agent/pipeline.py` — wire Type P, handle `conversion` field per series, call routing; F and G already done
 - `newsletter_agent/orchestrator.py` — add `preferred_types` param, new chart types, conversion rules
-- `newsletter_agent/specialists/energy.py` — already done (EIA)
-- `newsletter_agent/specialists/eurostat.py` — already done
-- `newsletter_agent/renderers/charts.py` — already done (F, G)
-- `newsletter_agent/pipeline.py` — already done (F, G routing)
 - `app.py` — add `POST /rerender` endpoint; pass `preferred_types` from UI to pipeline
 - `templates/index.html` — visualization type panel (left sidebar), per-figure re-render buttons
 
