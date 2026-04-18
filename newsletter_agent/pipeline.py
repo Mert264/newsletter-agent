@@ -386,8 +386,15 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
                 print(f"    [warn] index_base_date parse failed: {e}")
                 index_base_date = None
 
+        # If unit conversions were applied, series are already harmonised — never index them.
+        # Indexing would destroy the USD/MWh scale and contradict the chart title.
+        conversions_applied = bool(specialist_result.get("conversion_note", ""))
+
         # Auto-apply indexing when y_label signals multi-unit comparison (Danish: "indekseret", English: "indexed")
-        if "base=100" in y_label.lower() or "basis=100" in y_label.lower() or "indexed" in y_label.lower() or "indekseret" in y_label.lower():
+        if not conversions_applied and (
+            "base=100" in y_label.lower() or "basis=100" in y_label.lower()
+            or "indexed" in y_label.lower() or "indekseret" in y_label.lower()
+        ):
             base_date_ts = pd.Timestamp(index_base_date) if index_base_date else None
             if base_date_ts is not None and base_date_ts in merged.index:
                 merged = index_to_100(merged, base_date=base_date_ts)
@@ -396,7 +403,8 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
 
         # Safety net: if series have wildly incompatible scales (>10x range ratio),
         # auto-index even if y_label doesn't request it, to avoid invisible lines.
-        if len(merged.columns) > 1 and "yoy" not in y_label.lower():
+        # Skip when conversions were applied — the conversion already harmonised units.
+        if not conversions_applied and len(merged.columns) > 1 and "yoy" not in y_label.lower():
             ranges = [merged[c].max() - merged[c].min() for c in merged.columns
                       if merged[c].notna().any()]
             if ranges and max(ranges) / (min(ranges) + 1e-9) > 10:
