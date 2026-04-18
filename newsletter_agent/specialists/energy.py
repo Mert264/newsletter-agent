@@ -46,8 +46,19 @@ def fetch_energy(task: dict) -> dict:
             dataframes[label] = df
             if "Yahoo Finance" not in kilde:
                 kilde.append("Yahoo Finance")
-        # EIA and GIE sources: placeholder for Phase 2
-        # elif source == "eia": ...
+        elif source == "eia":
+            df = _fetch_eia(s["ticker"], label, API_KEYS.get("eia", ""))
+            if df is not None:
+                dataframes[label] = df
+                if "EIA" not in kilde:
+                    kilde.append("EIA")
+        elif source == "eia_mix":
+            # Special: fetch a full energy-mix snapshot (multiple MSN codes → one wide DataFrame)
+            mix_df = _fetch_eia_mix(s.get("msn_codes", {}), API_KEYS.get("eia", ""))
+            if mix_df is not None:
+                dataframes[label] = mix_df
+                if "EIA" not in kilde:
+                    kilde.append("EIA")
 
     return {
         "dataframes": dataframes,
