@@ -460,6 +460,24 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None) ->
             name, result = future.result()
             specialist_results[name] = result
 
+    # Step 2b: Apply unit conversions (date-matched FX where needed)
+    for spec_name in specialists:
+        series_specs = manifest.get(spec_name, {}).get("series", [])
+        if not any(s.get("conversion") for s in series_specs):
+            continue
+        period_days = max(
+            (c.get("period_days", 730) for c in manifest.get(spec_name, {}).get("charts", [])),
+            default=730,
+        )
+        print(f"  [{spec_name}] Applying unit conversions...")
+        converted_dfs, conv_note = apply_conversions(
+            specialist_results[spec_name]["dataframes"], series_specs, period_days
+        )
+        specialist_results[spec_name]["dataframes"] = converted_dfs
+        if conv_note:
+            specialist_results[spec_name]["conversion_note"] = conv_note
+            print(f"  [{spec_name}] Conversion: {conv_note[:80]}...")
+
     # Step 3: Render figures
     print("\n[3/4] Rendering figures...")
     packages = []
