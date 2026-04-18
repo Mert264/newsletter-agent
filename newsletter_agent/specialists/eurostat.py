@@ -5,7 +5,9 @@ No API key required. Returns SpecialistResult dict.
 
 Supported source types:
   "eurostat_ts"   — time-series dataset (DatetimeIndex output, for Type A charts)
-  "eurostat_mix"  — cross-sectional/composition dataset (string index, for Type F/G charts)
+  "eurostat_mix"  — composition dataset:
+                      • energy mix → wide DataFrame (time × product) via _parse_product_wide
+                      • geo comparison → DataFrame with country index via _parse_cross_section
 """
 import requests
 import pandas as pd
@@ -17,7 +19,11 @@ _BASE = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data"
 def _eurostat_get(dataset: str, params: dict):
     """Call Eurostat JSON API. Returns raw JSON response dict or None on failure."""
     try:
-        resp = requests.get(f"{_BASE}/{dataset}", params={**params, "format": "JSON", "lang": "EN"}, timeout=30)
+        resp = requests.get(
+            f"{_BASE}/{dataset}",
+            params={**params, "format": "JSON", "lang": "EN"},
+            timeout=30,
+        )
         resp.raise_for_status()
         return resp.json()
     except Exception as e:
@@ -32,14 +38,10 @@ def _parse_timeseries(raw: dict, label: str):
     try:
         values = raw["value"]
         dims = raw["dimension"]
-        # Find the time dimension (usually "time" or "TIME_PERIOD")
         time_dim = next((k for k in dims if k.lower() in ("time", "time_period")), None)
         if not time_dim:
             return None
         time_cats = list(dims[time_dim]["category"]["index"].keys())
-        # values is a sparse dict: str(flat_index) → float
-        n_time = len(time_cats)
-        # Single dimension → direct mapping
         records = []
         for i, t in enumerate(time_cats):
             val = values.get(str(i))
@@ -48,12 +50,13 @@ def _parse_timeseries(raw: dict, label: str):
         if not records:
             return None
         df = pd.DataFrame(records, columns=["period", label])
-        # Parse periods: "2024-Q1", "2024-01", "2024", "2024M01"
         try:
             df["period"] = pd.to_datetime(df["period"])
         except Exception:
             try:
-                df["period"] = pd.to_datetime(df["period"].str.replace("M", "-"), errors="coerce")
+                df["period"] = pd.to_datetime(
+                    df["period"].str.replace("M", "-"), errors="coerce"
+                )
             except Exception:
                 pass
         df = df.dropna(subset=["period"]).set_index("period").sort_index()
@@ -65,16 +68,14 @@ def _parse_timeseries(raw: dict, label: str):
 
 def _parse_cross_section(raw: dict, country_filter=None):
     """
-    Parse a Eurostat response into a wide DataFrame with countries/categories as index.
-    Used for Type F (stacked) and Type G (horizontal bar) charts.
-    Returns DataFrame with string index.
+    Parse a Eurostat response into a DataFrame with countries as index.
+    Used for Type F (stacked) and Type G (horizontal bar) geo-comparison charts.
     """
     if not raw:
         return None
     try:
         values = raw["value"]
         dims = raw["dimension"]
-        # Find geo dimension
         geo_dim = next((k for k in dims if k.lower() in ("geo", "geo\\time")), None)
         if not geo_dim:
             return None
@@ -95,13 +96,125 @@ def _parse_cross_section(raw: dict, country_filter=None):
         return None
 
 
+def _parse_product_wide(raw: dict, label_map: dict = None) -> "pd.DataFrame | None":
+    """
+    Parse a multi-dimensional Eurostat dataset into a wide DataFrame: time × product.
+
+    Used for energy mix charts (siec dimension). Finds the time and siec/product
+    dimensions, iterates over all combinations, and builds a year-indexed DataFrame
+    where each column is an energy product. If label_map is provided, maps Eurostat
+    English product labels to display names (keyword matching, case-insensitive);
+    products whose labels match no keyword are excluded. When multiple products map
+    to the same display name, their values are summed (aggregation).
+
+    Returns DataFrame or None.
+    """
+    if not raw:
+        return None
+    try:
+        values = raw.get("value", {})
+        dims = raw.get("dimension", {})
+        dim_keys = list(dims.keys())
+        dim_sizes = raw.get("size", [])
+
+        time_key = next(
+            (k for k in dim_keys if k.lower() in ("time", "time_period")), None
+        )
+        prod_key = next(
+            (k for k in dim_keys if k.lower() in ("siec", "nrg_prod", "product", "products")),
+            None,
+        )
+
+        if not time_key or not prod_key:
+            print(f"    [eurostat] product_wide: no time/product dims found in {dim_keys}")
+            return None
+
+        time_cats = list(dims[time_key]["category"]["index"].keys())
+        prod_index = dims[prod_key]["category"]["index"]   # {code: position}
+        prod_labels_raw = dims[prod_key]["category"].get("label", {})
+
+        t_idx = dim_keys.index(time_key)
+        p_idx = dim_keys.index(prod_key)
+
+        # Precompute strides for flat index arithmetic
+        strides = [1] * len(dim_keys)
+        for i in range(len(dim_keys) - 2, -1, -1):
+            strides[i] = strides[i + 1] * dim_sizes[i + 1]
+
+        # Map product codes → display labels (filter + aggregate duplicates)
+        prod_display: dict[str, str] = {}
+        for p_code in prod_index:
+            raw_label = prod_labels_raw.get(p_code, p_code)
+            if label_map:
+                display = None
+                for keyword, name in label_map.items():
+                    if keyword.lower() in raw_label.lower():
+                        display = name
+                        break
+                if display:
+                    prod_display[p_code] = display
+            else:
+                prod_display[p_code] = raw_label
+
+        if not prod_display:
+            print(f"    [eurostat] product_wide: no products matched label_map")
+            return None
+
+        # Build records: {time_str: {display_label: summed_value}}
+        records: dict[str, dict[str, float]] = {}
+        for p_code, display_label in prod_display.items():
+            p_i = prod_index[p_code]
+            for t_i, t_key in enumerate(time_cats):
+                indices = [0] * len(dim_keys)
+                indices[t_idx] = t_i
+                indices[p_idx] = p_i
+                flat = sum(indices[i] * strides[i] for i in range(len(dim_keys)))
+                val = values.get(str(flat))
+                if val is not None:
+                    row = records.setdefault(t_key, {})
+                    row[display_label] = row.get(display_label, 0.0) + float(val)
+
+        if not records:
+            print(f"    [eurostat] product_wide: no values found in response")
+            return None
+
+        df = pd.DataFrame(records).T          # rows=time, cols=products
+        df.index = pd.to_datetime(df.index, errors="coerce")
+        df = df[df.index.notna()].sort_index()
+        df = df.dropna(axis=1, how="all")
+        return df if not df.empty else None
+
+    except Exception as e:
+        print(f"    [eurostat] product_wide parse error: {e}")
+        return None
+
+
+# ── EU Energy Mix: keyword → Danish display name ──────────────────────────────
+# Matches against Eurostat's English product labels (case-insensitive substring).
+# Products matching the same keyword are summed (e.g. onshore + offshore wind).
+_EU_ENERGY_LABEL_MAP = {
+    "natural gas":            "Naturgas",
+    "solid fossil":           "Kul",
+    "coal":                   "Kul",
+    "nuclear":                "Kerneenergi",
+    "hydro":                  "Vandkraft",
+    "wind":                   "Vindkraft",
+    "solar":                  "Solenergi",
+    "oil and petroleum":      "Olie",
+    "bioenergy":              "Bioenergi",
+    "biofuels":               "Bioenergi",
+    "combustible renewables": "Bioenergi",
+}
+
 # ── Known Eurostat dataset shortcuts ──────────────────────────────────────────
-# These are reliable dataset IDs + default params for common macro queries.
 KNOWN_DATASETS = {
-    # EU energy consumption by product (for stacked chart) — annual
+    # EU27 energy consumption by product — annual, GIC2020 = Gross inland consumption
+    # parse_mode="product_wide" → uses _parse_product_wide (time × product DataFrame)
     "eu_energy_mix": {
-        "dataset": "nrg_bal_c",
-        "params":  {"freq": "A", "unit": "KTOE", "nrg_bal": "FC", "geo": "EU27_2020"},
+        "dataset":    "nrg_bal_c",
+        "params":     {"freq": "A", "unit": "KTOE", "nrg_bal": "GIC2020", "geo": "EU27_2020"},
+        "parse_mode": "product_wide",
+        "label_map":  _EU_ENERGY_LABEL_MAP,
     },
     # EU GDP growth (annual % change)
     "eu_gdp_growth": {
@@ -132,14 +245,16 @@ def fetch_eurostat(task: dict) -> dict:
     cutoff = pd.Timestamp(date.today()) - pd.Timedelta(days=period_days)
 
     for s in task["series"]:
-        label  = s["label"]
-        source = s.get("source", "eurostat_ts")
-        dataset = s.get("ticker", "")     # re-use "ticker" field for dataset ID
+        label   = s["label"]
+        source  = s.get("source", "eurostat_ts")
+        dataset = s.get("ticker", "")
         params  = s.get("params", {})
 
-        # Allow shorthand names to map to known datasets
+        # Resolve known dataset shortcuts — keep extra metadata for parse routing
+        known_meta: dict = {}
         if dataset in KNOWN_DATASETS:
             known = KNOWN_DATASETS[dataset]
+            known_meta = known
             dataset = known["dataset"]
             params  = {**known["params"], **params}
 
@@ -153,11 +268,21 @@ def fetch_eurostat(task: dict) -> dict:
                     dataframes[label] = df
 
         elif source in ("eurostat_mix", "eurostat_cross"):
-            countries = s.get("countries")
-            df = _parse_cross_section(raw, countries)
-            if df is not None:
-                dataframes[label] = df
+            parse_mode = known_meta.get("parse_mode", "cross_section")
 
+            if parse_mode == "product_wide":
+                # Energy mix: returns wide DataFrame (time × product) — no cutoff filter
+                # because energy data is annual and we want all available years for context
+                df = _parse_product_wide(raw, label_map=known_meta.get("label_map"))
+                if df is not None and not df.empty:
+                    dataframes[label] = df
+            else:
+                countries = s.get("countries")
+                df = _parse_cross_section(raw, countries)
+                if df is not None:
+                    dataframes[label] = df
+
+    print(f"    [eurostat] Done — {len(dataframes)} series fetched.")
     return {
         "dataframes": dataframes,
         "kilde": kilde,
