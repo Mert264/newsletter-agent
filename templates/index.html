@@ -694,13 +694,34 @@ function renderFigures(figures) {
   document.getElementById('figuresPanel').scrollIntoView({ behavior: 'smooth' });
 }
 
-// ── Period selector ──
+// ── Period slider ──
 let selectedPeriodDays = 0;  // 0 = LLM bestemmer (default)
 
-function setPeriod(btn) {
-  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  selectedPeriodDays = parseInt(btn.dataset.days, 10);
+function toggleLlm(cb) {
+  const wrap = document.getElementById('sliderWrap');
+  if (cb.checked) {
+    wrap.style.opacity = '0.35';
+    wrap.style.pointerEvents = 'none';
+    selectedPeriodDays = 0;
+  } else {
+    wrap.style.opacity = '1';
+    wrap.style.pointerEvents = 'auto';
+    const yrs = parseInt(document.getElementById('periodSlider').value);
+    selectedPeriodDays = yrs * 365;
+    _syncSliderGradient(yrs);
+  }
+}
+
+function onSlider(input) {
+  const yrs = parseInt(input.value);
+  selectedPeriodDays = yrs * 365;
+  document.getElementById('sliderLabel').textContent = yrs === 1 ? '1 år' : `${yrs} år`;
+  _syncSliderGradient(yrs);
+}
+
+function _syncSliderGradient(yrs) {
+  const pct = ((yrs - 1) / 9) * 100;
+  document.getElementById('periodSlider').style.setProperty('--pct', pct + '%');
 }
 
 // ── Visualization type panel ──
