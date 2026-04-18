@@ -549,10 +549,7 @@ const BRIEF_PERIODS = {
 
 function setQuick(n) {
   document.getElementById('briefInput').value = BRIEFS[n];
-  // Auto-set period selector to match this prompt's natural scope
-  const days = BRIEF_PERIODS[n] ?? 0;
-  const btn = document.querySelector(`.period-btn[data-days="${days}"]`);
-  if (btn) setPeriod(btn);
+  setPeriodDays(BRIEF_PERIODS[n] ?? 0);
 }
 
 // ── Step management ──
