@@ -89,7 +89,14 @@ def review_figure(figure_path: str, metadata: dict) -> dict:
         json.JSONDecodeError: If LLM returns invalid JSON (caught and converted to REVISION NEEDED).
     """
     prompt = f"""Chart metadata:
-Chart type: {metadata.get('chart_type', '?')} (D = snapshot table, E = before/after bar, A = time series, B = bar chart)
+Chart type: {metadata.get('chart_type', '?')}
+  A = time series line chart (x=date, y=metric)
+  B = vertical bar chart (x=entity/year, y=metric)
+  D = snapshot table (no axis labels needed)
+  E = before/after grouped bar chart
+  F = 100% stacked bar chart (x=year, y=% share — composition over time)
+  G = horizontal bar chart (y=category names like countries/sectors, x=metric value) — this is VALID for cross-entity snapshots. Do NOT flag type G as invalid.
+  P = pie chart (single-year composition snapshot)
 Title: {metadata.get('title', '[MISSING]')}
 X-axis label: {metadata.get('x_label', '[MISSING]')}
 Y-axis label: {metadata.get('y_label', '[MISSING]')}
