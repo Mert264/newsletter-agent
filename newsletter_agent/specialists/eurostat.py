@@ -114,8 +114,10 @@ def _parse_product_wide(raw: dict, label_map: dict = None) -> "pd.DataFrame | No
     try:
         values = raw.get("value", {})
         dims = raw.get("dimension", {})
-        dim_keys = list(dims.keys())
-        dim_sizes = raw.get("size", [])
+        # CRITICAL: use the "id" array for dimension order — it is the authoritative
+        # ordering for flat index arithmetic in JSON-stat. dims.keys() order is not reliable.
+        dim_keys = raw.get("id", list(dims.keys()))
+        dim_sizes = raw.get("size", [1] * len(dim_keys))
 
         time_key = next(
             (k for k in dim_keys if k.lower() in ("time", "time_period")), None
@@ -130,18 +132,24 @@ def _parse_product_wide(raw: dict, label_map: dict = None) -> "pd.DataFrame | No
             return None
 
         time_cats = list(dims[time_key]["category"]["index"].keys())
-        prod_index = dims[prod_key]["category"]["index"]   # {code: position}
+        prod_index = dims[prod_key]["category"]["index"]   # {code: integer position}
         prod_labels_raw = dims[prod_key]["category"].get("label", {})
 
         t_idx = dim_keys.index(time_key)
         p_idx = dim_keys.index(prod_key)
 
-        # Precompute strides for flat index arithmetic
+        # Precompute strides: stride[i] = product of sizes of all dims after i
         strides = [1] * len(dim_keys)
         for i in range(len(dim_keys) - 2, -1, -1):
             strides[i] = strides[i + 1] * dim_sizes[i + 1]
 
-        # Map product codes → display labels (filter + aggregate duplicates)
+        # Helper: handle both dict {"idx": val} and list [val, ...] value formats
+        def _get_val(flat: int):
+            if isinstance(values, list):
+                return values[flat] if flat < len(values) else None
+            return values.get(str(flat))
+
+        # Map product codes → display labels (filter + aggregate duplicates by summing)
         prod_display: dict[str, str] = {}
         for p_code in prod_index:
             raw_label = prod_labels_raw.get(p_code, p_code)
@@ -169,13 +177,13 @@ def _parse_product_wide(raw: dict, label_map: dict = None) -> "pd.DataFrame | No
                 indices[t_idx] = t_i
                 indices[p_idx] = p_i
                 flat = sum(indices[i] * strides[i] for i in range(len(dim_keys)))
-                val = values.get(str(flat))
+                val = _get_val(flat)
                 if val is not None:
                     row = records.setdefault(t_key, {})
                     row[display_label] = row.get(display_label, 0.0) + float(val)
 
         if not records:
-            print(f"    [eurostat] product_wide: no values found in response")
+            print(f"    [eurostat] product_wide: no values found — dim_keys={dim_keys}, sizes={dim_sizes}, n_values={len(values)}")
             return None
 
         df = pd.DataFrame(records).T          # rows=time, cols=products
