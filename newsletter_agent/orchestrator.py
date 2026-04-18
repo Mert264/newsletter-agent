@@ -216,8 +216,10 @@ Rules:
   on the same chart, you MUST add "conversion" fields to harmonise units to USD/MWh:
     TTF=F  → "conversion": "EUR_MWh_to_USD_MWh"    (pipeline fetches live EUR/USD and multiplies)
     NG=F   → "conversion": "USD_MMBtu_to_USD_MWh"   (pipeline multiplies by 3.41214)
-  Set y_label to "USD/MWh". The conversion note is auto-added to the chart footer — do NOT add it yourself.
-  Do NOT set y_label to "Indekseret (basis=100)" for gas comparisons — use USD/MWh with conversions instead.
+  Set y_label EXACTLY to "USD/MWh" — no other value is acceptable for gas comparisons.
+  NEVER set y_label to "Indekseret (basis=100)", "Indexed (base=100)", or any indexed label when
+  "conversion" fields are present. The conversion produces comparable absolute prices in USD/MWh.
+  The pipeline WILL override "Indekseret" to "USD/MWh" automatically, but set it correctly anyway.
 - When all series share the same unit (e.g. two oil prices in USD/barrel), use that unit as y_label.
 - When series have DIFFERENT units or very different scales, set y_label to
   "Indekseret (basis=100)" — the pipeline will normalize all series to 100 at the start date.
