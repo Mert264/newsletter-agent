@@ -126,6 +126,7 @@ Bond yields (already in % — do NOT apply YoY):
   IRLTLT01GBM156N (UK 10Y Gilt, monthly %)
   IRLTLT01FRM156N (France 10Y OAT, monthly %)
   IRLTLT01ITM156N (Italy 10Y BTP, monthly %)
+  IRLTLT01ESM156N (Spain 10Y Bono, monthly %)
 Other:
   CLVMEURSCAB1GQEA19 (Eurozone real GDP, quarterly)
   LRHUTTTTEZM156S (Eurozone unemployment rate, monthly)
