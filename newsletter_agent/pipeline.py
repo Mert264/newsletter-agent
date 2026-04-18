@@ -435,7 +435,7 @@ def _run_specialist(name: str, task: dict) -> tuple[str, dict]:
     return name, result
 
 
-def run(brief: str, output_dir: str = "output", preferred_types: list = None) -> list:
+def run(brief: str, output_dir: str = "output", preferred_types: list = None, period_days: int = None) -> list:
     """
     Main pipeline entry point.
     brief: free-form topic string from department.
