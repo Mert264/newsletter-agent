@@ -710,56 +710,6 @@ function getPreferredTypes() {
   return types;
 }
 
-// ── Per-figure re-render ──
-async function rerenderFigure(figId, chartType, btn) {
-  const card = document.getElementById(`figcard-${figId}`);
-  const img  = document.getElementById(`figimg-${figId}`);
-  const spinner = document.getElementById(`figspinner-${figId}`);
-  const ctx  = JSON.parse(card.dataset.ctx || '{}');
-
-  if (!ctx.specialist) {
-    alert('Re-render context not available for this figure.');
-    return;
-  }
-
-  // Disable all buttons for this card
-  card.querySelectorAll('.rr-btn').forEach(b => { b.disabled = true; });
-  img.style.display = 'none';
-  spinner.classList.add('visible');
-
-  try {
-    const resp = await fetch('/rerender', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        figure_id:    figId,
-        chart_type:   chartType,
-        specialist:   ctx.specialist,
-        series_specs: ctx.series_specs || [],
-        chart_spec:   ctx.chart_spec   || {},
-      }),
-    });
-    const data = await resp.json();
-    if (resp.ok) {
-      img.src = `/figures/${data.path}?t=${Date.now()}`;
-      img.style.display = 'block';
-      // Update active button
-      card.querySelectorAll('.rr-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      card.dataset.ctx = JSON.stringify({...ctx, chart_spec: {...ctx.chart_spec, type: chartType}});
-    } else {
-      alert('Fejl ved genrendering: ' + (data.error || 'Ukendt fejl'));
-      img.style.display = 'block';
-    }
-  } catch (err) {
-    alert('Netværksfejl: ' + err);
-    img.style.display = 'block';
-  } finally {
-    spinner.classList.remove('visible');
-    card.querySelectorAll('.rr-btn').forEach(b => { b.disabled = false; });
-  }
-}
-
 function openLightbox(src) {
   document.getElementById('lightbox-img').src = src;
   document.getElementById('lightbox').classList.add('open');
