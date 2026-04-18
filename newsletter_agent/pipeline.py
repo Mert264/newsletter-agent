@@ -268,6 +268,42 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
     elif chart_type == "E":
         path = _build_before_after_bars(dfs, chart_spec, kilde_str, output_path)
 
+    # ── Type F — 100% stacked bar (composition / energy mix) ─────────────
+    elif chart_type == "F":
+        # F expects a wide DataFrame: index=categories, columns=series labels
+        # If specialist returns multiple single-column DFs, merge them wide.
+        if len(dfs) == 1:
+            wide = list(dfs.values())[0]
+            if isinstance(wide.index, pd.DatetimeIndex):
+                wide = wide.copy()
+                wide.index = wide.index.year.astype(str)
+        else:
+            # Multiple series → each is a column; build wide from time snapshots
+            parts = {}
+            for lbl, df in dfs.items():
+                s = df.iloc[:, 0].dropna()
+                if isinstance(s.index, pd.DatetimeIndex):
+                    s.index = s.index.year.astype(str)
+                parts[lbl] = s
+            wide = pd.DataFrame(parts).dropna(how="all").tail(10)
+        if wide is None or wide.empty:
+            print(f"    [warn] No data for Type F chart '{chart_spec.get('title')}' — skipping.")
+            return None
+        path = render_type_f(wide, render_spec, output_path)
+
+    # ── Type G — Horizontal bar (entity/sector comparison) ────────────────
+    elif chart_type == "G":
+        if len(dfs) == 1:
+            g_df = list(dfs.values())[0]
+        else:
+            # Multiple series → take latest value of each, build single-column DF
+            latest = {lbl: float(df.iloc[:, 0].dropna().iloc[-1]) for lbl, df in dfs.items() if not df.empty}
+            g_df = pd.DataFrame.from_dict(latest, orient="index", columns=[chart_spec.get("y_label", "%")])
+        if g_df is None or g_df.empty:
+            print(f"    [warn] No data for Type G chart '{chart_spec.get('title')}' — skipping.")
+            return None
+        path = render_type_g(g_df, render_spec, output_path)
+
     # ── Types A / B / C — Time-series & bar charts ───────────────────────
     else:
         aligned = align_dates(dfs)
