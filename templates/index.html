@@ -460,7 +460,7 @@ function startRun() {
       finishAllSteps();
       renderFigures(msg.figures);
       document.getElementById('runBtn').disabled = false;
-      document.getElementById('statusMsg').textContent = `Done — ${msg.figures.length} figure(s) generated`;
+      document.getElementById('statusMsg').textContent = `Færdig — ${msg.figures.length} figur(er) genereret`;
       document.getElementById('statusMsg').className = '';
       eventSource.close();
     } else if (msg.type === 'error') {
