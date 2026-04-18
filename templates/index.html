@@ -677,7 +677,7 @@ function renderFigures(figures) {
 }
 
 // ── Period selector ──
-let selectedPeriodDays = 365;
+let selectedPeriodDays = 0;  // 0 = LLM bestemmer (default)
 
 function setPeriod(btn) {
   document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
