@@ -286,48 +286,48 @@
 
   <!-- ── Pipeline steps ── -->
   <div class="card" id="stepsPanel">
-    <div class="card-header">⚙️ Pipeline Steps</div>
+    <div class="card-header">⚙️ Pipeline-trin</div>
     <div class="card-body">
       <div class="step" id="step-1">
         <div class="step-icon">1</div>
         <div>
-          <div class="step-label">Lead Agent — Plan</div>
-          <div class="step-detail" id="step-1-detail">LLM reads the brief and outputs a TaskManifest: which specialists to activate, which tickers to fetch, and what chart types to render.</div>
+          <div class="step-label">Lead Agent — Planlægning</div>
+          <div class="step-detail" id="step-1-detail">LLM læser briefen og producerer en TaskManifest: hvilke specialister der aktiveres, hvilke tickers der hentes, og hvilke graftyper der skal renderes.</div>
         </div>
       </div>
       <div class="step" id="step-2">
         <div class="step-icon">2</div>
         <div>
-          <div class="step-label">Specialists — Fetch Data</div>
-          <div class="step-detail" id="step-2-detail">Parallel data workers hit Yahoo Finance (market prices) and FRED (US/EU macro series) simultaneously.</div>
+          <div class="step-label">Specialister — Hent data</div>
+          <div class="step-detail" id="step-2-detail">Parallelle dataarbejdere henter fra Yahoo Finance (markedspriser) og FRED (US/EU makroserier) samtidigt.</div>
         </div>
       </div>
       <div class="step" id="step-3">
         <div class="step-icon">3</div>
         <div>
-          <div class="step-label">Normalize — Clean &amp; Transform</div>
-          <div class="step-detail" id="step-3-detail">Drop nulls, align date ranges, apply YoY % transforms and base-100 indexing where needed.</div>
+          <div class="step-label">Normaliser — Rens &amp; transformer</div>
+          <div class="step-detail" id="step-3-detail">Fjerner tomme værdier, justerer datoperioder og anvender ÅoÅ %-transformationer og basis-100-indeksering efter behov.</div>
         </div>
       </div>
       <div class="step" id="step-4">
         <div class="step-icon">4</div>
         <div>
-          <div class="step-label">Render — Build Charts</div>
-          <div class="step-detail" id="step-4-detail">Matplotlib renders each figure (type A/B/D/E) with Maj Invest brand styling, end-of-line labels, Note and Kilde footer.</div>
+          <div class="step-label">Render — Byg grafer</div>
+          <div class="step-detail" id="step-4-detail">Matplotlib renderer hver figur (type A/B/D/E) med Maj Invest-brandstil, etiketter ved linjeslut og Note- og Kilde-fodnoter.</div>
         </div>
       </div>
       <div class="step" id="step-5">
         <div class="step-icon">5</div>
         <div>
-          <div class="step-label">Reviewer — Quality Check</div>
-          <div class="step-detail" id="step-5-detail">A devil's advocate LLM inspects each PNG and flags issues. If rejected, the figure is re-rendered (max 2 loops).</div>
+          <div class="step-label">Reviewer — Kvalitetstjek</div>
+          <div class="step-detail" id="step-5-detail">En djævlens advokat-LLM gennemgår hver PNG og markerer fejl. Afvises figuren, renderes den om (maks. 2 forsøg).</div>
         </div>
       </div>
       <div class="step" id="step-6">
         <div class="step-icon">✓</div>
         <div>
-          <div class="step-label">Output — Figures Ready</div>
-          <div class="step-detail" id="step-6-detail">PNG files saved to disk, metadata written to manifest.json.</div>
+          <div class="step-label">Output — Figurer klar</div>
+          <div class="step-detail" id="step-6-detail">PNG-filer gemt på disk, metadata skrevet til manifest.json.</div>
         </div>
       </div>
     </div>
