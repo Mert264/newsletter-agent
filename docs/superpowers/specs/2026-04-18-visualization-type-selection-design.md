@@ -111,7 +111,8 @@ The currently-active type is highlighted (green background). Clicking a differen
 #### Physical conversion factors (fixed constants):
 - `USD_MMBtu → USD_MWh`: multiply by **3.41214** (1 MWh = 3.41214 MMBtu)
 - `EUR_MWh → USD_MWh`: multiply by EUR/USD exchange rate (date-matched)
-- `USD_MCF → USD_MWh`: multiply by **0.03531** (1 MCF ≈ 0.03531 MWh, natural gas standard)
+
+Note: EIA energy-mix series (PATOBUS, NNTCBUS etc.) are in Quadrillion BTU and used for compositional charts only — they are never plotted on the same axis as price series (USD/MWh). No MCF conversion is needed in the current scope.
 
 #### Date-matched FX conversion:
 When a conversion requires EUR/USD, the pipeline fetches `EURUSD=X` via yfinance for the full period, aligns by date (outer join + forward-fill), and applies element-wise multiplication. This ensures each data point uses the exchange rate from its own date — not a single spot rate.
