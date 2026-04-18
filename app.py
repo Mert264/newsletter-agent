@@ -44,7 +44,9 @@ def index():
 
 @app.route("/run", methods=["POST"])
 def start_run():
-    brief = (request.json or {}).get("brief", "").strip()
+    body = request.json or {}
+    brief = body.get("brief", "").strip()
+    preferred_types = body.get("preferred_types", None)  # e.g. ["A", "G"]
     if not brief:
         return jsonify({"error": "Brief is required"}), 400
 
