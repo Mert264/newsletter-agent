@@ -36,6 +36,7 @@ Do NOT flag:
 - Country/region labels not appearing on the chart body (legend is sufficient).
 - Source granularity (e.g. "Yahoo Finance" is fine, no need for ticker symbols).
 - Minor wording preferences.
+- For type G (horizontal bar): the Y-axis shows category/country names — this is correct and needs no unit label. The X-axis carries the metric with units. Do NOT flag "missing y-axis units" or "swapped axes" on type G charts.
 - Y-axis label "Index" or "Index level" for raw market instruments like DXY (US Dollar Index),
   VIX (volatility index), or similar instruments that trade as indices by nature. These are NOT
   rebased series and do NOT need a "base=100" specification. Only require "base=100" when the
