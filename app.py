@@ -65,7 +65,17 @@ def start_run():
         sys.stdout = _StreamWriter(_run_queue, orig)
         try:
             from newsletter_agent.pipeline import run
-            packages = run(brief, output_dir=OUTPUT_DIR)
+            packages = run(brief, output_dir=OUTPUT_DIR, preferred_types=preferred_types)
+
+            # Load rerender context to attach to each figure
+            import json as _json
+            ctx_path = os.path.join(OUTPUT_DIR, "rerender_context.json")
+            rerender_ctx = {}
+            if os.path.exists(ctx_path):
+                with open(ctx_path) as f:
+                    for entry in _json.load(f):
+                        rerender_ctx[entry["figure_id"]] = entry
+
             figures = [
                 {
                     "path":          os.path.basename(p["path"]),
@@ -73,8 +83,11 @@ def start_run():
                     "note":          p["metadata"]["note"],
                     "kilde":         p["metadata"]["kilde"],
                     "reviewer_flag": p["metadata"].get("reviewer_flag", ""),
+                    "chart_type":    p["metadata"].get("chart_type", "A"),
+                    "figure_id":     i,
+                    "rerender_ctx":  rerender_ctx.get(i, {}),
                 }
-                for p in packages
+                for i, p in enumerate(packages)
             ]
             _run_queue.put({"type": "done", "figures": figures})
         except Exception as exc:
