@@ -11,8 +11,9 @@ from newsletter_agent.specialists.rates import fetch_rates
 from newsletter_agent.specialists.macro import fetch_macro
 from newsletter_agent.specialists.commodities import fetch_commodities
 from newsletter_agent.specialists.equities import fetch_equities
+from newsletter_agent.specialists.eurostat import fetch_eurostat
 from newsletter_agent.processors.normalize import drop_nulls, align_dates, index_to_100, compute_yoy
-from newsletter_agent.renderers.charts import render_type_a, render_type_b, render_type_c, render_type_e
+from newsletter_agent.renderers.charts import render_type_a, render_type_b, render_type_c, render_type_e, render_type_f, render_type_g
 from newsletter_agent.renderers.tables import render_type_d
 from newsletter_agent.reviewer import review_figure
 
@@ -22,6 +23,7 @@ SPECIALIST_MAP = {
     "macro":       fetch_macro,
     "commodities": fetch_commodities,
     "equities":    fetch_equities,
+    "eurostat":    fetch_eurostat,
 }
 
 CHART_RENDERER_MAP = {
@@ -29,6 +31,8 @@ CHART_RENDERER_MAP = {
     "B": render_type_b,
     "C": render_type_c,
     "E": render_type_e,
+    "F": render_type_f,
+    "G": render_type_g,
 }
 
 
