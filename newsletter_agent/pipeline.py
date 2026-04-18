@@ -239,6 +239,7 @@ def _build_event_impact_table(merged: pd.DataFrame, events: list,
     path = render_type_d(data, impact_spec, output_path)
     metadata = {
         "title":         impact_spec["title"],
+        "chart_type":    "D",
         "x_label":       "",
         "y_label":       "",
         "note":          impact_spec["note"],
