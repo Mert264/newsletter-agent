@@ -768,8 +768,6 @@ function toggleVizOpt(key) {
 
 function getPreferredTypes() {
   const types = [...activeVizTypes];
-  // Tabel (D) always accompanies Figur (A)
-  if (types.includes('A') && !types.includes('D')) types.push('D');
   // Søjlediagram: send all three subtypes, LLM picks the most appropriate one
   if (barActive) types.push('B', 'G', 'F');
   return types;
