@@ -661,7 +661,7 @@ function startRun() {
   fetch('/run', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ brief, preferred_types: getPreferredTypes() }),
+    body: JSON.stringify({ brief, preferred_types: getPreferredTypes(), period_days: selectedPeriodDays || null }),
   }).then(r => {
     if (r.status === 429) {
       document.getElementById('statusMsg').textContent = 'En kørsel er allerede i gang — vent venligst.';
