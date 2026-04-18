@@ -574,6 +574,25 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None) ->
                     packages.append(impact_pkg)
                     fig_idx += 1
 
+    # Build rerender context — one entry per figure, stored for /rerender endpoint
+    rerender_ctx = []
+    fig_ctx_idx = 0
+    for spec_name in specialists:
+        result = specialist_results[spec_name]
+        for chart_spec in result["chart_specs"]:
+            rerender_ctx.append({
+                "figure_id":    fig_ctx_idx,
+                "specialist":   spec_name,
+                "series_specs": manifest.get(spec_name, {}).get("series", []),
+                "chart_spec":   chart_spec,
+                "brief":        brief,
+            })
+            fig_ctx_idx += 1
+
+    ctx_path = os.path.join(output_dir, "rerender_context.json")
+    with open(ctx_path, "w") as f:
+        json.dump(rerender_ctx, f, indent=2, default=str)
+
     # Step 5: Save manifest
     manifest_path = os.path.join(output_dir, "manifest.json")
     with open(manifest_path, "w") as f:
