@@ -305,6 +305,26 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
             return None
         path = render_type_g(g_df, render_spec, output_path)
 
+    # ── Type P — Pie chart (composition snapshot) ─────────────────────────
+    elif chart_type == "P":
+        if len(dfs) == 1:
+            wide = list(dfs.values())[0]
+            if isinstance(wide.index, pd.DatetimeIndex):
+                wide = wide.copy()
+                wide.index = wide.index.year.astype(str)
+        else:
+            parts = {}
+            for lbl, df in dfs.items():
+                s = df.iloc[:, 0].dropna()
+                if isinstance(s.index, pd.DatetimeIndex):
+                    s.index = s.index.year.astype(str)
+                parts[lbl] = s
+            wide = pd.DataFrame(parts).dropna(how="all")
+        if wide is None or wide.empty:
+            print(f"    [warn] No data for Type P chart '{chart_spec.get('title')}' — skipping.")
+            return None
+        path = render_type_p(wide, render_spec, output_path)
+
     # ── Types A / B / C — Time-series & bar charts ───────────────────────
     else:
         aligned = align_dates(dfs)
