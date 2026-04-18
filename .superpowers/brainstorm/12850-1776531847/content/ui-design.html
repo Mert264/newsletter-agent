@@ -1,125 +1,105 @@
-<h2>UI-design: Visualiseringsvalg — Opdateret med Søjlediagram-undervalg</h2>
-<p class="subtitle">Panel til venstre med expanderbart Søjlediagram + Cirkeldiagram som øjebliksbillede-mulighed. Klik for at godkende eller justere.</p>
+<h2>UI-design: Visualiseringsvalg — Søjle-undervalg forenklet</h2>
+<p class="subtitle">Sub-valg som kompakte chips i én række. Klik for at godkende eller justere.</p>
 
 <style>
-.viz-panel { background:#fff;border-radius:8px;border:1px solid #e4eaea;overflow:hidden }
-.viz-panel-header { background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:11px;letter-spacing:.05em;text-transform:uppercase }
-.viz-option { display:flex;align-items:flex-start;gap:9px;padding:7px 10px;border-radius:5px;cursor:pointer;margin-bottom:4px }
-.viz-option.selected { border:2px solid #11716c;background:#f0faf9 }
-.viz-option.unselected { border:1.5px solid #d1d5db;background:#fff }
-.viz-label-main { font-weight:600;font-size:11px }
-.viz-label-main.sel { color:#11716c }
-.viz-label-main.unsel { color:#374151 }
-.viz-label-sub { font-size:9px;color:#6b7280 }
-.viz-check { margin-left:auto;color:#11716c;font-size:12px;font-weight:700 }
-.sub-options { margin-left:22px;margin-top:4px;display:flex;flex-direction:column;gap:3px }
-.sub-opt { display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:4px;font-size:10px;cursor:pointer }
-.sub-opt.sel { background:#e8f7f6;border:1.5px solid #11716c;color:#11716c;font-weight:600 }
-.sub-opt.unsel { background:#f9fafb;border:1.5px solid #e5e7eb;color:#6b7280 }
-.sub-dot { width:6px;height:6px;border-radius:50%;flex-shrink:0 }
+.vp { background:#fff;border-radius:8px;border:1px solid #e4eaea;overflow:hidden }
+.vph { background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:11px;letter-spacing:.05em;text-transform:uppercase }
+.vo { display:flex;align-items:flex-start;gap:9px;padding:7px 10px;border-radius:5px;cursor:pointer;margin-bottom:4px }
+.vo.s  { border:2px solid #11716c;background:#f0faf9 }
+.vo.u  { border:1.5px solid #d1d5db;background:#fff }
+.vml.s { font-weight:600;font-size:11px;color:#11716c }
+.vml.u { font-weight:600;font-size:11px;color:#374151 }
+.vsub  { font-size:9px;color:#6b7280 }
+.vc    { margin-left:auto;color:#11716c;font-size:12px;font-weight:700 }
+/* Sub-chips row */
+.chips { display:flex;gap:5px;margin:5px 0 2px 23px }
+.chip  { border-radius:4px;padding:3px 8px;font-size:10px;font-weight:600;cursor:pointer;line-height:1.4 }
+.chip.cs { background:#11716c;color:#fff;border:1.5px solid #11716c }
+.chip.cu { background:#f9fafb;color:#6b7280;border:1.5px solid #e5e7eb }
 </style>
 
 <div class="mockup" style="max-width:980px;margin:0 auto">
   <div class="mockup-header">Newsletter AI Agent</div>
   <div class="mockup-body" style="padding:0;background:#f4f6f8;font-family:system-ui,sans-serif;font-size:13px">
 
-    <!-- Top row: Viz panel LEFT + Brief RIGHT -->
     <div style="display:grid;grid-template-columns:210px 1fr;gap:12px;padding:12px">
 
-      <!-- Visualization type panel — LEFT -->
-      <div class="viz-panel">
-        <div class="viz-panel-header">Visualiseringstype</div>
+      <!-- LEFT — Viz panel -->
+      <div class="vp">
+        <div class="vph">Visualiseringstype</div>
         <div style="padding:10px">
           <div style="font-size:9px;color:#9ca3af;text-transform:uppercase;font-weight:600;letter-spacing:.06em;margin-bottom:6px">Vælg én eller flere</div>
 
-          <!-- Figur — selected -->
-          <div class="viz-option selected">
-            <div style="width:14px;height:14px;flex-shrink:0;margin-top:1px">
-              <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polyline points="1,11 4,7 7,9 10,4 13,6" stroke="#11716c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
+          <!-- Figur -->
+          <div class="vo s">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
+              <polyline points="1,11 4,7 7,9 10,4 13,6" stroke="#11716c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <div>
-              <div class="viz-label-main sel">Figur</div>
-              <div class="viz-label-sub">Time series — linjegraf</div>
+              <div class="vml s">Figur</div>
+              <div class="vsub">Time series — linjegraf</div>
             </div>
-            <span class="viz-check">✓</span>
+            <span class="vc">✓</span>
           </div>
 
-          <!-- Søjlediagram — parent selected, expanded with sub-options -->
-          <div class="viz-option selected" style="flex-direction:column;padding-bottom:6px">
+          <!-- Søjlediagram — expanded, chips below -->
+          <div class="vo s" style="flex-wrap:wrap;padding-bottom:4px">
             <div style="display:flex;align-items:flex-start;gap:9px;width:100%">
-              <div style="width:14px;height:14px;flex-shrink:0;margin-top:1px">
-                <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1" y="5" width="3" height="8" rx="0.5" fill="#11716c"/>
-                  <rect x="5.5" y="2" width="3" height="11" rx="0.5" fill="#11716c"/>
-                  <rect x="10" y="7" width="3" height="6" rx="0.5" fill="#11716c"/>
-                </svg>
-              </div>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
+                <rect x="1" y="5" width="3" height="8" rx=".5" fill="#11716c"/>
+                <rect x="5.5" y="2" width="3" height="11" rx=".5" fill="#11716c"/>
+                <rect x="10" y="7" width="3" height="6" rx=".5" fill="#11716c"/>
+              </svg>
               <div style="flex:1">
-                <div class="viz-label-main sel">Søjlediagram</div>
-                <div class="viz-label-sub">Vælg type nedenfor</div>
+                <div class="vml s">Søjlediagram</div>
+                <div class="vsub">Vælg visningstype nedenfor</div>
               </div>
-              <span class="viz-check">✓</span>
+              <span class="vc">✓</span>
             </div>
-
-            <!-- Sub-options -->
-            <div class="sub-options">
-              <div class="sub-opt sel">
-                <div class="sub-dot" style="background:#11716c"></div>
-                <span>Lodret — sammenligning på tværs</span>
-              </div>
-              <div class="sub-opt unsel">
-                <div class="sub-dot" style="background:#d1d5db"></div>
-                <span>Vandret — ranking &amp; top-N</span>
-              </div>
-              <div class="sub-opt unsel">
-                <div class="sub-dot" style="background:#d1d5db"></div>
-                <span>Stablet — fordeling over tid</span>
-              </div>
+            <!-- Three chips in one row -->
+            <div class="chips">
+              <span class="chip cs">Lodret</span>
+              <span class="chip cu">Vandret</span>
+              <span class="chip cu">Stablet</span>
             </div>
           </div>
 
-          <!-- Tabel — not selected -->
-          <div class="viz-option unselected">
-            <div style="width:14px;height:14px;flex-shrink:0;margin-top:1px">
-              <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="1" width="12" height="12" rx="1" stroke="#9ca3af" stroke-width="1.2"/>
-                <line x1="1" y1="5" x2="13" y2="5" stroke="#9ca3af" stroke-width="1"/>
-                <line x1="1" y1="9" x2="13" y2="9" stroke="#9ca3af" stroke-width="1"/>
-                <line x1="5" y1="1" x2="5" y2="13" stroke="#9ca3af" stroke-width="1"/>
-              </svg>
-            </div>
+          <!-- Tabel -->
+          <div class="vo u">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
+              <rect x="1" y="1" width="12" height="12" rx="1" stroke="#9ca3af" stroke-width="1.2"/>
+              <line x1="1" y1="5" x2="13" y2="5" stroke="#9ca3af" stroke-width="1"/>
+              <line x1="1" y1="9" x2="13" y2="9" stroke="#9ca3af" stroke-width="1"/>
+              <line x1="5" y1="1" x2="5" y2="13" stroke="#9ca3af" stroke-width="1"/>
+            </svg>
             <div>
-              <div class="viz-label-main unsel">Tabel</div>
-              <div class="viz-label-sub">Snapshot af nøgletal</div>
+              <div class="vml u">Tabel</div>
+              <div class="vsub">Snapshot — nøgletal</div>
             </div>
           </div>
 
-          <!-- Cirkeldiagram — not selected -->
-          <div class="viz-option unselected">
-            <div style="width:14px;height:14px;flex-shrink:0;margin-top:1px">
-              <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="7" cy="7" r="5.5" stroke="#9ca3af" stroke-width="1.2"/>
-                <path d="M7 7 L7 1.5 A5.5 5.5 0 0 1 12.5 7 Z" fill="#d1d5db"/>
-                <path d="M7 7 L12.5 7 A5.5 5.5 0 0 1 4 12 Z" fill="#e5e7eb"/>
-              </svg>
-            </div>
+          <!-- Cirkeldiagram -->
+          <div class="vo u">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
+              <circle cx="7" cy="7" r="5.5" stroke="#9ca3af" stroke-width="1.2"/>
+              <path d="M7 7 L7 1.5 A5.5 5.5 0 0 1 12.5 7 Z" fill="#d1d5db"/>
+              <path d="M7 7 L12.5 7 A5.5 5.5 0 0 1 4 12 Z" fill="#e5e7eb"/>
+            </svg>
             <div>
-              <div class="viz-label-main unsel">Cirkeldiagram</div>
-              <div class="viz-label-sub">Snapshot — ét år, sum = 100%</div>
+              <div class="vml u">Cirkeldiagram</div>
+              <div class="vsub">Snapshot — ét år, sum = 100%</div>
             </div>
           </div>
 
           <div style="margin-top:8px;padding-top:6px;border-top:1px solid #f3f4f6;font-size:9px;color:#9ca3af;line-height:1.5">
-            Systemet respekterer dine valg som præference. Vælger automatisk bedst egnede type hvis data ikke matcher.
+            Systemet respekterer dine valg som præference. Tilpasser automatisk til datans natur.
           </div>
         </div>
       </div>
 
-      <!-- Brief card — RIGHT -->
-      <div class="viz-panel">
-        <div class="viz-panel-header">Emne-brief</div>
+      <!-- RIGHT — Brief -->
+      <div class="vp">
+        <div class="vph">Emne-brief</div>
         <div style="padding:14px">
           <div style="background:#f9fafb;border:1.5px solid #d1d5db;border-radius:6px;padding:10px;color:#9ca3af;font-size:12px;min-height:64px">Beskriv det makroøkonomiske emne du vil analysere...</div>
           <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
@@ -136,51 +116,49 @@
       </div>
     </div>
 
-    <!-- Pipeline + Log row -->
+    <!-- Pipeline + Log -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px 12px">
-      <div class="viz-panel">
-        <div class="viz-panel-header">Pipeline-trin</div>
+      <div class="vp">
+        <div class="vph">Pipeline-trin</div>
         <div style="padding:12px;color:#6b7280;font-size:11px;opacity:.5">[trin 1–6 som nu]</div>
       </div>
-      <div class="viz-panel">
-        <div class="viz-panel-header">Live Log</div>
+      <div class="vp">
+        <div class="vph">Live Log</div>
         <div style="padding:8px;background:#0f1b1a;margin:8px;border-radius:5px;height:48px;color:#4b8a87;font-size:10px;font-family:monospace">Afventer kørsel...</div>
       </div>
     </div>
 
-    <!-- Generated figures with per-figure re-render -->
+    <!-- Generated figures -->
     <div style="padding:0 12px 12px">
-      <div class="viz-panel">
-        <div class="viz-panel-header">Genererede figurer</div>
+      <div class="vp">
+        <div class="vph">Genererede figurer</div>
         <div style="padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
 
-          <!-- Figure 1 — time series, re-render row -->
           <div style="border:1px solid #e4eaea;border-radius:7px;overflow:hidden">
             <div style="background:#d1fae5;height:110px;display:flex;align-items:center;justify-content:center;color:#065f46;font-size:11px;font-weight:600">Brent Crude — linjegraf</div>
             <div style="padding:8px 10px;background:#f8fafa;border-top:1px solid #e4eaea">
               <div style="font-size:10px;font-weight:600;color:#374151;margin-bottom:5px">Genrender som:</div>
               <div style="display:flex;gap:4px;flex-wrap:wrap">
-                <button style="background:#11716c;color:#fff;border:none;border-radius:4px;padding:4px 9px;font-size:10px">Figur</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px">Lodret</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px">Vandret</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px">Stablet</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px">Tabel</button>
+                <button style="background:#11716c;color:#fff;border:none;border-radius:4px;padding:4px 8px;font-size:10px">Figur</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">Lodret</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">Vandret</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">Stablet</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">Tabel</button>
                 <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px">Cirkel</button>
               </div>
             </div>
           </div>
 
-          <!-- Figure 2 — stacked bar (energy mix) -->
           <div style="border:1px solid #e4eaea;border-radius:7px;overflow:hidden">
             <div style="background:#dbeafe;height:110px;display:flex;align-items:center;justify-content:center;color:#1e40af;font-size:11px;font-weight:600">EU Energy Mix — stablet søjle</div>
             <div style="padding:8px 10px;background:#f8fafa;border-top:1px solid #e4eaea">
               <div style="font-size:10px;font-weight:600;color:#374151;margin-bottom:5px">Genrender som:</div>
               <div style="display:flex;gap:4px;flex-wrap:wrap">
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px">Figur</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px">Lodret</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px">Vandret</button>
-                <button style="background:#11716c;color:#fff;border:none;border-radius:4px;padding:4px 9px;font-size:10px">Stablet</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px">Tabel</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">Figur</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">Lodret</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">Vandret</button>
+                <button style="background:#11716c;color:#fff;border:none;border-radius:4px;padding:4px 8px;font-size:10px">Stablet</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">Tabel</button>
                 <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px">Cirkel</button>
               </div>
             </div>
@@ -198,14 +176,14 @@
     <div class="letter">A</div>
     <div class="content">
       <h3>Godkend dette design</h3>
-      <p>Type-panel til venstre, Søjlediagram med Lodret/Vandret/Stablet som undervalg, Cirkeldiagram som snapshot-mulighed, re-render-knapper per figur. Fortsæt til spec.</p>
+      <p>Panel til venstre, Søjlediagram med tre kompakte chip-knapper (Lodret / Vandret / Stablet), Cirkeldiagram som snapshot-valg. Fortsæt til spec.</p>
     </div>
   </div>
   <div class="option" data-choice="adjust" onclick="toggleSelect(this)">
     <div class="letter">B</div>
     <div class="content">
       <h3>Jeg vil justere noget</h3>
-      <p>F.eks. anden rækkefølge på knaprækkerne, andre labels, kolonnebredder, eller noget andet du ønsker ændret.</p>
+      <p>F.eks. chip-knapperne er for store/små, andet label, fjern et af valgene, etc.</p>
     </div>
   </div>
 </div>
