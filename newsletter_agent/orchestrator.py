@@ -19,11 +19,16 @@ Given a free-form topic brief, return a JSON TaskManifest with exactly this stru
   "energy": {                           // one key per specialist listed above
     "series": [
       {
-        "ticker": "BZ=F",             // yfinance ticker OR fred series_id OR "eia" OR "gie"
-        "source": "yfinance",         // "yfinance" | "fred" | "eia" | "gie"
+        "ticker": "BZ=F",             // yfinance ticker OR fred series_id OR EIA MSN code
+        "source": "yfinance",         // "yfinance" | "fred" | "eia" | "eia_mix" | "eurostat_ts" | "eurostat_mix"
         "label": "Brent Crude",       // human-readable label for chart legend
         "region": "Global",           // region label shown on chart
-        "unit": "USD/barrel"          // exact unit string for axis label
+        "unit": "USD/barrel",         // exact unit string for axis label
+        "conversion": ""              // OPTIONAL: "USD_MMBtu_to_USD_MWh" | "EUR_MWh_to_USD_MWh"
+                                      // Set when this series needs unit conversion before plotting.
+                                      // USD_MMBtu_to_USD_MWh: for Henry Hub (NG=F) when comparing with TTF on same chart.
+                                      // EUR_MWh_to_USD_MWh: for TTF (TTF=F) when comparing with Henry Hub on same chart.
+                                      // Conversion note is auto-appended to chart footer. Leave empty string or omit if not needed.
       }
     ],
     "charts": [
