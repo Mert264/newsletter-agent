@@ -359,7 +359,12 @@ def build_task_manifest(brief: str, preferred_types: list = None, routing_hint: 
     parts = [f"Topic brief: {brief}"]
     if preferred_types:
         parts.append(
-            f"PREFERRED CHART TYPES (in priority order — honour these unless data is fundamentally incompatible): {preferred_types}"
+            f"PREFERRED CHART TYPES (whitelist of acceptable types — generate the most insightful "
+            f"charts from this list, not necessarily one of each): {preferred_types}\n"
+            f"Important: if the brief mentions specific events with dates, ALWAYS include a "
+            f"before/after chart (Type E or D) alongside the time series — do not drop it to "
+            f"make room for other chart types. The 2-chart-per-specialist limit may be exceeded "
+            f"by 1 when an event-driven before/after chart adds clear analytical value."
         )
     if period_days:
         parts.append(
