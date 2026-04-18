@@ -90,6 +90,7 @@ def start_run():
     body = request.json or {}
     brief = body.get("brief", "").strip()
     preferred_types = body.get("preferred_types", None)  # e.g. ["A", "G"]
+    period_days = body.get("period_days", None)          # e.g. 365, 730, 1825
     if not brief:
         return jsonify({"error": "Brief is required"}), 400
 
