@@ -345,9 +345,88 @@
 
 <main>
 
-  <!-- ── Brief input ── -->
-  <div class="card full-width">
-    <div class="card-header">📝 Emne-brief</div>
+  <!-- ── Top row: viz panel + brief ── -->
+  <div class="full-width" id="topRow">
+
+  <!-- Visualization type panel -->
+  <div class="card" id="vizPanel">
+    <div class="card-header">Visualiseringstype</div>
+    <div class="card-body" style="padding:10px">
+      <div class="viz-section-label">Vælg én eller flere</div>
+
+      <!-- Figur -->
+      <div class="viz-opt active" id="vopt-A" onclick="toggleVizOpt('A')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
+          <polyline points="1,11 4,7 7,9 10,4 13,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="viz-opt-labels">
+          <div class="viz-opt-name">Figur</div>
+          <div class="viz-opt-desc">Time series — linjegraf</div>
+        </div>
+        <span class="viz-check">&#10003;</span>
+      </div>
+
+      <!-- Søjlediagram (parent) -->
+      <div class="viz-opt" id="vopt-bar-parent" onclick="toggleVizOpt('bar')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
+          <rect x="1" y="5" width="3" height="8" rx=".5" fill="currentColor"/>
+          <rect x="5.5" y="2" width="3" height="11" rx=".5" fill="currentColor"/>
+          <rect x="10" y="7" width="3" height="6" rx=".5" fill="currentColor"/>
+        </svg>
+        <div class="viz-opt-labels">
+          <div class="viz-opt-name">Søjlediagram</div>
+          <div class="viz-opt-desc">Vælg type nedenfor</div>
+        </div>
+        <span class="viz-check">&#10003;</span>
+      </div>
+      <div class="viz-sub" id="bar-subopts" style="display:none">
+        <div class="viz-sub-opt active" id="vsub-B" onclick="selectBarSub('B')">
+          <span class="viz-sub-dot"></span>Lodret — sammenligning
+        </div>
+        <div class="viz-sub-opt" id="vsub-G" onclick="selectBarSub('G')">
+          <span class="viz-sub-dot"></span>Vandret — ranking
+        </div>
+        <div class="viz-sub-opt" id="vsub-F" onclick="selectBarSub('F')">
+          <span class="viz-sub-dot"></span>Stablet — fordeling over tid
+        </div>
+      </div>
+
+      <!-- Tabel -->
+      <div class="viz-opt" id="vopt-D" onclick="toggleVizOpt('D')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
+          <rect x="1" y="1" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="1" y1="5" x2="13" y2="5" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="9" x2="13" y2="9" stroke="currentColor" stroke-width="1"/>
+          <line x1="5" y1="1" x2="5" y2="13" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="viz-opt-labels">
+          <div class="viz-opt-name">Tabel</div>
+          <div class="viz-opt-desc">Snapshot — nøgletal</div>
+        </div>
+        <span class="viz-check">&#10003;</span>
+      </div>
+
+      <!-- Cirkeldiagram -->
+      <div class="viz-opt" id="vopt-P" onclick="toggleVizOpt('P')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
+          <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M7 7 L7 1.5 A5.5 5.5 0 0 1 12.5 7 Z" fill="#d1d5db"/>
+          <path d="M7 7 L12.5 7 A5.5 5.5 0 0 1 4 12 Z" fill="#e5e7eb"/>
+        </svg>
+        <div class="viz-opt-labels">
+          <div class="viz-opt-name">Cirkeldiagram</div>
+          <div class="viz-opt-desc">Snapshot — ét år, sum = 100%</div>
+        </div>
+        <span class="viz-check">&#10003;</span>
+      </div>
+
+      <div class="viz-hint">Systemet respekterer dine valg som præference. Tilpasser automatisk til datans natur.</div>
+    </div>
+  </div>
+
+  <!-- Brief card -->
+  <div class="card">
+    <div class="card-header">Emne-brief</div>
     <div class="card-body">
       <div class="brief-label">Beskriv det makroøkonomiske emne, du vil visualisere:</div>
       <textarea id="briefInput" placeholder="F.eks. Vis EUR/USD-valutakursen over de seneste to år for at illustrere, hvordan den amerikanske dollar er svækket over for euroen..."></textarea>
