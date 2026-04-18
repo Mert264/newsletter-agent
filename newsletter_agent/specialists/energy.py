@@ -1,7 +1,8 @@
+import requests
 import pandas as pd
 import yfinance as yf
 from datetime import date, timedelta
-from newsletter_agent.config import YF_LOCK
+from newsletter_agent.config import YF_LOCK, API_KEYS
 
 
 def _fetch_yfinance(ticker: str, period_days: int, label: str) -> pd.DataFrame:
