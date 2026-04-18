@@ -310,35 +310,18 @@
       font-size: 9px; color: #9ca3af; line-height: 1.5;
     }
 
-    /* ── Re-render buttons on figure cards ── */
-    .rerender-row {
+    /* ── Figure card footer ── */
+    .fig-footer {
       padding: 8px 12px;
       background: #f8fafa;
       border-top: 1px solid #e4eaea;
+      display: flex;
+      justify-content: flex-end;
     }
-    .rerender-label {
-      font-size: 10px; font-weight: 600; color: #374151; margin-bottom: 5px;
+    .fig-download {
+      font-size: 11px; color: #11716c; text-decoration: none; font-weight: 600;
     }
-    .rerender-btns { display: flex; gap: 4px; flex-wrap: wrap; }
-    .rr-btn {
-      border-radius: 4px; padding: 4px 8px; font-size: 10px; cursor: pointer;
-      border: 1px solid #d1d5db; background: #f3f4f6; color: #374151;
-      transition: background .1s;
-    }
-    .rr-btn.active { background: #11716c; color: #fff; border-color: #11716c; }
-    .rr-btn:disabled { opacity: .5; cursor: not-allowed; }
-    .fig-spinner {
-      display: none;
-      align-items: center; justify-content: center;
-      height: 60px; color: #11716c; font-size: 12px; gap: 8px;
-    }
-    .fig-spinner.visible { display: flex; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .spinner-ring {
-      width: 18px; height: 18px; border-radius: 50%;
-      border: 2px solid #d1d5db; border-top-color: #11716c;
-      animation: spin .7s linear infinite;
-    }
+    .fig-download:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
