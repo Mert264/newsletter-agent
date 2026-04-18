@@ -436,10 +436,10 @@ let eventSource = null;
 
 function startRun() {
   const brief = document.getElementById('briefInput').value.trim();
-  if (!brief) { alert('Please enter a topic brief.'); return; }
+  if (!brief) { alert('Angiv venligst et emne-brief.'); return; }
 
   document.getElementById('runBtn').disabled = true;
-  document.getElementById('statusMsg').textContent = 'Running pipeline…';
+  document.getElementById('statusMsg').textContent = 'Kører pipeline...';
   document.getElementById('statusMsg').className = 'running';
   document.getElementById('logBox').innerHTML = '';
   document.getElementById('figuresPanel').style.display = 'none';
