@@ -424,14 +424,19 @@
         <button class="quick-btn" onclick="setQuick(10)">Europæisk obligationsstress</button>
       </div>
       <div style="margin-top:12px;margin-bottom:4px">
-        <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px">Tidsperiode</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap" id="periodBtns">
-          <button class="period-btn" data-days="365" onclick="setPeriod(this)">1 år</button>
-          <button class="period-btn" data-days="730" onclick="setPeriod(this)">2 år</button>
-          <button class="period-btn" data-days="1825" onclick="setPeriod(this)">5 år</button>
-          <button class="period-btn" data-days="3650" onclick="setPeriod(this)">10 år</button>
-          <button class="period-btn active" data-days="0" onclick="setPeriod(this)">LLM bestemmer</button>
+        <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px">Tidsperiode</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <span style="font-size:11px;color:#9ca3af;min-width:22px">1 år</span>
+          <input type="range" id="periodSlider" min="1" max="10" step="1" value="2"
+                 oninput="onSliderChange(this)"
+                 style="flex:1;accent-color:#11716c;height:4px;cursor:pointer"/>
+          <span style="font-size:11px;color:#9ca3af;min-width:28px;text-align:right">10 år</span>
+          <span id="periodLabel" style="min-width:38px;text-align:right;font-size:13px;font-weight:700;color:#11716c">2 år</span>
         </div>
+        <button id="llmBtn" onclick="setLLMPeriod()"
+                style="font-size:11px;padding:4px 12px;border-radius:20px;border:1.5px solid #d1d5db;background:#fff;color:#6b7280;cursor:pointer;transition:all .15s">
+          LLM bestemmer
+        </button>
       </div>
       <div class="run-row">
         <button id="runBtn" onclick="startRun()">Generer figurer</button>
