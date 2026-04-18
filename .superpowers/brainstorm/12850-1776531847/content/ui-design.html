@@ -1,5 +1,5 @@
-<h2>UI-design: Visualiseringsvalg — Søjle-undervalg forenklet</h2>
-<p class="subtitle">Sub-valg som kompakte chips i én række. Klik for at godkende eller justere.</p>
+<h2>UI-design: Visualiseringsvalg — Final</h2>
+<p class="subtitle">Panel til venstre, Søjlediagram med vertikale undervalg, Cirkeldiagram som snapshot. Klik for at godkende.</p>
 
 <style>
 .vp { background:#fff;border-radius:8px;border:1px solid #e4eaea;overflow:hidden }
@@ -11,11 +11,11 @@
 .vml.u { font-weight:600;font-size:11px;color:#374151 }
 .vsub  { font-size:9px;color:#6b7280 }
 .vc    { margin-left:auto;color:#11716c;font-size:12px;font-weight:700 }
-/* Sub-chips row */
-.chips { display:flex;gap:5px;margin:5px 0 2px 23px }
-.chip  { border-radius:4px;padding:3px 8px;font-size:10px;font-weight:600;cursor:pointer;line-height:1.4 }
-.chip.cs { background:#11716c;color:#fff;border:1.5px solid #11716c }
-.chip.cu { background:#f9fafb;color:#6b7280;border:1.5px solid #e5e7eb }
+.sub-options { margin:4px 0 2px 23px;display:flex;flex-direction:column;gap:3px }
+.sub-opt { display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:4px;font-size:10px;cursor:pointer }
+.sub-opt.cs { background:#e8f7f6;border:1.5px solid #11716c;color:#11716c;font-weight:600 }
+.sub-opt.cu { background:#f9fafb;border:1.5px solid #e5e7eb;color:#6b7280 }
+.sub-dot { width:6px;height:6px;border-radius:50%;flex-shrink:0 }
 </style>
 
 <div class="mockup" style="max-width:980px;margin:0 auto">
@@ -42,8 +42,8 @@
             <span class="vc">✓</span>
           </div>
 
-          <!-- Søjlediagram — expanded, chips below -->
-          <div class="vo s" style="flex-wrap:wrap;padding-bottom:4px">
+          <!-- Søjlediagram — expanded with vertical sub-options -->
+          <div class="vo s" style="flex-direction:column;padding-bottom:6px">
             <div style="display:flex;align-items:flex-start;gap:9px;width:100%">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
                 <rect x="1" y="5" width="3" height="8" rx=".5" fill="#11716c"/>
@@ -56,11 +56,19 @@
               </div>
               <span class="vc">✓</span>
             </div>
-            <!-- Three chips in one row -->
-            <div class="chips">
-              <span class="chip cs">Lodret</span>
-              <span class="chip cu">Vandret</span>
-              <span class="chip cu">Stablet</span>
+            <div class="sub-options">
+              <div class="sub-opt cs">
+                <div class="sub-dot" style="background:#11716c"></div>
+                Lodret — sammenligning
+              </div>
+              <div class="sub-opt cu">
+                <div class="sub-dot" style="background:#d1d5db"></div>
+                Vandret — ranking
+              </div>
+              <div class="sub-opt cu">
+                <div class="sub-dot" style="background:#d1d5db"></div>
+                Stablet — fordeling over tid
+              </div>
             </div>
           </div>
 
@@ -176,14 +184,14 @@
     <div class="letter">A</div>
     <div class="content">
       <h3>Godkend dette design</h3>
-      <p>Panel til venstre, Søjlediagram med tre kompakte chip-knapper (Lodret / Vandret / Stablet), Cirkeldiagram som snapshot-valg. Fortsæt til spec.</p>
+      <p>Panel til venstre, Søjlediagram med tre vertikale undervalg (Lodret / Vandret / Stablet), Cirkeldiagram som snapshot-valg. Klar til spec.</p>
     </div>
   </div>
   <div class="option" data-choice="adjust" onclick="toggleSelect(this)">
     <div class="letter">B</div>
     <div class="content">
       <h3>Jeg vil justere noget</h3>
-      <p>F.eks. chip-knapperne er for store/små, andet label, fjern et af valgene, etc.</p>
+      <p>F.eks. rækkefølge på valg, andre labels, kolonnebredder, eller andet du ønsker ændret.</p>
     </div>
   </div>
 </div>
