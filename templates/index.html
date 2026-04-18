@@ -251,25 +251,14 @@
       color: #fff; font-size: 28px; cursor: pointer; line-height: 1;
     }
     /* ── Period selector ── */
-    /* ── Period slider ── */
-    #periodSlider {
-      -webkit-appearance: none; appearance: none;
-      width: 100%; height: 4px; border-radius: 4px;
-      background: linear-gradient(to right, #11716c var(--pct,30%), #d1d5db var(--pct,30%));
-      outline: none; cursor: pointer; transition: opacity .15s;
+    .period-btn {
+      padding: 7px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;
+      border: 1.5px solid #d1d5db; background: #fff; color: #374151;
+      transition: background .12s, border-color .12s;
+      min-height: 34px; font-weight: 500;
     }
-    #periodSlider::-webkit-slider-thumb {
-      -webkit-appearance: none; appearance: none;
-      width: 18px; height: 18px; border-radius: 50%;
-      background: #11716c; cursor: pointer;
-      box-shadow: 0 1px 4px rgba(0,0,0,.2);
-    }
-    #periodSlider::-moz-range-thumb {
-      width: 18px; height: 18px; border-radius: 50%; border: none;
-      background: #11716c; cursor: pointer;
-    }
-    #sliderWrap { transition: opacity .15s; }
-    #llmToggle { accent-color: #11716c; cursor: pointer; width: 14px; height: 14px; }
+    .period-btn:hover:not(.active) { border-color: #a7d9d5; background: #f0faf9; }
+    .period-btn.active { background: #11716c; color: #fff; border-color: #11716c; }
 
     /* ── Viz type panel ── */
     #topRow {
@@ -434,21 +423,14 @@
         <button class="quick-btn" onclick="setQuick(9)">Globale aktiemarkeder — afkast</button>
         <button class="quick-btn" onclick="setQuick(10)">Europæisk obligationsstress</button>
       </div>
-      <div style="margin-top:14px;margin-bottom:4px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Tidsperiode</div>
-          <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:#4b5563;cursor:pointer;user-select:none">
-            <input type="checkbox" id="llmToggle" onchange="toggleLlm(this)" checked>
-            LLM bestemmer
-          </label>
-        </div>
-        <div id="sliderWrap" style="opacity:.35;pointer-events:none">
-          <div style="display:flex;align-items:center;gap:8px">
-            <span style="font-size:11px;color:#9ca3af;min-width:22px">1 år</span>
-            <input type="range" id="periodSlider" min="1" max="10" value="3" oninput="onSlider(this)">
-            <span style="font-size:11px;color:#9ca3af;min-width:28px;text-align:right">10 år</span>
-          </div>
-          <div style="text-align:center;font-size:13px;font-weight:700;color:#11716c;margin-top:5px" id="sliderLabel">3 år</div>
+      <div style="margin-top:12px;margin-bottom:4px">
+        <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px">Tidsperiode</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap" id="periodBtns">
+          <button class="period-btn" data-days="365" onclick="setPeriod(this)">1 år</button>
+          <button class="period-btn" data-days="730" onclick="setPeriod(this)">2 år</button>
+          <button class="period-btn" data-days="1825" onclick="setPeriod(this)">5 år</button>
+          <button class="period-btn" data-days="3650" onclick="setPeriod(this)">10 år</button>
+          <button class="period-btn active" data-days="0" onclick="setPeriod(this)">LLM bestemmer</button>
         </div>
       </div>
       <div class="run-row">
@@ -534,20 +516,38 @@
 
 <script>
 const BRIEFS = {
-  1: "Iran erklærede krig mod Israel den 28. februar 2026, hvilket sendte chokbølger gennem energimarkederne. Vis Brent-råolie og europæisk naturgas (TTF) fra 2024 til i dag, og markér udbruddet den 28. februar 2026. Vis også amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA på gas.",
-  2: "Vis EU's energimix i 2024 fordelt på energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert brændstof.",
-  3: "Iran-krigen den 28. februar 2026 og Ukraine-krigen siden februar 2022 har accelereret det globale forsvarsforbrug. Vis Lockheed Martin, Rheinmetall, BAE Systems og Northrop Grumman indekseret til 100 fra februar 2022 til i dag, og markér Ukraine-invasionen den 24. februar 2022 og Iran-krigens udbrud den 28. februar 2026.",
-  4: "Guld er steget som sikker havn siden Iran-krigen brød ud den 28. februar 2026. Vis guldpriser fra 2023 til i dag og markér 28. februar 2026. Vis også kobberpriser over samme periode for at sammenligne den sikker havn-rally med industrimetallers signal.",
-  5: "Amerikansk inflation er forblevet vedvarende trods Fed-stramning. Vis amerikansk CPI år-over-år fra 2021 til i dag. Vis i en separat graf Fed Funds-renten og den 2-årige statsobligationsrente over samme periode for at illustrere forsinkelsen i politiktransmissionen.",
+  1: "Iran erklærede krig mod Israel den 28. februar 2026, hvilket sendte chokbølger gennem energimarkederne. Vis Brent-råolie og europæisk naturgas (TTF), og markér udbruddet den 28. februar 2026. Vis også amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA på gas.",
+  2: "Vis EU's energimix fordelt på energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert brændstof.",
+  3: "Iran-krigen den 28. februar 2026 og Ukraine-krigen har accelereret det globale forsvarsforbrug. Vis Lockheed Martin, Rheinmetall, BAE Systems og Northrop Grumman indekseret til 100, og markér Ukraine-invasionen den 24. februar 2022 og Iran-krigens udbrud den 28. februar 2026.",
+  4: "Guld er steget som sikker havn siden Iran-krigen brød ud den 28. februar 2026. Vis guldpriser og markér 28. februar 2026. Vis også kobberpriser for at sammenligne den sikker havn-rally med industrimetallers signal.",
+  5: "Amerikansk inflation er forblevet vedvarende trods Fed-stramning. Vis amerikansk CPI år-over-år. Vis i en separat graf Fed Funds-renten og den 2-årige statsobligationsrente for at illustrere forsinkelsen i politiktransmissionen.",
   6: "Rentespændet inden for Europa afspejler investorernes tillid til de enkelte landes økonomi. Vis de aktuelle 10-årige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt søjlediagram sorteret fra højest til lavest rente og sammenlign med den amerikanske 10-årige statsobligationsrente.",
-  7: "Den amerikanske dollar er styrket kraftigt på baggrund af geopolitisk risiko fra Iran-krigen (28. februar 2026) og Trump-toldsatserne (2. april 2025). Vis DXY-indekset, EUR/USD, GBP/USD og JPY/USD fra januar 2024 til i dag og markér begge begivenheder.",
-  8: "Den amerikanske rentekurve har været en vigtig recessionindikator. Vis den 2-årige statsobligationsrente (DGS2) og den 10-årige statsobligationsrente (DGS10) fra 2022 til i dag, og vis spændet (T10Y2Y) separat for at vise, hvornår kurven inverterede og normaliserede sig.",
-  9: "Sammenlign kursudviklingen for de globale aktiemarkeder: S&P 500 (USA), Euro Stoxx 50 (Europa), Nikkei 225 (Japan) og MSCI Emerging Markets indekseret til 100 fra januar 2023 til i dag for at illustrere, hvilke regioner der har leveret det bedste afkast.",
-  10: "Europæiske obligationsmarkeder er under pres fra høje underskud og stigende forsvarsudgifter. Vis tyske, franske og italienske 10-årige statsobligationsrenter fra 2023 til i dag for at illustrere spændet mellem kernelande og perifere Europa.",
+  7: "Den amerikanske dollar er styrket kraftigt på baggrund af geopolitisk risiko fra Iran-krigen (28. februar 2026) og Trump-toldsatserne (2. april 2025). Vis DXY-indekset, EUR/USD, GBP/USD og JPY/USD og markér begge begivenheder.",
+  8: "Den amerikanske rentekurve har været en vigtig recessionindikator. Vis den 2-årige statsobligationsrente (DGS2) og den 10-årige statsobligationsrente (DGS10), og vis spændet (T10Y2Y) separat for at vise, hvornår kurven inverterede og normaliserede sig.",
+  9: "Sammenlign kursudviklingen for de globale aktiemarkeder: S&P 500 (USA), Euro Stoxx 50 (Europa), Nikkei 225 (Japan) og MSCI Emerging Markets indekseret til 100 for at illustrere, hvilke regioner der har leveret det bedste afkast.",
+  10: "Europæiske obligationsmarkeder er under pres fra høje underskud og stigende forsvarsudgifter. Vis tyske, franske og italienske 10-årige statsobligationsrenter for at illustrere spændet mellem kernelande og perifere Europa.",
+};
+
+// Natural period for each quick prompt (days) — 0 = LLM bestemmer
+const BRIEF_PERIODS = {
+  1: 730,   // 2 år — Iran war context
+  2: 0,     // LLM bestemmer — pie chart snapshot
+  3: 1825,  // 5 år — covers Ukraine war (2022) to now
+  4: 730,   // 2 år — gold rally
+  5: 1825,  // 5 år — inflation cycle from 2021
+  6: 0,     // LLM bestemmer — yield snapshot
+  7: 730,   // 2 år — dollar strength
+  8: 1825,  // 5 år — yield curve inversion cycle
+  9: 730,   // 2 år — recent market performance
+  10: 730,  // 2 år — European bond stress
 };
 
 function setQuick(n) {
   document.getElementById('briefInput').value = BRIEFS[n];
+  // Auto-set period selector to match this prompt's natural scope
+  const days = BRIEF_PERIODS[n] ?? 0;
+  const btn = document.querySelector(`.period-btn[data-days="${days}"]`);
+  if (btn) setPeriod(btn);
 }
 
 // ── Step management ──
@@ -694,34 +694,13 @@ function renderFigures(figures) {
   document.getElementById('figuresPanel').scrollIntoView({ behavior: 'smooth' });
 }
 
-// ── Period slider ──
+// ── Period selector ──
 let selectedPeriodDays = 0;  // 0 = LLM bestemmer (default)
 
-function toggleLlm(cb) {
-  const wrap = document.getElementById('sliderWrap');
-  if (cb.checked) {
-    wrap.style.opacity = '0.35';
-    wrap.style.pointerEvents = 'none';
-    selectedPeriodDays = 0;
-  } else {
-    wrap.style.opacity = '1';
-    wrap.style.pointerEvents = 'auto';
-    const yrs = parseInt(document.getElementById('periodSlider').value);
-    selectedPeriodDays = yrs * 365;
-    _syncSliderGradient(yrs);
-  }
-}
-
-function onSlider(input) {
-  const yrs = parseInt(input.value);
-  selectedPeriodDays = yrs * 365;
-  document.getElementById('sliderLabel').textContent = yrs === 1 ? '1 år' : `${yrs} år`;
-  _syncSliderGradient(yrs);
-}
-
-function _syncSliderGradient(yrs) {
-  const pct = ((yrs - 1) / 9) * 100;
-  document.getElementById('periodSlider').style.setProperty('--pct', pct + '%');
+function setPeriod(btn) {
+  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedPeriodDays = parseInt(btn.dataset.days, 10);
 }
 
 // ── Visualization type panel ──
