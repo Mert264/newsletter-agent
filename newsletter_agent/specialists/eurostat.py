@@ -1,3 +1,4 @@
+from __future__ import annotations
 """
 Eurostat specialist — fetches EU statistical data via the free Eurostat REST API.
 No API key required. Returns SpecialistResult dict.
