@@ -33,6 +33,7 @@ CHART_RENDERER_MAP = {
     "E": render_type_e,
     "F": render_type_f,
     "G": render_type_g,
+    "P": render_type_p,
 }
 
 
