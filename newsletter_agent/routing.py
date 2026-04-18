@@ -25,7 +25,8 @@ ROUTING_RULES = [
     (
         lambda b: _EU.search(b) and _NRG.search(b),
         "For EU-energidata: brug specialist='eurostat', ticker='eu_energy_mix', "
-        "source='eurostat_mix'. Visualiser med type='F' (stablet søjle).",
+        "source='eurostat_mix'. Brug type='P' (cirkeldiagram) for snapshot ét år, "
+        "type='F' (stablet søjle) for fordeling over flere år.",
     ),
     # EU inflation → Eurostat HICP
     (
