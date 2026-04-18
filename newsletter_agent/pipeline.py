@@ -261,6 +261,11 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
         dfs = {k: v for k, v in dfs.items() if k in series_labels}
 
     render_spec = {**chart_spec, "kilde": kilde_str}
+    # Append any unit conversion note to the chart's note field
+    conv_note = specialist_result.get("conversion_note", "")
+    if conv_note:
+        existing_note = render_spec.get("note", "").rstrip(". ")
+        render_spec = {**render_spec, "note": f"{existing_note} {conv_note}".strip()}
     merged_for_events = None  # populated for Type A charts; used by event impact table
 
     # ── Type D — Snapshot / before-after table ────────────────────────────
