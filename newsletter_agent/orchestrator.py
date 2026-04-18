@@ -212,6 +212,12 @@ Rules:
 - CRITICAL: NEVER put BZ=F (Brent, ~$80/barrel) and NG=F (Henry Hub, ~$2/MMBtu) on the
   same chart with absolute prices. Their scales differ by 30-40x — Henry Hub becomes
   invisible. If you want to compare them, set y_label to "Indexed (base=100)".
+- CRITICAL — GAS UNIT CONVERSION: When comparing EU gas (TTF=F, EUR/MWh) and US gas (NG=F, USD/MMBtu)
+  on the same chart, you MUST add "conversion" fields to harmonise units to USD/MWh:
+    TTF=F  → "conversion": "EUR_MWh_to_USD_MWh"    (pipeline fetches live EUR/USD and multiplies)
+    NG=F   → "conversion": "USD_MMBtu_to_USD_MWh"   (pipeline multiplies by 3.41214)
+  Set y_label to "USD/MWh". The conversion note is auto-added to the chart footer — do NOT add it yourself.
+  Do NOT set y_label to "Indekseret (basis=100)" for gas comparisons — use USD/MWh with conversions instead.
 - When all series share the same unit (e.g. two oil prices in USD/barrel), use that unit as y_label.
 - When series have DIFFERENT units or very different scales, set y_label to
   "Indekseret (basis=100)" — the pipeline will normalize all series to 100 at the start date.
