@@ -348,7 +348,12 @@
     <div class="logo">Newsletter AI Agent</div>
     <div class="subtitle">Makroforskning: Figurer &amp; Tabeller — FRED · Yahoo Finance</div>
   </div>
-  <span class="badge">Maj Invest style</span>
+  <div style="display:flex;align-items:center;gap:12px">
+    <span class="badge">Maj Invest style</span>
+    {% if session.get('authenticated') %}
+    <a href="/logout" style="font-size:11px;color:#6b7280;text-decoration:none">Log ud</a>
+    {% endif %}
+  </div>
 </header>
 
 <main>
