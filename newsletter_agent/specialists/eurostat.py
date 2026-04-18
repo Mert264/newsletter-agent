@@ -25,7 +25,7 @@ def _eurostat_get(dataset: str, params: dict):
         return None
 
 
-def _parse_timeseries(raw: dict, label: str) -> pd.DataFrame | None:
+def _parse_timeseries(raw: dict, label: str):
     """Extract a time-series from Eurostat JSON-stat response."""
     if not raw:
         return None
