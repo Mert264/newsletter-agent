@@ -14,7 +14,7 @@ from datetime import date
 _BASE = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data"
 
 
-def _eurostat_get(dataset: str, params: dict) -> dict | None:
+def _eurostat_get(dataset: str, params: dict):
     """Call Eurostat JSON API. Returns raw JSON response dict or None on failure."""
     try:
         resp = requests.get(f"{_BASE}/{dataset}", params={**params, "format": "JSON", "lang": "EN"}, timeout=30)
