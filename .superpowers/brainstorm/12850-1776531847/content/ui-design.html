@@ -1,75 +1,100 @@
-<h2>UI-design: Visualiseringsvalg (Tilgang C)</h2>
-<p class="subtitle">Sådan ser siden ud med det nye panel og per-figur re-render. Klik for at godkende.</p>
+<h2>UI-design: Visualiseringsvalg — Panel til venstre</h2>
+<p class="subtitle">Opdateret layout: type-panel til venstre, brief til højre. Ingen ikoner — professionelt design. Klik for at godkende eller justere.</p>
 
-<div class="mockup" style="max-width:900px;margin:0 auto">
-  <div class="mockup-header">Newsletter AI Agent — ny layout</div>
+<div class="mockup" style="max-width:960px;margin:0 auto">
+  <div class="mockup-header">Newsletter AI Agent</div>
   <div class="mockup-body" style="padding:0;background:#f4f6f8;font-family:system-ui,sans-serif;font-size:13px">
 
-    <!-- Top row: Brief + Viz panel side by side -->
-    <div style="display:grid;grid-template-columns:1fr 220px;gap:12px;padding:12px">
+    <!-- Top row: Viz panel LEFT + Brief RIGHT -->
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:12px;padding:12px">
 
-      <!-- Brief card -->
+      <!-- Visualization type panel — LEFT -->
       <div style="background:#fff;border-radius:8px;border:1px solid #e4eaea;overflow:hidden">
-        <div style="background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:12px">📝 Emne-brief</div>
-        <div style="padding:14px">
-          <div style="background:#f9fafb;border:1.5px solid #d1d5db;border-radius:6px;padding:10px;color:#9ca3af;font-size:12px;min-height:60px">Beskriv det makroøkonomiske emne...</div>
-          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-            <span style="background:#f0faf9;border:1px solid #a7d9d5;color:#0d6b66;border-radius:12px;padding:3px 10px;font-size:11px">Iran-krig — olie &amp; gaschok</span>
-            <span style="background:#f0faf9;border:1px solid #a7d9d5;color:#0d6b66;border-radius:12px;padding:3px 10px;font-size:11px">Trump-told — markedspåvirkning</span>
-            <span style="background:#f0faf9;border:1px solid #a7d9d5;color:#0d6b66;border-radius:12px;padding:3px 10px;font-size:11px">Global aktier</span>
-          </div>
-          <div style="margin-top:10px;display:flex;align-items:center;gap:10px">
-            <button style="background:#11716c;color:#fff;border:none;border-radius:6px;padding:9px 20px;font-size:13px;font-weight:600">Generer figurer</button>
-            <span style="color:#6b7280;font-size:12px">Klar</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Visualization type panel -->
-      <div style="background:#fff;border-radius:8px;border:1px solid #e4eaea;overflow:hidden">
-        <div style="background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:12px">📊 Visualiseringstype</div>
-        <div style="padding:12px;display:flex;flex-direction:column;gap:8px">
-          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;font-weight:600;letter-spacing:.05em">Vælg én eller flere</div>
+        <div style="background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:11px;letter-spacing:.04em;text-transform:uppercase">Visualiseringstype</div>
+        <div style="padding:10px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:9px;color:#9ca3af;text-transform:uppercase;font-weight:600;letter-spacing:.06em;margin-bottom:2px">Vælg én eller flere</div>
 
           <!-- Figur - selected -->
-          <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;border:2px solid #11716c;background:#f0faf9;cursor:pointer">
-            <span style="font-size:18px">📈</span>
-            <div>
-              <div style="font-weight:600;font-size:12px;color:#11716c">Figur</div>
-              <div style="font-size:10px;color:#6b7280">Tidsserie linjegraf</div>
+          <div style="display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:5px;border:2px solid #11716c;background:#f0faf9;cursor:pointer">
+            <div style="width:14px;height:14px;border-radius:2px;background:#11716c;display:flex;align-items:center;justify-content:center">
+              <div style="width:6px;height:1.5px;background:#fff;transform:rotate(-30deg) translateY(-1px)"></div>
             </div>
-            <span style="margin-left:auto;color:#11716c;font-size:14px">✓</span>
+            <div>
+              <div style="font-weight:600;font-size:11px;color:#11716c">Figur</div>
+              <div style="font-size:9px;color:#6b7280">Tidsserie linjegraf</div>
+            </div>
+            <span style="margin-left:auto;color:#11716c;font-size:12px;font-weight:700">✓</span>
           </div>
 
           <!-- Søjlediagram - selected -->
-          <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;border:2px solid #11716c;background:#f0faf9;cursor:pointer">
-            <span style="font-size:18px">📊</span>
-            <div>
-              <div style="font-weight:600;font-size:12px;color:#11716c">Søjlediagram</div>
-              <div style="font-size:10px;color:#6b7280">Lodret &amp; vandret søjle</div>
+          <div style="display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:5px;border:2px solid #11716c;background:#f0faf9;cursor:pointer">
+            <div style="width:14px;height:14px;border-radius:2px;background:#11716c;display:flex;align-items:center;justify-content:center;gap:2px">
+              <div style="width:3px;height:6px;background:#fff;border-radius:1px"></div>
+              <div style="width:3px;height:9px;background:#fff;border-radius:1px"></div>
+              <div style="width:3px;height:4px;background:#fff;border-radius:1px"></div>
             </div>
-            <span style="margin-left:auto;color:#11716c;font-size:14px">✓</span>
+            <div>
+              <div style="font-weight:600;font-size:11px;color:#11716c">Søjlediagram</div>
+              <div style="font-size:9px;color:#6b7280">Vandret &amp; lodret</div>
+            </div>
+            <span style="margin-left:auto;color:#11716c;font-size:12px;font-weight:700">✓</span>
+          </div>
+
+          <!-- Stablet søjle - not selected -->
+          <div style="display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:5px;border:1.5px solid #d1d5db;background:#fff;cursor:pointer">
+            <div style="width:14px;height:14px;border-radius:2px;background:#e5e7eb;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:1px">
+              <div style="width:6px;height:4px;background:#9ca3af;border-radius:1px 1px 0 0"></div>
+              <div style="width:6px;height:5px;background:#d1d5db;border-radius:0"></div>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:11px;color:#374151">Stablet søjle</div>
+              <div style="font-size:9px;color:#6b7280">Procentvis fordeling</div>
+            </div>
           </div>
 
           <!-- Tabel - not selected -->
-          <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;border:1.5px solid #d1d5db;background:#fff;cursor:pointer">
-            <span style="font-size:18px">📋</span>
+          <div style="display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:5px;border:1.5px solid #d1d5db;background:#fff;cursor:pointer">
+            <div style="width:14px;height:14px;border-radius:2px;background:#e5e7eb;display:flex;flex-direction:column;gap:1.5px;padding:2px">
+              <div style="height:2px;background:#9ca3af;border-radius:1px"></div>
+              <div style="height:2px;background:#d1d5db;border-radius:1px"></div>
+              <div style="height:2px;background:#d1d5db;border-radius:1px"></div>
+            </div>
             <div>
-              <div style="font-weight:600;font-size:12px;color:#374151">Tabel</div>
-              <div style="font-size:10px;color:#6b7280">Nøgletal snapshot</div>
+              <div style="font-weight:600;font-size:11px;color:#374151">Tabel</div>
+              <div style="font-size:9px;color:#6b7280">Nøgletal snapshot</div>
             </div>
           </div>
 
           <!-- Cirkeldiagram - not selected -->
-          <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;border:1.5px solid #d1d5db;background:#fff;cursor:pointer">
-            <span style="font-size:18px">🥧</span>
+          <div style="display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:5px;border:1.5px solid #d1d5db;background:#fff;cursor:pointer">
+            <div style="width:14px;height:14px;border-radius:50%;background:conic-gradient(#9ca3af 0deg 130deg, #d1d5db 130deg 220deg, #e5e7eb 220deg 360deg)"></div>
             <div>
-              <div style="font-weight:600;font-size:12px;color:#374151">Cirkeldiagram</div>
-              <div style="font-size:10px;color:#6b7280">Procentvis fordeling</div>
+              <div style="font-weight:600;font-size:11px;color:#374151">Cirkeldiagram</div>
+              <div style="font-size:9px;color:#6b7280">Andele &amp; fordeling</div>
             </div>
           </div>
 
-          <div style="margin-top:4px;font-size:10px;color:#9ca3af;line-height:1.4">LLM bruger dine valg som præference — skifter til bedst egnede type hvis data ikke passer.</div>
+          <div style="margin-top:6px;padding-top:6px;border-top:1px solid #f3f4f6;font-size:9px;color:#9ca3af;line-height:1.5">
+            Systemet bruger dine valg som præference. Skifter automatisk til bedst egnede type hvis data ikke passer.
+          </div>
+        </div>
+      </div>
+
+      <!-- Brief card — RIGHT -->
+      <div style="background:#fff;border-radius:8px;border:1px solid #e4eaea;overflow:hidden">
+        <div style="background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:11px;letter-spacing:.04em;text-transform:uppercase">Emne-brief</div>
+        <div style="padding:14px">
+          <div style="background:#f9fafb;border:1.5px solid #d1d5db;border-radius:6px;padding:10px;color:#9ca3af;font-size:12px;min-height:64px">Beskriv det makroøkonomiske emne du vil analysere...</div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="background:#f0faf9;border:1px solid #a7d9d5;color:#0d6b66;border-radius:12px;padding:3px 10px;font-size:11px">Iran-krig — olie &amp; gas</span>
+            <span style="background:#f0faf9;border:1px solid #a7d9d5;color:#0d6b66;border-radius:12px;padding:3px 10px;font-size:11px">Trump-told</span>
+            <span style="background:#f0faf9;border:1px solid #a7d9d5;color:#0d6b66;border-radius:12px;padding:3px 10px;font-size:11px">Global aktieudvikling</span>
+            <span style="background:#f0faf9;border:1px solid #a7d9d5;color:#0d6b66;border-radius:12px;padding:3px 10px;font-size:11px">EU energimix</span>
+          </div>
+          <div style="margin-top:12px;display:flex;align-items:center;gap:10px">
+            <button style="background:#11716c;color:#fff;border:none;border-radius:6px;padding:9px 22px;font-size:13px;font-weight:600;cursor:pointer">Generer figurer</button>
+            <span style="color:#6b7280;font-size:12px">Klar</span>
+          </div>
         </div>
       </div>
     </div>
@@ -77,45 +102,47 @@
     <!-- Pipeline + Log row -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px 12px">
       <div style="background:#fff;border-radius:8px;border:1px solid #e4eaea;overflow:hidden">
-        <div style="background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:12px">⚙️ Pipeline-trin</div>
+        <div style="background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:11px;letter-spacing:.04em;text-transform:uppercase">Pipeline-trin</div>
         <div style="padding:12px;color:#6b7280;font-size:11px;opacity:.5">[trin 1–6 som nu]</div>
       </div>
       <div style="background:#fff;border-radius:8px;border:1px solid #e4eaea;overflow:hidden">
-        <div style="background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:12px">🖥️ Live log</div>
-        <div style="padding:12px;background:#0f1b1a;margin:8px;border-radius:5px;height:50px;color:#4b8a87;font-size:10px">Afventer kørsel...</div>
+        <div style="background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:11px;letter-spacing:.04em;text-transform:uppercase">Live log</div>
+        <div style="padding:8px;background:#0f1b1a;margin:8px;border-radius:5px;height:48px;color:#4b8a87;font-size:10px;font-family:monospace">Afventer kørsel...</div>
       </div>
     </div>
 
     <!-- Generated figures with per-figure type selector -->
     <div style="padding:0 12px 12px">
       <div style="background:#fff;border-radius:8px;border:1px solid #e4eaea;overflow:hidden">
-        <div style="background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:12px">📊 Genererede figurer</div>
+        <div style="background:#f8fafa;border-bottom:1px solid #e4eaea;padding:10px 14px;font-weight:600;color:#11716c;font-size:11px;letter-spacing:.04em;text-transform:uppercase">Genererede figurer</div>
         <div style="padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
 
-          <!-- Figure card 1 - with re-render selector open -->
+          <!-- Figure card 1 -->
           <div style="border:1px solid #e4eaea;border-radius:7px;overflow:hidden">
-            <div style="background:#d1fae5;height:120px;display:flex;align-items:center;justify-content:center;color:#065f46;font-size:11px;font-weight:600">📈 Brent Crude — linjegraf</div>
-            <div style="padding:8px;background:#f8fafa;border-top:1px solid #e4eaea">
-              <div style="font-size:11px;font-weight:600;color:#1a2a2a;margin-bottom:6px">Genrender som:</div>
-              <div style="display:flex;gap:5px;flex-wrap:wrap">
-                <button style="background:#11716c;color:#fff;border:none;border-radius:4px;padding:4px 8px;font-size:10px">📈 Figur</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">📊 Søjle</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">📋 Tabel</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">🥧 Cirkel</button>
+            <div style="background:#d1fae5;height:110px;display:flex;align-items:center;justify-content:center;color:#065f46;font-size:11px;font-weight:600">Brent Crude — linjegraf</div>
+            <div style="padding:8px 10px;background:#f8fafa;border-top:1px solid #e4eaea">
+              <div style="font-size:10px;font-weight:600;color:#1a2a2a;margin-bottom:5px">Genrender som:</div>
+              <div style="display:flex;gap:4px;flex-wrap:wrap">
+                <button style="background:#11716c;color:#fff;border:none;border-radius:4px;padding:4px 9px;font-size:10px;cursor:pointer">Figur</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px;cursor:pointer">Søjle</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px;cursor:pointer">Stablet</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px;cursor:pointer">Tabel</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px;cursor:pointer">Cirkel</button>
               </div>
             </div>
           </div>
 
           <!-- Figure card 2 -->
           <div style="border:1px solid #e4eaea;border-radius:7px;overflow:hidden">
-            <div style="background:#dbeafe;height:120px;display:flex;align-items:center;justify-content:center;color:#1e40af;font-size:11px;font-weight:600">📊 AI-udbredelse — søjlediagram</div>
-            <div style="padding:8px;background:#f8fafa;border-top:1px solid #e4eaea">
-              <div style="font-size:11px;font-weight:600;color:#1a2a2a;margin-bottom:6px">Genrender som:</div>
-              <div style="display:flex;gap:5px;flex-wrap:wrap">
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">📈 Figur</button>
-                <button style="background:#11716c;color:#fff;border:none;border-radius:4px;padding:4px 8px;font-size:10px">📊 Søjle</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">📋 Tabel</button>
-                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 8px;font-size:10px">🥧 Cirkel</button>
+            <div style="background:#dbeafe;height:110px;display:flex;align-items:center;justify-content:center;color:#1e40af;font-size:11px;font-weight:600">Energimix USA — stablet søjle</div>
+            <div style="padding:8px 10px;background:#f8fafa;border-top:1px solid #e4eaea">
+              <div style="font-size:10px;font-weight:600;color:#1a2a2a;margin-bottom:5px">Genrender som:</div>
+              <div style="display:flex;gap:4px;flex-wrap:wrap">
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px;cursor:pointer">Figur</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px;cursor:pointer">Søjle</button>
+                <button style="background:#11716c;color:#fff;border:none;border-radius:4px;padding:4px 9px;font-size:10px;cursor:pointer">Stablet</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px;cursor:pointer">Tabel</button>
+                <button style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:4px;padding:4px 9px;font-size:10px;cursor:pointer">Cirkel</button>
               </div>
             </div>
           </div>
@@ -129,17 +156,17 @@
 
 <div class="options" style="margin-top:20px">
   <div class="option" data-choice="approve" onclick="toggleSelect(this)">
-    <div class="letter">✓</div>
+    <div class="letter">A</div>
     <div class="content">
       <h3>Godkend dette design</h3>
-      <p>Sidebar-panel til højre for briefen + type-knapper under hver genereret figur. Fortsæt til spec og implementering.</p>
+      <p>Type-panel til venstre for brief-kortet + genrender-knapper under hver figur. Fortsæt til spec og implementering.</p>
     </div>
   </div>
   <div class="option" data-choice="adjust" onclick="toggleSelect(this)">
-    <div class="letter">✎</div>
+    <div class="letter">B</div>
     <div class="content">
       <h3>Jeg vil justere noget</h3>
-      <p>F.eks. panelet placeret andetsteds, andre knap-labels, kun globalt panel uden per-figur, etc.</p>
+      <p>F.eks. panelet placeret anderledes, andre knap-labels, kolonnestørrelse, eller andet du gerne vil ændre.</p>
     </div>
   </div>
 </div>
