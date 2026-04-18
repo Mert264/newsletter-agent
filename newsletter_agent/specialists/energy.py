@@ -38,7 +38,7 @@ EIA_ENERGY_MIX_CODES = {
 }
 
 
-def _fetch_eia(msn: str, label: str, api_key: str, frequency: str = "annual") -> pd.DataFrame | None:
+def _fetch_eia(msn: str, label: str, api_key: str, frequency: str = "annual"):
     """Fetch one EIA total-energy series by MSN code. Returns DataFrame with DatetimeIndex."""
     if not api_key:
         print(f"    [eia] No EIA_API_KEY set — skipping '{label}'")
