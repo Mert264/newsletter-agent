@@ -322,10 +322,17 @@ def call_llm(prompt: str, max_tokens: int = 8192) -> dict:
             ) from exc
 
 
-def build_task_manifest(brief: str) -> dict:
+def build_task_manifest(brief: str, preferred_types: list = None, routing_hint: str = "") -> dict:
     """Parse a topic brief into a TaskManifest dict via one LLM call."""
     import json as _json, os as _os
-    prompt = f"Topic brief: {brief}"
+    parts = [f"Topic brief: {brief}"]
+    if preferred_types:
+        parts.append(
+            f"PREFERRED CHART TYPES (in priority order — honour these unless data is fundamentally incompatible): {preferred_types}"
+        )
+    if routing_hint:
+        parts.append(routing_hint)
+    prompt = "\n".join(parts)
     manifest = call_llm(prompt)
     # Save for debugging — overwritten each run
     _debug_path = _os.path.join("demo_output", "task_manifest_debug.json")
