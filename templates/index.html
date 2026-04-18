@@ -100,39 +100,45 @@
       margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 7px;
     }
     .quick-btn {
       background: #f0faf9;
-      border: 1px solid #a7d9d5;
+      border: 1.5px solid #a7d9d5;
       color: #0d6b66;
       border-radius: 20px;
-      padding: 5px 14px;
+      padding: 7px 16px;
       font-size: 12px;
+      font-weight: 500;
       cursor: pointer;
-      transition: background .15s;
+      transition: background .12s, border-color .12s;
+      min-height: 34px;
     }
-    .quick-btn:hover { background: #d1f0ec; }
+    .quick-btn:hover { background: #d1f0ec; border-color: #11716c; }
+    .quick-btn:active { background: #b6e8e3; }
 
     .run-row {
-      margin-top: 16px;
+      margin-top: 18px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
     #runBtn {
       background: #11716c;
       color: #fff;
       border: none;
-      border-radius: 7px;
-      padding: 11px 28px;
-      font-size: 14px;
+      border-radius: 8px;
+      padding: 13px 32px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition: background .2s;
+      transition: background .2s, box-shadow .2s;
+      box-shadow: 0 2px 6px rgba(17,113,108,.25);
+      letter-spacing: .01em;
     }
-    #runBtn:hover:not(:disabled) { background: #0d5a56; }
-    #runBtn:disabled { background: #93c5c2; cursor: not-allowed; }
+    #runBtn:hover:not(:disabled) { background: #0d5a56; box-shadow: 0 3px 10px rgba(17,113,108,.35); }
+    #runBtn:active:not(:disabled) { background: #0a4a46; }
+    #runBtn:disabled { background: #93c5c2; cursor: not-allowed; box-shadow: none; }
     #statusMsg {
       font-size: 13px;
       color: #6b7280;
