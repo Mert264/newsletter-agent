@@ -466,7 +466,7 @@ function startRun() {
     } else if (msg.type === 'error') {
       appendLog('ERROR: ' + msg.text);
       document.getElementById('runBtn').disabled = false;
-      document.getElementById('statusMsg').textContent = 'Error — see log';
+      document.getElementById('statusMsg').textContent = 'Fejl — se log';
       document.getElementById('statusMsg').className = 'error';
       eventSource.close();
     }
