@@ -403,6 +403,89 @@ def render_type_c(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     return output_path
 
 
+def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
+    """
+    Type F — 100% Stacked bar chart (energy mix / composition over time).
+    df: index = year/category labels (strings), columns = categories (fuel types, sectors, etc.)
+    Values can be absolute — chart normalises each row to 100%.
+    """
+    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
+
+    # Normalise each row to 100%
+    row_totals = df.sum(axis=1).replace(0, np.nan)
+    pct = df.div(row_totals, axis=0) * 100
+
+    bottoms = np.zeros(len(pct))
+    for i, col in enumerate(pct.columns):
+        vals = pct[col].fillna(0).values
+        bars = ax.bar(pct.index, vals, bottom=bottoms,
+                      color=_color_for(i), width=0.6,
+                      label=col, edgecolor="white", linewidth=0.4)
+        # Label segments ≥ 6% with the value
+        for bar, val, bot in zip(bars, vals, bottoms):
+            if val >= 6:
+                ax.text(bar.get_x() + bar.get_width() / 2,
+                        bot + val / 2,
+                        f"{val:.0f}%",
+                        ha="center", va="center",
+                        fontsize=7, color="white", fontweight="600")
+        bottoms += vals
+
+    ax.set_ylim(0, 100)
+    ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.0f}%"))
+    ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
+                 fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
+    ax.set_xlabel(spec.get("x_label", ""), fontsize=BRAND["font_size_axis"])
+    ax.set_ylabel(spec.get("y_label", "Pct. af total"), fontsize=BRAND["font_size_axis"])
+    ax.legend(fontsize=BRAND["font_size_label"], frameon=False,
+              loc="lower center", bbox_to_anchor=(0.5, -0.18),
+              ncol=min(len(pct.columns), 5))
+    _apply_brand(ax, fig)
+    bottom_frac = _add_footer(fig, spec)
+    plt.tight_layout(rect=[0.0, bottom_frac + 0.06, 1.0, 1.0])
+    fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
+    plt.close(fig)
+    return output_path
+
+
+def render_type_g(df: pd.DataFrame, spec: dict, output_path: str) -> str:
+    """
+    Type G — Horizontal bar chart for entity/sector/country comparison.
+    df: index = entity names, single value column (% or absolute).
+    Bars sorted descending by value.
+    """
+    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
+
+    col = df.columns[0]
+    sorted_df = df[col].sort_values(ascending=True)  # ascending so largest is at top
+    colors = [BRAND["primary"] if v >= 0 else "#dc2626" for v in sorted_df]
+
+    bars = ax.barh(sorted_df.index, sorted_df.values,
+                   color=colors, edgecolor="white", height=0.6)
+
+    # Value labels at bar ends
+    for bar, val in zip(bars, sorted_df.values):
+        x_pos = val + (sorted_df.abs().max() * 0.01)
+        ax.text(x_pos, bar.get_y() + bar.get_height() / 2,
+                f"{val:.1f}%", va="center", ha="left",
+                fontsize=7, color=BRAND["secondary"])
+
+    ax.axvline(0, color=BRAND["secondary"], linewidth=0.6)
+    ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
+                 fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
+    ax.set_xlabel(spec.get("y_label", "%"), fontsize=BRAND["font_size_axis"])
+    ax.tick_params(axis="y", labelsize=BRAND["font_size_axis"])
+    _apply_brand(ax, fig)
+    # Extend x-axis right for value labels
+    xmax = sorted_df.max()
+    ax.set_xlim(right=xmax * 1.18)
+    bottom_frac = _add_footer(fig, spec)
+    plt.tight_layout(rect=[0.0, bottom_frac, 1.0, 1.0])
+    fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
+    plt.close(fig)
+    return output_path
+
+
 def render_type_e(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     """
     Type E — Before/after grouped bar chart.
