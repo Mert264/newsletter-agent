@@ -63,7 +63,7 @@ def _parse_timeseries(raw: dict, label: str):
         return None
 
 
-def _parse_cross_section(raw: dict, country_filter: list | None = None) -> pd.DataFrame | None:
+def _parse_cross_section(raw: dict, country_filter=None):
     """
     Parse a Eurostat response into a wide DataFrame with countries/categories as index.
     Used for Type F (stacked) and Type G (horizontal bar) charts.
