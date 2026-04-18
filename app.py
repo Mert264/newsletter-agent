@@ -12,8 +12,51 @@ import threading
 from flask import Flask, render_template, request, Response, jsonify, send_from_directory
 
 app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY", "dev-secret-do-not-use-in-prod")
+
 # Use /tmp on cloud (Railway), local demo_output when running on Mac
 OUTPUT_DIR = "/tmp/newsletter_output" if os.getenv("RAILWAY_ENVIRONMENT") else os.path.join(os.path.dirname(__file__), "demo_output")
+
+# ── Auth ──────────────────────────────────────────────────────────────────────
+_APP_PASSWORD = os.getenv("APP_PASSWORD", "")  # set in Railway env vars to lock the site
+
+from flask import session, redirect, url_for
+
+@app.before_request
+def require_auth():
+    if not _APP_PASSWORD:
+        return  # no password set → open access (local dev)
+    if request.path in ("/login", "/logout") or request.path.startswith("/static"):
+        return
+    if not session.get("authenticated"):
+        if request.path == "/" or not request.path.startswith("/"):
+            return redirect(url_for("login"))
+        return jsonify({"error": "Unauthorized"}), 401
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = ""
+    if request.method == "POST":
+        pw = (request.form or {}).get("password", "")
+        if pw == _APP_PASSWORD:
+            session["authenticated"] = True
+            return redirect("/")
+        error = "Forkert adgangskode."
+    return f"""<!doctype html><html><head><title>Log ind</title>
+<style>body{{font-family:system-ui;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#f4f6f8}}
+.box{{background:#fff;border-radius:10px;padding:40px;box-shadow:0 2px 12px rgba(0,0,0,.1);width:320px}}
+h2{{color:#11716c;margin-top:0}}input{{width:100%;padding:10px;border:1.5px solid #d1d5db;border-radius:6px;font-size:14px;box-sizing:border-box;margin-top:8px}}
+button{{width:100%;padding:10px;background:#11716c;color:#fff;border:none;border-radius:6px;font-size:14px;cursor:pointer;margin-top:16px}}
+.err{{color:#dc2626;font-size:13px;margin-top:8px}}</style></head>
+<body><div class="box"><h2>Newsletter AI Agent</h2>
+<form method="post"><label>Adgangskode<input type="password" name="password" autofocus/></label>
+<button type="submit">Log ind</button></form>
+<div class="err">{error}</div></div></body></html>"""
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # One global run at a time — good enough for a demo
