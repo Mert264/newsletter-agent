@@ -344,6 +344,11 @@ def build_task_manifest(brief: str, preferred_types: list = None, routing_hint: 
         parts.append(
             f"PREFERRED CHART TYPES (in priority order — honour these unless data is fundamentally incompatible): {preferred_types}"
         )
+    if period_days:
+        parts.append(
+            f"PREFERRED TIME PERIOD: The user selected {period_days} days (~{period_days // 365} year(s)). "
+            f"Set period_days to {period_days} for all charts unless the data source does not support it."
+        )
     if routing_hint:
         parts.append(routing_hint)
     prompt = "\n".join(parts)
