@@ -692,7 +692,13 @@ function renderFigures(figures) {
         <div class="spinner-ring"></div> Genrenderer...
       </div>
       <div class="rerender-row">
-        <div class="rerender-label">Genrender som:</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+          <div class="rerender-label" style="margin-bottom:0">Genrender som:</div>
+          <a href="/figures/${fig.path}" download="${fig.path}"
+             style="font-size:10px;color:#11716c;text-decoration:none;font-weight:600">
+            &#8681; Download
+          </a>
+        </div>
         <div class="rerender-btns">${btns}</div>
       </div>
       ${flagHtml ? `<div class="fig-meta">${flagHtml}</div>` : ''}`;
