@@ -149,7 +149,7 @@ Example Type F chart spec for energy mix:
 
 EU STATISTICAL DATA — Eurostat (free, no API key):
 Use specialist "eurostat" with the following dataset shortcuts (set "ticker" to the shortcut name):
-  "eu_energy_mix"   → EU27 energy consumption by product (stacked/composition, Type F)
+  "eu_energy_mix"   → EU27 energy consumption by product (Type F stacked bar OR Type P pie chart)
   "eu_gdp_growth"   → EU27 real GDP growth (annual %, Type A or B)
   "eu_unemployment" → EU27 unemployment rate (monthly %, Type A)
   "eu_hicp"         → EU27 HICP inflation (monthly % change, Type A)
