@@ -332,7 +332,7 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
                       if merged[c].notna().any()]
             if ranges and max(ranges) / (min(ranges) + 1e-9) > 10:
                 merged = index_to_100(merged)
-                chart_spec = {**chart_spec, "y_label": "Indexed (base=100)"}
+                chart_spec = {**chart_spec, "y_label": "Indekseret (basis=100)"}
                 render_spec = {**chart_spec, "kilde": kilde_str}
 
         renderer = CHART_RENDERER_MAP[chart_type]
