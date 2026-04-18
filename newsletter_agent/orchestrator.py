@@ -179,7 +179,7 @@ Rules:
   invisible. If you want to compare them, set y_label to "Indexed (base=100)".
 - When all series share the same unit (e.g. two oil prices in USD/barrel), use that unit as y_label.
 - When series have DIFFERENT units or very different scales, set y_label to
-  "Indexed (base=100)" — the pipeline will normalize all series to 100 at the start date.
+  "Indekseret (basis=100)" — the pipeline will normalize all series to 100 at the start date.
 - Chart type C (seasonal/historical range) is NOT supported — do NOT use it. Use type A instead.
 - Every series in a chart must come from the SAME specialist's data. Do not reference series
   that belong to a different specialist in a chart spec.
