@@ -109,7 +109,7 @@ def start_run():
         sys.stdout = _StreamWriter(_run_queue, orig)
         try:
             from newsletter_agent.pipeline import run
-            packages = run(brief, output_dir=OUTPUT_DIR, preferred_types=preferred_types)
+            packages = run(brief, output_dir=OUTPUT_DIR, preferred_types=preferred_types, period_days=period_days)
 
             # Load rerender context to attach to each figure
             import json as _json
