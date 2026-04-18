@@ -208,6 +208,12 @@ Rules:
 - When series have DIFFERENT units or very different scales, set y_label to
   "Indekseret (basis=100)" — the pipeline will normalize all series to 100 at the start date.
 - Chart type C (seasonal/historical range) is NOT supported — do NOT use it. Use type A instead.
+- Chart type F (100% stacked bar) — use when the user asks for energy mix, fuel composition, or
+  percentage breakdown across categories over multiple years. Always pair with source="eia_mix"
+  (energy specialist) or source="eurostat_mix" (eurostat specialist). The x-axis shows years.
+- Chart type G (horizontal bar) — use when comparing a single metric across many sectors, countries,
+  or companies (e.g. "AI-adoption rate by sector", "renewable share by country"). Bars are sorted
+  descending so largest is at top. Single value column per entity/row.
 - Every series in a chart must come from the SAME specialist's data. Do not reference series
   that belong to a different specialist in a chart spec.
 - CRITICAL — COMBINED FIGURES: When the user explicitly requests multiple series to appear in
