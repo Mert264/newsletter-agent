@@ -653,17 +653,44 @@ function startRun() {
 function renderFigures(figures) {
   const grid = document.getElementById('figuresGrid');
   grid.innerHTML = '';
-  figures.forEach(fig => {
+  figures.forEach((fig, i) => {
     const flagHtml = fig.reviewer_flag
       ? `<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border:1px solid #fed7aa;border-radius:5px;font-size:11px;color:#92400e;">
-           ⚠️ <strong>Reviewer flag:</strong> ${fig.reviewer_flag}
+           <strong>Reviewer flag:</strong> ${fig.reviewer_flag}
          </div>`
       : '';
+
+    const activeType = fig.chart_type || 'A';
+    const TYPES = [
+      {code: 'A', label: 'Figur'},
+      {code: 'B', label: 'Lodret'},
+      {code: 'G', label: 'Vandret'},
+      {code: 'F', label: 'Stablet'},
+      {code: 'D', label: 'Tabel'},
+      {code: 'P', label: 'Cirkel'},
+    ];
+    const btns = TYPES.map(t =>
+      `<button class="rr-btn ${t.code === activeType ? 'active' : ''}"
+         id="rrbtn-${i}-${t.code}"
+         onclick="rerenderFigure(${i}, '${t.code}', this)">${t.label}</button>`
+    ).join('');
+
     const card = document.createElement('div');
     card.className = 'fig-card';
+    card.id = `figcard-${i}`;
     card.innerHTML = `
-      <img src="/figures/${fig.path}?t=${Date.now()}" alt="${fig.title}" onclick="openLightbox(this.src)" />
+      <img src="/figures/${fig.path}?t=${Date.now()}" alt="${fig.title}"
+           id="figimg-${i}" onclick="openLightbox(this.src)" />
+      <div class="fig-spinner" id="figspinner-${i}">
+        <div class="spinner-ring"></div> Genrenderer...
+      </div>
+      <div class="rerender-row">
+        <div class="rerender-label">Genrender som:</div>
+        <div class="rerender-btns">${btns}</div>
+      </div>
       ${flagHtml ? `<div class="fig-meta">${flagHtml}</div>` : ''}`;
+
+    card.dataset.ctx = JSON.stringify(fig.rerender_ctx || {});
     grid.appendChild(card);
   });
   document.getElementById('figuresPanel').style.display = 'block';
