@@ -251,14 +251,25 @@
       color: #fff; font-size: 28px; cursor: pointer; line-height: 1;
     }
     /* ── Period selector ── */
-    .period-btn {
-      padding: 7px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;
-      border: 1.5px solid #d1d5db; background: #fff; color: #374151;
-      transition: background .12s, border-color .12s;
-      min-height: 34px; font-weight: 500;
+    /* ── Period slider ── */
+    #periodSlider {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 4px; border-radius: 4px;
+      background: linear-gradient(to right, #11716c var(--pct,30%), #d1d5db var(--pct,30%));
+      outline: none; cursor: pointer; transition: opacity .15s;
     }
-    .period-btn:hover:not(.active) { border-color: #a7d9d5; background: #f0faf9; }
-    .period-btn.active { background: #11716c; color: #fff; border-color: #11716c; }
+    #periodSlider::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #11716c; cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,.2);
+    }
+    #periodSlider::-moz-range-thumb {
+      width: 18px; height: 18px; border-radius: 50%; border: none;
+      background: #11716c; cursor: pointer;
+    }
+    #sliderWrap { transition: opacity .15s; }
+    #llmToggle { accent-color: #11716c; cursor: pointer; width: 14px; height: 14px; }
 
     /* ── Viz type panel ── */
     #topRow {
