@@ -31,6 +31,7 @@ FLAG only if:
 - The chart type is clearly wrong for the data (e.g. bar chart for time series).
 
 Do NOT flag:
+- ANYTHING about axis labels on type P (pie chart) — pie charts have no axes. Never flag x-axis, y-axis, or units on type P. Auto-approve axis checks for type P.
 - Missing x-axis label when the axis clearly shows dates.
 - "Date" as ambiguous — it is standard.
 - Country/region labels not appearing on the chart body (legend is sufficient).
