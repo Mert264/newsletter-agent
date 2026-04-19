@@ -236,6 +236,15 @@ def stream():
     )
 
 
+@app.route("/last")
+def last_result():
+    """Return the most recent completed run so the browser can restore figures after a reload."""
+    if os.path.exists(_LAST_RESULT_PATH):
+        with open(_LAST_RESULT_PATH) as f:
+            return jsonify(json.load(f))
+    return jsonify({"type": "none"})
+
+
 @app.route("/figures/<filename>")
 def serve_figure(filename):
     return send_from_directory(OUTPUT_DIR, filename)
