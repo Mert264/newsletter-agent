@@ -88,8 +88,9 @@ def apply_conversions(dfs: dict, series_specs: list, period_days: int) -> tuple:
                     f"(EUR/USD dato-matchet, seneste: {latest_rate:.3f}, {latest_date})"
                 )
             else:
+                print(f"    [converters] WARNING: EUR/USD fetch failed — '{label}' is in EUR/MWh, NOT USD/MWh. Chart y-axis will be misleading.")
                 notes.append(
-                    f"{label}: EUR/USD-kurs ikke tilgængelig — ingen konvertering anvendt"
+                    f"⚠ {label}: EUR/USD ikke tilgængelig — værdier vises i EUR/MWh (ikke USD/MWh)"
                 )
 
     note = ". ".join(notes) + "." if notes else ""
