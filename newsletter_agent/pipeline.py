@@ -487,7 +487,12 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
                       if merged[c].notna().any()]
             if ranges and max(ranges) / (min(ranges) + 1e-9) > 10:
                 merged = index_to_100(merged)
-                chart_spec = {**chart_spec, "y_label": "Indekseret (basis=100)"}
+                # If DXY is one of the series it is already a natural index — use "Indeks"
+                # rather than "Indekseret (basis=100)" which implies deliberate rebasing.
+                cols_lower = [c.lower() for c in merged.columns]
+                has_dxy = any("dxy" in c or "dollar index" in c or "dollarindeks" in c for c in cols_lower)
+                new_ylabel = "Indeks" if has_dxy else "Indekseret (basis=100)"
+                chart_spec = {**chart_spec, "y_label": new_ylabel}
                 render_spec = {**chart_spec, "kilde": kilde_str}
 
         renderer = CHART_RENDERER_MAP[chart_type]
