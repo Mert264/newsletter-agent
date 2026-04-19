@@ -168,7 +168,17 @@ Source type: "eurostat_ts" for time series, "eurostat_mix" for cross-sectional (
 Example eurostat entry:
   {"ticker": "eu_unemployment", "source": "eurostat_ts", "label": "EU27 ledighed (%)", "unit": "%"}
 
-NOT available: GIE gas storage, CME FedWatch probability data, Bloomberg data, BlackRock, JPMorgan, ICE real-time data
+NOT available (do NOT attempt — these sources do not exist in this system):
+  - GIE gas storage, CME FedWatch probability data, Bloomberg, BlackRock, JPMorgan, ICE real-time data
+  - UK NBP gas prices (not on yfinance — only TTF=F is available for European gas)
+  - European electricity spot prices (EPEX, Nord Pool — not available)
+  - LNG spot prices (not on yfinance)
+  - Individual Nordic central bank policy rates (Riksbank, Norges Bank, DNB — not on FRED; use ECB rate as EU proxy)
+  - Danish/Swedish/Norwegian housing market data (not on FRED or Eurostat shortcuts)
+  - AI adoption / digital economy survey data (not in configured sources)
+  - Danish/country-specific export breakdown by sector (no Eurostat shortcut — do not attempt raw dataset IDs unless you know the exact ID)
+  - Iceland stock market (ICEX) — ticker EICE.IR is not on yfinance
+  If a brief requests one of these, render what IS available and note the limitation in the chart note field.
 
 Rules:
 - Maximum 2 charts per specialist.
