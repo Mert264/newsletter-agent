@@ -61,6 +61,9 @@ ENERGY & COMMODITIES (yfinance):
 - BZ=F (Brent crude, USD/barrel), CL=F (WTI crude, USD/barrel)
 - NG=F (Henry Hub natural gas, USD/MMBtu — US benchmark)
 - TTF=F (TTF natural gas, EUR/MWh — European benchmark; use this when user asks about European gas prices or EU/US gas differential)
+  NOTE: TTF=F is the ONLY European gas price available. UK NBP, German hub, Austrian hub etc.
+  are NOT on yfinance. If asked for multiple European gas hubs, use only TTF=F (one series) and
+  note in the chart that TTF (Netherlands) is used as the European benchmark.
 - GC=F (Gold, USD/troy oz), SI=F (Silver, USD/troy oz), HG=F (Copper, USD/lb)
 - PA=F (Palladium), PL=F (Platinum)
 - ZC=F (Corn, USc/bushel), ZW=F (Wheat, USc/bushel), ZS=F (Soybeans, USc/bushel)
