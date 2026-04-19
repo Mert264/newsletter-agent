@@ -424,18 +424,38 @@
     <div class="card-body">
       <div class="brief-label">Beskriv det makroøkonomiske emne, du vil visualisere:</div>
       <textarea id="briefInput" placeholder="F.eks. Vis EUR/USD-valutakursen over de seneste to år for at illustrere, hvordan den amerikanske dollar er svækket over for euroen..."></textarea>
-      <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:12px;margin-bottom:6px;">Prøv et prompt</div>
-      <div class="quick-briefs">
-        <button class="quick-btn" onclick="setQuick(1)">Iran-krig — olie- &amp; gaschok</button>
-        <button class="quick-btn" onclick="setQuick(2)">EU energimix — cirkeldiagram</button>
-        <button class="quick-btn" onclick="setQuick(3)">Forsvarsaktier — genoprusningsbølge</button>
-        <button class="quick-btn" onclick="setQuick(4)">Guld &amp; sikker havn-efterspørgsel</button>
-        <button class="quick-btn" onclick="setQuick(5)">Amerikansk inflation &amp; Fed-renter</button>
-        <button class="quick-btn" onclick="setQuick(6)">Europæiske statsrenter — rentespænd</button>
-        <button class="quick-btn" onclick="setQuick(7)">Dollarstyrke vs. store valutaer</button>
-        <button class="quick-btn" onclick="setQuick(8)">Rentekurve &amp; recessionssignal</button>
-        <button class="quick-btn" onclick="setQuick(9)">Globale aktiemarkeder — afkast</button>
-        <button class="quick-btn" onclick="setQuick(10)">Europæisk obligationsstress</button>
+      <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:12px;margin-bottom:8px;">Prøv et prompt</div>
+      <div class="prompt-categories">
+        <div>
+          <div class="prompt-category-label">Geopolitik</div>
+          <div class="prompt-group">
+            <button class="quick-btn" onclick="setQuick(1)">Iran-krig — olie &amp; gas</button>
+            <button class="quick-btn" onclick="setQuick(2)">Forsvarsaktier — genoprusning</button>
+            <button class="quick-btn" onclick="setQuick(3)">Guld &amp; safe haven</button>
+          </div>
+        </div>
+        <div>
+          <div class="prompt-category-label">Renter &amp; Obligationer</div>
+          <div class="prompt-group">
+            <button class="quick-btn" onclick="setQuick(4)">Europæiske statsrenter — rentespænd</button>
+            <button class="quick-btn" onclick="setQuick(5)">Rentekurve &amp; recessionssignal</button>
+            <button class="quick-btn" onclick="setQuick(6)">Fed, ECB &amp; Bank of England</button>
+          </div>
+        </div>
+        <div>
+          <div class="prompt-category-label">Aktier &amp; Valuta</div>
+          <div class="prompt-group">
+            <button class="quick-btn" onclick="setQuick(7)">Globale aktiemarkeder — afkast</button>
+            <button class="quick-btn" onclick="setQuick(8)">Dollarstyrke &amp; geopolitisk risiko</button>
+          </div>
+        </div>
+        <div>
+          <div class="prompt-category-label">Energi &amp; Europa</div>
+          <div class="prompt-group">
+            <button class="quick-btn" onclick="setQuick(9)">EU energimix — cirkeldiagram</button>
+            <button class="quick-btn" onclick="setQuick(10)">Europæisk obligationsstress</button>
+          </div>
+        </div>
       </div>
       <div style="margin-top:12px;margin-bottom:4px">
         <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px">Tidsperiode</div>
