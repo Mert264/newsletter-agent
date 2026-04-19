@@ -718,6 +718,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                 )
                 if impact_pkg:
                     packages.append(impact_pkg)
+                    _rerender_ctx_map.append(None)  # event impact tables have no rerender context
                     fig_idx += 1
 
     # Build rerender context — one entry per figure, stored for /rerender endpoint.
