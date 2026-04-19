@@ -96,23 +96,23 @@
     }
     textarea:focus { outline: none; border-color: #11716c; }
 
-    .quick-briefs {
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
+    .prompt-categories { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+    .prompt-category-label {
+      font-size: 9px; color: #9ca3af; font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase; margin-bottom: 3px;
     }
+    .prompt-group { display: flex; flex-wrap: wrap; gap: 6px; }
     .quick-btn {
       background: #f0faf9;
       border: 1.5px solid #a7d9d5;
       color: #0d6b66;
       border-radius: 20px;
-      padding: 7px 16px;
+      padding: 6px 14px;
       font-size: 12px;
       font-weight: 500;
       cursor: pointer;
       transition: background .12s, border-color .12s;
-      min-height: 34px;
+      min-height: 32px;
     }
     .quick-btn:hover { background: #d1f0ec; border-color: #11716c; }
     .quick-btn:active { background: #b6e8e3; }
