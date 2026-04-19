@@ -573,7 +573,7 @@ def _save_combined_pie_figure(wide: "pd.DataFrame", years_to_show: list,
             for cat in wide.loc[y].dropna().index:
                 if cat not in all_categories:
                     all_categories.append(cat)
-    category_colors = {cat: _color_for_label(cat) for cat in all_categories}
+    category_colors = _build_category_colors(all_categories)
 
     ref_wedges = ref_series = None
     for i, (ax, year) in enumerate(zip(axes_flat, years_to_show)):
