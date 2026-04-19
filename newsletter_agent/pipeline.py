@@ -570,7 +570,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
         )
         print(f"  [{spec_name}] Applying unit conversions...")
         converted_dfs, conv_note = apply_conversions(
-            specialist_results[spec_name]["dataframes"], series_specs, period_days
+            specialist_results[spec_name]["dataframes"], series_specs, conv_period_days
         )
         specialist_results[spec_name]["dataframes"] = converted_dfs
         if conv_note:
