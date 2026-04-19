@@ -438,63 +438,34 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
     bottoms = np.zeros(n_years)
     x_positions = np.arange(n_years)
-    # Collect small-segment annotations: (x_center, y_top, label_text, color)
-    small_labels: list[tuple] = []
+    # Last-year pct values for legend annotations
+    last_vals: dict[str, float] = {}
     for i, col in enumerate(pct.columns):
         vals = pct[col].fillna(0).values
+        last_vals[col] = vals[-1]
         color = _color_for(i)
         bars = ax.bar(x_positions, vals, bottom=bottoms,
                       color=color, width=bar_width,
                       label=col, edgecolor="white", linewidth=0.4)
         if show_segment_labels:
             for bar, val, bot in zip(bars, vals, bottoms):
+                # Only label segments large enough to fit text inside the bar
                 if val >= 6:
                     ax.text(bar.get_x() + bar.get_width() / 2,
                             bot + val / 2,
                             f"{val:.0f}%",
                             ha="center", va="center",
                             fontsize=7, color="white", fontweight="600")
-                elif val >= 0.5:
-                    # Collect small segments to annotate outside the bar
-                    small_labels.append((
-                        bar.get_x() + bar.get_width() / 2,
-                        bot + val,  # top of this segment
-                        f"{val:.0f}%",
-                        color,
-                    ))
         bottoms += vals
 
-    # Draw small-segment labels above the bar with a colored tick line
-    if show_segment_labels:
-        # Group by x-position to stack them without overlap
-        from collections import defaultdict
-        by_x: dict = defaultdict(list)
-        for xc, yt, txt, col in small_labels:
-            by_x[round(xc, 3)].append((yt, txt, col))
-        for xc, items in by_x.items():
-            items.sort(key=lambda t: t[0])  # bottom-to-top
-            offset = 0
-            for yt, txt, col in items:
-                label_y = yt + 1.5 + offset
-                ax.annotate(
-                    txt,
-                    xy=(xc, yt),
-                    xytext=(xc, label_y),
-                    ha="center", va="bottom",
-                    fontsize=6, color=col, fontweight="600",
-                    arrowprops=dict(arrowstyle="-", color=col, lw=0.6),
-                )
-                offset += 4  # stack upward so labels don't collide
-
-    ax.set_ylim(0, 115)  # extra headroom for small-segment annotations
+    ax.set_ylim(0, 105)
     ax.set_yticks([0, 20, 40, 60, 80, 100])
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.0f}%"))
     ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
-    # X-axis label omitted — year values are self-explanatory
     ax.set_ylabel(spec.get("y_label", "Pct. af total"), fontsize=BRAND["font_size_axis"])
 
-    # Thin x-axis ticks when many years, horizontal labels (never rotate — year labels are short)
+    # Thin x-axis ticks; horizontal labels (year labels are short, never need rotation)
     if n_years > 20:
         step = 5
     elif n_years > 10:
@@ -512,19 +483,19 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     ax.xaxis.grid(False)
     ax.yaxis.grid(True, color=BRAND["grid_color"], linewidth=0.4, linestyle="-")
 
+    # Legend: embed last-year % into each label so small segments are always readable
+    legend_labels = [f"{col}  {last_vals[col]:.0f}%" for col in pct.columns]
+    handles, _ = ax.get_legend_handles_labels()
+    ax.legend(handles, legend_labels,
+              fontsize=BRAND["font_size_label"], frameon=False,
+              loc="lower center", bbox_to_anchor=(0.5, -0.02),
+              ncol=min(n_cats, 5),
+              borderpad=0, handlelength=1.2, handletextpad=0.4, columnspacing=1.0)
+
     bottom_frac = _add_footer(fig, spec)
-
-    # Reserve bottom space: footer + legend rows (0.07 per row above first)
-    # subplots_adjust before placing legend so tight_layout doesn't fight it
-    legend_bottom = 0.10 + 0.07 * legend_rows + bottom_frac
-    plt.subplots_adjust(bottom=legend_bottom)
-
-    # Place legend inside the reserved bottom strip, centered
-    legend_anchor_y = -0.14 - 0.07 * (legend_rows - 1)
-    ax.legend(fontsize=BRAND["font_size_label"], frameon=False,
-              loc="lower center", bbox_to_anchor=(0.5, legend_anchor_y),
-              ncol=min(n_cats, 5))
-
+    # Tight bottom reserve: legend height (rows × 0.06) + small gap + footer
+    legend_reserve = 0.06 * legend_rows + 0.04 + bottom_frac
+    plt.subplots_adjust(bottom=legend_reserve)
     fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
     plt.close(fig)
     return output_path
