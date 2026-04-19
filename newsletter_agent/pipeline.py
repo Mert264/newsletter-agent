@@ -541,7 +541,8 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
     print(f"      Specialists activated: {', '.join(specialists)}")
 
     # Step 2: Run all specialists in parallel
-    print(f"\n[2/4] Fetching data ({len(specialists)} specialist(s) in parallel)...")
+    n_charts = sum(len(manifest.get(s, {}).get("charts", [])) for s in specialists)
+    print(f"\n[2/4] Fetching data — {len(specialists)} specialist(s), ~{n_charts} chart(s) planned...")
     specialist_results: dict[str, dict] = {}
     with ThreadPoolExecutor(max_workers=len(specialists) or 1) as executor:
         futures = {
