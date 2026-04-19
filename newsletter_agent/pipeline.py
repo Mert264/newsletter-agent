@@ -321,6 +321,10 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
 
     # ── Type F — 100% stacked bar (composition / energy mix) ─────────────
     elif chart_type == "F":
+        # Cap years to match user's timeline selection (period_days → year count).
+        _f_period = chart_spec.get("period_days", None)
+        _f_year_cap = max(1, round(_f_period / 365)) if _f_period else 10
+
         # F expects a wide DataFrame: index=categories, columns=series labels
         # If specialist returns multiple single-column DFs, merge them wide.
         if len(dfs) == 1:
@@ -328,6 +332,7 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
             if isinstance(wide.index, pd.DatetimeIndex):
                 wide = wide.copy()
                 wide.index = wide.index.year.astype(str)
+            wide = wide.tail(_f_year_cap)
         else:
             # Multiple series → each is a column; build wide from time snapshots
             parts = {}
@@ -336,7 +341,7 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
                 if isinstance(s.index, pd.DatetimeIndex):
                     s.index = s.index.year.astype(str)
                 parts[lbl] = s
-            wide = pd.DataFrame(parts).dropna(how="all").tail(10)
+            wide = pd.DataFrame(parts).dropna(how="all").tail(_f_year_cap)
         if wide is None or wide.empty:
             print(f"    [warn] No data for Type F chart '{chart_spec.get('title')}' — skipping.")
             return None
