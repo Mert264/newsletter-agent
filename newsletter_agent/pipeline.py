@@ -260,6 +260,10 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
     series_labels = chart_spec.get("series_labels")
     if series_labels:
         dfs = {k: v for k, v in dfs.items() if k in series_labels}
+        missing = [lbl for lbl in series_labels if lbl not in specialist_result["dataframes"]]
+        if missing:
+            print(f"    [warn] series_labels mismatch — these labels were requested but not fetched: {missing}")
+            print(f"           Available labels: {list(specialist_result['dataframes'].keys())}")
 
     # ── Spread computation (compute_spread_vs) ────────────────────────────────
     compute_spread_vs = chart_spec.get("compute_spread_vs")
