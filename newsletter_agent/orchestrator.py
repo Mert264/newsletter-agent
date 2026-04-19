@@ -233,6 +233,17 @@ Rules:
   If the user asks for the "yield curve" or "2Y vs 10Y", use DGS2 and DGS10 (or T10Y2Y).
   If the user asks for the "Fed Funds rate" or "policy rate", use DFF or DFEDTARU.
   NEVER label DFF/DFEDTARU as a Treasury yield or yield curve — they are completely different.
+- CRITICAL — TYPE A X-AXIS LABEL: For ALL Type A (time series) charts, ALWAYS set x_label
+  to "Dato". NEVER use "Valuta", "Valutapar", "Currency", "Series", or any category name as
+  the x_label on a Type A chart. The x-axis of a time series always shows dates — "Dato" is
+  the only correct label.
+- CRITICAL — DXY + FX RATES: When plotting DXY (DX-Y.NYB or DX=F, ~100-115) alongside FX
+  rate pairs (EUR/USD ~1.08, GBP/USD ~1.27, JPY/USD ~0.0066), the scales are completely
+  incompatible. ALWAYS set y_label="Indekseret (basis=100)" — the pipeline will rebase all
+  series to 100 at period start so they are comparable. This is correct and required. Add to
+  the note: "Alle serier er indekseret til 100 ved periodens start for at muliggøre sammenligning
+  på tværs af forskellig valutaskala." NEVER set y_label to a currency unit when DXY and FX
+  pairs are combined on the same chart.
 - CRITICAL: NEVER put BZ=F (Brent, ~$80/barrel) and NG=F (Henry Hub, ~$2/MMBtu) on the
   same chart with absolute prices. Their scales differ by 30-40x — Henry Hub becomes
   invisible. If you want to compare them, set y_label to "Indexed (base=100)".
