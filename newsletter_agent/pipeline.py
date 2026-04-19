@@ -599,12 +599,20 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
             # Multi-package return (multi-year pie): add individual year pies directly,
             # then let the combined figure fall through to the review loop below.
             n_pre = 0
+            series_specs_for_ctx = manifest.get(specialist_name, {}).get("series", [])
             if isinstance(package, list):
                 pre_pkgs = package[:-1]   # individual year pies — no review needed
                 n_pre = len(pre_pkgs)
                 for pre_pkg in pre_pkgs:
                     pre_pkg.pop("_merged", None)
                     packages.append(pre_pkg)
+                    _rerender_ctx_map.append({
+                        "figure_id":    len(_rerender_ctx_map),
+                        "specialist":   specialist_name,
+                        "series_specs": series_specs_for_ctx,
+                        "chart_spec":   chart_spec,
+                        "brief":        brief,
+                    })
                     fig_idx += 1
                 package = package[-1]     # combined figure → continues to review below
                 output_path = package["path"]
