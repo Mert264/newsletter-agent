@@ -693,16 +693,17 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                     packages.append(impact_pkg)
                     fig_idx += 1
 
-    # Build rerender context — one entry per figure, stored for /rerender endpoint
+    # Build rerender context — one entry per figure, stored for /rerender endpoint.
+    # Multi-package specs (e.g. multi-year pie) get one entry per package they produced.
     rerender_ctx = []
     fig_ctx_idx = 0
-    for spec_name in specialists:
-        result = specialist_results[spec_name]
-        for chart_spec in result["chart_specs"]:
+    for spec_name, chart_spec, n_pkgs in _render_log:
+        series_specs = manifest.get(spec_name, {}).get("series", [])
+        for _ in range(n_pkgs):
             rerender_ctx.append({
                 "figure_id":    fig_ctx_idx,
                 "specialist":   spec_name,
-                "series_specs": manifest.get(spec_name, {}).get("series", []),
+                "series_specs": series_specs,
                 "chart_spec":   chart_spec,
                 "brief":        brief,
             })
