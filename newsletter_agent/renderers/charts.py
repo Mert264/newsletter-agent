@@ -488,13 +488,13 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     handles, _ = ax.get_legend_handles_labels()
     ax.legend(handles, legend_labels,
               fontsize=BRAND["font_size_label"], frameon=False,
-              loc="lower center", bbox_to_anchor=(0.5, -0.02),
+              loc="upper center", bbox_to_anchor=(0.5, -0.12),
               ncol=min(n_cats, 5),
               borderpad=0, handlelength=1.2, handletextpad=0.4, columnspacing=1.0)
 
     bottom_frac = _add_footer(fig, spec)
-    # Tight bottom reserve: legend height (rows × 0.06) + small gap + footer
-    legend_reserve = 0.06 * legend_rows + 0.04 + bottom_frac
+    # Reserve: 0.12 gap below axes + legend rows height + footer
+    legend_reserve = 0.12 + 0.06 * legend_rows + bottom_frac
     plt.subplots_adjust(bottom=legend_reserve)
     fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
     plt.close(fig)
