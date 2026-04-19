@@ -581,7 +581,9 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
     print("\n[3/4] Rendering figures...")
     packages = []
     fig_idx = 0
-    # Tracks (specialist_name, chart_spec, n_packages) for rerender context below
+    # Maps package list position → rerender context entry (None for event impact tables)
+    _rerender_ctx_map: list[dict | None] = []
+    # Still track render log for backward compat (specialist isolation, etc.)
     _render_log: list[tuple[str, dict, int]] = []
     for specialist_name in specialists:
         result = specialist_results[specialist_name]
