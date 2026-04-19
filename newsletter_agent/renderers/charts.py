@@ -424,34 +424,51 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     row_totals = df.sum(axis=1).replace(0, np.nan)
     pct = df.div(row_totals, axis=0) * 100
 
-    bottoms = np.zeros(len(pct))
+    n_years = len(pct)
+    # Only label segments when there are few enough years that bars are wide enough to read
+    show_segment_labels = n_years <= 12
+
+    bottoms = np.zeros(n_years)
     for i, col in enumerate(pct.columns):
         vals = pct[col].fillna(0).values
         bars = ax.bar(pct.index, vals, bottom=bottoms,
                       color=_color_for(i), width=0.6,
                       label=col, edgecolor="white", linewidth=0.4)
-        # Label segments ≥ 6% with the value
-        for bar, val, bot in zip(bars, vals, bottoms):
-            if val >= 6:
-                ax.text(bar.get_x() + bar.get_width() / 2,
-                        bot + val / 2,
-                        f"{val:.0f}%",
-                        ha="center", va="center",
-                        fontsize=7, color="white", fontweight="600")
+        if show_segment_labels:
+            for bar, val, bot in zip(bars, vals, bottoms):
+                if val >= 6:
+                    ax.text(bar.get_x() + bar.get_width() / 2,
+                            bot + val / 2,
+                            f"{val:.0f}%",
+                            ha="center", va="center",
+                            fontsize=7, color="white", fontweight="600")
         bottoms += vals
 
     ax.set_ylim(0, 100)
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.0f}%"))
     ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
-    ax.set_xlabel(spec.get("x_label", ""), fontsize=BRAND["font_size_axis"])
+    ax.set_xlabel(spec.get("x_label", "År"), fontsize=BRAND["font_size_axis"])
     ax.set_ylabel(spec.get("y_label", "Pct. af total"), fontsize=BRAND["font_size_axis"])
+
+    # Thin x-axis labels when many years: show every Nth tick to avoid overlap
+    if n_years > 20:
+        step = 5
+    elif n_years > 10:
+        step = 2
+    else:
+        step = 1
+    tick_labels = [str(lbl) if i % step == 0 else "" for i, lbl in enumerate(pct.index)]
+    ax.set_xticks(range(n_years))
+    ax.set_xticklabels(tick_labels, rotation=45, ha="right",
+                       fontsize=BRAND["font_size_axis"])
+
     ax.legend(fontsize=BRAND["font_size_label"], frameon=False,
-              loc="lower center", bbox_to_anchor=(0.5, -0.18),
-              ncol=min(len(pct.columns), 5))
+              loc="lower center", bbox_to_anchor=(0.5, -0.22),
+              ncol=min(len(pct.columns), 4))
     _apply_brand(ax, fig)
     bottom_frac = _add_footer(fig, spec)
-    plt.tight_layout(rect=[0.0, bottom_frac + 0.06, 1.0, 1.0])
+    plt.tight_layout(rect=[0.0, bottom_frac + 0.08, 1.0, 1.0])
     fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
     plt.close(fig)
     return output_path
