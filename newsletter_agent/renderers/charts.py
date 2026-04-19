@@ -514,10 +514,12 @@ def _draw_single_pie(ax, series: "pd.Series", category_colors: dict = None):
         (category_colors[lbl] if category_colors and lbl in category_colors else _color_for_label(lbl))
         for lbl in series.index
     ]
+    # Always compute all percentages; show inside pie only for slices >= 5%
+    total = series.sum()
     wedges, _, autotexts = ax.pie(
         series.values,
         labels=None,
-        autopct=lambda p: f"{p:.0f}%" if p >= 8 else "",
+        autopct=lambda p: f"{p:.0f}%" if p >= 5 else "",
         colors=colors,
         startangle=90,
         wedgeprops={"edgecolor": "white", "linewidth": 1.2},
@@ -539,7 +541,14 @@ def _save_single_pie_figure(series: "pd.Series", title_str: str,
     ax.set_title(title_str, fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
     fig.patch.set_facecolor(BRAND["background"])
-    ax.legend(wedges, series.index, fontsize=BRAND["font_size_label"],
+    # Enrich legend with percentage for every category — ensures small slices
+    # (< 5%, no inside label) always have their value visible in the legend.
+    total = series.sum()
+    legend_labels = [
+        f"{lbl}  {series[lbl] / total * 100:.1f}%"
+        for lbl in series.index
+    ]
+    ax.legend(wedges, legend_labels, fontsize=BRAND["font_size_label"],
               loc="center left", bbox_to_anchor=(1.0, 0.5), frameon=False)
     bottom_frac = _add_footer(fig, spec)
     plt.tight_layout(rect=[0.0, bottom_frac, 0.78, 1.0])
