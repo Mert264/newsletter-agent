@@ -591,12 +591,13 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
 
     # ── Multi-year: individual pies + combined comparison ─────────────────────
     if wide is not None and wide.shape[0] > 1:
-        years = [str(y) for y in wide.index.tolist()]
-        years_to_show = years[-10:]   # cap at 10 most recent years
+        all_years = [str(y) for y in wide.index.tolist()]
+        # Individual year files: most recent 10 (keeps UI manageable)
+        individual_years = all_years[-10:]
         base = output_path[:-4]       # strip .png
 
         paths = []
-        for i, year in enumerate(years_to_show):
+        for i, year in enumerate(individual_years):
             row = wide.loc[year].dropna() if year in wide.index else pd.Series(dtype=float)
             row = row[row > 0]
             year_path = f"{base}_y{i:02d}.png"
@@ -610,8 +611,8 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
             # All years empty — fall through to single-pie empty guard below
             return output_path
 
-        # Combined comparison figure at the original output_path
-        _save_combined_pie_figure(wide, years_to_show, spec, output_path)
+        # Combined comparison figure: ALL available years (no cap) at original output_path
+        _save_combined_pie_figure(wide, all_years, spec, output_path)
         paths.append(output_path)
         return paths
 
