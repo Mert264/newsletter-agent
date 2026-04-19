@@ -595,8 +595,10 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
 
             # Multi-package return (multi-year pie): add individual year pies directly,
             # then let the combined figure fall through to the review loop below.
+            n_pre = 0
             if isinstance(package, list):
                 pre_pkgs = package[:-1]   # individual year pies — no review needed
+                n_pre = len(pre_pkgs)
                 for pre_pkg in pre_pkgs:
                     pre_pkg.pop("_merged", None)
                     packages.append(pre_pkg)
