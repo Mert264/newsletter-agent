@@ -52,6 +52,9 @@ def fetch_rates(task: dict) -> dict:
             with YF_LOCK:
                 raw = yf.download(s["ticker"], start=start, end=str(end),
                                   progress=False, auto_adjust=True)
+            if raw.empty:
+                print(f"    [rates] WARNING: ticker '{s['ticker']}' (label='{label}') returned no data")
+                continue
             if isinstance(raw.columns, pd.MultiIndex):
                 close = raw["Close"]
                 if isinstance(close, pd.DataFrame):
