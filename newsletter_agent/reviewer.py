@@ -38,10 +38,12 @@ Do NOT flag:
 - Source granularity (e.g. "Yahoo Finance" is fine, no need for ticker symbols).
 - Minor wording preferences.
 - For type G (horizontal bar): COMPLETELY IGNORE the Y-axis label field. The `y_label` in the metadata is the X-axis metric unit (e.g. %). The physical Y-axis of a horizontal bar chart always shows category names (countries, sectors) — this is structurally correct and needs no unit label. Do NOT produce ANY flag about "Y-axis shows %", "Y-axis should show category names", "remove % from Y-axis", "swapped axes", or any similar concern. Auto-approve ALL Y-axis checks on type G without exception.
-- Y-axis label "Index" or "Index level" for raw market instruments like DXY (US Dollar Index),
-  VIX (volatility index), or similar instruments that trade as indices by nature. These are NOT
-  rebased series and do NOT need a "base=100" specification. Only require "base=100" when the
-  chart title or note explicitly says the series has been rebased/indexed to a start value.
+- Y-axis label "Indekseret (basis=100)" or "Indexed (base=100)" when DXY (US Dollar Index)
+  appears alongside FX rate pairs (EUR/USD, GBP/USD, JPY/USD, etc.). DXY trades at ~100 naturally,
+  but FX rates live on completely different scales (EUR/USD ~1.08, JPY/USD ~0.0066). The pipeline
+  MUST rebase all series to 100 to make them comparable on one chart — this is correct and necessary.
+  NEVER flag "Indekseret (basis=100)" as wrong when region_labels include DXY and any FX pair.
+  Do NOT flag this even if you consider DXY a "natural index" — the rebasing is intentional.
 - Event dates or event names mentioned in the Note — NEVER challenge whether an event is real,
   whether a date seems recent or unusual, or whether a date is "in the future". The pipeline
   operates with live market data and may include events that occurred after your training cutoff.
