@@ -506,11 +506,6 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     ax.set_xticklabels(tick_labels, rotation=0, ha="center",
                        fontsize=BRAND["font_size_axis"])
 
-    legend_anchor_y = -0.16 - 0.07 * (legend_rows - 1)
-    ax.legend(fontsize=BRAND["font_size_label"], frameon=False,
-              loc="lower center", bbox_to_anchor=(0.5, legend_anchor_y),
-              ncol=min(n_cats, 5))
-
     _apply_brand(ax, fig)
 
     # Horizontal-only gridlines at 20% intervals
@@ -518,8 +513,18 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     ax.yaxis.grid(True, color=BRAND["grid_color"], linewidth=0.4, linestyle="-")
 
     bottom_frac = _add_footer(fig, spec)
-    # tight_layout without rect — bbox_inches="tight" captures the below-axes legend
-    plt.tight_layout()
+
+    # Reserve bottom space: footer + legend rows (0.07 per row above first)
+    # subplots_adjust before placing legend so tight_layout doesn't fight it
+    legend_bottom = 0.10 + 0.07 * legend_rows + bottom_frac
+    plt.subplots_adjust(bottom=legend_bottom)
+
+    # Place legend inside the reserved bottom strip, centered
+    legend_anchor_y = -0.14 - 0.07 * (legend_rows - 1)
+    ax.legend(fontsize=BRAND["font_size_label"], frameon=False,
+              loc="lower center", bbox_to_anchor=(0.5, legend_anchor_y),
+              ncol=min(n_cats, 5))
+
     fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
     plt.close(fig)
     return output_path
