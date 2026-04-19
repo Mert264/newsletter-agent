@@ -627,18 +627,24 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
     # ── Multi-year: individual pies + combined comparison ─────────────────────
     if wide is not None and wide.shape[0] > 1:
         all_years = [str(y) for y in wide.index.tolist()]
-        # Individual year files: most recent 10 (keeps UI manageable)
-        individual_years = all_years[-10:]
+
+        # Cap individual pies to match the user's timeline selection.
+        # period_days from spec → year_cap (e.g. 7 years → show last 7 pies).
+        period_days = spec.get("period_days", None)
+        year_cap = max(1, round(period_days / 365)) if period_days else 10
+        individual_years = all_years[-year_cap:]
+
         base = output_path[:-4]       # strip .png
 
-        # Build shared color map across all years so categories are visually consistent
+        # Build shared color map using sequential assignment — guarantees every category
+        # gets a visually distinct color with no hash collisions.
         all_cats = []
-        for y in all_years:
+        for y in individual_years:
             if y in wide.index:
                 for cat in wide.loc[y].dropna().index:
                     if cat not in all_cats:
                         all_cats.append(cat)
-        shared_colors = {cat: _color_for_label(cat) for cat in all_cats}
+        shared_colors = _build_category_colors(all_cats)
 
         paths = []
         for i, year in enumerate(individual_years):
@@ -647,7 +653,8 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
             year_path = f"{base}_y{i:02d}.png"
             if row.empty:
                 continue
-            year_spec = {**spec, "note": "", "kilde": ""}  # footer only on combined
+            # Keep kilde on individual pies; strip note (note appears on combined only)
+            year_spec = {**spec, "note": ""}
             _save_single_pie_figure(row, f"{spec['title']} ({year})", year_spec, year_path,
                                     category_colors=shared_colors)
             paths.append(year_path)
@@ -656,8 +663,8 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
             # All years empty — fall through to single-pie empty guard below
             return output_path
 
-        # Combined comparison figure: ALL available years (no cap) at original output_path
-        _save_combined_pie_figure(wide, all_years, spec, output_path)
+        # Combined comparison figure uses the same year range as individual pies
+        _save_combined_pie_figure(wide, individual_years, spec, output_path)
         paths.append(output_path)
         return paths
 
