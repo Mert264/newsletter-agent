@@ -624,6 +624,15 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
         individual_years = all_years[-10:]
         base = output_path[:-4]       # strip .png
 
+        # Build shared color map across all years so categories are visually consistent
+        all_cats = []
+        for y in all_years:
+            if y in wide.index:
+                for cat in wide.loc[y].dropna().index:
+                    if cat not in all_cats:
+                        all_cats.append(cat)
+        shared_colors = {cat: _color_for_label(cat) for cat in all_cats}
+
         paths = []
         for i, year in enumerate(individual_years):
             row = wide.loc[year].dropna() if year in wide.index else pd.Series(dtype=float)
@@ -632,7 +641,8 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
             if row.empty:
                 continue
             year_spec = {**spec, "note": "", "kilde": ""}  # footer only on combined
-            _save_single_pie_figure(row, f"{spec['title']} ({year})", year_spec, year_path)
+            _save_single_pie_figure(row, f"{spec['title']} ({year})", year_spec, year_path,
+                                    category_colors=shared_colors)
             paths.append(year_path)
 
         if not paths:
