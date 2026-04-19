@@ -62,6 +62,8 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 # One global run at a time — good enough for a demo
 _run_queue: queue.Queue = queue.Queue()
 _run_lock = threading.Lock()
+_last_result: dict = {}        # persists last done/error so reload can recover it
+_LAST_RESULT_PATH = os.path.join(OUTPUT_DIR, "_last_result.json")
 
 
 class _StreamWriter:
