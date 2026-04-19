@@ -666,6 +666,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
             # Strip internal stash before saving
             merged_df = package.pop("_merged", None)
             packages.append(package)
+            _render_log.append((specialist_name, chart_spec, n_pre + 1))  # total packages from this spec
             fig_idx += 1
 
             # Auto-generate companion event impact table for Type A charts with events
