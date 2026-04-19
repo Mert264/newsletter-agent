@@ -118,7 +118,7 @@ def start_run():
 
             # Load rerender context to attach to each figure
             import json as _json
-            ctx_path = os.path.join(OUTPUT_DIR, "rerender_context.json")
+            ctx_path = os.path.join(run_dir, "rerender_context.json")
             rerender_ctx = {}
             if os.path.exists(ctx_path):
                 with open(ctx_path) as f:
