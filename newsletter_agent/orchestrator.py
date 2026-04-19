@@ -119,11 +119,17 @@ Central banks:
   JPNRATE (Bank of Japan policy rate — if available, else skip)
 
 EUROPEAN MACRO — FRED series:
+CRITICAL: ALL CP0000* series below are FRED series — ALWAYS route them to specialist "macro"
+with source="fred". NEVER route them to specialist "eurostat" — the Eurostat API does not
+recognise FRED series IDs and will return 404.
 Inflation (use EXACT series IDs below — do NOT invent HICP codes):
   CP0000EZ19M086NEST (Eurozone HICP headline, INDEX — set y_label="YoY %", period_days>=760)
   CP0000DE1M086NEST  (Germany CPI, INDEX — set y_label="YoY %", period_days>=760)
   CP0000FR1M086NEST  (France CPI, INDEX — set y_label="YoY %", period_days>=760)
-  CP0000GB1M086NEST  (UK CPI, INDEX — set y_label="YoY %", period_days>=760)
+  CP0000GB1M086NEST  (UK CPI — WARNING: this series may return "does not exist" on FRED.
+                      If UK CPI is requested, use Eurozone HICP as a comparable proxy and
+                      note in the chart title/note that it covers the Eurozone, not UK.
+                      Do NOT invent alternative FRED IDs for UK CPI.)
 Bond yields (already in % — do NOT apply YoY):
   IRLTLT01EZM156N (Eurozone 10Y bond yield, monthly %)
   IRLTLT01DEM156N (Germany 10Y Bund, monthly %)
