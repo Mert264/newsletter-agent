@@ -198,8 +198,11 @@ def rerender_figure():
             chart_spec = {**chart_spec, "note": f"{existing} {conv_note}".strip()}
             result["chart_specs"] = [chart_spec]
 
-        # Render to same output path as original (overwrites)
-        output_path = _os.path.join(OUTPUT_DIR, f"figure_{figure_id:02d}.png")
+        # Render into the latest run dir so it's served by /figures correctly
+        import glob as _glob2
+        _run_dirs = sorted(_glob2.glob(_os.path.join(OUTPUT_DIR, "2*")), reverse=True)
+        _active_dir = _run_dirs[0] if _run_dirs else OUTPUT_DIR
+        output_path = _os.path.join(_active_dir, f"figure_{figure_id:02d}.png")
         package = _render_figure(chart_spec, result, output_path)
 
         if package is None:
