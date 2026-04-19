@@ -600,6 +600,8 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                     chart_spec = {**chart_spec, "y_label": "Basis points (bps)"}
                     print(f"  [reviewer] Patched y_label → Basis points (bps) (from reviewer hint)")
                 rerendered = _render_figure(chart_spec, result, output_path)
+                if isinstance(rerendered, list):
+                    rerendered = rerendered[-1]  # combined figure only during re-review
                 if rerendered is not None:
                     package = rerendered
             # Only surface a reviewer flag if the figure was NOT approved in the end.
