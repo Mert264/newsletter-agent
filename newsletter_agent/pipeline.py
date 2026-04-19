@@ -337,7 +337,43 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
         if wide is None or wide.empty:
             print(f"    [warn] No data for Type P chart '{chart_spec.get('title')}' — skipping.")
             return None
-        path = render_type_p(wide, render_spec, output_path)
+        result_paths = render_type_p(wide, render_spec, output_path)
+
+        # Multi-year: render_type_p returns a list [year1_path, ..., combined_path]
+        if isinstance(result_paths, list):
+            year_paths = result_paths[:-1]
+            combined_path = result_paths[-1]
+            years = [str(y) for y in wide.index.tolist()]
+            years_shown = years[-len(year_paths):]
+            pkgs = []
+            for year, yp in zip(years_shown, year_paths):
+                pkgs.append({
+                    "path": yp,
+                    "metadata": {
+                        "title":         f"{chart_spec['title']} ({year})",
+                        "chart_type":    "P",
+                        "x_label":       "",
+                        "y_label":       "",
+                        "note":          "",
+                        "kilde":         kilde_str,
+                        "region_labels": list(dfs.keys()),
+                    },
+                })
+            pkgs.append({
+                "path": combined_path,
+                "metadata": {
+                    "title":         f"{chart_spec['title']} — Sammenligning",
+                    "chart_type":    "P",
+                    "x_label":       "",
+                    "y_label":       "",
+                    "note":          chart_spec.get("note", ""),
+                    "kilde":         kilde_str,
+                    "region_labels": list(dfs.keys()),
+                },
+            })
+            return pkgs  # list of dicts — caller handles
+
+        path = result_paths  # single-year: fall through to standard return
 
     # ── Types A / B / C — Time-series & bar charts ───────────────────────
     else:
