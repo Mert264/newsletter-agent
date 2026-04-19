@@ -549,6 +549,17 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                 fig_idx += 1
                 continue
 
+            # Multi-package return (multi-year pie): add individual year pies directly,
+            # then let the combined figure fall through to the review loop below.
+            if isinstance(package, list):
+                pre_pkgs = package[:-1]   # individual year pies — no review needed
+                for pre_pkg in pre_pkgs:
+                    pre_pkg.pop("_merged", None)
+                    packages.append(pre_pkg)
+                    fig_idx += 1
+                package = package[-1]     # combined figure → continues to review below
+                output_path = package["path"]
+
             # Step 4: Devil's Advocate review (max 2 loops)
             print(f"  [reviewer] Checking figure {fig_idx + 1}...")
             final_approved = False
