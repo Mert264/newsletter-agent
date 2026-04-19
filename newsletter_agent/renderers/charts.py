@@ -422,11 +422,8 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     Values can be absolute — chart normalises each row to 100%.
     """
     n_cats = len(df.columns)
-    # Taller figure when legend needs 2 rows (>4 categories) to prevent cutoff
-    legend_rows = max(1, int(np.ceil(n_cats / 4)))
-    extra_height = 0.6 * (legend_rows - 1)  # extra inches per additional legend row
-    fig_h = FIGSIZE[1] + extra_height
-    fig, ax = plt.subplots(figsize=(FIGSIZE[0], fig_h), dpi=BRAND["figure_dpi"])
+    legend_rows = max(1, int(np.ceil(n_cats / 5)))  # 5 per row → fewer rows
+    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
 
     # Normalise each row to 100%
     row_totals = df.sum(axis=1).replace(0, np.nan)
