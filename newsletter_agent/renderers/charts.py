@@ -418,7 +418,12 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     df: index = year/category labels (strings), columns = categories (fuel types, sectors, etc.)
     Values can be absolute — chart normalises each row to 100%.
     """
-    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
+    n_cats = len(df.columns)
+    # Taller figure when legend needs 2 rows (>4 categories) to prevent cutoff
+    legend_rows = max(1, int(np.ceil(n_cats / 4)))
+    extra_height = 0.6 * (legend_rows - 1)  # extra inches per additional legend row
+    fig_h = FIGSIZE[1] + extra_height
+    fig, ax = plt.subplots(figsize=(FIGSIZE[0], fig_h), dpi=BRAND["figure_dpi"])
 
     # Normalise each row to 100%
     row_totals = df.sum(axis=1).replace(0, np.nan)
@@ -428,11 +433,15 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     # Only label segments when there are few enough years that bars are wide enough to read
     show_segment_labels = n_years <= 12
 
+    # Use width=0.8 for denser bar packing — reduces gaps between year bars
+    bar_width = 0.8
+
     bottoms = np.zeros(n_years)
+    x_positions = np.arange(n_years)
     for i, col in enumerate(pct.columns):
         vals = pct[col].fillna(0).values
-        bars = ax.bar(pct.index, vals, bottom=bottoms,
-                      color=_color_for(i), width=0.6,
+        bars = ax.bar(x_positions, vals, bottom=bottoms,
+                      color=_color_for(i), width=bar_width,
                       label=col, edgecolor="white", linewidth=0.4)
         if show_segment_labels:
             for bar, val, bot in zip(bars, vals, bottoms):
@@ -444,7 +453,8 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
                             fontsize=7, color="white", fontweight="600")
         bottoms += vals
 
-    ax.set_ylim(0, 100)
+    ax.set_ylim(0, 105)  # slight headroom above 100% so top labels aren't clipped
+    ax.set_yticks([0, 20, 40, 60, 80, 100])
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.0f}%"))
     ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
@@ -458,17 +468,28 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
         step = 2
     else:
         step = 1
-    tick_labels = [str(lbl) if i % step == 0 else "" for i, lbl in enumerate(pct.index)]
-    ax.set_xticks(range(n_years))
+    tick_labels = [str(lbl) if idx % step == 0 else "" for idx, lbl in enumerate(pct.index)]
+    ax.set_xticks(x_positions)
     ax.set_xticklabels(tick_labels, rotation=45, ha="right",
                        fontsize=BRAND["font_size_axis"])
 
+    # Anchor offset scales with legend rows so all rows stay visible
+    legend_anchor_y = -0.18 - 0.08 * (legend_rows - 1)
     ax.legend(fontsize=BRAND["font_size_label"], frameon=False,
-              loc="lower center", bbox_to_anchor=(0.5, -0.22),
-              ncol=min(len(pct.columns), 4))
+              loc="lower center", bbox_to_anchor=(0.5, legend_anchor_y),
+              ncol=min(n_cats, 4))
+
     _apply_brand(ax, fig)
+
+    # After brand styling: enforce horizontal-only gridlines at 20% intervals
+    # (brand applies both axes grid; for stacked bars only y-axis guides are useful)
+    ax.xaxis.grid(False)
+    ax.yaxis.grid(True, color=BRAND["grid_color"], linewidth=0.4, linestyle="-")
+
     bottom_frac = _add_footer(fig, spec)
-    plt.tight_layout(rect=[0.0, bottom_frac + 0.08, 1.0, 1.0])
+    # Reserve extra bottom space for multi-row legend + footer
+    legend_reserve = 0.08 + 0.06 * (legend_rows - 1)
+    plt.tight_layout(rect=[0.0, bottom_frac + legend_reserve, 1.0, 1.0])
     fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
     plt.close(fig)
     return output_path
