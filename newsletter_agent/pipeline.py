@@ -682,6 +682,13 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
             # Strip internal stash before saving
             merged_df = package.pop("_merged", None)
             packages.append(package)
+            _rerender_ctx_map.append({
+                "figure_id":    len(_rerender_ctx_map),
+                "specialist":   specialist_name,
+                "series_specs": series_specs_for_ctx,
+                "chart_spec":   chart_spec,
+                "brief":        brief,
+            })
             _render_log.append((specialist_name, chart_spec, n_pre + 1))  # total packages from this spec
             fig_idx += 1
 
