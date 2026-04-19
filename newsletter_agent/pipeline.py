@@ -261,6 +261,38 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
     if series_labels:
         dfs = {k: v for k, v in dfs.items() if k in series_labels}
 
+    # ── Spread computation (compute_spread_vs) ────────────────────────────────
+    compute_spread_vs = chart_spec.get("compute_spread_vs")
+    if compute_spread_vs and len(dfs) > 1:
+        ref_label = next(
+            (lbl for lbl in dfs
+             if compute_spread_vs.lower() in lbl.lower() or lbl.lower() in compute_spread_vs.lower()),
+            None,
+        )
+        if ref_label:
+            ref_series = dfs[ref_label].iloc[:, 0].dropna()
+            spread_dfs = {}
+            for lbl, df in dfs.items():
+                if lbl == ref_label:
+                    continue
+                s = df.iloc[:, 0].dropna()
+                common = s.index.intersection(ref_series.index)
+                if not common.empty:
+                    spread_dfs[lbl] = (s.loc[common] - ref_series.loc[common]).to_frame(lbl)
+            if spread_dfs:
+                dfs = spread_dfs
+                print(f"    [spread] vs '{ref_label}' — {len(spread_dfs)} series computed")
+                # Auto-set y_label to Procentpoint if not already meaningful
+                if chart_spec.get("y_label", "") in ("", "%", "Procent", "Pct."):
+                    chart_spec = {**chart_spec, "y_label": "Procentpoint"}
+            else:
+                print(f"    [warn] compute_spread_vs '{compute_spread_vs}' matched '{ref_label}' "
+                      f"but produced no spread data (no overlapping dates?)")
+        else:
+            print(f"    [warn] compute_spread_vs '{compute_spread_vs}' matched no series "
+                  f"in {list(dfs.keys())}")
+    # ─────────────────────────────────────────────────────────────────────────
+
     render_spec = {**chart_spec, "kilde": kilde_str}
     # Append any unit conversion note to the chart's note field
     conv_note = specialist_result.get("conversion_note", "")
