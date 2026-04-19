@@ -251,6 +251,22 @@ Rules:
   Pick exactly ONE type per chart based on data shape. Do not produce one chart of each type.
 - Every series in a chart must come from the SAME specialist's data. Do not reference series
   that belong to a different specialist in a chart spec.
+- SPREAD CHARTS: When the brief asks for spreads, differentials, or yield premiums relative to a
+  benchmark (e.g. "rentespænd vs. Tyskland", "spread over Bund", "spænd til benchmark"):
+  (a) Fetch ALL relevant series including the benchmark in series[].
+  (b) Add "compute_spread_vs": "<reference_label>" to the chart spec, where <reference_label>
+      exactly matches the "label" you gave that series in the series list.
+  (c) Set y_label to "Procentpoint" for rate/yield spreads.
+  (d) Do NOT subtract manually — the pipeline subtracts automatically and drops the reference series.
+  (e) Works with type A (time-series of spread evolution) and type G (snapshot ranking by spread).
+  Example for European bond yield spreads vs Germany:
+    series: [
+      {"ticker": "IRLTLT01DEM156N", "label": "Deutschland", "source": "fred"},
+      {"ticker": "IRLTLT01FRM156N", "label": "Frankrig",    "source": "fred"},
+      {"ticker": "IRLTLT01ITM156N", "label": "Italien",     "source": "fred"},
+      {"ticker": "IRLTLT01ESM156N", "label": "Spanien",     "source": "fred"}
+    ]
+    chart spec: {"type": "G", "compute_spread_vs": "Deutschland", "y_label": "Procentpoint", ...}
 - CRITICAL — COMBINED FIGURES: When the user explicitly requests multiple series to appear in
   ONE figure/chart (using phrases like "i én figur", "in one figure", "same chart", "combined",
   "2 grafer i 1 figur", "on the same chart", etc.), you MUST assign ALL those series to a
