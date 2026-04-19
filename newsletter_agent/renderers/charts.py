@@ -495,9 +495,16 @@ def render_type_g(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     return output_path
 
 
-def _color_for_label(label: str) -> str:
-    """Consistent color for a category label across all pies — hashed by name."""
-    return LINE_COLORS[hash(label) % len(LINE_COLORS)]
+def _color_for_label(label: str, palette: list = None) -> str:
+    """Consistent color for a category label — hash-based fallback only."""
+    p = palette or LINE_COLORS
+    return p[hash(label) % len(p)]
+
+
+def _build_category_colors(categories: list) -> dict:
+    """Assign sequential, guaranteed-distinct colors to a list of categories.
+    Sequential assignment avoids hash collisions that can make two categories share a color."""
+    return {cat: LINE_COLORS[i % len(LINE_COLORS)] for i, cat in enumerate(categories)}
 
 
 def _draw_single_pie(ax, series: "pd.Series", category_colors: dict = None):
