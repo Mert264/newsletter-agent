@@ -495,9 +495,18 @@ def render_type_g(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     return output_path
 
 
-def _draw_single_pie(ax, series: "pd.Series"):
-    """Draw one pie onto ax. Returns (wedges, series) for legend construction."""
-    colors = [_color_for(i) for i in range(len(series))]
+def _color_for_label(label: str) -> str:
+    """Consistent color for a category label across all pies — hashed by name."""
+    return LINE_COLORS[hash(label) % len(LINE_COLORS)]
+
+
+def _draw_single_pie(ax, series: "pd.Series", category_colors: dict = None):
+    """Draw one pie onto ax. Returns (wedges, series) for legend construction.
+    category_colors: optional {label: color} map for cross-year consistency."""
+    colors = [
+        (category_colors[lbl] if category_colors and lbl in category_colors else _color_for_label(lbl))
+        for lbl in series.index
+    ]
     wedges, _, autotexts = ax.pie(
         series.values,
         labels=None,
