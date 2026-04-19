@@ -646,6 +646,11 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                 elif "basis point" in reason_lower or "'bps'" in reason_lower:
                     chart_spec = {**chart_spec, "y_label": "Basis points (bps)"}
                     print(f"  [reviewer] Patched y_label → Basis points (bps) (from reviewer hint)")
+                elif ("indekseret" in reason_lower or "indexed" in reason_lower) and (
+                    "percent" in reason_lower or "%" in reason_lower or "procent" in reason_lower
+                ):
+                    chart_spec = {**chart_spec, "y_label": "%"}
+                    print(f"  [reviewer] Patched y_label → % (Indekseret/% mismatch from reviewer hint)")
                 rerendered = _render_figure(chart_spec, result, output_path)
                 if isinstance(rerendered, list):
                     rerendered = rerendered[-1]  # combined figure only during re-review
