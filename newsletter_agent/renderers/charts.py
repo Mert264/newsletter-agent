@@ -458,10 +458,10 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.0f}%"))
     ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
-    ax.set_xlabel(spec.get("x_label", "År"), fontsize=BRAND["font_size_axis"])
+    # X-axis label omitted — year values are self-explanatory
     ax.set_ylabel(spec.get("y_label", "Pct. af total"), fontsize=BRAND["font_size_axis"])
 
-    # Thin x-axis labels when many years: show every Nth tick to avoid overlap
+    # Thin x-axis ticks when many years, horizontal labels (never rotate — year labels are short)
     if n_years > 20:
         step = 5
     elif n_years > 10:
@@ -470,26 +470,23 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
         step = 1
     tick_labels = [str(lbl) if idx % step == 0 else "" for idx, lbl in enumerate(pct.index)]
     ax.set_xticks(x_positions)
-    ax.set_xticklabels(tick_labels, rotation=45, ha="right",
+    ax.set_xticklabels(tick_labels, rotation=0, ha="center",
                        fontsize=BRAND["font_size_axis"])
 
-    # Anchor offset scales with legend rows so all rows stay visible
-    legend_anchor_y = -0.18 - 0.08 * (legend_rows - 1)
+    legend_anchor_y = -0.16 - 0.07 * (legend_rows - 1)
     ax.legend(fontsize=BRAND["font_size_label"], frameon=False,
               loc="lower center", bbox_to_anchor=(0.5, legend_anchor_y),
-              ncol=min(n_cats, 4))
+              ncol=min(n_cats, 5))
 
     _apply_brand(ax, fig)
 
-    # After brand styling: enforce horizontal-only gridlines at 20% intervals
-    # (brand applies both axes grid; for stacked bars only y-axis guides are useful)
+    # Horizontal-only gridlines at 20% intervals
     ax.xaxis.grid(False)
     ax.yaxis.grid(True, color=BRAND["grid_color"], linewidth=0.4, linestyle="-")
 
     bottom_frac = _add_footer(fig, spec)
-    # Reserve extra bottom space for multi-row legend + footer
-    legend_reserve = 0.08 + 0.06 * (legend_rows - 1)
-    plt.tight_layout(rect=[0.0, bottom_frac + legend_reserve, 1.0, 1.0])
+    # tight_layout without rect — bbox_inches="tight" captures the below-axes legend
+    plt.tight_layout()
     fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
     plt.close(fig)
     return output_path
