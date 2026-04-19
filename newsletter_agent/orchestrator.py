@@ -359,7 +359,9 @@ def build_task_manifest(brief: str, preferred_types: list = None, routing_hint: 
     parts = [f"Topic brief: {brief}"]
     if preferred_types:
         parts.append(
-            f"PREFERRED CHART TYPES (in priority order — honour these unless data is fundamentally incompatible): {preferred_types}"
+            f"PREFERRED CHART TYPES (strict — only produce charts of these types): {preferred_types}. "
+            f"Do NOT add type D, E, or any other type not listed here, even if you think it would be useful. "
+            f"If a listed type is fundamentally incompatible with the data, skip it silently rather than substituting another type."
         )
     if period_days:
         parts.append(
