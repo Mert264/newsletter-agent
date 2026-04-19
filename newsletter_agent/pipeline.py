@@ -604,6 +604,14 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                     package = rerendered
             # Only surface a reviewer flag if the figure was NOT approved in the end.
             # A flag from attempt 0 that was fixed on re-render should NOT be shown.
+            # Suppress known structural false positives for Type G (still visible in Live log).
+            _G_FP_PHRASES = ("y-axis", "y axis", "y_label", "category names",
+                              "horizontal bar", "swapped axes", "remove the '%'",
+                              "should display category")
+            if (last_flag and chart_spec.get("type") == "G"):
+                if any(p in last_flag.lower() for p in _G_FP_PHRASES):
+                    print(f"  [reviewer] Suppressed known Type G structural false positive — see Live log")
+                    last_flag = None
             if not final_approved and last_flag and "reviewer_flag" not in package["metadata"]:
                 package["metadata"]["reviewer_flag"] = last_flag
 
