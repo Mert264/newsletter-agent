@@ -135,9 +135,15 @@ def start_run():
                 }
                 for i, p in enumerate(packages)
             ]
-            _run_queue.put({"type": "done", "figures": figures})
+            done_msg = {"type": "done", "figures": figures}
+            _last_result.update(done_msg)
+            with open(_LAST_RESULT_PATH, "w") as _f:
+                json.dump(done_msg, _f, ensure_ascii=False)
+            _run_queue.put(done_msg)
         except Exception as exc:
-            _run_queue.put({"type": "error", "text": str(exc)})
+            err_msg = {"type": "error", "text": str(exc)}
+            _last_result.update(err_msg)
+            _run_queue.put(err_msg)
         finally:
             sys.stdout = orig
             _run_lock.release()
