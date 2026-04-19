@@ -558,6 +558,15 @@ def _save_combined_pie_figure(wide: "pd.DataFrame", years_to_show: list,
                              dpi=BRAND["figure_dpi"])
     axes_flat = np.array(axes).flatten()
 
+    # Build a shared color map so each category gets the same color in every year panel
+    all_categories = []
+    for y in years_to_show:
+        if y in wide.index:
+            for cat in wide.loc[y].dropna().index:
+                if cat not in all_categories:
+                    all_categories.append(cat)
+    category_colors = {cat: _color_for_label(cat) for cat in all_categories}
+
     ref_wedges = ref_series = None
     for i, (ax, year) in enumerate(zip(axes_flat, years_to_show)):
         row = wide.loc[year].dropna() if year in wide.index else pd.Series(dtype=float)
@@ -565,7 +574,7 @@ def _save_combined_pie_figure(wide: "pd.DataFrame", years_to_show: list,
         if row.empty:
             ax.set_visible(False)
             continue
-        wedges, series = _draw_single_pie(ax, row)
+        wedges, series = _draw_single_pie(ax, row, category_colors)
         ax.set_title(year, fontsize=BRAND["font_size_label"],
                      fontweight="bold", color=BRAND["secondary"])
         ref_wedges, ref_series = wedges, series
@@ -580,9 +589,9 @@ def _save_combined_pie_figure(wide: "pd.DataFrame", years_to_show: list,
                  x=0.01, ha="left", y=1.01)
 
     if ref_wedges is not None:
-        colors = [_color_for(i) for i in range(len(ref_series))]
+        colors = [category_colors.get(lbl, _color_for_label(lbl)) for lbl in all_categories]
         handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in colors]
-        fig.legend(handles, ref_series.index,
+        fig.legend(handles, all_categories,
                    fontsize=BRAND["font_size_label"],
                    loc="center right", bbox_to_anchor=(1.0, 0.5), frameon=False)
 
