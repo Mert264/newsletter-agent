@@ -676,6 +676,15 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                 if any(p in last_flag.lower() for p in _G_FP_PHRASES):
                     print(f"  [reviewer] Suppressed known Type G structural false positive — see Live log")
                     last_flag = None
+            # DXY + FX rates rebasing false positive: reviewer flags "Indekseret (basis=100)"
+            # as wrong for DXY, but it is correct — DXY and FX pairs live on incompatible scales.
+            _DXY_FP_PHRASES = ("natural index", "trades as an index", "dxy is a natural",
+                                "not a rebased", "remove 'basis=100'", "remove basis=100")
+            if last_flag and any(p in last_flag.lower() for p in _DXY_FP_PHRASES):
+                series_labels_lower = [l.lower() for l in dfs.keys()]
+                if any("dxy" in l or "dollar index" in l for l in series_labels_lower):
+                    print(f"  [reviewer] Suppressed DXY+FX rebasing false positive — see Live log")
+                    last_flag = None
             if not final_approved and last_flag and "reviewer_flag" not in package["metadata"]:
                 package["metadata"]["reviewer_flag"] = last_flag
 
