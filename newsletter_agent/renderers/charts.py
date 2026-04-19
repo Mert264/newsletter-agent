@@ -438,10 +438,13 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
     bottoms = np.zeros(n_years)
     x_positions = np.arange(n_years)
+    # Collect small-segment annotations: (x_center, y_top, label_text, color)
+    small_labels: list[tuple] = []
     for i, col in enumerate(pct.columns):
         vals = pct[col].fillna(0).values
+        color = _color_for(i)
         bars = ax.bar(x_positions, vals, bottom=bottoms,
-                      color=_color_for(i), width=bar_width,
+                      color=color, width=bar_width,
                       label=col, edgecolor="white", linewidth=0.4)
         if show_segment_labels:
             for bar, val, bot in zip(bars, vals, bottoms):
@@ -451,9 +454,39 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
                             f"{val:.0f}%",
                             ha="center", va="center",
                             fontsize=7, color="white", fontweight="600")
+                elif val >= 0.5:
+                    # Collect small segments to annotate outside the bar
+                    small_labels.append((
+                        bar.get_x() + bar.get_width() / 2,
+                        bot + val,  # top of this segment
+                        f"{val:.0f}%",
+                        color,
+                    ))
         bottoms += vals
 
-    ax.set_ylim(0, 105)  # slight headroom above 100% so top labels aren't clipped
+    # Draw small-segment labels above the bar with a colored tick line
+    if show_segment_labels:
+        # Group by x-position to stack them without overlap
+        from collections import defaultdict
+        by_x: dict = defaultdict(list)
+        for xc, yt, txt, col in small_labels:
+            by_x[round(xc, 3)].append((yt, txt, col))
+        for xc, items in by_x.items():
+            items.sort(key=lambda t: t[0])  # bottom-to-top
+            offset = 0
+            for yt, txt, col in items:
+                label_y = yt + 1.5 + offset
+                ax.annotate(
+                    txt,
+                    xy=(xc, yt),
+                    xytext=(xc, label_y),
+                    ha="center", va="bottom",
+                    fontsize=6, color=col, fontweight="600",
+                    arrowprops=dict(arrowstyle="-", color=col, lw=0.6),
+                )
+                offset += 4  # stack upward so labels don't collide
+
+    ax.set_ylim(0, 115)  # extra headroom for small-segment annotations
     ax.set_yticks([0, 20, 40, 60, 80, 100])
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.0f}%"))
     ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
