@@ -486,21 +486,90 @@ def render_type_g(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     return output_path
 
 
+def _draw_single_pie(ax, series: "pd.Series"):
+    """Draw one pie onto ax. Returns (wedges, series) for legend construction."""
+    colors = [_color_for(i) for i in range(len(series))]
+    wedges, _, autotexts = ax.pie(
+        series.values,
+        labels=None,
+        autopct=lambda p: f"{p:.0f}%" if p >= 8 else "",
+        colors=colors,
+        startangle=90,
+        wedgeprops={"edgecolor": "white", "linewidth": 1.2},
+        pctdistance=0.72,
+    )
+    for at in autotexts:
+        at.set_fontsize(7)
+        at.set_color("white")
+        at.set_fontweight("600")
+    return wedges, series
+
+
 def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     """
-    Type P — Pie chart (single-year composition snapshot).
-    df: index = category labels, single value column.
-        OR wide df (index=years, columns=categories) — uses snapshot_year row or latest.
-    Values are normalised to 100% internally.
+    Type P — Pie chart composition.
+    - Wide df (index=years, columns=categories, multiple rows): small-multiples (one pie per year, max 5).
+    - Wide df (single row) or single-column df: single pie.
+    Values are normalised to 100% internally by matplotlib.
     """
+    # ── Normalise to wide format ──────────────────────────────────────────────
+    if df.shape[1] > 1:
+        # Already wide: rows=years, columns=categories
+        wide = df
+    else:
+        # Single column: index=categories, one value column → treat as single snapshot
+        wide = None
+
+    # ── Small multiples: multiple year rows ───────────────────────────────────
+    if wide is not None and wide.shape[0] > 1:
+        years = [str(y) for y in wide.index.tolist()]
+        years_to_show = years[-5:]   # cap at 5 most recent years
+        n = len(years_to_show)
+
+        fig_w = max(FIGSIZE[0], FIGSIZE[0] * n / 2.5)
+        fig, axes = plt.subplots(1, n, figsize=(fig_w, FIGSIZE[1]),
+                                 dpi=BRAND["figure_dpi"])
+        if n == 1:
+            axes = [axes]
+
+        ref_wedges = ref_series = None
+        for ax, year in zip(axes, years_to_show):
+            row = wide.loc[year].dropna() if year in wide.index else pd.Series(dtype=float)
+            row = row[row > 0]
+            if row.empty:
+                ax.set_visible(False)
+                continue
+            wedges, series = _draw_single_pie(ax, row)
+            ax.set_title(year, fontsize=BRAND["font_size_label"],
+                         fontweight="bold", color=BRAND["secondary"])
+            ref_wedges, ref_series = wedges, series
+
+        fig.patch.set_facecolor(BRAND["background"])
+        fig.suptitle(spec["title"], fontsize=BRAND["font_size_title"],
+                     fontweight="bold", color=BRAND["secondary"],
+                     x=0.01, ha="left", y=1.0)
+
+        if ref_wedges is not None:
+            colors = [_color_for(i) for i in range(len(ref_series))]
+            handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in colors]
+            fig.legend(handles, ref_series.index,
+                       fontsize=BRAND["font_size_label"],
+                       loc="center right", bbox_to_anchor=(1.0, 0.5), frameon=False)
+
+        bottom_frac = _add_footer(fig, spec)
+        plt.tight_layout(rect=[0.0, bottom_frac, 0.82, 0.94])
+        fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
+        plt.close(fig)
+        return output_path
+
+    # ── Single pie ────────────────────────────────────────────────────────────
     fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
 
-    # Wide df: pick one row
-    if df.shape[1] > 1:
-        snapshot_year = str(spec.get("snapshot_year", df.index[-1]))
-        row = df.loc[snapshot_year] if snapshot_year in df.index else df.iloc[-1]
-        series = row.dropna()
-        title_str = f"{spec['title']} ({snapshot_year})"
+    if wide is not None:
+        # Single-row wide: show that year
+        year_label = str(wide.index[-1])
+        series = wide.iloc[-1].dropna()
+        title_str = f"{spec['title']} ({year_label})"
     else:
         series = df.iloc[:, 0].dropna()
         title_str = spec["title"]
@@ -510,21 +579,7 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> str:
         plt.close(fig)
         return output_path
 
-    colors = [_color_for(i) for i in range(len(series))]
-    wedges, _, autotexts = ax.pie(
-        series.values,
-        labels=None,
-        autopct=lambda p: f"{p:.1f}%" if p >= 5 else "",
-        colors=colors,
-        startangle=90,
-        wedgeprops={"edgecolor": "white", "linewidth": 1.2},
-        pctdistance=0.75,
-    )
-    for at in autotexts:
-        at.set_fontsize(7)
-        at.set_color("white")
-        at.set_fontweight("600")
-
+    wedges, series = _draw_single_pie(ax, series)
     ax.set_title(title_str, fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
     fig.patch.set_facecolor(BRAND["background"])
