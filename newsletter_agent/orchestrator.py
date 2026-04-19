@@ -184,7 +184,7 @@ NOT available (do NOT attempt — these sources do not exist in this system):
   If a brief requests one of these, render what IS available and note the limitation in the chart note field.
 
 Rules:
-- Maximum 2 charts per specialist.
+- Maximum 4 charts per specialist (to accommodate Type D table companions — see below).
 - Only activate specialists whose data is genuinely relevant to the brief.
 - REQUIRED: Every chart spec MUST include a "series_labels" array listing the exact label strings
   (from the series list above) that should appear on that chart. Each label must appear in exactly
