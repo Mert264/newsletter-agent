@@ -524,10 +524,11 @@ def _draw_single_pie(ax, series: "pd.Series", category_colors: dict = None):
 
 
 def _save_single_pie_figure(series: "pd.Series", title_str: str,
-                             spec: dict, output_path: str) -> str:
+                             spec: dict, output_path: str,
+                             category_colors: dict = None) -> str:
     """Render and save one standalone pie figure. Returns output_path."""
     fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
-    wedges, series = _draw_single_pie(ax, series)
+    wedges, series = _draw_single_pie(ax, series, category_colors)
     ax.set_title(title_str, fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
     fig.patch.set_facecolor(BRAND["background"])
