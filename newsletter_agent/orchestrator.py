@@ -45,7 +45,11 @@ Given a free-form topic brief, return a JSON TaskManifest with exactly this stru
         "note": "Daily closing prices for Brent and WTI crude. Brent is the global benchmark; WTI reflects US market conditions.",
         "events": [                   // OPTIONAL: specific events mentioned in the brief that should be marked with a vertical line.
           {"date": "2022-02-24", "label": "Russia invades Ukraine"}
-        ]
+        ],
+        "compute_spread_vs": "Deutschland"  // OPTIONAL: subtract this series from all others to produce spreads/differentials.
+                                            // The named series must be one of the series_labels. It is excluded from the chart.
+                                            // Use for yield spreads, rate differentials, relative performance.
+                                            // The pipeline sets y_label to "Procentpoint" automatically when this field is present.
       }
     ]
   }
