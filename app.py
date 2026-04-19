@@ -250,6 +250,12 @@ def last_result():
 
 @app.route("/figures/<filename>")
 def serve_figure(filename):
+    # Search timestamped run dirs (newest first) then fall back to root OUTPUT_DIR
+    import glob as _glob
+    run_dirs = sorted(_glob.glob(os.path.join(OUTPUT_DIR, "2*")), reverse=True)
+    for d in run_dirs:
+        if os.path.exists(os.path.join(d, filename)):
+            return send_from_directory(d, filename)
     return send_from_directory(OUTPUT_DIR, filename)
 
 
