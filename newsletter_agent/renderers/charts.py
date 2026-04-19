@@ -505,68 +505,118 @@ def _draw_single_pie(ax, series: "pd.Series"):
     return wedges, series
 
 
-def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> str:
+def _save_single_pie_figure(series: "pd.Series", title_str: str,
+                             spec: dict, output_path: str) -> str:
+    """Render and save one standalone pie figure. Returns output_path."""
+    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
+    wedges, series = _draw_single_pie(ax, series)
+    ax.set_title(title_str, fontsize=BRAND["font_size_title"],
+                 fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
+    fig.patch.set_facecolor(BRAND["background"])
+    ax.legend(wedges, series.index, fontsize=BRAND["font_size_label"],
+              loc="center left", bbox_to_anchor=(1.0, 0.5), frameon=False)
+    bottom_frac = _add_footer(fig, spec)
+    plt.tight_layout(rect=[0.0, bottom_frac, 0.78, 1.0])
+    fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
+    plt.close(fig)
+    return output_path
+
+
+def _save_combined_pie_figure(wide: "pd.DataFrame", years_to_show: list,
+                               spec: dict, output_path: str) -> str:
+    """Render a small-multiples comparison figure: one pie per year. Returns output_path."""
+    n = len(years_to_show)
+    if n <= 5:
+        nrows, ncols = 1, n
+        fig_w = max(FIGSIZE[0], FIGSIZE[0] * n / 2.2)
+        fig_h = FIGSIZE[1]
+    else:
+        ncols = (n + 1) // 2
+        nrows = 2
+        fig_w = max(FIGSIZE[0], FIGSIZE[0] * ncols / 2.2)
+        fig_h = FIGSIZE[1] * 1.7
+
+    fig, axes = plt.subplots(nrows, ncols, figsize=(fig_w, fig_h),
+                             dpi=BRAND["figure_dpi"])
+    axes_flat = np.array(axes).flatten()
+
+    ref_wedges = ref_series = None
+    for i, (ax, year) in enumerate(zip(axes_flat, years_to_show)):
+        row = wide.loc[year].dropna() if year in wide.index else pd.Series(dtype=float)
+        row = row[row > 0]
+        if row.empty:
+            ax.set_visible(False)
+            continue
+        wedges, series = _draw_single_pie(ax, row)
+        ax.set_title(year, fontsize=BRAND["font_size_label"],
+                     fontweight="bold", color=BRAND["secondary"])
+        ref_wedges, ref_series = wedges, series
+
+    # Hide any unused axes in the grid
+    for ax in axes_flat[len(years_to_show):]:
+        ax.set_visible(False)
+
+    fig.patch.set_facecolor(BRAND["background"])
+    fig.suptitle(spec["title"], fontsize=BRAND["font_size_title"],
+                 fontweight="bold", color=BRAND["secondary"],
+                 x=0.01, ha="left", y=1.01)
+
+    if ref_wedges is not None:
+        colors = [_color_for(i) for i in range(len(ref_series))]
+        handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in colors]
+        fig.legend(handles, ref_series.index,
+                   fontsize=BRAND["font_size_label"],
+                   loc="center right", bbox_to_anchor=(1.0, 0.5), frameon=False)
+
+    bottom_frac = _add_footer(fig, spec)
+    plt.tight_layout(rect=[0.0, bottom_frac, 0.82, 0.96])
+    fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
+    plt.close(fig)
+    return output_path
+
+
+def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list[str]":
     """
     Type P — Pie chart composition.
-    - Wide df (index=years, columns=categories, multiple rows): small-multiples (one pie per year, max 5).
-    - Wide df (single row) or single-column df: single pie.
+    - Wide df with multiple year rows: returns list[str] — individual year pie per entry
+      (up to 10 years) plus a final combined comparison figure as the last element.
+    - Wide df single row or single-column df: returns str (single pie figure path).
     Values are normalised to 100% internally by matplotlib.
     """
     # ── Normalise to wide format ──────────────────────────────────────────────
     if df.shape[1] > 1:
-        # Already wide: rows=years, columns=categories
         wide = df
     else:
-        # Single column: index=categories, one value column → treat as single snapshot
         wide = None
 
-    # ── Small multiples: multiple year rows ───────────────────────────────────
+    # ── Multi-year: individual pies + combined comparison ─────────────────────
     if wide is not None and wide.shape[0] > 1:
         years = [str(y) for y in wide.index.tolist()]
-        years_to_show = years[-5:]   # cap at 5 most recent years
-        n = len(years_to_show)
+        years_to_show = years[-10:]   # cap at 10 most recent years
+        base = output_path[:-4]       # strip .png
 
-        fig_w = max(FIGSIZE[0], FIGSIZE[0] * n / 2.5)
-        fig, axes = plt.subplots(1, n, figsize=(fig_w, FIGSIZE[1]),
-                                 dpi=BRAND["figure_dpi"])
-        if n == 1:
-            axes = [axes]
-
-        ref_wedges = ref_series = None
-        for ax, year in zip(axes, years_to_show):
+        paths = []
+        for i, year in enumerate(years_to_show):
             row = wide.loc[year].dropna() if year in wide.index else pd.Series(dtype=float)
             row = row[row > 0]
+            year_path = f"{base}_y{i:02d}.png"
             if row.empty:
-                ax.set_visible(False)
                 continue
-            wedges, series = _draw_single_pie(ax, row)
-            ax.set_title(year, fontsize=BRAND["font_size_label"],
-                         fontweight="bold", color=BRAND["secondary"])
-            ref_wedges, ref_series = wedges, series
+            year_spec = {**spec, "note": "", "kilde": ""}  # footer only on combined
+            _save_single_pie_figure(row, f"{spec['title']} ({year})", year_spec, year_path)
+            paths.append(year_path)
 
-        fig.patch.set_facecolor(BRAND["background"])
-        fig.suptitle(spec["title"], fontsize=BRAND["font_size_title"],
-                     fontweight="bold", color=BRAND["secondary"],
-                     x=0.01, ha="left", y=1.0)
+        if not paths:
+            # All years empty — fall through to single-pie empty guard below
+            return output_path
 
-        if ref_wedges is not None:
-            colors = [_color_for(i) for i in range(len(ref_series))]
-            handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in colors]
-            fig.legend(handles, ref_series.index,
-                       fontsize=BRAND["font_size_label"],
-                       loc="center right", bbox_to_anchor=(1.0, 0.5), frameon=False)
-
-        bottom_frac = _add_footer(fig, spec)
-        plt.tight_layout(rect=[0.0, bottom_frac, 0.82, 0.94])
-        fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
-        plt.close(fig)
-        return output_path
+        # Combined comparison figure at the original output_path
+        _save_combined_pie_figure(wide, years_to_show, spec, output_path)
+        paths.append(output_path)
+        return paths
 
     # ── Single pie ────────────────────────────────────────────────────────────
-    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
-
     if wide is not None:
-        # Single-row wide: show that year
         year_label = str(wide.index[-1])
         series = wide.iloc[-1].dropna()
         title_str = f"{spec['title']} ({year_label})"
@@ -576,22 +626,10 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
     series = series[series > 0]
     if series.empty:
-        plt.close(fig)
+        # Write nothing — pipeline will skip
         return output_path
 
-    wedges, series = _draw_single_pie(ax, series)
-    ax.set_title(title_str, fontsize=BRAND["font_size_title"],
-                 fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
-    fig.patch.set_facecolor(BRAND["background"])
-
-    ax.legend(wedges, series.index, fontsize=BRAND["font_size_label"],
-              loc="center left", bbox_to_anchor=(1.0, 0.5), frameon=False)
-
-    bottom_frac = _add_footer(fig, spec)
-    plt.tight_layout(rect=[0.0, bottom_frac, 0.78, 1.0])
-    fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
-    plt.close(fig)
-    return output_path
+    return _save_single_pie_figure(series, title_str, spec, output_path)
 
 
 def render_type_e(df: pd.DataFrame, spec: dict, output_path: str) -> str:
