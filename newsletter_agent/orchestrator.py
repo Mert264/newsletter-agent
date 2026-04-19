@@ -278,7 +278,15 @@ Rules:
     The x-axis is the metric value, each row is an entity. No time dimension.
   * B (vertical bar): FEW entities (≤6) compared on a single metric, or year-by-year comparison of
     one entity. The x-axis is the entity or year, y-axis is the metric.
-  Pick exactly ONE type per chart based on data shape. Do not produce one chart of each type.
+  Pick exactly ONE bar type per chart based on data shape.
+- DUAL OUTPUT — F + P together: When BOTH a bar type (F, G, or B) AND "P" appear in preferred_types,
+  AND the data is compositional (energy mix, portfolio allocation, sector shares), generate TWO chart
+  specs from the same specialist and same series:
+  (1) One Type F stacked bar showing the multi-year trend (use source="eurostat_mix" or "eia_mix")
+  (2) One Type P pie chart showing the most recent year snapshot (same source)
+  Both specs use the same series_labels. The pipeline fetches data once and renders both.
+  This lets the user see both the historical trend AND the current composition in one run.
+  Only apply this dual output when the data is genuinely compositional — not for time-series or rankings.
 - Every series in a chart must come from the SAME specialist's data. Do not reference series
   that belong to a different specialist in a chart spec.
 - SPREAD CHARTS: When the brief asks for spreads, differentials, or yield premiums relative to a
