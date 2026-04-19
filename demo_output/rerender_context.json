@@ -1,0 +1,44 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "equities",
+    "series_specs": [
+      {
+        "ticker": "URTH",
+        "source": "yfinance",
+        "label": "MSCI World",
+        "region": "Global",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "EICE.IR",
+        "source": "yfinance",
+        "label": "Island (ICEX)",
+        "region": "Island",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "^OMXBBGI",
+        "source": "yfinance",
+        "label": "Baltikum (OMX Baltic)",
+        "region": "Baltikum",
+        "unit": "Indekseret (basis=100)"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "B\u00f8rsudvikling: Island, Baltikum og MSCI World (2020\u20132024)",
+      "x_label": "Dato",
+      "y_label": "Indekseret (basis=100)",
+      "period_days": 2357,
+      "index_base_date": "2020-01-01",
+      "series_labels": [
+        "MSCI World",
+        "Island (ICEX)",
+        "Baltikum (OMX Baltic)"
+      ],
+      "note": "Indekseret kursudvikling for det islandske aktiemarked (ICEX), det baltiske aktiemarked (OMX Baltic Benchmark GI) og MSCI World ETF fra januar 2020 til udgangen af 2024. Alle serier er indekseret til 100 pr. 1. januar 2020 for at muligg\u00f8re direkte sammenligning p\u00e5 tv\u00e6rs af markeder."
+    },
+    "brief": "Vis b\u00f8rsudvikling for islandske og baltiske aktiemarkeder mod MSCI World 2020-2024"
+  }
+]

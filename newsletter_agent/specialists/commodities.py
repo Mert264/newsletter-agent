@@ -18,6 +18,9 @@ def fetch_commodities(task: dict) -> dict:
         with YF_LOCK:
             raw = yf.download(s["ticker"], start=start, end=str(date.today()),
                               progress=False, auto_adjust=True)
+        if raw.empty:
+            print(f"    [commodities] WARNING: ticker '{s['ticker']}' (label='{label}') returned no data — check ticker symbol")
+            continue
         if isinstance(raw.columns, pd.MultiIndex):
             close = raw["Close"]
             if isinstance(close, pd.DataFrame):

@@ -1,0 +1,21 @@
+{
+  "brief": "Vis b\u00f8rsudvikling for islandske og baltiske aktiemarkeder mod MSCI World 2020-2024",
+  "date": "2026-04-19",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_00.png",
+      "metadata": {
+        "title": "B\u00f8rsudvikling: Island, Baltikum og MSCI World (2020\u20132024)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "note": "Indekseret kursudvikling for det islandske aktiemarked (ICEX), det baltiske aktiemarked (OMX Baltic Benchmark GI) og MSCI World ETF fra januar 2020 til udgangen af 2024. Alle serier er indekseret til 100 pr. 1. januar 2020 for at muligg\u00f8re direkte sammenligning p\u00e5 tv\u00e6rs af markeder.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "MSCI World",
+          "Baltikum (OMX Baltic)"
+        ]
+      }
+    }
+  ]
+}
