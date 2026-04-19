@@ -330,6 +330,10 @@ SNAPSHOT TABLES (type D) and BEFORE/AFTER BAR CHARTS (type E):
   before and after the Iran conflict").
 - Use type E when you want a visual before/after comparison for a small number of series (≤6),
   grouped bars showing the two time points.
+- CRITICAL: NEVER create a second Type A chart that is simply a rebased/indexed version of the
+  first Type A chart (e.g. "same data but indexed from event date"). This produces a redundant
+  and visually confusing output. If the user wants to see change since an event, use Type E
+  (before/after bars) or Type D (snapshot table) — NOT a second Type A. One Type A per topic.
 - Both types require these additional fields in the chart spec:
     "before_date": "YYYY-MM-DD"  // the reference "before" date (ISO format)
     "after_date":  "YYYY-MM-DD"  // the "after" date, or "latest" for most recent observation
