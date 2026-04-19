@@ -545,8 +545,14 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
             for name in specialists
         }
         for future in as_completed(futures):
-            name, result = future.result()
-            specialist_results[name] = result
+            name = futures[future]
+            try:
+                _, result = future.result()
+                specialist_results[name] = result
+            except Exception as exc:
+                print(f"  [{name}] FAILED — skipping specialist: {exc}")
+                # Remove from specialists list so its charts are silently skipped
+                specialists = [s for s in specialists if s != name]
 
     # Step 2b: Apply unit conversions (date-matched FX where needed)
     for spec_name in specialists:
