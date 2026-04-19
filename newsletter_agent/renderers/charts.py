@@ -139,9 +139,12 @@ def _add_footer(fig, spec: dict) -> float:
     Add Note + Kilde lines at the bottom of the figure, Maj Invest newsletter style.
     Returns the bottom margin fraction needed so callers can pass it to tight_layout.
     """
-    import textwrap
+    import textwrap, re
     note  = spec.get("note", "").strip()
     kilde = spec.get("kilde", "").strip()
+
+    # Strip any embedded "Kilde: ..." tail from note to avoid duplication in footer
+    note = re.sub(r"\s*Kilde:.*$", "", note, flags=re.IGNORECASE | re.DOTALL).strip()
 
     parts = []
     if note:
