@@ -524,17 +524,17 @@ def _save_single_pie_figure(series: "pd.Series", title_str: str,
 
 def _save_combined_pie_figure(wide: "pd.DataFrame", years_to_show: list,
                                spec: dict, output_path: str) -> str:
-    """Render a small-multiples comparison figure: one pie per year. Returns output_path."""
+    """Render a small-multiples comparison figure: one pie per year. Returns output_path.
+    Uses ALL years in years_to_show (no cap). Grid: max 4 columns, auto rows."""
     n = len(years_to_show)
-    if n <= 5:
+    if n <= 4:
         nrows, ncols = 1, n
-        fig_w = max(FIGSIZE[0], FIGSIZE[0] * n / 2.2)
-        fig_h = FIGSIZE[1]
     else:
-        ncols = (n + 1) // 2
-        nrows = 2
-        fig_w = max(FIGSIZE[0], FIGSIZE[0] * ncols / 2.2)
-        fig_h = FIGSIZE[1] * 1.7
+        ncols = 4
+        nrows = (n + ncols - 1) // ncols   # ceil(n / 4)
+
+    fig_w = max(FIGSIZE[0], FIGSIZE[0] * ncols / 2.2)
+    fig_h = FIGSIZE[1] * nrows if nrows == 1 else FIGSIZE[1] * 0.9 * nrows
 
     fig, axes = plt.subplots(nrows, ncols, figsize=(fig_w, fig_h),
                              dpi=BRAND["figure_dpi"])
