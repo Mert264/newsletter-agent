@@ -673,17 +673,21 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
             # Auto-generate companion event impact table for Type A charts with events
             events = chart_spec.get("events", [])
             if events and merged_df is not None:
-                # Warn if any event falls outside the fetched data window
+                # Warn if any event falls outside the fetched data window — surface in UI flag
+                out_of_window = []
                 for ev in events:
                     try:
                         ev_ts = pd.Timestamp(ev["date"])
                         if ev_ts < merged_df.index[0]:
-                            print(f"  [warn] Event '{ev.get('label', ev['date'])}' ({ev['date']}) "
-                                  f"is BEFORE the data window start ({merged_df.index[0].date()}). "
-                                  f"Event table and marker will be missing. "
-                                  f"Increase period_days to cover this event.")
+                            msg = (f"Event '{ev.get('label', ev['date'])}' ({ev['date']}) "
+                                   f"is before data window start ({merged_df.index[0].date()}). "
+                                   f"Increase period_days to show this marker.")
+                            print(f"  [warn] {msg}")
+                            out_of_window.append(msg)
                     except Exception:
                         pass
+                if out_of_window and "reviewer_flag" not in package["metadata"]:
+                    package["metadata"]["reviewer_flag"] = " | ".join(out_of_window)
             if chart_spec.get("type") == "A" and events and merged_df is not None:
                 table_path = os.path.join(output_dir, f"figure_{fig_idx:02d}.png")
                 kilde_str = " og ".join(result["kilde"])
