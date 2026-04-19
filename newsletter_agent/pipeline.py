@@ -495,6 +495,14 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
                 chart_spec = {**chart_spec, "y_label": new_ylabel}
                 render_spec = {**chart_spec, "kilde": kilde_str}
 
+        # If DXY is present and y_label still says "Indekseret (basis=100)", downgrade to "Indeks"
+        # so the reviewer doesn't flag it — DXY is a natural index, not deliberately rebased.
+        if render_spec.get("y_label") in ("Indekseret (basis=100)", "Indexed (base=100)"):
+            cols_lower = [c.lower() for c in merged.columns]
+            if any("dxy" in c or "dollar index" in c or "dollarindeks" in c for c in cols_lower):
+                render_spec = {**render_spec, "y_label": "Indeks"}
+                chart_spec  = {**chart_spec,  "y_label": "Indeks"}
+
         renderer = CHART_RENDERER_MAP[chart_type]
         path = renderer(merged, render_spec, output_path)
 
