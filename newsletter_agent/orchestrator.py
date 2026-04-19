@@ -299,6 +299,20 @@ Rules:
   ALWAYS write the note in Danish. Example: "Daglige lukkepriser for Brent råolie siden
   januar 2024. Brent er det globale benchmark for råoliepriser på verdensmarkedet."
 
+COMPANION TABLES — GLOBAL RULE:
+For EVERY Type A (time-series line chart) you generate, you MUST also generate a companion
+Type D snapshot table using the EXACT same series_labels. The table shows the precise current
+values and the change since a meaningful reference date, giving readers the numbers behind
+the chart. Place the Type D spec immediately after its paired Type A in the charts array.
+- Set after_date to "latest" for the companion table.
+- Choose a meaningful before_date: the start of the year ("YYYY-01-01"), a crisis date, or
+  1 year ago ("YYYY-MM-DD"). Match the narrative of the brief.
+- Set col_before to a short Danish label (e.g. "1 år siden", "Før krigen", "Jan 2024").
+- Set col_after to "Nu".
+- Set period_days to match the parent Type A chart's period_days.
+- This rule applies unconditionally — every Type A gets a Type D. The only exception is when
+  the brief explicitly says "only a chart, no table" or "kun figur".
+
 SNAPSHOT TABLES (type D) and BEFORE/AFTER BAR CHARTS (type E):
 - Use type D when the brief asks for a key-numbers overview, scorecard, or before/after table
   showing multiple indicators side-by-side as a snapshot (e.g. "show key market indicators
