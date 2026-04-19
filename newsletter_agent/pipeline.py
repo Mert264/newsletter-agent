@@ -564,7 +564,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
         series_specs = manifest.get(spec_name, {}).get("series", [])
         if not any(s.get("conversion") for s in series_specs):
             continue
-        period_days = max(
+        conv_period_days = max(
             (c.get("period_days", 730) for c in manifest.get(spec_name, {}).get("charts", [])),
             default=730,
         )
