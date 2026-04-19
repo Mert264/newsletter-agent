@@ -781,6 +781,17 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// Restore last run on page load (survives browser reload)
+window.addEventListener('load', () => {
+  fetch('/last').then(r => r.json()).then(msg => {
+    if (msg.type === 'done' && msg.figures && msg.figures.length > 0) {
+      document.getElementById('statusMsg').textContent =
+        `Seneste kørsel gendannet — ${msg.figures.length} figur(er)`;
+      renderFigures(msg.figures);
+    }
+  }).catch(() => {});  // silently ignore if /last not available
+});
 // Init: default to LLM bestemmer on page load
 setLLMPeriod();
 </script>
