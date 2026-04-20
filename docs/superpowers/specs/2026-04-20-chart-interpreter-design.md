@@ -35,7 +35,8 @@ The reasoning chain for every chart commentary:
 | `newsletter_agent/analyzer.py` | Create | Offline CLI — analyzes 6 newsletters, writes editorial profile |
 | `newsletter_agent/editorial_profile.json` | Created by analyzer, commit to repo | Persistent editorial rules loaded at interpreter startup |
 | `newsletter_agent/interpreter.py` | Create | Per-chart sub-agent — multimodal LLM call, returns bullet list |
-| `newsletter_agent/pipeline.py` | Modify | Add `_build_data_summary()`, wire interpreter after figure SSE |
+| `newsletter_agent/pipeline.py` | Modify | Add `_build_data_summary()`, attach summary to package dict |
+| `app.py` | Modify | Replace batch done_msg with per-figure stream + interpreter calls |
 | `templates/index.html` | Modify | Handle `interpretation` SSE event, render styled bullet panel |
 
 ---
