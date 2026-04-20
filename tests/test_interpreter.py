@@ -57,3 +57,54 @@ def test_interpret_chart_returns_empty_list_on_error():
         result = interpret_chart("/nonexistent/path.png", spec, data_summary)
 
     assert result == []
+
+
+def test_build_data_summary_type_a():
+    """Type A: extracts latest value and period change per series."""
+    from newsletter_agent.pipeline import _build_data_summary
+    import pandas as pd
+
+    dates = pd.date_range("2024-01-01", periods=10, freq="ME")
+    dfs = {
+        "Brent": pd.DataFrame({"Brent": [70.0, 71, 72, 73, 74, 75, 76, 77, 78, 80.0]}, index=dates),
+        "WTI":   pd.DataFrame({"WTI":   [65.0, 66, 67, 68, 69, 70, 71, 72, 73, 75.0]}, index=dates),
+    }
+    spec = {"type": "A", "y_label": "USD/barrel", "period_days": 365}
+    result = _build_data_summary(dfs, spec)
+
+    assert result["chart_type"] == "A"
+    assert "Brent" in result["series"]
+    assert result["series"]["Brent"]["latest"] == 80.0
+    assert result["series"]["Brent"]["change_abs"] == pytest.approx(10.0, abs=0.1)
+    assert result["direction"] in ("up", "down", "stable", "mixed")
+
+
+def test_build_data_summary_type_d_returns_empty():
+    """Type D (table): returns empty dict — no interpretation needed."""
+    from newsletter_agent.pipeline import _build_data_summary
+    import pandas as pd
+
+    dfs = {"Serie": pd.DataFrame({"v": [1.0]}, index=pd.date_range("2024-01-01", periods=1))}
+    result = _build_data_summary(dfs, {"type": "D"})
+    assert result == {}
+
+
+def test_build_data_summary_type_f():
+    """Type F: extracts first/last year share per category."""
+    from newsletter_agent.pipeline import _build_data_summary
+    import pandas as pd
+
+    idx = ["2021", "2022", "2023", "2024"]
+    wide = pd.DataFrame({
+        "Naturgas":    [19.0, 18.0, 17.0, 17.0],
+        "Bioenergi":   [28.0, 28.0, 29.0, 30.0],
+        "Kerneenergi": [10.0, 9.0, 9.0, 9.0],
+    }, index=idx)
+    dfs = {"_wide": wide}
+    spec = {"type": "F", "period_days": 4 * 365}
+    result = _build_data_summary(dfs, spec)
+
+    assert result["chart_type"] == "F"
+    assert "Naturgas" in result["categories"]
+    assert result["categories"]["Naturgas"]["first_label"] == "2021"
+    assert result["categories"]["Naturgas"]["last_label"] == "2024"
