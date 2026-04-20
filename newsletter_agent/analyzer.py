@@ -8,6 +8,7 @@ import json
 import os
 import re
 from html.parser import HTMLParser
+from typing import Optional
 
 import anthropic
 from newsletter_agent.config import API_KEYS, ANALYZER_MODEL
