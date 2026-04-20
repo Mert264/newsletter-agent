@@ -228,27 +228,54 @@ def _build_data_summary(dfs: dict, chart_spec: dict) -> dict:
 
 ---
 
-## Component 4: `pipeline.py` wiring
+## Component 4: `pipeline.py` — `_build_data_summary()`
 
-Two modifications to the main pipeline loop:
+`pipeline.py` gets ONE addition: a `_build_data_summary()` helper that runs just before each chart renders and attaches the summary to the returned package dict.
 
-### 4a — Call `_build_data_summary()` before rendering
 ```python
+# In _render_figure(), before calling renderer:
 data_summary = _build_data_summary(chart_dfs, chart_spec)
-# then render as before
-image_path = renderer(df, chart_spec, output_path)
+# ... render as before ...
+# Add to returned package:
+package["data_summary"] = data_summary
 ```
 
-### 4b — Stream figure first, then interpret, then stream bullets
-```python
-# 1. Stream chart immediately — user sees it now
-yield f"data: {json.dumps({'type': 'figure', 'path': rel_path, ...})}\n\n"
+The pipeline's output contract (`packages` list) doesn't change — each package dict now carries an extra `data_summary` key.
 
-# 2. Interpret (2-3 sec LLM call) — only for non-table chart types
-if chart_spec.get("type") != "D":
-    bullets = interpret_chart(image_path, chart_spec, data_summary)
-    if bullets:
-        yield f"data: {json.dumps({'type': 'interpretation', 'figure_index': fig_idx, 'bullets': bullets})}\n\n"
+---
+
+## Component 4b: `app.py` — per-figure streaming with interpretation
+
+**Why here, not pipeline.py:** The current pipeline runs to completion and returns all packages at once. `app.py`'s background thread currently puts one big `done_msg` on the queue. The interpreter slots in between: after `run()` returns, iterate packages, stream each figure immediately, call interpreter, stream bullets, then send `done`.
+
+```python
+# In app.py background thread, replacing the current done_msg block:
+packages = run(brief, output_dir=run_dir, preferred_types=preferred_types, period_days=period_days)
+
+for i, p in enumerate(packages):
+    # 1. Stream figure immediately
+    figure_event = {
+        "type": "figure",
+        "figure_index": i,
+        "path": f"/figures/{run_id}/{os.path.basename(p['path'])}",
+        "title": p.get("title", ""),
+        "figure_id": p.get("figure_id", i),
+        # ... rerender_ctx fields ...
+    }
+    _run_queue.put(figure_event)
+
+    # 2. Interpret (only non-table charts)
+    if p.get("chart_type") != "D" and p.get("data_summary"):
+        from newsletter_agent.interpreter import interpret_chart
+        bullets = interpret_chart(p["path"], p["spec"], p["data_summary"])
+        if bullets:
+            _run_queue.put({
+                "type": "interpretation",
+                "figure_index": i,
+                "bullets": bullets,
+            })
+
+_run_queue.put({"type": "done"})
 ```
 
 **`figure_index`** matches each interpretation to its chart — the JS uses this to find the right figure card and append the bullet panel.
