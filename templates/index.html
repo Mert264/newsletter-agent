@@ -783,6 +783,11 @@ function renderFigures(figures) {
          </div>`
       : '';
 
+    const showPlaceholder = fig.chart_type !== 'D';
+    const placeholderHtml = showPlaceholder
+      ? `<div class="interp-loading">Analyse genereres...</div>`
+      : '';
+
     const card = document.createElement('div');
     card.className = 'fig-card';
     card.id = `figcard-${i}`;
@@ -794,7 +799,8 @@ function renderFigures(figures) {
           &#8681; Download
         </a>
       </div>
-      ${flagHtml ? `<div class="fig-meta">${flagHtml}</div>` : ''}`;
+      ${flagHtml ? `<div class="fig-meta">${flagHtml}</div>` : ''}
+      ${placeholderHtml}`;
 
     grid.appendChild(card);
   });
