@@ -35,6 +35,8 @@ API_KEYS = {
 # LLM models — orchestrator uses Sonnet for reliable JSON, reviewer uses Haiku (cheaper)
 ORCHESTRATOR_MODEL = "claude-sonnet-4-6"
 REVIEWER_MODEL     = "claude-haiku-4-5-20251001"
+INTERPRETER_MODEL  = "claude-sonnet-4-6"   # chart interpretation sub-agent
+ANALYZER_MODEL     = "claude-sonnet-4-6"   # newsletter style extraction (one-shot)
 LLM_MODEL = ORCHESTRATOR_MODEL  # backwards-compat alias
 
 # Default date range for data fetching
