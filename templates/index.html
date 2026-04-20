@@ -733,11 +733,16 @@ function startRun() {
       // Build and append bullet panel
       const panel = document.createElement('div');
       panel.className = 'interp-panel';
-      panel.innerHTML =
-        '<div class="interp-header">Analyse</div>' +
-        msg.bullets.map(b =>
-          `<div class="interp-bullet">${b}</div>`
-        ).join('');
+      const header = document.createElement('div');
+      header.className = 'interp-header';
+      header.textContent = 'Analyse';
+      panel.appendChild(header);
+      msg.bullets.forEach(b => {
+        const div = document.createElement('div');
+        div.className = 'interp-bullet';
+        div.textContent = b;
+        panel.appendChild(div);
+      });
       card.appendChild(panel);
     } else if (msg.type === 'interpretation_done') {
       // All interpretations complete — close SSE and update status
