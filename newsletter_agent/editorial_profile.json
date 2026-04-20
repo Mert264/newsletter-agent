@@ -1,37 +1,37 @@
 {
   "reasoning_chain": [
-    "Claim: Starter altid med en direkte, kategorisk påstand eller konklusion — aldrig en beskrivelse af grafen",
-    "Quantity: Følger straks op med præcise tal (procent, dollar, tønder, mandater) — aldrig vage termer som 'markant' eller 'betydelig'",
-    "Cause: Forklarer eksplicit den mekaniske årsagssammenhæng ('fordi', 'det skyldes', 'det betyder at') uden forbehold",
-    "Implication: Kobler dataene direkte til makroøkonomisk konsekvens (BNP, inflation, vækst, energisikkerhed)",
-    "Investor: Slutter altid med en eksplicit handlingsanvisning til investor — aldrig åben konklusion"
+    "Claim: Starter med en direkte, kategorisk påstand eller konklusion — ingen opbygning, ingen introduktion",
+    "Quantity: Følger straks op med præcise tal (procentsatser, absolutte mængder, prisændringer) der underbygger påstanden",
+    "Cause: Forklarer eksplicit den mekaniske årsagssammenhæng bag bevægelsen — hvad driver hvad og hvorfor",
+    "Implication: Kobler årsagen til makroøkonomisk konsekvens (BNP, inflation, vækst, energisikkerhed)",
+    "Investor: Slutter altid med en eksplicit handlingsanvisning til investoren"
   ],
   "tone": [
-    "Autoritativ og kategorisk: ingen hedging ('vi vurderer at', 'faktum er at', 'det betyder') — aldrig 'måske', 'tilsyneladende' eller 'det kunne tyde på'",
-    "1. person flertal ('vi', 'vi vurderer', 'i Maj Invest') kombineret med imperativ til investor ('man skal', 'man bør') — aldrig passiv eller distanceret form"
+    "Autoritativ og kategorisk — ingen hedging, ingen 'måske', direkte imperativer og konstateringer som 'det er et faktum'",
+    "Første person flertal ('vi vurderer', 'vi forventer') kombineret med direkte tiltale til læseren som 'investor' — skaber fællesskab og ansvar"
   ],
   "examples": [
     {
-      "context": "Hormuzstrædets oliepassage og global forsyningsrisiko",
+      "context": "Graf over oliepassage via Hormuzstrædet og landenes importafhængighed",
       "bullets": [
-        "20 pct. af verdens olie eksporteres normalt via Hormuzstrædet — det er ikke en marginal rute, men rygraden i global energiforsyning.",
-        "Ledig rørledningskapacitet kan erstatte ca. 3 procentpoint af det globale behov — resten forsvinder fra markedet.",
-        "Det svarer til, at 5 pct. af verdens BNP ikke kan produceres, hvis strædet de facto lukkes — samme størrelsesorden som under finanskrisen.",
-        "Som investor skal man holde fast i langsigtede positioner, men sikre sig en solid portion obligationer og kontanter, da risikoen er højere end normalt."
+        "20 pct. af verdens olie eksporteres normalt via Hormuzstrædet.",
+        "Ledig kapacitet i pipelines kan sikre ca. 3 procentpoint af det globale behov.",
+        "Det betyder, at 5 pct. af verdens BNP ikke kan produceres, hvis Hormuzstrædet de facto lukkes.",
+        "Som investor skal man sikre sig en solid portion obligationer og kontanter — risikoen er højere end normalt."
       ]
     },
     {
-      "context": "Finansielle markedsbevægelser siden krigens udbrud i Mellemøsten",
+      "context": "Tabel over markedsbevægelser siden krigens udbrud i Mellemøsten",
       "bullets": [
-        "Europæisk naturgas steg 60 pct. fra fredag til torsdag — oliepris steg 17 pct., dollar steg 3 pct. og 10-årig amerikansk statsrente gik fra 3,94 til 4,13 pct.",
-        "Europæiske aktier faldt 3 pct., mens amerikanske aktier steg 1 pct. — USA er den kortsigtede vinder fordi de er selvforsynende med energi.",
-        "Hvis olieprisen stabiliseres omkring 80 dollar svækkes globalt BNP med 0,3 procentpoint og global inflation stiger ca. 0,25 procentpoint — effekten er beskeden.",
-        "Geopolitik vil fortsat skabe udsving, og investorer bør søge mod guld, minedrift, forsvar og energi som fysiske sikre aktiver."
+        "Europæisk naturgas: +60 pct. siden fredag aften — langt mere end amerikansk naturgas på +9 pct.",
+        "Hormuzstrædet er de facto lukket, og Mellemøsten står for ca. 30 pct. af den globale olieproduktion.",
+        "Højere oliepriser løfter inflationen og dæmper væksten — globalt BNP svækkes 0,3 procentpoint.",
+        "Investorer bør søge mod guld, minedrift, forsvar og energi som fysiske sikre aktiver."
       ]
     }
   ],
   "forbidden": [
-    "Beskriver aldrig hvad grafen viser visuelt ('som det ses af grafen', 'den røde kurve repræsenterer', 'x-aksen viser')",
-    "Bruger aldrig vage kvantitative udtryk ('markant stigning', 'betydelig vækst', 'kraftigt fald') — alle bevægelser angives med præcise tal"
+    "Beskriver aldrig grafens visuelle udseende — siger aldrig 'som grafen viser' eller 'den blå kurve stiger'",
+    "Bruger aldrig vage kvantitative udtryk som 'markant', 'betydelig' eller 'stor stigning' uden at følge op med et præcist tal"
   ]
 }

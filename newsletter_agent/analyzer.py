@@ -158,7 +158,12 @@ def run_analysis() -> dict:
     raw = re.sub(r"^```(?:json)?\s*", "", raw)
     raw = re.sub(r"\s*```$", "", raw.strip())
 
-    profile = json.loads(raw)
+    try:
+        profile = json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise RuntimeError(
+            f"Claude returned invalid JSON. Re-run the analyzer.\nError: {e}\nRaw response:\n{raw[:500]}"
+        ) from e
     print("Analysis complete.")
     return profile
 
