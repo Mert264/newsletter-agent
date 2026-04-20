@@ -111,18 +111,19 @@ def start_run():
         sys.stdout = _StreamWriter(_run_queue, orig)
         try:
             from newsletter_agent.pipeline import run
+            from newsletter_agent.interpreter import interpret_chart
             from datetime import datetime
+
             run_dir = os.path.join(OUTPUT_DIR, datetime.now().strftime("%Y%m%d_%H%M%S"))
             os.makedirs(run_dir, exist_ok=True)
             packages = run(brief, output_dir=run_dir, preferred_types=preferred_types, period_days=period_days)
 
-            # Load rerender context to attach to each figure
-            import json as _json
+            # Load rerender context
             ctx_path = os.path.join(run_dir, "rerender_context.json")
             rerender_ctx = {}
             if os.path.exists(ctx_path):
                 with open(ctx_path) as f:
-                    for entry in _json.load(f):
+                    for entry in json.load(f):
                         rerender_ctx[entry["figure_id"]] = entry
 
             figures = [
@@ -138,11 +139,34 @@ def start_run():
                 }
                 for i, p in enumerate(packages)
             ]
+
+            # Stream done_msg immediately — browser renders all charts now
             done_msg = {"type": "done", "figures": figures}
             _last_result.update(done_msg)
             with open(_LAST_RESULT_PATH, "w") as _f:
                 json.dump(done_msg, _f, ensure_ascii=False)
             _run_queue.put(done_msg)
+
+            # Run interpreters sequentially; stream bullets as each completes
+            for i, p in enumerate(packages):
+                chart_type = p["metadata"].get("chart_type", "A")
+                if chart_type == "D":
+                    continue
+                data_summary = p.get("data_summary", {})
+                if not data_summary:
+                    continue
+                spec = p.get("spec", p["metadata"])
+                bullets = interpret_chart(p["path"], spec, data_summary)
+                if bullets:
+                    _run_queue.put({
+                        "type":         "interpretation",
+                        "figure_index": i,
+                        "bullets":      bullets,
+                    })
+
+            # Signal interpretation complete — JS closes SSE on this
+            _run_queue.put({"type": "interpretation_done"})
+
         except Exception as exc:
             err_msg = {"type": "error", "text": str(exc)}
             _last_result.update(err_msg)
