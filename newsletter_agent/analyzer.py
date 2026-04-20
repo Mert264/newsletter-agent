@@ -106,7 +106,7 @@ class _TextExtractor(HTMLParser):
         return re.sub(r"\n{3,}", "\n\n", raw).strip()
 
 
-def _load_newsletter(path: str) -> str | None:
+def _load_newsletter(path: str) -> Optional[str]:
     try:
         with open(path, encoding="utf-8") as f:
             html = f.read()
