@@ -1,45 +1,68 @@
 {
   "specialists": [
-    "equities"
+    "energy"
   ],
-  "equities": {
+  "energy": {
     "series": [
       {
-        "ticker": "URTH",
+        "ticker": "BZ=F",
         "source": "yfinance",
-        "label": "MSCI World",
+        "label": "Brent r\u00e5olie",
         "region": "Global",
-        "unit": "Indekseret (basis=100)"
+        "unit": "USD/t\u00f8nde"
       },
       {
-        "ticker": "EICE.IR",
+        "ticker": "TTF=F",
         "source": "yfinance",
-        "label": "Island (ICEX)",
-        "region": "Island",
-        "unit": "Indekseret (basis=100)"
+        "label": "TTF naturgas (EU)",
+        "region": "Europa",
+        "unit": "EUR/MWh",
+        "conversion": "EUR_MWh_to_USD_MWh"
       },
       {
-        "ticker": "^OMXBBGI",
+        "ticker": "NG=F",
         "source": "yfinance",
-        "label": "Baltikum (OMX Baltic)",
-        "region": "Baltikum",
-        "unit": "Indekseret (basis=100)"
+        "label": "Henry Hub naturgas (USA)",
+        "region": "USA",
+        "unit": "USD/MMBtu",
+        "conversion": "USD_MMBtu_to_USD_MWh"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "B\u00f8rsudvikling: Island, Baltikum og MSCI World (2020\u20132024)",
+        "title": "Brent r\u00e5olie \u2014 pris siden 2022",
         "x_label": "Dato",
-        "y_label": "Indekseret (basis=100)",
-        "period_days": 2357,
-        "index_base_date": "2020-01-01",
+        "y_label": "USD/t\u00f8nde",
+        "period_days": 1520,
         "series_labels": [
-          "MSCI World",
-          "Island (ICEX)",
-          "Baltikum (OMX Baltic)"
+          "Brent r\u00e5olie"
         ],
-        "note": "Indekseret kursudvikling for det islandske aktiemarked (ICEX), det baltiske aktiemarked (OMX Baltic Benchmark GI) og MSCI World ETF fra januar 2020 til udgangen af 2024. Alle serier er indekseret til 100 pr. 1. januar 2020 for at muligg\u00f8re direkte sammenligning p\u00e5 tv\u00e6rs af markeder."
+        "note": "Daglige lukkepriser for Brent r\u00e5olie siden 2022. Den lodrette linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel, og energimarkederne oplevede kraftige kursudsving.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
+      },
+      {
+        "type": "A",
+        "title": "EU- og USA-gaspriser omregnet til USD/MWh",
+        "x_label": "Dato",
+        "y_label": "USD/MWh",
+        "period_days": 1520,
+        "series_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ],
+        "note": "TTF (nederlandsk benchmark for europ\u00e6isk gas) og Henry Hub (amerikansk benchmark) er begge omregnet til USD/MWh for direkte sammenligning. Prisforskellen illustrerer den strukturelle kl\u00f8ft mellem EU- og USA-gasmarkederne. Den lodrette linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
       }
     ]
   }

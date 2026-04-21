@@ -126,28 +126,9 @@ def start_run():
                     for entry in json.load(f):
                         rerender_ctx[entry["figure_id"]] = entry
 
-            figures = [
-                {
-                    "path":          os.path.basename(p["path"]),
-                    "title":         p["metadata"]["title"],
-                    "note":          p["metadata"]["note"],
-                    "kilde":         p["metadata"]["kilde"],
-                    "reviewer_flag": p["metadata"].get("reviewer_flag", ""),
-                    "chart_type":    p["metadata"].get("chart_type", "A"),
-                    "figure_id":     i,
-                    "rerender_ctx":  rerender_ctx.get(i, {}),
-                }
-                for i, p in enumerate(packages)
-            ]
-
-            # Stream done_msg immediately — browser renders all charts now
-            done_msg = {"type": "done", "figures": figures}
-            _last_result.update(done_msg)
-            with open(_LAST_RESULT_PATH, "w") as _f:
-                json.dump(done_msg, _f, ensure_ascii=False)
-            _run_queue.put(done_msg)
-
-            # Run interpreters sequentially; stream bullets as each completes
+            # Interpret all non-D figures before building done_msg so everything arrives at once
+            print("\n[4/4] Interpreting figures...")
+            bullets_by_index = {}
             for i, p in enumerate(packages):
                 chart_type = p["metadata"].get("chart_type", "A")
                 if chart_type == "D":
@@ -158,13 +139,28 @@ def start_run():
                 spec = p.get("spec", p["metadata"])
                 bullets = interpret_chart(p["path"], spec, data_summary)
                 if bullets:
-                    _run_queue.put({
-                        "type":         "interpretation",
-                        "figure_index": i,
-                        "bullets":      bullets,
-                    })
+                    bullets_by_index[i] = bullets
 
-            # Signal interpretation complete — JS closes SSE on this
+            figures = [
+                {
+                    "path":          os.path.basename(p["path"]),
+                    "title":         p["metadata"]["title"],
+                    "note":          p["metadata"]["note"],
+                    "kilde":         p["metadata"]["kilde"],
+                    "reviewer_flag": p["metadata"].get("reviewer_flag", ""),
+                    "chart_type":    p["metadata"].get("chart_type", "A"),
+                    "figure_id":     i,
+                    "rerender_ctx":  rerender_ctx.get(i, {}),
+                    "bullets":       bullets_by_index.get(i, []),
+                }
+                for i, p in enumerate(packages)
+            ]
+
+            done_msg = {"type": "done", "figures": figures}
+            _last_result.update(done_msg)
+            with open(_LAST_RESULT_PATH, "w") as _f:
+                json.dump(done_msg, _f, ensure_ascii=False)
+            _run_queue.put(done_msg)
             _run_queue.put({"type": "interpretation_done"})
 
         except Exception as exc:

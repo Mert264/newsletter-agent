@@ -1,20 +1,58 @@
 {
-  "brief": "Vis b\u00f8rsudvikling for islandske og baltiske aktiemarkeder mod MSCI World 2020-2024",
-  "date": "2026-04-19",
+  "brief": "Iran erkl\u00e6rede krig mod Israel den 28. februar 2026, hvilket sendte chokb\u00f8lger gennem energimarkederne. Vis Brent-r\u00e5olie og europ\u00e6isk naturgas (TTF), og mark\u00e9r udbruddet den 28. februar 2026. Vis ogs\u00e5 amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA p\u00e5 gas.",
+  "date": "2026-04-21",
   "figures": [
     {
       "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_00.png",
       "metadata": {
-        "title": "B\u00f8rsudvikling: Island, Baltikum og MSCI World (2020\u20132024)",
+        "title": "Brent r\u00e5olie \u2014 pris siden Iran-Israel-krigen",
         "chart_type": "A",
         "x_label": "Dato",
-        "y_label": "Indekseret (basis=100)",
-        "note": "Indekseret kursudvikling for det islandske aktiemarked (ICEX), det baltiske aktiemarked (OMX Baltic Benchmark GI) og MSCI World ETF fra januar 2020 til udgangen af 2024. Alle serier er indekseret til 100 pr. 1. januar 2020 for at muligg\u00f8re direkte sammenligning p\u00e5 tv\u00e6rs af markeder.",
+        "y_label": "USD/t\u00f8nde",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie. Brent er det globale benchmark for r\u00e5oliepriser og reagerer typisk kraftigt p\u00e5 geopolitiske sp\u00e6ndinger i Mellem\u00f8sten, herunder trusler mod olieforsyningen via Hormuzstr\u00e6det.",
         "kilde": "Yahoo Finance",
         "region_labels": [
-          "MSCI World",
-          "Baltikum (OMX Baltic)"
+          "Brent r\u00e5olie"
         ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_01.png",
+      "metadata": {
+        "title": "Event impact \u2014 Brent r\u00e5olie \u2014 pris siden Iran-Israel-krigen",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Yahoo Finance",
+        "region_labels": []
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_02.png",
+      "metadata": {
+        "title": "EU vs. USA naturgaspriser \u2014 effekten af Iran-Israel-krigen",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/MWh",
+        "note": "Sammenligning af europ\u00e6iske (TTF) og amerikanske (Henry Hub) naturgaspriser omregnet til samme enhed (USD/MWh) for at illustrere prisforskellen. TTF er det europ\u00e6iske benchmark og er s\u00e6rligt f\u00f8lsomt over for forsyningsforstyrrelser i Mellem\u00f8sten og Rusland, mens Henry Hub afspejler det nordamerikanske marked.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "TTF naturgas (Europa)",
+          "Henry Hub naturgas (USA)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_03.png",
+      "metadata": {
+        "title": "Event impact \u2014 EU vs. USA naturgaspriser \u2014 effekten af Iran-Israel-krigen",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Yahoo Finance",
+        "region_labels": []
       }
     }
   ]

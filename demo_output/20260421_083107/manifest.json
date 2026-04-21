@@ -1,0 +1,108 @@
+{
+  "brief": "Iran erkl\u00e6rede krig mod Israel den 28. februar 2026. Vis Brent-r\u00e5olie og TTF naturgas med event-markering.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_083107/figure_00.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie og TTF naturgas \u2014 Iran erkl\u00e6rer krig mod Israel",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie (USD/t\u00f8nde) og TTF naturgas (EUR/MWh), indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig prisskala. Lodret linje markerer datoen for Irans krigserkl\u00e6ring mod Israel den 28. februar 2026.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie",
+          "TTF naturgas"
+        ]
+      },
+      "spec": {
+        "type": "A",
+        "title": "Brent r\u00e5olie og TTF naturgas \u2014 Iran erkl\u00e6rer krig mod Israel",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "period_days": 469,
+        "series_labels": [
+          "Brent r\u00e5olie",
+          "TTF naturgas"
+        ],
+        "note": "Daglige lukkepriser for Brent r\u00e5olie (USD/t\u00f8nde) og TTF naturgas (EUR/MWh), indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig prisskala. Lodret linje markerer datoen for Irans krigserkl\u00e6ring mod Israel den 28. februar 2026.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
+      },
+      "data_summary": {
+        "chart_type": "A",
+        "series": {
+          "Brent r\u00e5olie": {
+            "latest": 95.48,
+            "change_abs": 18.43,
+            "change_pct": 23.9,
+            "unit": "Indekseret (basis=100)"
+          },
+          "TTF naturgas": {
+            "latest": 40.29,
+            "change_abs": -7.18,
+            "change_pct": -15.1,
+            "unit": "Indekseret (basis=100)"
+          }
+        },
+        "period_days": 469,
+        "direction": "mixed"
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_083107/figure_01.png",
+      "metadata": {
+        "title": "Event impact \u2014 Brent r\u00e5olie og TTF naturgas \u2014 Iran erkl\u00e6rer krig mod Israel",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Yahoo Finance",
+        "region_labels": []
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_083107/figure_02.png",
+      "metadata": {
+        "title": "N\u00f8gletal \u2014 Brent r\u00e5olie og TTF naturgas f\u00f8r og efter krigen",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Brent r\u00e5olie og TTF naturgas-priser p\u00e5 datoen for Irans krigserkl\u00e6ring mod Israel sammenlignet med den senest tilg\u00e6ngelige pris. \u00c6ndringer afspejler markedets reaktion p\u00e5 konflikten.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie",
+          "TTF naturgas"
+        ]
+      },
+      "spec": {
+        "type": "D",
+        "title": "N\u00f8gletal \u2014 Brent r\u00e5olie og TTF naturgas f\u00f8r og efter krigen",
+        "x_label": "",
+        "y_label": "",
+        "period_days": 469,
+        "series_labels": [
+          "Brent r\u00e5olie",
+          "TTF naturgas"
+        ],
+        "before_date": "2026-02-28",
+        "after_date": "latest",
+        "col_before": "F\u00f8r krigen (28. feb 2026)",
+        "col_after": "Nu",
+        "note": "Snapshot af Brent r\u00e5olie og TTF naturgas-priser p\u00e5 datoen for Irans krigserkl\u00e6ring mod Israel sammenlignet med den senest tilg\u00e6ngelige pris. \u00c6ndringer afspejler markedets reaktion p\u00e5 konflikten.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
+      },
+      "data_summary": {}
+    }
+  ]
+}

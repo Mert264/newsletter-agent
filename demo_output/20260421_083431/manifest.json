@@ -1,0 +1,102 @@
+{
+  "brief": "Iran erkl\u00e6rede krig mod Israel den 28. februar 2026, hvilket sendte chokb\u00f8lger gennem energimarkederne. Vis Brent-r\u00e5olie og europ\u00e6isk naturgas (TTF), og mark\u00e9r udbruddet den 28. februar 2026. Vis ogs\u00e5 amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA p\u00e5 gas.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_083431/figure_00.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie \u2014 pris siden 2022",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/t\u00f8nde",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie siden 2022. Den lodrette linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel, og energimarkederne oplevede kraftige kursudsving.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ]
+      },
+      "spec": {
+        "type": "A",
+        "title": "Brent r\u00e5olie \u2014 pris siden 2022",
+        "x_label": "Dato",
+        "y_label": "USD/t\u00f8nde",
+        "period_days": 1520,
+        "series_labels": [
+          "Brent r\u00e5olie"
+        ],
+        "note": "Daglige lukkepriser for Brent r\u00e5olie siden 2022. Den lodrette linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel, og energimarkederne oplevede kraftige kursudsving.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
+      },
+      "data_summary": {
+        "chart_type": "A",
+        "series": {
+          "Brent r\u00e5olie": {
+            "latest": 95.48,
+            "change_abs": -1.36,
+            "change_pct": -1.4,
+            "unit": "USD/t\u00f8nde"
+          }
+        },
+        "period_days": 1520,
+        "direction": "down"
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_083431/figure_01.png",
+      "metadata": {
+        "title": "EU- og USA-gaspriser omregnet til USD/MWh",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/MWh",
+        "note": "TTF (nederlandsk benchmark for europ\u00e6isk gas) og Henry Hub (amerikansk benchmark) er begge omregnet til USD/MWh for direkte sammenligning. Prisforskellen illustrerer den strukturelle kl\u00f8ft mellem EU- og USA-gasmarkederne. Den lodrette linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ]
+      },
+      "spec": {
+        "type": "A",
+        "title": "EU- og USA-gaspriser omregnet til USD/MWh",
+        "x_label": "Dato",
+        "y_label": "USD/MWh",
+        "period_days": 1520,
+        "series_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ],
+        "note": "TTF (nederlandsk benchmark for europ\u00e6isk gas) og Henry Hub (amerikansk benchmark) er begge omregnet til USD/MWh for direkte sammenligning. Prisforskellen illustrerer den strukturelle kl\u00f8ft mellem EU- og USA-gasmarkederne. Den lodrette linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
+      },
+      "data_summary": {
+        "chart_type": "A",
+        "series": {
+          "TTF naturgas (EU)": {
+            "latest": 47.31,
+            "change_abs": -42.93,
+            "change_pct": -47.6,
+            "unit": "USD/MWh"
+          },
+          "Henry Hub naturgas (USA)": {
+            "latest": 9.18,
+            "change_abs": -6.17,
+            "change_pct": -40.2,
+            "unit": "USD/MWh"
+          }
+        },
+        "period_days": 1520,
+        "direction": "down"
+      }
+    }
+  ]
+}

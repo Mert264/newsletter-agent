@@ -1,0 +1,58 @@
+{
+  "brief": "Iran erkl\u00e6rede krig mod Israel den 28. februar 2026. Vis Brent-r\u00e5olie og TTF naturgas med event-markering.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_083017/figure_00.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie og TTF naturgas \u2014 Irans krigserkl\u00e6ring mod Israel",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie (USD/t\u00f8nde) og TTF naturgas (EUR/MWh), indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig prisskala. Den lodrette linje markerer Irans krigserkl\u00e6ring mod Israel den 28. februar 2026.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie",
+          "TTF naturgas"
+        ]
+      },
+      "spec": {
+        "type": "A",
+        "title": "Brent r\u00e5olie og TTF naturgas \u2014 Irans krigserkl\u00e6ring mod Israel",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "period_days": 790,
+        "series_labels": [
+          "Brent r\u00e5olie",
+          "TTF naturgas"
+        ],
+        "note": "Daglige lukkepriser for Brent r\u00e5olie (USD/t\u00f8nde) og TTF naturgas (EUR/MWh), indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig prisskala. Den lodrette linje markerer Irans krigserkl\u00e6ring mod Israel den 28. februar 2026.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
+      },
+      "data_summary": {
+        "chart_type": "A",
+        "series": {
+          "Brent r\u00e5olie": {
+            "latest": 95.48,
+            "change_abs": 12.45,
+            "change_pct": 15.0,
+            "unit": "Indekseret (basis=100)"
+          },
+          "TTF naturgas": {
+            "latest": 40.29,
+            "change_abs": 16.32,
+            "change_pct": 68.0,
+            "unit": "Indekseret (basis=100)"
+          }
+        },
+        "period_days": 790,
+        "direction": "up"
+      }
+    }
+  ]
+}
