@@ -9,16 +9,21 @@ def drop_nulls(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def align_dates(dataframes: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
-    """Trim all DataFrames to their shared date range."""
+    """Trim all DataFrames to their shared date range, deduplicating any duplicate timestamps."""
     if not dataframes:
         return dataframes
-    starts = [df.index.min() for df in dataframes.values()]
-    ends = [df.index.max() for df in dataframes.values()]
+    # Deduplicate index first — Yahoo Finance occasionally returns duplicate timestamps
+    deduped = {
+        label: df[~df.index.duplicated(keep="last")]
+        for label, df in dataframes.items()
+    }
+    starts = [df.index.min() for df in deduped.values()]
+    ends = [df.index.max() for df in deduped.values()]
     common_start = max(starts)
     common_end = min(ends)
     return {
         label: df.loc[common_start:common_end]
-        for label, df in dataframes.items()
+        for label, df in deduped.items()
     }
 
 
