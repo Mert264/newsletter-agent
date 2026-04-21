@@ -1,0 +1,120 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "equities",
+    "series_specs": [
+      {
+        "ticker": "ORSTED.CO",
+        "source": "yfinance",
+        "label": "\u00d8rsted",
+        "region": "Danmark",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "VWS.CO",
+        "source": "yfinance",
+        "label": "Vestas",
+        "region": "Danmark",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "IBE.MC",
+        "source": "yfinance",
+        "label": "Iberdrola",
+        "region": "Spanien",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "SHEL.L",
+        "source": "yfinance",
+        "label": "Shell",
+        "region": "Storbritannien",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "TTE.PA",
+        "source": "yfinance",
+        "label": "TotalEnergies",
+        "region": "Frankrig",
+        "unit": "Indekseret (basis=100)"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Europ\u00e6iske vedvarende energiselskaber vs. oliemajorer (2016\u20132026)",
+      "x_label": "Dato",
+      "y_label": "Indekseret (basis=100)",
+      "period_days": 3650,
+      "series_labels": [
+        "\u00d8rsted",
+        "Vestas",
+        "Iberdrola",
+        "Shell",
+        "TotalEnergies"
+      ],
+      "note": "Kursudvikling for tre europ\u00e6iske vedvarende energiselskaber (\u00d8rsted, Vestas, Iberdrola) sammenlignet med to store oliemajorer (Shell, TotalEnergies) over de seneste 10 \u00e5r. Alle kurser er indekseret til 100 ved udgangen af 2016 for at muligg\u00f8re direkte sammenligning af relativ afkastudvikling p\u00e5 tv\u00e6rs af meget forskellige udgangspunkter."
+    },
+    "brief": "Vis kursudviklingen for europ\u00e6iske vedvarende energiselskaber (\u00d8rsted: ORSTED.CO, Vestas: VWS.CO, Iberdrola: IBE.MC) sammenlignet med store oliemajorer (Shell: SHEL.L, TotalEnergies: TTE.PA) \u2014 alle indekseret til 100. Illustr\u00e9r om den gr\u00f8nne energiomstilling har leveret afkast til investorerne."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "equities",
+    "series_specs": [
+      {
+        "ticker": "ORSTED.CO",
+        "source": "yfinance",
+        "label": "\u00d8rsted",
+        "region": "Danmark",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "VWS.CO",
+        "source": "yfinance",
+        "label": "Vestas",
+        "region": "Danmark",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "IBE.MC",
+        "source": "yfinance",
+        "label": "Iberdrola",
+        "region": "Spanien",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "SHEL.L",
+        "source": "yfinance",
+        "label": "Shell",
+        "region": "Storbritannien",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "TTE.PA",
+        "source": "yfinance",
+        "label": "TotalEnergies",
+        "region": "Frankrig",
+        "unit": "Indekseret (basis=100)"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Kursudvikling \u2014 snapshot",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "\u00d8rsted",
+        "Vestas",
+        "Iberdrola",
+        "Shell",
+        "TotalEnergies"
+      ],
+      "before_date": "2016-01-01",
+      "after_date": "latest",
+      "col_before": "Januar 2016",
+      "col_after": "Nu",
+      "note": "N\u00f8gletal for de fem selskaber ved periodens start (januar 2016) og senest. Tabellen viser den absolutte pris\u00e6ndring (i procent) over 10-\u00e5rsperioden, hvilket illustrerer den relative pr\u00e6station af gr\u00f8nne energiselskaber versus fossile energimajorer."
+    },
+    "brief": "Vis kursudviklingen for europ\u00e6iske vedvarende energiselskaber (\u00d8rsted: ORSTED.CO, Vestas: VWS.CO, Iberdrola: IBE.MC) sammenlignet med store oliemajorer (Shell: SHEL.L, TotalEnergies: TTE.PA) \u2014 alle indekseret til 100. Illustr\u00e9r om den gr\u00f8nne energiomstilling har leveret afkast til investorerne."
+  }
+]

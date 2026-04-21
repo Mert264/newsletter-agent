@@ -440,12 +440,18 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
         merged = None
         for label, df in aligned.items():
             clean = drop_nulls(df)
+            # Deduplicate index again after drop_nulls (ffill can surface hidden dupes)
+            if clean.index.duplicated().any():
+                clean = clean[~clean.index.duplicated(keep="last")]
             if merged is None:
                 merged = clean
             else:
                 # Outer join + forward-fill so Japanese/European holidays don't
                 # punch holes in US series (and vice versa).
                 merged = merged.join(clean, how="outer").ffill().dropna(how="all")
+                # Remove any duplicate columns introduced by the join
+                if merged.columns.duplicated().any():
+                    merged = merged.loc[:, ~merged.columns.duplicated(keep="last")]
 
         if merged is None or merged.empty:
             print(f"    [warn] No data for chart '{chart_spec.get('title')}' — skipping (no data).")

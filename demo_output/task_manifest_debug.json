@@ -1,16 +1,9 @@
 {
   "specialists": [
-    "macro"
+    "rates"
   ],
-  "macro": {
+  "rates": {
     "series": [
-      {
-        "ticker": "DGS10",
-        "source": "fred",
-        "label": "USA",
-        "region": "USA",
-        "unit": "%"
-      },
       {
         "ticker": "IRLTLT01DEM156N",
         "source": "fred",
@@ -42,27 +35,34 @@
       {
         "ticker": "IRLTLT01GBM156N",
         "source": "fred",
-        "label": "UK",
+        "label": "Storbritannien",
         "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA",
+        "region": "Nordamerika",
         "unit": "%"
       }
     ],
     "charts": [
       {
         "type": "G",
-        "title": "10-\u00e5rige statsobligationsrenter \u2014 europ\u00e6iske lande og USA",
-        "x_label": "%",
-        "y_label": "",
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
+        "x_label": "Rente (%)",
+        "y_label": "%",
         "period_days": 730,
         "series_labels": [
-          "USA",
           "Tyskland",
           "Frankrig",
           "Italien",
           "Spanien",
-          "UK"
+          "Storbritannien",
+          "USA"
         ],
-        "note": "M\u00e5nedlige 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien, UK og USA. H\u00f8jere rentesp\u00e6nd afspejler st\u00f8rre risikopr\u00e6mie for kreditrisiko og \u00f8konomisk usikkerhed. Dataene viser investorernes vurdering af hver lands soliditet."
+        "note": "Seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jest til lavest rente og illustrerer investorernes relative tillid til de enkelte landes \u00f8konomi og kreditv\u00e6rdighed."
       },
       {
         "type": "D",
@@ -71,18 +71,18 @@
         "y_label": "%",
         "period_days": 730,
         "series_labels": [
-          "USA",
           "Tyskland",
           "Frankrig",
           "Italien",
           "Spanien",
-          "UK"
+          "Storbritannien",
+          "USA"
         ],
         "before_date": "2024-01-01",
         "after_date": "latest",
-        "col_before": "1. jan 2024",
+        "col_before": "Jan 2024",
         "col_after": "Nu",
-        "note": "Snapshot af 10-\u00e5rige statsobligationsrenter ved udgangen af 2024 og seneste observation. \u00c6ndringer viser det absolutte fald eller stigning i renteniveauet i procentpoint siden \u00e5rsskiftet."
+        "note": "Sammenligning af 10-\u00e5rige statsobligationsrenter p\u00e5 tv\u00e6rs af udvalgte europ\u00e6iske lande og USA. \u00c6ndringen viser forskellen i procentpoint fra januar 2024 til seneste tilg\u00e6ngelige observation."
       }
     ]
   }

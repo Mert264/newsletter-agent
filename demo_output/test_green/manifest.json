@@ -1,0 +1,42 @@
+{
+  "brief": "Vis kursudviklingen for europ\u00e6iske vedvarende energiselskaber (\u00d8rsted: ORSTED.CO, Vestas: VWS.CO, Iberdrola: IBE.MC) sammenlignet med store oliemajorer (Shell: SHEL.L, TotalEnergies: TTE.PA) \u2014 alle indekseret til 100. Illustr\u00e9r om den gr\u00f8nne energiomstilling har leveret afkast til investorerne.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "demo_output/test_green/figure_00.png",
+      "metadata": {
+        "title": "Kursudvikling \u2014 vedvarende energiselskaber vs. oliemajorer",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "note": "Kursudvikling for tre europ\u00e6iske vedvarende energiselskaber (\u00d8rsted, Vestas, Iberdrola) og to store oliemajorer (Shell, TotalEnergies) over de seneste 10 \u00e5r, indekseret til 100 ved periodens start. Sammenligningen illustrerer afkastforskellene mellem gr\u00f8n energiomstilling og traditionel oliebaseret energi.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "\u00d8rsted",
+          "Vestas",
+          "Iberdrola",
+          "Shell",
+          "TotalEnergies"
+        ]
+      }
+    },
+    {
+      "path": "demo_output/test_green/figure_01.png",
+      "metadata": {
+        "title": "N\u00f8gletal \u2014 vedvarende energiselskaber vs. oliemajorer",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af kursudvikling for vedvarende energiselskaber og oliemajorer siden april 2016. Tabellen viser v\u00e6rdien af en investering p\u00e5 100 DKK/EUR ved periodens start og den samlede kursstigning over perioden.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "\u00d8rsted",
+          "Vestas",
+          "Iberdrola",
+          "Shell",
+          "TotalEnergies"
+        ]
+      }
+    }
+  ]
+}

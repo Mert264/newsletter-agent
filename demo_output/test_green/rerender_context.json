@@ -1,0 +1,120 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "equities",
+    "series_specs": [
+      {
+        "ticker": "ORSTED.CO",
+        "source": "yfinance",
+        "label": "\u00d8rsted",
+        "region": "Danmark",
+        "unit": "DKK"
+      },
+      {
+        "ticker": "VWS.CO",
+        "source": "yfinance",
+        "label": "Vestas",
+        "region": "Danmark",
+        "unit": "DKK"
+      },
+      {
+        "ticker": "IBE.MC",
+        "source": "yfinance",
+        "label": "Iberdrola",
+        "region": "Spanien",
+        "unit": "EUR"
+      },
+      {
+        "ticker": "SHEL.L",
+        "source": "yfinance",
+        "label": "Shell",
+        "region": "UK",
+        "unit": "GBP"
+      },
+      {
+        "ticker": "TTE.PA",
+        "source": "yfinance",
+        "label": "TotalEnergies",
+        "region": "Frankrig",
+        "unit": "EUR"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Kursudvikling \u2014 vedvarende energiselskaber vs. oliemajorer",
+      "x_label": "Dato",
+      "y_label": "Indekseret (basis=100)",
+      "period_days": 3650,
+      "series_labels": [
+        "\u00d8rsted",
+        "Vestas",
+        "Iberdrola",
+        "Shell",
+        "TotalEnergies"
+      ],
+      "note": "Kursudvikling for tre europ\u00e6iske vedvarende energiselskaber (\u00d8rsted, Vestas, Iberdrola) og to store oliemajorer (Shell, TotalEnergies) over de seneste 10 \u00e5r, indekseret til 100 ved periodens start. Sammenligningen illustrerer afkastforskellene mellem gr\u00f8n energiomstilling og traditionel oliebaseret energi."
+    },
+    "brief": "Vis kursudviklingen for europ\u00e6iske vedvarende energiselskaber (\u00d8rsted: ORSTED.CO, Vestas: VWS.CO, Iberdrola: IBE.MC) sammenlignet med store oliemajorer (Shell: SHEL.L, TotalEnergies: TTE.PA) \u2014 alle indekseret til 100. Illustr\u00e9r om den gr\u00f8nne energiomstilling har leveret afkast til investorerne."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "equities",
+    "series_specs": [
+      {
+        "ticker": "ORSTED.CO",
+        "source": "yfinance",
+        "label": "\u00d8rsted",
+        "region": "Danmark",
+        "unit": "DKK"
+      },
+      {
+        "ticker": "VWS.CO",
+        "source": "yfinance",
+        "label": "Vestas",
+        "region": "Danmark",
+        "unit": "DKK"
+      },
+      {
+        "ticker": "IBE.MC",
+        "source": "yfinance",
+        "label": "Iberdrola",
+        "region": "Spanien",
+        "unit": "EUR"
+      },
+      {
+        "ticker": "SHEL.L",
+        "source": "yfinance",
+        "label": "Shell",
+        "region": "UK",
+        "unit": "GBP"
+      },
+      {
+        "ticker": "TTE.PA",
+        "source": "yfinance",
+        "label": "TotalEnergies",
+        "region": "Frankrig",
+        "unit": "EUR"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "N\u00f8gletal \u2014 vedvarende energiselskaber vs. oliemajorer",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "\u00d8rsted",
+        "Vestas",
+        "Iberdrola",
+        "Shell",
+        "TotalEnergies"
+      ],
+      "before_date": "2016-04-16",
+      "after_date": "latest",
+      "col_before": "10 \u00e5r siden",
+      "col_after": "Nu",
+      "note": "Snapshot af kursudvikling for vedvarende energiselskaber og oliemajorer siden april 2016. Tabellen viser v\u00e6rdien af en investering p\u00e5 100 DKK/EUR ved periodens start og den samlede kursstigning over perioden."
+    },
+    "brief": "Vis kursudviklingen for europ\u00e6iske vedvarende energiselskaber (\u00d8rsted: ORSTED.CO, Vestas: VWS.CO, Iberdrola: IBE.MC) sammenlignet med store oliemajorer (Shell: SHEL.L, TotalEnergies: TTE.PA) \u2014 alle indekseret til 100. Illustr\u00e9r om den gr\u00f8nne energiomstilling har leveret afkast til investorerne."
+  }
+]
