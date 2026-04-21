@@ -482,10 +482,12 @@ def build_task_manifest(brief: str, preferred_types: list = None, routing_hint: 
     if period_days:
         parts.append(
             f"PREFERRED TIME PERIOD: The user selected {period_days} days (~{period_days // 365} year(s)). "
-            f"Use this as a default for all charts. However, SYSTEM_PROMPT rules always take precedence: "
-            f"if the brief explicitly references a historical start date (e.g. 'fra 2022', 'since February 2022'), "
-            f"use the formula period_days = days_from_start_date_to_today + 60 even if it exceeds the user's selection. "
-            f"Similarly, always honour the YoY minimum (>=760 days) and event-marker minimum rules."
+            f"This is the MINIMUM period_days for ALL charts — NEVER go below {period_days}. "
+            f"You may ONLY increase period_days beyond {period_days} in these cases: "
+            f"(1) y_label contains 'YoY' — minimum 760 days required for the transform to produce data; "
+            f"(2) the brief explicitly names a start date EARLIER than {period_days} days ago. "
+            f"Event markers do NOT reduce period_days: if an event date falls within the user's window "
+            f"it is already covered. NEVER shrink period_days to just surround an event date."
         )
     if routing_hint:
         parts.append(routing_hint)
