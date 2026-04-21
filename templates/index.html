@@ -140,12 +140,28 @@
     #runBtn:hover:not(:disabled) { background: #0d5a56; box-shadow: 0 3px 10px rgba(17,113,108,.35); }
     #runBtn:active:not(:disabled) { background: #0a4a46; }
     #runBtn:disabled { background: #93c5c2; cursor: not-allowed; box-shadow: none; }
-    #statusMsg {
-      font-size: 13px;
-      color: #6b7280;
+    .status-indicator { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #6b7280; }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #22c55e; flex-shrink: 0;
+      transition: background .3s;
     }
+    .status-dot.running { background: #f59e0b; animation: pulse 1s infinite; }
+    .status-dot.error   { background: #ef4444; animation: none; }
+    #statusMsg { transition: color .2s; }
     #statusMsg.running { color: #11716c; font-weight: 600; }
     #statusMsg.error   { color: #dc2626; font-weight: 600; }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: 36px 20px;
+      color: #9ca3af;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .empty-state-icon { font-size: 28px; margin-bottom: 8px; opacity: .45; }
+    .empty-state-title { font-weight: 600; color: #6b7280; margin-bottom: 4px; font-size: 14px; }
 
     /* ── Pipeline steps panel ── */
     #stepsPanel { grid-column: 1 / 2; }
