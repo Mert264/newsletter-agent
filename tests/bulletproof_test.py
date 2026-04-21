@@ -182,8 +182,9 @@ def run_pipeline_test(prompt_id, brief, period_days, preferred_types=None):
                 # the Haiku reviewer (e.g. "over tid" in D table titles)
             )
     except Exception as e:
-        pipeline_issues.append(f"EXCEPTION: {type(e).__name__}: {e}")
-        buf.write(traceback.format_exc())
+        tb = traceback.format_exc()
+        pipeline_issues.append(f"EXCEPTION: {type(e).__name__}: {e}\n{tb}")
+        buf.write(tb)
 
     log = buf.getvalue()
 
