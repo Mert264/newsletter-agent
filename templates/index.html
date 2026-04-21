@@ -679,7 +679,6 @@ function startRun() {
       document.getElementById('statusMsg').textContent =
         `Færdig — ${msg.figures.length} figur(er)`;
       document.getElementById('statusMsg').className = '';
-    } else if (msg.type === 'interpretation_done') {
       eventSource.close();
       eventSource = null;
     } else if (msg.type === 'error') {
