@@ -1,15 +1,10 @@
 {
   "summary": {
     "manifest": 0,
-    "pipeline": 2,
+    "pipeline": 0,
     "novel": 0
   },
-  "issues": {
-    "Europ\u00e6iske statsrenter": [
-      "[reviewer] REVISION NEEDED: For type G (horizontal bar chart), the Y-axis displays category names (country names), not a metric unit. The Y-axis label should be empty or omitted, not '%'. The metric unit '%' belongs on the X-axis label, which is correctly labeled 'Rente (%)'\u2014remove '%' from Y-axis label. \u2014 re-rendering...",
-      "[reviewer] REVISION NEEDED: Y-axis label should not be '%' \u2014 in a horizontal bar chart, the Y-axis displays category names (country names), not a unit. The metric unit (%) belongs on the X-axis, which is correctly labeled 'Rente (%)'. Remove '%' from Y-axis label. \u2014 re-rendering..."
-    ]
-  },
+  "issues": {},
   "per_prompt": {
     "1": {
       "label": "Iran-krig \u2014 olie & gas",
@@ -37,16 +32,13 @@
       "manifest_issues": [],
       "manifest_warnings": [],
       "pipeline_issues": [],
-      "figures": 9
+      "figures": 6
     },
     "4": {
       "label": "Europ\u00e6iske statsrenter",
       "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [
-        "[reviewer] REVISION NEEDED: For type G (horizontal bar chart), the Y-axis displays category names (country names), not a metric unit. The Y-axis label should be empty or omitted, not '%'. The metric unit '%' belongs on the X-axis label, which is correctly labeled 'Rente (%)'\u2014remove '%' from Y-axis label. \u2014 re-rendering...",
-        "[reviewer] REVISION NEEDED: Y-axis label should not be '%' \u2014 in a horizontal bar chart, the Y-axis displays category names (country names), not a unit. The metric unit (%) belongs on the X-axis, which is correctly labeled 'Rente (%)'. Remove '%' from Y-axis label. \u2014 re-rendering..."
-      ],
+      "pipeline_issues": [],
       "figures": 2
     },
     "5": {
