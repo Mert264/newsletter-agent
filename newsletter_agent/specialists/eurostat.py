@@ -106,7 +106,7 @@ def _parse_cross_section(raw: dict, country_filter=None):
         return None
 
 
-def _parse_product_wide(raw: dict, label_map: dict = None) -> "pd.DataFrame | None":
+def _parse_product_wide(raw: dict, label_map: dict = None, product_filter: list = None) -> "pd.DataFrame | None":
     """
     Parse a multi-dimensional Eurostat dataset into a wide DataFrame: time × product.
 
