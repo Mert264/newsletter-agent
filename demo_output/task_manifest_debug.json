@@ -30,8 +30,8 @@
       {
         "type": "E",
         "title": "Brent olie, guld og S&P 500 \u2014 f\u00f8r og efter Ruslands invasion af Ukraine",
-        "x_label": "",
-        "y_label": "",
+        "x_label": "Aktiv",
+        "y_label": "Indekseret (basis=100)",
         "period_days": 1626,
         "series_labels": [
           "Brent r\u00e5olie",
@@ -40,9 +40,9 @@
         ],
         "before_date": "2022-02-24",
         "after_date": "latest",
-        "col_before": "F\u00f8r invasionen (24. feb 2022)",
+        "col_before": "24. feb 2022 (invasionsdag)",
         "col_after": "Nu",
-        "note": "Sammenligning af Brent r\u00e5olie, guld og S&P 500 p\u00e5 dagen for Ruslands invasion af Ukraine den 24. februar 2022 og seneste tilg\u00e6ngelige kurs. Serierne har forskellige enheder og kan ikke sammenlignes direkte p\u00e5 tv\u00e6rs \u2014 figuren viser den absolutte \u00e6ndring for hver aktivklasse."
+        "note": "Sammenligning af Brent r\u00e5olie, guld og S&P 500 p\u00e5 invasionsdagen den 24. februar 2022 og seneste tilg\u00e6ngelige kurs. Da de tre aktiver har meget forskellige prisskalaer, er alle serier indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning."
       }
     ]
   }
