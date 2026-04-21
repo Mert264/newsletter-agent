@@ -1,10 +1,16 @@
 # newsletter_agent/renderers/tables.py
+import textwrap
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from newsletter_agent.config import BRAND
 from newsletter_agent.renderers.charts import _add_footer
+
+
+def _wrap_col(text: str, max_chars: int = 14) -> str:
+    """Wrap a column header at max_chars so it never overflows narrow cells."""
+    return "\n".join(textwrap.wrap(str(text), width=max_chars))
 
 # Table is wider than charts to accommodate more columns
 FIGSIZE_TABLE = (
