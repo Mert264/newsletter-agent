@@ -604,19 +604,24 @@
 <script>
 const BRIEFS = {
   // Geopolitik
-  1: "Iran erklærede krig mod Israel den 28. februar 2026, hvilket sendte chokbølger gennem energimarkederne. Vis Brent-råolie og europæisk naturgas (TTF), og markér udbruddet den 28. februar 2026. Vis også amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA på gas.",
+  1: "Iran erklærede krig mod Israel den 28. februar 2026. Vis Brent-råolie og europæisk naturgas (TTF), og markér udbruddet den 28. februar 2026. Vis også amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA på gas.",
   2: "Iran-krigen den 28. februar 2026 og Ukraine-krigen har accelereret det globale forsvarsforbrug. Vis Lockheed Martin, Rheinmetall, BAE Systems og Northrop Grumman indekseret til 100, og markér Ukraine-invasionen den 24. februar 2022 og Iran-krigens udbrud den 28. februar 2026.",
   3: "Guld er steget som safe haven siden Iran-krigen brød ud den 28. februar 2026. Vis guldpriser og markér 28. februar 2026. Vis også kobberpriser for at sammenligne safe haven-rally med industrimetallers signal.",
+  11: "Trump-administrationen indførte historiske toldsatser den 2. april 2025. Vis Brent olie, S&P 500, EUR/USD og guld — sammenlign markedspriserne før og efter toldannoncen den 2. april 2025.",
   // Renter & Obligationer
-  4: "Rentespændet inden for Europa afspejler investorernes tillid til de enkelte landes økonomi. Vis de aktuelle 10-årige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt søjlediagram sorteret fra højest til lavest rente og sammenlign med den amerikanske 10-årige statsobligationsrente.",
+  4: "Rentespændet inden for Europa afspejler investorernes tillid til de enkelte landes økonomi. Vis 10-årige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt søjlediagram sorteret fra højest til lavest rente og sammenlign med den amerikanske 10-årige statsobligationsrente.",
   5: "Den amerikanske rentekurve har været en vigtig recessionindikator. Vis den 2-årige statsobligationsrente (DGS2) og den 10-årige statsobligationsrente (DGS10), og vis spændet (T10Y2Y) separat for at vise, hvornår kurven inverterede og normaliserede sig.",
-  6: "Sammenlign de tre store centralbankers politikrenter: Federal Reserve (USA), ECB (Eurozonen) og Bank of England (UK) siden 2019. Vis hvornår de begyndte at hæve renter for at bekæmpe inflation, og hvornår de begyndte at sænke dem igen.",
+  6: "Sammenlign de tre store centralbankers politikrenter: Federal Reserve (USA), ECB (Eurozonen) og Bank of England (UK). Vis hvornår de begyndte at hæve renter for at bekæmpe inflation, og hvornår de begyndte at sænke dem igen.",
   // Aktier & Valuta
-  7: "Sammenlign kursudviklingen for de globale aktiemarkeder: S&P 500 (USA), Euro Stoxx 50 (Europa), Nikkei 225 (Japan) og MSCI Emerging Markets indekseret til 100 for at illustrere, hvilke regioner der har leveret det bedste afkast.",
-  8: "Den amerikanske dollar er styrket kraftigt på baggrund af geopolitisk risiko fra Iran-krigen (28. februar 2026) og Trump-toldsatserne (2. april 2025). Vis DXY-indekset, EUR/USD, GBP/USD og JPY/USD og markér begge begivenheder.",
+  7: "Sammenlign kursudviklingen for de globale aktiemarkeder: S&P 500 (USA), Euro Stoxx 50 (Europa), Nikkei 225 (Japan) og MSCI Emerging Markets — indekseret til 100 for at illustrere, hvilke regioner der har leveret det bedste afkast.",
+  8: "Den amerikanske dollar er styrket på baggrund af geopolitisk risiko fra Iran-krigen (28. februar 2026) og Trump-toldsatserne (2. april 2025). Vis DXY-indekset, EUR/USD, GBP/USD og JPY/USD og markér begge begivenheder.",
   // Energi & Europa
   9: "Vis EU's energimix fordelt på energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert brændstof.",
-  10: "Europæiske obligationsmarkeder er under pres fra høje underskud og stigende forsvarsudgifter. Vis tyske, franske og italienske 10-årige statsobligationsrenter for at illustrere spændet mellem kernelande og perifere Europa.",
+  12: "Vis EU's energiomstilling over tid som 100% stacked bar — fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilgængelige år.",
+  10: "Vis 10-årige statsobligationsrenter for Tyskland, Frankrig og Italien som tidsserie for at illustrere spændet mellem kernelande og perifere Europa i et presset obligationsmarked.",
+  // Makro & Inflation
+  13: "Vis den amerikanske inflationsudvikling: CPI headline, Core CPI, CPI Energi og CPI Fødevarer — år-over-år i procent. Vis hvornår inflationen toppede og om vi nærmer os Feds 2%-mål.",
+  14: "Vis et globalt markedsscorecard: Brent olie, guld, S&P 500, EUR/USD og den 10-årige amerikanske statsrente — nuværende niveauer sammenlignet med for 1 år siden.",
 };
 
 // Natural period for each quick prompt (days) — 0 = LLM bestemmer
