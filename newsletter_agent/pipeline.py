@@ -526,10 +526,8 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
         "region_labels": list(dfs.keys()),
     }
     pkg = {
-        "path":         path,
-        "metadata":     metadata,
-        "spec":         chart_spec,
-        "data_summary": _build_data_summary(dfs, chart_spec),
+        "path":     path,
+        "metadata": metadata,
     }
     if merged_for_events is not None:
         pkg["_merged"] = merged_for_events
