@@ -1,0 +1,52 @@
+{
+  "brief": "Den amerikanske dollar er styrket p\u00e5 baggrund af geopolitisk risiko fra Iran-krigen (28. februar 2026) og Trump-toldsatserne (2. april 2025). Vis DXY-indekset, EUR/USD, GBP/USD og JPY/USD og mark\u00e9r begge begivenheder.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141010/figure_00.png",
+      "metadata": {
+        "title": "USD-styrke: DXY og udvalgte valutakurser",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indeks",
+        "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. Stigende DXY-linje indikerer en st\u00e6rkere dollar, mens faldende EUR/USD-, GBP/USD- og JPY/USD-linjer ligeledes afspejler dollarstyrkelse.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "DXY Dollar Index",
+          "EUR/USD",
+          "GBP/USD",
+          "JPY/USD"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141010/figure_01.png",
+      "metadata": {
+        "title": "Event impact \u2014 USD-styrke: DXY og udvalgte valutakurser",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Yahoo Finance",
+        "region_labels": []
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141010/figure_02.png",
+      "metadata": {
+        "title": "N\u00f8gletal \u2014 USD-styrkelse f\u00f8r og efter begivenheder",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af DXY og udvalgte valutakurser indekseret til 100 ved periodens start. Sammenligningen tager udgangspunkt i tidspunktet for Trumps toldsatser den 2. april 2025 og viser udviklingen frem til seneste tilg\u00e6ngelige data.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "DXY Dollar Index",
+          "EUR/USD",
+          "GBP/USD",
+          "JPY/USD"
+        ]
+      }
+    }
+  ]
+}

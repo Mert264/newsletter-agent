@@ -1,0 +1,88 @@
+{
+  "brief": "Iran erkl\u00e6rede krig mod Israel den 28. februar 2026. Vis Brent-r\u00e5olie og europ\u00e6isk naturgas (TTF), og mark\u00e9r udbruddet den 28. februar 2026. Vis ogs\u00e5 amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA p\u00e5 gas.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141503/figure_00.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie \u2014 pris siden Iran-Israel-krigen",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/barrel",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie. Brent er det globale benchmark for r\u00e5oliepriser og reagerer typisk hurtigt p\u00e5 geopolitiske sp\u00e6ndinger i Mellem\u00f8sten.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141503/figure_01.png",
+      "metadata": {
+        "title": "Event impact \u2014 Brent r\u00e5olie \u2014 pris siden Iran-Israel-krigen",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Yahoo Finance",
+        "region_labels": []
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141503/figure_02.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal f\u00f8r og efter krigens udbrud",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Brent r\u00e5oliepris umiddelbart inden og efter Irans krigserkl\u00e6ring mod Israel den 28. februar 2026.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141503/figure_03.png",
+      "metadata": {
+        "title": "EU vs. USA naturgaspriser (USD/MWh)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/MWh",
+        "note": "TTF (nederlandsk naturgasbenchmark) omregnet fra EUR/MWh til USD/MWh. Henry Hub (amerikansk benchmark) omregnet fra USD/MMBtu til USD/MWh ved at gange med 3,41. Begge priser er udtrykt i USD/MWh for direkte sammenligning af den strukturelle prisforskel mellem EU og USA.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141503/figure_04.png",
+      "metadata": {
+        "title": "Event impact \u2014 EU vs. USA naturgaspriser (USD/MWh)",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Yahoo Finance",
+        "region_labels": []
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141503/figure_05.png",
+      "metadata": {
+        "title": "EU vs. USA naturgas \u2014 n\u00f8gletal f\u00f8r og efter krigens udbrud",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af TTF- og Henry Hub-naturgaspriser omregnet til USD/MWh umiddelbart inden og efter Irans krigserkl\u00e6ring mod Israel den 28. februar 2026.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ]
+      }
+    }
+  ]
+}

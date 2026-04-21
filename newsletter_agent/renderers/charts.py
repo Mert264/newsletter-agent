@@ -483,8 +483,8 @@ def render_type_f(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     ax.xaxis.grid(False)
     ax.yaxis.grid(True, color=BRAND["grid_color"], linewidth=0.4, linestyle="-")
 
-    # Legend: embed last-year % into each label so small segments are always readable
-    legend_labels = [f"{col}  {last_vals[col]:.0f}%" for col in pct.columns]
+    # Legend: fuel/category names only — bar segments already show per-year percentages
+    legend_labels = list(pct.columns)
     handles, _ = ax.get_legend_handles_labels()
     ax.legend(handles, legend_labels,
               fontsize=BRAND["font_size_label"], frameon=False,

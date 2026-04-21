@@ -1,0 +1,104 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPIAUCSL",
+        "source": "fred",
+        "label": "CPI Headline",
+        "region": "USA",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CPILFESL",
+        "source": "fred",
+        "label": "Core CPI",
+        "region": "USA",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CPIENGSL",
+        "source": "fred",
+        "label": "CPI Energi",
+        "region": "USA",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CPIFABSL",
+        "source": "fred",
+        "label": "CPI F\u00f8devarer",
+        "region": "USA",
+        "unit": "YoY %"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Amerikansk inflation \u00e5r-over-\u00e5r (%)",
+      "x_label": "Dato",
+      "y_label": "YoY %",
+      "period_days": 2555,
+      "series_labels": [
+        "CPI Headline",
+        "Core CPI",
+        "CPI Energi",
+        "CPI F\u00f8devarer"
+      ],
+      "note": "Alle fire serier viser den \u00e5rlige procentvise \u00e6ndring i det amerikanske forbrugerprisindeks. Den stiplede linje ved 2% markerer Feds officielle inflationsm\u00e5l, og toppunktet i 2022 afspejler den kraftige prisstigning i k\u00f8lvandet p\u00e5 COVID-genopretning og energichokket efter Ruslands invasion af Ukraine."
+    },
+    "brief": "Vis den amerikanske inflationsudvikling: CPI headline, Core CPI, CPI Energi og CPI F\u00f8devarer \u2014 \u00e5r-over-\u00e5r i procent. Vis hvorn\u00e5r inflationen toppede og om vi n\u00e6rmer os Feds 2%-m\u00e5l."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPIAUCSL",
+        "source": "fred",
+        "label": "CPI Headline",
+        "region": "USA",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CPILFESL",
+        "source": "fred",
+        "label": "Core CPI",
+        "region": "USA",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CPIENGSL",
+        "source": "fred",
+        "label": "CPI Energi",
+        "region": "USA",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CPIFABSL",
+        "source": "fred",
+        "label": "CPI F\u00f8devarer",
+        "region": "USA",
+        "unit": "YoY %"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Snapshot: Amerikansk inflation \u2014 f\u00f8r og nu",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "CPI Headline",
+        "Core CPI",
+        "CPI Energi",
+        "CPI F\u00f8devarer"
+      ],
+      "before_date": "2022-06-01",
+      "after_date": "latest",
+      "col_before": "Inflationstoppen (jun 2022)",
+      "col_after": "Nu",
+      "note": "Tabellen sammenligner inflationsniveauerne p\u00e5 toppunktet i juni 2022 med de seneste tilg\u00e6ngelige tal, og viser hvor meget de enkelte komponenter har bev\u00e6get sig i retning af Feds 2%-m\u00e5l."
+    },
+    "brief": "Vis den amerikanske inflationsudvikling: CPI headline, Core CPI, CPI Energi og CPI F\u00f8devarer \u2014 \u00e5r-over-\u00e5r i procent. Vis hvorn\u00e5r inflationen toppede og om vi n\u00e6rmer os Feds 2%-m\u00e5l."
+  }
+]

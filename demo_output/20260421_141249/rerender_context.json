@@ -1,0 +1,386 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 2,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 3,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 4,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 5,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 6,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 7,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 8,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 9,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 10,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 andel af samlet energiforbrug",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  },
+  {
+    "figure_id": 11,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vandkraft",
+          "Vindkraft",
+          "Solenergi"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "F",
+      "title": "EU's energimix over tid \u2014 fordeling p\u00e5 energikilder",
+      "x_label": "\u00c5r",
+      "y_label": "Pct. af total",
+      "period_days": 3650,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Det stablede s\u00f8jlediagram viser, hvordan sammens\u00e6tningen af EU's energiforbrug har udviklet sig over de seneste ti \u00e5r fordelt p\u00e5 naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi."
+    },
+    "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof."
+  }
+]

@@ -1,0 +1,174 @@
+{
+  "brief": "Vis EU's energimix fordelt p\u00e5 energikilder: naturgas, kul, kerneenergi, vind, sol og vandkraft. Brug et cirkeldiagram der viser den procentvise andel af det samlede energiforbrug for hvert br\u00e6ndstof.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00_y00.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug (2015)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00_y01.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug (2016)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00_y02.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug (2017)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00_y03.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug (2018)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00_y04.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug (2019)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00_y05.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug (2020)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00_y06.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug (2021)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00_y07.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug (2022)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00_y08.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug (2023)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00_y09.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug (2024)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_00.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 andel af samlet energiforbrug \u2014 Sammenligning",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "Cirkeldiagrammet viser den procentvise fordeling af EU's samlede energiforbrug p\u00e5 tv\u00e6rs af naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi for det senest tilg\u00e6ngelige \u00e5r.",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_141249/figure_11.png",
+      "metadata": {
+        "title": "EU's energimix over tid \u2014 fordeling p\u00e5 energikilder",
+        "chart_type": "F",
+        "x_label": "\u00c5r",
+        "y_label": "Pct. af total",
+        "note": "Det stablede s\u00f8jlediagram viser, hvordan sammens\u00e6tningen af EU's energiforbrug har udviklet sig over de seneste ti \u00e5r fordelt p\u00e5 naturgas, kul, kerneenergi, vandkraft, vindkraft og solenergi.",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    }
+  ]
+}

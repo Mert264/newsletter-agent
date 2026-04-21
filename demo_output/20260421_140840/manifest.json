@@ -1,0 +1,120 @@
+{
+  "brief": "Vis et globalt markedsscorecard: Brent olie, guld, S&P 500, EUR/USD og den 10-\u00e5rige amerikanske statsrente \u2014 nuv\u00e6rende niveauer sammenlignet med for 1 \u00e5r siden.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_140840/figure_00.png",
+      "metadata": {
+        "title": "Brent r\u00e5oliepris",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/t\u00f8nde",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie over de seneste 10 \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og anvendes som reference p\u00e5 verdensmarkedet.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_140840/figure_01.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie \u2014 nuv\u00e6rende niveau vs. for 1 \u00e5r siden",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Brent r\u00e5olieprisen sammenlignet med niveauet for \u00e9t \u00e5r siden. Viser den absolutte \u00e6ndring i USD pr. t\u00f8nde.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_140840/figure_02.png",
+      "metadata": {
+        "title": "Guldpris",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/troy oz",
+        "note": "Daglige lukkepriser for guld i USD pr. troy ounce over de seneste 10 \u00e5r. Guld betragtes som en sikker havn og et inflationshedge p\u00e5 de globale finansmarkeder.",
+        "kilde": "Yahoo Finance og FRED",
+        "region_labels": [
+          "Guld"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_140840/figure_03.png",
+      "metadata": {
+        "title": "Guld \u2014 nuv\u00e6rende niveau vs. for 1 \u00e5r siden",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af guldprisen sammenlignet med niveauet for \u00e9t \u00e5r siden. Viser den absolutte \u00e6ndring i USD pr. troy ounce.",
+        "kilde": "Yahoo Finance og FRED",
+        "region_labels": [
+          "Guld"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_140840/figure_04.png",
+      "metadata": {
+        "title": "EUR/USD valutakurs",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD per EUR",
+        "note": "Daglige EUR/USD-kurser over de seneste 10 \u00e5r. Kursen angiver, hvor mange amerikanske dollars der kr\u00e6ves for at k\u00f8be \u00e9n euro.",
+        "kilde": "Yahoo Finance og FRED",
+        "region_labels": [
+          "EUR/USD"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_140840/figure_05.png",
+      "metadata": {
+        "title": "EUR/USD og 10-\u00e5rig statsrente \u2014 nuv\u00e6rende niveauer vs. for 1 \u00e5r siden",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af EUR/USD-valutakursen og den 10-\u00e5rige amerikanske statsrente sammenlignet med niveauerne for \u00e9t \u00e5r siden. Da serierne har forskellige enheder, vises de i separate r\u00e6kker uden f\u00e6lles y-akse.",
+        "kilde": "Yahoo Finance og FRED",
+        "region_labels": [
+          "EUR/USD",
+          "10-\u00e5rig amerikansk statsrente"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_140840/figure_06.png",
+      "metadata": {
+        "title": "S&P 500 aktieindeks",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indeks",
+        "note": "Daglige lukkev\u00e6rdier for S&P 500-indekset over de seneste 10 \u00e5r. S&P 500 er det bredeste benchmark for det amerikanske aktiemarked og inkluderer de 500 st\u00f8rste b\u00f8rsnoterede selskaber i USA.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "S&P 500"
+        ],
+        "reviewer_flag": "Y-axis label 'Indeks' lacks units; should specify 'Indekspoint' or 'Points' to clarify the metric scale."
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_140840/figure_07.png",
+      "metadata": {
+        "title": "S&P 500 \u2014 nuv\u00e6rende niveau vs. for 1 \u00e5r siden",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af S&P 500-indeksets niveau sammenlignet med for \u00e9t \u00e5r siden. Viser den absolutte og relative \u00e6ndring i indekspoint.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "S&P 500"
+        ]
+      }
+    }
+  ]
+}
