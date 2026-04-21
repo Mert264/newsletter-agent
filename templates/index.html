@@ -716,38 +716,13 @@ function startRun() {
     if (msg.type === 'log') {
       appendLog(msg.text);
     } else if (msg.type === 'done') {
-      // Render all charts immediately; keep SSE open for interpretation events
       finishAllSteps();
       renderFigures(msg.figures);
       document.getElementById('runBtn').disabled = false;
       document.getElementById('statusMsg').textContent =
-        `Figurer klar — analyserer... (${msg.figures.length} figur(er))`;
+        `Færdig — ${msg.figures.length} figur(er)`;
       document.getElementById('statusMsg').className = '';
-      // Do NOT close eventSource here — interpretation events follow
-    } else if (msg.type === 'interpretation') {
-      const card = document.getElementById(`figcard-${msg.figure_index}`);
-      if (!card) return;
-      // Remove loading placeholder if present
-      const placeholder = card.querySelector('.interp-loading');
-      if (placeholder) placeholder.remove();
-      // Build and append bullet panel
-      const panel = document.createElement('div');
-      panel.className = 'interp-panel';
-      const header = document.createElement('div');
-      header.className = 'interp-header';
-      header.textContent = 'Analyse';
-      panel.appendChild(header);
-      msg.bullets.forEach(b => {
-        const div = document.createElement('div');
-        div.className = 'interp-bullet';
-        div.textContent = b;
-        panel.appendChild(div);
-      });
-      card.appendChild(panel);
     } else if (msg.type === 'interpretation_done') {
-      // All interpretations complete — close SSE and update status
-      document.getElementById('statusMsg').textContent =
-        `Færdig — ${document.querySelectorAll('.fig-card').length} figur(er) med analyse`;
       eventSource.close();
       eventSource = null;
     } else if (msg.type === 'error') {
