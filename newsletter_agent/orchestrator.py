@@ -505,7 +505,7 @@ def build_task_manifest(brief: str, preferred_types: list = None, routing_hint: 
     if routing_hint:
         parts.append(routing_hint)
     prompt = "\n".join(parts)
-    manifest = call_llm(prompt)
+    manifest = call_llm(prompt, model=model)
     # Save for debugging — overwritten each run
     _debug_path = _os.path.join("demo_output", "task_manifest_debug.json")
     _os.makedirs("demo_output", exist_ok=True)
