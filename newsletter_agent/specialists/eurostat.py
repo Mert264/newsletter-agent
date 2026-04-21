@@ -295,7 +295,8 @@ def fetch_eurostat(task: dict) -> dict:
             if parse_mode == "product_wide":
                 # Energy mix: returns wide DataFrame (time × product) — no cutoff filter
                 # because energy data is annual and we want all available years for context
-                df = _parse_product_wide(raw, label_map=known_meta.get("label_map"))
+                product_filter = s.get("product_filter")
+                df = _parse_product_wide(raw, label_map=known_meta.get("label_map"), product_filter=product_filter)
                 if df is not None and not df.empty:
                     dataframes[label] = df
             else:
