@@ -1,141 +1,88 @@
 {
   "specialists": [
-    "energy",
-    "equities",
-    "macro"
+    "rates"
   ],
-  "energy": {
+  "rates": {
     "series": [
       {
-        "ticker": "BZ=F",
-        "source": "yfinance",
-        "label": "Brent r\u00e5olie",
-        "region": "Global",
-        "unit": "USD/t\u00f8nde"
-      }
-    ],
-    "charts": [
-      {
-        "type": "A",
-        "title": "Brent r\u00e5olie \u2014 kursprisudvikling",
-        "x_label": "Dato",
-        "y_label": "USD/t\u00f8nde",
-        "period_days": 730,
-        "series_labels": [
-          "Brent r\u00e5olie"
-        ],
-        "note": "Daglige lukkepriser for Brent r\u00e5olie de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser p\u00e5 verdensmarkedet."
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tyskland",
+        "region": "Europa",
+        "unit": "%"
       },
       {
-        "type": "D",
-        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
-        "x_label": "",
-        "y_label": "USD/t\u00f8nde",
-        "period_days": 730,
-        "series_labels": [
-          "Brent r\u00e5olie"
-        ],
-        "before_date": "2025-04-16",
-        "after_date": "latest",
-        "col_before": "1 \u00e5r siden",
-        "col_after": "Nu",
-        "note": "Snapshot af Brent r\u00e5olieprisen nu sammenlignet med for \u00e9t \u00e5r siden."
-      }
-    ]
-  },
-  "equities": {
-    "series": [
-      {
-        "ticker": "GC=F",
-        "source": "yfinance",
-        "label": "Guld",
-        "region": "Global",
-        "unit": "USD/troy oz"
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Europa",
+        "unit": "%"
       },
       {
-        "ticker": "^GSPC",
-        "source": "yfinance",
-        "label": "S&P 500",
-        "region": "USA",
-        "unit": "Indeks"
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Europa",
+        "unit": "%"
       },
       {
-        "ticker": "EURUSD=X",
-        "source": "yfinance",
-        "label": "EUR/USD",
-        "region": "Global",
-        "unit": "USD per EUR"
-      }
-    ],
-    "charts": [
-      {
-        "type": "A",
-        "title": "Guld, S&P 500 og EUR/USD \u2014 indekseret prisudvikling",
-        "x_label": "Dato",
-        "y_label": "Indekseret (basis=100)",
-        "period_days": 730,
-        "series_labels": [
-          "Guld",
-          "S&P 500",
-          "EUR/USD"
-        ],
-        "note": "Daglige lukkepriser for guld, S&P 500 og EUR/USD, indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala og prisniveau."
+        "ticker": "IRLTLT01ESM156N",
+        "source": "fred",
+        "label": "Spanien",
+        "region": "Europa",
+        "unit": "%"
       },
       {
-        "type": "D",
-        "title": "Guld, S&P 500 og EUR/USD \u2014 n\u00f8gletal",
-        "x_label": "",
-        "y_label": "",
-        "period_days": 730,
-        "series_labels": [
-          "Guld",
-          "S&P 500",
-          "EUR/USD"
-        ],
-        "before_date": "2025-04-16",
-        "after_date": "latest",
-        "col_before": "1 \u00e5r siden",
-        "col_after": "Nu",
-        "note": "Snapshot af guld, S&P 500 og EUR/USD nu sammenlignet med for \u00e9t \u00e5r siden. \u00c6ndringer afspejler bev\u00e6gelsen i de respektive absolutte prisniveauer."
-      }
-    ]
-  },
-  "macro": {
-    "series": [
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "UK",
+        "region": "Europa",
+        "unit": "%"
+      },
       {
         "ticker": "DGS10",
         "source": "fred",
-        "label": "10-\u00e5rig amerikansk statsrente",
-        "region": "USA",
+        "label": "USA",
+        "region": "Amerika",
         "unit": "%"
       }
     ],
     "charts": [
       {
-        "type": "A",
-        "title": "10-\u00e5rig amerikansk statsrente",
-        "x_label": "Dato",
+        "type": "G",
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
+        "x_label": "Rente (%)",
         "y_label": "%",
         "period_days": 730,
         "series_labels": [
-          "10-\u00e5rig amerikansk statsrente"
+          "Tyskland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "UK",
+          "USA"
         ],
-        "note": "Den 10-\u00e5rige amerikanske statsobligationsrente (Treasury yield) de seneste to \u00e5r. Renten er et centralt benchmark for l\u00e5neomkostninger og markedets forventninger til v\u00e6kst og inflation."
+        "note": "Seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jest til lavest rente og afspejler investorernes tillid til de enkelte landes \u00f8konomi \u2014 jo h\u00f8jere rente, jo st\u00f8rre risikopr\u00e6mie kr\u00e6ver markedet."
       },
       {
         "type": "D",
-        "title": "10-\u00e5rig amerikansk statsrente \u2014 n\u00f8gletal",
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
         "period_days": 730,
         "series_labels": [
-          "10-\u00e5rig amerikansk statsrente"
+          "Tyskland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "UK",
+          "USA"
         ],
-        "before_date": "2025-04-16",
+        "before_date": "2024-04-01",
         "after_date": "latest",
         "col_before": "1 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Snapshot af den 10-\u00e5rige amerikanske statsrente nu sammenlignet med for \u00e9t \u00e5r siden. \u00c6ndringer er angivet i procentpoint."
+        "note": "Snapshot af de 10-\u00e5rige statsobligationsrenter for udvalgte lande. \u00c6ndringen viser bev\u00e6gelsen i procentpoint over det seneste \u00e5r."
       }
     ]
   }

@@ -1,0 +1,136 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "rates",
+    "series_specs": [
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tyskland",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ESM156N",
+        "source": "fred",
+        "label": "Spanien",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "UK",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA",
+        "region": "Amerika",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "G",
+      "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
+      "x_label": "Rente (%)",
+      "y_label": "%",
+      "period_days": 730,
+      "series_labels": [
+        "Tyskland",
+        "Frankrig",
+        "Italien",
+        "Spanien",
+        "UK",
+        "USA"
+      ],
+      "note": "Seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jest til lavest rente og afspejler investorernes tillid til de enkelte landes \u00f8konomi \u2014 jo h\u00f8jere rente, jo st\u00f8rre risikopr\u00e6mie kr\u00e6ver markedet."
+    },
+    "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "rates",
+    "series_specs": [
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tyskland",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ESM156N",
+        "source": "fred",
+        "label": "Spanien",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "UK",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA",
+        "region": "Amerika",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 730,
+      "series_labels": [
+        "Tyskland",
+        "Frankrig",
+        "Italien",
+        "Spanien",
+        "UK",
+        "USA"
+      ],
+      "before_date": "2024-04-01",
+      "after_date": "latest",
+      "col_before": "1 \u00e5r siden",
+      "col_after": "Nu",
+      "note": "Snapshot af de 10-\u00e5rige statsobligationsrenter for udvalgte lande. \u00c6ndringen viser bev\u00e6gelsen i procentpoint over det seneste \u00e5r."
+    },
+    "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente."
+  }
+]
