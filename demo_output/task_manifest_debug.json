@@ -1,88 +1,88 @@
 {
   "specialists": [
-    "rates"
+    "macro"
   ],
-  "rates": {
+  "macro": {
     "series": [
-      {
-        "ticker": "IRLTLT01DEM156N",
-        "source": "fred",
-        "label": "Deutschland",
-        "region": "Tyskland",
-        "unit": "%"
-      },
-      {
-        "ticker": "IRLTLT01FRM156N",
-        "source": "fred",
-        "label": "Frankrig",
-        "region": "Frankrig",
-        "unit": "%"
-      },
-      {
-        "ticker": "IRLTLT01ITM156N",
-        "source": "fred",
-        "label": "Italien",
-        "region": "Italien",
-        "unit": "%"
-      },
-      {
-        "ticker": "IRLTLT01ESM156N",
-        "source": "fred",
-        "label": "Spanien",
-        "region": "Spanien",
-        "unit": "%"
-      },
-      {
-        "ticker": "IRLTLT01GBM156N",
-        "source": "fred",
-        "label": "UK",
-        "region": "Storbritannien",
-        "unit": "%"
-      },
       {
         "ticker": "DGS10",
         "source": "fred",
         "label": "USA",
         "region": "USA",
         "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tyskland",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ESM156N",
+        "source": "fred",
+        "label": "Spanien",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "UK",
+        "region": "Europa",
+        "unit": "%"
       }
     ],
     "charts": [
       {
         "type": "G",
-        "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
-        "x_label": "Rente (%)",
-        "y_label": "%",
-        "period_days": 1825,
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 europ\u00e6iske lande og USA",
+        "x_label": "%",
+        "y_label": "",
+        "period_days": 730,
         "series_labels": [
-          "Deutschland",
+          "USA",
+          "Tyskland",
           "Frankrig",
           "Italien",
           "Spanien",
-          "UK",
-          "USA"
+          "UK"
         ],
-        "note": "Seneste observerede 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jeste til laveste renteniveau og afspejler investorernes tillid til de enkelte landes \u00f8konomi og kreditv\u00e6rdighed."
+        "note": "M\u00e5nedlige 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien, UK og USA. H\u00f8jere rentesp\u00e6nd afspejler st\u00f8rre risikopr\u00e6mie for kreditrisiko og \u00f8konomisk usikkerhed. Dataene viser investorernes vurdering af hver lands soliditet."
       },
       {
         "type": "D",
         "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
-        "period_days": 1825,
+        "period_days": 730,
         "series_labels": [
-          "Deutschland",
+          "USA",
+          "Tyskland",
           "Frankrig",
           "Italien",
           "Spanien",
-          "UK",
-          "USA"
+          "UK"
         ],
-        "before_date": "2020-04-01",
+        "before_date": "2024-01-01",
         "after_date": "latest",
-        "col_before": "5 \u00e5r siden",
+        "col_before": "1. jan 2024",
         "col_after": "Nu",
-        "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte lande. \u00c6ndringer er opgjort i procentpoint og viser, hvor meget renteniveauet har bev\u00e6get sig over de seneste fem \u00e5r."
+        "note": "Snapshot af 10-\u00e5rige statsobligationsrenter ved udgangen af 2024 og seneste observation. \u00c6ndringer viser det absolutte fald eller stigning i renteniveauet i procentpoint siden \u00e5rsskiftet."
       }
     ]
   }

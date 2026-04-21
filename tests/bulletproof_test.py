@@ -178,7 +178,8 @@ def run_pipeline_test(prompt_id, brief, period_days, preferred_types=None):
                 output_dir="demo_output/test",
                 preferred_types=preferred_types or ["A", "D"],
                 period_days=period_days if period_days > 0 else None,
-                model=TEST_MODEL,
+                # Tier 2 uses Sonnet — Haiku generates noisier manifests that confuse
+                # the Haiku reviewer (e.g. "over tid" in D table titles)
             )
     except Exception as e:
         pipeline_issues.append(f"EXCEPTION: {type(e).__name__}: {e}")

@@ -1,10 +1,21 @@
 {
   "summary": {
     "manifest": 0,
-    "pipeline": 0,
+    "pipeline": 4,
     "novel": 0
   },
-  "issues": {},
+  "issues": {
+    "Rentekurve & recessionssignal": [
+      "[reviewer] REVISION NEEDED: Chart type D (snapshot table) cannot display time-series data spanning '5 \u00e5r siden til i dag' \u2014 this requires type A (time series line chart). The metadata describes a historical progression, not a single snapshot. \u2014 re-rendering...",
+      "[reviewer] REVISION NEEDED: Chart type D (snapshot table) should not have a title mentioning 'over tid' (over time) \u2014 this indicates time-series data, which requires type A instead. \u2014 re-rendering..."
+    ],
+    "Gr\u00f8n energi vs. oliemajorer": [
+      "EXCEPTION: ValueError: cannot reindex on an axis with duplicate labels"
+    ],
+    "Globalt markedsscorecard": [
+      "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['US 10-\u00e5rig statsrente']"
+    ]
+  },
   "per_prompt": {
     "1": {
       "label": "Iran-krig \u2014 olie & gas",
@@ -32,7 +43,7 @@
       "manifest_issues": [],
       "manifest_warnings": [],
       "pipeline_issues": [],
-      "figures": 6
+      "figures": 3
     },
     "4": {
       "label": "Europ\u00e6iske statsrenter",
@@ -45,7 +56,10 @@
       "label": "Rentekurve & recessionssignal",
       "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [],
+      "pipeline_issues": [
+        "[reviewer] REVISION NEEDED: Chart type D (snapshot table) cannot display time-series data spanning '5 \u00e5r siden til i dag' \u2014 this requires type A (time series line chart). The metadata describes a historical progression, not a single snapshot. \u2014 re-rendering...",
+        "[reviewer] REVISION NEEDED: Chart type D (snapshot table) should not have a title mentioning 'over tid' (over time) \u2014 this indicates time-series data, which requires type A instead. \u2014 re-rendering..."
+      ],
       "figures": 4
     },
     "6": {
@@ -53,7 +67,7 @@
       "manifest_issues": [],
       "manifest_warnings": [],
       "pipeline_issues": [],
-      "figures": 2
+      "figures": 3
     },
     "7": {
       "label": "Globale aktiemarkeder",
@@ -70,11 +84,13 @@
       "figures": 0
     },
     "9": {
-      "label": "EU energimix",
+      "label": "Gr\u00f8n energi vs. oliemajorer",
       "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [],
-      "figures": 12
+      "pipeline_issues": [
+        "EXCEPTION: ValueError: cannot reindex on an axis with duplicate labels"
+      ],
+      "figures": 0
     },
     "12": {
       "label": "EU energiomstilling \u2014 over tid",
@@ -101,8 +117,10 @@
       "label": "Globalt markedsscorecard",
       "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [],
-      "figures": 3
+      "pipeline_issues": [
+        "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['US 10-\u00e5rig statsrente']"
+      ],
+      "figures": 1
     }
   }
 }
