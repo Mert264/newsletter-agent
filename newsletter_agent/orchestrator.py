@@ -131,10 +131,13 @@ Inflation (use EXACT series IDs below — do NOT invent HICP codes):
   CP0000EZ19M086NEST (Eurozone HICP headline, INDEX — set y_label="YoY %", period_days>=760)
   CP0000DE1M086NEST  (Germany CPI, INDEX — set y_label="YoY %", period_days>=760)
   CP0000FR1M086NEST  (France CPI, INDEX — set y_label="YoY %", period_days>=760)
-  CP0000GB1M086NEST  (UK CPI — WARNING: this series may return "does not exist" on FRED.
-                      If UK CPI is requested, use Eurozone HICP as a comparable proxy and
-                      note in the chart title/note that it covers the Eurozone, not UK.
-                      Do NOT invent alternative FRED IDs for UK CPI.)
+  GBRCPIALLMINMEI    (UK CPI All Items, Index 2015=100, monthly — OECD via FRED. Use this for UK CPI.
+                      Set y_label="YoY %" — the pipeline applies YoY transform automatically.
+                      Do NOT use CP0000GB1M086NEST — it does not exist on FRED.)
+  JPNCPIALLMINMEI    (Japan CPI All Items, Index 2015=100, monthly — OECD via FRED. Use for Japan CPI.
+                      Set y_label="YoY %" — pipeline applies YoY transform.)
+  CHNCPIALLMINMEI    (China CPI All Items, Index 2015=100, monthly — OECD via FRED. Use for China CPI.
+                      Set y_label="YoY %" — pipeline applies YoY transform.)
 Bond yields (already in % — do NOT apply YoY):
   IRLTLT01EZM156N (Eurozone 10Y bond yield, monthly %)
   IRLTLT01DEM156N (Germany 10Y Bund, monthly %)
