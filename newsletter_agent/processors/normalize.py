@@ -42,7 +42,9 @@ def compute_yoy(df: pd.DataFrame, column: str) -> pd.DataFrame:
         avg_delta = (df.index[-1] - df.index[0]).days / (len(df) - 1)
     else:
         avg_delta = 1
-    if avg_delta >= 25:    # monthly data (FRED CPI, PCE, etc.)
+    if avg_delta >= 60:    # quarterly data (FRED GDP, CLVMEURSCAB1GQEA19, etc.)
+        periods = 4
+    elif avg_delta >= 25:  # monthly data (FRED CPI, PCE, etc.)
         periods = 12
     elif avg_delta >= 6:   # weekly
         periods = 52
