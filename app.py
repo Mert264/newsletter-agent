@@ -125,9 +125,6 @@ def start_run():
                     for entry in json.load(f):
                         rerender_ctx[entry["figure_id"]] = entry
 
-            # Interpretation disabled — bullets hidden until re-enabled
-            bullets_by_index = {}
-
             figures = [
                 {
                     "path":          os.path.basename(p["path"]),
@@ -138,7 +135,6 @@ def start_run():
                     "chart_type":    p["metadata"].get("chart_type", "A"),
                     "figure_id":     i,
                     "rerender_ctx":  rerender_ctx.get(i, {}),
-                    "bullets":       bullets_by_index.get(i, []),
                 }
                 for i, p in enumerate(packages)
             ]
@@ -148,7 +144,6 @@ def start_run():
             with open(_LAST_RESULT_PATH, "w") as _f:
                 json.dump(done_msg, _f, ensure_ascii=False)
             _run_queue.put(done_msg)
-            _run_queue.put({"type": "interpretation_done"})
 
         except Exception as exc:
             err_msg = {"type": "error", "text": str(exc)}
