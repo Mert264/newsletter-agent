@@ -131,13 +131,23 @@ Inflation (use EXACT series IDs below — do NOT invent HICP codes):
   CP0000EZ19M086NEST (Eurozone HICP headline, INDEX — set y_label="YoY %", period_days>=760)
   CP0000DE1M086NEST  (Germany CPI, INDEX — set y_label="YoY %", period_days>=760)
   CP0000FR1M086NEST  (France CPI, INDEX — set y_label="YoY %", period_days>=760)
-  GBRCPIALLMINMEI    (UK CPI All Items, Index 2015=100, monthly — OECD via FRED. Use this for UK CPI.
-                      Set y_label="YoY %" — the pipeline applies YoY transform automatically.
-                      Do NOT use CP0000GB1M086NEST — it does not exist on FRED.)
-  JPNCPIALLMINMEI    (Japan CPI All Items, Index 2015=100, monthly — OECD via FRED. Use for Japan CPI.
-                      Set y_label="YoY %" — pipeline applies YoY transform.)
-  CHNCPIALLMINMEI    (China CPI All Items, Index 2015=100, monthly — OECD via FRED. Use for China CPI.
-                      Set y_label="YoY %" — pipeline applies YoY transform.)
+  CPALTT01GBM659N    (UK CPI YoY rate, already in % — OECD MEI via FRED, updated monthly.
+                      CRITICAL: This series is ALREADY the year-over-year % change. Set y_label="%",
+                      NOT "YoY %" — using "YoY %" would apply a second transform and corrupt the data.
+                      Do NOT use CP0000GB1M086NEST or GBRCPIALLMINMEI — they are outdated/missing on FRED.)
+  CPALTT01JPM659N    (Japan CPI YoY rate, already in % — OECD MEI via FRED, updated monthly.
+                      Same rule: y_label="%" not "YoY %".)
+  CPALTT01CNM659N    (China CPI YoY rate, already in % — OECD MEI via FRED.
+                      Same rule: y_label="%" not "YoY %".)
+  CPALTT01USM659N    (US CPI YoY rate, already in % — OECD MEI via FRED. Use this instead of
+                      CPIAUCSL when comparing multiple countries on the same chart, to ensure all
+                      series are already in YoY % and no transform is needed. y_label="%".)
+  CPALTT01EZM659N    (Eurozone CPI YoY rate, already in % — OECD MEI via FRED. Same rule: y_label="%".
+                      Use instead of CP0000EZ19M086NEST for multi-country inflation comparisons.)
+MULTI-COUNTRY INFLATION RULE: When comparing CPI inflation across multiple countries/regions on
+ONE chart, ALWAYS use CPALTT01{CC}M659N series for ALL countries (US=USM, Eurozone=EZM,
+UK=GBM, Japan=JPM, China=CNM). All are already YoY rates. Set y_label="%" for the entire chart.
+NEVER mix a pre-computed YoY series (CPALTT) with an index series (CPIAUCSL) on the same chart.
 Bond yields (already in % — do NOT apply YoY):
   IRLTLT01EZM156N (Eurozone 10Y bond yield, monthly %)
   IRLTLT01DEM156N (Germany 10Y Bund, monthly %)
