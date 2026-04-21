@@ -178,33 +178,32 @@ def _add_footer(fig, spec: dict) -> float:
 def _place_end_labels(ax, df, colors):
     """
     Place series labels at the end of each line, staggered vertically to avoid overlap.
-    Uses adjusted y-positions in data coordinates so labels never stack on top of each other.
+    Labels are clamped to the visible axis range so they never escape above the title.
     """
+    ylo, yhi = ax.get_ylim()
+
     label_positions = []  # (y_data, col_name, color)
     for i, col in enumerate(df.columns):
         s = df[col].dropna()
         if s.empty:
             continue
-        label_positions.append((s.iloc[-1], col, colors[i]))
+        raw_y = s.iloc[-1]
+        # Clamp to visible axis so clipped series don't float labels above the plot
+        clamped_y = max(ylo, min(yhi * 0.97, raw_y))
+        label_positions.append((clamped_y, col, colors[i]))
 
     if not label_positions:
         return
 
-    # Sort by y value ascending
     label_positions.sort(key=lambda x: x[0])
 
-    # Get axis y range to compute minimum separation
-    ylo, yhi = ax.get_ylim()
     min_gap = (yhi - ylo) * 0.09  # minimum 9% of axis range between labels
 
-    # Spread labels that are too close — push upward
-    adjusted = [list(p) for p in label_positions]  # [y_adj, name, color]
+    adjusted = [list(p) for p in label_positions]
     for k in range(1, len(adjusted)):
         if adjusted[k][0] - adjusted[k-1][0] < min_gap:
             adjusted[k][0] = adjusted[k-1][0] + min_gap
 
-    # Re-centre the stack around the midpoint of actual data positions
-    # so labels don't all float to the top when many are clustered
     if len(adjusted) > 1:
         mid_actual = (label_positions[0][0] + label_positions[-1][0]) / 2
         mid_adjusted = (adjusted[0][0] + adjusted[-1][0]) / 2
@@ -212,14 +211,17 @@ def _place_end_labels(ax, df, colors):
         for item in adjusted:
             item[0] += shift
 
+    # Final clamp after staggering — guarantee nothing escapes visible range
+    margin = (yhi - ylo) * 0.03
+    for item in adjusted:
+        item[0] = max(ylo + margin, min(yhi - margin, item[0]))
+
     for y_adj, col, color in adjusted:
         x_end = df[col].dropna().index[-1]
-        # Place text at adjusted y in data coords (avoids overlap),
-        # offset 6 pts to the right of the line end x position
         ax.annotate(
             col,
-            xy=(x_end, y_adj),          # text anchor at adjusted y (data coords)
-            xytext=(6, 0),              # shift text 6 pts right of the anchor
+            xy=(x_end, y_adj),
+            xytext=(6, 0),
             textcoords="offset points",
             fontsize=BRAND["font_size_label"],
             color=color,
