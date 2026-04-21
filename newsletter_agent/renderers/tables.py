@@ -111,6 +111,11 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     table.auto_set_font_size(False)
     table.set_fontsize(9)
 
+    # Expand header row height when headers wrap to multiple lines
+    if max_header_lines > 1:
+        for j in range(n_cols):
+            table[0, j].set_height(table[0, j].get_height() * max_header_lines * 0.9)
+
     # Style header
     for j in range(n_cols):
         cell = table[0, j]
