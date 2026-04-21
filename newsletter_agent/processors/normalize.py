@@ -36,8 +36,11 @@ def resample_to_freq(df: pd.DataFrame, freq: str = "W") -> pd.DataFrame:
 
 def index_to_100(df: pd.DataFrame, base_date: pd.Timestamp = None) -> pd.DataFrame:
     """Re-index all columns so the first row (or base_date row) = 100."""
+    if df.index.duplicated().any():
+        df = df[~df.index.duplicated(keep="last")]
     if base_date is not None:
-        base = df.loc[base_date]
+        base_row = df.loc[base_date]
+        base = base_row.iloc[0] if isinstance(base_row, pd.DataFrame) else base_row
     else:
         base = df.iloc[0]
     return (df / base) * 100
