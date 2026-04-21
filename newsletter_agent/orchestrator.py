@@ -117,6 +117,7 @@ Growth & labor:
   UNRATE (Unemployment rate %), PAYEMS (Nonfarm payrolls, thousands)
   RSAFS (Retail sales), UMCSENT (U Michigan consumer sentiment)
   ICSA (Initial jobless claims, weekly)
+  NAEXKP01JPQ657S (Japan real GDP, quarterly — OECD, 2015=100; set y_label="YoY %" and period_days>=760)
 Central banks:
   ECBDFR (ECB deposit rate), BOEBR (Bank of England rate)
   JPNRATE (Bank of Japan policy rate — if available, else skip)
