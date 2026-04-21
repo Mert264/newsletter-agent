@@ -519,11 +519,12 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
         if chart_type == "A":
             merged_for_events = merged
 
+    _no_axis_types = {"D", "P"}
     metadata = {
         "title":         chart_spec["title"],
         "chart_type":    chart_spec.get("type", "?"),
-        "x_label":       chart_spec.get("x_label", ""),
-        "y_label":       chart_spec.get("y_label", ""),
+        "x_label":       "" if chart_spec.get("type") in _no_axis_types else chart_spec.get("x_label", ""),
+        "y_label":       "" if chart_spec.get("type") in _no_axis_types else chart_spec.get("y_label", ""),
         "note":          chart_spec.get("note", ""),
         "kilde":         kilde_str,
         "region_labels": list(dfs.keys()),
