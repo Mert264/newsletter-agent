@@ -171,6 +171,16 @@ Source type: "eurostat_ts" for time series, "eurostat_mix" for cross-sectional (
 Example eurostat entry:
   {"ticker": "eu_unemployment", "source": "eurostat_ts", "label": "EU27 ledighed (%)", "unit": "%"}
 
+PRODUCT FILTER for eu_energy_mix:
+The eu_energy_mix dataset contains all energy products: Naturgas, Kul, Kerneenergi, Vandkraft,
+Vindkraft, Solenergi, Olie, Bioenergi. By default ALL products are shown.
+CRITICAL: When the brief explicitly names specific energy sources to include, you MUST add a
+"product_filter" field to the series entry listing ONLY those Danish display names:
+  {"ticker": "eu_energy_mix", "source": "eurostat_mix", "label": "EU energimix",
+   "product_filter": ["Naturgas", "Kul", "Kerneenergi", "Vandkraft", "Vindkraft", "Solenergi"]}
+The available Danish names are exactly: Naturgas, Kul, Kerneenergi, Vandkraft, Vindkraft, Solenergi, Olie, Bioenergi.
+Omit "product_filter" entirely when the brief does not restrict the energy sources to show.
+
 NOT available (do NOT attempt — these sources do not exist in this system):
   - GIE gas storage, CME FedWatch probability data, Bloomberg, BlackRock, JPMorgan, ICE real-time data
   - UK NBP gas prices (not on yfinance — only TTF=F is available for European gas)
