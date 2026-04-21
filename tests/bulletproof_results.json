@@ -1,40 +1,16 @@
 {
   "summary": {
     "manifest": 0,
-    "pipeline": 24,
+    "pipeline": 2,
     "novel": 1
   },
   "issues": {
-    "Fed, ECB & Bank of England": [
-      "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Bank of England (UK)']",
-      "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Bank of England (UK)']",
-      "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Bank of England (UK)']",
-      "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Bank of England (UK)']",
-      "Failed to fetch FRED 'IRSTCB01GBM156N' (Bank of England (UK)) after retries: Bad Request.  The series does not exist.",
-      "    [macro] FRED fetch failed for 'IRSTCB01GBM156N' (attempt 1/5): Bad Request.  The series does not exist.. Retrying in 1s...",
-      "    [macro] FRED fetch failed for 'IRSTCB01GBM156N' (attempt 2/5): Bad Request.  The series does not exist.. Retrying in 2s...",
-      "    [macro] FRED fetch failed for 'IRSTCB01GBM156N' (attempt 3/5): Bad Request.  The series does not exist.. Retrying in 4s...",
-      "    [macro] FRED fetch failed for 'IRSTCB01GBM156N' (attempt 4/5): Bad Request.  The series does not exist.. Retrying in 8s...",
-      "    [macro] Failed to fetch FRED 'IRSTCB01GBM156N' (Bank of England (UK)) after retries: Bad Request.  The series does not exist.",
-      "[reviewer] REVISION NEEDED: Title mentions three central banks (Fed, ECB, Bank of England) but region_labels contains only two series (Federal Reserve and ECB). Bank of England data is missing. \u2014 re-rendering...",
-      "[reviewer] REVISION NEEDED: Title mentions three central banks (Fed, ECB, Bank of England) but region_labels contains only two series (Federal Reserve and ECB). Bank of England data is missing. \u2014 re-rendering..."
-    ],
     "Global inflation \u2014 US, EU, UK, JP": [
-      "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Euroomr\u00e5det']",
-      "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Euroomr\u00e5det']",
-      "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Euroomr\u00e5det']",
-      "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Euroomr\u00e5det']",
-      "Failed to fetch FRED 'CPALTT01EZM659N' (Euroomr\u00e5det) after retries: Bad Request.  The series does not exist.",
-      "    [macro] FRED fetch failed for 'CPALTT01EZM659N' (attempt 1/5): Bad Request.  The series does not exist.. Retrying in 1s...",
-      "    [macro] FRED fetch failed for 'CPALTT01EZM659N' (attempt 2/5): Bad Request.  The series does not exist.. Retrying in 2s...",
-      "    [macro] FRED fetch failed for 'CPALTT01EZM659N' (attempt 3/5): Bad Request.  The series does not exist.. Retrying in 4s...",
-      "    [macro] FRED fetch failed for 'CPALTT01EZM659N' (attempt 4/5): Bad Request.  The series does not exist.. Retrying in 8s...",
-      "    [macro] Failed to fetch FRED 'CPALTT01EZM659N' (Euroomr\u00e5det) after retries: Bad Request.  The series does not exist.",
-      "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the Note clarifies data are already year-over-year percentage changes from OECD MEI \u2014 they should be labeled '%', not indexed to 100. \u2014 re-rendering...",
-      "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the Note clarifies that all series are already expressed as year-over-year percentage change from OECD MEI \u2014 they should be labeled in % (percent), not as an indexed series with base=100. \u2014 re-rendering..."
+      "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the chart shows year-over-year percentage changes in headline CPI, which are naturally expressed as percentages (%), not indexed levels. The correct Y-axis label should be '%' or 'Procent'. \u2014 re-rendering...",
+      "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the chart shows year-over-year CPI inflation rates (%), not indexed levels. The correct unit should be '%' or 'Procent'. \u2014 re-rendering..."
     ],
     "_code_checks": [
-      "Reviewer missing Type D no-axis rule"
+      "BOEBR still listed in SYSTEM_PROMPT without 'unreliable' warning"
     ]
   },
   "per_prompt": {
@@ -84,20 +60,7 @@
       "label": "Fed, ECB & Bank of England",
       "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [
-        "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Bank of England (UK)']",
-        "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Bank of England (UK)']",
-        "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Bank of England (UK)']",
-        "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Bank of England (UK)']",
-        "Failed to fetch FRED 'IRSTCB01GBM156N' (Bank of England (UK)) after retries: Bad Request.  The series does not exist.",
-        "    [macro] FRED fetch failed for 'IRSTCB01GBM156N' (attempt 1/5): Bad Request.  The series does not exist.. Retrying in 1s...",
-        "    [macro] FRED fetch failed for 'IRSTCB01GBM156N' (attempt 2/5): Bad Request.  The series does not exist.. Retrying in 2s...",
-        "    [macro] FRED fetch failed for 'IRSTCB01GBM156N' (attempt 3/5): Bad Request.  The series does not exist.. Retrying in 4s...",
-        "    [macro] FRED fetch failed for 'IRSTCB01GBM156N' (attempt 4/5): Bad Request.  The series does not exist.. Retrying in 8s...",
-        "    [macro] Failed to fetch FRED 'IRSTCB01GBM156N' (Bank of England (UK)) after retries: Bad Request.  The series does not exist.",
-        "[reviewer] REVISION NEEDED: Title mentions three central banks (Fed, ECB, Bank of England) but region_labels contains only two series (Federal Reserve and ECB). Bank of England data is missing. \u2014 re-rendering...",
-        "[reviewer] REVISION NEEDED: Title mentions three central banks (Fed, ECB, Bank of England) but region_labels contains only two series (Federal Reserve and ECB). Bank of England data is missing. \u2014 re-rendering..."
-      ],
+      "pipeline_issues": [],
       "figures": 2
     },
     "7": {
@@ -140,18 +103,8 @@
       "manifest_issues": [],
       "manifest_warnings": [],
       "pipeline_issues": [
-        "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Euroomr\u00e5det']",
-        "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Euroomr\u00e5det']",
-        "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Euroomr\u00e5det']",
-        "[warn] series_labels mismatch \u2014 these labels were requested but not fetched: ['Euroomr\u00e5det']",
-        "Failed to fetch FRED 'CPALTT01EZM659N' (Euroomr\u00e5det) after retries: Bad Request.  The series does not exist.",
-        "    [macro] FRED fetch failed for 'CPALTT01EZM659N' (attempt 1/5): Bad Request.  The series does not exist.. Retrying in 1s...",
-        "    [macro] FRED fetch failed for 'CPALTT01EZM659N' (attempt 2/5): Bad Request.  The series does not exist.. Retrying in 2s...",
-        "    [macro] FRED fetch failed for 'CPALTT01EZM659N' (attempt 3/5): Bad Request.  The series does not exist.. Retrying in 4s...",
-        "    [macro] FRED fetch failed for 'CPALTT01EZM659N' (attempt 4/5): Bad Request.  The series does not exist.. Retrying in 8s...",
-        "    [macro] Failed to fetch FRED 'CPALTT01EZM659N' (Euroomr\u00e5det) after retries: Bad Request.  The series does not exist.",
-        "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the Note clarifies data are already year-over-year percentage changes from OECD MEI \u2014 they should be labeled '%', not indexed to 100. \u2014 re-rendering...",
-        "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the Note clarifies that all series are already expressed as year-over-year percentage change from OECD MEI \u2014 they should be labeled in % (percent), not as an indexed series with base=100. \u2014 re-rendering..."
+        "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the chart shows year-over-year percentage changes in headline CPI, which are naturally expressed as percentages (%), not indexed levels. The correct Y-axis label should be '%' or 'Procent'. \u2014 re-rendering...",
+        "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the chart shows year-over-year CPI inflation rates (%), not indexed levels. The correct unit should be '%' or 'Procent'. \u2014 re-rendering..."
       ],
       "figures": 2
     },

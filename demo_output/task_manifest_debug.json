@@ -1,88 +1,70 @@
 {
   "specialists": [
-    "rates"
+    "macro"
   ],
-  "rates": {
+  "macro": {
     "series": [
       {
-        "ticker": "IRLTLT01DEM156N",
-        "source": "fred",
-        "label": "Tyskland",
-        "region": "Europa",
-        "unit": "%"
-      },
-      {
-        "ticker": "IRLTLT01FRM156N",
-        "source": "fred",
-        "label": "Frankrig",
-        "region": "Europa",
-        "unit": "%"
-      },
-      {
-        "ticker": "IRLTLT01ITM156N",
-        "source": "fred",
-        "label": "Italien",
-        "region": "Europa",
-        "unit": "%"
-      },
-      {
-        "ticker": "IRLTLT01ESM156N",
-        "source": "fred",
-        "label": "Spanien",
-        "region": "Europa",
-        "unit": "%"
-      },
-      {
-        "ticker": "IRLTLT01GBM156N",
-        "source": "fred",
-        "label": "UK",
-        "region": "Europa",
-        "unit": "%"
-      },
-      {
-        "ticker": "DGS10",
+        "ticker": "CPALTT01USM659N",
         "source": "fred",
         "label": "USA",
-        "region": "Amerika",
+        "region": "USA",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01DEM659N",
+        "source": "fred",
+        "label": "EU (DE)",
+        "region": "EU",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01GBM659N",
+        "source": "fred",
+        "label": "Storbritannien",
+        "region": "UK",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01JPM659N",
+        "source": "fred",
+        "label": "Japan",
+        "region": "Japan",
         "unit": "%"
       }
     ],
     "charts": [
       {
-        "type": "G",
-        "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
-        "x_label": "Rente (%)",
+        "type": "A",
+        "title": "Global inflation \u2014 headline CPI \u00e5r-over-\u00e5r",
+        "x_label": "Dato",
         "y_label": "%",
-        "period_days": 730,
+        "period_days": 1825,
         "series_labels": [
-          "Tyskland",
-          "Frankrig",
-          "Italien",
-          "Spanien",
-          "UK",
-          "USA"
+          "USA",
+          "EU (DE)",
+          "Storbritannien",
+          "Japan"
         ],
-        "note": "Seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jest til lavest rente og afspejler investorernes tillid til de enkelte landes \u00f8konomi \u2014 jo h\u00f8jere rente, jo st\u00f8rre risikopr\u00e6mie kr\u00e6ver markedet."
+        "note": "M\u00e5nedlig forbrugerprisindflation (headline CPI, \u00e5r-over-\u00e5r i procent) for USA, Euroomr\u00e5det (repr\u00e6senteret ved Tyskland), Storbritannien og Japan. Serien viser inflationstoppen i 2021\u20132022 og den efterf\u00f8lgende disinflation i retning mod centralbankernes 2%-m\u00e5l."
       },
       {
         "type": "D",
-        "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
+        "title": "Global inflation \u2014 snapshot af n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
-        "period_days": 730,
+        "period_days": 1825,
         "series_labels": [
-          "Tyskland",
-          "Frankrig",
-          "Italien",
-          "Spanien",
-          "UK",
-          "USA"
+          "USA",
+          "EU (DE)",
+          "Storbritannien",
+          "Japan"
         ],
-        "before_date": "2024-04-01",
+        "before_date": "2022-06-01",
         "after_date": "latest",
-        "col_before": "1 \u00e5r siden",
+        "col_before": "Inflationstop (jun 2022)",
         "col_after": "Nu",
-        "note": "Snapshot af de 10-\u00e5rige statsobligationsrenter for udvalgte lande. \u00c6ndringen viser bev\u00e6gelsen i procentpoint over det seneste \u00e5r."
+        "note": "Sammenligning af headline CPI \u00e5r-over-\u00e5r ved inflationstoppen i juni 2022 og det seneste tilg\u00e6ngelige datapunkt. \u00c6ndringen illustrerer omfanget af disinflationen i de fire store \u00f8konomier."
       }
     ]
   }
