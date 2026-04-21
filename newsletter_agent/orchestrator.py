@@ -120,7 +120,7 @@ Growth & labor:
   NAEXKP01JPQ657S (Japan real GDP, quarterly — OECD, 2015=100; set y_label="YoY %" and period_days>=760)
 Central banks:
   ECBDFR (ECB deposit rate)
-  IUDSOIA (Sterling Overnight Index Average — Bank of England rate proxy, daily; tracks BoE Bank Rate closely. Use this for BoE policy rate. BOEBR and IRSTCB01GBM156N do NOT exist on FRED.)
+  IUDSOIA (Sterling Overnight Index Average — Bank of England rate proxy, daily; tracks BoE Bank Rate closely. Use this for BoE policy rate. BOEBR is unreliable and does NOT exist on FRED. IRSTCB01GBM156N also does NOT exist on FRED.)
   JPNRATE (Bank of Japan policy rate — if available, else skip)
 
 EUROPEAN MACRO — FRED series:

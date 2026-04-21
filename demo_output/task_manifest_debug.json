@@ -1,70 +1,64 @@
 {
   "specialists": [
-    "macro"
+    "commodities"
   ],
-  "macro": {
+  "commodities": {
     "series": [
       {
-        "ticker": "CPALTT01USM659N",
-        "source": "fred",
-        "label": "USA",
-        "region": "USA",
-        "unit": "%"
+        "ticker": "GC=F",
+        "source": "yfinance",
+        "label": "Guld",
+        "region": "Global",
+        "unit": "USD/troy oz"
       },
       {
-        "ticker": "CPALTT01DEM659N",
-        "source": "fred",
-        "label": "EU (DE)",
-        "region": "EU",
-        "unit": "%"
-      },
-      {
-        "ticker": "CPALTT01GBM659N",
-        "source": "fred",
-        "label": "Storbritannien",
-        "region": "UK",
-        "unit": "%"
-      },
-      {
-        "ticker": "CPALTT01JPM659N",
-        "source": "fred",
-        "label": "Japan",
-        "region": "Japan",
-        "unit": "%"
+        "ticker": "HG=F",
+        "source": "yfinance",
+        "label": "Kobber",
+        "region": "Global",
+        "unit": "USD/lb"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Global inflation \u2014 headline CPI \u00e5r-over-\u00e5r",
+        "title": "Guld og kobber \u2014 safe haven vs. industrimetal",
         "x_label": "Dato",
-        "y_label": "%",
-        "period_days": 1825,
+        "y_label": "Indekseret (basis=100)",
+        "period_days": 730,
         "series_labels": [
-          "USA",
-          "EU (DE)",
-          "Storbritannien",
-          "Japan"
+          "Guld",
+          "Kobber"
         ],
-        "note": "M\u00e5nedlig forbrugerprisindflation (headline CPI, \u00e5r-over-\u00e5r i procent) for USA, Euroomr\u00e5det (repr\u00e6senteret ved Tyskland), Storbritannien og Japan. Serien viser inflationstoppen i 2021\u20132022 og den efterf\u00f8lgende disinflation i retning mod centralbankernes 2%-m\u00e5l."
+        "note": "Guldprisen indekseret til 100 ved periodens start for sammenligning med kobberprisen. Guld f\u00f8lges som safe haven-aktiv i perioder med geopolitisk uro, mens kobber afspejler industriel eftersp\u00f8rgsel og den globale v\u00e6kstcyklus.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran-krigen udbyder"
+          }
+        ]
       },
       {
         "type": "D",
-        "title": "Global inflation \u2014 snapshot af n\u00f8gletal",
+        "title": "N\u00f8gletal \u2014 guld og kobber f\u00f8r og efter Iran-krigen",
         "x_label": "",
-        "y_label": "%",
-        "period_days": 1825,
+        "y_label": "Indekseret (basis=100)",
+        "period_days": 730,
         "series_labels": [
-          "USA",
-          "EU (DE)",
-          "Storbritannien",
-          "Japan"
+          "Guld",
+          "Kobber"
         ],
-        "before_date": "2022-06-01",
+        "before_date": "2026-02-28",
         "after_date": "latest",
-        "col_before": "Inflationstop (jun 2022)",
+        "col_before": "28. feb 2026",
         "col_after": "Nu",
-        "note": "Sammenligning af headline CPI \u00e5r-over-\u00e5r ved inflationstoppen i juni 2022 og det seneste tilg\u00e6ngelige datapunkt. \u00c6ndringen illustrerer omfanget af disinflationen i de fire store \u00f8konomier."
+        "note": "Snapshot af guld- og kobberpriser indekseret til 100 ved periodens start. Tabellen viser niveauer og \u00e6ndring siden Iran-krigens udbrud den 28. februar 2026.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran-krigen udbyder"
+          }
+        ]
       }
     ]
   }

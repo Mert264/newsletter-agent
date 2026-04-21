@@ -1,14 +1,10 @@
 {
   "summary": {
     "manifest": 0,
-    "pipeline": 2,
+    "pipeline": 0,
     "novel": 1
   },
   "issues": {
-    "Global inflation \u2014 US, EU, UK, JP": [
-      "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the chart shows year-over-year percentage changes in headline CPI, which are naturally expressed as percentages (%), not indexed levels. The correct Y-axis label should be '%' or 'Procent'. \u2014 re-rendering...",
-      "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the chart shows year-over-year CPI inflation rates (%), not indexed levels. The correct unit should be '%' or 'Procent'. \u2014 re-rendering..."
-    ],
     "_code_checks": [
       "BOEBR still listed in SYSTEM_PROMPT without 'unreliable' warning"
     ]
@@ -40,7 +36,7 @@
       "manifest_issues": [],
       "manifest_warnings": [],
       "pipeline_issues": [],
-      "figures": 6
+      "figures": 9
     },
     "4": {
       "label": "Europ\u00e6iske statsrenter",
@@ -102,10 +98,7 @@
       "label": "Global inflation \u2014 US, EU, UK, JP",
       "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [
-        "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the chart shows year-over-year percentage changes in headline CPI, which are naturally expressed as percentages (%), not indexed levels. The correct Y-axis label should be '%' or 'Procent'. \u2014 re-rendering...",
-        "[reviewer] REVISION NEEDED: Y-axis label states 'Indekseret (basis=100)' but the chart shows year-over-year CPI inflation rates (%), not indexed levels. The correct unit should be '%' or 'Procent'. \u2014 re-rendering..."
-      ],
+      "pipeline_issues": [],
       "figures": 2
     },
     "14": {

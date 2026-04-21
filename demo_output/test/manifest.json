@@ -9,14 +9,14 @@
         "chart_type": "G",
         "x_label": "Rente (%)",
         "y_label": "%",
-        "note": "Seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jeste til laveste rente, hvilket afspejler markedets relative tillid til de enkelte landes \u00f8konomi og kreditv\u00e6rdighed.",
+        "note": "Seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jest til lavest rente og afspejler investorernes risikovurdering af hvert lands \u00f8konomi og offentlige finanser.",
         "kilde": "FRED",
         "region_labels": [
           "Tyskland",
           "Frankrig",
           "Italien",
           "Spanien",
-          "Storbritannien",
+          "UK",
           "USA"
         ]
       }
@@ -28,14 +28,14 @@
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte lande. \u00c6ndringen viser forskydningen i renteniveau siden begyndelsen af 2024 og illustrerer, hvordan markedernes krav til afkast har udviklet sig over perioden.",
+        "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte lande. \u00c6ndringen viser forskydningen i renteniveauet fra januar 2024 til i dag, m\u00e5lt i procentpoint.",
         "kilde": "FRED",
         "region_labels": [
           "Tyskland",
           "Frankrig",
           "Italien",
           "Spanien",
-          "Storbritannien",
+          "UK",
           "USA"
         ]
       }
