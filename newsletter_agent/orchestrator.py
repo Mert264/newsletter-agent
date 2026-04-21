@@ -252,7 +252,7 @@ Rules:
   NOT percentages. Always set y_label to "YoY %" for these — the pipeline applies the
   year-over-year transform automatically. Never plot the raw index level.
 - CRITICAL: Breakeven rates (T5YIE, T10YIE) and all FRED yield/rate series (DGS2, DGS10, DFF,
-  ECBDFR, IRSTCB01GBM156N, T10Y2Y, IRLTLT01*) are ALREADY in percent form. Set y_label to "%" for
+  ECBDFR, IUDSOIA, T10Y2Y, IRLTLT01*) are ALREADY in percent form. Set y_label to "%" for
   these — NEVER "YoY %" — the pipeline must NOT apply a year-over-year transform to them.
 - CRITICAL — COMPANION TABLE y_label: The companion Type D table for a Type A rate/yield chart
   (where parent y_label="%") MUST also have y_label="%". This tells the pipeline to display
