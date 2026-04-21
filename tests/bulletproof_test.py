@@ -12,6 +12,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 os.chdir(Path(__file__).parent.parent)
 
+# Use Haiku for test LLM calls — cheaper + faster, sufficient for manifest validation
+TEST_MODEL = "claude-haiku-4-5-20251001"
+
 # ── Prompt registry (mirrors index.html BRIEFS + BRIEF_PERIODS) ────────────
 PROMPTS = {
     1:  {"brief": "Iran erklærede krig mod Israel den 28. februar 2026. Vis Brent-råolie og europæisk naturgas (TTF), og markér udbruddet den 28. februar 2026. Vis også amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA på gas.",
