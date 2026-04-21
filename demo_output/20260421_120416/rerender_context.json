@@ -1,0 +1,97 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "energy",
+    "series_specs": [
+      {
+        "ticker": "BZ=F",
+        "source": "yfinance",
+        "label": "Brent r\u00e5olie",
+        "region": "Global",
+        "unit": "USD/barrel"
+      },
+      {
+        "ticker": "TTF=F",
+        "source": "yfinance",
+        "label": "TTF naturgas (Europa)",
+        "region": "Europa",
+        "unit": "EUR/MWh",
+        "conversion": "EUR_MWh_to_USD_MWh"
+      },
+      {
+        "ticker": "NG=F",
+        "source": "yfinance",
+        "label": "Henry Hub naturgas (USA)",
+        "region": "USA",
+        "unit": "USD/MMBtu",
+        "conversion": "USD_MMBtu_to_USD_MWh"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Brent r\u00e5olie \u2014 pris i USD/barrel",
+      "x_label": "Dato",
+      "y_label": "USD/barrel",
+      "period_days": 730,
+      "series_labels": [
+        "Brent r\u00e5olie"
+      ],
+      "note": "Daglige lukkepriser for Brent r\u00e5olie. Brent er det globale benchmark for r\u00e5oliepriser og reagerer typisk hurtigt p\u00e5 geopolitiske chok i Mellem\u00f8sten. Den lodrette linje markerer Irans krigserkl\u00e6ring mod Israel den 28. februar 2026.",
+      "events": [
+        {
+          "date": "2026-02-28",
+          "label": "Iran erkl\u00e6rer krig mod Israel"
+        }
+      ]
+    },
+    "brief": "Iran erkl\u00e6rede krig mod Israel den 28. februar 2026, hvilket sendte chokb\u00f8lger gennem energimarkederne. Vis Brent-r\u00e5olie og europ\u00e6isk naturgas (TTF), og mark\u00e9r udbruddet den 28. februar 2026. Vis ogs\u00e5 amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA p\u00e5 gas."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "energy",
+    "series_specs": [
+      {
+        "ticker": "BZ=F",
+        "source": "yfinance",
+        "label": "Brent r\u00e5olie",
+        "region": "Global",
+        "unit": "USD/barrel"
+      },
+      {
+        "ticker": "TTF=F",
+        "source": "yfinance",
+        "label": "TTF naturgas (Europa)",
+        "region": "Europa",
+        "unit": "EUR/MWh",
+        "conversion": "EUR_MWh_to_USD_MWh"
+      },
+      {
+        "ticker": "NG=F",
+        "source": "yfinance",
+        "label": "Henry Hub naturgas (USA)",
+        "region": "USA",
+        "unit": "USD/MMBtu",
+        "conversion": "USD_MMBtu_to_USD_MWh"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "EU vs. USA naturgas \u2014 prisforskel i USD/MWh",
+      "x_label": "Dato",
+      "y_label": "USD/MWh",
+      "period_days": 730,
+      "series_labels": [
+        "TTF naturgas (Europa)",
+        "Henry Hub naturgas (USA)"
+      ],
+      "note": "Europ\u00e6iske (TTF) og amerikanske (Henry Hub) naturgaspriser omregnet til samme enhed (USD/MWh) for direkte sammenligning. TTF er det europ\u00e6iske benchmark handlet i Amsterdam; Henry Hub er det amerikanske benchmark. Den lodrette linje markerer Irans krigserkl\u00e6ring mod Israel den 28. februar 2026.",
+      "events": [
+        {
+          "date": "2026-02-28",
+          "label": "Iran erkl\u00e6rer krig mod Israel"
+        }
+      ]
+    },
+    "brief": "Iran erkl\u00e6rede krig mod Israel den 28. februar 2026, hvilket sendte chokb\u00f8lger gennem energimarkederne. Vis Brent-r\u00e5olie og europ\u00e6isk naturgas (TTF), og mark\u00e9r udbruddet den 28. februar 2026. Vis ogs\u00e5 amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA p\u00e5 gas."
+  }
+]
