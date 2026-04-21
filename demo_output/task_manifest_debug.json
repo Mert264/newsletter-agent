@@ -1,64 +1,88 @@
 {
   "specialists": [
-    "commodities"
+    "rates"
   ],
-  "commodities": {
+  "rates": {
     "series": [
       {
-        "ticker": "GC=F",
-        "source": "yfinance",
-        "label": "Guld",
-        "region": "Global",
-        "unit": "USD/troy oz"
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tyskland",
+        "region": "Europa",
+        "unit": "%"
       },
       {
-        "ticker": "HG=F",
-        "source": "yfinance",
-        "label": "Kobber",
-        "region": "Global",
-        "unit": "USD/lb"
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ESM156N",
+        "source": "fred",
+        "label": "Spanien",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "Storbritannien",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA",
+        "region": "Nordamerika",
+        "unit": "%"
       }
     ],
     "charts": [
       {
-        "type": "A",
-        "title": "Guld og kobber \u2014 safe haven vs. industrimetal",
-        "x_label": "Dato",
-        "y_label": "Indekseret (basis=100)",
+        "type": "G",
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
+        "x_label": "Rente (%)",
+        "y_label": "%",
         "period_days": 730,
         "series_labels": [
-          "Guld",
-          "Kobber"
+          "Tyskland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "Storbritannien",
+          "USA"
         ],
-        "note": "Guldprisen indekseret til 100 ved periodens start for sammenligning med kobberprisen. Guld f\u00f8lges som safe haven-aktiv i perioder med geopolitisk uro, mens kobber afspejler industriel eftersp\u00f8rgsel og den globale v\u00e6kstcyklus.",
-        "events": [
-          {
-            "date": "2026-02-28",
-            "label": "Iran-krigen udbyder"
-          }
-        ]
+        "note": "Seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jeste til laveste rente og afspejler markedets tillid til de respektive landes \u00f8konomi og kreditv\u00e6rdighed."
       },
       {
         "type": "D",
-        "title": "N\u00f8gletal \u2014 guld og kobber f\u00f8r og efter Iran-krigen",
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
         "x_label": "",
-        "y_label": "Indekseret (basis=100)",
+        "y_label": "%",
         "period_days": 730,
         "series_labels": [
-          "Guld",
-          "Kobber"
+          "Tyskland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "Storbritannien",
+          "USA"
         ],
-        "before_date": "2026-02-28",
+        "before_date": "2024-01-01",
         "after_date": "latest",
-        "col_before": "28. feb 2026",
+        "col_before": "Jan 2024",
         "col_after": "Nu",
-        "note": "Snapshot af guld- og kobberpriser indekseret til 100 ved periodens start. Tabellen viser niveauer og \u00e6ndring siden Iran-krigens udbrud den 28. februar 2026.",
-        "events": [
-          {
-            "date": "2026-02-28",
-            "label": "Iran-krigen udbyder"
-          }
-        ]
+        "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande og USA. \u00c6ndringen viser bev\u00e6gelsen i procentpoint siden januar 2024."
       }
     ]
   }

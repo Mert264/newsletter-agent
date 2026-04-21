@@ -34,7 +34,7 @@
       {
         "ticker": "IRLTLT01GBM156N",
         "source": "fred",
-        "label": "UK",
+        "label": "Storbritannien",
         "region": "Europa",
         "unit": "%"
       },
@@ -57,10 +57,10 @@
         "Frankrig",
         "Italien",
         "Spanien",
-        "UK",
+        "Storbritannien",
         "USA"
       ],
-      "note": "Seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jest til lavest rente og afspejler investorernes risikovurdering af hvert lands \u00f8konomi og offentlige finanser."
+      "note": "Seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jeste til laveste rente og afspejler markedets tillid til de respektive landes \u00f8konomi og kreditv\u00e6rdighed."
     },
     "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente."
   },
@@ -99,7 +99,7 @@
       {
         "ticker": "IRLTLT01GBM156N",
         "source": "fred",
-        "label": "UK",
+        "label": "Storbritannien",
         "region": "Europa",
         "unit": "%"
       },
@@ -122,14 +122,14 @@
         "Frankrig",
         "Italien",
         "Spanien",
-        "UK",
+        "Storbritannien",
         "USA"
       ],
       "before_date": "2024-01-01",
       "after_date": "latest",
       "col_before": "Jan 2024",
       "col_after": "Nu",
-      "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte lande. \u00c6ndringen viser forskydningen i renteniveauet fra januar 2024 til i dag, m\u00e5lt i procentpoint."
+      "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande og USA. \u00c6ndringen viser bev\u00e6gelsen i procentpoint siden januar 2024."
     },
     "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente."
   }

@@ -17,7 +17,7 @@ Returner altid JSON på engelsk (status/reason-felterne) uanset inputsproget.
 
 APPROVE if all of these pass:
 1. Title is present and describes what the chart shows.
-2. Y-axis label has units (e.g. "%", "USD/barrel", "Indexed (base=100)"). EXCEPTION: tables (type D) and pie charts (type P) have no axes — never check or flag axis labels on these types.
+2. Y-axis label has units (e.g. "%", "USD/barrel", "Indexed (base=100)"). EXCEPTION: tables (type D), pie charts (type P), and horizontal bar charts (type G) — never check or flag axis labels on these types.
 3. For time-series charts: x-axis can simply say "Date" or be blank — do NOT flag this.
 4. Note is present and explains what the data shows.
 5. Kilde (source) is present.
