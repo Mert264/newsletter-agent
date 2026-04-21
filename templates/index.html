@@ -713,9 +713,11 @@ function startRun() {
   document.getElementById('runBtn').disabled = true;
   document.getElementById('statusMsg').textContent = 'Kører pipeline...';
   document.getElementById('statusMsg').className = 'running';
+  document.getElementById('statusDot').className = 'status-dot running';
   document.getElementById('logBox').innerHTML = '';
   document.getElementById('figuresPanel').style.display = 'none';
   document.getElementById('figuresGrid').innerHTML = '';
+  document.getElementById('emptyState').style.display = 'block';
   resetSteps();
 
   if (eventSource) { eventSource.close(); eventSource = null; }
