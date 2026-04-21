@@ -1,48 +1,61 @@
 {
   "specialists": [
-    "equities"
+    "macro",
+    "eurostat"
   ],
-  "equities": {
+  "macro": {
     "series": [
       {
-        "ticker": "BZ=F",
-        "source": "yfinance",
-        "label": "Brent r\u00e5olie",
-        "region": "Global",
-        "unit": "USD/t\u00f8nde"
-      },
-      {
-        "ticker": "GC=F",
-        "source": "yfinance",
-        "label": "Guld",
-        "region": "Global",
-        "unit": "USD/troy oz"
-      },
-      {
-        "ticker": "^GSPC",
-        "source": "yfinance",
-        "label": "S&P 500",
+        "ticker": "GDPC1",
+        "source": "fred",
+        "label": "USA BNP",
         "region": "USA",
-        "unit": "Indeks"
+        "unit": "Mia. k\u00e6dede 2017-dollars"
+      },
+      {
+        "ticker": "NAEXKP01JPQ657S",
+        "source": "fred",
+        "label": "Japan BNP",
+        "region": "Japan",
+        "unit": "Indeks (2015=100)"
       }
     ],
     "charts": [
       {
-        "type": "E",
-        "title": "Brent olie, guld og S&P 500 \u2014 f\u00f8r og efter Ruslands invasion af Ukraine",
-        "x_label": "Aktiv",
-        "y_label": "Indekseret (basis=100)",
-        "period_days": 1626,
+        "type": "B",
+        "title": "BNP-v\u00e6kst \u2014 USA og Japan (YoY %)",
+        "x_label": "Kvartal",
+        "y_label": "YoY %",
+        "period_days": 760,
         "series_labels": [
-          "Brent r\u00e5olie",
-          "Guld",
-          "S&P 500"
+          "USA BNP",
+          "Japan BNP"
         ],
-        "before_date": "2022-02-24",
-        "after_date": "latest",
-        "col_before": "24. feb 2022 (invasionsdag)",
-        "col_after": "Nu",
-        "note": "Sammenligning af Brent r\u00e5olie, guld og S&P 500 p\u00e5 invasionsdagen den 24. februar 2022 og seneste tilg\u00e6ngelige kurs. Da de tre aktiver har meget forskellige prisskalaer, er alle serier indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning."
+        "note": "\u00c5rlig real BNP-v\u00e6kst (\u00e5r-over-\u00e5r) for USA og Japan baseret p\u00e5 kvartalsvise nationalregnskabstal. USA-data er i k\u00e6dede 2017-dollars; Japan-data er et OECD-indeks med 2015 som basis\u00e5r."
+      }
+    ]
+  },
+  "eurostat": {
+    "series": [
+      {
+        "ticker": "eu_gdp_growth",
+        "source": "eurostat_ts",
+        "label": "Eurozone BNP",
+        "region": "Eurozone",
+        "unit": "%"
+      }
+    ],
+    "charts": [
+      {
+        "type": "B",
+        "title": "BNP-v\u00e6kst \u2014 Eurozone (YoY %)",
+        "x_label": "Kvartal",
+        "y_label": "YoY %",
+        "period_days": 760,
+        "series_labels": [
+          "Eurozone BNP"
+        ],
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Eurozonen baseret p\u00e5 Eurostat-nationalregnskaber. Viser kvartalsvise v\u00e6kstrater i forhold til samme kvartal \u00e5ret f\u00f8r."
       }
     ]
   }
