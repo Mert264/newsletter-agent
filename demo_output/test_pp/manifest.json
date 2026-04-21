@@ -1,0 +1,44 @@
+{
+  "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente. \u00c6ndringer i renteniveauet vises i procentpoint (y_label=\"%\").",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "demo_output/test_pp/figure_00.png",
+      "metadata": {
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
+        "chart_type": "G",
+        "x_label": "Rente (%)",
+        "y_label": "%",
+        "note": "Seneste observerede 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jeste til laveste renteniveau og afspejler investorernes tillid til de enkelte landes \u00f8konomi og kreditv\u00e6rdighed.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Deutschland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "UK",
+          "USA"
+        ]
+      }
+    },
+    {
+      "path": "demo_output/test_pp/figure_01.png",
+      "metadata": {
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte lande. \u00c6ndringer er opgjort i procentpoint og viser, hvor meget renteniveauet har bev\u00e6get sig over de seneste fem \u00e5r.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Deutschland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "UK",
+          "USA"
+        ]
+      }
+    }
+  ]
+}

@@ -5,81 +5,84 @@
   "rates": {
     "series": [
       {
-        "ticker": "DGS2",
+        "ticker": "IRLTLT01DEM156N",
         "source": "fred",
-        "label": "2-\u00e5rig statsobligation",
-        "region": "USA",
+        "label": "Deutschland",
+        "region": "Tyskland",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Frankrig",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Italien",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ESM156N",
+        "source": "fred",
+        "label": "Spanien",
+        "region": "Spanien",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "UK",
+        "region": "Storbritannien",
         "unit": "%"
       },
       {
         "ticker": "DGS10",
         "source": "fred",
-        "label": "10-\u00e5rig statsobligation",
-        "region": "USA",
-        "unit": "%"
-      },
-      {
-        "ticker": "T10Y2Y",
-        "source": "fred",
-        "label": "10Y-2Y rentesp\u00e6nd",
+        "label": "USA",
         "region": "USA",
         "unit": "%"
       }
     ],
     "charts": [
       {
-        "type": "A",
-        "title": "Amerikanske statsobligationsrenter \u2014 2-\u00e5rig og 10-\u00e5rig",
-        "x_label": "Dato",
+        "type": "G",
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
+        "x_label": "Rente (%)",
         "y_label": "%",
         "period_days": 1825,
         "series_labels": [
-          "2-\u00e5rig statsobligation",
-          "10-\u00e5rig statsobligation"
+          "Deutschland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "UK",
+          "USA"
         ],
-        "note": "Den 2-\u00e5rige og 10-\u00e5rige amerikanske statsobligationsrente viser rentestrukturen over de seneste 5 \u00e5r. N\u00e5r den 2-\u00e5rige rente overstiger den 10-\u00e5rige, er rentekurven inverteret \u2014 historisk set et varsel om recession."
+        "note": "Seneste observerede 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jeste til laveste renteniveau og afspejler investorernes tillid til de enkelte landes \u00f8konomi og kreditv\u00e6rdighed."
       },
       {
         "type": "D",
-        "title": "N\u00f8gletal \u2014 amerikanske statsobligationsrenter",
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
         "period_days": 1825,
         "series_labels": [
-          "2-\u00e5rig statsobligation",
-          "10-\u00e5rig statsobligation"
+          "Deutschland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "UK",
+          "USA"
         ],
         "before_date": "2020-04-01",
         "after_date": "latest",
-        "col_before": "Apr 2020",
+        "col_before": "5 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Snapshot af den 2-\u00e5rige og 10-\u00e5rige amerikanske statsobligationsrente sammenlignet med niveauet i april 2020. \u00c6ndringer vises i procentpoint."
-      },
-      {
-        "type": "A",
-        "title": "Rentekurvens h\u00e6ldning \u2014 10Y minus 2Y sp\u00e6nd (USA)",
-        "x_label": "Dato",
-        "y_label": "%",
-        "period_days": 1825,
-        "series_labels": [
-          "10Y-2Y rentesp\u00e6nd"
-        ],
-        "note": "Sp\u00e6ndet mellem den 10-\u00e5rige og 2-\u00e5rige amerikanske statsobligation m\u00e5ler rentekurvens h\u00e6ldning. Negative v\u00e6rdier indikerer en inverteret kurve, som historisk har varslet recession. Kurven normaliseres, n\u00e5r sp\u00e6ndet igen bliver positivt."
-      },
-      {
-        "type": "D",
-        "title": "N\u00f8gletal \u2014 10Y-2Y rentesp\u00e6nd (USA)",
-        "x_label": "",
-        "y_label": "%",
-        "period_days": 1825,
-        "series_labels": [
-          "10Y-2Y rentesp\u00e6nd"
-        ],
-        "before_date": "2020-04-01",
-        "after_date": "latest",
-        "col_before": "Apr 2020",
-        "col_after": "Nu",
-        "note": "Snapshot af 10Y-2Y rentesp\u00e6ndet sammenlignet med niveauet i april 2020. \u00c6ndringer vises i procentpoint og afspejler bev\u00e6gelsen fra en normal til en inverteret kurve og tilbage."
+        "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte lande. \u00c6ndringer er opgjort i procentpoint og viser, hvor meget renteniveauet har bev\u00e6get sig over de seneste fem \u00e5r."
       }
     ]
   }

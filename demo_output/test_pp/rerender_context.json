@@ -1,0 +1,136 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "rates",
+    "series_specs": [
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Deutschland",
+        "region": "Tyskland",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Frankrig",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Italien",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ESM156N",
+        "source": "fred",
+        "label": "Spanien",
+        "region": "Spanien",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "UK",
+        "region": "Storbritannien",
+        "unit": "%"
+      },
+      {
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA",
+        "region": "USA",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "G",
+      "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
+      "x_label": "Rente (%)",
+      "y_label": "%",
+      "period_days": 1825,
+      "series_labels": [
+        "Deutschland",
+        "Frankrig",
+        "Italien",
+        "Spanien",
+        "UK",
+        "USA"
+      ],
+      "note": "Seneste observerede 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jeste til laveste renteniveau og afspejler investorernes tillid til de enkelte landes \u00f8konomi og kreditv\u00e6rdighed."
+    },
+    "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente. \u00c6ndringer i renteniveauet vises i procentpoint (y_label=\"%\")."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "rates",
+    "series_specs": [
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Deutschland",
+        "region": "Tyskland",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Frankrig",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Italien",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ESM156N",
+        "source": "fred",
+        "label": "Spanien",
+        "region": "Spanien",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "UK",
+        "region": "Storbritannien",
+        "unit": "%"
+      },
+      {
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA",
+        "region": "USA",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 1825,
+      "series_labels": [
+        "Deutschland",
+        "Frankrig",
+        "Italien",
+        "Spanien",
+        "UK",
+        "USA"
+      ],
+      "before_date": "2020-04-01",
+      "after_date": "latest",
+      "col_before": "5 \u00e5r siden",
+      "col_after": "Nu",
+      "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte lande. \u00c6ndringer er opgjort i procentpoint og viser, hvor meget renteniveauet har bev\u00e6get sig over de seneste fem \u00e5r."
+    },
+    "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente. \u00c6ndringer i renteniveauet vises i procentpoint (y_label=\"%\")."
+  }
+]
