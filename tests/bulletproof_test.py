@@ -162,8 +162,7 @@ def check_manifest(prompt_id, manifest, period_days_sent):
 # ── Full pipeline runner ───────────────────────────────────────────────────
 def run_pipeline_test(prompt_id, brief, period_days, preferred_types=None):
     """Run the full pipeline for one prompt. Returns (figures, log_text, issues)."""
-    from newsletter_agent.orchestrator import build_task_manifest
-    from newsletter_agent.pipeline import run_pipeline
+    from newsletter_agent.pipeline import run as run_pipeline
 
     buf = io.StringIO()
     figures = []
@@ -171,16 +170,11 @@ def run_pipeline_test(prompt_id, brief, period_days, preferred_types=None):
 
     try:
         with redirect_stdout(buf):
-            manifest = build_task_manifest(
+            figures = run_pipeline(
                 brief=brief,
+                output_dir="demo_output/test",
                 preferred_types=preferred_types or ["A", "D"],
                 period_days=period_days if period_days > 0 else None,
-            )
-        with redirect_stdout(buf):
-            figures = run_pipeline(
-                manifest=manifest,
-                output_dir="demo_output/test",
-                stream_callback=lambda msg: None,
             )
     except Exception as e:
         pipeline_issues.append(f"EXCEPTION: {type(e).__name__}: {e}")

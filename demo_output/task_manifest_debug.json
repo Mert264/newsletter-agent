@@ -1,70 +1,141 @@
 {
   "specialists": [
+    "energy",
+    "equities",
     "macro"
   ],
-  "macro": {
+  "energy": {
     "series": [
       {
-        "ticker": "CPIAUCSL",
-        "source": "fred",
-        "label": "USA",
-        "region": "USA",
-        "unit": "YoY %"
-      },
-      {
-        "ticker": "CP0000EZ19M086NEST",
-        "source": "fred",
-        "label": "Euroomr\u00e5det",
-        "region": "Euroomr\u00e5det",
-        "unit": "YoY %"
-      },
-      {
-        "ticker": "GBRCPIALLMINMEI",
-        "source": "fred",
-        "label": "Storbritannien",
-        "region": "Storbritannien",
-        "unit": "YoY %"
-      },
-      {
-        "ticker": "JPNCPIALLMINMEI",
-        "source": "fred",
-        "label": "Japan",
-        "region": "Japan",
-        "unit": "YoY %"
+        "ticker": "BZ=F",
+        "source": "yfinance",
+        "label": "Brent r\u00e5olie",
+        "region": "Global",
+        "unit": "USD/t\u00f8nde"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Global inflationsudvikling \u2014 headline CPI \u00e5r-over-\u00e5r",
+        "title": "Brent r\u00e5olie \u2014 kursprisudvikling",
         "x_label": "Dato",
-        "y_label": "YoY %",
-        "period_days": 2555,
+        "y_label": "USD/t\u00f8nde",
+        "period_days": 730,
         "series_labels": [
-          "USA",
-          "Euroomr\u00e5det",
-          "Storbritannien",
-          "Japan"
+          "Brent r\u00e5olie"
         ],
-        "note": "Headline forbrugerprisindeks (CPI) \u00e5r-over-\u00e5r for USA, euroomr\u00e5det, Storbritannien og Japan. Serien viser inflationstoppen i 2021\u20132022, den efterf\u00f8lgende disinflation samt niveauerne i forhold til centralbankernes 2%-m\u00e5l."
+        "note": "Daglige lukkepriser for Brent r\u00e5olie de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser p\u00e5 verdensmarkedet."
       },
       {
         "type": "D",
-        "title": "Inflationsn\u00f8gletal \u2014 seneste niveau vs. for \u00e9t \u00e5r siden",
+        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
         "x_label": "",
-        "y_label": "YoY %",
-        "period_days": 2555,
+        "y_label": "USD/t\u00f8nde",
+        "period_days": 730,
         "series_labels": [
-          "USA",
-          "Euroomr\u00e5det",
-          "Storbritannien",
-          "Japan"
+          "Brent r\u00e5olie"
         ],
-        "before_date": "2024-04-01",
+        "before_date": "2025-04-16",
         "after_date": "latest",
         "col_before": "1 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Snapshot af den aktuelle headline-inflation i de fire regioner sammenlignet med niveauet for \u00e9t \u00e5r siden. \u00c6ndringen viser den absolutte bev\u00e6gelse i procentpoint i den \u00e5r-over-\u00e5r-v\u00e6kstrate."
+        "note": "Snapshot af Brent r\u00e5olieprisen nu sammenlignet med for \u00e9t \u00e5r siden."
+      }
+    ]
+  },
+  "equities": {
+    "series": [
+      {
+        "ticker": "GC=F",
+        "source": "yfinance",
+        "label": "Guld",
+        "region": "Global",
+        "unit": "USD/troy oz"
+      },
+      {
+        "ticker": "^GSPC",
+        "source": "yfinance",
+        "label": "S&P 500",
+        "region": "USA",
+        "unit": "Indeks"
+      },
+      {
+        "ticker": "EURUSD=X",
+        "source": "yfinance",
+        "label": "EUR/USD",
+        "region": "Global",
+        "unit": "USD per EUR"
+      }
+    ],
+    "charts": [
+      {
+        "type": "A",
+        "title": "Guld, S&P 500 og EUR/USD \u2014 indekseret prisudvikling",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "period_days": 730,
+        "series_labels": [
+          "Guld",
+          "S&P 500",
+          "EUR/USD"
+        ],
+        "note": "Daglige lukkepriser for guld, S&P 500 og EUR/USD, indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala og prisniveau."
+      },
+      {
+        "type": "D",
+        "title": "Guld, S&P 500 og EUR/USD \u2014 n\u00f8gletal",
+        "x_label": "",
+        "y_label": "",
+        "period_days": 730,
+        "series_labels": [
+          "Guld",
+          "S&P 500",
+          "EUR/USD"
+        ],
+        "before_date": "2025-04-16",
+        "after_date": "latest",
+        "col_before": "1 \u00e5r siden",
+        "col_after": "Nu",
+        "note": "Snapshot af guld, S&P 500 og EUR/USD nu sammenlignet med for \u00e9t \u00e5r siden. \u00c6ndringer afspejler bev\u00e6gelsen i de respektive absolutte prisniveauer."
+      }
+    ]
+  },
+  "macro": {
+    "series": [
+      {
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "10-\u00e5rig amerikansk statsrente",
+        "region": "USA",
+        "unit": "%"
+      }
+    ],
+    "charts": [
+      {
+        "type": "A",
+        "title": "10-\u00e5rig amerikansk statsrente",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 730,
+        "series_labels": [
+          "10-\u00e5rig amerikansk statsrente"
+        ],
+        "note": "Den 10-\u00e5rige amerikanske statsobligationsrente (Treasury yield) de seneste to \u00e5r. Renten er et centralt benchmark for l\u00e5neomkostninger og markedets forventninger til v\u00e6kst og inflation."
+      },
+      {
+        "type": "D",
+        "title": "10-\u00e5rig amerikansk statsrente \u2014 n\u00f8gletal",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 730,
+        "series_labels": [
+          "10-\u00e5rig amerikansk statsrente"
+        ],
+        "before_date": "2025-04-16",
+        "after_date": "latest",
+        "col_before": "1 \u00e5r siden",
+        "col_after": "Nu",
+        "note": "Snapshot af den 10-\u00e5rige amerikanske statsrente nu sammenlignet med for \u00e9t \u00e5r siden. \u00c6ndringer er angivet i procentpoint."
       }
     ]
   }
