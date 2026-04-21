@@ -874,7 +874,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                         pass
                 if out_of_window and "reviewer_flag" not in package["metadata"]:
                     package["metadata"]["reviewer_flag"] = " | ".join(out_of_window)
-            if chart_spec.get("type") == "A" and events and merged_df is not None:
+            if chart_spec.get("type") == "A" and events and merged_df is not None and (not preferred_types or "D" in preferred_types):
                 table_path = os.path.join(output_dir, f"figure_{fig_idx:02d}.png")
                 kilde_str = " og ".join(result["kilde"])
                 impact_pkg = _build_event_impact_table(
