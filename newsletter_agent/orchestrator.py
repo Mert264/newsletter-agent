@@ -329,6 +329,11 @@ Rules:
   (c) Set y_label to "Procentpoint" for rate/yield spreads.
   (d) Do NOT subtract manually — the pipeline subtracts automatically and drops the reference series.
   (e) Works with type A (time-series of spread evolution) and type G (snapshot ranking by spread).
+  (f) CRITICAL — ALWAYS PAIR WITH ABSOLUTE CHART: When generating a spread chart, ALSO generate
+      a companion Type A chart showing the ABSOLUTE yield levels (WITHOUT compute_spread_vs) so
+      Germany/the benchmark IS visible as a series. This gives the reader both the spread context
+      AND the absolute level. The absolute chart uses y_label="%". Title it with "— absolutte niveauer".
+      Do NOT drop Germany from the absolute chart.
   Example for European bond yield spreads vs Germany:
     series: [
       {"ticker": "IRLTLT01DEM156N", "label": "Deutschland", "source": "fred"},
