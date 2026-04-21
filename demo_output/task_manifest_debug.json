@@ -1,79 +1,61 @@
 {
   "specialists": [
-    "equities"
+    "rates"
   ],
-  "equities": {
+  "rates": {
     "series": [
       {
-        "ticker": "ORSTED.CO",
-        "source": "yfinance",
-        "label": "\u00d8rsted",
-        "region": "Danmark",
-        "unit": "Indekseret (basis=100)"
+        "ticker": "DFF",
+        "source": "fred",
+        "label": "Federal Reserve",
+        "region": "USA",
+        "unit": "%"
       },
       {
-        "ticker": "VWS.CO",
-        "source": "yfinance",
-        "label": "Vestas",
-        "region": "Danmark",
-        "unit": "Indekseret (basis=100)"
+        "ticker": "ECBDFR",
+        "source": "fred",
+        "label": "ECB",
+        "region": "Eurozone",
+        "unit": "%"
       },
       {
-        "ticker": "IBE.MC",
-        "source": "yfinance",
-        "label": "Iberdrola",
-        "region": "Spanien",
-        "unit": "Indekseret (basis=100)"
-      },
-      {
-        "ticker": "SHEL.L",
-        "source": "yfinance",
-        "label": "Shell",
-        "region": "Storbritannien",
-        "unit": "Indekseret (basis=100)"
-      },
-      {
-        "ticker": "TTE.PA",
-        "source": "yfinance",
-        "label": "TotalEnergies",
-        "region": "Frankrig",
-        "unit": "Indekseret (basis=100)"
+        "ticker": "IUDSOIA",
+        "source": "fred",
+        "label": "Bank of England",
+        "region": "UK",
+        "unit": "%"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Gr\u00f8n energi vs. oliemajorer \u2014 kursudvikling indekseret til 100",
+        "title": "Politikrenter \u2014 Federal Reserve, ECB og Bank of England",
         "x_label": "Dato",
-        "y_label": "Indekseret (basis=100)",
-        "period_days": 3650,
+        "y_label": "%",
+        "period_days": 1825,
         "series_labels": [
-          "\u00d8rsted",
-          "Vestas",
-          "Iberdrola",
-          "Shell",
-          "TotalEnergies"
+          "Federal Reserve",
+          "ECB",
+          "Bank of England"
         ],
-        "note": "Kursudviklingen for tre europ\u00e6iske vedvarende energiselskaber (\u00d8rsted, Vestas, Iberdrola) sammenlignet med to store oliemajorer (Shell, TotalEnergies) over de seneste 10 \u00e5r. Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellige kursniveauer og valutaer."
+        "note": "Daglige politikrenter for de tre st\u00f8rste centralbankgrupperinger siden april 2021. Viser hvor Fed, ECB og BoE begyndte at h\u00e6ve renter i 2022 for at bek\u00e6mpe inflationen, og siden begyndte at s\u00e6nke dem igen i 2024."
       },
       {
         "type": "D",
-        "title": "Kursudvikling \u2014 n\u00f8gletal for gr\u00f8n energi og oliemajorer",
+        "title": "Politikrenter \u2014 n\u00f8gletal",
         "x_label": "",
-        "y_label": "Indekseret (basis=100)",
-        "period_days": 3650,
+        "y_label": "%",
+        "period_days": 1825,
         "series_labels": [
-          "\u00d8rsted",
-          "Vestas",
-          "Iberdrola",
-          "Shell",
-          "TotalEnergies"
+          "Federal Reserve",
+          "ECB",
+          "Bank of England"
         ],
-        "before_date": "2015-04-01",
+        "before_date": "2021-04-01",
         "after_date": "latest",
-        "col_before": "Start (apr. 2015)",
+        "col_before": "April 2021",
         "col_after": "Nu",
-        "note": "Snapshot af indekserede kurser for vedvarende energiselskaber og oliemajorer siden april 2015. \u00c6ndringen viser den samlede kursbev\u00e6gelse over den 10-\u00e5rige periode og illustrerer, om den gr\u00f8nne energiomstilling har bel\u00f8nnet investorerne relativt til traditionelle oliemajorer."
+        "note": "Snapshot af centralbankernes politikrenter fra starten af perioden til i dag. \u00c6ndringer viser det absolutte \u00e6ndring i procentpoint."
       }
     ]
   }

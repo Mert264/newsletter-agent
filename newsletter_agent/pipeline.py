@@ -449,6 +449,10 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
                 # Outer join + forward-fill so Japanese/European holidays don't
                 # punch holes in US series (and vice versa).
                 merged = merged.join(clean, how="outer").ffill().dropna(how="all")
+                # Remove duplicate index rows introduced by the join (Yahoo Finance
+                # occasionally returns duplicate timestamps that survive ffill).
+                if merged.index.duplicated().any():
+                    merged = merged[~merged.index.duplicated(keep="last")]
                 # Remove any duplicate columns introduced by the join
                 if merged.columns.duplicated().any():
                     merged = merged.loc[:, ~merged.columns.duplicated(keep="last")]
