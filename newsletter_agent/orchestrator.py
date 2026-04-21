@@ -327,6 +327,9 @@ Rules:
   the time period, and any key methodology detail. Written for a non-expert investor.
   ALWAYS write the note in Danish. Example: "Daglige lukkepriser for Brent råolie siden
   januar 2024. Brent er det globale benchmark for råoliepriser på verdensmarkedet."
+- CRITICAL: The "note" field MUST NOT contain any source attribution such as "Kilde:", "Kilde: Eurostat.",
+  "Source:", or "Data fra:". The data source is shown separately in the "kilde" field rendered
+  below the chart. Including the source in the note creates visible duplication on the figure.
 
 COMPANION TABLES — GLOBAL RULE:
 For EVERY Type A (time-series line chart) you generate, you MUST also generate a companion
