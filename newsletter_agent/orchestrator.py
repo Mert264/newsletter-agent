@@ -435,11 +435,11 @@ EVENT MARKERS:
 - Return ONLY valid JSON, no markdown, no explanation."""
 
 
-def call_llm(prompt: str, max_tokens: int = 8192) -> dict:
+def call_llm(prompt: str, max_tokens: int = 8192, model: str = None) -> dict:
     """Make one LLM call and return parsed JSON response."""
     client = anthropic.Anthropic(api_key=API_KEYS["anthropic"])
     message = client.messages.create(
-        model=LLM_MODEL,
+        model=model or LLM_MODEL,
         max_tokens=max_tokens,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": prompt}],
