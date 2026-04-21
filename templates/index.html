@@ -773,6 +773,7 @@ function startRun() {
 function renderFigures(figures) {
   const grid = document.getElementById('figuresGrid');
   grid.innerHTML = '';
+  document.getElementById('emptyState').style.display = figures.length ? 'none' : 'block';
   figures.forEach((fig, i) => {
     const flagHtml = fig.reviewer_flag
       ? `<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border:1px solid #fed7aa;border-radius:5px;font-size:11px;color:#92400e;">
