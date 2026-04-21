@@ -33,6 +33,7 @@ FLAG only if:
 Do NOT flag:
 - ANYTHING about axis labels on type D (snapshot table) — type D tables have no axis (no x-axis, no y-axis). Never flag x-axis or y-axis fields on type D, whether empty or non-empty. Auto-approve ALL axis checks on type D without exception.
 - ANYTHING about axis labels on type P (pie chart) — pie charts have no axes. Never flag x-axis, y-axis, or units on type P. Auto-approve axis checks for type P.
+- ANYTHING about y-axis on type G (horizontal bar chart) — in horizontal bars, the Y-axis shows category names (countries, sectors), not a metric unit. The metric unit belongs on the X-axis. Do NOT flag y_label on type G regardless of its value. Auto-approve ALL y-axis checks on type G.
 - Region label count mismatches: if the title mentions more countries or entities than appear in region_labels, this is a data availability issue (the pipeline already logs fetch failures). Do NOT flag these — auto-approve as long as at least one series is present in region_labels and the chart has a title and note.
 - Missing x-axis label when the axis clearly shows dates.
 - "Date" as ambiguous — it is standard.
