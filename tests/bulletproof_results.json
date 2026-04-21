@@ -1,28 +1,13 @@
 {
   "summary": {
-    "manifest": 1,
-    "pipeline": 6,
+    "manifest": 0,
+    "pipeline": 2,
     "novel": 0
   },
   "issues": {
-    "Forsvarsaktier \u2014 genoprusning": [
-      "Orchestrator EXCEPTION: RateLimitError: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': \"This request would exceed your organization's rate limit of 30,000 input tokens per minute (org: 528fcfde-ef82-4802-9d5a-e80005671d9e, model: claude-sonnet-4-6). For details, refer to: https://docs.claude.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://claude.com/contact-sales to discuss your options for a rate limit increase.\"}, 'request_id': 'req_011CaHLzXQyUX7vDw29B8jas'}",
-      "EXCEPTION: OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CaHMYcuGmiYdU37T66V5v'}"
-    ],
     "Europ\u00e6iske statsrenter": [
-      "[reviewer] REVISION NEEDED: Y-axis label should not contain '%' \u2014 it shows category names (countries), not a metric unit. The X-axis label 'Rente (%)' correctly identifies the metric. Remove '%' from Y-axis label. \u2014 re-rendering..."
-    ],
-    "Rentekurve & recessionssignal": [
-      "EXCEPTION: OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CaHMWksC8GPqXvi5bEtDi'}"
-    ],
-    "EU energimix": [
-      "EXCEPTION: OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CaHMY3HwUwNaUcCsD9m9b'}"
-    ],
-    "EU obligationsrenter & stress": [
-      "EXCEPTION: OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CaHMXPBzH6oHKWutAfowA'}"
-    ],
-    "Global inflation \u2014 US, EU, UK, JP": [
-      "EXCEPTION: OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CaHMVjaH6UxKwAMK4eeGb'}"
+      "[reviewer] REVISION NEEDED: For type G (horizontal bar chart), the Y-axis displays category names (country names), not a metric unit. The Y-axis label should be empty or omitted, not '%'. The metric unit '%' belongs on the X-axis label, which is correctly labeled 'Rente (%)'\u2014remove '%' from Y-axis label. \u2014 re-rendering...",
+      "[reviewer] REVISION NEEDED: Y-axis label should not be '%' \u2014 in a horizontal bar chart, the Y-axis displays category names (country names), not a unit. The metric unit (%) belongs on the X-axis, which is correctly labeled 'Rente (%)'. Remove '%' from Y-axis label. \u2014 re-rendering..."
     ]
   },
   "per_prompt": {
@@ -35,14 +20,10 @@
     },
     "2": {
       "label": "Forsvarsaktier \u2014 genoprusning",
-      "manifest_issues": [
-        "Orchestrator EXCEPTION: RateLimitError: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': \"This request would exceed your organization's rate limit of 30,000 input tokens per minute (org: 528fcfde-ef82-4802-9d5a-e80005671d9e, model: claude-sonnet-4-6). For details, refer to: https://docs.claude.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://claude.com/contact-sales to discuss your options for a rate limit increase.\"}, 'request_id': 'req_011CaHLzXQyUX7vDw29B8jas'}"
-      ],
+      "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [
-        "EXCEPTION: OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CaHMYcuGmiYdU37T66V5v'}"
-      ],
-      "figures": 0
+      "pipeline_issues": [],
+      "figures": 3
     },
     "3": {
       "label": "Guld & safe haven",
@@ -63,7 +44,8 @@
       "manifest_issues": [],
       "manifest_warnings": [],
       "pipeline_issues": [
-        "[reviewer] REVISION NEEDED: Y-axis label should not contain '%' \u2014 it shows category names (countries), not a metric unit. The X-axis label 'Rente (%)' correctly identifies the metric. Remove '%' from Y-axis label. \u2014 re-rendering..."
+        "[reviewer] REVISION NEEDED: For type G (horizontal bar chart), the Y-axis displays category names (country names), not a metric unit. The Y-axis label should be empty or omitted, not '%'. The metric unit '%' belongs on the X-axis label, which is correctly labeled 'Rente (%)'\u2014remove '%' from Y-axis label. \u2014 re-rendering...",
+        "[reviewer] REVISION NEEDED: Y-axis label should not be '%' \u2014 in a horizontal bar chart, the Y-axis displays category names (country names), not a unit. The metric unit (%) belongs on the X-axis, which is correctly labeled 'Rente (%)'. Remove '%' from Y-axis label. \u2014 re-rendering..."
       ],
       "figures": 2
     },
@@ -71,10 +53,8 @@
       "label": "Rentekurve & recessionssignal",
       "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [
-        "EXCEPTION: OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CaHMWksC8GPqXvi5bEtDi'}"
-      ],
-      "figures": 0
+      "pipeline_issues": [],
+      "figures": 4
     },
     "6": {
       "label": "Fed, ECB & Bank of England",
@@ -101,10 +81,8 @@
       "label": "EU energimix",
       "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [
-        "EXCEPTION: OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CaHMY3HwUwNaUcCsD9m9b'}"
-      ],
-      "figures": 0
+      "pipeline_issues": [],
+      "figures": 12
     },
     "12": {
       "label": "EU energiomstilling \u2014 over tid",
@@ -117,19 +95,15 @@
       "label": "EU obligationsrenter & stress",
       "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [
-        "EXCEPTION: OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CaHMXPBzH6oHKWutAfowA'}"
-      ],
-      "figures": 0
+      "pipeline_issues": [],
+      "figures": 4
     },
     "13": {
       "label": "Global inflation \u2014 US, EU, UK, JP",
       "manifest_issues": [],
       "manifest_warnings": [],
-      "pipeline_issues": [
-        "EXCEPTION: OverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CaHMVjaH6UxKwAMK4eeGb'}"
-      ],
-      "figures": 0
+      "pipeline_issues": [],
+      "figures": 2
     },
     "14": {
       "label": "Globalt markedsscorecard",
