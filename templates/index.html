@@ -737,6 +737,7 @@ function startRun() {
       document.getElementById('statusMsg').textContent =
         `Færdig — ${msg.figures.length} figur(er)`;
       document.getElementById('statusMsg').className = '';
+      document.getElementById('statusDot').className = 'status-dot';
       eventSource.close();
       eventSource = null;
     } else if (msg.type === 'error') {
@@ -744,6 +745,7 @@ function startRun() {
       document.getElementById('runBtn').disabled = false;
       document.getElementById('statusMsg').textContent = 'Fejl — se log';
       document.getElementById('statusMsg').className = 'error';
+      document.getElementById('statusDot').className = 'status-dot error';
       eventSource.close();
       eventSource = null;
     }
