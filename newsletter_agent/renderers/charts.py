@@ -753,27 +753,41 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
 def render_type_e(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     """
     Type E — Before/after grouped bar chart.
-    df: index=region names, columns=["Før krigen", "Nu"] (or similar two timepoints).
+    df: index=entity names.
+    - 2 columns: grouped before/after bars.
+    - 1 column: single % change bars (positive=teal, negative=muted red).
     """
     fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
 
     x = np.arange(len(df.index))
-    width = 0.35
     cols = df.columns.tolist()
 
-    ax.bar(x - width / 2, df[cols[0]], width, label=cols[0],
-           color=BRAND["grid_color"], edgecolor="white")
-    ax.bar(x + width / 2, df[cols[1]], width, label=cols[1],
-           color=BRAND["primary"], edgecolor="white")
+    if len(cols) == 1:
+        # Single-column % change mode — colour by sign
+        values = df[cols[0]].values
+        colors = [BRAND["primary"] if v >= 0 else "#c0392b" for v in values]
+        ax.bar(x, values, 0.5, color=colors, edgecolor="white")
+        ax.set_xticks(x)
+        ax.set_xticklabels(df.index, fontsize=BRAND["font_size_axis"])
+        # Value labels above/below each bar
+        for xi, v in zip(x, values):
+            va = "bottom" if v >= 0 else "top"
+            ax.text(xi, v, f"{v:+.1f}%", ha="center", va=va,
+                    fontsize=BRAND["font_size_label"], color=BRAND["secondary"])
+    else:
+        width = 0.35
+        ax.bar(x - width / 2, df[cols[0]], width, label=cols[0],
+               color=BRAND["grid_color"], edgecolor="white")
+        ax.bar(x + width / 2, df[cols[1]], width, label=cols[1],
+               color=BRAND["primary"], edgecolor="white")
+        ax.set_xticks(x)
+        ax.set_xticklabels(df.index, fontsize=BRAND["font_size_axis"])
+        ax.legend(fontsize=BRAND["font_size_label"], frameon=False, loc="upper right")
 
     ax.axhline(0, color=BRAND["secondary"], linewidth=0.6)
-    ax.set_xticks(x)
-    ax.set_xticklabels(df.index, fontsize=BRAND["font_size_axis"])
     ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
     ax.set_ylabel(spec.get("y_label", ""), fontsize=BRAND["font_size_axis"])
-    ax.legend(fontsize=BRAND["font_size_label"], frameon=False,
-              loc="upper right")
     _apply_brand(ax, fig)
     bottom = _add_footer(fig, spec)
     plt.tight_layout(rect=[0.0, bottom, 1.0, 1.0])
