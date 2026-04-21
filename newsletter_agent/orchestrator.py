@@ -185,6 +185,7 @@ Omit "product_filter" entirely when the brief does not restrict the energy sourc
 NOT available (do NOT attempt — these sources do not exist in this system):
   - GIE gas storage, CME FedWatch probability data, Bloomberg, BlackRock, JPMorgan, ICE real-time data
   - UK NBP gas prices (not on yfinance — only TTF=F is available for European gas)
+  - Japan GDP via any ID other than NAEXKP01JPQ657S — do NOT invent FRED IDs (e.g. JPNIGDPQDSMEI does not exist)
   - European electricity spot prices (EPEX, Nord Pool — not available)
   - LNG spot prices (not on yfinance)
   - Individual Nordic central bank policy rates (Riksbank, Norges Bank, DNB — not on FRED; use ECB rate as EU proxy)
