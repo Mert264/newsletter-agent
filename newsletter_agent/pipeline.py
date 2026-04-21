@@ -678,6 +678,23 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
     specialists = manifest.get("specialists", [])
     print(f"      Specialists activated: {', '.join(specialists)}")
 
+    # Hard-enforce preferred_types: drop chart specs the LLM included despite the instruction,
+    # and normalize Type D specs (strip axis labels so the reviewer never flags them).
+    if preferred_types:
+        allowed = set(preferred_types)
+        for spec_name in specialists:
+            spec_charts = manifest.get(spec_name, {}).get("charts", [])
+            filtered = []
+            for c in spec_charts:
+                if c.get("type") not in allowed:
+                    print(f"  [filter] Dropped type={c.get('type')} chart '{c.get('title','')}' — not in preferred_types")
+                    continue
+                if c.get("type") == "D":
+                    c["x_label"] = ""
+                    c["y_label"] = ""
+                filtered.append(c)
+            manifest[spec_name]["charts"] = filtered
+
     # Step 2: Run all specialists in parallel
     n_charts = sum(len(manifest.get(s, {}).get("charts", [])) for s in specialists)
     print(f"\n[2/4] Fetching data — {len(specialists)} specialist(s), ~{n_charts} chart(s) planned...")
