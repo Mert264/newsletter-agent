@@ -95,9 +95,17 @@
     }
     textarea:focus { outline: none; border-color: #11716c; }
 
-    .prompt-categories { margin-top: 4px; display: flex; flex-direction: column; gap: 0; }
-    .prompt-category-block { padding: 8px 0; }
-    .prompt-category-block + .prompt-category-block { border-top: 1px solid #f0f4f4; }
+    .prompt-categories {
+      margin-top: 4px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .prompt-category-block { padding: 8px 10px 8px 0; }
+    .prompt-category-block:nth-child(odd)  { border-right: 1px solid #f0f4f4; padding-right: 14px; }
+    .prompt-category-block:nth-child(even) { padding-left: 14px; }
+    /* Last category spans full width if it's the only one in its row */
+    .prompt-category-block.full-width { grid-column: 1 / -1; border-right: none; padding-right: 0; border-top: 1px solid #f0f4f4; }
     .prompt-category-label {
       font-size: 10px; color: #6b7280; font-weight: 700;
       letter-spacing: .06em; text-transform: uppercase; margin-bottom: 5px;
