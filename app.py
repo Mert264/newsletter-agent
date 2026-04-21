@@ -229,7 +229,7 @@ def stream():
             try:
                 msg = _run_queue.get(timeout=90)
                 yield f"data: {json.dumps(msg, ensure_ascii=False)}\n\n"
-                if msg.get("type") in ("interpretation_done", "error"):
+                if msg.get("type") in ("done", "error"):
                     break
             except queue.Empty:
                 yield "data: {\"type\":\"heartbeat\"}\n\n"
