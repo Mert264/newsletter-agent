@@ -1,0 +1,48 @@
+{
+  "brief": "Guld er steget som safe haven siden Iran-krigen br\u00f8d ud den 28. februar 2026. Vis guldpriser og mark\u00e9r 28. februar 2026. Vis ogs\u00e5 kobberpriser for at sammenligne safe haven-rally med industrimetallers signal.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165159/figure_00.png",
+      "metadata": {
+        "title": "Guld og kobber \u2014 prisudvikling siden 2019",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "note": "Guld og kobber indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig prisskala. Guld fungerer typisk som safe haven i perioder med geopolitisk usikkerhed, mens kobber er et konjunkturf\u00f8lsomt industrietal.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Guld",
+          "Kobber"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165159/figure_01.png",
+      "metadata": {
+        "title": "Event impact \u2014 Guld og kobber \u2014 prisudvikling siden 2019",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Yahoo Finance",
+        "region_labels": []
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165159/figure_02.png",
+      "metadata": {
+        "title": "N\u00f8gletal \u2014 guld og kobber f\u00f8r og efter Iran-krigen",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af guld- og kobberpriser p\u00e5 dagen for udbruddet af Iran-krigen sammenlignet med den seneste tilg\u00e6ngelige kurs. Viser i hvilken grad guld har fungeret som safe haven relativt til kobber som industrimetalsignal.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Guld",
+          "Kobber"
+        ]
+      }
+    }
+  ]
+}

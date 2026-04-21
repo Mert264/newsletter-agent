@@ -1,0 +1,64 @@
+{
+  "brief": "Den amerikanske rentekurve har v\u00e6ret en vigtig recessionindikator. Vis den 2-\u00e5rige statsobligationsrente (DGS2) og den 10-\u00e5rige statsobligationsrente (DGS10), og vis sp\u00e6ndet (T10Y2Y) separat for at vise, hvorn\u00e5r kurven inverterede og normaliserede sig.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164443/figure_00.png",
+      "metadata": {
+        "title": "Amerikansk rentekurve \u2014 absolutte niveauer",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Den 2-\u00e5rige og 10-\u00e5rige amerikanske statsobligationsrente over de seneste syv \u00e5r. Perioder, hvor den 2-\u00e5rige rente overstiger den 10-\u00e5rige, kaldes en inverteret rentekurve og er historisk set et varselsindikator for recession.",
+        "kilde": "FRED",
+        "region_labels": [
+          "2-\u00e5rig statsobligation",
+          "10-\u00e5rig statsobligation"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164443/figure_01.png",
+      "metadata": {
+        "title": "Rentekurve \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af den 2-\u00e5rige og 10-\u00e5rige amerikanske statsobligationsrente sammenlignet med niveauet i starten af 2018. \u00c6ndringer er opgjort i procentpoint.",
+        "kilde": "FRED",
+        "region_labels": [
+          "2-\u00e5rig statsobligation",
+          "10-\u00e5rig statsobligation"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164443/figure_02.png",
+      "metadata": {
+        "title": "Rentekurvesp\u00e6nd USA (10-\u00e5rig minus 2-\u00e5rig)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Sp\u00e6ndet mellem den 10-\u00e5rige og den 2-\u00e5rige amerikanske statsobligationsrente. Negative v\u00e6rdier indikerer en inverteret rentekurve, som historisk har forudg\u00e5et recessioner med 6-18 m\u00e5neder. Et positivt sp\u00e6nd signalerer normalisering.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Rentekurvesp\u00e6nd (10Y-2Y)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164443/figure_03.png",
+      "metadata": {
+        "title": "Rentekurvesp\u00e6nd \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af rentekurvesp\u00e6ndet (10Y minus 2Y) sammenlignet med niveauet i starten af 2018. Negative v\u00e6rdier afspejler en inverteret rentekurve.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Rentekurvesp\u00e6nd (10Y-2Y)"
+        ]
+      }
+    }
+  ]
+}

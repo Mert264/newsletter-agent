@@ -1,0 +1,49 @@
+{
+  "brief": "Sammenlign de tre store centralbankers politikrenter: Federal Reserve (USA), ECB (Eurozonen) og Bank of England (UK). Vis hvorn\u00e5r de begyndte at h\u00e6ve renter for at bek\u00e6mpe inflation, og hvorn\u00e5r de begyndte at s\u00e6nke dem igen.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164102/figure_00.png",
+      "metadata": {
+        "title": "Centralbankers politikrenter \u2014 Fed, ECB og Bank of England",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Politikrenter for de tre store centralbanker siden 2019. Alle tre banker begyndte at h\u00e6ve renterne markant i 2022 som reaktion p\u00e5 h\u00f8j inflation, og p\u00e5begyndte lempelser i 2024. Federal Reserve anvender den effektive federal funds rate, ECB anvender indl\u00e5nsrenten, og Bank of England anvender Bank Rate.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Federal Reserve (USA)",
+          "ECB (Eurozonen)"
+        ],
+        "reviewer_flag": "Region labels list only 2 entities (Federal Reserve, ECB) but title and note reference 3 centralbankers (Fed, ECB, Bank of England). Bank of England is missing from region_labels."
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164102/figure_01.png",
+      "metadata": {
+        "title": "Event impact \u2014 Centralbankers politikrenter \u2014 Fed, ECB og Bank of England",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "FRED",
+        "region_labels": []
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164102/figure_02.png",
+      "metadata": {
+        "title": "Politikrenter \u2014 n\u00f8gletal f\u00f8r og nu",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af politikrenter for Fed, ECB og Bank of England ved starten af rentestigningscyklussen i januar 2022 sammenlignet med det seneste niveau. \u00c6ndringen viser den samlede bev\u00e6gelse i procentpoint over perioden.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Federal Reserve (USA)",
+          "ECB (Eurozonen)"
+        ]
+      }
+    }
+  ]
+}

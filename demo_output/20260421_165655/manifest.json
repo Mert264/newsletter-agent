@@ -1,0 +1,120 @@
+{
+  "brief": "Vis et globalt markedsscorecard: Brent olie, guld, S&P 500, EUR/USD og den 10-\u00e5rige amerikanske statsrente \u2014 nuv\u00e6rende niveauer sammenlignet med for 1 \u00e5r siden.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165655/figure_00.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie \u2014 prisudvikling",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/t\u00f8nde",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie over de seneste 7 \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser p\u00e5 verdensmarkedet.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165655/figure_01.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Brent r\u00e5oliepris sammenlignet med niveauet for \u00e9t \u00e5r siden.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165655/figure_02.png",
+      "metadata": {
+        "title": "EUR/USD valutakurs \u2014 udvikling",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD per EUR",
+        "note": "Daglig EUR/USD-valutakurs over de seneste 7 \u00e5r. En stigende kurve betyder en st\u00e6rkere euro over for den amerikanske dollar.",
+        "kilde": "Yahoo Finance og FRED",
+        "region_labels": [
+          "EUR/USD"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165655/figure_03.png",
+      "metadata": {
+        "title": "EUR/USD \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af EUR/USD-valutakursen sammenlignet med niveauet for \u00e9t \u00e5r siden.",
+        "kilde": "Yahoo Finance og FRED",
+        "region_labels": [
+          "EUR/USD"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165655/figure_04.png",
+      "metadata": {
+        "title": "USA 10-\u00e5rig statsrente \u2014 udvikling",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Den 10-\u00e5rige amerikanske statsrente (Treasury yield) over de seneste 7 \u00e5r. Renten afspejler markedets forventninger til v\u00e6kst, inflation og pengepolitik.",
+        "kilde": "Yahoo Finance og FRED",
+        "region_labels": [
+          "USA 10-\u00e5rig statsrente"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165655/figure_05.png",
+      "metadata": {
+        "title": "USA 10-\u00e5rig statsrente \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af den 10-\u00e5rige amerikanske statsrente sammenlignet med niveauet for \u00e9t \u00e5r siden. \u00c6ndringen er angivet i procentpoint.",
+        "kilde": "Yahoo Finance og FRED",
+        "region_labels": [
+          "USA 10-\u00e5rig statsrente"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165655/figure_06.png",
+      "metadata": {
+        "title": "Guld og S&P 500 \u2014 indekseret prisudvikling",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "note": "Guld (USD/troy oz) og S&P 500-aktieindekset indekseret til 100 ved periodens start for sammenlignelig visning over de seneste 7 \u00e5r.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Guld",
+          "S&P 500"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165655/figure_07.png",
+      "metadata": {
+        "title": "Guld og S&P 500 \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af guld- og S&P 500-niveauer sammenlignet med niveauerne for \u00e9t \u00e5r siden. Guld er i USD/troy oz; S&P 500 er i indekspoint.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Guld",
+          "S&P 500"
+        ]
+      }
+    }
+  ]
+}

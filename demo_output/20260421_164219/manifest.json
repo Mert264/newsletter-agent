@@ -1,0 +1,81 @@
+{
+  "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164219/figure_00.png",
+      "metadata": {
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 aktuelle niveauer",
+        "chart_type": "G",
+        "x_label": "Rente (%)",
+        "y_label": "%",
+        "note": "Horisontalt s\u00f8jlediagram der viser de seneste 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA, sorteret fra h\u00f8jest til lavest. Renteniveauerne afspejler markedets vurdering af det enkelte lands kreditrisiko og makro\u00f8konomiske udsigter.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Deutschland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "Storbritannien",
+          "USA"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164219/figure_01.png",
+      "metadata": {
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 absolutte niveauer",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "M\u00e5nedlige 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien, Storbritannien og USA over de seneste 7 \u00e5r. Renteudviklingen illustrerer, hvordan pengepolitiske stramninger og markedstillid varierer p\u00e5 tv\u00e6rs af lande.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Deutschland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "Storbritannien",
+          "USA"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164219/figure_02.png",
+      "metadata": {
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte lande \u2014 sammenlignet med niveauet i januar 2019, inden den globale rentestramningscyklus begyndte. \u00c6ndringen vises i procentpoint.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Deutschland",
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "Storbritannien",
+          "USA"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164219/figure_03.png",
+      "metadata": {
+        "title": "Rentesp\u00e6nd vs. Tyskland \u2014 10-\u00e5rige statsobligationer",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Procentpoint",
+        "note": "Rentesp\u00e6nd mellem udvalgte landes 10-\u00e5rige statsobligationsrenter og den tyske Bund, der fungerer som europ\u00e6isk benchmark. Et stigende sp\u00e6nd indikerer \u00f8get markedsskepsis over for det p\u00e5g\u00e6ldende lands \u00f8konomi eller finanspolitik.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Frankrig",
+          "Italien",
+          "Spanien",
+          "Storbritannien",
+          "USA"
+        ]
+      }
+    }
+  ]
+}

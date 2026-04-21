@@ -1,0 +1,84 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "commodities",
+    "series_specs": [
+      {
+        "ticker": "GC=F",
+        "source": "yfinance",
+        "label": "Guld",
+        "region": "Global",
+        "unit": "USD/troy oz"
+      },
+      {
+        "ticker": "HG=F",
+        "source": "yfinance",
+        "label": "Kobber",
+        "region": "Global",
+        "unit": "USD/lb"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Guld og kobber \u2014 prisudvikling siden 2019",
+      "x_label": "Dato",
+      "y_label": "Indekseret (basis=100)",
+      "period_days": 2555,
+      "series_labels": [
+        "Guld",
+        "Kobber"
+      ],
+      "note": "Guld og kobber indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig prisskala. Guld fungerer typisk som safe haven i perioder med geopolitisk usikkerhed, mens kobber er et konjunkturf\u00f8lsomt industrietal.",
+      "events": [
+        {
+          "date": "2026-02-28",
+          "label": "Iran-krigen bryder ud"
+        }
+      ]
+    },
+    "brief": "Guld er steget som safe haven siden Iran-krigen br\u00f8d ud den 28. februar 2026. Vis guldpriser og mark\u00e9r 28. februar 2026. Vis ogs\u00e5 kobberpriser for at sammenligne safe haven-rally med industrimetallers signal."
+  },
+  {
+    "figure_id": 2,
+    "specialist": "commodities",
+    "series_specs": [
+      {
+        "ticker": "GC=F",
+        "source": "yfinance",
+        "label": "Guld",
+        "region": "Global",
+        "unit": "USD/troy oz"
+      },
+      {
+        "ticker": "HG=F",
+        "source": "yfinance",
+        "label": "Kobber",
+        "region": "Global",
+        "unit": "USD/lb"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "N\u00f8gletal \u2014 guld og kobber f\u00f8r og efter Iran-krigen",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "Guld",
+        "Kobber"
+      ],
+      "before_date": "2026-02-28",
+      "after_date": "latest",
+      "col_before": "28. feb 2026",
+      "col_after": "Nu",
+      "note": "Snapshot af guld- og kobberpriser p\u00e5 dagen for udbruddet af Iran-krigen sammenlignet med den seneste tilg\u00e6ngelige kurs. Viser i hvilken grad guld har fungeret som safe haven relativt til kobber som industrimetalsignal.",
+      "events": [
+        {
+          "date": "2026-02-28",
+          "label": "Iran-krigen bryder ud"
+        }
+      ]
+    },
+    "brief": "Guld er steget som safe haven siden Iran-krigen br\u00f8d ud den 28. februar 2026. Vis guldpriser og mark\u00e9r 28. februar 2026. Vis ogs\u00e5 kobberpriser for at sammenligne safe haven-rally med industrimetallers signal."
+  }
+]

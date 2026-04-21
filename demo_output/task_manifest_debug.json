@@ -1,99 +1,70 @@
 {
   "specialists": [
-    "energy"
+    "macro"
   ],
-  "energy": {
+  "macro": {
     "series": [
       {
-        "ticker": "BZ=F",
-        "source": "yfinance",
-        "label": "Brent r\u00e5olie",
-        "region": "Global",
-        "unit": "USD/barrel"
-      },
-      {
-        "ticker": "TTF=F",
-        "source": "yfinance",
-        "label": "TTF naturgas (EU)",
-        "region": "Europa",
-        "unit": "EUR/MWh",
-        "conversion": "EUR_MWh_to_USD_MWh"
-      },
-      {
-        "ticker": "NG=F",
-        "source": "yfinance",
-        "label": "Henry Hub naturgas (USA)",
+        "ticker": "CPIAUCSL",
+        "source": "fred",
+        "label": "USA",
         "region": "USA",
-        "unit": "USD/MMBtu",
-        "conversion": "USD_MMBtu_to_USD_MWh"
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CP0000EZ19M086NEST",
+        "source": "fred",
+        "label": "Euroomr\u00e5det",
+        "region": "Euroomr\u00e5det",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "GBRCPIALLMINMEI",
+        "source": "fred",
+        "label": "Storbritannien",
+        "region": "Storbritannien",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "JPNCPIALLMINMEI",
+        "source": "fred",
+        "label": "Japan",
+        "region": "Japan",
+        "unit": "YoY %"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Brent r\u00e5olie \u2014 pris siden Iran-Israel-krigen",
+        "title": "Global inflationsudvikling \u2014 headline CPI \u00e5r-over-\u00e5r",
         "x_label": "Dato",
-        "y_label": "USD/barrel",
-        "period_days": 789,
+        "y_label": "YoY %",
+        "period_days": 2555,
         "series_labels": [
-          "Brent r\u00e5olie"
+          "USA",
+          "Euroomr\u00e5det",
+          "Storbritannien",
+          "Japan"
         ],
-        "note": "Daglige lukkepriser for Brent r\u00e5olie. Brent er det globale benchmark for r\u00e5oliepriser og reagerer typisk hurtigt p\u00e5 geopolitiske sp\u00e6ndinger i Mellem\u00f8sten.",
-        "events": [
-          {
-            "date": "2026-02-28",
-            "label": "Iran erkl\u00e6rer krig mod Israel"
-          }
-        ]
+        "note": "Headline forbrugerprisindeks (CPI) \u00e5r-over-\u00e5r for USA, euroomr\u00e5det, Storbritannien og Japan. Serien viser inflationstoppen i 2021\u20132022, den efterf\u00f8lgende disinflation samt niveauerne i forhold til centralbankernes 2%-m\u00e5l."
       },
       {
         "type": "D",
-        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal f\u00f8r og efter krigens udbrud",
+        "title": "Inflationsn\u00f8gletal \u2014 seneste niveau vs. for \u00e9t \u00e5r siden",
         "x_label": "",
-        "y_label": "USD/barrel",
-        "period_days": 789,
+        "y_label": "YoY %",
+        "period_days": 2555,
         "series_labels": [
-          "Brent r\u00e5olie"
+          "USA",
+          "Euroomr\u00e5det",
+          "Storbritannien",
+          "Japan"
         ],
-        "before_date": "2026-02-28",
+        "before_date": "2024-04-01",
         "after_date": "latest",
-        "col_before": "28. feb 2026",
+        "col_before": "1 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Snapshot af Brent r\u00e5oliepris umiddelbart inden og efter Irans krigserkl\u00e6ring mod Israel den 28. februar 2026."
-      },
-      {
-        "type": "A",
-        "title": "EU vs. USA naturgaspriser (USD/MWh)",
-        "x_label": "Dato",
-        "y_label": "USD/MWh",
-        "period_days": 789,
-        "series_labels": [
-          "TTF naturgas (EU)",
-          "Henry Hub naturgas (USA)"
-        ],
-        "note": "TTF (nederlandsk naturgasbenchmark) omregnet fra EUR/MWh til USD/MWh. Henry Hub (amerikansk benchmark) omregnet fra USD/MMBtu til USD/MWh ved at gange med 3,41. Begge priser er udtrykt i USD/MWh for direkte sammenligning af den strukturelle prisforskel mellem EU og USA.",
-        "events": [
-          {
-            "date": "2026-02-28",
-            "label": "Iran erkl\u00e6rer krig mod Israel"
-          }
-        ]
-      },
-      {
-        "type": "D",
-        "title": "EU vs. USA naturgas \u2014 n\u00f8gletal f\u00f8r og efter krigens udbrud",
-        "x_label": "",
-        "y_label": "USD/MWh",
-        "period_days": 789,
-        "series_labels": [
-          "TTF naturgas (EU)",
-          "Henry Hub naturgas (USA)"
-        ],
-        "before_date": "2026-02-28",
-        "after_date": "latest",
-        "col_before": "28. feb 2026",
-        "col_after": "Nu",
-        "note": "Snapshot af TTF- og Henry Hub-naturgaspriser omregnet til USD/MWh umiddelbart inden og efter Irans krigserkl\u00e6ring mod Israel den 28. februar 2026."
+        "note": "Snapshot af den aktuelle headline-inflation i de fire regioner sammenlignet med niveauet for \u00e9t \u00e5r siden. \u00c6ndringen viser den absolutte bev\u00e6gelse i procentpoint i den \u00e5r-over-\u00e5r-v\u00e6kstrate."
       }
     ]
   }

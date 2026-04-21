@@ -1,0 +1,68 @@
+{
+  "brief": "Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig og Italien som absolutte niveauer \u2014 og vis rentesp\u00e6ndet (Frankrig og Italien vs. Tyskland) i en separat figur. Dette illustrerer stressnivoauer i europ\u00e6iske obligationsmarkeder og presset p\u00e5 perifere landes finansiering.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165522/figure_00.png",
+      "metadata": {
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 absolutte niveauer",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "M\u00e5nedlige 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig og Italien. Det tyske Bund g\u00e6lder som eurozonens risikofrie referencerente, mens franske OAT og italienske BTP afspejler landes individuelle kreditprofil og finansieringspres.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Deutschland",
+          "Frankrig",
+          "Italien"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165522/figure_01.png",
+      "metadata": {
+        "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af aktuelle 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig og Italien sammenlignet med niveauet i begyndelsen af 2019. \u00c6ndringer er angivet i procentpoint.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Deutschland",
+          "Frankrig",
+          "Italien"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165522/figure_02.png",
+      "metadata": {
+        "title": "Rentesp\u00e6nd vs. Tyskland \u2014 Frankrig og Italien (10-\u00e5rige statsobligationer)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Procentpoint",
+        "note": "Rentesp\u00e6nd p\u00e5 10-\u00e5rige statsobligationer for Frankrig og Italien relativt til den tyske Bund. Et stigende sp\u00e6nd signalerer \u00f8get markedsstress og h\u00f8jere finansieringsomkostninger for perifere eurozonemedlemmer.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Frankrig",
+          "Italien"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165522/figure_03.png",
+      "metadata": {
+        "title": "Rentesp\u00e6nd vs. Tyskland \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af rentesp\u00e6nd for Frankrig og Italien relativt til Tyskland for 10-\u00e5rige statsobligationer. Sammenlignes med niveauet i begyndelsen af 2019 for at illustrere \u00e6ndringen i opfattet kreditrisiko over perioden.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Frankrig",
+          "Italien"
+        ]
+      }
+    }
+  ]
+}

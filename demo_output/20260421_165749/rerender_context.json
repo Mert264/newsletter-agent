@@ -1,0 +1,114 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "equities",
+    "series_specs": [
+      {
+        "ticker": "LMT",
+        "source": "yfinance",
+        "label": "Lockheed Martin",
+        "region": "USA",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "RHM.DE",
+        "source": "yfinance",
+        "label": "Rheinmetall",
+        "region": "Tyskland",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "BAESY",
+        "source": "yfinance",
+        "label": "BAE Systems",
+        "region": "UK",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "NOC",
+        "source": "yfinance",
+        "label": "Northrop Grumman",
+        "region": "USA",
+        "unit": "Indekseret (basis=100)"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Forsvarsaktiernes kursudvikling \u2014 indekseret til 100",
+      "x_label": "Dato",
+      "y_label": "Indekseret (basis=100)",
+      "period_days": 2555,
+      "series_labels": [
+        "Lockheed Martin",
+        "Rheinmetall",
+        "BAE Systems",
+        "Northrop Grumman"
+      ],
+      "note": "De fire store forsvarskoncerner indekseret til 100 ved periodens start. Sammenligning viser relativ kursstigning siden 2019 mod baggrund af stigende globalt forsvarsforbrug.",
+      "events": [
+        {
+          "date": "2022-02-24",
+          "label": "Rusland invaderer Ukraine"
+        },
+        {
+          "date": "2023-10-07",
+          "label": "Hamas angriber Israel"
+        }
+      ]
+    },
+    "brief": "Iran-krigen og Ukraine-krigen har accelereret det globale forsvarsforbrug. Vis Lockheed Martin, Rheinmetall, BAE Systems og Northrop Grumman indekseret til 100. Mark\u00e9r de geopolitiske begivenheder der falder inden for den valgte tidsperiode."
+  },
+  {
+    "figure_id": 2,
+    "specialist": "equities",
+    "series_specs": [
+      {
+        "ticker": "LMT",
+        "source": "yfinance",
+        "label": "Lockheed Martin",
+        "region": "USA",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "RHM.DE",
+        "source": "yfinance",
+        "label": "Rheinmetall",
+        "region": "Tyskland",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "BAESY",
+        "source": "yfinance",
+        "label": "BAE Systems",
+        "region": "UK",
+        "unit": "Indekseret (basis=100)"
+      },
+      {
+        "ticker": "NOC",
+        "source": "yfinance",
+        "label": "Northrop Grumman",
+        "region": "USA",
+        "unit": "Indekseret (basis=100)"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Forsvarsaktier \u2014 n\u00f8gletal f\u00f8r og nu",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "Lockheed Martin",
+        "Rheinmetall",
+        "BAE Systems",
+        "Northrop Grumman"
+      ],
+      "before_date": "2022-02-24",
+      "after_date": "latest",
+      "col_before": "F\u00f8r Ukraine-krigen",
+      "col_after": "Nu",
+      "note": "Snapshot af de fire forsvarsaktiernes kursudvikling m\u00e5lt fra dagen f\u00f8r den russiske invasion af Ukraine den 24. februar 2022 til seneste tilg\u00e6ngelige kurs."
+    },
+    "brief": "Iran-krigen og Ukraine-krigen har accelereret det globale forsvarsforbrug. Vis Lockheed Martin, Rheinmetall, BAE Systems og Northrop Grumman indekseret til 100. Mark\u00e9r de geopolitiske begivenheder der falder inden for den valgte tidsperiode."
+  }
+]

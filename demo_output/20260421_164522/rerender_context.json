@@ -1,0 +1,104 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPIAUCSL",
+        "source": "fred",
+        "label": "USA",
+        "region": "USA",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CP0000EZ19M086NEST",
+        "source": "fred",
+        "label": "Euroomr\u00e5det",
+        "region": "Euroomr\u00e5det",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "GBRCPIALLMINMEI",
+        "source": "fred",
+        "label": "Storbritannien",
+        "region": "Storbritannien",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "JPNCPIALLMINMEI",
+        "source": "fred",
+        "label": "Japan",
+        "region": "Japan",
+        "unit": "YoY %"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Global inflationsudvikling \u2014 headline CPI \u00e5r-over-\u00e5r",
+      "x_label": "Dato",
+      "y_label": "YoY %",
+      "period_days": 2555,
+      "series_labels": [
+        "USA",
+        "Euroomr\u00e5det",
+        "Storbritannien",
+        "Japan"
+      ],
+      "note": "Headline forbrugerprisinflation (\u00e5r-over-\u00e5r) for USA, euroomr\u00e5det, Storbritannien og Japan siden 2018. Stiplede linjer markerer centralbankm\u00e5let p\u00e5 2 pct., som er f\u00e6lles referencepunkt for Fed, ECB, Bank of England og Bank of Japan."
+    },
+    "brief": "Sammenlign inflationsudviklingen globalt \u2014 USA, euroomr\u00e5det, Storbritannien og Japan \u2014 headline CPI \u00e5r-over-\u00e5r i procent. Vis inflationstoppen i 2021\u20132022, den efterf\u00f8lgende disinflation og om regionerne nu n\u00e6rmer sig centralbankm\u00e5let p\u00e5 2%."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPIAUCSL",
+        "source": "fred",
+        "label": "USA",
+        "region": "USA",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CP0000EZ19M086NEST",
+        "source": "fred",
+        "label": "Euroomr\u00e5det",
+        "region": "Euroomr\u00e5det",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "GBRCPIALLMINMEI",
+        "source": "fred",
+        "label": "Storbritannien",
+        "region": "Storbritannien",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "JPNCPIALLMINMEI",
+        "source": "fred",
+        "label": "Japan",
+        "region": "Japan",
+        "unit": "YoY %"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Inflationsn\u00f8gletal \u2014 seneste niveau og udvikling",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "USA",
+        "Euroomr\u00e5det",
+        "Storbritannien",
+        "Japan"
+      ],
+      "before_date": "2022-06-01",
+      "after_date": "latest",
+      "col_before": "Inflationstop (jun 2022)",
+      "col_after": "Nu",
+      "note": "Sammenligning af inflationsniveauet ved det globale inflationstoppunkt i midten af 2022 med det senest tilg\u00e6ngelige niveau. \u00c6ndringen viser det absolutte fald i procentpoint siden toppen."
+    },
+    "brief": "Sammenlign inflationsudviklingen globalt \u2014 USA, euroomr\u00e5det, Storbritannien og Japan \u2014 headline CPI \u00e5r-over-\u00e5r i procent. Vis inflationstoppen i 2021\u20132022, den efterf\u00f8lgende disinflation og om regionerne nu n\u00e6rmer sig centralbankm\u00e5let p\u00e5 2%."
+  }
+]

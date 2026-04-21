@@ -1,0 +1,176 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "rates",
+    "series_specs": [
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Deutschland",
+        "region": "Tyskland",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Frankrig",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Italien",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "10-\u00e5rige statsobligationsrenter \u2014 absolutte niveauer",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 2555,
+      "series_labels": [
+        "Deutschland",
+        "Frankrig",
+        "Italien"
+      ],
+      "note": "M\u00e5nedlige 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig og Italien. Det tyske Bund g\u00e6lder som eurozonens risikofrie referencerente, mens franske OAT og italienske BTP afspejler landes individuelle kreditprofil og finansieringspres."
+    },
+    "brief": "Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig og Italien som absolutte niveauer \u2014 og vis rentesp\u00e6ndet (Frankrig og Italien vs. Tyskland) i en separat figur. Dette illustrerer stressnivoauer i europ\u00e6iske obligationsmarkeder og presset p\u00e5 perifere landes finansiering."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "rates",
+    "series_specs": [
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Deutschland",
+        "region": "Tyskland",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Frankrig",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Italien",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "Deutschland",
+        "Frankrig",
+        "Italien"
+      ],
+      "before_date": "2019-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2019",
+      "col_after": "Nu",
+      "note": "Snapshot af aktuelle 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig og Italien sammenlignet med niveauet i begyndelsen af 2019. \u00c6ndringer er angivet i procentpoint."
+    },
+    "brief": "Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig og Italien som absolutte niveauer \u2014 og vis rentesp\u00e6ndet (Frankrig og Italien vs. Tyskland) i en separat figur. Dette illustrerer stressnivoauer i europ\u00e6iske obligationsmarkeder og presset p\u00e5 perifere landes finansiering."
+  },
+  {
+    "figure_id": 2,
+    "specialist": "rates",
+    "series_specs": [
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Deutschland",
+        "region": "Tyskland",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Frankrig",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Italien",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Rentesp\u00e6nd vs. Tyskland \u2014 Frankrig og Italien (10-\u00e5rige statsobligationer)",
+      "x_label": "Dato",
+      "y_label": "Procentpoint",
+      "period_days": 2555,
+      "series_labels": [
+        "Deutschland",
+        "Frankrig",
+        "Italien"
+      ],
+      "compute_spread_vs": "Deutschland",
+      "note": "Rentesp\u00e6nd p\u00e5 10-\u00e5rige statsobligationer for Frankrig og Italien relativt til den tyske Bund. Et stigende sp\u00e6nd signalerer \u00f8get markedsstress og h\u00f8jere finansieringsomkostninger for perifere eurozonemedlemmer."
+    },
+    "brief": "Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig og Italien som absolutte niveauer \u2014 og vis rentesp\u00e6ndet (Frankrig og Italien vs. Tyskland) i en separat figur. Dette illustrerer stressnivoauer i europ\u00e6iske obligationsmarkeder og presset p\u00e5 perifere landes finansiering."
+  },
+  {
+    "figure_id": 3,
+    "specialist": "rates",
+    "series_specs": [
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Deutschland",
+        "region": "Tyskland",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig",
+        "region": "Frankrig",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien",
+        "region": "Italien",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Rentesp\u00e6nd vs. Tyskland \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "Deutschland",
+        "Frankrig",
+        "Italien"
+      ],
+      "compute_spread_vs": "Deutschland",
+      "before_date": "2019-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2019",
+      "col_after": "Nu",
+      "note": "Snapshot af rentesp\u00e6nd for Frankrig og Italien relativt til Tyskland for 10-\u00e5rige statsobligationer. Sammenlignes med niveauet i begyndelsen af 2019 for at illustrere \u00e6ndringen i opfattet kreditrisiko over perioden."
+    },
+    "brief": "Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig og Italien som absolutte niveauer \u2014 og vis rentesp\u00e6ndet (Frankrig og Italien vs. Tyskland) i en separat figur. Dette illustrerer stressnivoauer i europ\u00e6iske obligationsmarkeder og presset p\u00e5 perifere landes finansiering."
+  }
+]

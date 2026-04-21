@@ -1,0 +1,290 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vindkraft",
+          "Solenergi",
+          "Vandkraft"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "F",
+      "title": "EU's energiomstilling \u2014 fordeling af energikilder over tid",
+      "x_label": "\u00c5r",
+      "y_label": "Pct. af total",
+      "period_days": 2555,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "EU27's samlede energiforbrug opdelt p\u00e5 udvalgte energikilder: naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft. Figuren illustrerer den gradvise omstilling fra fossile br\u00e6ndsler mod vedvarende energi over de seneste \u00e5r."
+    },
+    "brief": "Vis EU's energiomstilling over tid som 100% stacked bar \u2014 fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilg\u00e6ngelige \u00e5r."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vindkraft",
+          "Solenergi",
+          "Vandkraft"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot)",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagram over EU27's energiforbrug fordelt p\u00e5 naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft for det seneste tilg\u00e6ngelige \u00e5r. Giver et \u00f8jebliksbillede af den aktuelle sammens\u00e6tning af energiforbruget."
+    },
+    "brief": "Vis EU's energiomstilling over tid som 100% stacked bar \u2014 fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilg\u00e6ngelige \u00e5r."
+  },
+  {
+    "figure_id": 2,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vindkraft",
+          "Solenergi",
+          "Vandkraft"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot)",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagram over EU27's energiforbrug fordelt p\u00e5 naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft for det seneste tilg\u00e6ngelige \u00e5r. Giver et \u00f8jebliksbillede af den aktuelle sammens\u00e6tning af energiforbruget."
+    },
+    "brief": "Vis EU's energiomstilling over tid som 100% stacked bar \u2014 fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilg\u00e6ngelige \u00e5r."
+  },
+  {
+    "figure_id": 3,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vindkraft",
+          "Solenergi",
+          "Vandkraft"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot)",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagram over EU27's energiforbrug fordelt p\u00e5 naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft for det seneste tilg\u00e6ngelige \u00e5r. Giver et \u00f8jebliksbillede af den aktuelle sammens\u00e6tning af energiforbruget."
+    },
+    "brief": "Vis EU's energiomstilling over tid som 100% stacked bar \u2014 fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilg\u00e6ngelige \u00e5r."
+  },
+  {
+    "figure_id": 4,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vindkraft",
+          "Solenergi",
+          "Vandkraft"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot)",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagram over EU27's energiforbrug fordelt p\u00e5 naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft for det seneste tilg\u00e6ngelige \u00e5r. Giver et \u00f8jebliksbillede af den aktuelle sammens\u00e6tning af energiforbruget."
+    },
+    "brief": "Vis EU's energiomstilling over tid som 100% stacked bar \u2014 fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilg\u00e6ngelige \u00e5r."
+  },
+  {
+    "figure_id": 5,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vindkraft",
+          "Solenergi",
+          "Vandkraft"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot)",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagram over EU27's energiforbrug fordelt p\u00e5 naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft for det seneste tilg\u00e6ngelige \u00e5r. Giver et \u00f8jebliksbillede af den aktuelle sammens\u00e6tning af energiforbruget."
+    },
+    "brief": "Vis EU's energiomstilling over tid som 100% stacked bar \u2014 fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilg\u00e6ngelige \u00e5r."
+  },
+  {
+    "figure_id": 6,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vindkraft",
+          "Solenergi",
+          "Vandkraft"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot)",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagram over EU27's energiforbrug fordelt p\u00e5 naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft for det seneste tilg\u00e6ngelige \u00e5r. Giver et \u00f8jebliksbillede af den aktuelle sammens\u00e6tning af energiforbruget."
+    },
+    "brief": "Vis EU's energiomstilling over tid som 100% stacked bar \u2014 fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilg\u00e6ngelige \u00e5r."
+  },
+  {
+    "figure_id": 7,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vindkraft",
+          "Solenergi",
+          "Vandkraft"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot)",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagram over EU27's energiforbrug fordelt p\u00e5 naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft for det seneste tilg\u00e6ngelige \u00e5r. Giver et \u00f8jebliksbillede af den aktuelle sammens\u00e6tning af energiforbruget."
+    },
+    "brief": "Vis EU's energiomstilling over tid som 100% stacked bar \u2014 fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilg\u00e6ngelige \u00e5r."
+  },
+  {
+    "figure_id": 8,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_energy_mix",
+        "source": "eurostat_mix",
+        "label": "EU energimix",
+        "unit": "Pct. af total",
+        "product_filter": [
+          "Naturgas",
+          "Kul",
+          "Kerneenergi",
+          "Vindkraft",
+          "Solenergi",
+          "Vandkraft"
+        ]
+      }
+    ],
+    "chart_spec": {
+      "type": "P",
+      "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot)",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "EU energimix"
+      ],
+      "note": "Cirkeldiagram over EU27's energiforbrug fordelt p\u00e5 naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft for det seneste tilg\u00e6ngelige \u00e5r. Giver et \u00f8jebliksbillede af den aktuelle sammens\u00e6tning af energiforbruget."
+    },
+    "brief": "Vis EU's energiomstilling over tid som 100% stacked bar \u2014 fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilg\u00e6ngelige \u00e5r."
+  }
+]

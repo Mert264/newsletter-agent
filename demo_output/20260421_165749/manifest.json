@@ -1,0 +1,52 @@
+{
+  "brief": "Iran-krigen og Ukraine-krigen har accelereret det globale forsvarsforbrug. Vis Lockheed Martin, Rheinmetall, BAE Systems og Northrop Grumman indekseret til 100. Mark\u00e9r de geopolitiske begivenheder der falder inden for den valgte tidsperiode.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165749/figure_00.png",
+      "metadata": {
+        "title": "Forsvarsaktiernes kursudvikling \u2014 indekseret til 100",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "note": "De fire store forsvarskoncerner indekseret til 100 ved periodens start. Sammenligning viser relativ kursstigning siden 2019 mod baggrund af stigende globalt forsvarsforbrug.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Lockheed Martin",
+          "Rheinmetall",
+          "BAE Systems",
+          "Northrop Grumman"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165749/figure_01.png",
+      "metadata": {
+        "title": "Event impact \u2014 Forsvarsaktiernes kursudvikling \u2014 indekseret til 100",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Yahoo Finance",
+        "region_labels": []
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165749/figure_02.png",
+      "metadata": {
+        "title": "Forsvarsaktier \u2014 n\u00f8gletal f\u00f8r og nu",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af de fire forsvarsaktiernes kursudvikling m\u00e5lt fra dagen f\u00f8r den russiske invasion af Ukraine den 24. februar 2022 til seneste tilg\u00e6ngelige kurs.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Lockheed Martin",
+          "Rheinmetall",
+          "BAE Systems",
+          "Northrop Grumman"
+        ]
+      }
+    }
+  ]
+}

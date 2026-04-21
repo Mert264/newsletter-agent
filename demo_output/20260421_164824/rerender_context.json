@@ -1,0 +1,110 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "DFEDTARU",
+        "source": "fred",
+        "label": "Federal Reserve (USA)",
+        "region": "USA",
+        "unit": "%"
+      },
+      {
+        "ticker": "ECBDFR",
+        "source": "fred",
+        "label": "ECB (Eurozonen)",
+        "region": "Eurozonen",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRSTCB01GBM156N",
+        "source": "fred",
+        "label": "Bank of England (UK)",
+        "region": "UK",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Centralbankers politikrenter: Fed, ECB og Bank of England",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 2555,
+      "series_labels": [
+        "Federal Reserve (USA)",
+        "ECB (Eurozonen)",
+        "Bank of England (UK)"
+      ],
+      "note": "Politikrenter for de tre st\u00f8rste centralbanker siden 2019. Alle tre banker begyndte at h\u00e6ve renterne markant i 2022 som reaktion p\u00e5 den h\u00f8je inflation og p\u00e5begyndte lempelser i 2024.",
+      "events": [
+        {
+          "date": "2022-03-16",
+          "label": "Fed begynder rentestigninger"
+        },
+        {
+          "date": "2022-07-21",
+          "label": "ECB begynder rentestigninger"
+        },
+        {
+          "date": "2024-06-06",
+          "label": "ECB begynder rentes\u00e6nkninger"
+        },
+        {
+          "date": "2024-08-01",
+          "label": "BoE begynder rentes\u00e6nkninger"
+        },
+        {
+          "date": "2024-09-18",
+          "label": "Fed begynder rentes\u00e6nkninger"
+        }
+      ]
+    },
+    "brief": "Sammenlign de tre store centralbankers politikrenter: Federal Reserve (USA), ECB (Eurozonen) og Bank of England (UK). Vis hvorn\u00e5r de begyndte at h\u00e6ve renter for at bek\u00e6mpe inflation, og hvorn\u00e5r de begyndte at s\u00e6nke dem igen."
+  },
+  {
+    "figure_id": 2,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "DFEDTARU",
+        "source": "fred",
+        "label": "Federal Reserve (USA)",
+        "region": "USA",
+        "unit": "%"
+      },
+      {
+        "ticker": "ECBDFR",
+        "source": "fred",
+        "label": "ECB (Eurozonen)",
+        "region": "Eurozonen",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRSTCB01GBM156N",
+        "source": "fred",
+        "label": "Bank of England (UK)",
+        "region": "UK",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Politikrenter \u2014 n\u00f8gletal f\u00f8r og nu",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 2555,
+      "series_labels": [
+        "Federal Reserve (USA)",
+        "ECB (Eurozonen)",
+        "Bank of England (UK)"
+      ],
+      "before_date": "2022-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2022 (f\u00f8r stigninger)",
+      "col_after": "Nu",
+      "note": "Sammenligning af politikrenterne ved indgangen til 2022 \u2014 inden rentestigningscyklussen begyndte \u2014 og de seneste tilg\u00e6ngelige niveauer."
+    },
+    "brief": "Sammenlign de tre store centralbankers politikrenter: Federal Reserve (USA), ECB (Eurozonen) og Bank of England (UK). Vis hvorn\u00e5r de begyndte at h\u00e6ve renter for at bek\u00e6mpe inflation, og hvorn\u00e5r de begyndte at s\u00e6nke dem igen."
+  }
+]

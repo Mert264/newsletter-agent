@@ -1,0 +1,132 @@
+{
+  "brief": "Vis EU's energiomstilling over tid som 100% stacked bar \u2014 fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilg\u00e6ngelige \u00e5r.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165138/figure_00.png",
+      "metadata": {
+        "title": "EU's energiomstilling \u2014 fordeling af energikilder over tid",
+        "chart_type": "F",
+        "x_label": "\u00c5r",
+        "y_label": "Pct. af total",
+        "note": "EU27's samlede energiforbrug opdelt p\u00e5 udvalgte energikilder: naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft. Figuren illustrerer den gradvise omstilling fra fossile br\u00e6ndsler mod vedvarende energi over de seneste \u00e5r.",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165138/figure_01_y00.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot) (2018)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165138/figure_01_y01.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot) (2019)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165138/figure_01_y02.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot) (2020)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165138/figure_01_y03.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot) (2021)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165138/figure_01_y04.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot) (2022)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165138/figure_01_y05.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot) (2023)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165138/figure_01_y06.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot) (2024)",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_165138/figure_01.png",
+      "metadata": {
+        "title": "EU's energimix \u2014 seneste tilg\u00e6ngelige \u00e5r (snapshot) \u2014 Sammenligning",
+        "chart_type": "P",
+        "x_label": "",
+        "y_label": "",
+        "note": "Cirkeldiagram over EU27's energiforbrug fordelt p\u00e5 naturgas, kul, kerneenergi, vindkraft, solenergi og vandkraft for det seneste tilg\u00e6ngelige \u00e5r. Giver et \u00f8jebliksbillede af den aktuelle sammens\u00e6tning af energiforbruget.",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU energimix"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "brief": "Sammenlign inflationsudviklingen globalt \u2014 USA, euroomr\u00e5det, Storbritannien og Japan \u2014 headline CPI \u00e5r-over-\u00e5r i procent. Vis inflationstoppen i 2021\u20132022, den efterf\u00f8lgende disinflation og om regionerne nu n\u00e6rmer sig centralbankm\u00e5let p\u00e5 2%.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164522/figure_00.png",
+      "metadata": {
+        "title": "Global inflationsudvikling \u2014 headline CPI \u00e5r-over-\u00e5r",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "YoY %",
+        "note": "Headline forbrugerprisinflation (\u00e5r-over-\u00e5r) for USA, euroomr\u00e5det, Storbritannien og Japan siden 2018. Stiplede linjer markerer centralbankm\u00e5let p\u00e5 2 pct., som er f\u00e6lles referencepunkt for Fed, ECB, Bank of England og Bank of Japan.",
+        "kilde": "FRED",
+        "region_labels": [
+          "USA",
+          "Euroomr\u00e5det",
+          "Storbritannien",
+          "Japan"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_164522/figure_01.png",
+      "metadata": {
+        "title": "Inflationsn\u00f8gletal \u2014 seneste niveau og udvikling",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af inflationsniveauet ved det globale inflationstoppunkt i midten af 2022 med det senest tilg\u00e6ngelige niveau. \u00c6ndringen viser det absolutte fald i procentpoint siden toppen.",
+        "kilde": "FRED",
+        "region_labels": [
+          "USA",
+          "Euroomr\u00e5det",
+          "Storbritannien",
+          "Japan"
+        ]
+      }
+    }
+  ]
+}

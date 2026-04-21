@@ -282,11 +282,15 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
     _apply_brand(ax, fig)
 
-    # Clip y-axis if a spike is dominating the scale (e.g. TTF gas crisis or Iran war spike).
-    # Use p95 so even short 1-2 week spikes get caught; trigger when max > p95 × 1.3.
+    # Clip y-axis ONLY for absolute-price series (oil, gas, commodity prices) where a brief
+    # spike can compress the rest of the chart. Never clip indexed or rate series — their
+    # high values are meaningful and should be shown in full.
+    y_lbl_lower = spec.get("y_label", "").lower()
+    _is_absolute_price = any(u in y_lbl_lower for u in
+                             ["barrel", "mwh", "mmb", "troy", "/lb", "cent/", "bushe"])
     all_vals = df.values.flatten()
     all_vals = all_vals[~np.isnan(all_vals)]
-    if len(all_vals) > 10:
+    if _is_absolute_price and len(all_vals) > 10:
         p95 = np.percentile(all_vals, 95)
         raw_ymax = ax.get_ylim()[1]
         if raw_ymax > p95 * 1.3:

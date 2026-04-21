@@ -1,0 +1,40 @@
+{
+  "brief": "Trump-administrationen indf\u00f8rte historiske toldsatser den 2. april 2025. Vis Brent olie, S&P 500, EUR/USD og guld \u2014 sammenlign markedspriserne f\u00f8r og efter toldannoncen den 2. april 2025.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_170018/figure_00.png",
+      "metadata": {
+        "title": "Markedsudvikling omkring Trump-toldannonce \u2014 indekseret",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "note": "Alle serier er indekseret til 100 pr. 2. april 2025 (dagen for Trumps toldannonce) for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af aktivklasser med vidt forskellig skala.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie",
+          "S&P 500",
+          "EUR/USD",
+          "Guld"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_170018/figure_01.png",
+      "metadata": {
+        "title": "N\u00f8gletal \u2014 f\u00f8r og efter Trumps toldannonce 2. april 2025",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af udvalgte markedsindikatorer p\u00e5 datoen for Trumps historiske toldannonce sammenlignet med den seneste tilg\u00e6ngelige kurs. \u00c6ndringen afspejler markedsbev\u00e6gelsen siden annoncen.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie",
+          "S&P 500",
+          "EUR/USD",
+          "Guld"
+        ]
+      }
+    }
+  ]
+}
