@@ -760,6 +760,7 @@ function startRun() {
     if (r.status === 429) {
       document.getElementById('statusMsg').textContent = 'En kørsel er allerede i gang — vent venligst.';
       document.getElementById('statusMsg').className = 'error';
+      document.getElementById('statusDot').className = 'status-dot error';
       document.getElementById('runBtn').disabled = false;
       if (eventSource) { eventSource.close(); eventSource = null; }
     }
