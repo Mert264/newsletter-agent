@@ -71,7 +71,8 @@ def _build_table(dfs: dict, chart_spec: dict, kilde_str: str, output_path: str) 
     use_absolute = y_label.strip() in ("%", "pp", "PP", "Percentage points", "Procentpoint",
                                         "Basis points (bps)", "YoY %", "YoY%")
 
-    rows = []
+    # First pass: collect raw values to enable data-driven use_absolute override
+    raw_rows = []
     for label, df in dfs.items():
         series = df.iloc[:, 0].dropna()
         if series.empty:
@@ -79,21 +80,34 @@ def _build_table(dfs: dict, chart_spec: dict, kilde_str: str, output_path: str) 
         try:
             after_val  = _snapshot_value(series, after_date)
             before_val = _snapshot_value(series, before_date) if before_date else float(series.iloc[0])
-            change     = after_val - before_val
-            sign       = "+" if change >= 0 else ""
-            if use_absolute:
-                change_str = f"{sign}{change:.2f} pp"
-            else:
-                pct = (change / abs(before_val) * 100) if before_val != 0 else 0.0
-                change_str = f"{sign}{pct:.1f}%"
-            rows.append({
-                "indicator": label,
-                col_before:  _fmt(before_val),
-                col_after:   _fmt(after_val),
-                "Ændring":   change_str,
-            })
+            raw_rows.append((label, before_val, after_val))
         except Exception as e:
             print(f"    [warn] Could not build table row for '{label}': {e}")
+
+    # Data-driven override: if ALL values look like rates/percentages (abs < 30),
+    # always use absolute pp change — even if the orchestrator forgot to set y_label="%".
+    # This catches standalone D tables for bond yields, inflation, policy rates etc.
+    # (Skipped when y_label already clearly indicates index levels or prices.)
+    if not use_absolute:
+        all_vals = [v for _, b, a in raw_rows for v in (b, a) if v is not None]
+        if all_vals and max(abs(v) for v in all_vals) < 30:
+            use_absolute = True
+
+    rows = []
+    for label, before_val, after_val in raw_rows:
+        change = after_val - before_val
+        sign   = "+" if change >= 0 else ""
+        if use_absolute:
+            change_str = f"{sign}{change:.2f} pp"
+        else:
+            pct = (change / abs(before_val) * 100) if before_val != 0 else 0.0
+            change_str = f"{sign}{pct:.1f}%"
+        rows.append({
+            "indicator": label,
+            col_before:  _fmt(before_val),
+            col_after:   _fmt(after_val),
+            "Ændring":   change_str,
+        })
 
     data = {"columns": [col_before, col_after, "Ændring"], "rows": rows}
     # Pass spec without note — tables don't show Note text, only Kilde
