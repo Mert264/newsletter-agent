@@ -451,6 +451,9 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) 
                 else:
                     merged = merged.drop(columns=[col]).join(yoy)
             merged = merged.dropna(how="all")
+            if merged.empty:
+                print(f"    [warn] All series dropped after YoY transform for '{chart_spec.get('title')}' — skipping.")
+                return None
 
         # Honour explicit index_base_date from the orchestrator: trim data to start
         # from that date and rebase to 100 there (not at whatever first row exists).
