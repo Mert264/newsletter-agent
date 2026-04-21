@@ -1,136 +1,120 @@
 [
   {
     "figure_id": 0,
-    "specialist": "rates",
+    "specialist": "equities",
     "series_specs": [
       {
-        "ticker": "IRLTLT01DEM156N",
-        "source": "fred",
-        "label": "Tyskland",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "ORSTED.CO",
+        "source": "yfinance",
+        "label": "\u00d8rsted",
+        "region": "Danmark",
+        "unit": "Indekseret (basis=100)"
       },
       {
-        "ticker": "IRLTLT01FRM156N",
-        "source": "fred",
-        "label": "Frankrig",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "VWS.CO",
+        "source": "yfinance",
+        "label": "Vestas",
+        "region": "Danmark",
+        "unit": "Indekseret (basis=100)"
       },
       {
-        "ticker": "IRLTLT01ITM156N",
-        "source": "fred",
-        "label": "Italien",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "IBE.MC",
+        "source": "yfinance",
+        "label": "Iberdrola",
+        "region": "Spanien",
+        "unit": "Indekseret (basis=100)"
       },
       {
-        "ticker": "IRLTLT01ESM156N",
-        "source": "fred",
-        "label": "Spanien",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "SHEL.L",
+        "source": "yfinance",
+        "label": "Shell",
+        "region": "Storbritannien",
+        "unit": "Indekseret (basis=100)"
       },
       {
-        "ticker": "IRLTLT01GBM156N",
-        "source": "fred",
-        "label": "UK",
-        "region": "Europa",
-        "unit": "%"
-      },
-      {
-        "ticker": "DGS10",
-        "source": "fred",
-        "label": "USA",
-        "region": "Nordamerika",
-        "unit": "%"
+        "ticker": "TTE.PA",
+        "source": "yfinance",
+        "label": "TotalEnergies",
+        "region": "Frankrig",
+        "unit": "Indekseret (basis=100)"
       }
     ],
     "chart_spec": {
-      "type": "G",
-      "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
-      "x_label": "Rente (%)",
-      "y_label": "%",
-      "period_days": 730,
+      "type": "A",
+      "title": "Gr\u00f8n energi vs. oliemajorer \u2014 kursudvikling indekseret til 100",
+      "x_label": "Dato",
+      "y_label": "Indekseret (basis=100)",
+      "period_days": 3650,
       "series_labels": [
-        "Tyskland",
-        "Frankrig",
-        "Italien",
-        "Spanien",
-        "UK",
-        "USA"
+        "\u00d8rsted",
+        "Vestas",
+        "Iberdrola",
+        "Shell",
+        "TotalEnergies"
       ],
-      "note": "Den seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrente for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jeste til laveste rente og afspejler markedets aktuelle tillid til de enkelte landes \u00f8konomi og kreditv\u00e6rdighed."
+      "note": "Kursudviklingen for tre europ\u00e6iske vedvarende energiselskaber (\u00d8rsted, Vestas, Iberdrola) sammenlignet med to store oliemajorer (Shell, TotalEnergies) over de seneste 10 \u00e5r. Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellige kursniveauer og valutaer."
     },
-    "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente."
+    "brief": "Vis kursudviklingen for europ\u00e6iske vedvarende energiselskaber (\u00d8rsted: ORSTED.CO, Vestas: VWS.CO, Iberdrola: IBE.MC) sammenlignet med store oliemajorer (Shell: SHEL.L, TotalEnergies: TTE.PA) \u2014 alle indekseret til 100. Illustr\u00e9r om den gr\u00f8nne energiomstilling har leveret afkast til investorerne."
   },
   {
     "figure_id": 1,
-    "specialist": "rates",
+    "specialist": "equities",
     "series_specs": [
       {
-        "ticker": "IRLTLT01DEM156N",
-        "source": "fred",
-        "label": "Tyskland",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "ORSTED.CO",
+        "source": "yfinance",
+        "label": "\u00d8rsted",
+        "region": "Danmark",
+        "unit": "Indekseret (basis=100)"
       },
       {
-        "ticker": "IRLTLT01FRM156N",
-        "source": "fred",
-        "label": "Frankrig",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "VWS.CO",
+        "source": "yfinance",
+        "label": "Vestas",
+        "region": "Danmark",
+        "unit": "Indekseret (basis=100)"
       },
       {
-        "ticker": "IRLTLT01ITM156N",
-        "source": "fred",
-        "label": "Italien",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "IBE.MC",
+        "source": "yfinance",
+        "label": "Iberdrola",
+        "region": "Spanien",
+        "unit": "Indekseret (basis=100)"
       },
       {
-        "ticker": "IRLTLT01ESM156N",
-        "source": "fred",
-        "label": "Spanien",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "SHEL.L",
+        "source": "yfinance",
+        "label": "Shell",
+        "region": "Storbritannien",
+        "unit": "Indekseret (basis=100)"
       },
       {
-        "ticker": "IRLTLT01GBM156N",
-        "source": "fred",
-        "label": "UK",
-        "region": "Europa",
-        "unit": "%"
-      },
-      {
-        "ticker": "DGS10",
-        "source": "fred",
-        "label": "USA",
-        "region": "Nordamerika",
-        "unit": "%"
+        "ticker": "TTE.PA",
+        "source": "yfinance",
+        "label": "TotalEnergies",
+        "region": "Frankrig",
+        "unit": "Indekseret (basis=100)"
       }
     ],
     "chart_spec": {
       "type": "D",
-      "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
+      "title": "Kursudvikling \u2014 n\u00f8gletal for gr\u00f8n energi og oliemajorer",
       "x_label": "",
       "y_label": "",
-      "period_days": 730,
+      "period_days": 3650,
       "series_labels": [
-        "Tyskland",
-        "Frankrig",
-        "Italien",
-        "Spanien",
-        "UK",
-        "USA"
+        "\u00d8rsted",
+        "Vestas",
+        "Iberdrola",
+        "Shell",
+        "TotalEnergies"
       ],
-      "before_date": "2024-01-01",
+      "before_date": "2015-04-01",
       "after_date": "latest",
-      "col_before": "Jan 2024",
+      "col_before": "Start (apr. 2015)",
       "col_after": "Nu",
-      "note": "Snapshot af de 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande og USA. \u00c6ndringen viser forskydningen i renteniveauet siden januar 2024 og illustrerer, hvordan markedsforholdene har udviklet sig."
+      "note": "Snapshot af indekserede kurser for vedvarende energiselskaber og oliemajorer siden april 2015. \u00c6ndringen viser den samlede kursbev\u00e6gelse over den 10-\u00e5rige periode og illustrerer, om den gr\u00f8nne energiomstilling har bel\u00f8nnet investorerne relativt til traditionelle oliemajorer."
     },
-    "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente."
+    "brief": "Vis kursudviklingen for europ\u00e6iske vedvarende energiselskaber (\u00d8rsted: ORSTED.CO, Vestas: VWS.CO, Iberdrola: IBE.MC) sammenlignet med store oliemajorer (Shell: SHEL.L, TotalEnergies: TTE.PA) \u2014 alle indekseret til 100. Illustr\u00e9r om den gr\u00f8nne energiomstilling har leveret afkast til investorerne."
   }
 ]

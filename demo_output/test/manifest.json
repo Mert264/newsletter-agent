@@ -1,42 +1,40 @@
 {
-  "brief": "Rentesp\u00e6ndet inden for Europa afspejler investorernes tillid til de enkelte landes \u00f8konomi. Vis 10-\u00e5rige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt s\u00f8jlediagram sorteret fra h\u00f8jest til lavest rente og sammenlign med den amerikanske 10-\u00e5rige statsobligationsrente.",
+  "brief": "Vis kursudviklingen for europ\u00e6iske vedvarende energiselskaber (\u00d8rsted: ORSTED.CO, Vestas: VWS.CO, Iberdrola: IBE.MC) sammenlignet med store oliemajorer (Shell: SHEL.L, TotalEnergies: TTE.PA) \u2014 alle indekseret til 100. Illustr\u00e9r om den gr\u00f8nne energiomstilling har leveret afkast til investorerne.",
   "date": "2026-04-21",
   "figures": [
     {
       "path": "demo_output/test/figure_00.png",
       "metadata": {
-        "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
-        "chart_type": "G",
-        "x_label": "Rente (%)",
-        "y_label": "%",
-        "note": "Den seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrente for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jeste til laveste rente og afspejler markedets aktuelle tillid til de enkelte landes \u00f8konomi og kreditv\u00e6rdighed.",
-        "kilde": "FRED",
+        "title": "Gr\u00f8n energi vs. oliemajorer \u2014 kursudvikling indekseret til 100",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "note": "Kursudviklingen for tre europ\u00e6iske vedvarende energiselskaber (\u00d8rsted, Vestas, Iberdrola) sammenlignet med to store oliemajorer (Shell, TotalEnergies) over de seneste 10 \u00e5r. Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellige kursniveauer og valutaer.",
+        "kilde": "Yahoo Finance",
         "region_labels": [
-          "Tyskland",
-          "Frankrig",
-          "Italien",
-          "Spanien",
-          "UK",
-          "USA"
+          "\u00d8rsted",
+          "Vestas",
+          "Iberdrola",
+          "Shell",
+          "TotalEnergies"
         ]
       }
     },
     {
       "path": "demo_output/test/figure_01.png",
       "metadata": {
-        "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
+        "title": "Kursudvikling \u2014 n\u00f8gletal for gr\u00f8n energi og oliemajorer",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af de 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande og USA. \u00c6ndringen viser forskydningen i renteniveauet siden januar 2024 og illustrerer, hvordan markedsforholdene har udviklet sig.",
-        "kilde": "FRED",
+        "note": "Snapshot af indekserede kurser for vedvarende energiselskaber og oliemajorer siden april 2015. \u00c6ndringen viser den samlede kursbev\u00e6gelse over den 10-\u00e5rige periode og illustrerer, om den gr\u00f8nne energiomstilling har bel\u00f8nnet investorerne relativt til traditionelle oliemajorer.",
+        "kilde": "Yahoo Finance",
         "region_labels": [
-          "Tyskland",
-          "Frankrig",
-          "Italien",
-          "Spanien",
-          "UK",
-          "USA"
+          "\u00d8rsted",
+          "Vestas",
+          "Iberdrola",
+          "Shell",
+          "TotalEnergies"
         ]
       }
     }

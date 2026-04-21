@@ -9,41 +9,41 @@
         "source": "yfinance",
         "label": "\u00d8rsted",
         "region": "Danmark",
-        "unit": "DKK"
+        "unit": "Indekseret (basis=100)"
       },
       {
         "ticker": "VWS.CO",
         "source": "yfinance",
         "label": "Vestas",
         "region": "Danmark",
-        "unit": "DKK"
+        "unit": "Indekseret (basis=100)"
       },
       {
         "ticker": "IBE.MC",
         "source": "yfinance",
         "label": "Iberdrola",
         "region": "Spanien",
-        "unit": "EUR"
+        "unit": "Indekseret (basis=100)"
       },
       {
         "ticker": "SHEL.L",
         "source": "yfinance",
         "label": "Shell",
-        "region": "UK",
-        "unit": "GBP"
+        "region": "Storbritannien",
+        "unit": "Indekseret (basis=100)"
       },
       {
         "ticker": "TTE.PA",
         "source": "yfinance",
         "label": "TotalEnergies",
         "region": "Frankrig",
-        "unit": "EUR"
+        "unit": "Indekseret (basis=100)"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Kursudvikling: Vedvarende energiselskaber vs. oliemajorer",
+        "title": "Gr\u00f8n energi vs. oliemajorer \u2014 kursudvikling indekseret til 100",
         "x_label": "Dato",
         "y_label": "Indekseret (basis=100)",
         "period_days": 3650,
@@ -54,11 +54,11 @@
           "Shell",
           "TotalEnergies"
         ],
-        "note": "Aktiepris udvikling for tre europ\u00e6iske vedvarende energiselskaber (\u00d8rsted, Vestas, Iberdrola) og to store oliemajorer (Shell, TotalEnergies) over de seneste 10 \u00e5r, indekseret til 100 ved perioden start. Viser det relative afkast for gr\u00f8n energi versus traditionelle olieselskaber."
+        "note": "Kursudviklingen for tre europ\u00e6iske vedvarende energiselskaber (\u00d8rsted, Vestas, Iberdrola) sammenlignet med to store oliemajorer (Shell, TotalEnergies) over de seneste 10 \u00e5r. Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellige kursniveauer og valutaer."
       },
       {
         "type": "D",
-        "title": "N\u00f8gletal \u2014 vedvarende vs. fossile energiselskaber",
+        "title": "Kursudvikling \u2014 n\u00f8gletal for gr\u00f8n energi og oliemajorer",
         "x_label": "",
         "y_label": "Indekseret (basis=100)",
         "period_days": 3650,
@@ -69,11 +69,11 @@
           "Shell",
           "TotalEnergies"
         ],
-        "before_date": "2016-01-01",
+        "before_date": "2015-04-01",
         "after_date": "latest",
-        "col_before": "10 \u00e5r siden",
+        "col_before": "Start (apr. 2015)",
         "col_after": "Nu",
-        "note": "Snapshot af aktieprisudvikling for vedvarende og fossile energiselskaber siden januar 2016. \u00c6ndringer viser det kumulative afkast i procent over de seneste 10 \u00e5r."
+        "note": "Snapshot af indekserede kurser for vedvarende energiselskaber og oliemajorer siden april 2015. \u00c6ndringen viser den samlede kursbev\u00e6gelse over den 10-\u00e5rige periode og illustrerer, om den gr\u00f8nne energiomstilling har bel\u00f8nnet investorerne relativt til traditionelle oliemajorer."
       }
     ]
   }

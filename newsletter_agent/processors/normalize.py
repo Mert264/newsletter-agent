@@ -5,6 +5,8 @@ import numpy as np
 
 def drop_nulls(df: pd.DataFrame) -> pd.DataFrame:
     """Drop rows where all values are NaN; forward-fill single missing values."""
+    if df.index.duplicated().any():
+        df = df[~df.index.duplicated(keep="last")]
     return df.dropna(how="all").ffill().dropna()
 
 
