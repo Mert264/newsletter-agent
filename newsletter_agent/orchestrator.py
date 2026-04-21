@@ -142,11 +142,14 @@ Inflation (use EXACT series IDs below — do NOT invent HICP codes):
   CPALTT01USM659N    (US CPI YoY rate, already in % — OECD MEI via FRED. Use this instead of
                       CPIAUCSL when comparing multiple countries on the same chart, to ensure all
                       series are already in YoY % and no transform is needed. y_label="%".)
-  CPALTT01EZM659N    (Eurozone CPI YoY rate, already in % — OECD MEI via FRED. Same rule: y_label="%".
-                      Use instead of CP0000EZ19M086NEST for multi-country inflation comparisons.)
+  CPALTT01DEM659N    (Germany CPI YoY rate — OECD MEI via FRED. Already in %, y_label="%". Use as
+                      Eurozone/EU proxy in multi-country inflation charts. CPALTT01EZM659N does NOT
+                      exist on FRED — never use it. Label the series "EU (DE)" or "Euroområdet (DE)".)
+  CPALTT01FRM659N    (France CPI YoY rate — OECD MEI via FRED. Already in %, y_label="%".)
 MULTI-COUNTRY INFLATION RULE: When comparing CPI inflation across multiple countries/regions on
-ONE chart, ALWAYS use CPALTT01{CC}M659N series for ALL countries (US=USM, Eurozone=EZM,
+ONE chart, ALWAYS use CPALTT01{CC}M659N series for ALL countries (US=USM, Germany=DEM as EU proxy,
 UK=GBM, Japan=JPM, China=CNM). All are already YoY rates. Set y_label="%" for the entire chart.
+NEVER use CPALTT01EZM659N — it does not exist on FRED. Use CPALTT01DEM659N for EU/Eurozone.
 NEVER mix a pre-computed YoY series (CPALTT) with an index series (CPIAUCSL) on the same chart.
 Bond yields (already in % — do NOT apply YoY):
   IRLTLT01EZM156N (Eurozone 10Y bond yield, monthly %)
