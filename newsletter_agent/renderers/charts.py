@@ -292,14 +292,6 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
         if raw_ymax > p95 * 1.3:
             clipped_top = p95 * 1.2
             ax.set_ylim(top=clipped_top)
-            true_max = float(all_vals.max())
-            ax.annotate(
-                f"↑ max {true_max:,.1f}",
-                xy=(0.98, 1.0), xycoords="axes fraction",
-                ha="right", va="bottom",
-                fontsize=BRAND["font_size_label"] - 1,
-                color="#6b7280", style="italic",
-            )
 
     # For indexed charts (base=100), enforce a minimum visible range of 60 units
     # so movements like -15% or +20% don't look flat on a compressed axis.
