@@ -1,0 +1,102 @@
+{
+  "brief": "Iran erkl\u00e6rede krig mod Israel den 28. februar 2026, hvilket sendte chokb\u00f8lger gennem energimarkederne. Vis Brent-r\u00e5olie og europ\u00e6isk naturgas (TTF), og mark\u00e9r udbruddet den 28. februar 2026. Vis ogs\u00e5 amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA p\u00e5 gas.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_121114/figure_00.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie \u2014 pris siden februar 2026",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/barrel",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie. Den lodrette linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel, og som udl\u00f8ste betydelig uro p\u00e5 energimarkederne.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ]
+      },
+      "spec": {
+        "type": "A",
+        "title": "Brent r\u00e5olie \u2014 pris siden februar 2026",
+        "x_label": "Dato",
+        "y_label": "USD/barrel",
+        "period_days": 439,
+        "series_labels": [
+          "Brent r\u00e5olie"
+        ],
+        "note": "Daglige lukkepriser for Brent r\u00e5olie. Den lodrette linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel, og som udl\u00f8ste betydelig uro p\u00e5 energimarkederne.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
+      },
+      "data_summary": {
+        "chart_type": "A",
+        "series": {
+          "Brent r\u00e5olie": {
+            "latest": 95.48,
+            "change_abs": 21.19,
+            "change_pct": 28.5,
+            "unit": "USD/barrel"
+          }
+        },
+        "period_days": 439,
+        "direction": "up"
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_121114/figure_01.png",
+      "metadata": {
+        "title": "EU- og USA-gaspriser omregnet til USD/MWh",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/MWh",
+        "note": "TTF (nederlandsk gasbenchmark) og Henry Hub (amerikansk gasbenchmark) er begge omregnet til USD/MWh for direkte sammenligning. Den lodrette linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel. TTF er konverteret fra EUR/MWh til USD/MWh med den aktuelle EUR/USD-kurs; Henry Hub er konverteret fra USD/MMBtu ved at gange med 3,41214.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ]
+      },
+      "spec": {
+        "type": "A",
+        "title": "EU- og USA-gaspriser omregnet til USD/MWh",
+        "x_label": "Dato",
+        "y_label": "USD/MWh",
+        "period_days": 439,
+        "series_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ],
+        "note": "TTF (nederlandsk gasbenchmark) og Henry Hub (amerikansk gasbenchmark) er begge omregnet til USD/MWh for direkte sammenligning. Den lodrette linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel. TTF er konverteret fra EUR/MWh til USD/MWh med den aktuelle EUR/USD-kurs; Henry Hub er konverteret fra USD/MMBtu ved at gange med 3,41214.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
+      },
+      "data_summary": {
+        "chart_type": "A",
+        "series": {
+          "TTF naturgas (EU)": {
+            "latest": 47.31,
+            "change_abs": -9.38,
+            "change_pct": -16.5,
+            "unit": "USD/MWh"
+          },
+          "Henry Hub naturgas (USA)": {
+            "latest": 9.18,
+            "change_abs": -2.45,
+            "change_pct": -21.1,
+            "unit": "USD/MWh"
+          }
+        },
+        "period_days": 439,
+        "direction": "down"
+      }
+    }
+  ]
+}

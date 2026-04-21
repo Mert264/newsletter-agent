@@ -681,11 +681,23 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
     if wide is not None and wide.shape[0] > 1:
         all_years = [str(y) for y in wide.index.tolist()]
 
-        # Cap individual pies to match the user's timeline selection.
-        # period_days from spec → year_cap (e.g. 7 years → show last 7 pies).
         period_days = spec.get("period_days", None)
-        year_cap = max(1, round(period_days / 365)) if period_days else 10
+        # Short window (≤730 days / ~2 years): show only the most recent year as one pie.
+        # Longer windows: show individual year pies + combined comparison grid.
+        if not period_days or period_days <= 730:
+            year_cap = 1
+        else:
+            year_cap = max(2, round(period_days / 365))
         individual_years = all_years[-year_cap:]
+
+        # Single most-recent-year shortcut — avoids explosion of figures for snapshot briefs.
+        if len(individual_years) <= 1:
+            year = individual_years[0]
+            row = wide.loc[year].dropna() if year in wide.index else pd.Series(dtype=float)
+            row = row[row > 0]
+            if row.empty:
+                return output_path
+            return _save_single_pie_figure(row, f"{spec['title']} ({year})", spec, output_path)
 
         base = output_path[:-4]       # strip .png
 
