@@ -497,24 +497,27 @@
           </div>
         </div>
       </div>
-      <div style="margin-top:12px;margin-bottom:4px">
-        <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px">Tidsperiode</div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <div style="margin-top:14px;margin-bottom:4px">
+        <div style="font-size:10px;color:#6b7280;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Tidsperiode</div>
+        <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:11px;color:#9ca3af;min-width:22px">1 år</span>
           <input type="range" id="periodSlider" min="1" max="10" step="1" value="2"
                  oninput="onSliderChange(this)"
                  style="flex:1;accent-color:#11716c;height:4px;cursor:pointer"/>
           <span style="font-size:11px;color:#9ca3af;min-width:28px;text-align:right">10 år</span>
           <span id="periodLabel" style="min-width:38px;text-align:right;font-size:13px;font-weight:700;color:#11716c">2 år</span>
+          <button id="llmBtn" onclick="setLLMPeriod()"
+                  style="font-size:11px;padding:4px 12px;border-radius:20px;border:1.5px solid #d1d5db;background:#fff;color:#6b7280;cursor:pointer;transition:all .15s;white-space:nowrap;margin-left:4px">
+            LLM ✦
+          </button>
         </div>
-        <button id="llmBtn" onclick="setLLMPeriod()"
-                style="font-size:11px;padding:4px 12px;border-radius:20px;border:1.5px solid #d1d5db;background:#fff;color:#6b7280;cursor:pointer;transition:all .15s">
-          LLM bestemmer
-        </button>
       </div>
       <div class="run-row">
         <button id="runBtn" onclick="startRun()">Generer figurer</button>
-        <span id="statusMsg">Klar</span>
+        <div class="status-indicator">
+          <div class="status-dot" id="statusDot"></div>
+          <span id="statusMsg">Klar</span>
+        </div>
       </div>
     </div>
   </div><!-- end brief card -->
