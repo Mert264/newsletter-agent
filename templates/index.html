@@ -447,18 +447,26 @@
     <div class="card-header">Emne-brief</div>
     <div class="card-body">
       <div class="brief-label">Beskriv det makroøkonomiske emne, du vil visualisere:</div>
-      <textarea id="briefInput" placeholder="F.eks. Vis EUR/USD-valutakursen over de seneste to år for at illustrere, hvordan den amerikanske dollar er svækket over for euroen..."></textarea>
-      <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:12px;margin-bottom:8px;">Prøv et prompt</div>
+      <textarea id="briefInput"
+        placeholder="Beskriv hvad du vil visualisere — f.eks. 'Vis Brent olie og TTF-gas siden Ukraine-krigen...'"
+        oninput="this.style.height='auto';this.style.height=Math.max(90,this.scrollHeight)+'px'"></textarea>
+
+      <div style="display:flex;align-items:center;gap:10px;margin-top:14px;margin-bottom:6px">
+        <span style="font-size:10px;color:#9ca3af;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap">Eksempel-prompts</span>
+        <div style="flex:1;height:1px;background:#e5e7eb"></div>
+      </div>
+
       <div class="prompt-categories">
-        <div>
+        <div class="prompt-category-block">
           <div class="prompt-category-label">Geopolitik</div>
           <div class="prompt-group">
             <button class="quick-btn" onclick="setQuick(1)">Iran-krig — olie &amp; gas</button>
             <button class="quick-btn" onclick="setQuick(2)">Forsvarsaktier — genoprusning</button>
             <button class="quick-btn" onclick="setQuick(3)">Guld &amp; safe haven</button>
+            <button class="quick-btn" onclick="setQuick(11)">Trump-toldsatser — markedsreaktion</button>
           </div>
         </div>
-        <div>
+        <div class="prompt-category-block">
           <div class="prompt-category-label">Renter &amp; Obligationer</div>
           <div class="prompt-group">
             <button class="quick-btn" onclick="setQuick(4)">Europæiske statsrenter — rentespænd</button>
@@ -466,18 +474,26 @@
             <button class="quick-btn" onclick="setQuick(6)">Fed, ECB &amp; Bank of England</button>
           </div>
         </div>
-        <div>
+        <div class="prompt-category-block">
           <div class="prompt-category-label">Aktier &amp; Valuta</div>
           <div class="prompt-group">
             <button class="quick-btn" onclick="setQuick(7)">Globale aktiemarkeder — afkast</button>
             <button class="quick-btn" onclick="setQuick(8)">Dollarstyrke &amp; geopolitisk risiko</button>
           </div>
         </div>
-        <div>
+        <div class="prompt-category-block">
           <div class="prompt-category-label">Energi &amp; Europa</div>
           <div class="prompt-group">
             <button class="quick-btn" onclick="setQuick(9)">EU energimix — cirkeldiagram</button>
+            <button class="quick-btn" onclick="setQuick(12)">EU energiomstilling — over tid</button>
             <button class="quick-btn" onclick="setQuick(10)">Europæisk obligationsstress</button>
+          </div>
+        </div>
+        <div class="prompt-category-block">
+          <div class="prompt-category-label">Makro &amp; Inflation</div>
+          <div class="prompt-group">
+            <button class="quick-btn" onclick="setQuick(13)">US inflation — komponentopdeling</button>
+            <button class="quick-btn" onclick="setQuick(14)">Globalt markedsscorecard</button>
           </div>
         </div>
       </div>
