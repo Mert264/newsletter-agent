@@ -25,7 +25,7 @@ APPROVE if all of these pass:
 
 FLAG only if:
 - Title is missing entirely.
-- Y-axis has WRONG units (e.g. showing raw index level when it should be YoY %). Never apply this rule to type P or type D.
+- Y-axis has WRONG units (e.g. showing raw index level when it should be YoY %). Never apply this rule to type P, type D, or type G.
 - Note is missing entirely.
 - Kilde is missing entirely.
 - The chart type is clearly wrong for the data (e.g. bar chart for time series).
