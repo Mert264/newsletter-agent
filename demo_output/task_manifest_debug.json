@@ -1,68 +1,48 @@
 {
   "specialists": [
-    "energy"
+    "equities"
   ],
-  "energy": {
+  "equities": {
     "series": [
       {
         "ticker": "BZ=F",
         "source": "yfinance",
         "label": "Brent r\u00e5olie",
         "region": "Global",
-        "unit": "USD/barrel"
+        "unit": "USD/t\u00f8nde"
       },
       {
-        "ticker": "TTF=F",
+        "ticker": "GC=F",
         "source": "yfinance",
-        "label": "TTF naturgas (EU)",
-        "region": "Europa",
-        "unit": "EUR/MWh",
-        "conversion": "EUR_MWh_to_USD_MWh"
+        "label": "Guld",
+        "region": "Global",
+        "unit": "USD/troy oz"
       },
       {
-        "ticker": "NG=F",
+        "ticker": "^GSPC",
         "source": "yfinance",
-        "label": "Henry Hub naturgas (USA)",
+        "label": "S&P 500",
         "region": "USA",
-        "unit": "USD/MMBtu",
-        "conversion": "USD_MMBtu_to_USD_MWh"
+        "unit": "Indeks"
       }
     ],
     "charts": [
       {
-        "type": "A",
-        "title": "Brent r\u00e5olie \u2014 pris siden februar 2024",
-        "x_label": "Dato",
-        "y_label": "USD/barrel",
-        "period_days": 790,
+        "type": "E",
+        "title": "Brent olie, guld og S&P 500 \u2014 f\u00f8r og efter Ruslands invasion af Ukraine",
+        "x_label": "",
+        "y_label": "",
+        "period_days": 1626,
         "series_labels": [
-          "Brent r\u00e5olie"
+          "Brent r\u00e5olie",
+          "Guld",
+          "S&P 500"
         ],
-        "note": "Daglige lukkepriser for Brent r\u00e5olie. Den vertikale linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel, hvilket sendte chokb\u00f8lger gennem de globale energimarkeder.",
-        "events": [
-          {
-            "date": "2026-02-28",
-            "label": "Iran erkl\u00e6rer krig mod Israel"
-          }
-        ]
-      },
-      {
-        "type": "A",
-        "title": "EU vs. USA naturgaspriser \u2014 omregnet til USD/MWh",
-        "x_label": "Dato",
-        "y_label": "USD/MWh",
-        "period_days": 790,
-        "series_labels": [
-          "TTF naturgas (EU)",
-          "Henry Hub naturgas (USA)"
-        ],
-        "note": "Sammenligning af europ\u00e6iske (TTF, Nederland) og amerikanske (Henry Hub) naturgaspriser, begge omregnet til USD/MWh for direkte sammenlignelighed. Den vertikale linje markerer den 28. februar 2026, da Iran erkl\u00e6rede krig mod Israel. Henry Hub er omregnet fra USD/MMBtu (\u00d73,41214); TTF er omregnet fra EUR/MWh ved hj\u00e6lp af l\u00f8bende EUR/USD-kurs.",
-        "events": [
-          {
-            "date": "2026-02-28",
-            "label": "Iran erkl\u00e6rer krig mod Israel"
-          }
-        ]
+        "before_date": "2022-02-24",
+        "after_date": "latest",
+        "col_before": "F\u00f8r invasionen (24. feb 2022)",
+        "col_after": "Nu",
+        "note": "Sammenligning af Brent r\u00e5olie, guld og S&P 500 p\u00e5 dagen for Ruslands invasion af Ukraine den 24. februar 2022 og seneste tilg\u00e6ngelige kurs. Serierne har forskellige enheder og kan ikke sammenlignes direkte p\u00e5 tv\u00e6rs \u2014 figuren viser den absolutte \u00e6ndring for hver aktivklasse."
       }
     ]
   }

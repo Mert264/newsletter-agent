@@ -574,7 +574,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                 if c.get("type") not in allowed:
                     print(f"  [filter] Dropped type={c.get('type')} chart '{c.get('title','')}' — not in preferred_types")
                     continue
-                if c.get("type") == "D":
+                if c.get("type") in ("D", "P"):
                     c["x_label"] = ""
                     c["y_label"] = ""
                 filtered.append(c)
