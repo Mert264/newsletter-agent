@@ -254,6 +254,7 @@ def run_orchestrator_test(prompt_id, brief, period_days):
                 brief=brief,
                 preferred_types=["A", "D"],
                 period_days=period_days if period_days > 0 else None,
+                model=TEST_MODEL,
             )
         issues, warnings = check_manifest(prompt_id, manifest, period_days if period_days > 0 else 0)
     except Exception as e:
