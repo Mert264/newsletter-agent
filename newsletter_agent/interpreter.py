@@ -181,7 +181,7 @@ def interpret_chart(image_path: str, spec: dict, data_summary: dict) -> List[str
         if not bullets:
             bullets = [ln.strip() for ln in raw.split("\n") if ln.strip()]
 
-        return bullets[:4]
+        return bullets[:3]
 
     except Exception as e:
         print(f"[interpreter] Failed for '{spec.get('title', '?')}': {e}")
