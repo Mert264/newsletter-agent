@@ -1,88 +1,79 @@
 {
   "specialists": [
-    "rates"
+    "equities"
   ],
-  "rates": {
+  "equities": {
     "series": [
       {
-        "ticker": "IRLTLT01DEM156N",
-        "source": "fred",
-        "label": "Tyskland",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "ORSTED.CO",
+        "source": "yfinance",
+        "label": "\u00d8rsted",
+        "region": "Danmark",
+        "unit": "DKK"
       },
       {
-        "ticker": "IRLTLT01FRM156N",
-        "source": "fred",
-        "label": "Frankrig",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "VWS.CO",
+        "source": "yfinance",
+        "label": "Vestas",
+        "region": "Danmark",
+        "unit": "DKK"
       },
       {
-        "ticker": "IRLTLT01ITM156N",
-        "source": "fred",
-        "label": "Italien",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "IBE.MC",
+        "source": "yfinance",
+        "label": "Iberdrola",
+        "region": "Spanien",
+        "unit": "EUR"
       },
       {
-        "ticker": "IRLTLT01ESM156N",
-        "source": "fred",
-        "label": "Spanien",
-        "region": "Europa",
-        "unit": "%"
+        "ticker": "SHEL.L",
+        "source": "yfinance",
+        "label": "Shell",
+        "region": "UK",
+        "unit": "GBP"
       },
       {
-        "ticker": "IRLTLT01GBM156N",
-        "source": "fred",
-        "label": "Storbritannien",
-        "region": "Europa",
-        "unit": "%"
-      },
-      {
-        "ticker": "DGS10",
-        "source": "fred",
-        "label": "USA",
-        "region": "Nordamerika",
-        "unit": "%"
+        "ticker": "TTE.PA",
+        "source": "yfinance",
+        "label": "TotalEnergies",
+        "region": "Frankrig",
+        "unit": "EUR"
       }
     ],
     "charts": [
       {
-        "type": "G",
-        "title": "10-\u00e5rige statsobligationsrenter \u2014 Europa og USA",
-        "x_label": "Rente (%)",
-        "y_label": "%",
-        "period_days": 730,
+        "type": "A",
+        "title": "Kursudvikling: Vedvarende energiselskaber vs. oliemajorer",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "period_days": 3650,
         "series_labels": [
-          "Tyskland",
-          "Frankrig",
-          "Italien",
-          "Spanien",
-          "Storbritannien",
-          "USA"
+          "\u00d8rsted",
+          "Vestas",
+          "Iberdrola",
+          "Shell",
+          "TotalEnergies"
         ],
-        "note": "Seneste tilg\u00e6ngelige 10-\u00e5rige statsobligationsrenter for udvalgte europ\u00e6iske lande samt USA. S\u00f8jlerne er sorteret fra h\u00f8jest til lavest rente og illustrerer investorernes relative tillid til de enkelte landes \u00f8konomi og kreditv\u00e6rdighed."
+        "note": "Aktiepris udvikling for tre europ\u00e6iske vedvarende energiselskaber (\u00d8rsted, Vestas, Iberdrola) og to store oliemajorer (Shell, TotalEnergies) over de seneste 10 \u00e5r, indekseret til 100 ved perioden start. Viser det relative afkast for gr\u00f8n energi versus traditionelle olieselskaber."
       },
       {
         "type": "D",
-        "title": "10-\u00e5rige statsobligationsrenter \u2014 n\u00f8gletal",
+        "title": "N\u00f8gletal \u2014 vedvarende vs. fossile energiselskaber",
         "x_label": "",
-        "y_label": "%",
-        "period_days": 730,
+        "y_label": "Indekseret (basis=100)",
+        "period_days": 3650,
         "series_labels": [
-          "Tyskland",
-          "Frankrig",
-          "Italien",
-          "Spanien",
-          "Storbritannien",
-          "USA"
+          "\u00d8rsted",
+          "Vestas",
+          "Iberdrola",
+          "Shell",
+          "TotalEnergies"
         ],
-        "before_date": "2024-01-01",
+        "before_date": "2016-01-01",
         "after_date": "latest",
-        "col_before": "Jan 2024",
+        "col_before": "10 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Sammenligning af 10-\u00e5rige statsobligationsrenter p\u00e5 tv\u00e6rs af udvalgte europ\u00e6iske lande og USA. \u00c6ndringen viser forskellen i procentpoint fra januar 2024 til seneste tilg\u00e6ngelige observation."
+        "note": "Snapshot af aktieprisudvikling for vedvarende og fossile energiselskaber siden januar 2016. \u00c6ndringer viser det kumulative afkast i procent over de seneste 10 \u00e5r."
       }
     ]
   }

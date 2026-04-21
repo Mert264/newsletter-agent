@@ -28,6 +28,9 @@ def fetch_equities(task: dict) -> dict:
             df = close.to_frame(name=label)
         else:
             df = raw[["Close"]].rename(columns={"Close": label})
+        # Deduplicate index — yfinance occasionally returns duplicate timestamps
+        if df.index.duplicated().any():
+            df = df[~df.index.duplicated(keep="last")]
         dataframes[label] = df
         if "Yahoo Finance" not in kilde:
             kilde.append("Yahoo Finance")
