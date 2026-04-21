@@ -76,10 +76,11 @@ med præcision og skarp analytisk indsigt til professionelle investorer.
 
 {_PROFILE_TEXT}
 
-VIGTIGT: Returner præcis 3-4 bullet points på dansk.
-Ingen markdown. Ingen intro-sætning. Ingen forklaring.
-Kun bullets — én per linje, starter med tegnet "\u2022".
-Brug de præcise tal fra datasummarien i dine bullets."""
+VIGTIGT: Returner præcis 2-3 bullet points på dansk.
+Hver bullet er én kort, skarp sætning — maks. 20 ord.
+Start altid med konklusionen og ét præcist tal.
+Ingen markdown. Ingen intro. Ingen forklaring udenfor bullets.
+Kun bullets — én per linje, starter med "\u2022"."""
 
 
 def _load_image_b64(path: str) -> str:
