@@ -68,7 +68,8 @@ def _build_table(dfs: dict, chart_spec: dict, kilde_str: str, output_path: str) 
 
     # Use absolute pp change for rate/yield series (y_label="%"), relative % otherwise
     y_label = chart_spec.get("y_label", "")
-    use_absolute = y_label.strip() in ("%", "pp", "PP", "Percentage points", "Basis points (bps)")
+    use_absolute = y_label.strip() in ("%", "pp", "PP", "Percentage points", "Procentpoint",
+                                        "Basis points (bps)", "YoY %", "YoY%")
 
     rows = []
     for label, df in dfs.items():
@@ -169,7 +170,8 @@ def _build_event_impact_table(merged: pd.DataFrame, events: list,
 
         # Use absolute pp change for rate/yield series (y_label="%"), relative % for everything else
         y_label = chart_spec.get("y_label", "")
-        use_absolute = y_label.strip() in ("%", "pp", "PP", "Percentage points", "Basis points (bps)")
+        use_absolute = y_label.strip() in ("%", "pp", "PP", "Percentage points", "Procentpoint",
+                                        "Basis points (bps)", "YoY %", "YoY%")
 
         for col in merged.columns:
             s = merged[col].dropna()
