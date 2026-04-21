@@ -1,0 +1,102 @@
+{
+  "brief": "Iran erkl\u00e6rede krig mod Israel den 28. februar 2026, hvilket sendte chokb\u00f8lger gennem energimarkederne. Vis Brent-r\u00e5olie og europ\u00e6isk naturgas (TTF), og mark\u00e9r udbruddet den 28. februar 2026. Vis ogs\u00e5 amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA p\u00e5 gas.",
+  "date": "2026-04-21",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_084612/figure_00.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie: Prisudvikling omkring Iran-Israel-krigen",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/barrel",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie (USD/barrel). Brent er det globale benchmark for r\u00e5oliepriser og reagerer typisk kraftigt p\u00e5 geopolitiske konflikter i Mellem\u00f8sten. Iran erkl\u00e6rede krig mod Israel den 28. februar 2026.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ]
+      },
+      "spec": {
+        "type": "A",
+        "title": "Brent r\u00e5olie: Prisudvikling omkring Iran-Israel-krigen",
+        "x_label": "Dato",
+        "y_label": "USD/barrel",
+        "period_days": 1155,
+        "series_labels": [
+          "Brent r\u00e5olie"
+        ],
+        "note": "Daglige lukkepriser for Brent r\u00e5olie (USD/barrel). Brent er det globale benchmark for r\u00e5oliepriser og reagerer typisk kraftigt p\u00e5 geopolitiske konflikter i Mellem\u00f8sten. Iran erkl\u00e6rede krig mod Israel den 28. februar 2026.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
+      },
+      "data_summary": {
+        "chart_type": "A",
+        "series": {
+          "Brent r\u00e5olie": {
+            "latest": 95.48,
+            "change_abs": 12.43,
+            "change_pct": 15.0,
+            "unit": "USD/barrel"
+          }
+        },
+        "period_days": 1155,
+        "direction": "up"
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260421_084612/figure_01.png",
+      "metadata": {
+        "title": "EU vs. USA naturgas: Prisforskel i k\u00f8lvandet p\u00e5 Iran-Israel-krigen",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/MWh",
+        "note": "Sammenligning af europ\u00e6iske (TTF, Nederlandene) og amerikanske (Henry Hub) naturgaspriser omregnet til f\u00e6lles enhed USD/MWh for at illustrere prisforskellen. TTF er konverteret fra EUR/MWh og Henry Hub fra USD/MMBtu. Iran erkl\u00e6rede krig mod Israel den 28. februar 2026, hvilket kan p\u00e5virke forsyningssikkerheden for europ\u00e6isk gas i langt h\u00f8jere grad end for det amerikanske marked.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ]
+      },
+      "spec": {
+        "type": "A",
+        "title": "EU vs. USA naturgas: Prisforskel i k\u00f8lvandet p\u00e5 Iran-Israel-krigen",
+        "x_label": "Dato",
+        "y_label": "USD/MWh",
+        "period_days": 1155,
+        "series_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ],
+        "note": "Sammenligning af europ\u00e6iske (TTF, Nederlandene) og amerikanske (Henry Hub) naturgaspriser omregnet til f\u00e6lles enhed USD/MWh for at illustrere prisforskellen. TTF er konverteret fra EUR/MWh og Henry Hub fra USD/MMBtu. Iran erkl\u00e6rede krig mod Israel den 28. februar 2026, hvilket kan p\u00e5virke forsyningssikkerheden for europ\u00e6isk gas i langt h\u00f8jere grad end for det amerikanske marked.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran erkl\u00e6rer krig mod Israel"
+          }
+        ]
+      },
+      "data_summary": {
+        "chart_type": "A",
+        "series": {
+          "TTF naturgas (EU)": {
+            "latest": 47.31,
+            "change_abs": -4.55,
+            "change_pct": -8.8,
+            "unit": "USD/MWh"
+          },
+          "Henry Hub naturgas (USA)": {
+            "latest": 9.18,
+            "change_abs": 2.1,
+            "change_pct": 29.7,
+            "unit": "USD/MWh"
+          }
+        },
+        "period_days": 1155,
+        "direction": "mixed"
+      }
+    }
+  ]
+}

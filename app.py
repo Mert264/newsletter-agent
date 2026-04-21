@@ -126,20 +126,8 @@ def start_run():
                     for entry in json.load(f):
                         rerender_ctx[entry["figure_id"]] = entry
 
-            # Interpret all non-D figures before building done_msg so everything arrives at once
-            print("\n[4/4] Interpreting figures...")
+            # Interpretation disabled — bullets hidden until re-enabled
             bullets_by_index = {}
-            for i, p in enumerate(packages):
-                chart_type = p["metadata"].get("chart_type", "A")
-                if chart_type == "D":
-                    continue
-                data_summary = p.get("data_summary", {})
-                if not data_summary:
-                    continue
-                spec = p.get("spec", p["metadata"])
-                bullets = interpret_chart(p["path"], spec, data_summary)
-                if bullets:
-                    bullets_by_index[i] = bullets
 
             figures = [
                 {

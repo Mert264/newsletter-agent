@@ -1,0 +1,41 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "energy",
+    "series_specs": [
+      {
+        "ticker": "BZ=F",
+        "source": "yfinance",
+        "label": "Brent r\u00e5olie",
+        "region": "Global",
+        "unit": "USD/barrel"
+      },
+      {
+        "ticker": "TTF=F",
+        "source": "yfinance",
+        "label": "TTF naturgas",
+        "region": "Europa",
+        "unit": "EUR/MWh"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Brent r\u00e5olie og TTF naturgas \u2014 effekt af Iran-Israel-krig",
+      "x_label": "Dato",
+      "y_label": "Indekseret (basis=100)",
+      "period_days": 790,
+      "series_labels": [
+        "Brent r\u00e5olie",
+        "TTF naturgas"
+      ],
+      "note": "Daglige lukkepriser for Brent r\u00e5olie (USD/t\u00f8nde) og TTF naturgas (EUR/MWh) indekseret til 100 ved periodens start. Serier er indekseret for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig prisskala. Den lodrette linje markerer Irans krigserkl\u00e6ring mod Israel den 28. februar 2026.",
+      "events": [
+        {
+          "date": "2026-02-28",
+          "label": "Iran erkl\u00e6rer krig mod Israel"
+        }
+      ]
+    },
+    "brief": "Iran erkl\u00e6rede krig mod Israel den 28. februar 2026. Vis Brent-r\u00e5olie og TTF naturgas med event-markering."
+  }
+]
