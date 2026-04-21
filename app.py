@@ -111,7 +111,6 @@ def start_run():
         sys.stdout = _StreamWriter(_run_queue, orig)
         try:
             from newsletter_agent.pipeline import run
-            from newsletter_agent.interpreter import interpret_chart
             from datetime import datetime
 
             run_dir = os.path.join(OUTPUT_DIR, datetime.now().strftime("%Y%m%d_%H%M%S"))
