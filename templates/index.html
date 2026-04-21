@@ -624,18 +624,22 @@ const BRIEFS = {
   14: "Vis et globalt markedsscorecard: Brent olie, guld, S&P 500, EUR/USD og den 10-årige amerikanske statsrente — nuværende niveauer sammenlignet med for 1 år siden.",
 };
 
-// Natural period for each quick prompt (days) — 0 = LLM bestemmer
+// Natural period for each quick prompt (days) — 0 = LLM bestemmer (slider controls)
 const BRIEF_PERIODS = {
-  1: 730,   // 2 år — Iran war context
-  2: 1825,  // 5 år — covers Ukraine war + Iran war
-  3: 730,   // 2 år — gold safe haven rally
-  4: 0,     // LLM bestemmer — yield snapshot
-  5: 1825,  // 5 år — yield curve inversion cycle
-  6: 1825,  // 5 år — full rate hike + cut cycle
-  7: 730,   // 2 år — recent market performance
-  8: 730,   // 2 år — dollar strength
-  9: 0,     // LLM bestemmer — pie chart snapshot
-  10: 730,  // 2 år — European bond stress
+  1: 730,   // Iran war — 2 years covers the event
+  2: 1825,  // Defense stocks — 5 years covers Ukraine + Iran
+  3: 730,   // Gold safe haven — 2 years
+  11: 730,  // Trump tariffs — 2 years covers the April 2025 event
+  4: 0,     // Yield snapshot G-type — LLM picks
+  5: 1825,  // Yield curve — 5 years shows inversion + normalisation
+  6: 1825,  // Central banks — 5 years shows full hike + cut cycle
+  7: 1826,  // Global equities — 5 years for broad comparison
+  8: 730,   // Dollar strength — 2 years
+  9: 0,     // EU energy mix pie — LLM picks most recent year
+  12: 0,    // EU energy transition F-type — LLM picks multi-year
+  10: 730,  // European bond stress — 2 years
+  13: 0,    // US inflation — LLM picks (needs ≥760 for YoY)
+  14: 0,    // Market scorecard — LLM picks (1-year lookback)
 };
 
 function setQuick(n) {
