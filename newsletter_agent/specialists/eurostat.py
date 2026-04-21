@@ -200,6 +200,10 @@ def _parse_product_wide(raw: dict, label_map: dict = None, product_filter: list 
         df.index = pd.to_datetime(df.index, errors="coerce")
         df = df[df.index.notna()].sort_index()
         df = df.dropna(axis=1, how="all")
+        if product_filter:
+            keep = [c for c in product_filter if c in df.columns]
+            if keep:
+                df = df[keep]
         return df if not df.empty else None
 
     except Exception as e:
