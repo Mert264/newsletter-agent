@@ -119,7 +119,8 @@ Growth & labor:
   ICSA (Initial jobless claims, weekly)
   NAEXKP01JPQ657S (Japan real GDP, quarterly — OECD, 2015=100; set y_label="YoY %" and period_days>=760)
 Central banks:
-  ECBDFR (ECB deposit rate), BOEBR (Bank of England rate)
+  ECBDFR (ECB deposit rate)
+  IRSTCB01GBM156N (Bank of England Bank Rate — monthly %, from OECD; use this for BoE, NOT "BOEBR" which is unreliable)
   JPNRATE (Bank of Japan policy rate — if available, else skip)
 
 EUROPEAN MACRO — FRED series:
