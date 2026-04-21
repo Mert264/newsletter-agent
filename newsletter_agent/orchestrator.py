@@ -238,9 +238,25 @@ Rules:
 - CRITICAL: Inflation series (CPIAUCSL, CPILFESL, PCEPI) from FRED are INDEX LEVELS (~320),
   NOT percentages. Always set y_label to "YoY %" for these — the pipeline applies the
   year-over-year transform automatically. Never plot the raw index level.
-- CRITICAL: Breakeven rates (T5YIE, T10YIE) and all FRED yield series (DGS2, DGS10, DFF,
-  ECBDFR, BOEBR, T10Y2Y) are ALREADY in percent form. Set y_label to "%" or "pp" for these —
-  NEVER "YoY %" — the pipeline must NOT apply a year-over-year transform to them.
+- CRITICAL: Breakeven rates (T5YIE, T10YIE) and all FRED yield/rate series (DGS2, DGS10, DFF,
+  ECBDFR, IRSTCB01GBM156N, T10Y2Y, IRLTLT01*) are ALREADY in percent form. Set y_label to "%" for
+  these — NEVER "YoY %" — the pipeline must NOT apply a year-over-year transform to them.
+- CRITICAL — COMPANION TABLE y_label: The companion Type D table for a Type A rate/yield chart
+  (where parent y_label="%") MUST also have y_label="%". This tells the pipeline to display
+  changes as percentage points (e.g. "-0.50 pp") instead of relative % (e.g. "-11.1%").
+  Likewise, for any Type A with y_label="YoY %", set the companion D's y_label="YoY %" so
+  the "Ændring" column shows the absolute pp change in YoY inflation, not a relative % change.
+- CRITICAL — PIE CHART RESTRICTION: Type P (pie chart) is ONLY valid for COMPOSITIONAL data
+  that sums to 100% (energy mix, portfolio allocation, sector shares). NEVER use Type P for:
+  yield curves, interest rates, price levels, index returns, or any time-series data.
+  If preferred_types includes "P" but the data is not compositional, use Type G or Type B instead.
+  NEVER generate a pie chart for rate, yield, inflation, or price data — it is mathematically wrong
+  (rates can be negative; they do not sum to 100%). Use the next best type from preferred_types.
+- CRITICAL — MIXED-UNIT SCORECARDS: When a brief asks for a global scorecard or dashboard with
+  series from different asset classes (e.g. oil price, gold, S&P 500, EUR/USD, 10Y yield), the
+  units are incompatible. For any Type A companion chart to such a scorecard, ALWAYS set
+  y_label="Indekseret (basis=100)". NEVER use "Indeks" alone — always "Indekseret (basis=100)".
+  The pipeline will rebase all series to 100 at the period start for comparability.
 - CRITICAL: NEVER confuse these distinct rate series:
     DFF / DFEDTARU = Fed Funds rate (overnight policy rate, set by FOMC)
     DGS2 = US 2-Year Treasury yield (market-determined)
