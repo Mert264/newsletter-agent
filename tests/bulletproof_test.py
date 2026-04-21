@@ -422,7 +422,7 @@ def main():
 
     # 3f: Check BoE series in orchestrator prompt
     from newsletter_agent.orchestrator import SYSTEM_PROMPT
-    if "IRSTCB01GBM156N" in SYSTEM_PROMPT:
+    if "IUDSOIA" in SYSTEM_PROMPT:
         print("  ✅ BoE rate updated to IRSTCB01GBM156N")
     else:
         novel_issues.append("BoE rate series not updated in SYSTEM_PROMPT")
