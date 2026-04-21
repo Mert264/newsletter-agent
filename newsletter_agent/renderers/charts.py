@@ -305,7 +305,7 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     # Add y-axis padding so end-labels have room and the chart doesn't feel cramped
     ylo, yhi = ax.get_ylim()
     y_range = yhi - ylo
-    ax.set_ylim(ylo - y_range * 0.04, yhi + y_range * 0.14)
+    ax.set_ylim(ylo - y_range * 0.04, yhi + y_range * 0.20)
 
     # Event markers — dashed lines only, no inline labels
     events_drawn = _draw_event_markers(ax, spec, df.index)
