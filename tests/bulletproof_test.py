@@ -64,9 +64,9 @@ def check_manifest(prompt_id, manifest, period_days_sent):
             ticker = s.get("ticker", "")
             label  = s.get("label", "")
 
-            # BOEBR is unreliable — should use IRSTCB01GBM156N
-            if ticker == "BOEBR":
-                issues.append(f"[{specialist}] BoE rate uses unreliable BOEBR — should be IRSTCB01GBM156N")
+            # BOEBR and IRSTCB01GBM156N don't exist — should use IUDSOIA
+            if ticker in ("BOEBR", "IRSTCB01GBM156N"):
+                issues.append(f"[{specialist}] BoE rate uses invalid series {ticker} — should be IUDSOIA")
 
             # Old broken UK CPI series
             if "CP0000GB" in ticker:
