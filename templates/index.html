@@ -732,8 +732,11 @@ function appendLog(text) {
 let eventSource = null;
 
 function startRun() {
-  const brief = document.getElementById('briefInput').value.trim();
-  if (!brief) { alert('Angiv venligst et emne-brief.'); return; }
+  const displayBrief = document.getElementById('briefInput').value.trim();
+  if (!displayBrief) { alert('Angiv venligst et emne-brief.'); return; }
+  // Use the internal technical brief if a quick prompt is active and has one;
+  // otherwise send exactly what the user typed.
+  const brief = (_activeQuickId && INTERNAL_BRIEFS[_activeQuickId]) ? INTERNAL_BRIEFS[_activeQuickId] : displayBrief;
 
   document.getElementById('runBtn').disabled = true;
   document.getElementById('statusMsg').textContent = 'Kører pipeline...';
