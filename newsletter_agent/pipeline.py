@@ -5,6 +5,7 @@ import json
 import pandas as pd
 from datetime import date
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from typing import Optional
 from newsletter_agent.orchestrator import build_task_manifest
 from newsletter_agent.specialists.energy import fetch_energy
 from newsletter_agent.specialists.rates import fetch_rates
