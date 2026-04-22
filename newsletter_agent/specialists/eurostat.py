@@ -279,6 +279,15 @@ KNOWN_DATASETS = {
         "dataset": "prc_hicp_manr",
         "params":  {"freq": "M", "unit": "RCH_A", "coicop": "CP00", "geo": "EA"},
     },
+    # EU27 electricity generation by source — annual, GWh
+    # nrg_bal=GEP = Gross electricity production. parse_mode="product_wide" → time × source DataFrame.
+    # NOTE: covers ELECTRICITY ONLY (not total energy). Renewables share is much higher here than in GIC.
+    "eu_elec_mix": {
+        "dataset":    "nrg_cb_peh",
+        "params":     {"freq": "A", "unit": "GWH", "nrg_bal": "GEP", "geo": "EU27_2020"},
+        "parse_mode": "product_wide",
+        "label_map":  _EU_ELEC_LABEL_MAP,
+    },
 }
 
 
