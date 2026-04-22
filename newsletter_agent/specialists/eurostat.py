@@ -280,14 +280,14 @@ KNOWN_DATASETS = {
         "dataset": "prc_hicp_manr",
         "params":  {"freq": "M", "unit": "RCH_A", "coicop": "CP00", "geo": "EA"},
     },
-    # EU27 electricity generation by source — annual, GWh
-    # Dataset nrg_cb_e = "Supply, transformation and consumption of electricity and derived heat"
-    # nrg_bal=GEP (Gross Electricity Production) + no siec filter → all fuel types returned.
+    # EU27 electricity generation by source — annual, KTOE
+    # Uses the same nrg_bal_c complete-energy-balance dataset as eu_energy_mix (known working).
+    # nrg_bal=GEP (Gross Electricity Production) isolates electricity generation by fuel type.
     # parse_mode="product_wide" → time × fuel-type DataFrame via _parse_product_wide.
     # NOTE: covers ELECTRICITY ONLY (not total energy). Renewables share is much higher here than in GIC.
     "eu_elec_mix": {
-        "dataset":    "nrg_cb_e",
-        "params":     {"freq": "A", "unit": "GWH", "nrg_bal": "GEP", "geo": "EU27_2020"},
+        "dataset":    "nrg_bal_c",
+        "params":     {"freq": "A", "unit": "KTOE", "nrg_bal": "GEP", "geo": "EU27_2020"},
         "parse_mode": "product_wide",
         "label_map":  _EU_ELEC_LABEL_MAP,
     },
