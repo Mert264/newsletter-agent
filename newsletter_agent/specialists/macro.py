@@ -53,6 +53,34 @@ def fetch_macro(task: dict) -> dict:
                         kilde.append("Yahoo Finance")
             except Exception as e:
                 print(f"    [macro] yfinance failed for '{ticker}' ({label}): {e}")
+
+        elif source == "eurostat_ts":
+            # Delegate Eurostat time-series fetches directly — keeps the manifest in one
+            # specialist so the LLM doesn't need to split a single chart across two.
+            try:
+                from newsletter_agent.specialists.eurostat import (
+                    _eurostat_get, _parse_timeseries, KNOWN_DATASETS,
+                )
+                es_ticker = ticker
+                es_params = s.get("params", {})
+                if es_ticker in KNOWN_DATASETS:
+                    known = KNOWN_DATASETS[es_ticker]
+                    es_dataset = known["dataset"]
+                    es_params = {**known["params"], **es_params}
+                else:
+                    es_dataset = es_ticker
+                cutoff = pd.Timestamp(date.today()) - pd.Timedelta(days=period_days)
+                raw = _eurostat_get(es_dataset, es_params)
+                df = _parse_timeseries(raw, label)
+                if df is not None:
+                    df = df[df.index >= cutoff]
+                    if not df.empty:
+                        dataframes[label] = df
+                        if "Eurostat" not in kilde:
+                            kilde.append("Eurostat")
+            except Exception as e:
+                print(f"    [macro] Eurostat fetch failed for '{ticker}' ({label}): {e}")
+
         else:
             # FRED series IDs must be ≤25 alphanumeric chars
             if len(ticker) > 25 or not ticker.replace("_", "").isalnum():

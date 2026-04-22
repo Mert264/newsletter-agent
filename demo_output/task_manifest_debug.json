@@ -1,62 +1,58 @@
 {
   "specialists": [
-    "rates"
+    "macro"
   ],
-  "rates": {
+  "macro": {
     "series": [
       {
-        "ticker": "DFF",
+        "ticker": "CPALTT01USM659N",
         "source": "fred",
-        "label": "Federal Reserve",
+        "label": "USA",
         "region": "USA",
         "unit": "%"
       },
       {
-        "ticker": "ECBDFR",
+        "ticker": "CPALTT01GBM659N",
         "source": "fred",
-        "label": "ECB",
-        "region": "Eurozone",
+        "label": "Storbritannien",
+        "region": "UK",
         "unit": "%"
       },
       {
-        "ticker": "IUDSOIA",
+        "ticker": "CPALTT01JPM659N",
         "source": "fred",
-        "label": "Bank of England",
-        "region": "UK",
+        "label": "Japan",
+        "region": "Japan",
         "unit": "%"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Politikrenter \u2014 Federal Reserve, ECB og Bank of England",
+        "title": "Global inflationsudvikling \u2014 CPI \u00e5r-over-\u00e5r",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 1825,
+        "period_days": 2555,
         "series_labels": [
-          "Federal Reserve",
-          "ECB",
-          "Bank of England"
+          "USA",
+          "Euroomr\u00e5det",
+          "Storbritannien",
+          "Japan"
         ],
-        "note": "Daglige politikrenter for de tre st\u00f8rste centralbankgrupperinger siden april 2021. Viser hvor Fed, ECB og BoE begyndte at h\u00e6ve renter i 2022 for at bek\u00e6mpe inflationen, og siden begyndte at s\u00e6nke dem igen i 2024."
-      },
-      {
-        "type": "D",
-        "title": "Politikrenter \u2014 n\u00f8gletal",
-        "x_label": "",
-        "y_label": "%",
-        "period_days": 1825,
-        "series_labels": [
-          "Federal Reserve",
-          "ECB",
-          "Bank of England"
-        ],
-        "before_date": "2021-04-01",
-        "after_date": "latest",
-        "col_before": "April 2021",
-        "col_after": "Nu",
-        "note": "Snapshot af centralbankernes politikrenter fra starten af perioden til i dag. \u00c6ndringer viser det absolutte \u00e6ndring i procentpoint."
+        "note": "Headline CPI-inflation \u00e5r-over-\u00e5r for USA, euroomr\u00e5det, Storbritannien og Japan. Figuren illustrerer inflationstoppen i 2021\u20132022, den efterf\u00f8lgende disinflation og n\u00e6rheden til centralbankernes 2%-m\u00e5l. Euroomr\u00e5det er baseret p\u00e5 HICP fra Eurostat; de \u00f8vrige serier er fra OECD MEI via FRED."
       }
     ]
+  },
+  "eurostat": {
+    "series": [
+      {
+        "ticker": "ea_hicp_yoy",
+        "source": "eurostat_ts",
+        "label": "Euroomr\u00e5det",
+        "region": "Euroomr\u00e5det",
+        "unit": "%"
+      }
+    ],
+    "charts": []
   }
 }
