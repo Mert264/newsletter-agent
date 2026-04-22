@@ -248,10 +248,17 @@ KNOWN_DATASETS = {
         "dataset": "une_rt_m",
         "params":  {"freq": "M", "age": "TOTAL", "sex": "T", "unit": "PC_ACT", "s_adj": "SA"},
     },
-    # EU HICP inflation (monthly)
+    # EU HICP inflation (monthly % change, month-on-month)
     "eu_hicp": {
         "dataset": "prc_hicp_mmor",
         "params":  {"freq": "M", "unit": "PCH_M1", "coicop": "CP00"},
+    },
+    # Euro area HICP — annual rate of change (year-over-year %)
+    # geo=EA tracks the evolving Euro area composition (EA11→EA12→...→EA20→EA21)
+    # Already in annual % — matches CPALTT01*M659N series format. Use y_label="%".
+    "ea_hicp_yoy": {
+        "dataset": "prc_hicp_manr",
+        "params":  {"freq": "M", "unit": "RCH_A", "coicop": "CP00", "geo": "EA"},
     },
 }
 
