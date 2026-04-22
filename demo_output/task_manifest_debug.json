@@ -15,21 +15,21 @@
         "ticker": "CPALTT01GBM659N",
         "source": "fred",
         "label": "Storbritannien",
-        "region": "UK",
+        "region": "GB",
         "unit": "%"
       },
       {
         "ticker": "CPALTT01JPM659N",
         "source": "fred",
         "label": "Japan",
-        "region": "Japan",
+        "region": "JP",
         "unit": "%"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Global inflationsudvikling \u2014 CPI \u00e5r-over-\u00e5r",
+        "title": "Global inflationsudvikling \u2014 \u00e5r-over-\u00e5r CPI",
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 2555,
@@ -39,7 +39,7 @@
           "Storbritannien",
           "Japan"
         ],
-        "note": "Headline CPI-inflation \u00e5r-over-\u00e5r for USA, euroomr\u00e5det, Storbritannien og Japan. Figuren illustrerer inflationstoppen i 2021\u20132022, den efterf\u00f8lgende disinflation og n\u00e6rheden til centralbankernes 2%-m\u00e5l. Euroomr\u00e5det er baseret p\u00e5 HICP fra Eurostat; de \u00f8vrige serier er fra OECD MEI via FRED."
+        "note": "Headline CPI \u00e5r-over-\u00e5r i procent for USA, euroomr\u00e5det, Storbritannien og Japan. Serien viser inflationstoppen i 2021\u20132022, den efterf\u00f8lgende disinflation og konvergensen mod centralbankernes 2%-m\u00e5l. Euroomr\u00e5det er hentet fra Eurostat, \u00f8vrige serier fra FRED (OECD MEI). Alle serier er allerede i \u00e5r-over-\u00e5r procent \u2014 ingen yderligere transformation er anvendt."
       }
     ]
   },
@@ -49,7 +49,6 @@
         "ticker": "ea_hicp_yoy",
         "source": "eurostat_ts",
         "label": "Euroomr\u00e5det",
-        "region": "Euroomr\u00e5det",
         "unit": "%"
       }
     ],

@@ -635,8 +635,15 @@ const BRIEFS = {
   12: "Vis EU's energiomstilling over tid som 100% stacked bar — fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilgængelige år.",
   10: "Vis 10-årige statsobligationsrenter for Tyskland, Frankrig og Italien som absolutte niveauer — og vis rentespændet (Frankrig og Italien vs. Tyskland) i en separat figur. Dette illustrerer stressniveauer i europæiske obligationsmarkeder og presset på perifere landes finansiering.",
   // Makro & Inflation
-  13: "Sammenlign den globale inflationsudvikling — USA, Euroområdet, UK og Japan — headline inflation år-over-år i procent. Brug følgende serier alle i macro-specialist: CPALTT01USM659N (source='fred', label='USA'), ea_hicp_yoy (source='eurostat_ts', label='Euroområdet'), CPALTT01GBM659N (source='fred', label='UK'), CPALTT01JPM659N (source='fred', label='Japan'). Alle serier er allerede i YoY % — sæt y_label='%'. Vis inflationstoppen i 2021–2022, disinflationen og nærheden til 2%-målet.",
+  13: "Sammenlign den globale inflationsudvikling for USA, Euroområdet, UK og Japan. Vis inflationstoppen i 2021–2022, den efterfølgende disinflation og nærheden til centralbankernes 2%-mål.",
   14: "Vis et globalt markedsscorecard: Brent olie, guld, S&P 500, EUR/USD og den 10-årige amerikanske statsrente — nuværende niveauer sammenlignet med for 1 år siden.",
+};
+
+// Internal technical briefs — override what's sent to the API for specific prompts.
+// The user sees the friendly BRIEFS text above; the pipeline receives the exact series
+// instructions below. Only populated for prompts that need explicit data routing.
+const INTERNAL_BRIEFS = {
+  13: "Sammenlign den globale inflationsudvikling — USA, Euroområdet, UK og Japan — headline inflation år-over-år i procent. Brug følgende serier alle i macro-specialist: CPALTT01USM659N (source='fred', label='USA'), ea_hicp_yoy (source='eurostat_ts', label='Euroområdet'), CPALTT01GBM659N (source='fred', label='UK'), CPALTT01JPM659N (source='fred', label='Japan'). Alle serier er allerede i YoY % — sæt y_label='%'. Vis inflationstoppen i 2021–2022, disinflationen og nærheden til 2%-målet.",
 };
 
 // Natural period for each quick prompt (days) — 0 = LLM bestemmer (slider controls)
@@ -653,13 +660,16 @@ const BRIEF_PERIODS = {
   9: 3650,  // Green vs. fossil equities — 10 years shows full boom/bust cycle
   12: 0,    // EU energy transition F-type — LLM picks multi-year
   10: 730,  // European bond stress — 2 years
-  13: 0,    // US inflation — LLM picks (needs ≥760 for YoY)
+  13: 0,    // Global inflation — LLM picks (needs ≥760 for YoY)
   14: 0,    // Market scorecard — LLM picks (1-year lookback)
 };
+
+let _activeQuickId = null;  // tracks which quick prompt is loaded
 
 function setQuick(n) {
   document.getElementById('briefInput').value = BRIEFS[n];
   setPeriodDays(BRIEF_PERIODS[n] ?? 0);
+  _activeQuickId = n;
 }
 
 // ── Step management ──
