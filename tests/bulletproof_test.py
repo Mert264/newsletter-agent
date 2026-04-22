@@ -328,7 +328,7 @@ def main():
     # ── TIER 2: Full pipeline for highest-risk prompts ────────────────────
     FULL_PIPELINE_PROMPTS = [
         (6,  ["A", "D"],        "BoE fix — IRSTCB01GBM156N"),
-        (13, ["A", "D"],        "Global inflation — CPALTT series + data to present"),
+        (13, ["A", "D"],        "Global inflation — EA HICP Eurostat + CPALTT US/UK/JP"),
         (5,  ["A", "D", "G"],   "Rentekurve — pie guard + pp format"),
         (10, ["A", "D"],        "EU bond stress — Germany visible"),
         (9,  ["P", "F"],        "EU energimix — product_filter + no axis reviewer flag"),
