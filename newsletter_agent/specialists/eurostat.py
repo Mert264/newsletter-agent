@@ -217,6 +217,7 @@ def _parse_product_wide(raw: dict, label_map: dict = None, product_filter: list 
 _EU_ELEC_LABEL_MAP = {
     "wind":                    "Vindkraft",
     "solar":                   "Solenergi",
+    "photovoltaic":            "Solenergi",
     "hydro":                   "Vandkraft",
     "nuclear":                 "Kerneenergi",
     "natural gas":             "Naturgas",
