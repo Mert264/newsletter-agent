@@ -160,8 +160,10 @@ The macro specialist handles source="eurostat_ts" internally. Exact series entri
   {"ticker": "CPALTT01USM659N", "source": "fred",        "label": "USA",         "unit": "%"}
   {"ticker": "ea_hicp_yoy",     "source": "eurostat_ts", "label": "Euroområdet", "unit": "%"}
   {"ticker": "CPALTT01GBM659N", "source": "fred",        "label": "UK",          "unit": "%"}
-  {"ticker": "CPALTT01JPM659N", "source": "fred",        "label": "Japan",       "unit": "%"}
   {"ticker": "CPALTT01CNM659N", "source": "fred",        "label": "Kina",        "unit": "%"}
+  {"ticker": "CPALTT01JPM659N", "source": "fred",        "label": "Japan",       "unit": "%"}
+  NOTE: CPALTT01JPM659N (Japan) data only extends to ~2022 on FRED due to OECD MEI publication lag.
+  Prefer CPALTT01CNM659N (China) for current multi-country charts unless Japan is specifically requested.
 All series are already in YoY % — set y_label="%" for the entire chart. NEVER set y_label="YoY %"
 for these series (that would apply a second transform and corrupt the data).
 Do NOT create a separate eurostat specialist entry for inflation — put ea_hicp_yoy in MACRO.
