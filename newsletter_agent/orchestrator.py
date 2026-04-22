@@ -134,7 +134,9 @@ Inflation — FRED (use EXACT series IDs — do NOT invent HICP codes):
   CPALTT01GBM659N    (UK CPI YoY rate, already in % — OECD MEI via FRED, updated monthly.
                       CRITICAL: This series is ALREADY the year-over-year % change. Set y_label="%",
                       NOT "YoY %" — using "YoY %" would apply a second transform and corrupt the data.
-                      Do NOT use CP0000GB1M086NEST or GBRCPIALLMINMEI — they are outdated/missing on FRED.)
+                      THIS IS THE ONLY VALID UK CPI SERIES. Do NOT invent any other UK CPI series.
+                      CP0000GB*, CP0000GB2*, GBRCPIALLMINMEI, CP0000GB1M086NEST, and any other
+                      GB-prefixed HICP series DO NOT EXIST ON FRED and will fail with Bad Request.)
   CPALTT01JPM659N    (Japan CPI YoY rate, already in % — OECD MEI via FRED, updated monthly.
                       Same rule: y_label="%" not "YoY %".)
   CPALTT01CNM659N    (China CPI YoY rate, already in % — OECD MEI via FRED.
