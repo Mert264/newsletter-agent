@@ -463,9 +463,11 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
             if merged is None:
                 merged = clean
             else:
-                # Outer join + forward-fill so Japanese/European holidays don't
-                # punch holes in US series (and vice versa).
-                merged = merged.join(clean, how="outer").ffill().dropna(how="all")
+                # Outer join + forward-fill so weekends/public holidays don't punch holes.
+                # limit=5: fills at most 5 consecutive missing positions (covers a trading week
+                # for daily data; for monthly data prevents a stale series from propagating
+                # its last value years into the future across other countries' data).
+                merged = merged.join(clean, how="outer").ffill(limit=5).dropna(how="all")
                 # Remove duplicate index rows introduced by the join (Yahoo Finance
                 # occasionally returns duplicate timestamps that survive ffill).
                 if merged.index.duplicated().any():
