@@ -194,10 +194,16 @@ Use specialist "eurostat" with the following dataset shortcuts (set "ticker" to 
   "eu_gdp_growth"   → EU27 real GDP growth (annual %, Type A or B)
   "eu_unemployment" → EU27 unemployment rate (monthly %, Type A)
   "eu_hicp"         → EU27 HICP inflation (monthly % change, Type A)
+  "ea_hicp_yoy"     → Euro area HICP headline, ANNUAL rate of change (year-over-year %, Type A)
+                      Data from Eurostat prc_hicp_manr, geo=EA (evolving composition: EA11→EA21).
+                      Already in YoY % — set y_label="%". Use for multi-country inflation charts
+                      instead of the Germany FRED proxy. Label the series "Euroområdet".
 Or provide a raw Eurostat dataset ID in "ticker" with custom "params" dict.
 Source type: "eurostat_ts" for time series, "eurostat_mix" for cross-sectional (Type F/G).
 Example eurostat entry:
   {"ticker": "eu_unemployment", "source": "eurostat_ts", "label": "EU27 ledighed (%)", "unit": "%"}
+Example ea_hicp_yoy entry (for multi-country inflation chart):
+  {"ticker": "ea_hicp_yoy", "source": "eurostat_ts", "label": "Euroområdet", "unit": "%"}
 
 PRODUCT FILTER for eu_energy_mix:
 The eu_energy_mix dataset contains all energy products: Naturgas, Kul, Kerneenergi, Vandkraft,
