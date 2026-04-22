@@ -270,7 +270,7 @@ def _build_event_impact_table(merged: pd.DataFrame, events: list,
 
 
 def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
-                   global_pool: dict | None = None) -> dict:
+                   global_pool: Optional[dict] = None) -> dict:
     """Render one figure from chart_spec + specialist data. Returns FigurePackage dict."""
     chart_type = chart_spec["type"]
     dfs = specialist_result["dataframes"]
