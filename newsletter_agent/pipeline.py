@@ -773,7 +773,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                 ):
                     chart_spec = {**chart_spec, "y_label": "%"}
                     print(f"  [reviewer] Patched y_label → % (Indekseret/% mismatch from reviewer hint)")
-                rerendered = _render_figure(chart_spec, result, output_path)
+                rerendered = _render_figure(chart_spec, result, output_path, global_pool=global_pool)
                 if isinstance(rerendered, list):
                     rerendered = rerendered[-1]  # combined figure only during re-review
                 if rerendered is not None:
