@@ -131,27 +131,39 @@ Inflation — FRED (use EXACT series IDs — do NOT invent HICP codes):
   CP0000EZ19M086NEST (Eurozone HICP headline, INDEX — set y_label="YoY %", period_days>=760)
   CP0000DE1M086NEST  (Germany CPI, INDEX — set y_label="YoY %", period_days>=760)
   CP0000FR1M086NEST  (France CPI, INDEX — set y_label="YoY %", period_days>=760)
-  CPALTT01GBM659N    (UK CPI YoY rate, already in % — OECD MEI via FRED, updated monthly.
-                      CRITICAL: This series is ALREADY the year-over-year % change. Set y_label="%",
-                      NOT "YoY %" — using "YoY %" would apply a second transform and corrupt the data.
-                      Do NOT use CP0000GB1M086NEST or GBRCPIALLMINMEI — they are outdated/missing on FRED.)
-  CPALTT01JPM659N    (Japan CPI YoY rate, already in % — OECD MEI via FRED, updated monthly.
-                      Same rule: y_label="%" not "YoY %".)
-  CPALTT01CNM659N    (China CPI YoY rate, already in % — OECD MEI via FRED.
-                      Same rule: y_label="%" not "YoY %".)
-  CPALTT01USM659N    (US CPI YoY rate, already in % — OECD MEI via FRED. Use this instead of
-                      CPIAUCSL when comparing multiple countries on the same chart. y_label="%".)
+  CPALTT01GBM659N    (UK CPI YoY rate, already in % — OECD MEI via FRED.
+                      CRITICAL: already YoY %, set y_label="%". Do NOT use CP0000GB1M086NEST.
+                      WARNING: OECD MEI series on FRED may be discontinued (data may stop ~2022).
+                      If this series is stale, the pipeline will drop it and warn — use
+                      CP0000GB2HIGY01OECD (UK HICP index, set y_label="YoY %") as fallback.)
+  CPALTT01JPM659N    (Japan CPI YoY rate, already in % — OECD MEI via FRED.
+                      WARNING: This series is likely discontinued on FRED (~2022). Use
+                      JPNCPIALLMINMEI (Japan CPI index, set y_label="YoY %") instead.)
+  JPNCPIALLMINMEI    (Japan CPI all items, monthly index 2015=100 — OECD via FRED. Current.
+                      Set y_label="YoY %" so the pipeline computes annual rate of change.)
+  CPALTT01CNM659N    (China CPI YoY rate, already in % — OECD MEI via FRED. May be stale.)
+  CPALTT01USM659N    (US CPI YoY rate, already in % — OECD MEI via FRED. y_label="%".)
   CPALTT01DEM659N    (Germany CPI YoY rate — OECD MEI via FRED. Already in %, y_label="%".
                       Use for Germany-specific analysis only. NOT a proxy for the Euro area —
                       use ea_hicp_yoy from the eurostat specialist for EA aggregate inflation.)
   CPALTT01FRM659N    (France CPI YoY rate — OECD MEI via FRED. Already in %, y_label="%".)
 MULTI-COUNTRY INFLATION RULE: When comparing CPI inflation across multiple countries/regions
 (e.g. US, Euro area, UK, Japan) on ONE chart, use the following pattern:
-  - USA:        CPALTT01USM659N  via macro specialist  (FRED, already YoY %)
-  - Euro area:  ea_hicp_yoy      via eurostat specialist (Eurostat HICP EA aggregate, already YoY %)
-  - UK:         CPALTT01GBM659N  via macro specialist  (FRED, already YoY %)
-  - Japan:      CPALTT01JPM659N  via macro specialist  (FRED, already YoY %)
-  - China:      CPALTT01CNM659N  via macro specialist  (FRED, already YoY %)
+  - USA:        CPALTT01USM659N  via macro specialist  (FRED, already YoY %, y_label="%")
+  - Euro area:  ea_hicp_yoy      via eurostat specialist (Eurostat HICP EA aggregate, already YoY %, y_label="%")
+  - UK:         CPALTT01GBM659N  via macro specialist  (FRED, already YoY %, y_label="%" — BUT may be stale)
+  - Japan:      JPNCPIALLMINMEI  via macro specialist  (FRED index, y_label="YoY %" to trigger transform)
+  - China:      CPALTT01CNM659N  via macro specialist  (FRED, already YoY %, y_label="%" — may be stale)
+CRITICAL: JPNCPIALLMINMEI is a raw index (not pre-computed YoY). When Japan is on the SAME
+chart as CPALTT/ea_hicp_yoy series, you CANNOT mix y_label="YoY %" with y_label="%" on one chart.
+Solution: put Japan on a SEPARATE chart, OR use only pre-YoY series for all countries.
+If mixing is unavoidable, prefer consistent y_label="YoY %" and note that CPALTT/ea_hicp_yoy
+series will be double-transformed — instead use the index equivalents for all countries:
+  - USA index:     CPIAUCSL (BLS, monthly, current, index — requires y_label="YoY %")
+  - UK index:      CP0000GB2HIGY01OECD (HICP index — requires y_label="YoY %")
+  - Japan index:   JPNCPIALLMINMEI (OECD, monthly, current — requires y_label="YoY %")
+  - EA index:      CP0000EZ19M086NEST (ECB HICP index via FRED — requires y_label="YoY %")
+When using index approach: route ALL to macro specialist with y_label="YoY %" and drop ea_hicp_yoy.
 All series are already in YoY % — set y_label="%" for the entire chart. NEVER set y_label="YoY %"
 for these series (that would apply a second transform and corrupt the data).
 Place the chart spec under the specialist that provides most series (typically "macro").
