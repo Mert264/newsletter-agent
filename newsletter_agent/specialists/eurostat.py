@@ -221,13 +221,18 @@ _EU_ELEC_LABEL_MAP = {
     "hydro":                   "Vandkraft",
     "nuclear":                 "Kerneenergi",
     "natural gas":             "Naturgas",
+    "solid fossil":            "Kul",       # matches nrg_bal_c siec label "Solid fossil fuels"
+    "coal":                    "Kul",
     "hard coal":               "Kul",
     "brown coal":              "Kul",
     "lignite":                 "Kul",
+    "oil and petroleum":       "Olie",
     "oil":                     "Olie",
     "solid biofuel":           "Bioenergi",
     "biogas":                  "Bioenergi",
     "bioenergy":               "Bioenergi",
+    "biofuel":                 "Bioenergi",
+    "combustible renewables":  "Bioenergi",
     "geothermal":              "Geotermi",
 }
 
