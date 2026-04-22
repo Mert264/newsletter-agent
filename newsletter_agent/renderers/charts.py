@@ -311,6 +311,18 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     y_range = yhi - ylo
     ax.set_ylim(ylo - y_range * 0.04, yhi + y_range * 0.20)
 
+    # Reference lines (e.g. 2% inflation target, zero line)
+    for rl in spec.get("reference_lines", []):
+        rl_y   = rl.get("y", 0)
+        rl_col = rl.get("color", "#9ca3af")
+        rl_lbl = rl.get("label", "")
+        ax.axhline(y=rl_y, color=rl_col, linestyle="--", linewidth=0.9, alpha=0.85, zorder=1)
+        if rl_lbl:
+            from matplotlib.transforms import blended_transform_factory
+            trans = blended_transform_factory(ax.transAxes, ax.transData)
+            ax.text(1.01, rl_y, f" {rl_lbl}", transform=trans,
+                    va="bottom", ha="left", fontsize=6.5, color=rl_col, alpha=0.9)
+
     # Event markers — dashed lines only, no inline labels
     events_drawn = _draw_event_markers(ax, spec, df.index)
 
