@@ -94,23 +94,36 @@ def _build_table(dfs: dict, chart_spec: dict, kilde_str: str, output_path: str) 
         if all_vals and max(abs(v) for v in all_vals) < 30:
             use_absolute = True
 
+    # target_value: when set, the third column shows distance from target (e.g. 2%-mål)
+    # instead of the period-on-period change.
+    target_value = chart_spec.get("target_value")
+    if target_value is not None:
+        change_col = f"Afstand til {target_value}%-mål"
+    else:
+        change_col = "Ændring"
+
     rows = []
     for label, before_val, after_val in raw_rows:
-        change = after_val - before_val
-        sign   = "+" if change >= 0 else ""
-        if use_absolute:
-            change_str = f"{sign}{change:.2f} pp"
+        if target_value is not None:
+            dist = after_val - target_value
+            sign = "+" if dist >= 0 else ""
+            change_str = f"{sign}{dist:.2f} pp"
         else:
-            pct = (change / abs(before_val) * 100) if before_val != 0 else 0.0
-            change_str = f"{sign}{pct:.1f}%"
+            change = after_val - before_val
+            sign   = "+" if change >= 0 else ""
+            if use_absolute:
+                change_str = f"{sign}{change:.2f} pp"
+            else:
+                pct = (change / abs(before_val) * 100) if before_val != 0 else 0.0
+                change_str = f"{sign}{pct:.1f}%"
         rows.append({
             "indicator": label,
             col_before:  _fmt(before_val),
             col_after:   _fmt(after_val),
-            "Ændring":   change_str,
+            change_col:  change_str,
         })
 
-    data = {"columns": [col_before, col_after, "Ændring"], "rows": rows}
+    data = {"columns": [col_before, col_after, change_col], "rows": rows}
     # Pass spec without note — tables don't show Note text, only Kilde
     table_spec = {**chart_spec, "kilde": kilde_str, "note": ""}
     return render_type_d(data, table_spec, output_path)
