@@ -220,6 +220,9 @@ NOT available (do NOT attempt — these sources do not exist in this system):
   - GIE gas storage, CME FedWatch probability data, Bloomberg, BlackRock, JPMorgan, ICE real-time data
   - UK NBP gas prices (not on yfinance — only TTF=F is available for European gas)
   - Japan GDP via any ID other than NAEXKP01JPQ657S — do NOT invent FRED IDs (e.g. JPNIGDPQDSMEI does not exist)
+  - ANY UK CPI series other than CPALTT01GBM659N — CP0000GB*, CP0000GB2HIGY01OECD,
+    CP0000GB1M086NEST, GBRCPIALLMINMEI do NOT exist on FRED. Only CPALTT01GBM659N is valid.
+  - CPALTT01EZM659N — does not exist on FRED. Use ea_hicp_yoy (source="eurostat_ts") for EA.
   - European electricity spot prices (EPEX, Nord Pool — not available)
   - LNG spot prices (not on yfinance)
   - Individual Nordic central bank policy rates (Riksbank, Norges Bank, DNB — not on FRED; use ECB rate as EU proxy)
