@@ -199,6 +199,15 @@ Example Type F chart spec for energy mix:
 EU STATISTICAL DATA — Eurostat (free, no API key):
 Use specialist "eurostat" with the following dataset shortcuts (set "ticker" to the shortcut name):
   "eu_energy_mix"   → EU27 energy consumption by product (Type F stacked bar OR Type P pie chart)
+                      Source: nrg_bal_c, unit=KTOE, nrg_bal=GIC (Gross Inland Consumption).
+                      IMPORTANT: Shows TOTAL ENERGY MIX (GIC) — NOT electricity only.
+                      Always note in the chart that this is gross inland consumption, not electricity generation.
+  "eu_elec_mix"     → EU27 electricity generation by source (Type F stacked bar OR Type P pie chart)
+                      Source: nrg_cb_peh, unit=GWH, nrg_bal=GEP (Gross Electricity Production).
+                      IMPORTANT: Shows ELECTRICITY GENERATION ONLY — not total energy consumption.
+                      Renewables share is MUCH HIGHER here than in the GIC energy mix.
+                      Always note in the chart that this is electricity generation, not total energy.
+                      Use source="eurostat_mix" for this shortcut.
   "eu_gdp_growth"   → EU27 real GDP growth (annual %, Type A or B)
   "eu_unemployment" → EU27 unemployment rate (monthly %, Type A)
   "eu_hicp"         → EU27 HICP inflation (monthly % change, Type A)
