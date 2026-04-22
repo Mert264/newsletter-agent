@@ -148,17 +148,16 @@ Inflation — FRED (use EXACT series IDs — do NOT invent HICP codes):
                       use ea_hicp_yoy from the eurostat specialist for EA aggregate inflation.)
   CPALTT01FRM659N    (France CPI YoY rate — OECD MEI via FRED. Already in %, y_label="%".)
 MULTI-COUNTRY INFLATION RULE: When comparing CPI inflation across multiple countries/regions
-(e.g. US, Euro area, UK, Japan) on ONE chart, use the following pattern:
-  - USA:        CPALTT01USM659N  via macro specialist  (FRED, already YoY %)
-  - Euro area:  ea_hicp_yoy      via eurostat specialist (Eurostat HICP EA aggregate, already YoY %)
-  - UK:         CPALTT01GBM659N  via macro specialist  (FRED, already YoY %)
-  - Japan:      CPALTT01JPM659N  via macro specialist  (FRED, already YoY %)
-  - China:      CPALTT01CNM659N  via macro specialist  (FRED, already YoY %)
+(e.g. US, Euro area, UK, Japan), ALL FOUR series go into the MACRO specialist — including EA.
+The macro specialist handles source="eurostat_ts" internally. Exact series entries to use:
+  {"ticker": "CPALTT01USM659N", "source": "fred",        "label": "USA",         "unit": "%"}
+  {"ticker": "ea_hicp_yoy",     "source": "eurostat_ts", "label": "Euroområdet", "unit": "%"}
+  {"ticker": "CPALTT01GBM659N", "source": "fred",        "label": "UK",          "unit": "%"}
+  {"ticker": "CPALTT01JPM659N", "source": "fred",        "label": "Japan",       "unit": "%"}
+  {"ticker": "CPALTT01CNM659N", "source": "fred",        "label": "Kina",        "unit": "%"}
 All series are already in YoY % — set y_label="%" for the entire chart. NEVER set y_label="YoY %"
 for these series (that would apply a second transform and corrupt the data).
-Place the chart spec under the specialist that provides most series (typically "macro").
-In series_labels, include ALL label strings the chart needs — even labels fetched by the
-eurostat specialist. The pipeline merges data across specialists automatically.
+Do NOT create a separate eurostat specialist entry for inflation — put ea_hicp_yoy in MACRO.
 NEVER use CPALTT01EZM659N — it does not exist on FRED.
 NEVER use CPALTT01DEM659N as a Euro area proxy — use ea_hicp_yoy instead.
 NEVER mix a pre-computed YoY series (CPALTT / ea_hicp_yoy) with an index series (CPIAUCSL) on
