@@ -124,10 +124,10 @@ Central banks:
   JPNRATE (Bank of Japan policy rate — if available, else skip)
 
 EUROPEAN MACRO — FRED series:
-CRITICAL: ALL CP0000* series below are FRED series — ALWAYS route them to specialist "macro"
-with source="fred". NEVER route them to specialist "eurostat" — the Eurostat API does not
-recognise FRED series IDs and will return 404.
-Inflation (use EXACT series IDs below — do NOT invent HICP codes):
+CRITICAL: ALL CP0000* and CPALTT01* series below are FRED series — ALWAYS route them to
+specialist "macro" with source="fred". NEVER route them to specialist "eurostat" — the
+Eurostat API does not recognise FRED series IDs and will return 404.
+Inflation — FRED (use EXACT series IDs — do NOT invent HICP codes):
   CP0000EZ19M086NEST (Eurozone HICP headline, INDEX — set y_label="YoY %", period_days>=760)
   CP0000DE1M086NEST  (Germany CPI, INDEX — set y_label="YoY %", period_days>=760)
   CP0000FR1M086NEST  (France CPI, INDEX — set y_label="YoY %", period_days>=760)
@@ -140,17 +140,27 @@ Inflation (use EXACT series IDs below — do NOT invent HICP codes):
   CPALTT01CNM659N    (China CPI YoY rate, already in % — OECD MEI via FRED.
                       Same rule: y_label="%" not "YoY %".)
   CPALTT01USM659N    (US CPI YoY rate, already in % — OECD MEI via FRED. Use this instead of
-                      CPIAUCSL when comparing multiple countries on the same chart, to ensure all
-                      series are already in YoY % and no transform is needed. y_label="%".)
-  CPALTT01DEM659N    (Germany CPI YoY rate — OECD MEI via FRED. Already in %, y_label="%". Use as
-                      Eurozone/EU proxy in multi-country inflation charts. CPALTT01EZM659N does NOT
-                      exist on FRED — never use it. Label the series "EU (DE)" or "Euroområdet (DE)".)
+                      CPIAUCSL when comparing multiple countries on the same chart. y_label="%".)
+  CPALTT01DEM659N    (Germany CPI YoY rate — OECD MEI via FRED. Already in %, y_label="%".
+                      Use for Germany-specific analysis only. NOT a proxy for the Euro area —
+                      use ea_hicp_yoy from the eurostat specialist for EA aggregate inflation.)
   CPALTT01FRM659N    (France CPI YoY rate — OECD MEI via FRED. Already in %, y_label="%".)
-MULTI-COUNTRY INFLATION RULE: When comparing CPI inflation across multiple countries/regions on
-ONE chart, ALWAYS use CPALTT01{CC}M659N series for ALL countries (US=USM, Germany=DEM as EU proxy,
-UK=GBM, Japan=JPM, China=CNM). All are already YoY rates. Set y_label="%" for the entire chart.
-NEVER use CPALTT01EZM659N — it does not exist on FRED. Use CPALTT01DEM659N for EU/Eurozone.
-NEVER mix a pre-computed YoY series (CPALTT) with an index series (CPIAUCSL) on the same chart.
+MULTI-COUNTRY INFLATION RULE: When comparing CPI inflation across multiple countries/regions
+(e.g. US, Euro area, UK, Japan) on ONE chart, use the following pattern:
+  - USA:        CPALTT01USM659N  via macro specialist  (FRED, already YoY %)
+  - Euro area:  ea_hicp_yoy      via eurostat specialist (Eurostat HICP EA aggregate, already YoY %)
+  - UK:         CPALTT01GBM659N  via macro specialist  (FRED, already YoY %)
+  - Japan:      CPALTT01JPM659N  via macro specialist  (FRED, already YoY %)
+  - China:      CPALTT01CNM659N  via macro specialist  (FRED, already YoY %)
+All series are already in YoY % — set y_label="%" for the entire chart. NEVER set y_label="YoY %"
+for these series (that would apply a second transform and corrupt the data).
+Place the chart spec under the specialist that provides most series (typically "macro").
+In series_labels, include ALL label strings the chart needs — even labels fetched by the
+eurostat specialist. The pipeline merges data across specialists automatically.
+NEVER use CPALTT01EZM659N — it does not exist on FRED.
+NEVER use CPALTT01DEM659N as a Euro area proxy — use ea_hicp_yoy instead.
+NEVER mix a pre-computed YoY series (CPALTT / ea_hicp_yoy) with an index series (CPIAUCSL) on
+the same chart.
 Bond yields (already in % — do NOT apply YoY):
   IRLTLT01EZM156N (Eurozone 10Y bond yield, monthly %)
   IRLTLT01DEM156N (Germany 10Y Bund, monthly %)
