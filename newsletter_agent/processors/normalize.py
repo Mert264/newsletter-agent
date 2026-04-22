@@ -11,7 +11,12 @@ def drop_nulls(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def align_dates(dataframes: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
-    """Trim all DataFrames to their shared date range, deduplicating any duplicate timestamps."""
+    """Align DataFrames to a common start date; each series keeps its own last observation.
+
+    Only the START date uses intersection (so no series extends before the others have data).
+    End dates are NOT clipped — series with less history (e.g. OECD-lagged Japan CPI) end
+    at their own last data point. The pipeline's outer-join + limited ffill handles the gaps.
+    """
     if not dataframes:
         return dataframes
     # Deduplicate index first — Yahoo Finance occasionally returns duplicate timestamps
@@ -20,11 +25,9 @@ def align_dates(dataframes: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
         for label, df in dataframes.items()
     }
     starts = [df.index.min() for df in deduped.values()]
-    ends = [df.index.max() for df in deduped.values()]
     common_start = max(starts)
-    common_end = min(ends)
     return {
-        label: df.loc[common_start:common_end]
+        label: df.loc[common_start:]
         for label, df in deduped.items()
     }
 
