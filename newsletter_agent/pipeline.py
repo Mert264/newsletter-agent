@@ -665,6 +665,16 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
             specialist_results[spec_name]["conversion_note"] = conv_note
             print(f"  [{spec_name}] Conversion: {conv_note[:80]}...")
 
+    # Build global data pool for cross-specialist chart resolution.
+    # Charts authored under specialist A can reference series fetched by specialist B
+    # (e.g. global inflation: US/UK/JP from macro + EA from eurostat on one chart).
+    global_pool: dict = {"dataframes": {}, "kilde": []}
+    for _sp_name, _sp_result in specialist_results.items():
+        global_pool["dataframes"].update(_sp_result["dataframes"])
+        for _k in _sp_result.get("kilde", []):
+            if _k not in global_pool["kilde"]:
+                global_pool["kilde"].append(_k)
+
     # Step 3: Render figures
     print("\n[3/4] Rendering figures...")
     packages = []
@@ -679,7 +689,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
             output_path = os.path.join(output_dir, f"figure_{fig_idx:02d}.png")
             title = chart_spec.get("title", f"figure_{fig_idx:02d}")
             print(f"  Rendering figure {fig_idx + 1}: '{title}'")
-            package = _render_figure(chart_spec, result, output_path)
+            package = _render_figure(chart_spec, result, output_path, global_pool=global_pool)
             if package is None:
                 fig_idx += 1
                 continue
