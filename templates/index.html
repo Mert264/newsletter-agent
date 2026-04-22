@@ -643,7 +643,7 @@ const BRIEFS = {
 // The user sees the friendly BRIEFS text above; the pipeline receives the exact series
 // instructions below. Only populated for prompts that need explicit data routing.
 const INTERNAL_BRIEFS = {
-  13: "Sammenlign den globale inflationsudvikling — USA, Euroområdet, UK og Japan — headline inflation år-over-år i procent. Brug følgende serier alle i macro-specialist: CPALTT01USM659N (source='fred', label='USA'), ea_hicp_yoy (source='eurostat_ts', label='Euroområdet'), CPALTT01GBM659N (source='fred', label='UK'), CPALTT01JPM659N (source='fred', label='Japan'). Alle serier er allerede i YoY % — sæt y_label='%'. Vis inflationstoppen i 2021–2022, disinflationen og nærheden til 2%-målet.",
+  13: "Sammenlign den globale inflationsudvikling — USA, Euroområdet, UK og Japan — headline CPI/HICP år-over-år i procent. Brug følgende serier alle i macro-specialist: CPALTT01USM659N (source='fred', label='USA'), ea_hicp_yoy (source='eurostat_ts', label='Euroområdet'), CPALTT01GBM659N (source='fred', label='UK'), CPALTT01JPM659N (source='fred', label='Japan'). Alle serier er allerede i YoY % — sæt y_label='%'. Brug titlen 'Inflationsudvikling i USA, euroområdet, UK og Japan (headline CPI/HICP)'. Tilføj reference_lines: [{y: 2.0, label: '2%-mål', color: '#9ca3af'}] på Type A-figuren. På den tilhørende Type D-tabel: sæt target_value: 2.0 så kolonnen viser 'Afstand til 2%-mål' i stedet for periodisk ændring, og sæt col_after='Nu'. Tilføj til note: 'Japans data slutter tidligere end de øvrige lande grundet forsinkelse i OECD-datapublikation.' Vis inflationstoppen i 2021–2022, disinflationen og nærheden til centralbankernes 2%-mål.",
 };
 
 // Natural period for each quick prompt (days) — 0 = LLM bestemmer (slider controls)
