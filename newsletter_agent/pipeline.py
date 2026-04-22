@@ -268,20 +268,36 @@ def _build_event_impact_table(merged: pd.DataFrame, events: list,
 
 
 
-def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str) -> dict:
+def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
+                   global_pool: dict | None = None) -> dict:
     """Render one figure from chart_spec + specialist data. Returns FigurePackage dict."""
     chart_type = chart_spec["type"]
     dfs = specialist_result["dataframes"]
-    kilde_str = " og ".join(specialist_result["kilde"])
+    kilde_sources = list(specialist_result["kilde"])
 
     # ── Filter to series for this chart ──────────────────────────────────────
     series_labels = chart_spec.get("series_labels")
     if series_labels:
         dfs = {k: v for k, v in dfs.items() if k in series_labels}
         missing = [lbl for lbl in series_labels if lbl not in specialist_result["dataframes"]]
-        if missing:
+        if missing and global_pool:
+            # Cross-specialist: supplement with series fetched by another specialist.
+            for lbl in missing:
+                if lbl in global_pool["dataframes"]:
+                    dfs[lbl] = global_pool["dataframes"][lbl]
+            still_missing = [lbl for lbl in series_labels if lbl not in dfs]
+            # Merge in any additional kilde sources from the contributing specialists.
+            for k in global_pool.get("kilde", []):
+                if k not in kilde_sources:
+                    kilde_sources.append(k)
+            if still_missing:
+                print(f"    [warn] series_labels mismatch — missing even after global lookup: {still_missing}")
+                print(f"           Available globally: {list(global_pool['dataframes'].keys())}")
+        elif missing:
             print(f"    [warn] series_labels mismatch — these labels were requested but not fetched: {missing}")
             print(f"           Available labels: {list(specialist_result['dataframes'].keys())}")
+
+    kilde_str = " og ".join(dict.fromkeys(kilde_sources))
 
     # ── Spread computation (compute_spread_vs) ────────────────────────────────
     compute_spread_vs = chart_spec.get("compute_spread_vs")
