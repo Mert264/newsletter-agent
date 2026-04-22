@@ -233,7 +233,8 @@ _EU_ELEC_LABEL_MAP = {
     "bioenergy":               "Bioenergi",
     "biofuel":                 "Bioenergi",
     "combustible renewables":  "Bioenergi",
-    "geothermal":              "Geotermi",
+    # "geothermal" intentionally omitted — Eurostat's nrg_bal_c GEP uses this label for a broad
+    # catch-all "Geothermal and other secondary" category that inflates to ~30-40%, not actual geothermal.
 }
 
 # ── EU Energy Mix: keyword → Danish display name ──────────────────────────────
