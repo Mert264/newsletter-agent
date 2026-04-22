@@ -669,11 +669,46 @@ const BRIEF_PERIODS = {
   14: 0,    // Market scorecard — LLM picks (1-year lookback)
 };
 
+// Viz types required by each quick prompt — omit for prompts that use the default (A only).
+// Keys: 'A', 'D', 'P' toggle individually; 'bar' activates Søjlediagram (B/G/F).
+const BRIEF_VIZ_TYPES = {
+  12: ['bar', 'P'],          // EU energiomstilling — stacked bar + pie
+  15: ['bar', 'P'],          // EU elproduktion — stacked bar + pie
+  4:  ['bar'],               // EU obligations — bar chart
+  9:  ['A'],                 // Grøn energi — time series
+  13: ['A', 'D'],            // Global inflation — time series + table
+  14: ['D'],                 // Scorecard — table
+};
+
 let _activeQuickId = null;  // tracks which quick prompt is loaded
+
+function _applyVizTypes(types) {
+  // Reset all toggles to off first
+  activeVizTypes = new Set();
+  barActive = false;
+  ['A', 'D', 'P'].forEach(k => {
+    const el = document.getElementById(`vopt-${k}`);
+    if (el) el.classList.remove('active');
+  });
+  document.getElementById('vopt-bar-parent').classList.remove('active');
+
+  // Activate requested types
+  (types || ['A']).forEach(k => {
+    if (k === 'bar') {
+      barActive = true;
+      document.getElementById('vopt-bar-parent').classList.add('active');
+    } else {
+      activeVizTypes.add(k);
+      const el = document.getElementById(`vopt-${k}`);
+      if (el) el.classList.add('active');
+    }
+  });
+}
 
 function setQuick(n) {
   document.getElementById('briefInput').value = BRIEFS[n];
   setPeriodDays(BRIEF_PERIODS[n] ?? 0);
+  _applyVizTypes(BRIEF_VIZ_TYPES[n] || ['A']);
   _activeQuickId = n;
 }
 
