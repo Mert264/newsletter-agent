@@ -211,6 +211,25 @@ def _parse_product_wide(raw: dict, label_map: dict = None, product_filter: list 
         return None
 
 
+# ── EU Electricity Generation Mix: keyword → Danish display name ──────────────
+# Matches against Eurostat's English product labels (nrg_cb_peh siec dimension).
+# Keywords match substrings of the English labels returned by the Eurostat API.
+_EU_ELEC_LABEL_MAP = {
+    "wind":                    "Vindkraft",
+    "solar":                   "Solenergi",
+    "hydro":                   "Vandkraft",
+    "nuclear":                 "Kerneenergi",
+    "natural gas":             "Naturgas",
+    "hard coal":               "Kul",
+    "brown coal":              "Kul",
+    "lignite":                 "Kul",
+    "oil":                     "Olie",
+    "solid biofuel":           "Bioenergi",
+    "biogas":                  "Bioenergi",
+    "bioenergy":               "Bioenergi",
+    "geothermal":              "Geotermi",
+}
+
 # ── EU Energy Mix: keyword → Danish display name ──────────────────────────────
 # Matches against Eurostat's English product labels (case-insensitive substring).
 # Products matching the same keyword are summed (e.g. onshore + offshore wind).
