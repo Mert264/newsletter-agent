@@ -46,10 +46,17 @@ Given a free-form topic brief, return a JSON TaskManifest with exactly this stru
         "events": [                   // OPTIONAL: specific events mentioned in the brief that should be marked with a vertical line.
           {"date": "2022-02-24", "label": "Russia invades Ukraine"}
         ],
-        "compute_spread_vs": "Deutschland"  // OPTIONAL: subtract this series from all others to produce spreads/differentials.
+        "compute_spread_vs": "Deutschland",  // OPTIONAL: subtract this series from all others to produce spreads/differentials.
                                             // The named series must be one of the series_labels. It is excluded from the chart.
                                             // Use for yield spreads, rate differentials, relative performance.
                                             // The pipeline sets y_label to "Procentpoint" automatically when this field is present.
+        "reference_lines": [              // OPTIONAL: horizontal reference lines drawn as dashed lines across the chart.
+          {"y": 2.0, "label": "2%-mål", "color": "#9ca3af"}
+        ],                                // Use for policy targets (inflation 2%, zero line, etc.).
+                                          // Add for any multi-country inflation chart — always include the 2% central bank target.
+        "target_value": 2.0               // OPTIONAL (Type D companion tables only): when set, the third column shows
+                                          // "Afstand til X%-mål" (current value minus target) instead of period change.
+                                          // Use on companion D tables to inflation A charts. Set to 2.0 for CPI/HICP charts.
       }
     ]
   }
