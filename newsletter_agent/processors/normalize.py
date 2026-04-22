@@ -11,7 +11,15 @@ def drop_nulls(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def align_dates(dataframes: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
-    """Trim all DataFrames to their shared date range, deduplicating any duplicate timestamps."""
+    """Trim all DataFrames to their shared start date; drop stale series.
+
+    End-date handling: use max(ends) so a single discontinued series (e.g. a
+    CPALTT OECD-MEI series that stopped publishing in 2022) does not clip every
+    other series to that stale cutoff. Instead, any series whose last observation
+    is more than 400 days before the most recent data available is dropped with a
+    warning. The remaining series are trimmed to a common start and the full
+    max-end window (NaN tails are forward-filled downstream in the pipeline).
+    """
     if not dataframes:
         return dataframes
     # Deduplicate index first — Yahoo Finance occasionally returns duplicate timestamps
@@ -19,10 +27,27 @@ def align_dates(dataframes: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
         label: df[~df.index.duplicated(keep="last")]
         for label, df in dataframes.items()
     }
+    ends = {label: df.index.max() for label, df in deduped.items()}
+    global_end = max(ends.values())
+
+    # Drop any series whose last obs is >400 days stale relative to the freshest series
+    stale_threshold_days = 400
+    stale = [
+        label for label, end in ends.items()
+        if (global_end - end).days > stale_threshold_days
+    ]
+    if stale:
+        for label in stale:
+            print(f"    [align_dates] Dropping stale series '{label}' "
+                  f"(last obs {ends[label].date()}, freshest {global_end.date()} "
+                  f"— gap {(global_end - ends[label]).days} days > 400-day threshold)")
+        deduped = {k: v for k, v in deduped.items() if k not in stale}
+    if not deduped:
+        return deduped
+
     starts = [df.index.min() for df in deduped.values()]
-    ends = [df.index.max() for df in deduped.values()]
     common_start = max(starts)
-    common_end = min(ends)
+    common_end = max(df.index.max() for df in deduped.values())
     return {
         label: df.loc[common_start:common_end]
         for label, df in deduped.items()
