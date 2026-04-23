@@ -286,6 +286,11 @@ Rules:
   Always write in full: "Percentage points" for yield spreads and rate differences.
   Use "%" for rate levels (DGS2, DGS10, DFF, ECBDFR). Use "Basis points (bps)" only
   when the data is already expressed in basis points (100 bps = 1 pp).
+- CRITICAL — PROCENTPOINT IN BRIEF: If the brief uses the word "procentpoint" in ANY language
+  (procentpoint, percentage points, prosenttipiste) when describing how changes should be shown
+  in the companion table, set y_label="%" on both the Type A chart AND its companion Type D table.
+  This ensures the pipeline displays the Ændring column in pp format (e.g. "-0.50 pp").
+  Example: brief says "ændringer vises i procentpoint" → y_label="%" on all charts in that manifest.
 - CRITICAL: Inflation series (CPIAUCSL, CPILFESL, PCEPI) from FRED are INDEX LEVELS (~320),
   NOT percentages. Always set y_label to "YoY %" for these — the pipeline applies the
   year-over-year transform automatically. Never plot the raw index level.
