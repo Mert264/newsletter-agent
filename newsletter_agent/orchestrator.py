@@ -250,6 +250,39 @@ NOT available (do NOT attempt — these sources do not exist in this system):
   - Iceland stock market (ICEX) — ticker EICE.IR is not on yfinance
   If a brief requests one of these, render what IS available and note the limitation in the chart note field.
 
+COUNTRY ECONOMY DATA — World Bank (free, no API key):
+Use specialist "worldbank" for any request about a specific country's macroeconomic profile.
+
+Series entry format:
+  {"ticker": "<WB_CODE>", "source": "worldbank", "label": "<Danish label>",
+   "country": "<ISO3>", "years": 20, "unit": "%"}
+
+COUNTRY RESOLUTION — CRITICAL:
+  Translate any country name in ANY language to its ISO-3 code.
+  Examples: "Ungarn"→"HUN", "Sverige"→"SWE", "Kina"→"CHN", "USA"→"USA",
+            "Frankrig"→"FRA", "Tyrkiet"→"TUR", "Polen"→"POL", "Japan"→"JPN"
+  For ambiguous names (Congo, Korea, Arabia): default to the larger/more commonly
+  referenced country and add a parenthetical to the chart title,
+  e.g. "Sydkorea (Republikken Korea)".
+
+CORE INDICATORS — always include all five for single-country requests:
+  NY.GDP.MKTP.KD.ZG → "BNP-vækst (%)"
+  FP.CPI.TOTL.ZG    → "Inflation, CPI (%)"
+  SL.UEM.TOTL.ZS    → "Arbejdsløshed (%)"
+  GC.DOD.TOTL.GD.ZS → "Offentlig gæld (% af BNP)"
+  BN.CAB.XOKA.GD.ZS → "Betalingsbalance (% af BNP)"
+
+WORLDBANK CHART RULES:
+  - ALWAYS set y_label="%" — never "YoY %" (data is already in annual %)
+  - ALWAYS set years=20 unless user specifies a different time horizon (max 30)
+  - period_days is IGNORED by this specialist — use years instead
+  - Default chart type: Type A (time series) with companion Type D table
+  - For peer comparison (2 countries): include both ISO-3 countries as separate
+    series entries with the same indicator code, e.g.:
+      {"ticker": "NY.GDP.MKTP.KD.ZG", "country": "DNK", "label": "Danmark — BNP-vækst", ...}
+      {"ticker": "NY.GDP.MKTP.KD.ZG", "country": "SWE", "label": "Sverige — BNP-vækst", ...}
+  - For Type D companion tables: set col_before="For 10 år siden", col_after="Senest tilgængelige"
+
 Rules:
 - Maximum 4 charts per specialist (to accommodate Type D table companions and F+P dual output — see below).
 - Only activate specialists whose data is genuinely relevant to the brief.
