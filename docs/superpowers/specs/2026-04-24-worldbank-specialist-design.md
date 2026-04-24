@@ -137,6 +137,11 @@ All three use `BRIEF_PERIODS[n] = 0` (LLM picks, expected `years=20`). Viz types
 |---|---|
 | Annual data vs monthly pipeline assumptions | Specialist converts year strings to Jan-1 timestamps; uses `ffill(limit=1)` |
 | `period_days` meaningless for annual data | Specialist reads `years` field instead; `period_days` ignored |
+| Type D before/after logic breaks with annual data | Specialist tags DataFrames with `freq="A"` metadata; `_build_table` uses year-based lookback when this flag is present |
+| World Bank series already in % — YoY transform must not apply | Orchestrator prompt explicitly states: worldbank series always use `y_label="%"`, never `"YoY %"` |
+| X-axis shows "Jan 2020" instead of "2020" | `freq="A"` metadata flag triggers year-only tick formatting in Type A renderer |
+| Routing collision — macro keywords fire without country context | worldbank routing hint only activates when a country name co-occurs with an economic keyword |
+| `requests` not explicitly in requirements.txt | Added explicitly before deploy — not guaranteed by transitive dependencies |
 | Data publication lag not communicated | Auto-appended note on every chart |
 | Ambiguous country names | LLM defaults to larger country + parenthetical in title |
 
