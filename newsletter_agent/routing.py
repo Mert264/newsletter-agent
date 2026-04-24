@@ -60,6 +60,13 @@ ROUTING_RULES = [
         "For EU/US-gassammenligning: brug TTF=F (EUR/MWh, conversion='EUR_MWh_to_USD_MWh') "
         "og NG=F (USD/MMBtu, conversion='USD_MMBtu_to_USD_MWh'). Fælles y-akse: USD/MWh. Type='A'.",
     ),
+    # Country economy → World Bank (fires when country-specific economy keyword present, not EU/US)
+    (
+        lambda b: _COUNTRY_ECON_KW.search(b) and not _EU.search(b) and not _US.search(b),
+        "For landets økonomi: brug specialist='worldbank'. "
+        "Oversæt landets navn til ISO-3-kode. Brug y_label='%', years=20. "
+        "Inkludér alle 5 kernindikatorer for enkelt-lande-forespørgsler.",
+    ),
 ]
 
 
