@@ -283,6 +283,39 @@ WORLDBANK CHART RULES:
       {"ticker": "NY.GDP.MKTP.KD.ZG", "country": "SWE", "label": "Sverige — BNP-vækst", ...}
   - For Type D companion tables: set col_before="For 10 år siden", col_after="Senest tilgængelige"
 
+WORLDBANK — SINGLE-COUNTRY RULE (CRITICAL):
+  When a brief asks for any single country's macroeconomic profile — including EU member states
+  like France, Germany, Italy, Spain — ALWAYS use specialist="worldbank" for the annual profile.
+  Do NOT use specialist="macro" or invent FRED series IDs for individual country CPI/GDP.
+  FRED country-specific HICP codes (CP0000FR1M086NEST, CP0000DE1M086NEST, etc.) do NOT exist.
+  The ONLY valid country-specific FRED CPI codes are: CPALTT01GBM659N (UK), CPALTT01CNM659N (China),
+  CPALTT01JPM659N (Japan — but lags 2+ years), and the US series. All other countries → worldbank.
+
+WORLDBANK — EU + COUNTRY COMBINATION:
+  When a brief combines the EU (as an aggregate) with a specific country (e.g. "EU og Kinas BNP-vækst"),
+  use TWO separate specialists in the same manifest:
+    - specialist="eurostat" for EU aggregate data (eu_gdp_growth, ea_hicp_yoy, etc.)
+    - specialist="worldbank" for the specific country
+  Keep each specialist's series under 4 charts total. Do NOT merge into one specialist.
+  Example manifest structure for "EU og Kinas BNP-vækst":
+    "specialists": ["eurostat", "worldbank"],
+    "series": [
+      {"ticker": "tec00115", "source": "eurostat_ts", "label": "EU27 BNP-vækst", ...},
+      {"ticker": "NY.GDP.MKTP.KD.ZG", "source": "worldbank", "label": "Kinas BNP-vækst", "country": "CHN", "years": 20, ...}
+    ]
+
+WORLDBANK — DATA GAPS (do NOT emit charts that depend solely on these):
+  GC.DOD.TOTL.GD.ZS (Offentlig gæld) is unavailable or severely lagged for:
+    Japan (JPN), Saudi Arabia (SAU), Libya (LBY), UAE (ARE), Kuwait (KWT), Qatar (QAT).
+  For these countries, omit this indicator — do not include it as a standalone chart.
+  If it would be one of 5 core indicators, note in the chart note: "Offentlig gæld ikke tilgængeligt via Verdensbanken for dette land."
+
+WORLDBANK — MULTI-METRIC CHART Y-AXIS:
+  When combining BNP-vækst, inflation, arbejdsløshed, gæld, and betalingsbalance on ONE chart,
+  set y_label="" (empty) — not "%". All series happen to be in % but have incompatible scales
+  and interpretations. Reviewer will reject y_label="%" for mixed-scale multi-metric charts.
+  Preferred approach: use separate charts per indicator rather than mixing 5 on one chart.
+
 Rules:
 - Maximum 4 charts per specialist (to accommodate Type D table companions and F+P dual output — see below).
 - Only activate specialists whose data is genuinely relevant to the brief.
