@@ -1,0 +1,69 @@
+{
+  "brief": "Macaristan ekonomisi \u2014 BNP-v\u00e6kst og inflation",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_232927/figure_00.png",
+      "metadata": {
+        "title": "Ungarns BNP-v\u00e6kst og inflation (2005\u20132025)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst og forbrugerprisinflation (CPI) for Ungarn over de seneste 20 \u00e5r. Data viser landets konjunkturudvikling, herunder konsekvenserne af finanskrisen, COVID-19-pandemiet og den efterf\u00f8lgende inflationsb\u00f8lge. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)",
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_232927/figure_01.png",
+      "metadata": {
+        "title": "N\u00f8gletal for Ungarn \u2014 BNP-v\u00e6kst og inflation",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns BNP-v\u00e6kst og inflation med sammenligning af aktuelle v\u00e6rdier og niveauet for ca. 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)",
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_232927/figure_02.png",
+      "metadata": {
+        "title": "Ungarns makro\u00f8konomiske n\u00f8gletal (2005\u20132025)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Arbejdsl\u00f8shed, offentlig g\u00e6ld og betalingsbalance for Ungarn over de seneste 20 \u00e5r. Disse indikatorer giver et samlet billede af landets strukturelle og finanspolitiske situation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)",
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Betalingsbalance (% af BNP)"
+        ],
+        "reviewer_flag": "Y-axis label '%' is incorrect: the chart displays three metrics with different units (unemployment %, debt % of GDP, current account % of GDP). Use a generic label like 'V\u00e6rdi' or 'Procent' or remove the label, as the legend identifies each series with its own unit."
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_232927/figure_03.png",
+      "metadata": {
+        "title": "N\u00f8gletal for Ungarn \u2014 arbejdsl\u00f8shed, g\u00e6ld og betalingsbalance",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns arbejdsl\u00f8shed, offentlige g\u00e6ld og betalingsbalance med sammenligning af aktuelle v\u00e6rdier og niveauet for ca. 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)",
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Congo (DRC) \u2014 BNP-v\u00e6kst",
+        "country": "COD",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Congo (Republikken) \u2014 BNP-v\u00e6kst",
+        "country": "COG",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "BNP-v\u00e6kst \u2014 Den Demokratiske Republik Congo vs. Republikken Congo",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 730,
+      "years": 20,
+      "series_labels": [
+        "Congo (DRC) \u2014 BNP-v\u00e6kst",
+        "Congo (Republikken) \u2014 BNP-v\u00e6kst"
+      ],
+      "note": "\u00c5rlig real BNP-v\u00e6kst for de to Congo-lande over de seneste 20 \u00e5r. Den Demokratiske Republik Congo (COD) er den st\u00f8rre \u00f8konomi, mens Republikken Congo (COG) er en mindre olie\u00adafh\u00e6ngig nabostaat. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Sammenlign begge Congo-landes BNP-v\u00e6kst"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Congo (DRC) \u2014 BNP-v\u00e6kst",
+        "country": "COD",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Congo (Republikken) \u2014 BNP-v\u00e6kst",
+        "country": "COG",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "BNP-v\u00e6kst \u2014 snapshot, begge Congo-lande",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 730,
+      "years": 20,
+      "series_labels": [
+        "Congo (DRC) \u2014 BNP-v\u00e6kst",
+        "Congo (Republikken) \u2014 BNP-v\u00e6kst"
+      ],
+      "before_date": "2015-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Sammenligning af real BNP-v\u00e6kstrater for begge Congo-lande p\u00e5 to tidspunkter: for ca. 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r fra Verdensbanken. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Sammenlign begge Congo-landes BNP-v\u00e6kst"
+  }
+]

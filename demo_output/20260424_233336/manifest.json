@@ -1,0 +1,66 @@
+{
+  "brief": "Sammenlign Polen og Tjekkiet \u2014 BNP-v\u00e6kst og inflation de seneste 20 \u00e5r",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233336/figure_00.png",
+      "metadata": {
+        "title": "BNP-v\u00e6kst \u2014 Polen og Tjekkiet (seneste 20 \u00e5r)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Polen og Tjekkiet over de seneste 20 \u00e5r. Polen har generelt oplevet st\u00e6rkere v\u00e6kst end Tjekkiet, men begge lande er t\u00e6t integrerede i den europ\u00e6iske \u00f8konomi. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Polen \u2014 BNP-v\u00e6kst",
+          "Tjekkiet \u2014 BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233336/figure_01.png",
+      "metadata": {
+        "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal for Polen og Tjekkiet",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af BNP-v\u00e6kst for Polen og Tjekkiet med sammenligning af niveauer fra for ca. 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Polen \u2014 BNP-v\u00e6kst",
+          "Tjekkiet \u2014 BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233336/figure_02.png",
+      "metadata": {
+        "title": "Inflation (CPI) \u2014 Polen og Tjekkiet (seneste 20 \u00e5r)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig forbrugerprisinflation (CPI) for Polen og Tjekkiet over de seneste 20 \u00e5r. Begge lande oplevede markant inflationspres fra 2021\u20132023 i k\u00f8lvandet p\u00e5 energikrisen og eftersp\u00f8rgselsstigninger efter COVID-19. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Polen \u2014 Inflation, CPI",
+          "Tjekkiet \u2014 Inflation, CPI"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233336/figure_03.png",
+      "metadata": {
+        "title": "Inflation (CPI) \u2014 n\u00f8gletal for Polen og Tjekkiet",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af inflationsniveauer for Polen og Tjekkiet med sammenligning af niveauer fra for ca. 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Polen \u2014 Inflation, CPI",
+          "Tjekkiet \u2014 Inflation, CPI"
+        ]
+      }
+    }
+  ]
+}

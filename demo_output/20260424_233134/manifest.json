@@ -1,0 +1,146 @@
+{
+  "brief": "Polandin talous \u2014 BNP-kasvu ja inflaatio",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233134/figure_00.png",
+      "metadata": {
+        "title": "Polen \u2014 BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Polens \u00e5rlige reale BNP-v\u00e6kst over de seneste 20 \u00e5r. Polens \u00f8konomi har v\u00e6ret en af de hurtigst voksende i EU, underst\u00f8ttet af strukturreformer og integration i det europ\u00e6iske indre marked. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233134/figure_01.png",
+      "metadata": {
+        "title": "Polen \u2014 BNP-v\u00e6kst, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Polens BNP-v\u00e6kst med sammenligning mellem nuv\u00e6rende niveau og niveauet for 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233134/figure_02.png",
+      "metadata": {
+        "title": "Polen \u2014 Inflation, CPI",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Polens \u00e5rlige forbrugerprisinflation (CPI) over de seneste 20 \u00e5r. Inflationen steg markant i 2022\u20132023 som f\u00f8lge af energiprischok og eftersp\u00f8rgselspres efter COVID-19-pandemien. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233134/figure_03.png",
+      "metadata": {
+        "title": "Polen \u2014 Inflation, CPI, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Polens CPI-inflation med sammenligning mellem nuv\u00e6rende niveau og niveauet for 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233134/figure_04.png",
+      "metadata": {
+        "title": "Polen \u2014 Arbejdsl\u00f8shed",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Polens arbejdsl\u00f8shedsrate over de seneste 20 \u00e5r. Ledigheden er faldet markant siden EU-tilslutningen i 2004 og er i dag blandt de laveste i EU. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233134/figure_05.png",
+      "metadata": {
+        "title": "Polen \u2014 Arbejdsl\u00f8shed, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Polens arbejdsl\u00f8shedsrate med sammenligning mellem nuv\u00e6rende niveau og niveauet for 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233134/figure_06.png",
+      "metadata": {
+        "title": "Polen \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Polens offentlige g\u00e6ld som andel af BNP over de seneste 20 \u00e5r. G\u00e6lden er steget i perioder med lavkonjunktur og offentlige investeringer, men forbliver lavere end EU-gennemsnittet. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Offentlig g\u00e6ld (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233134/figure_07.png",
+      "metadata": {
+        "title": "Polen \u2014 Offentlig g\u00e6ld, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Polens offentlige g\u00e6ld som andel af BNP med sammenligning mellem nuv\u00e6rende niveau og niveauet for 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Offentlig g\u00e6ld (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233134/figure_08.png",
+      "metadata": {
+        "title": "Polen \u2014 Betalingsbalance (% af BNP)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Polens l\u00f8bende betalingsbalance som andel af BNP over de seneste 20 \u00e5r. Betalingsbalancen afspejler landets nettoposition over for omverdenen og er t\u00e6t knyttet til eksportudvikling og EU-overf\u00f8rsler. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233134/figure_09.png",
+      "metadata": {
+        "title": "Polen \u2014 Betalingsbalance, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Polens betalingsbalance som andel af BNP med sammenligning mellem nuv\u00e6rende niveau og niveauet for 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

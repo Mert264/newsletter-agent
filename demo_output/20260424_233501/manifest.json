@@ -1,0 +1,34 @@
+{
+  "brief": "Hvad er Brasiliens arbejdsl\u00f8shed de seneste 20 \u00e5r?",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233501/figure_00.png",
+      "metadata": {
+        "title": "Brasiliens arbejdsl\u00f8shed (2004\u20132024)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Brasiliens samlede arbejdsl\u00f8shedsprocent for befolkningen i den arbejdsdygtige alder over de seneste 20 \u00e5r. Data er baseret p\u00e5 nationale arbejdsmarkedsunders\u00f8gelser og internationale definitioner fra ILO. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed, Brasilien (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233501/figure_01.png",
+      "metadata": {
+        "title": "Brasiliens arbejdsl\u00f8shed \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Brasiliens arbejdsl\u00f8shedsprocent for ti \u00e5r siden og den senest tilg\u00e6ngelige observation. Viser udviklingen over en \u00e5rr\u00e6kke med betydelige \u00f8konomiske og politiske forandringer i landet. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed, Brasilien (%)"
+        ]
+      }
+    }
+  ]
+}

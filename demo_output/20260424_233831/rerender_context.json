@@ -1,0 +1,60 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "IND",
+        "years": 35,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Indiens BNP-v\u00e6kst (1990\u20132025)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 730,
+      "series_labels": [
+        "BNP-v\u00e6kst (%)"
+      ],
+      "note": "\u00c5rlig real BNP-v\u00e6kst for Indien fra 1990 til i dag, m\u00e5lt i faste priser. Serien viser Indiens \u00f8konomiske udvikling over de seneste 35 \u00e5r, herunder perioder med h\u00f8j v\u00e6kst og de midlertidige afmatninger under bl.a. den globale finanskrise og COVID-19-pandemien. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Vis Indiens BNP-v\u00e6kst siden 1990 \u2014 de seneste 35 \u00e5r"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "IND",
+        "years": 35,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Indiens BNP-v\u00e6kst \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 730,
+      "series_labels": [
+        "BNP-v\u00e6kst (%)"
+      ],
+      "before_date": "2014-01-01",
+      "after_date": "latest",
+      "col_before": "2014",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af Indiens BNP-v\u00e6kst med sammenligning mellem niveauet i 2014 og den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Vis Indiens BNP-v\u00e6kst siden 1990 \u2014 de seneste 35 \u00e5r"
+  }
+]

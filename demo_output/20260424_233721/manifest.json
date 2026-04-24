@@ -1,0 +1,102 @@
+{
+  "brief": "Vis Japans \u00f8konomi \u2014 BNP-v\u00e6kst, inflation og arbejdsl\u00f8shed",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233721/figure_00.png",
+      "metadata": {
+        "title": "Japan \u2014 BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Japans \u00e5rlige BNP-v\u00e6kst i faste priser over de seneste 20 \u00e5r. Negative v\u00e6rdier i 2009 og 2020 afspejler henholdsvis den globale finanskrise og COVID-19-pandemien. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233721/figure_01.png",
+      "metadata": {
+        "title": "Japan \u2014 BNP-v\u00e6kst: n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Japans BNP-v\u00e6kst med sammenligning mellem det senest tilg\u00e6ngelige \u00e5r og for cirka 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233721/figure_02.png",
+      "metadata": {
+        "title": "Japan \u2014 Inflation (CPI)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Japans \u00e5rlige forbrugerprisinflation over de seneste 20 \u00e5r. Japan har historisk k\u00e6mpet med deflation og lav inflation, men oplevede stigende inflation fra 2022. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233721/figure_03.png",
+      "metadata": {
+        "title": "Japan \u2014 Inflation: n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Japans CPI-inflation med sammenligning mellem det senest tilg\u00e6ngelige \u00e5r og for cirka 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233721/figure_04.png",
+      "metadata": {
+        "title": "Japan \u2014 Arbejdsl\u00f8shed",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Japans arbejdsl\u00f8shedsrate over de seneste 20 \u00e5r. Japan har generelt en af de laveste arbejdsl\u00f8shedsrater blandt de udviklede \u00f8konomier, typisk under 3 procent. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233721/figure_05.png",
+      "metadata": {
+        "title": "Japan \u2014 Arbejdsl\u00f8shed: n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Japans arbejdsl\u00f8shedsrate med sammenligning mellem det senest tilg\u00e6ngelige \u00e5r og for cirka 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233721/figure_07.png",
+      "metadata": {
+        "title": "Japan \u2014 Offentlig g\u00e6ld: n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Japans offentlige g\u00e6ld i forhold til BNP med sammenligning mellem det senest tilg\u00e6ngelige \u00e5r og for cirka 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": []
+      }
+    }
+  ]
+}

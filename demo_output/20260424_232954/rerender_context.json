@@ -1,0 +1,183 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CLVMEURSCAB1GQEA19",
+        "source": "fred",
+        "label": "Eurozone real BNP",
+        "region": "Euroomr\u00e5det",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CP0000FR1M086NEST",
+        "source": "fred",
+        "label": "Frankrig CPI",
+        "region": "Frankrig",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "ea_hicp_yoy",
+        "source": "eurostat_ts",
+        "label": "Euroomr\u00e5det HICP",
+        "region": "Euroomr\u00e5det",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Frankrigs BNP-v\u00e6kst \u2014 Euroomr\u00e5det som reference",
+      "x_label": "Dato",
+      "y_label": "YoY %",
+      "period_days": 1826,
+      "series_labels": [
+        "Eurozone real BNP"
+      ],
+      "note": "Euroomr\u00e5dets reale BNP-v\u00e6kst (kvartalsvise data) brugt som proxy for Frankrigs konjunkturudvikling. Frankrig-specifikke BNP-data er ikke tilg\u00e6ngelige via FRED eller Eurostat-genvejene \u2014 Eurozone-aggregatet inkluderer Frankrig og afspejler den overordnede tendens.",
+      "reference_lines": [
+        {
+          "y": 0.0,
+          "label": "Nulv\u00e6kst",
+          "color": "#9ca3af"
+        }
+      ]
+    },
+    "brief": "Montrez l'\u00e9conomie de la France \u2014 croissance du PIB et inflation"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CLVMEURSCAB1GQEA19",
+        "source": "fred",
+        "label": "Eurozone real BNP",
+        "region": "Euroomr\u00e5det",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CP0000FR1M086NEST",
+        "source": "fred",
+        "label": "Frankrig CPI",
+        "region": "Frankrig",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "ea_hicp_yoy",
+        "source": "eurostat_ts",
+        "label": "Euroomr\u00e5det HICP",
+        "region": "Euroomr\u00e5det",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "N\u00f8gletal \u2014 Euroomr\u00e5det BNP-v\u00e6kst",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 1826,
+      "series_labels": [
+        "Eurozone real BNP"
+      ],
+      "before_date": "2022-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2022",
+      "col_after": "Nu",
+      "note": "Snapshot af Euroomr\u00e5dets reale BNP-v\u00e6kst sammenlignet med niveauet fra januar 2022."
+    },
+    "brief": "Montrez l'\u00e9conomie de la France \u2014 croissance du PIB et inflation"
+  },
+  {
+    "figure_id": 2,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CLVMEURSCAB1GQEA19",
+        "source": "fred",
+        "label": "Eurozone real BNP",
+        "region": "Euroomr\u00e5det",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CP0000FR1M086NEST",
+        "source": "fred",
+        "label": "Frankrig CPI",
+        "region": "Frankrig",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "ea_hicp_yoy",
+        "source": "eurostat_ts",
+        "label": "Euroomr\u00e5det HICP",
+        "region": "Euroomr\u00e5det",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Inflation i Frankrig og Euroomr\u00e5det",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 1826,
+      "series_labels": [
+        "Frankrig CPI",
+        "Euroomr\u00e5det HICP"
+      ],
+      "note": "M\u00e5nedlig inflation for Frankrig (CPI, \u00e5r-over-\u00e5r) og Euroomr\u00e5det (HICP, \u00e5r-over-\u00e5r). Begge serier er allerede i procent og viser den l\u00f8bende prisudvikling.",
+      "reference_lines": [
+        {
+          "y": 2.0,
+          "label": "2%-m\u00e5l (ECB)",
+          "color": "#9ca3af"
+        }
+      ]
+    },
+    "brief": "Montrez l'\u00e9conomie de la France \u2014 croissance du PIB et inflation"
+  },
+  {
+    "figure_id": 3,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CLVMEURSCAB1GQEA19",
+        "source": "fred",
+        "label": "Eurozone real BNP",
+        "region": "Euroomr\u00e5det",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "CP0000FR1M086NEST",
+        "source": "fred",
+        "label": "Frankrig CPI",
+        "region": "Frankrig",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "ea_hicp_yoy",
+        "source": "eurostat_ts",
+        "label": "Euroomr\u00e5det HICP",
+        "region": "Euroomr\u00e5det",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "N\u00f8gletal \u2014 Inflation i Frankrig og Euroomr\u00e5det",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 1826,
+      "series_labels": [
+        "Frankrig CPI",
+        "Euroomr\u00e5det HICP"
+      ],
+      "before_date": "2022-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2022",
+      "col_after": "Nu",
+      "note": "Snapshot af inflationsudviklingen i Frankrig og Euroomr\u00e5det siden begyndelsen af 2022.",
+      "target_value": 2.0
+    },
+    "brief": "Montrez l'\u00e9conomie de la France \u2014 croissance du PIB et inflation"
+  }
+]

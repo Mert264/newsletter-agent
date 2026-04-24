@@ -8,106 +8,37 @@
         "ticker": "NY.GDP.MKTP.KD.ZG",
         "source": "worldbank",
         "label": "BNP-v\u00e6kst (%)",
-        "country": "HUN",
-        "years": 20,
-        "unit": "%"
-      },
-      {
-        "ticker": "FP.CPI.TOTL.ZG",
-        "source": "worldbank",
-        "label": "Inflation, CPI (%)",
-        "country": "HUN",
-        "years": 20,
-        "unit": "%"
-      },
-      {
-        "ticker": "SL.UEM.TOTL.ZS",
-        "source": "worldbank",
-        "label": "Arbejdsl\u00f8shed (%)",
-        "country": "HUN",
-        "years": 20,
-        "unit": "%"
-      },
-      {
-        "ticker": "GC.DOD.TOTL.GD.ZS",
-        "source": "worldbank",
-        "label": "Offentlig g\u00e6ld (% af BNP)",
-        "country": "HUN",
-        "years": 20,
-        "unit": "%"
-      },
-      {
-        "ticker": "BN.CAB.XOKA.GD.ZS",
-        "source": "worldbank",
-        "label": "Betalingsbalance (% af BNP)",
-        "country": "HUN",
-        "years": 20,
+        "country": "IND",
+        "years": 35,
         "unit": "%"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Ungarns BNP-v\u00e6kst (\u00e5rlig %)",
+        "title": "Indiens BNP-v\u00e6kst (1990\u20132025)",
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "BNP-v\u00e6kst (%)"
         ],
-        "note": "\u00c5rlig real BNP-v\u00e6kst for Ungarn over de seneste 20 \u00e5r. Negative v\u00e6rdier afspejler perioder med recession, herunder finanskrisen i 2009 og coronapandemien i 2020."
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Indien fra 1990 til i dag, m\u00e5lt i faste priser. Serien viser Indiens \u00f8konomiske udvikling over de seneste 35 \u00e5r, herunder perioder med h\u00f8j v\u00e6kst og de midlertidige afmatninger under bl.a. den globale finanskrise og COVID-19-pandemien."
       },
       {
         "type": "D",
-        "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal for Ungarn",
+        "title": "Indiens BNP-v\u00e6kst \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "BNP-v\u00e6kst (%)"
         ],
         "before_date": "2014-01-01",
         "after_date": "latest",
-        "col_before": "For 10 \u00e5r siden",
+        "col_before": "2014",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Ungarns BNP-v\u00e6kst med sammenligning af niveauet for ti \u00e5r siden og den senest tilg\u00e6ngelige observation."
-      },
-      {
-        "type": "A",
-        "title": "Ungarns inflation, CPI (\u00e5rlig %)",
-        "x_label": "Dato",
-        "y_label": "%",
-        "period_days": 730,
-        "years": 20,
-        "series_labels": [
-          "Inflation, CPI (%)"
-        ],
-        "reference_lines": [
-          {
-            "y": 2.0,
-            "label": "2%-m\u00e5l",
-            "color": "#9ca3af"
-          }
-        ],
-        "note": "\u00c5rlig forbrugerprisinflation (CPI) for Ungarn over de seneste 20 \u00e5r. Ungarn oplevede markant h\u00f8j inflation i 2022\u20132023 som f\u00f8lge af energikrisen og globale forsyningsproblemer."
-      },
-      {
-        "type": "D",
-        "title": "Inflation, CPI \u2014 n\u00f8gletal for Ungarn",
-        "x_label": "",
-        "y_label": "%",
-        "period_days": 730,
-        "years": 20,
-        "series_labels": [
-          "Inflation, CPI (%)"
-        ],
-        "before_date": "2014-01-01",
-        "after_date": "latest",
-        "col_before": "For 10 \u00e5r siden",
-        "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Ungarns CPI-inflation med sammenligning af niveauet for ti \u00e5r siden og den senest tilg\u00e6ngelige observation."
+        "note": "Snapshot af Indiens BNP-v\u00e6kst med sammenligning mellem niveauet i 2014 og den senest tilg\u00e6ngelige observation."
       }
     ]
   }

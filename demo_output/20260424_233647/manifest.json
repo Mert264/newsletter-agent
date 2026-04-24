@@ -1,0 +1,36 @@
+{
+  "brief": "Vis inflation i USA og Ungarn \u2014 sammenlign de to lande",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233647/figure_00.png",
+      "metadata": {
+        "title": "Inflation i USA og Ungarn (\u00e5r-til-\u00e5r, %)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "M\u00e5nedlig forbrugerprisstigninger (\u00e5r-til-\u00e5r) for USA og Ungarn. Begge serier er allerede opgjort som \u00e5rsrater og sammenligner det seneste prisniveau med samme m\u00e5ned \u00e5ret f\u00f8r.",
+        "kilde": "FRED",
+        "region_labels": [
+          "USA",
+          "Ungarn"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233647/figure_01.png",
+      "metadata": {
+        "title": "Inflationsn\u00f8gletal \u2014 USA og Ungarn",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af inflationstakten i USA og Ungarn. \u00c6ndringen viser bev\u00e6gelsen i procentpoint fra januar 2023 til den senest tilg\u00e6ngelige observation.",
+        "kilde": "FRED",
+        "region_labels": [
+          "USA",
+          "Ungarn"
+        ]
+      }
+    }
+  ]
+}

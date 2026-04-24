@@ -1,0 +1,95 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPALTT01DKM659N",
+        "source": "fred",
+        "label": "Danmark",
+        "region": "Danmark",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01SEM659N",
+        "source": "fred",
+        "label": "Sverige",
+        "region": "Sverige",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01NOM659N",
+        "source": "fred",
+        "label": "Norge",
+        "region": "Norge",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Inflation i Danmark, Sverige og Norge (2010\u20132025)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 5535,
+      "series_labels": [
+        "Danmark",
+        "Sverige",
+        "Norge"
+      ],
+      "reference_lines": [
+        {
+          "y": 2.0,
+          "label": "2%-m\u00e5l",
+          "color": "#9ca3af"
+        }
+      ],
+      "note": "M\u00e5nedlig forbrugerprisindflation (\u00e5r-over-\u00e5r) for Danmark, Sverige og Norge de seneste 15 \u00e5r. Alle tre lande har et officielt inflationsm\u00e5l p\u00e5 2%. Data fra OECD via FRED."
+    },
+    "brief": "Danmark, Sverige og Norge \u2014 sammenlign inflation de seneste 15 \u00e5r"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPALTT01DKM659N",
+        "source": "fred",
+        "label": "Danmark",
+        "region": "Danmark",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01SEM659N",
+        "source": "fred",
+        "label": "Sverige",
+        "region": "Sverige",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01NOM659N",
+        "source": "fred",
+        "label": "Norge",
+        "region": "Norge",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Inflation \u2014 n\u00f8gletal for Danmark, Sverige og Norge",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 5535,
+      "series_labels": [
+        "Danmark",
+        "Sverige",
+        "Norge"
+      ],
+      "before_date": "2010-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2010",
+      "col_after": "Nu",
+      "note": "Snapshot af inflationsraten (\u00e5r-over-\u00e5r) for de tre nordiske lande ved periodens start og senest tilg\u00e6ngelige observation. \u00c6ndringen vises i procentpoint."
+    },
+    "brief": "Danmark, Sverige og Norge \u2014 sammenlign inflation de seneste 15 \u00e5r"
+  }
+]

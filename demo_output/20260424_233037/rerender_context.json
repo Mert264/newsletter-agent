@@ -1,0 +1,351 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Offentlig g\u00e6ld (% af BNP)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Betalingsbalance (% af BNP)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Tysklands BNP-v\u00e6kst (% pr. \u00e5r)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 730,
+      "series_labels": [
+        "BNP-v\u00e6kst (%)"
+      ],
+      "note": "\u00c5rlig real BNP-v\u00e6kst for Tyskland over de seneste 20 \u00e5r. Negativ v\u00e6kst i 2009 og 2020 afspejler henholdsvis finanskrisen og coronapandemien. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Wirtschaft Deutschlands \u2014 BNP-Wachstum und Inflation"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Offentlig g\u00e6ld (% af BNP)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Betalingsbalance (% af BNP)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Tysklands BNP-v\u00e6kst \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 730,
+      "series_labels": [
+        "BNP-v\u00e6kst (%)"
+      ],
+      "before_date": "2015-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Sammenligning af Tysklands BNP-v\u00e6kst p\u00e5 to tidspunkter for at illustrere den strukturelle opbremsning i den tyske \u00f8konomi. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Wirtschaft Deutschlands \u2014 BNP-Wachstum und Inflation"
+  },
+  {
+    "figure_id": 2,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Offentlig g\u00e6ld (% af BNP)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Betalingsbalance (% af BNP)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Tysklands inflation, CPI (% pr. \u00e5r)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 730,
+      "series_labels": [
+        "Inflation, CPI (%)"
+      ],
+      "note": "\u00c5rlig forbrugerprisinflation i Tyskland over de seneste 20 \u00e5r. Inflationsstigningen i 2021\u20132023 er den kraftigste siden genforeningen. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Wirtschaft Deutschlands \u2014 BNP-Wachstum und Inflation"
+  },
+  {
+    "figure_id": 3,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Offentlig g\u00e6ld (% af BNP)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Betalingsbalance (% af BNP)",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Tysklands inflation \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 730,
+      "series_labels": [
+        "Inflation, CPI (%)"
+      ],
+      "before_date": "2015-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af tysk inflation p\u00e5 to tidspunkter, der belyser overgangen fra lavinfla\u00adtionsmilj\u00f8et f\u00f8r 2021 til det nuv\u00e6rende niveau. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Wirtschaft Deutschlands \u2014 BNP-Wachstum und Inflation"
+  },
+  {
+    "figure_id": 4,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CP0000DE1M086NEST",
+        "source": "fred",
+        "label": "Tyskland HICP",
+        "region": "Tyskland",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tysk 10-\u00e5rig statsobligationsrente",
+        "region": "Tyskland",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Tysk HICP-inflation \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 1626,
+      "series_labels": [
+        "Tyskland HICP"
+      ],
+      "before_date": "2022-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2022",
+      "col_after": "Nu",
+      "target_value": 2.0,
+      "note": "Sammenligning af tysk HICP-inflation ved begyndelsen af 2022 og det seneste tilg\u00e6ngelige datapunkt, med afstand til ECB's 2%-m\u00e5l."
+    },
+    "brief": "Wirtschaft Deutschlands \u2014 BNP-Wachstum und Inflation"
+  },
+  {
+    "figure_id": 5,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CP0000DE1M086NEST",
+        "source": "fred",
+        "label": "Tyskland HICP",
+        "region": "Tyskland",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tysk 10-\u00e5rig statsobligationsrente",
+        "region": "Tyskland",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Tysk 10-\u00e5rig statsobligationsrente (%)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 1626,
+      "series_labels": [
+        "Tysk 10-\u00e5rig statsobligationsrente"
+      ],
+      "note": "M\u00e5nedlig effektiv rente p\u00e5 tyske 10-\u00e5rige statsobligationer (Bund) siden 2022. Bundrenterne er en vigtig referencerente for europ\u00e6iske finansmarkedet."
+    },
+    "brief": "Wirtschaft Deutschlands \u2014 BNP-Wachstum und Inflation"
+  },
+  {
+    "figure_id": 6,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CP0000DE1M086NEST",
+        "source": "fred",
+        "label": "Tyskland HICP",
+        "region": "Tyskland",
+        "unit": "YoY %"
+      },
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tysk 10-\u00e5rig statsobligationsrente",
+        "region": "Tyskland",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Tysk 10-\u00e5rig Bund-rente \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 1626,
+      "series_labels": [
+        "Tysk 10-\u00e5rig statsobligationsrente"
+      ],
+      "before_date": "2022-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2022",
+      "col_after": "Nu",
+      "note": "Snapshot af den tyske 10-\u00e5rige statsobligationsrente ved begyndelsen af 2022 og senest tilg\u00e6ngelige, der illustrerer renteudviklingen i k\u00f8lvandet p\u00e5 ECB's pengepolitiske stramninger."
+    },
+    "brief": "Wirtschaft Deutschlands \u2014 BNP-Wachstum und Inflation"
+  }
+]

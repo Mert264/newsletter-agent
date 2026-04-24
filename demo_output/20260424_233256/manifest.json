@@ -1,0 +1,36 @@
+{
+  "brief": "Sammenlign begge Congo-landes BNP-v\u00e6kst",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233256/figure_00.png",
+      "metadata": {
+        "title": "BNP-v\u00e6kst \u2014 Den Demokratiske Republik Congo vs. Republikken Congo",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for de to Congo-lande over de seneste 20 \u00e5r. Den Demokratiske Republik Congo (COD) er den st\u00f8rre \u00f8konomi, mens Republikken Congo (COG) er en mindre olie\u00adafh\u00e6ngig nabostaat. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Congo (DRC) \u2014 BNP-v\u00e6kst",
+          "Congo (Republikken) \u2014 BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233256/figure_01.png",
+      "metadata": {
+        "title": "BNP-v\u00e6kst \u2014 snapshot, begge Congo-lande",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af real BNP-v\u00e6kstrater for begge Congo-lande p\u00e5 to tidspunkter: for ca. 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r fra Verdensbanken. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Congo (DRC) \u2014 BNP-v\u00e6kst",
+          "Congo (Republikken) \u2014 BNP-v\u00e6kst"
+        ]
+      }
+    }
+  ]
+}

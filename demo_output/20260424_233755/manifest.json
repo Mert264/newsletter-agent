@@ -1,0 +1,120 @@
+{
+  "brief": "Vis Spaniens \u00f8konomi de seneste 5 \u00e5r",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233755/figure_00.png",
+      "metadata": {
+        "title": "Spanien \u2014 BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Spaniens \u00e5rlige reale BNP-v\u00e6kst i procent. Tallene stammer fra Verdensbanken og d\u00e6kker de seneste 20 \u00e5r, men grafen fokuserer p\u00e5 de seneste 5 \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233755/figure_01.png",
+      "metadata": {
+        "title": "Spanien \u2014 BNP-v\u00e6kst, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Spaniens BNP-v\u00e6kst med sammenligning mellem niveauet fra 2020 og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233755/figure_02.png",
+      "metadata": {
+        "title": "Spanien \u2014 Inflation (CPI)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Spaniens \u00e5rlige inflation m\u00e5lt ved forbrugerprisindekset (CPI) i procent. Tallene er fra Verdensbanken. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233755/figure_03.png",
+      "metadata": {
+        "title": "Spanien \u2014 Inflation (CPI), n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Spaniens inflationsudvikling med sammenligning mellem niveauet fra 2020 og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233755/figure_04.png",
+      "metadata": {
+        "title": "Spanien \u2014 Arbejdsl\u00f8shed",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Spaniens \u00e5rlige arbejdsl\u00f8shedsrate i procent af arbejdsstyrken. Spanien har historisk haft en af de h\u00f8jeste arbejdsl\u00f8shedsrater i EU. Tallene er fra Verdensbanken. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233755/figure_05.png",
+      "metadata": {
+        "title": "Spanien \u2014 Arbejdsl\u00f8shed, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Spaniens arbejdsl\u00f8shedsrate med sammenligning mellem niveauet fra 2020 og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233755/figure_06.png",
+      "metadata": {
+        "title": "Spanien \u2014 Offentlig g\u00e6ld og betalingsbalance",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Spaniens offentlige g\u00e6ld som andel af BNP samt betalingsbalancens l\u00f8bende poster som andel af BNP. Begge indikatorer er centrale for vurderingen af Spaniens finansielle holdbarhed. Tallene er fra Verdensbanken. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233755/figure_07.png",
+      "metadata": {
+        "title": "Spanien \u2014 Offentlig g\u00e6ld og betalingsbalance, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Spaniens offentlige g\u00e6ld og betalingsbalance med sammenligning mellem niveauet fra 2020 og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

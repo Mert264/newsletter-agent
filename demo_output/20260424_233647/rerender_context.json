@@ -1,0 +1,79 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPALTT01USM659N",
+        "source": "fred",
+        "label": "USA",
+        "region": "USA",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01HUM659N",
+        "source": "fred",
+        "label": "Ungarn",
+        "region": "Ungarn",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Inflation i USA og Ungarn (\u00e5r-til-\u00e5r, %)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 760,
+      "series_labels": [
+        "USA",
+        "Ungarn"
+      ],
+      "reference_lines": [
+        {
+          "y": 2.0,
+          "label": "2%-m\u00e5l",
+          "color": "#9ca3af"
+        }
+      ],
+      "note": "M\u00e5nedlig forbrugerprisstigninger (\u00e5r-til-\u00e5r) for USA og Ungarn. Begge serier er allerede opgjort som \u00e5rsrater og sammenligner det seneste prisniveau med samme m\u00e5ned \u00e5ret f\u00f8r."
+    },
+    "brief": "Vis inflation i USA og Ungarn \u2014 sammenlign de to lande"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPALTT01USM659N",
+        "source": "fred",
+        "label": "USA",
+        "region": "USA",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01HUM659N",
+        "source": "fred",
+        "label": "Ungarn",
+        "region": "Ungarn",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Inflationsn\u00f8gletal \u2014 USA og Ungarn",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 760,
+      "series_labels": [
+        "USA",
+        "Ungarn"
+      ],
+      "before_date": "2023-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2023",
+      "col_after": "Nu",
+      "note": "Snapshot af inflationstakten i USA og Ungarn. \u00c6ndringen viser bev\u00e6gelsen i procentpoint fra januar 2023 til den senest tilg\u00e6ngelige observation."
+    },
+    "brief": "Vis inflation i USA og Ungarn \u2014 sammenlign de to lande"
+  }
+]

@@ -1,0 +1,102 @@
+{
+  "brief": "Wirtschaft Deutschlands \u2014 BNP-Wachstum und Inflation",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233037/figure_00.png",
+      "metadata": {
+        "title": "Tysklands BNP-v\u00e6kst (% pr. \u00e5r)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Tyskland over de seneste 20 \u00e5r. Negativ v\u00e6kst i 2009 og 2020 afspejler henholdsvis finanskrisen og coronapandemien. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233037/figure_01.png",
+      "metadata": {
+        "title": "Tysklands BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Tysklands BNP-v\u00e6kst p\u00e5 to tidspunkter for at illustrere den strukturelle opbremsning i den tyske \u00f8konomi. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233037/figure_02.png",
+      "metadata": {
+        "title": "Tysklands inflation, CPI (% pr. \u00e5r)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig forbrugerprisinflation i Tyskland over de seneste 20 \u00e5r. Inflationsstigningen i 2021\u20132023 er den kraftigste siden genforeningen. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233037/figure_03.png",
+      "metadata": {
+        "title": "Tysklands inflation \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af tysk inflation p\u00e5 to tidspunkter, der belyser overgangen fra lavinfla\u00adtionsmilj\u00f8et f\u00f8r 2021 til det nuv\u00e6rende niveau. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233037/figure_05.png",
+      "metadata": {
+        "title": "Tysk HICP-inflation \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af tysk HICP-inflation ved begyndelsen af 2022 og det seneste tilg\u00e6ngelige datapunkt, med afstand til ECB's 2%-m\u00e5l.",
+        "kilde": "FRED og Verdensbanken",
+        "region_labels": []
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233037/figure_06.png",
+      "metadata": {
+        "title": "Tysk 10-\u00e5rig statsobligationsrente (%)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "M\u00e5nedlig effektiv rente p\u00e5 tyske 10-\u00e5rige statsobligationer (Bund) siden 2022. Bundrenterne er en vigtig referencerente for europ\u00e6iske finansmarkedet.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Tysk 10-\u00e5rig statsobligationsrente"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233037/figure_07.png",
+      "metadata": {
+        "title": "Tysk 10-\u00e5rig Bund-rente \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af den tyske 10-\u00e5rige statsobligationsrente ved begyndelsen af 2022 og senest tilg\u00e6ngelige, der illustrerer renteudviklingen i k\u00f8lvandet p\u00e5 ECB's pengepolitiske stramninger.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Tysk 10-\u00e5rig statsobligationsrente"
+        ]
+      }
+    }
+  ]
+}

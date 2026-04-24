@@ -1,0 +1,60 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Tyrkiet \u2014 Inflation, CPI (%)",
+        "country": "TUR",
+        "years": 30,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Tyrkiets inflation de seneste 30 \u00e5r",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 10950,
+      "series_labels": [
+        "Tyrkiet \u2014 Inflation, CPI (%)"
+      ],
+      "note": "\u00c5rlig forbrugerprisinflation (CPI) i Tyrkiet over de seneste 30 \u00e5r. Tyrkiet har historisk oplevet meget h\u00f8j inflation, herunder hyperinflation i slutningen af 1990'erne og begyndelsen af 2000'erne samt en ny kraftig inflationsb\u00f8lge fra 2021. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Vis kun Tyrkiets inflation de seneste 30 \u00e5r"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Tyrkiet \u2014 Inflation, CPI (%)",
+        "country": "TUR",
+        "years": 30,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Tyrkiets inflation \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 10950,
+      "series_labels": [
+        "Tyrkiet \u2014 Inflation, CPI (%)"
+      ],
+      "before_date": "2014-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af Tyrkiets \u00e5rlige CPI-inflation med sammenligning mellem niveauet for 10 \u00e5r siden og det senest tilg\u00e6ngelige datapunkt. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Vis kun Tyrkiets inflation de seneste 30 \u00e5r"
+  }
+]

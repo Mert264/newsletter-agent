@@ -1,0 +1,65 @@
+{
+  "brief": "Vis Koreas \u00f8konomi \u2014 BNP-v\u00e6kst og inflation de seneste 20 \u00e5r",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233233/figure_00.png",
+      "metadata": {
+        "title": "Sydkoreas BNP-v\u00e6kst de seneste 20 \u00e5r",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Sydkorea (Republikken Korea) over de seneste 20 \u00e5r. Data er inflationskorrigeret og opg\u00f8res i konstante priser. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233233/figure_01.png",
+      "metadata": {
+        "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal, Sydkorea",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Sydkoreas BNP-v\u00e6kst med sammenligning mellem nuv\u00e6rende niveau og niveauet for cirka 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233233/figure_02.png",
+      "metadata": {
+        "title": "Sydkoreas inflation (CPI) de seneste 20 \u00e5r",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig forbrugerprisinflation (CPI) for Sydkorea over de seneste 20 \u00e5r. M\u00e5ler den procentvise \u00e6ndring i forbrugerprisindekset \u00e5r for \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233233/figure_03.png",
+      "metadata": {
+        "title": "Inflation \u2014 n\u00f8gletal, Sydkorea",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Sydkoreas vigtigste makro\u00f8konomiske n\u00f8gletal med sammenligning mellem nuv\u00e6rende niveauer og niveauerne for cirka 10 \u00e5r siden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)",
+          "Arbejdsl\u00f8shed (%)",
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

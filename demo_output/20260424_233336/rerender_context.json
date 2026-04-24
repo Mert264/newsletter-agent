@@ -1,0 +1,229 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Polen \u2014 BNP-v\u00e6kst",
+        "country": "POL",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Tjekkiet \u2014 BNP-v\u00e6kst",
+        "country": "CZE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Polen \u2014 Inflation, CPI",
+        "country": "POL",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Tjekkiet \u2014 Inflation, CPI",
+        "country": "CZE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "BNP-v\u00e6kst \u2014 Polen og Tjekkiet (seneste 20 \u00e5r)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 7300,
+      "years": 20,
+      "series_labels": [
+        "Polen \u2014 BNP-v\u00e6kst",
+        "Tjekkiet \u2014 BNP-v\u00e6kst"
+      ],
+      "note": "\u00c5rlig real BNP-v\u00e6kst for Polen og Tjekkiet over de seneste 20 \u00e5r. Polen har generelt oplevet st\u00e6rkere v\u00e6kst end Tjekkiet, men begge lande er t\u00e6t integrerede i den europ\u00e6iske \u00f8konomi. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Sammenlign Polen og Tjekkiet \u2014 BNP-v\u00e6kst og inflation de seneste 20 \u00e5r"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Polen \u2014 BNP-v\u00e6kst",
+        "country": "POL",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Tjekkiet \u2014 BNP-v\u00e6kst",
+        "country": "CZE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Polen \u2014 Inflation, CPI",
+        "country": "POL",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Tjekkiet \u2014 Inflation, CPI",
+        "country": "CZE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal for Polen og Tjekkiet",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 7300,
+      "years": 20,
+      "series_labels": [
+        "Polen \u2014 BNP-v\u00e6kst",
+        "Tjekkiet \u2014 BNP-v\u00e6kst"
+      ],
+      "before_date": "2015-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af BNP-v\u00e6kst for Polen og Tjekkiet med sammenligning af niveauer fra for ca. 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Sammenlign Polen og Tjekkiet \u2014 BNP-v\u00e6kst og inflation de seneste 20 \u00e5r"
+  },
+  {
+    "figure_id": 2,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Polen \u2014 BNP-v\u00e6kst",
+        "country": "POL",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Tjekkiet \u2014 BNP-v\u00e6kst",
+        "country": "CZE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Polen \u2014 Inflation, CPI",
+        "country": "POL",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Tjekkiet \u2014 Inflation, CPI",
+        "country": "CZE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Inflation (CPI) \u2014 Polen og Tjekkiet (seneste 20 \u00e5r)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 7300,
+      "years": 20,
+      "series_labels": [
+        "Polen \u2014 Inflation, CPI",
+        "Tjekkiet \u2014 Inflation, CPI"
+      ],
+      "reference_lines": [
+        {
+          "y": 2.0,
+          "label": "2%-m\u00e5l",
+          "color": "#9ca3af"
+        }
+      ],
+      "note": "\u00c5rlig forbrugerprisinflation (CPI) for Polen og Tjekkiet over de seneste 20 \u00e5r. Begge lande oplevede markant inflationspres fra 2021\u20132023 i k\u00f8lvandet p\u00e5 energikrisen og eftersp\u00f8rgselsstigninger efter COVID-19. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Sammenlign Polen og Tjekkiet \u2014 BNP-v\u00e6kst og inflation de seneste 20 \u00e5r"
+  },
+  {
+    "figure_id": 3,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Polen \u2014 BNP-v\u00e6kst",
+        "country": "POL",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Tjekkiet \u2014 BNP-v\u00e6kst",
+        "country": "CZE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Polen \u2014 Inflation, CPI",
+        "country": "POL",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Tjekkiet \u2014 Inflation, CPI",
+        "country": "CZE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Inflation (CPI) \u2014 n\u00f8gletal for Polen og Tjekkiet",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 7300,
+      "years": 20,
+      "series_labels": [
+        "Polen \u2014 Inflation, CPI",
+        "Tjekkiet \u2014 Inflation, CPI"
+      ],
+      "before_date": "2015-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af inflationsniveauer for Polen og Tjekkiet med sammenligning af niveauer fra for ca. 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Sammenlign Polen og Tjekkiet \u2014 BNP-v\u00e6kst og inflation de seneste 20 \u00e5r"
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "brief": "Vis Arabiens \u00f8konomi \u2014 offentlig g\u00e6ld og betalingsbalance",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233311/figure_01.png",
+      "metadata": {
+        "title": "Saudi-Arabien \u2014 Offentlig g\u00e6ld: n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Saudi-Arabiens offentlige g\u00e6ld som andel af BNP. \u00c6ndringer vises i procentpoint. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [],
+        "reviewer_flag": "Type D (snapshot table) requires region_labels to be populated with at least one entry representing the data shown; empty region_labels suggests no data is present on the chart."
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233311/figure_02.png",
+      "metadata": {
+        "title": "Saudi-Arabien \u2014 Betalingsbalance (% af BNP)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Saudi-Arabiens l\u00f8bende betalingsbalance som andel af BNP over de seneste 20 \u00e5r. Store udsving afspejler afh\u00e6ngigheden af oliepriserne p\u00e5 verdensmarkedet. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233311/figure_03.png",
+      "metadata": {
+        "title": "Saudi-Arabien \u2014 Betalingsbalance: n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Saudi-Arabiens betalingsbalance som andel af BNP. \u00c6ndringer vises i procentpoint. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

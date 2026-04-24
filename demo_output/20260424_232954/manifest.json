@@ -1,0 +1,62 @@
+{
+  "brief": "Montrez l'\u00e9conomie de la France \u2014 croissance du PIB et inflation",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_232954/figure_00.png",
+      "metadata": {
+        "title": "Frankrigs BNP-v\u00e6kst \u2014 Euroomr\u00e5det som reference",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "YoY %",
+        "note": "Euroomr\u00e5dets reale BNP-v\u00e6kst (kvartalsvise data) brugt som proxy for Frankrigs konjunkturudvikling. Frankrig-specifikke BNP-data er ikke tilg\u00e6ngelige via FRED eller Eurostat-genvejene \u2014 Eurozone-aggregatet inkluderer Frankrig og afspejler den overordnede tendens.",
+        "kilde": "FRED og Eurostat",
+        "region_labels": [
+          "Eurozone real BNP"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_232954/figure_01.png",
+      "metadata": {
+        "title": "N\u00f8gletal \u2014 Euroomr\u00e5det BNP-v\u00e6kst",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Euroomr\u00e5dets reale BNP-v\u00e6kst sammenlignet med niveauet fra januar 2022.",
+        "kilde": "FRED og Eurostat",
+        "region_labels": [
+          "Eurozone real BNP"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_232954/figure_02.png",
+      "metadata": {
+        "title": "Inflation i Frankrig og Euroomr\u00e5det",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "M\u00e5nedlig inflation for Frankrig (CPI, \u00e5r-over-\u00e5r) og Euroomr\u00e5det (HICP, \u00e5r-over-\u00e5r). Begge serier er allerede i procent og viser den l\u00f8bende prisudvikling.",
+        "kilde": "FRED og Eurostat",
+        "region_labels": [
+          "Euroomr\u00e5det HICP"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_232954/figure_03.png",
+      "metadata": {
+        "title": "N\u00f8gletal \u2014 Inflation i Frankrig og Euroomr\u00e5det",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af inflationsudviklingen i Frankrig og Euroomr\u00e5det siden begyndelsen af 2022.",
+        "kilde": "FRED og Eurostat",
+        "region_labels": [
+          "Euroomr\u00e5det HICP"
+        ]
+      }
+    }
+  ]
+}

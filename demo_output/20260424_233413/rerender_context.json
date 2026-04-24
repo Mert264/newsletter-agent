@@ -1,0 +1,286 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tyskland 10Y",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "UK 10Y",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig 10Y",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien 10Y",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA 10Y",
+        "region": "Nordamerika",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "G7 statsobligationsrenter \u2014 10-\u00e5rige statsobligationer",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 730,
+      "series_labels": [
+        "Tyskland 10Y",
+        "UK 10Y",
+        "Frankrig 10Y",
+        "Italien 10Y",
+        "USA 10Y"
+      ],
+      "note": "M\u00e5nedlige 10-\u00e5rige statsobligationsrenter for udvalgte G7-lande. Renterne afspejler markedets forventninger til inflation, v\u00e6kst og offentlig g\u00e6ld i hvert land."
+    },
+    "brief": "G7-landenes offentlige g\u00e6ld \u2014 USA, UK, Japan, Tyskland, Frankrig, Italien, Canada"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tyskland 10Y",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "UK 10Y",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01FRM156N",
+        "source": "fred",
+        "label": "Frankrig 10Y",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01ITM156N",
+        "source": "fred",
+        "label": "Italien 10Y",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA 10Y",
+        "region": "Nordamerika",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "G7 statsobligationsrenter \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 730,
+      "series_labels": [
+        "Tyskland 10Y",
+        "UK 10Y",
+        "Frankrig 10Y",
+        "Italien 10Y",
+        "USA 10Y"
+      ],
+      "before_date": "2024-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2024",
+      "col_after": "Nu",
+      "note": "Snapshot af 10-\u00e5rige statsobligationsrenter for udvalgte G7-lande. \u00c6ndringen viser bev\u00e6gelsen i procentpoint siden januar 2024."
+    },
+    "brief": "G7-landenes offentlige g\u00e6ld \u2014 USA, UK, Japan, Tyskland, Frankrig, Italien, Canada"
+  },
+  {
+    "figure_id": 2,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "USA \u2014 offentlig g\u00e6ld",
+        "country": "USA",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "UK \u2014 offentlig g\u00e6ld",
+        "country": "GBR",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Japan \u2014 offentlig g\u00e6ld",
+        "country": "JPN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Tyskland \u2014 offentlig g\u00e6ld",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Frankrig \u2014 offentlig g\u00e6ld",
+        "country": "FRA",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Italien \u2014 offentlig g\u00e6ld",
+        "country": "ITA",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Canada \u2014 offentlig g\u00e6ld",
+        "country": "CAN",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "G7-landenes offentlige g\u00e6ld (% af BNP)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 7300,
+      "series_labels": [
+        "USA \u2014 offentlig g\u00e6ld",
+        "UK \u2014 offentlig g\u00e6ld",
+        "Japan \u2014 offentlig g\u00e6ld",
+        "Tyskland \u2014 offentlig g\u00e6ld",
+        "Frankrig \u2014 offentlig g\u00e6ld",
+        "Italien \u2014 offentlig g\u00e6ld",
+        "Canada \u2014 offentlig g\u00e6ld"
+      ],
+      "note": "Offentlig g\u00e6ld som andel af BNP for G7-landene over de seneste 20 \u00e5r. Japan skiller sig markant ud med den h\u00f8jeste g\u00e6ldskvote, mens Tyskland traditionelt har f\u00f8rt en mere stram finanspolitik end de \u00f8vrige G7-lande. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "G7-landenes offentlige g\u00e6ld \u2014 USA, UK, Japan, Tyskland, Frankrig, Italien, Canada"
+  },
+  {
+    "figure_id": 3,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "USA \u2014 offentlig g\u00e6ld",
+        "country": "USA",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "UK \u2014 offentlig g\u00e6ld",
+        "country": "GBR",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Japan \u2014 offentlig g\u00e6ld",
+        "country": "JPN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Tyskland \u2014 offentlig g\u00e6ld",
+        "country": "DEU",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Frankrig \u2014 offentlig g\u00e6ld",
+        "country": "FRA",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Italien \u2014 offentlig g\u00e6ld",
+        "country": "ITA",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Canada \u2014 offentlig g\u00e6ld",
+        "country": "CAN",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "G7-landenes offentlige g\u00e6ld \u2014 n\u00f8gletal (% af BNP)",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 7300,
+      "series_labels": [
+        "USA \u2014 offentlig g\u00e6ld",
+        "UK \u2014 offentlig g\u00e6ld",
+        "Japan \u2014 offentlig g\u00e6ld",
+        "Tyskland \u2014 offentlig g\u00e6ld",
+        "Frankrig \u2014 offentlig g\u00e6ld",
+        "Italien \u2014 offentlig g\u00e6ld",
+        "Canada \u2014 offentlig g\u00e6ld"
+      ],
+      "before_date": "2014-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af offentlig g\u00e6ld som andel af BNP for G7-landene. Sammenligningen viser, hvordan g\u00e6ldskvoten har udviklet sig over det seneste \u00e5rti i hvert land. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "G7-landenes offentlige g\u00e6ld \u2014 USA, UK, Japan, Tyskland, Frankrig, Italien, Canada"
+  }
+]

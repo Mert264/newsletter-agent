@@ -1,0 +1,34 @@
+{
+  "brief": "Vis Indiens BNP-v\u00e6kst siden 1990 \u2014 de seneste 35 \u00e5r",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233831/figure_00.png",
+      "metadata": {
+        "title": "Indiens BNP-v\u00e6kst (1990\u20132025)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Indien fra 1990 til i dag, m\u00e5lt i faste priser. Serien viser Indiens \u00f8konomiske udvikling over de seneste 35 \u00e5r, herunder perioder med h\u00f8j v\u00e6kst og de midlertidige afmatninger under bl.a. den globale finanskrise og COVID-19-pandemien. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233831/figure_01.png",
+      "metadata": {
+        "title": "Indiens BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Indiens BNP-v\u00e6kst med sammenligning mellem niveauet i 2014 og den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    }
+  ]
+}

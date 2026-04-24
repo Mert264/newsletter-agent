@@ -1,0 +1,38 @@
+{
+  "brief": "Danmark, Sverige og Norge \u2014 sammenlign inflation de seneste 15 \u00e5r",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233359/figure_00.png",
+      "metadata": {
+        "title": "Inflation i Danmark, Sverige og Norge (2010\u20132025)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "M\u00e5nedlig forbrugerprisindflation (\u00e5r-over-\u00e5r) for Danmark, Sverige og Norge de seneste 15 \u00e5r. Alle tre lande har et officielt inflationsm\u00e5l p\u00e5 2%. Data fra OECD via FRED.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Danmark",
+          "Sverige",
+          "Norge"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233359/figure_01.png",
+      "metadata": {
+        "title": "Inflation \u2014 n\u00f8gletal for Danmark, Sverige og Norge",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af inflationsraten (\u00e5r-over-\u00e5r) for de tre nordiske lande ved periodens start og senest tilg\u00e6ngelige observation. \u00c6ndringen vises i procentpoint.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Danmark",
+          "Sverige",
+          "Norge"
+        ]
+      }
+    }
+  ]
+}

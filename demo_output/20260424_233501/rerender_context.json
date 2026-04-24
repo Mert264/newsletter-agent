@@ -1,0 +1,60 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed, Brasilien (%)",
+        "country": "BRA",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Brasiliens arbejdsl\u00f8shed (2004\u20132024)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 7300,
+      "series_labels": [
+        "Arbejdsl\u00f8shed, Brasilien (%)"
+      ],
+      "note": "Brasiliens samlede arbejdsl\u00f8shedsprocent for befolkningen i den arbejdsdygtige alder over de seneste 20 \u00e5r. Data er baseret p\u00e5 nationale arbejdsmarkedsunders\u00f8gelser og internationale definitioner fra ILO. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Hvad er Brasiliens arbejdsl\u00f8shed de seneste 20 \u00e5r?"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed, Brasilien (%)",
+        "country": "BRA",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Brasiliens arbejdsl\u00f8shed \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 7300,
+      "series_labels": [
+        "Arbejdsl\u00f8shed, Brasilien (%)"
+      ],
+      "before_date": "2014-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Sammenligning af Brasiliens arbejdsl\u00f8shedsprocent for ti \u00e5r siden og den senest tilg\u00e6ngelige observation. Viser udviklingen over en \u00e5rr\u00e6kke med betydelige \u00f8konomiske og politiske forandringer i landet. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Hvad er Brasiliens arbejdsl\u00f8shed de seneste 20 \u00e5r?"
+  }
+]

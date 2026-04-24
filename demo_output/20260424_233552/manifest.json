@@ -1,0 +1,69 @@
+{
+  "brief": "Vis Maltas BNP-v\u00e6kst og inflation",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233552/figure_00.png",
+      "metadata": {
+        "title": "Maltas BNP-v\u00e6kst og inflation",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Maltas \u00e5rlige BNP-v\u00e6kst og forbrugerprisinflation over de seneste 20 \u00e5r. Data stammer fra Verdensbanken og opdateres \u00e5rligt. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)",
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233552/figure_01.png",
+      "metadata": {
+        "title": "Maltas BNP-v\u00e6kst og inflation \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Maltas BNP-v\u00e6kst og inflation. Viser v\u00e6rdier fra for ca. 10 \u00e5r siden sammenlignet med de senest tilg\u00e6ngelige data fra Verdensbanken. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)",
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233552/figure_02.png",
+      "metadata": {
+        "title": "Maltas arbejdsl\u00f8shed, offentlig g\u00e6ld og betalingsbalance",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Maltas arbejdsl\u00f8shedsrate, offentlige g\u00e6ld som andel af BNP samt betalingsbalancen over de seneste 20 \u00e5r. Data stammer fra Verdensbanken og opdateres \u00e5rligt. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)",
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Betalingsbalance (% af BNP)"
+        ],
+        "reviewer_flag": "Y-axis label '%' is incomplete: three series have different units (unemployment %, debt % of GDP, balance % of GDP), but the chart shows only '%'. The note clarifies the units, but the y-axis label should explicitly state that multiple metrics with different denominators are plotted together, or each series should be labeled with its full unit on the chart itself."
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_233552/figure_03.png",
+      "metadata": {
+        "title": "Maltas \u00f8konomi \u2014 n\u00f8gletal oversigt",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Maltas arbejdsl\u00f8shed, offentlige g\u00e6ld og betalingsbalance. Viser v\u00e6rdier fra for ca. 10 \u00e5r siden sammenlignet med de senest tilg\u00e6ngelige data fra Verdensbanken. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)",
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

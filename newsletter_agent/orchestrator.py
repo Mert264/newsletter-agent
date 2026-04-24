@@ -533,7 +533,15 @@ def call_llm(prompt: str, max_tokens: int = 8192, model: str = None) -> dict:
     try:
         return json.loads(raw)
     except json.JSONDecodeError as exc:
-        # Strategy 1: extract the outermost {...} block (handles trailing sentences)
+        # Strategy 1: "Extra data" — LLM emitted two JSON objects; take only the first
+        if "Extra data" in str(exc) and getattr(exc, "pos", None):
+            try:
+                result = json.loads(raw[:exc.pos])
+                print("  [orchestrator] Warning: multiple JSON objects detected — using first.")
+                return result
+            except json.JSONDecodeError:
+                pass
+        # Strategy 2: extract the outermost {...} block (handles trailing sentences)
         match = _re.search(r'\{.*\}', raw, _re.DOTALL)
         if match:
             candidate = match.group(0)
@@ -543,7 +551,7 @@ def call_llm(prompt: str, max_tokens: int = 8192, model: str = None) -> dict:
                 return result
             except json.JSONDecodeError:
                 pass
-        # Strategy 2: repair truncated JSON by appending closing braces/brackets
+        # Strategy 3: repair truncated JSON by appending closing braces/brackets
         open_braces   = raw.count("{") - raw.count("}")
         open_brackets = raw.count("[") - raw.count("]")
         repaired = raw.rstrip(",\n ") + ("]" * open_brackets) + ("}" * open_braces)
