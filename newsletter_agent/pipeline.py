@@ -28,6 +28,7 @@ SPECIALIST_MAP = {
     "commodities": fetch_commodities,
     "equities":    fetch_equities,
     "eurostat":    fetch_eurostat,
+    "worldbank":   fetch_worldbank,
 }
 
 CHART_RENDERER_MAP = {
