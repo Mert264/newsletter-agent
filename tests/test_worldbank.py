@@ -35,7 +35,25 @@ def test_fetch_worldbank_returns_specialist_result():
         result = fetch_worldbank(task)
     assert "dataframes" in result
     assert "kilde" in result
+    assert "chart_specs" in result
     assert "BNP-vækst" in result["dataframes"]
+
+
+def test_chart_specs_freq_and_note_injected():
+    from newsletter_agent.specialists.worldbank import fetch_worldbank
+    task = {
+        "series": [
+            {"ticker": "NY.GDP.MKTP.KD.ZG", "source": "worldbank",
+             "label": "BNP-vækst", "country": "HUN", "years": 5, "unit": "%"}
+        ],
+        "charts": [{"type": "A", "period_days": 3650}],
+    }
+    with patch("newsletter_agent.specialists.worldbank.requests.get", side_effect=_mock_fetch):
+        result = fetch_worldbank(task)
+    assert result["chart_specs"][0]["freq"] == "A"
+    assert "efterslæb" in result["chart_specs"][0]["note"]
+    # original task dict must not be mutated
+    assert "freq" not in task["charts"][0]
 
 
 def test_dates_converted_to_timestamps():
