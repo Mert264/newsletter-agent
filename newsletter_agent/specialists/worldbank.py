@@ -52,16 +52,20 @@ def fetch_worldbank(task: dict) -> dict:
             print(f"    [worldbank] No data for {iso3}/{code} — skipping '{label}'")
             skipped.append(label)
 
+    chart_specs = []
     for chart in task.get("charts", []):
-        existing = chart.get("note", "")
+        spec = dict(chart)
+        existing = spec.get("note", "")
         if _LAG_NOTE not in existing:
-            chart["note"] = (existing + " " + _LAG_NOTE).strip()
-        chart["freq"] = "A"
+            spec["note"] = (existing + " " + _LAG_NOTE).strip()
+        spec["freq"] = "A"
+        chart_specs.append(spec)
 
     if skipped:
         print(f"    [worldbank] Skipped indicators (no data): {', '.join(skipped)}")
 
     return {
-        "dataframes": dataframes,
-        "kilde":      ["Verdensbanken"],
+        "dataframes":  dataframes,
+        "kilde":       ["Verdensbanken"],
+        "chart_specs": chart_specs,
     }
