@@ -1,57 +1,114 @@
 {
   "specialists": [
-    "macro"
+    "worldbank"
   ],
-  "macro": {
+  "worldbank": {
     "series": [
       {
-        "ticker": "CPALTT01USM659N",
-        "source": "fred",
-        "label": "USA",
-        "region": "USA",
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "HUN",
+        "years": 20,
         "unit": "%"
       },
       {
-        "ticker": "CPALTT01GBM659N",
-        "source": "fred",
-        "label": "Storbritannien",
-        "region": "GB",
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "HUN",
+        "years": 20,
         "unit": "%"
       },
       {
-        "ticker": "CPALTT01JPM659N",
-        "source": "fred",
-        "label": "Japan",
-        "region": "JP",
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Offentlig g\u00e6ld (% af BNP)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Betalingsbalance (% af BNP)",
+        "country": "HUN",
+        "years": 20,
         "unit": "%"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Global inflationsudvikling \u2014 \u00e5r-over-\u00e5r CPI",
+        "title": "Ungarns BNP-v\u00e6kst (\u00e5rlig %)",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 2555,
+        "period_days": 730,
+        "years": 20,
         "series_labels": [
-          "USA",
-          "Euroomr\u00e5det",
-          "Storbritannien",
-          "Japan"
+          "BNP-v\u00e6kst (%)"
         ],
-        "note": "Headline CPI \u00e5r-over-\u00e5r i procent for USA, euroomr\u00e5det, Storbritannien og Japan. Serien viser inflationstoppen i 2021\u20132022, den efterf\u00f8lgende disinflation og konvergensen mod centralbankernes 2%-m\u00e5l. Euroomr\u00e5det er hentet fra Eurostat, \u00f8vrige serier fra FRED (OECD MEI). Alle serier er allerede i \u00e5r-over-\u00e5r procent \u2014 ingen yderligere transformation er anvendt."
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Ungarn over de seneste 20 \u00e5r. Negative v\u00e6rdier afspejler perioder med recession, herunder finanskrisen i 2009 og coronapandemien i 2020."
+      },
+      {
+        "type": "D",
+        "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal for Ungarn",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 730,
+        "years": 20,
+        "series_labels": [
+          "BNP-v\u00e6kst (%)"
+        ],
+        "before_date": "2014-01-01",
+        "after_date": "latest",
+        "col_before": "For 10 \u00e5r siden",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af Ungarns BNP-v\u00e6kst med sammenligning af niveauet for ti \u00e5r siden og den senest tilg\u00e6ngelige observation."
+      },
+      {
+        "type": "A",
+        "title": "Ungarns inflation, CPI (\u00e5rlig %)",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 730,
+        "years": 20,
+        "series_labels": [
+          "Inflation, CPI (%)"
+        ],
+        "reference_lines": [
+          {
+            "y": 2.0,
+            "label": "2%-m\u00e5l",
+            "color": "#9ca3af"
+          }
+        ],
+        "note": "\u00c5rlig forbrugerprisinflation (CPI) for Ungarn over de seneste 20 \u00e5r. Ungarn oplevede markant h\u00f8j inflation i 2022\u20132023 som f\u00f8lge af energikrisen og globale forsyningsproblemer."
+      },
+      {
+        "type": "D",
+        "title": "Inflation, CPI \u2014 n\u00f8gletal for Ungarn",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 730,
+        "years": 20,
+        "series_labels": [
+          "Inflation, CPI (%)"
+        ],
+        "before_date": "2014-01-01",
+        "after_date": "latest",
+        "col_before": "For 10 \u00e5r siden",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af Ungarns CPI-inflation med sammenligning af niveauet for ti \u00e5r siden og den senest tilg\u00e6ngelige observation."
       }
     ]
-  },
-  "eurostat": {
-    "series": [
-      {
-        "ticker": "ea_hicp_yoy",
-        "source": "eurostat_ts",
-        "label": "Euroomr\u00e5det",
-        "unit": "%"
-      }
-    ],
-    "charts": []
   }
 }
