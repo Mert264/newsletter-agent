@@ -1,0 +1,62 @@
+{
+  "brief": "Macaristan ekonomisi \u2014 BNP-v\u00e6kst og inflation",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234213/figure_00.png",
+      "metadata": {
+        "title": "Ungarns BNP-v\u00e6kst (\u00e5rlig %)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarns \u00e5rlige reale BNP-v\u00e6kst over de seneste 20 \u00e5r. Data stammer fra Verdensbanken og opdateres med en vis forsinkelse. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234213/figure_01.png",
+      "metadata": {
+        "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns BNP-v\u00e6kst: sammenligning af niveauet for ca. 10 \u00e5r siden med den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234213/figure_02.png",
+      "metadata": {
+        "title": "Ungarns inflation, CPI (\u00e5rlig %)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarns \u00e5rlige forbrugerprisinflation (CPI) over de seneste 20 \u00e5r. Ungarn har oplevet markante inflationsudsving, herunder et kraftigt opsving i 2022-2023. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234213/figure_03.png",
+      "metadata": {
+        "title": "Inflation, CPI \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns CPI-inflation: sammenligning af niveauet for ca. 10 \u00e5r siden med den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    }
+  ]
+}

@@ -8,26 +8,42 @@
         "ticker": "NY.GDP.MKTP.KD.ZG",
         "source": "worldbank",
         "label": "BNP-v\u00e6kst (%)",
-        "country": "IND",
-        "years": 35,
+        "country": "JPN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "JPN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "JPN",
+        "years": 20,
         "unit": "%"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Indiens BNP-v\u00e6kst (1990\u20132025)",
+        "title": "Japans BNP-v\u00e6kst",
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 730,
         "series_labels": [
           "BNP-v\u00e6kst (%)"
         ],
-        "note": "\u00c5rlig real BNP-v\u00e6kst for Indien fra 1990 til i dag, m\u00e5lt i faste priser. Serien viser Indiens \u00f8konomiske udvikling over de seneste 35 \u00e5r, herunder perioder med h\u00f8j v\u00e6kst og de midlertidige afmatninger under bl.a. den globale finanskrise og COVID-19-pandemien."
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Japan over de seneste 20 \u00e5r. Negative v\u00e6rdier afspejler periodiske recessioner, herunder under finanskrisen i 2008-09 og COVID-19 i 2020."
       },
       {
         "type": "D",
-        "title": "Indiens BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "title": "Japans BNP-v\u00e6kst \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
         "period_days": 730,
@@ -36,9 +52,35 @@
         ],
         "before_date": "2014-01-01",
         "after_date": "latest",
-        "col_before": "2014",
+        "col_before": "For 10 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Indiens BNP-v\u00e6kst med sammenligning mellem niveauet i 2014 og den senest tilg\u00e6ngelige observation."
+        "note": "Snapshot af Japans \u00e5rlige BNP-v\u00e6kstrate. Viser udviklingen over de seneste ti \u00e5r."
+      },
+      {
+        "type": "A",
+        "title": "Japans inflation (CPI)",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 730,
+        "series_labels": [
+          "Inflation, CPI (%)"
+        ],
+        "note": "\u00c5rlig CPI-inflation i Japan over de seneste 20 \u00e5r. Japan har historisk k\u00e6mpet med deflation og lav inflation, men oplevede stigende prispres fra 2022."
+      },
+      {
+        "type": "D",
+        "title": "Japans inflation (CPI) \u2014 n\u00f8gletal",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 730,
+        "series_labels": [
+          "Inflation, CPI (%)"
+        ],
+        "before_date": "2014-01-01",
+        "after_date": "latest",
+        "col_before": "For 10 \u00e5r siden",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af Japans \u00e5rlige inflationsrate m\u00e5lt ved CPI. Viser udviklingen over de seneste ti \u00e5r."
       }
     ]
   }

@@ -1,0 +1,62 @@
+{
+  "brief": "Vis Japans \u00f8konomi \u2014 BNP-v\u00e6kst, inflation og arbejdsl\u00f8shed",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234237/figure_00.png",
+      "metadata": {
+        "title": "Japans BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Japan over de seneste 20 \u00e5r. Negative v\u00e6rdier afspejler periodiske recessioner, herunder under finanskrisen i 2008-09 og COVID-19 i 2020. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234237/figure_01.png",
+      "metadata": {
+        "title": "Japans BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Japans \u00e5rlige BNP-v\u00e6kstrate. Viser udviklingen over de seneste ti \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234237/figure_02.png",
+      "metadata": {
+        "title": "Japans inflation (CPI)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig CPI-inflation i Japan over de seneste 20 \u00e5r. Japan har historisk k\u00e6mpet med deflation og lav inflation, men oplevede stigende prispres fra 2022. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234237/figure_03.png",
+      "metadata": {
+        "title": "Japans inflation (CPI) \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Japans \u00e5rlige inflationsrate m\u00e5lt ved CPI. Viser udviklingen over de seneste ti \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    }
+  ]
+}

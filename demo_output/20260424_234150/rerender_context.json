@@ -1,0 +1,158 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Frankrig \u2014 BNP-v\u00e6kst",
+        "country": "FRA",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Frankrig \u2014 Inflation, CPI",
+        "country": "FRA",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Frankrigs BNP-v\u00e6kst (2004\u20132024)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 730,
+      "series_labels": [
+        "Frankrig \u2014 BNP-v\u00e6kst"
+      ],
+      "note": "\u00c5rlig real BNP-v\u00e6kst i Frankrig over de seneste 20 \u00e5r. Negative v\u00e6rdier ses tydeligt under finanskrisen i 2009 og covid-19-pandemien i 2020. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Montrez l'\u00e9conomie de la France \u2014 croissance du PIB et inflation"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Frankrig \u2014 BNP-v\u00e6kst",
+        "country": "FRA",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Frankrig \u2014 Inflation, CPI",
+        "country": "FRA",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal for Frankrig",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 730,
+      "series_labels": [
+        "Frankrig \u2014 BNP-v\u00e6kst"
+      ],
+      "before_date": "2014-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af Frankrigs BNP-v\u00e6kst \u2014 sammenligner niveauet fra for 10 \u00e5r siden med den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Montrez l'\u00e9conomie de la France \u2014 croissance du PIB et inflation"
+  },
+  {
+    "figure_id": 2,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Frankrig \u2014 BNP-v\u00e6kst",
+        "country": "FRA",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Frankrig \u2014 Inflation, CPI",
+        "country": "FRA",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Inflation i Frankrig, CPI (2004\u20132024)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 730,
+      "series_labels": [
+        "Frankrig \u2014 Inflation, CPI"
+      ],
+      "reference_lines": [
+        {
+          "y": 2.0,
+          "label": "2%-m\u00e5l",
+          "color": "#9ca3af"
+        }
+      ],
+      "note": "\u00c5rlig forbrugerprisinflation (CPI) i Frankrig over de seneste 20 \u00e5r. Den kraftige stigning efter 2021 afspejler de globale prispres som f\u00f8lge af energikrisen og forsyningsk\u00e6deforstyrrelser. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Montrez l'\u00e9conomie de la France \u2014 croissance du PIB et inflation"
+  },
+  {
+    "figure_id": 3,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Frankrig \u2014 BNP-v\u00e6kst",
+        "country": "FRA",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Frankrig \u2014 Inflation, CPI",
+        "country": "FRA",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Inflation \u2014 n\u00f8gletal for Frankrig",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 730,
+      "series_labels": [
+        "Frankrig \u2014 Inflation, CPI"
+      ],
+      "before_date": "2014-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "target_value": 2.0,
+      "note": "Snapshot af Frankrigs CPI-inflation \u2014 sammenligner niveauet fra for 10 \u00e5r siden med den senest tilg\u00e6ngelige observation samt afstand til ECB's 2%-m\u00e5l. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Montrez l'\u00e9conomie de la France \u2014 croissance du PIB et inflation"
+  }
+]

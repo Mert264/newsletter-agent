@@ -1,0 +1,62 @@
+{
+  "brief": "Montrez l'\u00e9conomie de la France \u2014 croissance du PIB et inflation",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234150/figure_00.png",
+      "metadata": {
+        "title": "Frankrigs BNP-v\u00e6kst (2004\u20132024)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst i Frankrig over de seneste 20 \u00e5r. Negative v\u00e6rdier ses tydeligt under finanskrisen i 2009 og covid-19-pandemien i 2020. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Frankrig \u2014 BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234150/figure_01.png",
+      "metadata": {
+        "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal for Frankrig",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Frankrigs BNP-v\u00e6kst \u2014 sammenligner niveauet fra for 10 \u00e5r siden med den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Frankrig \u2014 BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234150/figure_02.png",
+      "metadata": {
+        "title": "Inflation i Frankrig, CPI (2004\u20132024)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig forbrugerprisinflation (CPI) i Frankrig over de seneste 20 \u00e5r. Den kraftige stigning efter 2021 afspejler de globale prispres som f\u00f8lge af energikrisen og forsyningsk\u00e6deforstyrrelser. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Frankrig \u2014 Inflation, CPI"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234150/figure_03.png",
+      "metadata": {
+        "title": "Inflation \u2014 n\u00f8gletal for Frankrig",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Frankrigs CPI-inflation \u2014 sammenligner niveauet fra for 10 \u00e5r siden med den senest tilg\u00e6ngelige observation samt afstand til ECB's 2%-m\u00e5l. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Frankrig \u2014 Inflation, CPI"
+        ]
+      }
+    }
+  ]
+}

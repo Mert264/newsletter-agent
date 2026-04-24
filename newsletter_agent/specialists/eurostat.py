@@ -267,7 +267,7 @@ KNOWN_DATASETS = {
     # EU GDP growth (annual % change)
     "eu_gdp_growth": {
         "dataset": "tec00115",
-        "params":  {"freq": "A", "unit": "PC_GDP_EU", "geo": "EU27_2020"},
+        "params":  {"freq": "A", "unit": "CLV_PCH_PRE", "geo": "EU27_2020"},
     },
     # EU unemployment rate
     "eu_unemployment": {

@@ -1,0 +1,46 @@
+{
+  "brief": "EU og Kinas BNP-v\u00e6kst de seneste 20 \u00e5r",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234129/figure_01.png",
+      "metadata": {
+        "title": "EU27 BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af EU27's \u00e5rlige BNP-v\u00e6kst. \u00c6ndringen vises i procentpoint mellem det tidligste og seneste tilg\u00e6ngelige datapunkt.",
+        "kilde": "Eurostat og Verdensbanken",
+        "region_labels": []
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234129/figure_02.png",
+      "metadata": {
+        "title": "Kinas BNP-v\u00e6kst de seneste 20 \u00e5r",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Kina de seneste 20 \u00e5r if\u00f8lge Verdensbanken. Data viser den procentvise \u00e6ndring i bruttonationalproduktet i faste priser. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Kinas BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_234129/figure_03.png",
+      "metadata": {
+        "title": "Kinas BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Kinas \u00e5rlige BNP-v\u00e6kst. \u00c6ndringen vises i procentpoint mellem det tidligste og seneste tilg\u00e6ngelige datapunkt. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Kinas BNP-v\u00e6kst"
+        ]
+      }
+    }
+  ]
+}
