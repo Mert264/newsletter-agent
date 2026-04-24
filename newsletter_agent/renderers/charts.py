@@ -253,8 +253,15 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     ax.set_ylabel(spec.get("y_label", ""), fontsize=BRAND["font_size_axis"],
                   color=BRAND["secondary"])
 
-    # Auto date tick density based on date range
-    if len(df.index) >= 2:
+    # Annual data (e.g. World Bank) — always use year-only labels regardless of range
+    if spec.get("freq") == "A":
+        n_years = len(df.index)
+        step = 2 if n_years > 10 else 1
+        ax.xaxis.set_major_locator(mdates.YearLocator(step))
+        ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+        plt.setp(ax.xaxis.get_majorticklabels(), rotation=0, ha="center",
+                 fontsize=BRAND["font_size_axis"])
+    elif len(df.index) >= 2:
         date_range_days = (df.index[-1] - df.index[0]).days
         if date_range_days > 3650:          # > 10 years → tick every 2 years, label year only
             ax.xaxis.set_major_locator(mdates.YearLocator(2))
