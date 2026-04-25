@@ -4,13 +4,34 @@ import yfinance as yf
 from fredapi import Fred
 from datetime import date, timedelta
 from newsletter_agent.config import API_KEYS, YF_LOCK
+from newsletter_agent.cache import get as cache_get, put as cache_put
+
+_FRED_TTL = 4 * 3600   # 4 hours — FRED series are daily; safe to cache within a session
 
 
 def _fred_get(fred: Fred, ticker: str, start: str, retries: int = 5) -> pd.Series:
-    """Fetch a FRED series with exponential backoff retry on transient errors."""
+    """Fetch a FRED series with 4h cache and exponential backoff retry."""
+    cached = cache_get("fred", _FRED_TTL, ticker=ticker, start=start)
+    if cached is not None:
+        print(f"    [macro] Cache hit: FRED {ticker}")
+        s = pd.Series(
+            {pd.Timestamp(row[0]): row[1] for row in cached},
+            name=ticker,
+        )
+        s.index = pd.to_datetime(s.index)
+        return s
+
     for attempt in range(retries):
         try:
-            return fred.get_series(ticker, observation_start=start)
+            result = fred.get_series(ticker, observation_start=start)
+            # Persist: store as [[isodate, value], ...] — skip NaN rows
+            cache_put(
+                "fred",
+                [[str(idx.date()), val] for idx, val in result.items() if pd.notna(val)],
+                ticker=ticker,
+                start=start,
+            )
+            return result
         except Exception as e:
             if attempt < retries - 1:
                 wait = 2 ** attempt  # 1s, 2s, 4s, 8s, 16s
