@@ -316,9 +316,9 @@ WORLDBANK — EU + COUNTRY COMBINATION:
 
 WORLDBANK — DATA GAPS (do NOT emit charts that depend solely on these):
   GC.DOD.TOTL.GD.ZS (Offentlig gæld) is unavailable or severely lagged for:
-    Japan (JPN), Saudi Arabia (SAU), Libya (LBY), UAE (ARE), Kuwait (KWT), Qatar (QAT).
-  For these countries, omit this indicator — do not include it as a standalone chart.
-  If it would be one of 5 core indicators, note in the chart note: "Offentlig gæld ikke tilgængeligt via Verdensbanken for dette land."
+    Japan (JPN), China (CHN), Saudi Arabia (SAU), Libya (LBY), UAE (ARE), Kuwait (KWT), Qatar (QAT).
+  For these countries, omit this indicator entirely — do not include it in series[] or charts[].
+  Proceed with the remaining 4 core indicators only (total: 8 charts for a single-country profile).
 
 WORLDBANK — MULTI-METRIC CHART Y-AXIS:
   When combining BNP-vækst, inflation, arbejdsløshed, gæld, and betalingsbalance on ONE chart,
