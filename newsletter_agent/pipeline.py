@@ -88,6 +88,11 @@ def _build_table(dfs: dict, chart_spec: dict, kilde_str: str, output_path: str) 
         except Exception as e:
             print(f"    [warn] Could not build table row for '{label}': {e}")
 
+    # World Bank data: all core indicators are annual % values — always show change in pp.
+    # This holds even for Offentlig gæld which can exceed 100% (e.g. Japan 260%, Hungary 80%).
+    if not use_absolute and "Verdensbanken" in kilde_str:
+        use_absolute = True
+
     # Data-driven override: if ALL values look like rates/percentages (abs < 30),
     # always use absolute pp change — even if the orchestrator forgot to set y_label="%".
     # This catches standalone D tables for bond yields, inflation, policy rates etc.
