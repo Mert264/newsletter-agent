@@ -471,7 +471,8 @@ def _patch_chart_spec_for_missing(chart_spec: dict, still_missing: list) -> dict
             # Comma-separated lists: ", Country" or "Country,"
             title = re.sub(rf",?\s*{esc}\b", "", title, flags=re.IGNORECASE)
         # Remove dangling comparison markers left when the second entity was stripped
-        title = re.sub(r"\s+vs\.?\s*$", "", title, flags=re.IGNORECASE)
+        title = re.sub(r"\s+vs\.?\s*$", "", title, flags=re.IGNORECASE)           # at end
+        title = re.sub(r"\s+vs\.?\s*(?=[—\-])", " ", title, flags=re.IGNORECASE)  # mid-string before separator
         title = re.sub(r"\s+mod\s*$", "", title, flags=re.IGNORECASE)
         # Clean up stray separators and extra whitespace left after removal
         title = re.sub(r"\s{2,}", " ", title)
