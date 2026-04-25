@@ -92,12 +92,11 @@
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "Danmark \u2014 BNP-v\u00e6kst",
           "Sverige \u2014 BNP-v\u00e6kst"
         ],
-        "note": "\u00c5rlig real BNP-v\u00e6kst for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken baseret p\u00e5 faste priser i lokal valuta."
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Danmark og Sverige over de seneste 20 \u00e5r. Tallene er i faste priser og viser udviklingen i de to landes samlede \u00f8konomi."
       },
       {
         "type": "D",
@@ -105,7 +104,6 @@
         "x_label": "",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "Danmark \u2014 BNP-v\u00e6kst",
           "Sverige \u2014 BNP-v\u00e6kst"
@@ -114,7 +112,7 @@
         "after_date": "latest",
         "col_before": "For 10 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af real BNP-v\u00e6kst for Danmark og Sverige. Viser seneste tilg\u00e6ngelige v\u00e6rdi samt niveauet for ca. 10 \u00e5r siden."
+        "note": "Snapshot af BNP-v\u00e6kst for Danmark og Sverige. \u00c6ndringen viser forskydningen fra for 10 \u00e5r siden til det senest tilg\u00e6ngelige \u00e5r."
       },
       {
         "type": "A",
@@ -122,20 +120,18 @@
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "Danmark \u2014 Inflation",
           "Sverige \u2014 Inflation"
         ],
-        "note": "\u00c5rlig forbrugerprisinflation (CPI) for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken."
+        "note": "\u00c5rlig inflation m\u00e5lt ved forbrugerprisindekset (CPI) for Danmark og Sverige over de seneste 20 \u00e5r. H\u00f8j inflation har pr\u00e6get begge lande s\u00e6rligt i perioden 2021\u20132023."
       },
       {
         "type": "D",
-        "title": "Inflation \u2014 n\u00f8gletal, Danmark vs. Sverige",
+        "title": "Inflation (CPI) \u2014 n\u00f8gletal, Danmark vs. Sverige",
         "x_label": "",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "Danmark \u2014 Inflation",
           "Sverige \u2014 Inflation"
@@ -144,7 +140,7 @@
         "after_date": "latest",
         "col_before": "For 10 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af forbrugerprisinflation for Danmark og Sverige. Viser seneste tilg\u00e6ngelige v\u00e6rdi samt niveauet for ca. 10 \u00e5r siden."
+        "note": "Snapshot af CPI-inflation for Danmark og Sverige. Viser forskellen i prisniveauudviklingen mellem de to nordiske naboer."
       },
       {
         "type": "A",
@@ -152,12 +148,11 @@
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "Danmark \u2014 Arbejdsl\u00f8shed",
           "Sverige \u2014 Arbejdsl\u00f8shed"
         ],
-        "note": "Samlet arbejdsl\u00f8shedsprocent for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken (ILO-definition)."
+        "note": "Arbejdsl\u00f8shedsprocenten for Danmark og Sverige over de seneste 20 \u00e5r. Sverige har historisk haft en h\u00f8jere strukturel ledighed end Danmark."
       },
       {
         "type": "D",
@@ -165,7 +160,6 @@
         "x_label": "",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "Danmark \u2014 Arbejdsl\u00f8shed",
           "Sverige \u2014 Arbejdsl\u00f8shed"
@@ -174,7 +168,7 @@
         "after_date": "latest",
         "col_before": "For 10 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af arbejdsl\u00f8shedsprocenten for Danmark og Sverige. Viser seneste tilg\u00e6ngelige v\u00e6rdi samt niveauet for ca. 10 \u00e5r siden."
+        "note": "Snapshot af arbejdsl\u00f8sheden i Danmark og Sverige. \u00c6ndringen viser, hvordan arbejdsmarkederne har udviklet sig siden 2014."
       },
       {
         "type": "A",
@@ -182,12 +176,11 @@
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "Danmark \u2014 Offentlig g\u00e6ld",
           "Sverige \u2014 Offentlig g\u00e6ld"
         ],
-        "note": "Offentlig bruttog\u00e6ld som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken."
+        "note": "Offentlig bruttog\u00e6ld som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Begge lande har relativt lav offentlig g\u00e6ld sammenlignet med EU-gennemsnittet."
       },
       {
         "type": "D",
@@ -195,7 +188,6 @@
         "x_label": "",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "Danmark \u2014 Offentlig g\u00e6ld",
           "Sverige \u2014 Offentlig g\u00e6ld"
@@ -204,7 +196,7 @@
         "after_date": "latest",
         "col_before": "For 10 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af offentlig g\u00e6ld som andel af BNP for Danmark og Sverige. Viser seneste tilg\u00e6ngelige v\u00e6rdi samt niveauet for ca. 10 \u00e5r siden."
+        "note": "Snapshot af den offentlige g\u00e6ld som andel af BNP for Danmark og Sverige. Begge lande har generelt haft en faldende g\u00e6ldskvote over perioden."
       },
       {
         "type": "A",
@@ -212,12 +204,11 @@
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "Danmark \u2014 Betalingsbalance",
           "Sverige \u2014 Betalingsbalance"
         ],
-        "note": "L\u00f8bende poster p\u00e5 betalingsbalancen som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Et positivt tal indikerer et overskud over for udlandet. Data fra Verdensbanken."
+        "note": "L\u00f8bende betalingsbalance som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Et positivt tal indikerer, at landet eksporterer mere end det importerer."
       },
       {
         "type": "D",
@@ -225,7 +216,6 @@
         "x_label": "",
         "y_label": "%",
         "period_days": 730,
-        "years": 20,
         "series_labels": [
           "Danmark \u2014 Betalingsbalance",
           "Sverige \u2014 Betalingsbalance"
@@ -234,7 +224,7 @@
         "after_date": "latest",
         "col_before": "For 10 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af betalingsbalancens l\u00f8bende poster som andel af BNP for Danmark og Sverige. Viser seneste tilg\u00e6ngelige v\u00e6rdi samt niveauet for ca. 10 \u00e5r siden."
+        "note": "Snapshot af betalingsbalancen for Danmark og Sverige. Danmark har konsekvent haft et af de h\u00f8jeste betalingsbalanceoverskud i Europa relativt til BNP."
       }
     ]
   }

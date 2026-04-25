@@ -22,6 +22,158 @@ from newsletter_agent.renderers.charts import render_type_a, render_type_b, rend
 from newsletter_agent.renderers.tables import render_type_d
 from newsletter_agent.reviewer import review_figure
 
+_WB_DATA_GAP_COUNTRIES = {"JPN", "CHN", "SAU", "LBY", "ARE", "KWT", "QAT"}
+
+_WB_TICKER_ORDER = [
+    "NY.GDP.MKTP.KD.ZG",   # BNP-vækst
+    "FP.CPI.TOTL.ZG",      # Inflation
+    "SL.UEM.TOTL.ZS",      # Arbejdsløshed
+    "GC.DOD.TOTL.GD.ZS",   # Offentlig gæld
+    "BN.CAB.XOKA.GD.ZS",   # Betalingsbalance
+]
+
+_WB_TICKER_NAME = {
+    "NY.GDP.MKTP.KD.ZG": "BNP-vækst",
+    "FP.CPI.TOTL.ZG":    "Inflation",
+    "SL.UEM.TOTL.ZS":    "Arbejdsløshed",
+    "GC.DOD.TOTL.GD.ZS": "Offentlig gæld",
+    "BN.CAB.XOKA.GD.ZS": "Betalingsbalance",
+}
+
+_WB_COUNTRY_NAMES = {
+    "AFG": "Afghanistan", "ALB": "Albanien", "DZA": "Algeriet", "ARG": "Argentina",
+    "ARM": "Armenien", "AUS": "Australien", "AUT": "Østrig", "AZE": "Aserbajdsjan",
+    "BEL": "Belgien", "BGR": "Bulgarien", "BLR": "Hviderusland", "BRA": "Brasilien",
+    "CAN": "Canada", "CHE": "Schweiz", "CHL": "Chile", "CHN": "Kina",
+    "COL": "Colombia", "HRV": "Kroatien", "CZE": "Tjekkiet", "DNK": "Danmark",
+    "EGY": "Egypten", "EST": "Estland", "ETH": "Etiopien", "FIN": "Finland",
+    "FRA": "Frankrig", "DEU": "Tyskland", "GHA": "Ghana", "GRC": "Grækenland",
+    "HUN": "Ungarn", "IND": "Indien", "IDN": "Indonesien", "IRN": "Iran",
+    "IRQ": "Irak", "IRL": "Irland", "ISR": "Israel", "ITA": "Italien",
+    "JPN": "Japan", "JOR": "Jordan", "KAZ": "Kasakhstan", "KEN": "Kenya",
+    "KOR": "Sydkorea", "KWT": "Kuwait", "LBY": "Libyen", "LTU": "Litauen",
+    "LVA": "Letland", "MAR": "Marokko", "MEX": "Mexico", "MYS": "Malaysia",
+    "NGA": "Nigeria", "NLD": "Holland", "NOR": "Norge", "PAK": "Pakistan",
+    "PER": "Peru", "PHL": "Filippinerne", "POL": "Polen", "PRT": "Portugal",
+    "QAT": "Qatar", "ROU": "Rumænien", "RUS": "Rusland", "SAU": "Saudi-Arabien",
+    "SEN": "Senegal", "SGP": "Singapore", "SVK": "Slovakiet", "SVN": "Slovenien",
+    "ZAF": "Sydafrika", "ESP": "Spanien", "LKA": "Sri Lanka", "SWE": "Sverige",
+    "THA": "Thailand", "TUR": "Tyrkiet", "UKR": "Ukraine", "ARE": "UAE",
+    "GBR": "Storbritannien", "USA": "USA", "UZB": "Usbekistan",
+    "VEN": "Venezuela", "VNM": "Vietnam", "YEM": "Yemen", "ZMB": "Zambia",
+}
+
+
+def _enforce_worldbank_single_country_layout(manifest: dict, period_days: int = None) -> dict:
+    """Rebuild worldbank chart_specs if the LLM failed to follow the mandatory 10-chart layout.
+    Only fires for single-country worldbank requests with wrong chart count or combined indicators."""
+    if "worldbank" not in manifest.get("specialists", []):
+        return manifest
+
+    wb = manifest["worldbank"]
+    series_list = wb.get("series", [])
+    if not series_list:
+        return manifest
+
+    # Only enforce for single-country (all series share one ISO3)
+    countries = {s.get("country", "").upper() for s in series_list if s.get("country")}
+    if len(countries) != 1:
+        return manifest
+
+    iso3 = list(countries)[0]
+    skip_debt = iso3 in _WB_DATA_GAP_COUNTRIES
+    expected = 8 if skip_debt else 10
+
+    current_charts = wb.get("charts", [])
+    type_a_charts = [c for c in current_charts if c.get("type") == "A"]
+    combined = any(len(c.get("series_labels", [])) > 1 for c in type_a_charts)
+
+    if len(current_charts) >= expected and not combined:
+        return manifest  # already correct
+
+    print(f"  [manifest-enforce] {iso3}: {len(current_charts)} charts (expected {expected}). Rebuilding mandatory layout...")
+
+    if period_days:
+        years = max(5, min(30, period_days // 365))
+    else:
+        years = 20
+    before_date = f"{2026 - years}-01-01"
+    col_before = f"For {years} år siden"
+
+    # Build label lookup from the series list (use first occurrence per ticker)
+    label_by_ticker: dict[str, str] = {}
+    for s in series_list:
+        t = s.get("ticker", "")
+        if t and t not in label_by_ticker:
+            label_by_ticker[t] = s.get("label", t)
+
+    country_name = _WB_COUNTRY_NAMES.get(iso3, iso3)
+
+    def _note(ticker: str) -> str:
+        ind = _WB_TICKER_NAME.get(ticker, ticker)
+        texts = {
+            "BNP-vækst":       f"Årlig real BNP-vækst for {country_name}. Viser procentvis ændring i samlet produktion i faste priser.",
+            "Inflation":        f"Forbrugerprisindeks (CPI) for {country_name}. Viser den årlige stigning i forbrugerpriserne.",
+            "Arbejdsløshed":    f"Arbejdsløshedsprocent for {country_name}. Andel af arbejdsstyrken uden beskæftigelse.",
+            "Offentlig gæld":   f"Offentlig bruttogæld for {country_name} som andel af BNP.",
+            "Betalingsbalance": f"Løbende betalingsbalance for {country_name} som andel af BNP. Positivt = overskud.",
+        }
+        return texts.get(ind, f"Makroøkonomisk nøgletal for {country_name}. Kilde: Verdensbanken.")
+
+    available = [t for t in _WB_TICKER_ORDER
+                 if t in label_by_ticker and not (t == "GC.DOD.TOTL.GD.ZS" and skip_debt)]
+    all_labels = [label_by_ticker[t] for t in available]
+    gdp_ticker = "NY.GDP.MKTP.KD.ZG"
+    gdp_label = label_by_ticker.get(gdp_ticker)
+    pd_ = period_days or 7300
+
+    new_charts = []
+
+    # Chart 1: BNP-vækst Type A
+    if gdp_label:
+        new_charts.append({
+            "type": "A", "title": f"{country_name} — BNP-vækst (%)",
+            "x_label": "Dato", "y_label": "%", "period_days": pd_,
+            "series_labels": [gdp_label], "note": _note(gdp_ticker),
+        })
+
+    # Chart 2: Combined nøgletal overview Type D
+    if all_labels:
+        new_charts.append({
+            "type": "D", "title": f"{country_name} — Nøgletal",
+            "x_label": "", "y_label": "%", "period_days": pd_,
+            "series_labels": all_labels,
+            "before_date": before_date, "after_date": "latest",
+            "col_before": col_before, "col_after": "Senest tilgængelige",
+            "note": f"Oversigt over centrale makroøkonomiske nøgletal for {country_name}.",
+        })
+
+    # Charts 3-10: per-indicator A + D pairs (skip BNP-vækst)
+    for ticker in available:
+        if ticker == gdp_ticker:
+            continue
+        label = label_by_ticker[ticker]
+        ind = _WB_TICKER_NAME.get(ticker, ticker)
+        note = _note(ticker)
+        new_charts.append({
+            "type": "A", "title": f"{country_name} — {ind} (%)",
+            "x_label": "Dato", "y_label": "%", "period_days": pd_,
+            "series_labels": [label], "note": note,
+        })
+        new_charts.append({
+            "type": "D", "title": f"{country_name} — {ind}: nøgletal",
+            "x_label": "", "y_label": "%", "period_days": pd_,
+            "series_labels": [label],
+            "before_date": before_date, "after_date": "latest",
+            "col_before": col_before, "col_after": "Senest tilgængelige",
+            "note": note,
+        })
+
+    manifest["worldbank"]["charts"] = new_charts
+    print(f"  [manifest-enforce] Rebuilt to {len(new_charts)} charts for {country_name}.")
+    return manifest
+
+
 SPECIALIST_MAP = {
     "energy":      fetch_energy,
     "rates":       fetch_rates,
