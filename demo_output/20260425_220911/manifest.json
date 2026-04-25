@@ -1,0 +1,146 @@
+{
+  "brief": "Ungarns \u00d8konomi",
+  "date": "2026-04-25",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_220911/figure_00.png",
+      "metadata": {
+        "title": "Ungarn \u2014 BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarns \u00e5rlige realv\u00e6kst i BNP. Ungarn oplevede en kraftig tilbagegang under COVID-19 i 2020 og har siden gennemg\u00e5et en uj\u00e6vn genopretning pr\u00e6get af h\u00f8j inflation og stigende renter. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_220911/figure_01.png",
+      "metadata": {
+        "title": "Ungarn \u2014 BNP-v\u00e6kst: N\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Ungarns BNP-v\u00e6kst over en 10-\u00e5rig periode. Viser den strukturelle udvikling i v\u00e6kstraten fra et historisk perspektiv til det senest tilg\u00e6ngelige datapunkt. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_220911/figure_02.png",
+      "metadata": {
+        "title": "Ungarn \u2014 Inflation (CPI)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarns \u00e5rlige forbrugerprisinflation. Ungarn oplevede en af Europas h\u00f8jeste inflationsrater i 2022-2023, drevet af energiprisstigninger, valutasv\u00e6kkelse og eftersp\u00f8rgselspres. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_220911/figure_03.png",
+      "metadata": {
+        "title": "Ungarn \u2014 Inflation: N\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Ungarns CPI-inflation over en 10-\u00e5rig periode. Illustrerer den markante inflationsstigning og den efterf\u00f8lgende normalisering. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_220911/figure_04.png",
+      "metadata": {
+        "title": "Ungarn \u2014 Arbejdsl\u00f8shed",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarns arbejdsl\u00f8shedsrate som andel af den samlede arbejdsstyrke. Ungarn har historisk set haft en relativt lav arbejdsl\u00f8shed sammenlignet med EU-gennemsnittet. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_220911/figure_05.png",
+      "metadata": {
+        "title": "Ungarn \u2014 Arbejdsl\u00f8shed: N\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Ungarns arbejdsl\u00f8shedsrate over en 10-\u00e5rig periode. Viser den langsigtede forbedring p\u00e5 arbejdsmarkedet. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_220911/figure_06.png",
+      "metadata": {
+        "title": "Ungarn \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarns offentlige g\u00e6ld som andel af BNP. Ungarn har en relativt h\u00f8j g\u00e6ldskvote for en central-\u00f8steurop\u00e6isk \u00f8konomi, delvis afspejlende historiske budgetunderskud og statsst\u00f8tteprogrammer. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Offentlig g\u00e6ld (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_220911/figure_07.png",
+      "metadata": {
+        "title": "Ungarn \u2014 Offentlig g\u00e6ld: N\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Ungarns offentlige g\u00e6ld som andel af BNP over en 10-\u00e5rig periode. Afspejler den finanspolitiske udvikling og g\u00e6ldsbyrdens \u00e6ndring over tid. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Offentlig g\u00e6ld (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_220911/figure_08.png",
+      "metadata": {
+        "title": "Ungarn \u2014 Betalingsbalance (% af BNP)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarns betalingsbalance p\u00e5 l\u00f8bende poster som andel af BNP. Indikatoren afspejler landets eksterne konkurrenceevne og afh\u00e6ngighed af udenlandsk kapital. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_220911/figure_09.png",
+      "metadata": {
+        "title": "Ungarn \u2014 Betalingsbalance: N\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Ungarns betalingsbalance over en 10-\u00e5rig periode. Viser \u00e6ndringer i landets eksterne position og handelsbalance over tid. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}
