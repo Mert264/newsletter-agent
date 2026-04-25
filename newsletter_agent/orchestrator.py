@@ -292,6 +292,8 @@ WORLDBANK CHART RULES:
          labels (e.g. ["BNP-vækst (%)", "Inflation, CPI (%)", "Arbejdsløshed (%)",
          "Offentlig gæld (% af BNP)", "Betalingsbalance (% af BNP)"]).
          Set col_before="For 10 år siden", col_after="Senest tilgængelige".
+         Set y_label="%" — all core worldbank indicators are in %, so changes MUST be
+         shown as pp (percentage points), never as relative %. This is REQUIRED.
          Title: "<Country> — Nøgletal".
     Total: 6 charts (or 5 if Offentlig gæld omitted: 4 Type A + 1 Type D).
   - For peer comparison (2 countries): include both ISO-3 countries as separate
