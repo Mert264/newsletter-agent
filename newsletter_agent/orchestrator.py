@@ -301,6 +301,10 @@ WORLDBANK CHART RULES:
       {"ticker": "NY.GDP.MKTP.KD.ZG", "country": "DNK", "label": "Danmark — BNP-vækst", ...}
       {"ticker": "NY.GDP.MKTP.KD.ZG", "country": "SWE", "label": "Sverige — BNP-vækst", ...}
   - For Type D companion tables: set col_before="For 10 år siden", col_after="Senest tilgængelige"
+  - CRITICAL — Type D y_label for worldbank: ALWAYS set y_label="%" on every worldbank Type D
+    table (companion or combined). All core indicators are in %, so the Ændring column must
+    show pp (e.g. "-3.77 pp"), never relative % (e.g. "-87.1%"). This applies globally to
+    every country — including countries where Offentlig gæld exceeds 100% of GDP.
 
 WORLDBANK — SINGLE-COUNTRY RULE (CRITICAL):
   When a brief asks for any single country's macroeconomic profile — including EU member states
