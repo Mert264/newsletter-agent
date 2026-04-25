@@ -278,24 +278,26 @@ WORLDBANK CHART RULES:
   - period_days is IGNORED by this specialist — use years instead
   - Default chart type: Type A (time series) with companion Type D table
   - SINGLE-COUNTRY LAYOUT (mandatory): For any single-country macroeconomic profile,
-    generate one standalone Type A per core indicator, then ONE combined Type D nøgletal
-    table at the end listing ALL available indicators. Do NOT create a companion Type D
-    per individual indicator — the combined table replaces all of them.
-    Produce charts in this exact order:
-      1. Combined nøgletal — ONE Type D table FIRST, series_labels listing ALL available
-         indicator labels (e.g. ["BNP-vækst (%)", "Inflation, CPI (%)", "Arbejdsløshed (%)",
-         "Offentlig gæld (% af BNP)", "Betalingsbalance (% af BNP)"]).
-         Set col_before="For 10 år siden", col_after="Senest tilgængelige".
-         Set y_label="%" — all core worldbank indicators are in %, so changes MUST be
-         shown as pp (percentage points), never as relative %. This is REQUIRED.
-         Title: "<Country> — Nøgletal".
-      2. BNP-vækst — Type A (standalone, series_labels: ["BNP-vækst (%)"])
-      3. Inflation, CPI — Type A (standalone, series_labels: ["Inflation, CPI (%)"])
-      4. Arbejdsløshed — Type A (standalone, series_labels: ["Arbejdsløshed (%)"])
-      5. Offentlig gæld — Type A (standalone, series_labels: ["Offentlig gæld (% af BNP)"])
-         Skip this chart entirely if the country has a known data gap.
-      6. Betalingsbalance — Type A (standalone, series_labels: ["Betalingsbalance (% af BNP)"])
-    Total: 6 charts (or 5 if Offentlig gæld omitted: 1 Type D + 4 Type A).
+    produce charts in this exact order (the combined overview table appears second so it
+    renders in the right column next to the BNP-vækst chart in the 2-column UI grid):
+      1. BNP-vækst — Type A (series_labels: ["BNP-vækst (%)"])
+      2. Combined nøgletal overview — ONE Type D (series_labels: ALL available indicators,
+         title: "<Country> — Nøgletal", y_label="%", col_before per TIMELINE rule below,
+         col_after="Senest tilgængelige"). This is the right-column overview.
+      3. Inflation, CPI — Type A (series_labels: ["Inflation, CPI (%)"])
+      4. Inflation companion — Type D (series_labels: ["Inflation, CPI (%)"], y_label="%",
+         col_before per TIMELINE rule, col_after="Senest tilgængelige")
+      5. Arbejdsløshed — Type A (series_labels: ["Arbejdsløshed (%)"])
+      6. Arbejdsløshed companion — Type D (series_labels: ["Arbejdsløshed (%)"], y_label="%",
+         col_before per TIMELINE rule, col_after="Senest tilgængelige")
+      7. Offentlig gæld — Type A (series_labels: ["Offentlig gæld (% af BNP)"])
+         SKIP items 7 and 8 entirely if the country has a known data gap.
+      8. Offentlig gæld companion — Type D (series_labels: ["Offentlig gæld (% af BNP)"],
+         y_label="%", col_before per TIMELINE rule, col_after="Senest tilgængelige")
+      9. Betalingsbalance — Type A (series_labels: ["Betalingsbalance (% af BNP)"])
+     10. Betalingsbalance companion — Type D (series_labels: ["Betalingsbalance (% af BNP)"],
+         y_label="%", col_before per TIMELINE rule, col_after="Senest tilgængelige")
+    Total: 10 charts (or 8 if Offentlig gæld omitted).
   - For peer comparison (2 countries): include both ISO-3 countries as separate
     series entries with the same indicator code, e.g.:
       {"ticker": "NY.GDP.MKTP.KD.ZG", "country": "DNK", "label": "Danmark — BNP-vækst", ...}
