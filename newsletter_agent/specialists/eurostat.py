@@ -12,12 +12,20 @@ Supported source types:
 import requests
 import pandas as pd
 from datetime import date
+from newsletter_agent.cache import get as cache_get, put as cache_put
 
 _BASE = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data"
+_EUROSTAT_TTL = 24 * 3600  # 24 hours — Eurostat publishes monthly/annually
 
 
 def _eurostat_get(dataset: str, params: dict):
-    """Call Eurostat JSON API. Returns raw JSON response dict or None on failure."""
+    """Call Eurostat JSON API with 24h cache. Returns raw JSON response dict or None on failure."""
+    cache_key_params = {**params, "_dataset": dataset}
+    cached = cache_get("eurostat", _EUROSTAT_TTL, **cache_key_params)
+    if cached is not None:
+        print(f"    [eurostat] Cache hit: {dataset}")
+        return cached
+
     try:
         resp = requests.get(
             f"{_BASE}/{dataset}",
@@ -25,7 +33,9 @@ def _eurostat_get(dataset: str, params: dict):
             timeout=30,
         )
         resp.raise_for_status()
-        return resp.json()
+        result = resp.json()
+        cache_put("eurostat", result, **cache_key_params)
+        return result
     except Exception as e:
         print(f"    [eurostat] Failed to fetch dataset '{dataset}': {e}")
         return None
