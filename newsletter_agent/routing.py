@@ -65,7 +65,14 @@ ROUTING_RULES = [
         lambda b: _COUNTRY_ECON_KW.search(b) and not _EU.search(b) and not _US.search(b),
         "For landets økonomi: brug specialist='worldbank'. "
         "Oversæt landets navn til ISO-3-kode. Brug y_label='%', years=20. "
-        "Inkludér alle 5 kernindikatorer for enkelt-lande-forespørgsler.",
+        "ENKELT-LAND OBLIGATORISK LAYOUT (10 charts, eller 8 for CHN/JPN/SAU/LBY/ARE/KWT/QAT): "
+        "Producér ALLE fem indikatorer som SEPARATE charts — kombiner ALDRIG to indikatorer på én Type A. "
+        "Rækkefølge: (1) BNP-vækst A, (2) Kombineret nøgletal D (alle indikatorer), "
+        "(3) Inflation A, (4) Inflation D companion, (5) Arbejdsløshed A, (6) Arbejdsløshed D companion, "
+        "(7) Offentlig gæld A, (8) Offentlig gæld D companion (skip for data-gap lande), "
+        "(9) Betalingsbalance A, (10) Betalingsbalance D companion. "
+        "TIMELINE-reglen ændrer KUN years og before_date — IKKE antallet af charts. "
+        "Antallet er altid 10 (eller 8) uanset period_days.",
     ),
 ]
 

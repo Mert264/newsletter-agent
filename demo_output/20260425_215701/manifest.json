@@ -1,0 +1,66 @@
+{
+  "brief": "Kinas Makroprofil",
+  "date": "2026-04-25",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215701/figure_00.png",
+      "metadata": {
+        "title": "Kina \u2014 BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Kinas \u00e5rlige reale BNP-v\u00e6kst i procent over de seneste 20 \u00e5r. Viser den strukturelle afmatning fra tocifrede v\u00e6kstrater i begyndelsen af 2000'erne til mere moderate niveauer i dag. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215701/figure_01.png",
+      "metadata": {
+        "title": "Kina \u2014 BNP-v\u00e6kst: n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Kinas BNP-v\u00e6kst med sammenligning mellem niveauet for 10 \u00e5r siden og den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215701/figure_02.png",
+      "metadata": {
+        "title": "Kina \u2014 Inflation, arbejdsl\u00f8shed og betalingsbalance",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Tre centrale makroindikatorer for Kina over de seneste 20 \u00e5r: forbrugerprisindflation, arbejdsl\u00f8shedsprocent og betalingsbalance som andel af BNP. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)",
+          "Betalingsbalance (% af BNP)",
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215701/figure_03.png",
+      "metadata": {
+        "title": "Kina \u2014 Makroprofil: n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Samlet snapshot af Kinas makro\u00f8konomiske profil med inflation, arbejdsl\u00f8shed, betalingsbalance og offentlig g\u00e6ld. Sammenligner niveauet for 10 \u00e5r siden med den seneste tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)",
+          "Betalingsbalance (% af BNP)",
+          "Inflation, CPI (%)"
+        ]
+      }
+    }
+  ]
+}

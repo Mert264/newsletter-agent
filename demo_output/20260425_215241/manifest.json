@@ -1,0 +1,131 @@
+{
+  "brief": "Kinas Makroprofil",
+  "date": "2026-04-25",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215241/figure_00.png",
+      "metadata": {
+        "title": "Kina \u2014 BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Kinas \u00e5rlige reale BNP-v\u00e6kst over de seneste 20 \u00e5r. V\u00e6ksten er faldet markant fra tocifrede niveauer i 00'erne til et mere moderat niveau de seneste \u00e5r som f\u00f8lge af strukturelle omstillinger og demografiske udfordringer. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215241/figure_01.png",
+      "metadata": {
+        "title": "Kina \u2014 BNP-v\u00e6kst, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Kinas BNP-v\u00e6kst mellem for 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215241/figure_02.png",
+      "metadata": {
+        "title": "Kina \u2014 Inflation, CPI",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Kinas \u00e5rlige forbrugerprisinflation over de seneste 20 \u00e5r. Kina har i perioder k\u00e6mpet med deflationspres, s\u00e6rligt i k\u00f8lvandet p\u00e5 den indenlandske eftersp\u00f8rgselssvaghed efter covid-19. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215241/figure_03.png",
+      "metadata": {
+        "title": "Kina \u2014 Inflation, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Kinas CPI-inflation mellem for 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215241/figure_04.png",
+      "metadata": {
+        "title": "Kina \u2014 Arbejdsl\u00f8shed",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Kinas officielle arbejdsl\u00f8shedsrate over de seneste 20 \u00e5r. Den officielle ledighed afspejler prim\u00e6rt bybefolkningen og undervurderer formentlig den reelle ledighed i landets samlede arbejdsstyrke. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215241/figure_05.png",
+      "metadata": {
+        "title": "Kina \u2014 Arbejdsl\u00f8shed, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Kinas arbejdsl\u00f8shed mellem for 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215241/figure_07.png",
+      "metadata": {
+        "title": "Kina \u2014 Offentlig g\u00e6ld, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Kinas offentlige g\u00e6ld som andel af BNP mellem for 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [],
+        "reviewer_flag": "Region labels are empty for a snapshot table about China's public debt \u2014 the table should contain at least one data series or row label identifying the metric/time periods being compared."
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215241/figure_08.png",
+      "metadata": {
+        "title": "Kina \u2014 Betalingsbalance (% af BNP)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Kinas l\u00f8bende betalingsbalance som andel af BNP over de seneste 20 \u00e5r. Overskuddet er faldet markant siden de store eksportdrevne overskud i 00'erne, men Kina opretholder fortsat en positiv nettoeksportposition. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215241/figure_09.png",
+      "metadata": {
+        "title": "Kina \u2014 Betalingsbalance, n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Sammenligning af Kinas betalingsbalance som andel af BNP mellem for 10 \u00e5r siden og det senest tilg\u00e6ngelige \u00e5r. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

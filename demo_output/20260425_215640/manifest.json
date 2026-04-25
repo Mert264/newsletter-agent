@@ -1,0 +1,65 @@
+{
+  "brief": "Ungarns \u00d8konomi",
+  "date": "2026-04-25",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215640/figure_00.png",
+      "metadata": {
+        "title": "Ungarns BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig realv\u00e6kst i BNP for Ungarn over de seneste 20 \u00e5r. Viser konjunkturudviklingen inklusiv finanskrisen, COVID-19-nedgangen og den efterf\u00f8lgende genopretning. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215640/figure_01.png",
+      "metadata": {
+        "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns BNP-v\u00e6kst \u2014 sammenligner niveauet for ca. 10 \u00e5r siden med den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215640/figure_02.png",
+      "metadata": {
+        "title": "Ungarns inflation (CPI)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig forbrugerprisindflation i Ungarn over de seneste 20 \u00e5r. Ungarn oplevede markant h\u00f8j inflation i 2022\u20132023, der toppede som en af de h\u00f8jeste i EU. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_215640/figure_03.png",
+      "metadata": {
+        "title": "Inflation \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Samlet overblik over Ungarns vigtigste makro\u00f8konomiske n\u00f8gletal \u2014 inflation, arbejdsl\u00f8shed, offentlig g\u00e6ld og betalingsbalance. Sammenligner situationen for ca. 10 \u00e5r siden med den senest tilg\u00e6ngelige opg\u00f8relse. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)",
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Inflation, CPI (%)",
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

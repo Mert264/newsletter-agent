@@ -7,40 +7,80 @@
       {
         "ticker": "NY.GDP.MKTP.KD.ZG",
         "source": "worldbank",
-        "label": "BNP-v\u00e6kst (%)",
-        "country": "HUN",
+        "label": "Danmark \u2014 BNP-v\u00e6kst",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst",
+        "country": "SWE",
         "years": 20,
         "unit": "%"
       },
       {
         "ticker": "FP.CPI.TOTL.ZG",
         "source": "worldbank",
-        "label": "Inflation, CPI (%)",
-        "country": "HUN",
+        "label": "Danmark \u2014 Inflation",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation",
+        "country": "SWE",
         "years": 20,
         "unit": "%"
       },
       {
         "ticker": "SL.UEM.TOTL.ZS",
         "source": "worldbank",
-        "label": "Arbejdsl\u00f8shed (%)",
-        "country": "HUN",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed",
+        "country": "SWE",
         "years": 20,
         "unit": "%"
       },
       {
         "ticker": "GC.DOD.TOTL.GD.ZS",
         "source": "worldbank",
-        "label": "Offentlig g\u00e6ld (% af BNP)",
-        "country": "HUN",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld",
+        "country": "SWE",
         "years": 20,
         "unit": "%"
       },
       {
         "ticker": "BN.CAB.XOKA.GD.ZS",
         "source": "worldbank",
-        "label": "Betalingsbalance (% af BNP)",
-        "country": "HUN",
+        "label": "Danmark \u2014 Betalingsbalance",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance",
+        "country": "SWE",
         "years": 20,
         "unit": "%"
       }
@@ -48,58 +88,153 @@
     "charts": [
       {
         "type": "A",
-        "title": "Ungarn \u2014 BNP-v\u00e6kst (%, realt)",
+        "title": "BNP-v\u00e6kst \u2014 Danmark vs. Sverige",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 2555,
+        "period_days": 730,
+        "years": 20,
         "series_labels": [
-          "BNP-v\u00e6kst (%)"
+          "Danmark \u2014 BNP-v\u00e6kst",
+          "Sverige \u2014 BNP-v\u00e6kst"
         ],
-        "note": "Ungarns \u00e5rlige reale BNP-v\u00e6kst de seneste 20 \u00e5r. V\u00e6ksten var kraftig i 2000'erne, faldt markant under finanskrisen i 2009 og oplevede igen et stort dyk under COVID-19 i 2020."
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken baseret p\u00e5 faste priser i lokal valuta."
       },
       {
         "type": "D",
-        "title": "Ungarn \u2014 BNP-v\u00e6kst: n\u00f8gletal",
+        "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal, Danmark vs. Sverige",
         "x_label": "",
         "y_label": "%",
-        "period_days": 2555,
+        "period_days": 730,
+        "years": 20,
         "series_labels": [
-          "BNP-v\u00e6kst (%)"
+          "Danmark \u2014 BNP-v\u00e6kst",
+          "Sverige \u2014 BNP-v\u00e6kst"
         ],
-        "before_date": "2015-01-01",
+        "before_date": "2014-01-01",
         "after_date": "latest",
         "col_before": "For 10 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Ungarns BNP-v\u00e6kstrate sammenlignet med niveauet for ca. 10 \u00e5r siden og den senest tilg\u00e6ngelige observation."
+        "note": "Snapshot af real BNP-v\u00e6kst for Danmark og Sverige. Viser seneste tilg\u00e6ngelige v\u00e6rdi samt niveauet for ca. 10 \u00e5r siden."
       },
       {
         "type": "A",
-        "title": "Ungarn \u2014 Inflation, CPI (%)",
+        "title": "Inflation (CPI) \u2014 Danmark vs. Sverige",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 2555,
+        "period_days": 730,
+        "years": 20,
         "series_labels": [
-          "Inflation, CPI (%)"
+          "Danmark \u2014 Inflation",
+          "Sverige \u2014 Inflation"
         ],
-        "note": "Ungarns \u00e5rlige forbrugerprisinflation (CPI) de seneste 20 \u00e5r. Inflationen steg kraftigt i 2022\u20132023 som f\u00f8lge af energikrisen og globale forsyningsk\u00e6deproblemer, og var blandt de h\u00f8jeste i EU."
+        "note": "\u00c5rlig forbrugerprisinflation (CPI) for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken."
       },
       {
         "type": "D",
-        "title": "Ungarn \u2014 Inflation, arbejdsl\u00f8shed, g\u00e6ld og betalingsbalance: n\u00f8gletal",
+        "title": "Inflation \u2014 n\u00f8gletal, Danmark vs. Sverige",
         "x_label": "",
         "y_label": "%",
-        "period_days": 2555,
+        "period_days": 730,
+        "years": 20,
         "series_labels": [
-          "Inflation, CPI (%)",
-          "Arbejdsl\u00f8shed (%)",
-          "Offentlig g\u00e6ld (% af BNP)",
-          "Betalingsbalance (% af BNP)"
+          "Danmark \u2014 Inflation",
+          "Sverige \u2014 Inflation"
         ],
-        "before_date": "2015-01-01",
+        "before_date": "2014-01-01",
         "after_date": "latest",
         "col_before": "For 10 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Ungarns n\u00f8gleindikatorer \u2014 inflation, arbejdsl\u00f8shed, offentlig g\u00e6ld og betalingsbalance \u2014 sammenlignet med niveauet for ca. 10 \u00e5r siden og den senest tilg\u00e6ngelige observation."
+        "note": "Snapshot af forbrugerprisinflation for Danmark og Sverige. Viser seneste tilg\u00e6ngelige v\u00e6rdi samt niveauet for ca. 10 \u00e5r siden."
+      },
+      {
+        "type": "A",
+        "title": "Arbejdsl\u00f8shed \u2014 Danmark vs. Sverige",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 730,
+        "years": 20,
+        "series_labels": [
+          "Danmark \u2014 Arbejdsl\u00f8shed",
+          "Sverige \u2014 Arbejdsl\u00f8shed"
+        ],
+        "note": "Samlet arbejdsl\u00f8shedsprocent for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken (ILO-definition)."
+      },
+      {
+        "type": "D",
+        "title": "Arbejdsl\u00f8shed \u2014 n\u00f8gletal, Danmark vs. Sverige",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 730,
+        "years": 20,
+        "series_labels": [
+          "Danmark \u2014 Arbejdsl\u00f8shed",
+          "Sverige \u2014 Arbejdsl\u00f8shed"
+        ],
+        "before_date": "2014-01-01",
+        "after_date": "latest",
+        "col_before": "For 10 \u00e5r siden",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af arbejdsl\u00f8shedsprocenten for Danmark og Sverige. Viser seneste tilg\u00e6ngelige v\u00e6rdi samt niveauet for ca. 10 \u00e5r siden."
+      },
+      {
+        "type": "A",
+        "title": "Offentlig g\u00e6ld (% af BNP) \u2014 Danmark vs. Sverige",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 730,
+        "years": 20,
+        "series_labels": [
+          "Danmark \u2014 Offentlig g\u00e6ld",
+          "Sverige \u2014 Offentlig g\u00e6ld"
+        ],
+        "note": "Offentlig bruttog\u00e6ld som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken."
+      },
+      {
+        "type": "D",
+        "title": "Offentlig g\u00e6ld \u2014 n\u00f8gletal, Danmark vs. Sverige",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 730,
+        "years": 20,
+        "series_labels": [
+          "Danmark \u2014 Offentlig g\u00e6ld",
+          "Sverige \u2014 Offentlig g\u00e6ld"
+        ],
+        "before_date": "2014-01-01",
+        "after_date": "latest",
+        "col_before": "For 10 \u00e5r siden",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af offentlig g\u00e6ld som andel af BNP for Danmark og Sverige. Viser seneste tilg\u00e6ngelige v\u00e6rdi samt niveauet for ca. 10 \u00e5r siden."
+      },
+      {
+        "type": "A",
+        "title": "Betalingsbalance (% af BNP) \u2014 Danmark vs. Sverige",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 730,
+        "years": 20,
+        "series_labels": [
+          "Danmark \u2014 Betalingsbalance",
+          "Sverige \u2014 Betalingsbalance"
+        ],
+        "note": "L\u00f8bende poster p\u00e5 betalingsbalancen som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Et positivt tal indikerer et overskud over for udlandet. Data fra Verdensbanken."
+      },
+      {
+        "type": "D",
+        "title": "Betalingsbalance \u2014 n\u00f8gletal, Danmark vs. Sverige",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 730,
+        "years": 20,
+        "series_labels": [
+          "Danmark \u2014 Betalingsbalance",
+          "Sverige \u2014 Betalingsbalance"
+        ],
+        "before_date": "2014-01-01",
+        "after_date": "latest",
+        "col_before": "For 10 \u00e5r siden",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af betalingsbalancens l\u00f8bende poster som andel af BNP for Danmark og Sverige. Viser seneste tilg\u00e6ngelige v\u00e6rdi samt niveauet for ca. 10 \u00e5r siden."
       }
     ]
   }
