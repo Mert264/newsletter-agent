@@ -829,6 +829,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
     if routing_hint:
         print(f"      [routing] Hint injected: {routing_hint.strip()[:80]}...")
     manifest = build_task_manifest(brief, preferred_types=preferred_types, routing_hint=routing_hint, period_days=period_days, model=model)
+    manifest = _enforce_worldbank_single_country_layout(manifest, period_days=period_days)
     specialists = manifest.get("specialists", [])
     print(f"      Specialists activated: {', '.join(specialists)}")
 
