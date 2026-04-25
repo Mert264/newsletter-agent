@@ -1,6 +1,7 @@
 # newsletter_agent/pipeline.py
 """Main pipeline orchestration: brief → manifest → specialists (parallel) → normalize → render → review → output."""
 import os
+import re
 import json
 import pandas as pd
 from datetime import date
