@@ -329,6 +329,7 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
 
     # ── Filter to series for this chart ──────────────────────────────────────
     series_labels = chart_spec.get("series_labels")
+    _unresolved: list = []
     if series_labels:
         dfs = {k: v for k, v in dfs.items() if k in series_labels}
         missing = [lbl for lbl in series_labels if lbl not in specialist_result["dataframes"]]
@@ -345,9 +346,15 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
             if still_missing:
                 print(f"    [warn] series_labels mismatch — missing even after global lookup: {still_missing}")
                 print(f"           Available globally: {list(global_pool['dataframes'].keys())}")
+                _unresolved = still_missing
         elif missing:
             print(f"    [warn] series_labels mismatch — these labels were requested but not fetched: {missing}")
             print(f"           Available labels: {list(specialist_result['dataframes'].keys())}")
+            _unresolved = missing
+
+    # Gracefully patch title/note for data gaps so the reviewer sees a consistent chart
+    if _unresolved:
+        chart_spec = _patch_chart_spec_for_missing(chart_spec, _unresolved)
 
     kilde_str = " og ".join(dict.fromkeys(kilde_sources))
 
