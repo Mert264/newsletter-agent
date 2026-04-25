@@ -302,7 +302,7 @@ WORLDBANK CHART RULES:
     series entries with the same indicator code, e.g.:
       {"ticker": "NY.GDP.MKTP.KD.ZG", "country": "DNK", "label": "Danmark — BNP-vækst", ...}
       {"ticker": "NY.GDP.MKTP.KD.ZG", "country": "SWE", "label": "Sverige — BNP-vækst", ...}
-  - For Type D companion tables: set col_before="For 10 år siden", col_after="Senest tilgængelige"
+  - For Type D companion tables: col_before and col_after are governed by the TIMELINE rule below.
   - CRITICAL — Type D y_label for worldbank: ALWAYS set y_label="%" on every worldbank Type D
     table (companion or combined). All core indicators are in %, so the Ændring column must
     show pp (e.g. "-3.77 pp"), never relative % (e.g. "-87.1%"). This applies globally to
