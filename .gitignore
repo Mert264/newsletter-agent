@@ -6,3 +6,4 @@ __pycache__/
 *.log
 output/
 figures/
+.pipeline_cache/

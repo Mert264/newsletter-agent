@@ -111,7 +111,9 @@ def test_network_error_returns_empty_result():
         ],
         "charts": [{"type": "A", "period_days": 3650}],
     }
+    # Patch both the network call AND the cache so the error path is exercised
     with patch("newsletter_agent.specialists.worldbank.requests.get",
-               side_effect=req.RequestException("timeout")):
+               side_effect=req.RequestException("timeout")), \
+         patch("newsletter_agent.specialists.worldbank.cache_get", return_value=None):
         result = fetch_worldbank(task)
     assert result["dataframes"] == {}
