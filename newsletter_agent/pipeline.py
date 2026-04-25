@@ -285,6 +285,41 @@ def _build_event_impact_table(merged: pd.DataFrame, events: list,
 
 
 
+def _patch_chart_spec_for_missing(chart_spec: dict, still_missing: list) -> dict:
+    """Update title and note when some requested series have no data.
+    Removes missing country names from the chart title so the renderer and
+    reviewer see a consistent chart (title matches the data actually present).
+    Works for both single-indicator missing and whole-country missing cases."""
+    new_spec = dict(chart_spec)
+
+    # Extract the country/entity prefix from labels formatted as "Country — Indicator"
+    missing_entities: list[str] = []
+    for ml in still_missing:
+        if " — " in ml:
+            missing_entities.append(ml.split(" — ")[0].strip())
+
+    if missing_entities:
+        title = new_spec.get("title", "")
+        for entity in missing_entities:
+            esc = re.escape(entity)
+            # "og Country" or "Country og" patterns (Danish "and")
+            title = re.sub(rf"\s+og\s+{esc}", "", title, flags=re.IGNORECASE)
+            title = re.sub(rf"\b{esc}\s+og\s+", "", title, flags=re.IGNORECASE)
+            # Comma-separated lists: ", Country" or "Country,"
+            title = re.sub(rf",?\s*{esc}\b", "", title, flags=re.IGNORECASE)
+        # Clean up stray separators and extra whitespace left after removal
+        title = re.sub(r"\s{2,}", " ", title)
+        title = re.sub(r"\s+—\s*$", "", title)   # trailing " —"
+        title = title.strip(" —,")
+        new_spec["title"] = title
+
+    missing_str = ", ".join(still_missing)
+    existing_note = new_spec.get("note", "").rstrip(". ")
+    gap_note = f"Data for {missing_str} ikke tilgængeligt via Verdensbanken."
+    new_spec["note"] = f"{existing_note} {gap_note}".strip() if existing_note else gap_note
+    return new_spec
+
+
 def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
                    global_pool: Optional[dict] = None) -> dict:
     """Render one figure from chart_spec + specialist data. Returns FigurePackage dict."""
