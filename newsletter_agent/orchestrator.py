@@ -327,7 +327,10 @@ WORLDBANK — MULTI-METRIC CHART Y-AXIS:
   Preferred approach: use separate charts per indicator rather than mixing 5 on one chart.
 
 Rules:
-- Maximum 4 charts per specialist (to accommodate Type D table companions and F+P dual output — see below).
+- Maximum 4 charts per specialist for most specialists (to accommodate Type D table companions and F+P dual output — see below).
+  EXCEPTION — worldbank single-country profile: up to 10 charts (5 Type A + 5 companion Type D, one pair per core indicator). Use the mandatory single-country layout above.
+  EXCEPTION — worldbank two-country peer comparison: up to 5 charts (4 Type A indicators + 1 combined Type D nøgletal table).
+  Both worldbank exceptions override the standard 4-chart limit. All other specialists remain at 4 charts max.
 - Only activate specialists whose data is genuinely relevant to the brief.
 - REQUIRED: Every chart spec MUST include a "series_labels" array listing the exact label strings
   (from the series list above) that should appear on that chart. Each label must appear in exactly
