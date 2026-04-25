@@ -277,6 +277,16 @@ WORLDBANK CHART RULES:
   - ALWAYS set years=20 unless user specifies a different time horizon (max 30)
   - period_days is IGNORED by this specialist — use years instead
   - Default chart type: Type A (time series) with companion Type D table
+  - SINGLE-COUNTRY LAYOUT (mandatory): For any single-country macroeconomic profile,
+    generate one Type A + one companion Type D per core indicator. Do NOT combine
+    multiple indicators into a single Type D — each indicator gets its own chart+table pair.
+    Produce charts in this order:
+      1. BNP-vækst — Type A + companion Type D
+      2. Inflation, CPI — Type A + companion Type D
+      3. Arbejdsløshed — Type A + companion Type D
+      4. Offentlig gæld — Type A + companion Type D  (skip entirely if country has known data gap)
+      5. Betalingsbalance — Type A + companion Type D
+    Total: 10 charts (or 8 if Offentlig gæld is omitted due to a data gap).
   - For peer comparison (2 countries): include both ISO-3 countries as separate
     series entries with the same indicator code, e.g.:
       {"ticker": "NY.GDP.MKTP.KD.ZG", "country": "DNK", "label": "Danmark — BNP-vækst", ...}

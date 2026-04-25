@@ -1,54 +1,46 @@
 {
   "specialists": [
-    "eurostat",
     "worldbank"
   ],
-  "eurostat": {
-    "series": [
-      {
-        "ticker": "eu_gdp_growth",
-        "source": "eurostat_ts",
-        "label": "EU27 BNP-v\u00e6kst",
-        "region": "EU27",
-        "unit": "%"
-      }
-    ],
-    "charts": [
-      {
-        "type": "A",
-        "title": "EU27 real BNP-v\u00e6kst de seneste 20 \u00e5r",
-        "x_label": "Dato",
-        "y_label": "%",
-        "period_days": 7360,
-        "series_labels": [
-          "EU27 BNP-v\u00e6kst"
-        ],
-        "note": "\u00c5rlig real BNP-v\u00e6kst for EU27 over de seneste 20 \u00e5r. Negative v\u00e6rdier afspejler bl.a. finanskrisen i 2009 og COVID-19-nedlukningen i 2020."
-      },
-      {
-        "type": "D",
-        "title": "EU27 BNP-v\u00e6kst \u2014 n\u00f8gletal",
-        "x_label": "",
-        "y_label": "%",
-        "period_days": 7360,
-        "series_labels": [
-          "EU27 BNP-v\u00e6kst"
-        ],
-        "before_date": "2014-01-01",
-        "after_date": "latest",
-        "col_before": "For 10 \u00e5r siden",
-        "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af EU27's reale BNP-v\u00e6kst med sammenligning af v\u00e6rdier fra for 10 \u00e5r siden og den senest tilg\u00e6ngelige observation."
-      }
-    ]
-  },
   "worldbank": {
     "series": [
       {
         "ticker": "NY.GDP.MKTP.KD.ZG",
         "source": "worldbank",
-        "label": "Kinas BNP-v\u00e6kst",
-        "country": "CHN",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Offentlig g\u00e6ld (% af BNP)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Betalingsbalance (% af BNP)",
+        "country": "HUN",
         "years": 20,
         "unit": "%"
       }
@@ -56,29 +48,58 @@
     "charts": [
       {
         "type": "A",
-        "title": "Kinas real BNP-v\u00e6kst de seneste 20 \u00e5r",
+        "title": "Ungarn \u2014 BNP-v\u00e6kst (%, realt)",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 7360,
+        "period_days": 2555,
         "series_labels": [
-          "Kinas BNP-v\u00e6kst"
+          "BNP-v\u00e6kst (%)"
         ],
-        "note": "\u00c5rlig real BNP-v\u00e6kst for Kina over de seneste 20 \u00e5r baseret p\u00e5 Verdensbankens data. V\u00e6ksten er gradvist aftaget fra tocifrede niveauer i 00'erne til et mere moderat niveau i dag."
+        "note": "Ungarns \u00e5rlige reale BNP-v\u00e6kst de seneste 20 \u00e5r. V\u00e6ksten var kraftig i 2000'erne, faldt markant under finanskrisen i 2009 og oplevede igen et stort dyk under COVID-19 i 2020."
       },
       {
         "type": "D",
-        "title": "Kinas BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "title": "Ungarn \u2014 BNP-v\u00e6kst: n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
-        "period_days": 7360,
+        "period_days": 2555,
         "series_labels": [
-          "Kinas BNP-v\u00e6kst"
+          "BNP-v\u00e6kst (%)"
         ],
-        "before_date": "2014-01-01",
+        "before_date": "2015-01-01",
         "after_date": "latest",
         "col_before": "For 10 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Kinas reale BNP-v\u00e6kst med sammenligning af v\u00e6rdier fra for 10 \u00e5r siden og den senest tilg\u00e6ngelige observation fra Verdensbanken."
+        "note": "Snapshot af Ungarns BNP-v\u00e6kstrate sammenlignet med niveauet for ca. 10 \u00e5r siden og den senest tilg\u00e6ngelige observation."
+      },
+      {
+        "type": "A",
+        "title": "Ungarn \u2014 Inflation, CPI (%)",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 2555,
+        "series_labels": [
+          "Inflation, CPI (%)"
+        ],
+        "note": "Ungarns \u00e5rlige forbrugerprisinflation (CPI) de seneste 20 \u00e5r. Inflationen steg kraftigt i 2022\u20132023 som f\u00f8lge af energikrisen og globale forsyningsk\u00e6deproblemer, og var blandt de h\u00f8jeste i EU."
+      },
+      {
+        "type": "D",
+        "title": "Ungarn \u2014 Inflation, arbejdsl\u00f8shed, g\u00e6ld og betalingsbalance: n\u00f8gletal",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 2555,
+        "series_labels": [
+          "Inflation, CPI (%)",
+          "Arbejdsl\u00f8shed (%)",
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Betalingsbalance (% af BNP)"
+        ],
+        "before_date": "2015-01-01",
+        "after_date": "latest",
+        "col_before": "For 10 \u00e5r siden",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af Ungarns n\u00f8gleindikatorer \u2014 inflation, arbejdsl\u00f8shed, offentlig g\u00e6ld og betalingsbalance \u2014 sammenlignet med niveauet for ca. 10 \u00e5r siden og den senest tilg\u00e6ngelige observation."
       }
     ]
   }

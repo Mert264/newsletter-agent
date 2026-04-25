@@ -1,0 +1,62 @@
+{
+  "brief": "EU og Kinas BNP-v\u00e6kst de seneste 20 \u00e5r",
+  "date": "2026-04-25",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_140546/figure_00.png",
+      "metadata": {
+        "title": "EU27 BNP-v\u00e6kst de seneste 20 \u00e5r",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for EU27 over de seneste 20 \u00e5r. Negative v\u00e6rdier i 2009 og 2020 afspejler henholdsvis den globale finanskrise og COVID-19-pandemiens indvirkning p\u00e5 europ\u00e6isk \u00f8konomi.",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU27 BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_140546/figure_01.png",
+      "metadata": {
+        "title": "EU27 BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af EU27's \u00e5rlige BNP-v\u00e6kst. Sammenligningen illustrerer udviklingen i europ\u00e6isk v\u00e6kst over det seneste \u00e5rti.",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU27 BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_140546/figure_02.png",
+      "metadata": {
+        "title": "Kinas BNP-v\u00e6kst de seneste 20 \u00e5r",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Kina over de seneste 20 \u00e5r baseret p\u00e5 Verdensbankens data. V\u00e6kstraten har v\u00e6ret markant aftagende siden de tocifrede v\u00e6kst\u00e5r i begyndelsen af perioden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Kinas BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_140546/figure_03.png",
+      "metadata": {
+        "title": "Kinas BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Kinas \u00e5rlige BNP-v\u00e6kst. Sammenligningen viser den strukturelle afmatning i kinesisk v\u00e6kst over det seneste \u00e5rti. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Kinas BNP-v\u00e6kst"
+        ]
+      }
+    }
+  ]
+}

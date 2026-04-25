@@ -1,0 +1,114 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_gdp_growth",
+        "source": "eurostat_ts",
+        "label": "EU27 BNP-v\u00e6kst",
+        "region": "EU27",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "EU27 BNP-v\u00e6kst de seneste 20 \u00e5r",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 7360,
+      "series_labels": [
+        "EU27 BNP-v\u00e6kst"
+      ],
+      "note": "\u00c5rlig real BNP-v\u00e6kst for EU27 over de seneste 20 \u00e5r. Negative v\u00e6rdier i 2009 og 2020 afspejler henholdsvis den globale finanskrise og COVID-19-pandemiens indvirkning p\u00e5 europ\u00e6isk \u00f8konomi."
+    },
+    "brief": "EU og Kinas BNP-v\u00e6kst de seneste 20 \u00e5r"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "eurostat",
+    "series_specs": [
+      {
+        "ticker": "eu_gdp_growth",
+        "source": "eurostat_ts",
+        "label": "EU27 BNP-v\u00e6kst",
+        "region": "EU27",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "EU27 BNP-v\u00e6kst \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 7360,
+      "series_labels": [
+        "EU27 BNP-v\u00e6kst"
+      ],
+      "before_date": "2014-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af EU27's \u00e5rlige BNP-v\u00e6kst. Sammenligningen illustrerer udviklingen i europ\u00e6isk v\u00e6kst over det seneste \u00e5rti."
+    },
+    "brief": "EU og Kinas BNP-v\u00e6kst de seneste 20 \u00e5r"
+  },
+  {
+    "figure_id": 2,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Kinas BNP-v\u00e6kst",
+        "country": "CHN",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Kinas BNP-v\u00e6kst de seneste 20 \u00e5r",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 7360,
+      "series_labels": [
+        "Kinas BNP-v\u00e6kst"
+      ],
+      "note": "\u00c5rlig real BNP-v\u00e6kst for Kina over de seneste 20 \u00e5r baseret p\u00e5 Verdensbankens data. V\u00e6kstraten har v\u00e6ret markant aftagende siden de tocifrede v\u00e6kst\u00e5r i begyndelsen af perioden. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "EU og Kinas BNP-v\u00e6kst de seneste 20 \u00e5r"
+  },
+  {
+    "figure_id": 3,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Kinas BNP-v\u00e6kst",
+        "country": "CHN",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Kinas BNP-v\u00e6kst \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 7360,
+      "series_labels": [
+        "Kinas BNP-v\u00e6kst"
+      ],
+      "before_date": "2014-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af Kinas \u00e5rlige BNP-v\u00e6kst. Sammenligningen viser den strukturelle afmatning i kinesisk v\u00e6kst over det seneste \u00e5rti. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "EU og Kinas BNP-v\u00e6kst de seneste 20 \u00e5r"
+  }
+]
