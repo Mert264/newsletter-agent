@@ -335,7 +335,7 @@ WORLDBANK — MULTI-METRIC CHART Y-AXIS:
 
 Rules:
 - Maximum 4 charts per specialist for most specialists (to accommodate Type D table companions and F+P dual output — see below).
-  EXCEPTION — worldbank single-country profile: up to 10 charts (5 Type A + 5 companion Type D, one pair per core indicator). Use the mandatory single-country layout above.
+  EXCEPTION — worldbank single-country profile: up to 6 charts (5 standalone Type A + 1 combined Type D nøgletal table). Use the mandatory single-country layout above.
   EXCEPTION — worldbank two-country peer comparison: up to 5 charts (4 Type A indicators + 1 combined Type D nøgletal table).
   Both worldbank exceptions override the standard 4-chart limit. All other specialists remain at 4 charts max.
 - Only activate specialists whose data is genuinely relevant to the brief.
