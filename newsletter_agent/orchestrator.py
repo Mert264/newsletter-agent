@@ -307,6 +307,13 @@ WORLDBANK CHART RULES:
     table (companion or combined). All core indicators are in %, so the Ændring column must
     show pp (e.g. "-3.77 pp"), never relative % (e.g. "-87.1%"). This applies globally to
     every country — including countries where Offentlig gæld exceeds 100% of GDP.
+  - TIMELINE: When the user's PREFERRED TIME PERIOD is set (period_days), derive years for
+    ALL worldbank series entries: years = max(5, min(30, period_days // 365)).
+    Then set before_date and col_before for ALL worldbank Type D tables:
+      before_date = f"{2026 - years}-01-01"   (e.g. years=10 → "2016-01-01", years=5 → "2021-01-01")
+      col_before  = f"For {years} år siden"   (e.g. "For 10 år siden", "For 5 år siden")
+    Default when no PREFERRED TIME PERIOD: years=20, before_date="2006-01-01",
+    col_before="For 20 år siden".
 
 WORLDBANK — SINGLE-COUNTRY RULE (CRITICAL):
   When a brief asks for any single country's macroeconomic profile — including EU member states
