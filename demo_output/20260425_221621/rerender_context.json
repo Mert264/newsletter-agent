@@ -1,0 +1,248 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Offentlig g\u00e6ld (% af BNP)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Betalingsbalance (% af BNP)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Ungarns BNP-v\u00e6kst",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 1825,
+      "series_labels": [
+        "BNP-v\u00e6kst (%)"
+      ],
+      "note": "\u00c5rlig realv\u00e6kst i Ungarns bruttonationalprodukt (BNP) baseret p\u00e5 Verdensbankens data. Negative v\u00e6rdier indikerer recession, mens positive v\u00e6rdier afspejler \u00f8konomisk v\u00e6kst. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Ungarns \u00d8konomi"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Offentlig g\u00e6ld (% af BNP)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Betalingsbalance (% af BNP)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Ungarns BNP-v\u00e6kst \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 1825,
+      "series_labels": [
+        "BNP-v\u00e6kst (%)"
+      ],
+      "before_date": "2015-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af Ungarns BNP-v\u00e6kst med sammenligning af historisk og senest tilg\u00e6ngelig observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Ungarns \u00d8konomi"
+  },
+  {
+    "figure_id": 2,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Offentlig g\u00e6ld (% af BNP)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Betalingsbalance (% af BNP)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Ungarn \u2014 inflation og arbejdsl\u00f8shed",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 1825,
+      "series_labels": [
+        "Inflation, CPI (%)",
+        "Arbejdsl\u00f8shed (%)"
+      ],
+      "note": "Udviklingen i Ungarns inflation (forbrugerprisindeks, \u00e5r-til-\u00e5r) og arbejdsl\u00f8shedsprocent over de seneste \u00e5r. Ungarn oplevede markant h\u00f8j inflation i 2022\u20132023 som f\u00f8lge af energikrisen og strukturelle forhold. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Ungarns \u00d8konomi"
+  },
+  {
+    "figure_id": 3,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "BNP-v\u00e6kst (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Inflation, CPI (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Arbejdsl\u00f8shed (%)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Offentlig g\u00e6ld (% af BNP)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Betalingsbalance (% af BNP)",
+        "country": "HUN",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Ungarn \u2014 inflation og arbejdsl\u00f8shed \u2014 n\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 1825,
+      "series_labels": [
+        "Inflation, CPI (%)",
+        "Arbejdsl\u00f8shed (%)"
+      ],
+      "before_date": "2015-01-01",
+      "after_date": "latest",
+      "col_before": "For 10 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af Ungarns inflation og arbejdsl\u00f8shed med sammenligning af historisk og senest tilg\u00e6ngelig observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Ungarns \u00d8konomi"
+  }
+]

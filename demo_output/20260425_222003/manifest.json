@@ -1,0 +1,94 @@
+{
+  "brief": "Ungarns \u00d8konomi",
+  "date": "2026-04-25",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222003/figure_00.png",
+      "metadata": {
+        "title": "Ungarns BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Ungarn m\u00e5lt i procent. Serien d\u00e6kker de seneste 20 \u00e5r og viser konjunkturforl\u00f8bet inkl. finanskrise, COVID-19-chok og efterf\u00f8lgende genopretning. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222003/figure_01.png",
+      "metadata": {
+        "title": "BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns BNP-v\u00e6kst med sammenligning af niveauet for ti \u00e5r siden og den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222003/figure_02.png",
+      "metadata": {
+        "title": "Inflation og arbejdsl\u00f8shed i Ungarn",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarns \u00e5rlige CPI-inflation og arbejdsl\u00f8shedsrate over de seneste 20 \u00e5r. Ungarn oplevede en markant inflationsstigning i 2022\u20132023, en af de h\u00f8jeste i EU. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)",
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222003/figure_03.png",
+      "metadata": {
+        "title": "Inflation og arbejdsl\u00f8shed \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns inflation og arbejdsl\u00f8shed med sammenligning af niveauet for ti \u00e5r siden og den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)",
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222003/figure_04.png",
+      "metadata": {
+        "title": "Ungarns offentlige g\u00e6ld og betalingsbalance",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarns offentlige g\u00e6ld som andel af BNP samt betalingsbalancens saldo. Begge indikatorer er centrale for vurderingen af Ungarns finanspolitiske holdbarhed og eksterne balance. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222003/figure_05.png",
+      "metadata": {
+        "title": "Offentlig g\u00e6ld og betalingsbalance \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns offentlige g\u00e6ld og betalingsbalance med sammenligning af niveauet for ti \u00e5r siden og den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Offentlig g\u00e6ld (% af BNP)",
+          "Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

@@ -89,7 +89,7 @@ def _enforce_worldbank_single_country_layout(manifest: dict, period_days: int = 
     combined = any(len(c.get("series_labels", [])) > 1 for c in type_a_charts)
 
     # Check if a data-gap country still has gæld charts that will produce empty renders
-    gæld_label = label_by_ticker.get("GC.DOD.TOTL.GD.ZS", "")
+    gæld_label = next((s.get("label", "") for s in series_list if s.get("ticker") == "GC.DOD.TOTL.GD.ZS"), "")
     has_stray_gæld = skip_debt and gæld_label and any(
         gæld_label in c.get("series_labels", []) for c in current_charts
     )

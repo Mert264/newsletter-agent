@@ -1,0 +1,118 @@
+{
+  "brief": "Ungarns \u00d8konomi",
+  "date": "2026-04-25",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221642/figure_00.png",
+      "metadata": {
+        "title": "Ungarns BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig realv\u00e6kst i Ungarns bruttonationalprodukt. Data d\u00e6kker de seneste 20 \u00e5r og viser udviklingen i den ungarske \u00f8konomi inkl. opbremsninger under finanskrisen, covid-19 og energikrisen. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221642/figure_01.png",
+      "metadata": {
+        "title": "Ungarns BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns BNP-v\u00e6kst med sammenligning mellem niveauet for et \u00e5rti siden og den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221642/figure_02.png",
+      "metadata": {
+        "title": "Inflation i Ungarn (CPI)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig forbrugerprisinflation i Ungarn. Ungarn oplevede ekstraordin\u00e6rt h\u00f8j inflation i 2022-2023 som f\u00f8lge af energiprisstigninger og et svagt valutakurs. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221642/figure_03.png",
+      "metadata": {
+        "title": "Inflation i Ungarn \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns CPI-inflation med sammenligning mellem niveauet for et \u00e5rti siden og den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221642/figure_04.png",
+      "metadata": {
+        "title": "Arbejdsl\u00f8shed i Ungarn",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarnsk arbejdsl\u00f8shedsprocent if\u00f8lge Verdensbankens data. Ungarn har haft relativt lav arbejdsl\u00f8shed i store dele af 2010'erne og 2020'erne sammenlignet med EU-gennemsnittet. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221642/figure_05.png",
+      "metadata": {
+        "title": "Arbejdsl\u00f8shed i Ungarn \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns arbejdsl\u00f8shed med sammenligning mellem niveauet for et \u00e5rti siden og den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221642/figure_06.png",
+      "metadata": {
+        "title": "Ungarns offentlige g\u00e6ld (% af BNP)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Ungarns offentlige bruttog\u00e6ld som andel af BNP. Et h\u00f8jt g\u00e6ldsniveau begr\u00e6nser den finanspolitiske r\u00e5derum og er en central risikofaktor for den ungarske \u00f8konomi. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Offentlig g\u00e6ld (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221642/figure_07.png",
+      "metadata": {
+        "title": "Ungarns offentlige g\u00e6ld \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns offentlige g\u00e6ld som andel af BNP med sammenligning mellem niveauet for et \u00e5rti siden og den senest tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Offentlig g\u00e6ld (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

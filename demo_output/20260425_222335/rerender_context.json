@@ -1,0 +1,1040 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Danmark vs. Sverige \u2014 BNP-v\u00e6kst",
+      "x_label": "Dato",
+      "y_label": "%",
+      "years": 20,
+      "period_days": 7300,
+      "series_labels": [
+        "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "Sverige \u2014 BNP-v\u00e6kst (%)"
+      ],
+      "note": "\u00c5rlig real BNP-v\u00e6kst for Danmark og Sverige over de seneste 20 \u00e5r. Dataene stammer fra Verdensbanken og viser, hvordan de to nordiske nabo\u00f8konomier har udviklet sig i takt med globale konjunkturer. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Danmark vs. Sverige \u2014 \u00f8konomi"
+  },
+  {
+    "figure_id": 1,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Danmark vs. Sverige \u2014 N\u00f8gletal",
+      "x_label": "",
+      "y_label": "",
+      "years": 20,
+      "period_days": 7300,
+      "series_labels": [
+        "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "Danmark \u2014 Inflation, CPI (%)",
+        "Sverige \u2014 Inflation, CPI (%)",
+        "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "Sverige \u2014 Betalingsbalance (% af BNP)"
+      ],
+      "before_date": "2006-01-01",
+      "after_date": "latest",
+      "col_before": "For 20 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Samlet oversigt over centrale makro\u00f8konomiske n\u00f8gletal for Danmark og Sverige. \u00c6ndringer viser forskellen i procentpoint mellem den \u00e6ldste og den seneste tilg\u00e6ngelige observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Danmark vs. Sverige \u2014 \u00f8konomi"
+  },
+  {
+    "figure_id": 2,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Danmark vs. Sverige \u2014 Inflation, CPI",
+      "x_label": "Dato",
+      "y_label": "%",
+      "years": 20,
+      "period_days": 7300,
+      "series_labels": [
+        "Danmark \u2014 Inflation, CPI (%)",
+        "Sverige \u2014 Inflation, CPI (%)"
+      ],
+      "note": "\u00c5rlig forbrugerprisinflation (CPI) for Danmark og Sverige over de seneste 20 \u00e5r. Inflationsudviklingen afspejler bl.a. energiprischok, pengepolitik og indenlandsk eftersp\u00f8rgsel. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Danmark vs. Sverige \u2014 \u00f8konomi"
+  },
+  {
+    "figure_id": 3,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Danmark vs. Sverige \u2014 Inflation, CPI (tabel)",
+      "x_label": "",
+      "y_label": "",
+      "years": 20,
+      "period_days": 7300,
+      "series_labels": [
+        "Danmark \u2014 Inflation, CPI (%)",
+        "Sverige \u2014 Inflation, CPI (%)"
+      ],
+      "before_date": "2006-01-01",
+      "after_date": "latest",
+      "col_before": "For 20 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af CPI-inflation for Danmark og Sverige. \u00c6ndringen vises i procentpoint og afspejler forskellen mellem det tidlige reference\u00e5r og den seneste observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Danmark vs. Sverige \u2014 \u00f8konomi"
+  },
+  {
+    "figure_id": 4,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Danmark vs. Sverige \u2014 Arbejdsl\u00f8shed",
+      "x_label": "Dato",
+      "y_label": "%",
+      "years": 20,
+      "period_days": 7300,
+      "series_labels": [
+        "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "Sverige \u2014 Arbejdsl\u00f8shed (%)"
+      ],
+      "note": "Samlet arbejdsl\u00f8shedsprocent for Danmark og Sverige over de seneste 20 \u00e5r. Danmark og Sverige har historisk haft relativt lave arbejdsl\u00f8shedsrater sammenlignet med EU-gennemsnittet. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Danmark vs. Sverige \u2014 \u00f8konomi"
+  },
+  {
+    "figure_id": 5,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Danmark vs. Sverige \u2014 Arbejdsl\u00f8shed (tabel)",
+      "x_label": "",
+      "y_label": "",
+      "years": 20,
+      "period_days": 7300,
+      "series_labels": [
+        "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "Sverige \u2014 Arbejdsl\u00f8shed (%)"
+      ],
+      "before_date": "2006-01-01",
+      "after_date": "latest",
+      "col_before": "For 20 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af arbejdsl\u00f8shedsprocenten for Danmark og Sverige. \u00c6ndringen vises i procentpoint. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Danmark vs. Sverige \u2014 \u00f8konomi"
+  },
+  {
+    "figure_id": 6,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Danmark vs. Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "years": 20,
+      "period_days": 7300,
+      "series_labels": [
+        "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)"
+      ],
+      "note": "Offentlig bruttog\u00e6ld som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Begge lande har generelt haft lav og faldende statsg\u00e6ld sammenlignet med andre europ\u00e6iske lande. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Danmark vs. Sverige \u2014 \u00f8konomi"
+  },
+  {
+    "figure_id": 7,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Danmark vs. Sverige \u2014 Offentlig g\u00e6ld (tabel)",
+      "x_label": "",
+      "y_label": "",
+      "years": 20,
+      "period_days": 7300,
+      "series_labels": [
+        "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)"
+      ],
+      "before_date": "2006-01-01",
+      "after_date": "latest",
+      "col_before": "For 20 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af den offentlige g\u00e6ld som andel af BNP for Danmark og Sverige. \u00c6ndringen vises i procentpoint. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Danmark vs. Sverige \u2014 \u00f8konomi"
+  },
+  {
+    "figure_id": 8,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Danmark vs. Sverige \u2014 Betalingsbalance (% af BNP)",
+      "x_label": "Dato",
+      "y_label": "%",
+      "years": 20,
+      "period_days": 7300,
+      "series_labels": [
+        "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "Sverige \u2014 Betalingsbalance (% af BNP)"
+      ],
+      "note": "L\u00f8bende betalingsbalance som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Begge lande har typisk vist positive saldi, hvilket afspejler st\u00e6rke eksport\u00f8konomier og h\u00f8j privat opsparing. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Danmark vs. Sverige \u2014 \u00f8konomi"
+  },
+  {
+    "figure_id": 9,
+    "specialist": "worldbank",
+    "series_specs": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Danmark vs. Sverige \u2014 Betalingsbalance (tabel)",
+      "x_label": "",
+      "y_label": "",
+      "years": 20,
+      "period_days": 7300,
+      "series_labels": [
+        "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "Sverige \u2014 Betalingsbalance (% af BNP)"
+      ],
+      "before_date": "2006-01-01",
+      "after_date": "latest",
+      "col_before": "For 20 \u00e5r siden",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af betalingsbalancen som andel af BNP for Danmark og Sverige. \u00c6ndringen vises i procentpoint. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+      "freq": "A"
+    },
+    "brief": "Danmark vs. Sverige \u2014 \u00f8konomi"
+  }
+]

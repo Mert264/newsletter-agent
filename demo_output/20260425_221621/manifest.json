@@ -1,0 +1,64 @@
+{
+  "brief": "Ungarns \u00d8konomi",
+  "date": "2026-04-25",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221621/figure_00.png",
+      "metadata": {
+        "title": "Ungarns BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig realv\u00e6kst i Ungarns bruttonationalprodukt (BNP) baseret p\u00e5 Verdensbankens data. Negative v\u00e6rdier indikerer recession, mens positive v\u00e6rdier afspejler \u00f8konomisk v\u00e6kst. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221621/figure_01.png",
+      "metadata": {
+        "title": "Ungarns BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns BNP-v\u00e6kst med sammenligning af historisk og senest tilg\u00e6ngelig observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221621/figure_02.png",
+      "metadata": {
+        "title": "Ungarn \u2014 inflation og arbejdsl\u00f8shed",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Udviklingen i Ungarns inflation (forbrugerprisindeks, \u00e5r-til-\u00e5r) og arbejdsl\u00f8shedsprocent over de seneste \u00e5r. Ungarn oplevede markant h\u00f8j inflation i 2022\u20132023 som f\u00f8lge af energikrisen og strukturelle forhold. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)",
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_221621/figure_03.png",
+      "metadata": {
+        "title": "Ungarn \u2014 inflation og arbejdsl\u00f8shed \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Ungarns inflation og arbejdsl\u00f8shed med sammenligning af historisk og senest tilg\u00e6ngelig observation. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Inflation, CPI (%)",
+          "Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    }
+  ]
+}

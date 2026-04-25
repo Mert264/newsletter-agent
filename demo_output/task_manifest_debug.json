@@ -7,40 +7,80 @@
       {
         "ticker": "NY.GDP.MKTP.KD.ZG",
         "source": "worldbank",
-        "label": "BNP-v\u00e6kst (%)",
-        "country": "CHN",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
         "years": 20,
         "unit": "%"
       },
       {
         "ticker": "FP.CPI.TOTL.ZG",
         "source": "worldbank",
-        "label": "Inflation, CPI (%)",
-        "country": "CHN",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
         "years": 20,
         "unit": "%"
       },
       {
         "ticker": "SL.UEM.TOTL.ZS",
         "source": "worldbank",
-        "label": "Arbejdsl\u00f8shed (%)",
-        "country": "CHN",
+        "label": "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "SL.UEM.TOTL.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+        "country": "SWE",
         "years": 20,
         "unit": "%"
       },
       {
         "ticker": "GC.DOD.TOTL.GD.ZS",
         "source": "worldbank",
-        "label": "Offentlig g\u00e6ld (% af BNP)",
-        "country": "CHN",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
         "years": 20,
         "unit": "%"
       },
       {
         "ticker": "BN.CAB.XOKA.GD.ZS",
         "source": "worldbank",
-        "label": "Betalingsbalance (% af BNP)",
-        "country": "CHN",
+        "label": "Danmark \u2014 Betalingsbalance (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "BN.CAB.XOKA.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Betalingsbalance (% af BNP)",
+        "country": "SWE",
         "years": 20,
         "unit": "%"
       }
@@ -48,133 +88,161 @@
     "charts": [
       {
         "type": "A",
-        "title": "Kina \u2014 BNP-v\u00e6kst",
+        "title": "Danmark vs. Sverige \u2014 BNP-v\u00e6kst",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 730,
+        "years": 20,
+        "period_days": 7300,
         "series_labels": [
-          "BNP-v\u00e6kst (%)"
+          "Danmark \u2014 BNP-v\u00e6kst (%)",
+          "Sverige \u2014 BNP-v\u00e6kst (%)"
         ],
-        "note": "Kinas \u00e5rlige reale BNP-v\u00e6kst over de seneste 20 \u00e5r. Serien viser den procentvise \u00e6ndring i bruttonationalproduktet i faste priser og afspejler landets overordnede \u00f8konomiske udvikling."
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Danmark og Sverige over de seneste 20 \u00e5r. Dataene stammer fra Verdensbanken og viser, hvordan de to nordiske nabo\u00f8konomier har udviklet sig i takt med globale konjunkturer."
       },
       {
         "type": "D",
-        "title": "Kina \u2014 BNP-v\u00e6kst: n\u00f8gletal",
+        "title": "Danmark vs. Sverige \u2014 N\u00f8gletal",
         "x_label": "",
         "y_label": "%",
-        "period_days": 730,
+        "years": 20,
+        "period_days": 7300,
         "series_labels": [
-          "BNP-v\u00e6kst (%)"
+          "Danmark \u2014 BNP-v\u00e6kst (%)",
+          "Sverige \u2014 BNP-v\u00e6kst (%)",
+          "Danmark \u2014 Inflation, CPI (%)",
+          "Sverige \u2014 Inflation, CPI (%)",
+          "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+          "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+          "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+          "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+          "Danmark \u2014 Betalingsbalance (% af BNP)",
+          "Sverige \u2014 Betalingsbalance (% af BNP)"
         ],
-        "before_date": "2014-01-01",
+        "before_date": "2006-01-01",
         "after_date": "latest",
-        "col_before": "For 10 \u00e5r siden",
+        "col_before": "For 20 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Kinas BNP-v\u00e6kst \u2014 sammenligning mellem niveauet for ca. 10 \u00e5r siden og den senest tilg\u00e6ngelige observation."
+        "note": "Samlet oversigt over centrale makro\u00f8konomiske n\u00f8gletal for Danmark og Sverige. \u00c6ndringer viser forskellen i procentpoint mellem den \u00e6ldste og den seneste tilg\u00e6ngelige observation."
       },
       {
         "type": "A",
-        "title": "Kina \u2014 Inflation (CPI)",
+        "title": "Danmark vs. Sverige \u2014 Inflation, CPI",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 730,
+        "years": 20,
+        "period_days": 7300,
         "series_labels": [
-          "Inflation, CPI (%)"
+          "Danmark \u2014 Inflation, CPI (%)",
+          "Sverige \u2014 Inflation, CPI (%)"
         ],
-        "note": "Kinas \u00e5rlige forbrugerprisinflation m\u00e5lt ved CPI over de seneste 20 \u00e5r. Serien viser den procentvise stigning i det generelle prisniveau og er et centralt m\u00e5l for k\u00f8bekraftudviklingen."
+        "note": "\u00c5rlig forbrugerprisinflation (CPI) for Danmark og Sverige over de seneste 20 \u00e5r. Inflationsudviklingen afspejler bl.a. energiprischok, pengepolitik og indenlandsk eftersp\u00f8rgsel."
       },
       {
         "type": "D",
-        "title": "Kina \u2014 Inflation (CPI): n\u00f8gletal",
+        "title": "Danmark vs. Sverige \u2014 Inflation, CPI (tabel)",
         "x_label": "",
         "y_label": "%",
-        "period_days": 730,
+        "years": 20,
+        "period_days": 7300,
         "series_labels": [
-          "Inflation, CPI (%)"
+          "Danmark \u2014 Inflation, CPI (%)",
+          "Sverige \u2014 Inflation, CPI (%)"
         ],
-        "before_date": "2014-01-01",
+        "before_date": "2006-01-01",
         "after_date": "latest",
-        "col_before": "For 10 \u00e5r siden",
+        "col_before": "For 20 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Kinas forbrugerprisinflation \u2014 sammenligning mellem niveauet for ca. 10 \u00e5r siden og den senest tilg\u00e6ngelige observation."
+        "note": "Snapshot af CPI-inflation for Danmark og Sverige. \u00c6ndringen vises i procentpoint og afspejler forskellen mellem det tidlige reference\u00e5r og den seneste observation."
       },
       {
         "type": "A",
-        "title": "Kina \u2014 Arbejdsl\u00f8shed",
+        "title": "Danmark vs. Sverige \u2014 Arbejdsl\u00f8shed",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 730,
+        "years": 20,
+        "period_days": 7300,
         "series_labels": [
-          "Arbejdsl\u00f8shed (%)"
+          "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+          "Sverige \u2014 Arbejdsl\u00f8shed (%)"
         ],
-        "note": "Kinas officielle arbejdsl\u00f8shedsprocent over de seneste 20 \u00e5r if\u00f8lge Verdensbankens data. Serien d\u00e6kker den andel af arbejdsstyrken, der er aktivt jobs\u00f8gende men uden besk\u00e6ftigelse."
+        "note": "Samlet arbejdsl\u00f8shedsprocent for Danmark og Sverige over de seneste 20 \u00e5r. Danmark og Sverige har historisk haft relativt lave arbejdsl\u00f8shedsrater sammenlignet med EU-gennemsnittet."
       },
       {
         "type": "D",
-        "title": "Kina \u2014 Arbejdsl\u00f8shed: n\u00f8gletal",
+        "title": "Danmark vs. Sverige \u2014 Arbejdsl\u00f8shed (tabel)",
         "x_label": "",
         "y_label": "%",
-        "period_days": 730,
+        "years": 20,
+        "period_days": 7300,
         "series_labels": [
-          "Arbejdsl\u00f8shed (%)"
+          "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+          "Sverige \u2014 Arbejdsl\u00f8shed (%)"
         ],
-        "before_date": "2014-01-01",
+        "before_date": "2006-01-01",
         "after_date": "latest",
-        "col_before": "For 10 \u00e5r siden",
+        "col_before": "For 20 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Kinas arbejdsl\u00f8shedsprocent \u2014 sammenligning mellem niveauet for ca. 10 \u00e5r siden og den senest tilg\u00e6ngelige observation."
+        "note": "Snapshot af arbejdsl\u00f8shedsprocenten for Danmark og Sverige. \u00c6ndringen vises i procentpoint."
       },
       {
         "type": "A",
-        "title": "Kina \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "title": "Danmark vs. Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 730,
+        "years": 20,
+        "period_days": 7300,
         "series_labels": [
-          "Offentlig g\u00e6ld (% af BNP)"
+          "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+          "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)"
         ],
-        "note": "Kinas offentlige bruttog\u00e6ld som andel af BNP over de seneste 20 \u00e5r. Serien afspejler statens samlede g\u00e6ldsforpligtelser og er et centralt m\u00e5l for finanspolitisk holdbarhed. Bem\u00e6rk: data kan v\u00e6re beh\u00e6ftet med forsinkelse eller huller for Kina."
+        "note": "Offentlig bruttog\u00e6ld som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Begge lande har generelt haft lav og faldende statsg\u00e6ld sammenlignet med andre europ\u00e6iske lande."
       },
       {
         "type": "D",
-        "title": "Kina \u2014 Offentlig g\u00e6ld: n\u00f8gletal",
+        "title": "Danmark vs. Sverige \u2014 Offentlig g\u00e6ld (tabel)",
         "x_label": "",
         "y_label": "%",
-        "period_days": 730,
+        "years": 20,
+        "period_days": 7300,
         "series_labels": [
-          "Offentlig g\u00e6ld (% af BNP)"
+          "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+          "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)"
         ],
-        "before_date": "2014-01-01",
+        "before_date": "2006-01-01",
         "after_date": "latest",
-        "col_before": "For 10 \u00e5r siden",
+        "col_before": "For 20 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Kinas offentlige g\u00e6ld som andel af BNP \u2014 sammenligning mellem niveauet for ca. 10 \u00e5r siden og den senest tilg\u00e6ngelige observation."
+        "note": "Snapshot af den offentlige g\u00e6ld som andel af BNP for Danmark og Sverige. \u00c6ndringen vises i procentpoint."
       },
       {
         "type": "A",
-        "title": "Kina \u2014 Betalingsbalance (% af BNP)",
+        "title": "Danmark vs. Sverige \u2014 Betalingsbalance (% af BNP)",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 730,
+        "years": 20,
+        "period_days": 7300,
         "series_labels": [
-          "Betalingsbalance (% af BNP)"
+          "Danmark \u2014 Betalingsbalance (% af BNP)",
+          "Sverige \u2014 Betalingsbalance (% af BNP)"
         ],
-        "note": "Kinas l\u00f8bende betalingsbalance som andel af BNP over de seneste 20 \u00e5r. En positiv saldo indikerer, at landet eksporterer mere end det importerer, og er et m\u00e5l for landets eksterne konkurrenceevne."
+        "note": "L\u00f8bende betalingsbalance som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Begge lande har typisk vist positive saldi, hvilket afspejler st\u00e6rke eksport\u00f8konomier og h\u00f8j privat opsparing."
       },
       {
         "type": "D",
-        "title": "Kina \u2014 Betalingsbalance: n\u00f8gletal",
+        "title": "Danmark vs. Sverige \u2014 Betalingsbalance (tabel)",
         "x_label": "",
         "y_label": "%",
-        "period_days": 730,
+        "years": 20,
+        "period_days": 7300,
         "series_labels": [
-          "Betalingsbalance (% af BNP)"
+          "Danmark \u2014 Betalingsbalance (% af BNP)",
+          "Sverige \u2014 Betalingsbalance (% af BNP)"
         ],
-        "before_date": "2014-01-01",
+        "before_date": "2006-01-01",
         "after_date": "latest",
-        "col_before": "For 10 \u00e5r siden",
+        "col_before": "For 20 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Kinas l\u00f8bende betalingsbalance som andel af BNP \u2014 sammenligning mellem niveauet for ca. 10 \u00e5r siden og den senest tilg\u00e6ngelige observation."
+        "note": "Snapshot af betalingsbalancen som andel af BNP for Danmark og Sverige. \u00c6ndringen vises i procentpoint."
       }
     ]
   }
