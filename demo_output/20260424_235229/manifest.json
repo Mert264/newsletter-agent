@@ -1,0 +1,62 @@
+{
+  "brief": "EU og Kinas BNP-v\u00e6kst de seneste 20 \u00e5r",
+  "date": "2026-04-24",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_235229/figure_00.png",
+      "metadata": {
+        "title": "EU27 real BNP-v\u00e6kst de seneste 20 \u00e5r",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for EU27 over de seneste 20 \u00e5r. Negative v\u00e6rdier afspejler bl.a. finanskrisen i 2009 og COVID-19-nedlukningen i 2020.",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU27 BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_235229/figure_01.png",
+      "metadata": {
+        "title": "EU27 BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af EU27's reale BNP-v\u00e6kst med sammenligning af v\u00e6rdier fra for 10 \u00e5r siden og den senest tilg\u00e6ngelige observation.",
+        "kilde": "Eurostat",
+        "region_labels": [
+          "EU27 BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_235229/figure_02.png",
+      "metadata": {
+        "title": "Kinas real BNP-v\u00e6kst de seneste 20 \u00e5r",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Kina over de seneste 20 \u00e5r baseret p\u00e5 Verdensbankens data. V\u00e6ksten er gradvist aftaget fra tocifrede niveauer i 00'erne til et mere moderat niveau i dag. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Kinas BNP-v\u00e6kst"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260424_235229/figure_03.png",
+      "metadata": {
+        "title": "Kinas BNP-v\u00e6kst \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Kinas reale BNP-v\u00e6kst med sammenligning af v\u00e6rdier fra for 10 \u00e5r siden og den senest tilg\u00e6ngelige observation fra Verdensbanken. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Kinas BNP-v\u00e6kst"
+        ]
+      }
+    }
+  ]
+}
