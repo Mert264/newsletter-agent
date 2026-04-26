@@ -270,7 +270,9 @@ Converts all outputs to chart specs. All notes include transparency labels.
 
 **Multi-company additions**: charts 7–12 and 16–17 rendered side-by-side per company for comparison.
 
-**DA Review #5 checks**: all 18 charts have title, note, kilde; all EST/ASSUMED values labeled; price signal consistent with sensitivity grid midpoint; RNOA vs. WACC direction consistent with over/undervalued conclusion.
+**DA Review #4 checks**: all 18 charts have title, note, kilde; all EST/ASSUMED values labeled; price signal consistent with sensitivity grid midpoint; RNOA vs. WACC direction consistent with over/undervalued conclusion.
+
+**DA Review #5 (final gate)**: Cross-checks that the over/undervalued conclusion stated in chart #16 is consistent with the sensitivity grid midpoint in chart #15, and that no ASSUMED value appears in any chart without its label.
 
 ---
 
