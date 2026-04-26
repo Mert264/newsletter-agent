@@ -229,6 +229,10 @@ Columns: Year_1E … Year_5E + Terminal year
 
 Revenue growth: historical CAGR (one-time items excluded). If analyst consensus available, shown alongside as reference.
 
+**M&A distortion detection**: If revenue jumps >20% in a single year AND goodwill increases that same year, the CAGR is flagged as potentially inorganic. The specialist defaults to the organic CAGR (excluding the acquisition year) and labels the forecast EST with a flag: "Revenue CAGR excludes [year] acquisition jump — organic growth used."
+
+**Trending OG detection**: If OG shows a consistent directional trend (4+ consecutive years all increasing or all decreasing), the simple historical average is flagged as potentially misleading. The trend-extrapolated OG is shown alongside the simple average. The DA labels which value was used in the forecast and flags divergence >2pp for the investor's attention.
+
 #### DCF Bridge Block (matching Image #3 structure)
 - Total nutidsværdi = Σ PV(FCF) [CALC]
 - Terminalværdi = FCF_{n+1} / (WACC − g) [CALC, g=ASSUMED]
