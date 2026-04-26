@@ -100,7 +100,18 @@ Applied consistently across all 10 years. Classification is deterministic Python
 | ICR → credit spread table | Damodaran default spreads | Annual |
 | Moody's → credit spread | Damodaran rating spreads | Annual |
 
-**rf country matching**: The risk-free rate is always from the company's HQ country government bond (Danish company → Danish 35yr avg, US company → US 30yr Treasury avg, German → German Bund, etc.). rf used in rD and rE is the same number — no mismatch allowed.
+**rf country matching — maturity rule**: rf must match the duration of the cash flow stream being valued. Because DCF includes a perpetuity terminal value, the longest available government bond is used, not the 10-year. Hardcoded `RF_BY_COUNTRY` dict:
+
+| Country group | Bond used | Rationale |
+|---|---|---|
+| Denmark / Scandinavia | Danish govt bond 35yr historical avg | Paper methodology |
+| USA | US 30yr Treasury historical avg | Long-duration match |
+| Germany / EU core | German Bund 30yr historical avg | Longest liquid Bund |
+| Countries without 30yr bonds | 10yr local govt bond + Damodaran country default spread | Fallback |
+
+**Historical average, not spot rate**: rf is always the historical average (35yr window where available), not today's spot yield. Current spot rate is displayed in chart #2 for reference only and explicitly labeled "not used in calculations." Reason: today's spot rate reflects short-term monetary policy cycles; the historical average reflects long-run equilibrium appropriate for a perpetuity.
+
+rf used in rD and rE is the same number — no mismatch allowed.
 
 ---
 
