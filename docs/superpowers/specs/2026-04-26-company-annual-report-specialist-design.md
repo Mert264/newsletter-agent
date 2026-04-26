@@ -100,18 +100,19 @@ Applied consistently across all 10 years. Classification is deterministic Python
 | ICR → credit spread table | Damodaran default spreads | Annual |
 | Moody's → credit spread | Damodaran rating spreads | Annual |
 
-**rf country matching — maturity rule**: rf must match the duration of the cash flow stream being valued. Because DCF includes a perpetuity terminal value, the longest available government bond is used, not the 10-year. Hardcoded `RF_BY_COUNTRY` dict:
+**rf country matching**: rf must match the company's reporting currency and HQ country. The bond maturity must match the long-duration nature of a DCF with a perpetuity terminal value — always use the longest available government bond, not the commonly-quoted 10yr:
 
-| Country group | Bond used | Rationale |
+| Company HQ | Bond used | Maturity |
 |---|---|---|
-| Denmark / Scandinavia | Danish govt bond 35yr historical avg | Paper methodology |
-| USA | US 30yr Treasury historical avg | Long-duration match |
-| Germany / EU core | German Bund 30yr historical avg | Longest liquid Bund |
-| Countries without 30yr bonds | 10yr local govt bond + Damodaran country default spread | Fallback |
+| Denmark / Scandinavia | Danish government bond historical avg | 30yr |
+| USA | US Treasury historical avg | 30yr |
+| Germany / EU | German Bund historical avg | 30yr |
+| UK | UK Gilt historical avg | 30yr |
+| Countries without 30yr bonds | 10yr local govt bond + Damodaran country default spread | 10yr |
 
-**Historical average, not spot rate**: rf is always the historical average (35yr window where available), not today's spot yield. Current spot rate is displayed in chart #2 for reference only and explicitly labeled "not used in calculations." Reason: today's spot rate reflects short-term monetary policy cycles; the historical average reflects long-run equilibrium appropriate for a perpetuity.
+**Historical average, not spot rate**: rf is the long-run historical average of the bond yield, NOT today's spot rate. Today's spot rate is shown in chart #2 for reference only, with a note explaining it is not used in calculations. This prevents current monetary policy distortions (post-COVID rate cycles) from inflating or deflating the valuation.
 
-rf used in rD and rE is the same number — no mismatch allowed.
+rf used in rD and rE must be identical — no mismatch allowed. The Consistency Checker enforces this as a hard gate.
 
 ---
 
@@ -186,13 +187,11 @@ User brief → Orchestrator → annual_report.py (lead specialist)
 
 **Checks**:
 1. rf used in rD formula = rf used in CAPM (identical value, no mismatch)
-2. rf source is a nominal government bond — if an inflation-linked bond source is detected, block and require nominal bond or require g to be adjusted to real terms
-3. Moody's rating-implied rs within 0.5% of ICR-implied rs (flags if diverges)
-4. β_adj was applied (not β_raw)
-5. Shares outstanding = FMP period-end diluted shares
-6. t = statutory rate (not effective rate)
-7. NCI subtracted from equity bridge
-8. Terminal growth g (2% default) is nominal and consistent with nominal rf — if g ≥ WACC, block immediately (Gordon Growth model breaks down)
+2. Moody's rating-implied rs within 0.5% of ICR-implied rs (flags if diverges)
+3. β_adj was applied (not β_raw)
+4. Shares outstanding = FMP period-end diluted shares
+5. t = statutory rate (not effective rate)
+6. NCI subtracted from equity bridge
 
 **Gate**: If any check fails, Valuation subagent does NOT run. DA surfaces the specific issue to the user with the fix required.
 
@@ -231,10 +230,6 @@ Columns: Year_1E … Year_5E + Terminal year
 
 Revenue growth: historical CAGR (one-time items excluded). If analyst consensus available, shown alongside as reference.
 
-**M&A distortion detection**: If revenue jumps >20% in a single year AND goodwill increases that same year, the CAGR is flagged as potentially inorganic. The specialist defaults to the organic CAGR (excluding the acquisition year) and labels the forecast EST with a flag: "Revenue CAGR excludes [year] acquisition jump — organic growth used."
-
-**Trending OG detection**: If OG shows a consistent directional trend (4+ consecutive years all increasing or all decreasing), the simple historical average is flagged as potentially misleading. The trend-extrapolated OG is shown alongside the simple average. The DA labels which value was used in the forecast and flags divergence >2pp for the investor's attention.
-
 #### DCF Bridge Block (matching Image #3 structure)
 - Total nutidsværdi = Σ PV(FCF) [CALC]
 - Terminalværdi = FCF_{n+1} / (WACC − g) [CALC, g=ASSUMED]
@@ -267,7 +262,7 @@ Converts all outputs to chart specs. All notes include transparency labels.
 | # | Type | Content |
 |---|---|---|
 | 1 | D | Forecast assumptions table (rf, β_raw, β_adj, MRP, CRP, rE, rs, rD, WACC, OG, ATO, g, t — each row tagged CALC/EST/ASSUMED/SOURCED) |
-| 2 | D | Avg. bond yield table (country, bond maturity, historical avg yield [ASSUMED], current spot rate [SOURCED, not used], rf value applied in model) |
+| 2 | D | Avg. bond yield table (country, period, yield, rf used) |
 | 3 | D | Moody's rating + rs table (rating, implied spread, ICR cross-check) |
 | 4 | D | WACC component breakdown |
 | 5 | D | Penman reformulated balance sheet summary (NOA, NFO, equity per year) |
