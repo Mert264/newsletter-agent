@@ -100,19 +100,16 @@ Applied consistently across all 10 years. Classification is deterministic Python
 | ICR → credit spread table | Damodaran default spreads | Annual |
 | Moody's → credit spread | Damodaran rating spreads | Annual |
 
-**rf country matching**: rf must match the company's reporting currency and HQ country. The bond maturity must match the long-duration nature of a DCF with a perpetuity terminal value — always use the longest available government bond, not the commonly-quoted 10yr:
+**rf country matching**: The risk-free rate is always from the company's HQ country government bond. rf used in rD and rE is the same number — no mismatch allowed.
 
-| Company HQ | Bond used | Maturity |
+| Company HQ | Bond used | Maturity rationale |
 |---|---|---|
-| Denmark / Scandinavia | Danish government bond historical avg | 30yr |
-| USA | US Treasury historical avg | 30yr |
+| Denmark / Scandinavia | Danish government bond historical avg | 35yr avg (matches paper methodology) |
+| USA | US Treasury historical avg | 30yr (not 10yr — avoids maturity mismatch with perpetuity TV) |
 | Germany / EU | German Bund historical avg | 30yr |
-| UK | UK Gilt historical avg | 30yr |
-| Countries without 30yr bonds | 10yr local govt bond + Damodaran country default spread | 10yr |
+| Countries without 30yr bonds | 10yr local govt bond | + Damodaran country default spread adjustment |
 
-**Historical average, not spot rate**: rf is the long-run historical average of the bond yield, NOT today's spot rate. Today's spot rate is shown in chart #2 for reference only, with a note explaining it is not used in calculations. This prevents current monetary policy distortions (post-COVID rate cycles) from inflating or deflating the valuation.
-
-rf used in rD and rE must be identical — no mismatch allowed. The Consistency Checker enforces this as a hard gate.
+**Historical average, not spot rate**: rf is the long-run historical average of the bond yield, not today's spot rate. Today's spot rate reflects short-term monetary policy (distorted by post-COVID cycles) and understates the long-run equilibrium rf. Chart #2 (Avg. bond yield table) note field must state: "rf = X% is the N-year historical average of [country] government bond yields. Current spot rate = Y% shown for reference only — not used in calculations." [ASSUMED]
 
 ---
 
@@ -166,12 +163,6 @@ User brief → Orchestrator → annual_report.py (lead specialist)
 - ROCE = Comprehensive Net Income / avg Common Equity per year
 
 **One-time item detection**: Any year where a single line item moves OI by >25% is flagged and excluded from historical averages used in forecasting. Flagged years are disclosed in note fields.
-
-**M&A-distorted CAGR detection**: If revenue jumps >20% in a single year AND goodwill increases that same year, the jump is flagged as potential inorganic (acquisition-driven) growth. The historical CAGR is recalculated excluding the acquisition year and labeled `EST (organic CAGR)`. Both the raw and organic CAGRs are shown so the user can see the difference.
-
-**Trending OG detection**: If OG shows a consistent directional trend (4+ consecutive years of year-over-year decline or improvement), the simple historical average is flagged as potentially misleading. The trend-extrapolated OG is shown alongside the simple average. The DA labels which value is used in the forecast and requires it to be disclosed in the note.
-
-**Terminal growth vs. inflation consistency**: g = 2% is a nominal rate. rf must also be nominal (historical avg of nominal bond yields). If rf source is an inflation-linked bond, the Consistency Checker blocks execution and requires a nominal bond instead. This prevents a silent mismatch where real rf is combined with a nominal g, overstating terminal value by ~2%.
 
 **Returns**:
 ```json
