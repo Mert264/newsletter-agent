@@ -186,11 +186,13 @@ User brief → Orchestrator → annual_report.py (lead specialist)
 
 **Checks**:
 1. rf used in rD formula = rf used in CAPM (identical value, no mismatch)
-2. Moody's rating-implied rs within 0.5% of ICR-implied rs (flags if diverges)
-3. β_adj was applied (not β_raw)
-4. Shares outstanding = FMP period-end diluted shares
-5. t = statutory rate (not effective rate)
-6. NCI subtracted from equity bridge
+2. rf source is a nominal government bond — if an inflation-linked bond source is detected, block and require nominal bond or require g to be adjusted to real terms
+3. Moody's rating-implied rs within 0.5% of ICR-implied rs (flags if diverges)
+4. β_adj was applied (not β_raw)
+5. Shares outstanding = FMP period-end diluted shares
+6. t = statutory rate (not effective rate)
+7. NCI subtracted from equity bridge
+8. Terminal growth g (2% default) is nominal and consistent with nominal rf — if g ≥ WACC, block immediately (Gordon Growth model breaks down)
 
 **Gate**: If any check fails, Valuation subagent does NOT run. DA surfaces the specific issue to the user with the fix required.
 
