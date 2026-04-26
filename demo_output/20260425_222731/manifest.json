@@ -1,0 +1,163 @@
+{
+  "brief": "Danmark vs. Sverige \u2014 \u00f8konomi",
+  "date": "2026-04-25",
+  "figures": [
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222731/figure_00.png",
+      "metadata": {
+        "title": "Danmark vs. Sverige \u2014 BNP-v\u00e6kst",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Danmark og Sverige over de seneste 20 \u00e5r. Begge lande er \u00e5bne eksport\u00f8konomier, men Sverige er mere eksponeret over for konjunkturudsving via industri- og bilsektoren. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Sverige \u2014 BNP-v\u00e6kst (%)",
+          "Danmark \u2014 BNP-v\u00e6kst (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222731/figure_01.png",
+      "metadata": {
+        "title": "Danmark vs. \u2014 N\u00f8gletal (alle indikatorer)",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Samlet oversigt over centrale makro\u00f8konomiske n\u00f8gletal for Danmark og Sverige. Tallene giver et hurtigt sammenlignende overblik over de to nordiske nabo\u00f8konomiers tilstand. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b Data for Sverige \u2014 Offentlig g\u00e6ld (% af BNP) ikke tilg\u00e6ngeligt via Verdensbanken.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Sverige \u2014 BNP-v\u00e6kst (%)",
+          "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+          "Danmark \u2014 BNP-v\u00e6kst (%)",
+          "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+          "Danmark \u2014 Inflation, CPI (%)",
+          "Sverige \u2014 Arbejdsl\u00f8shed (%)",
+          "Sverige \u2014 Inflation, CPI (%)",
+          "Sverige \u2014 Betalingsbalance (% af BNP)",
+          "Danmark \u2014 Betalingsbalance (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222731/figure_02.png",
+      "metadata": {
+        "title": "Danmark vs. Sverige \u2014 Inflation, CPI",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "\u00c5rlig inflation m\u00e5lt ved forbrugerprisindekset (CPI) for Danmark og Sverige. Sverige oplevede markant h\u00f8jere inflation i 2022-2023 som f\u00f8lge af energiprisstigninger og sv\u00e6kkelse af den svenske krone. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Danmark \u2014 Inflation, CPI (%)",
+          "Sverige \u2014 Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222731/figure_03.png",
+      "metadata": {
+        "title": "Danmark vs. Sverige \u2014 Inflation, CPI (tabel)",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af CPI-inflation for Danmark og Sverige. \u00c6ndringer vises i procentpoint og afspejler den absolutte forskel mellem de to tidspunkter. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Danmark \u2014 Inflation, CPI (%)",
+          "Sverige \u2014 Inflation, CPI (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222731/figure_04.png",
+      "metadata": {
+        "title": "Danmark vs. Sverige \u2014 Arbejdsl\u00f8shed",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Arbejdsl\u00f8shedsprocenten for Danmark og Sverige over de seneste 20 \u00e5r. Danmark har historisk haft lavere strukturel ledighed, delvis takket v\u00e6re flexicurity-modellen. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+          "Sverige \u2014 Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222731/figure_05.png",
+      "metadata": {
+        "title": "Danmark vs. Sverige \u2014 Arbejdsl\u00f8shed (tabel)",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af arbejdsl\u00f8shedsniveauet for Danmark og Sverige. \u00c6ndringer vises i procentpoint. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Danmark \u2014 Arbejdsl\u00f8shed (%)",
+          "Sverige \u2014 Arbejdsl\u00f8shed (%)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222731/figure_06.png",
+      "metadata": {
+        "title": "Danmark vs. \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Offentlig g\u00e6ld som andel af BNP for Danmark og Sverige. Begge lande h\u00f8rer til de mest finanspolitisk solide i Europa og ligger markant under EU-gennemsnittet. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b Data for Sverige \u2014 Offentlig g\u00e6ld (% af BNP) ikke tilg\u00e6ngeligt via Verdensbanken.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)"
+        ],
+        "reviewer_flag": "Title mentions 'Danmark vs.' implying a comparison, but only one region (Danmark) is present in the data; the Note confirms Sweden data is unavailable. Clarify the title to reflect single-country content, e.g. 'Danmark \u2014 Offentlig g\u00e6ld (% af BNP)'."
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222731/figure_07.png",
+      "metadata": {
+        "title": "Danmark vs. \u2014 Offentlig g\u00e6ld (tabel)",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af den offentlige g\u00e6ld som andel af BNP for Danmark og Sverige. \u00c6ndringer vises i procentpoint. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b Data for Sverige \u2014 Offentlig g\u00e6ld (% af BNP) ikke tilg\u00e6ngeligt via Verdensbanken.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)"
+        ],
+        "reviewer_flag": "Title indicates a comparison ('Danmark vs.') but region_labels contains only one entity (Danmark). The note mentions Sverige but it is not in region_labels, indicating a data-availability gap that should be reflected in the title or the comparison should be removed."
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222731/figure_08.png",
+      "metadata": {
+        "title": "Danmark vs. Sverige \u2014 Betalingsbalance (% af BNP)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Betalingsbalancens l\u00f8bende poster som andel af BNP for Danmark og Sverige. Begge lande er traditionelt nettoeksport\u00f8rer og har kronisk overskud p\u00e5 betalingsbalancen. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Sverige \u2014 Betalingsbalance (% af BNP)",
+          "Danmark \u2014 Betalingsbalance (% af BNP)"
+        ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/20260425_222731/figure_09.png",
+      "metadata": {
+        "title": "Danmark vs. Sverige \u2014 Betalingsbalance (tabel)",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af betalingsbalancen som andel af BNP for Danmark og Sverige. \u00c6ndringer vises i procentpoint. Verdensbank-data publiceres typisk med 1\u20132 \u00e5rs eftersl\u00e6b.",
+        "kilde": "Verdensbanken",
+        "region_labels": [
+          "Sverige \u2014 Betalingsbalance (% af BNP)",
+          "Danmark \u2014 Betalingsbalance (% af BNP)"
+        ]
+      }
+    }
+  ]
+}

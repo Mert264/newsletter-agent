@@ -88,23 +88,21 @@
     "charts": [
       {
         "type": "A",
-        "title": "Danmark vs. Sverige \u2014 BNP-v\u00e6kst",
+        "title": "Danmark vs. Sverige \u2014 BNP-v\u00e6kst (%)",
         "x_label": "Dato",
         "y_label": "%",
-        "years": 20,
         "period_days": 7300,
         "series_labels": [
           "Danmark \u2014 BNP-v\u00e6kst (%)",
           "Sverige \u2014 BNP-v\u00e6kst (%)"
         ],
-        "note": "\u00c5rlig real BNP-v\u00e6kst for Danmark og Sverige over de seneste 20 \u00e5r. Dataene stammer fra Verdensbanken og viser, hvordan de to nordiske nabo\u00f8konomier har udviklet sig i takt med globale konjunkturer."
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken."
       },
       {
         "type": "D",
-        "title": "Danmark vs. Sverige \u2014 N\u00f8gletal",
+        "title": "Danmark vs. Sverige \u2014 N\u00f8gletal (oversigt)",
         "x_label": "",
         "y_label": "%",
-        "years": 20,
         "period_days": 7300,
         "series_labels": [
           "Danmark \u2014 BNP-v\u00e6kst (%)",
@@ -122,27 +120,25 @@
         "after_date": "latest",
         "col_before": "For 20 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Samlet oversigt over centrale makro\u00f8konomiske n\u00f8gletal for Danmark og Sverige. \u00c6ndringer viser forskellen i procentpoint mellem den \u00e6ldste og den seneste tilg\u00e6ngelige observation."
+        "note": "Samlet oversigt over centrale \u00f8konomiske n\u00f8gletal for Danmark og Sverige. Alle v\u00e6rdier er i procent. Data fra Verdensbanken."
       },
       {
         "type": "A",
-        "title": "Danmark vs. Sverige \u2014 Inflation, CPI",
+        "title": "Danmark vs. Sverige \u2014 Inflation, CPI (%)",
         "x_label": "Dato",
         "y_label": "%",
-        "years": 20,
         "period_days": 7300,
         "series_labels": [
           "Danmark \u2014 Inflation, CPI (%)",
           "Sverige \u2014 Inflation, CPI (%)"
         ],
-        "note": "\u00c5rlig forbrugerprisinflation (CPI) for Danmark og Sverige over de seneste 20 \u00e5r. Inflationsudviklingen afspejler bl.a. energiprischok, pengepolitik og indenlandsk eftersp\u00f8rgsel."
+        "note": "\u00c5rlig forbrugerprisinflation (CPI) for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken."
       },
       {
         "type": "D",
-        "title": "Danmark vs. Sverige \u2014 Inflation, CPI (tabel)",
+        "title": "Danmark vs. Sverige \u2014 Inflation, CPI (companion)",
         "x_label": "",
         "y_label": "%",
-        "years": 20,
         "period_days": 7300,
         "series_labels": [
           "Danmark \u2014 Inflation, CPI (%)",
@@ -152,27 +148,25 @@
         "after_date": "latest",
         "col_before": "For 20 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af CPI-inflation for Danmark og Sverige. \u00c6ndringen vises i procentpoint og afspejler forskellen mellem det tidlige reference\u00e5r og den seneste observation."
+        "note": "Snapshot af CPI-inflationen for Danmark og Sverige. \u00c6ndringer vises i procentpoint. Data fra Verdensbanken."
       },
       {
         "type": "A",
-        "title": "Danmark vs. Sverige \u2014 Arbejdsl\u00f8shed",
+        "title": "Danmark vs. Sverige \u2014 Arbejdsl\u00f8shed (%)",
         "x_label": "Dato",
         "y_label": "%",
-        "years": 20,
         "period_days": 7300,
         "series_labels": [
           "Danmark \u2014 Arbejdsl\u00f8shed (%)",
           "Sverige \u2014 Arbejdsl\u00f8shed (%)"
         ],
-        "note": "Samlet arbejdsl\u00f8shedsprocent for Danmark og Sverige over de seneste 20 \u00e5r. Danmark og Sverige har historisk haft relativt lave arbejdsl\u00f8shedsrater sammenlignet med EU-gennemsnittet."
+        "note": "\u00c5rlig arbejdsl\u00f8shedsprocent for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken."
       },
       {
         "type": "D",
-        "title": "Danmark vs. Sverige \u2014 Arbejdsl\u00f8shed (tabel)",
+        "title": "Danmark vs. Sverige \u2014 Arbejdsl\u00f8shed (companion)",
         "x_label": "",
         "y_label": "%",
-        "years": 20,
         "period_days": 7300,
         "series_labels": [
           "Danmark \u2014 Arbejdsl\u00f8shed (%)",
@@ -182,27 +176,25 @@
         "after_date": "latest",
         "col_before": "For 20 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af arbejdsl\u00f8shedsprocenten for Danmark og Sverige. \u00c6ndringen vises i procentpoint."
+        "note": "Snapshot af arbejdsl\u00f8sheden i Danmark og Sverige. \u00c6ndringer vises i procentpoint. Data fra Verdensbanken."
       },
       {
         "type": "A",
         "title": "Danmark vs. Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
         "x_label": "Dato",
         "y_label": "%",
-        "years": 20,
         "period_days": 7300,
         "series_labels": [
           "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
           "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)"
         ],
-        "note": "Offentlig bruttog\u00e6ld som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Begge lande har generelt haft lav og faldende statsg\u00e6ld sammenlignet med andre europ\u00e6iske lande."
+        "note": "Den offentlige g\u00e6ld som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Data fra Verdensbanken."
       },
       {
         "type": "D",
-        "title": "Danmark vs. Sverige \u2014 Offentlig g\u00e6ld (tabel)",
+        "title": "Danmark vs. Sverige \u2014 Offentlig g\u00e6ld (companion)",
         "x_label": "",
         "y_label": "%",
-        "years": 20,
         "period_days": 7300,
         "series_labels": [
           "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
@@ -212,27 +204,25 @@
         "after_date": "latest",
         "col_before": "For 20 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af den offentlige g\u00e6ld som andel af BNP for Danmark og Sverige. \u00c6ndringen vises i procentpoint."
+        "note": "Snapshot af den offentlige g\u00e6ld i Danmark og Sverige m\u00e5lt som andel af BNP. \u00c6ndringer vises i procentpoint. Data fra Verdensbanken."
       },
       {
         "type": "A",
         "title": "Danmark vs. Sverige \u2014 Betalingsbalance (% af BNP)",
         "x_label": "Dato",
         "y_label": "%",
-        "years": 20,
         "period_days": 7300,
         "series_labels": [
           "Danmark \u2014 Betalingsbalance (% af BNP)",
           "Sverige \u2014 Betalingsbalance (% af BNP)"
         ],
-        "note": "L\u00f8bende betalingsbalance som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Begge lande har typisk vist positive saldi, hvilket afspejler st\u00e6rke eksport\u00f8konomier og h\u00f8j privat opsparing."
+        "note": "L\u00f8bende betalingsbalance som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Et positivt tal indikerer et overskud over for udlandet. Data fra Verdensbanken."
       },
       {
         "type": "D",
-        "title": "Danmark vs. Sverige \u2014 Betalingsbalance (tabel)",
+        "title": "Danmark vs. Sverige \u2014 Betalingsbalance (companion)",
         "x_label": "",
         "y_label": "%",
-        "years": 20,
         "period_days": 7300,
         "series_labels": [
           "Danmark \u2014 Betalingsbalance (% af BNP)",
@@ -242,7 +232,7 @@
         "after_date": "latest",
         "col_before": "For 20 \u00e5r siden",
         "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af betalingsbalancen som andel af BNP for Danmark og Sverige. \u00c6ndringen vises i procentpoint."
+        "note": "Snapshot af betalingsbalancen i Danmark og Sverige m\u00e5lt som andel af BNP. \u00c6ndringer vises i procentpoint. Data fra Verdensbanken."
       }
     ]
   }
