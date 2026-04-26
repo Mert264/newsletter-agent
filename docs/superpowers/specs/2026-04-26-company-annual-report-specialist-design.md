@@ -267,7 +267,7 @@ Converts all outputs to chart specs. All notes include transparency labels.
 | # | Type | Content |
 |---|---|---|
 | 1 | D | Forecast assumptions table (rf, β_raw, β_adj, MRP, CRP, rE, rs, rD, WACC, OG, ATO, g, t — each row tagged CALC/EST/ASSUMED/SOURCED) |
-| 2 | D | Avg. bond yield table (country, period, yield, rf used) |
+| 2 | D | Avg. bond yield table (country, bond maturity, historical avg yield [ASSUMED], current spot rate [SOURCED, not used], rf value applied in model) |
 | 3 | D | Moody's rating + rs table (rating, implied spread, ICR cross-check) |
 | 4 | D | WACC component breakdown |
 | 5 | D | Penman reformulated balance sheet summary (NOA, NFO, equity per year) |
