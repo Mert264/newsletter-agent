@@ -167,6 +167,12 @@ User brief → Orchestrator → annual_report.py (lead specialist)
 
 **One-time item detection**: Any year where a single line item moves OI by >25% is flagged and excluded from historical averages used in forecasting. Flagged years are disclosed in note fields.
 
+**M&A-distorted CAGR detection**: If revenue jumps >20% in a single year AND goodwill increases that same year, the jump is flagged as potential inorganic (acquisition-driven) growth. The historical CAGR is recalculated excluding the acquisition year and labeled `EST (organic CAGR)`. Both the raw and organic CAGRs are shown so the user can see the difference.
+
+**Trending OG detection**: If OG shows a consistent directional trend (4+ consecutive years of year-over-year decline or improvement), the simple historical average is flagged as potentially misleading. The trend-extrapolated OG is shown alongside the simple average. The DA labels which value is used in the forecast and requires it to be disclosed in the note.
+
+**Terminal growth vs. inflation consistency**: g = 2% is a nominal rate. rf must also be nominal (historical avg of nominal bond yields). If rf source is an inflation-linked bond, the Consistency Checker blocks execution and requires a nominal bond instead. This prevents a silent mismatch where real rf is combined with a nominal g, overstating terminal value by ~2%.
+
 **Returns**:
 ```json
 {
