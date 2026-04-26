@@ -164,6 +164,10 @@ User brief → Orchestrator → annual_report.py (lead specialist)
 
 **One-time item detection**: Any year where a single line item moves OI by >25% is flagged and excluded from historical averages used in forecasting. Flagged years are disclosed in note fields.
 
+**M&A distortion detection**: If revenue jumps >20% in a single year AND goodwill increases that same year, the CAGR is flagged as potentially inorganic. The organic CAGR (excluding the jump year) is used as the forecast base; the distorted CAGR is shown in the note for reference.
+
+**Trending OG detection**: If OG moves in the same direction (all positive or all negative YoY) for 4+ consecutive years, the simple historical average is flagged as potentially misleading. Both the simple average [ASSUMED] and the trend-extrapolated OG [EST] are surfaced; the DA labels which was applied and why.
+
 **Returns**:
 ```json
 {
