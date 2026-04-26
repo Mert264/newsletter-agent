@@ -194,6 +194,8 @@ User brief → Orchestrator → annual_report.py (lead specialist)
 5. t = statutory rate (not effective rate)
 6. NCI subtracted from equity bridge
 
+7. rf source is a nominal government bond (not inflation-linked). If inflation-linked bond detected, block: either switch to nominal bond or require g to be set to real rate (~0%). Mixing nominal rf with nominal g = 2% is correct; mixing real rf with nominal g = 2% silently inflates terminal value.
+
 **Gate**: If any check fails, Valuation subagent does NOT run. DA surfaces the specific issue to the user with the fix required.
 
 **DA Review #2**: Reviews the issues list itself for completeness.
