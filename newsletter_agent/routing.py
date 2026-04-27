@@ -11,6 +11,11 @@ def _re(pattern: str):
 
 
 _EU   = _re(r"\b(eu|europe[an]*|eurozone|europ[aæ]|eu27)\b")
+_ANNUAL = re.compile(
+    r"\b(annual report|årsrapport|årsregnskab|valuation|værdiansættelse|dcf|wacc|"
+    r"aktiekurs|fair value|selskabsanalyse|fundamental|penman)\b",
+    re.IGNORECASE,
+)
 _US   = _re(r"\b(us|usa|american?|united states|amerikans?k)\b")
 _NRG  = _re(r"\b(energy|energi|energimix|brændstofstype|fuel|forbrug)\b")
 _GAS  = _re(r"\b(gas|naturgas|natural gas)\b")
