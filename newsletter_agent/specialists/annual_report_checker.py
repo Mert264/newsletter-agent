@@ -39,10 +39,8 @@ def check(wacc_inputs: dict) -> dict:
             "Effective rate fluctuates with one-time items. [BLOCK]"
         )
 
-    if wacc_inputs.get("nci_present"):
-        # NCI exists — add a WARN so the reviewer verifies the amount, not a BLOCK
-        # (the pipeline always subtracts NCI in compute_dcf; this is a cross-check reminder)
-        issues_warn = getattr(check, "_warns", [])  # non-blocking, don't add to issues
+    # NCI is always subtracted in compute_dcf (EV − NFO − NCI = equity value).
+    # Gate removed: firing on nci_present=False blocked companies with no minority interest.
 
     if wacc_inputs.get("bond_type") == "inflation_linked":
         issues.append(
