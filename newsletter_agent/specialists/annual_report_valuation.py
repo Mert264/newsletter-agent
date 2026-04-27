@@ -42,6 +42,8 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
     mktcap = float(profile.get("mktCap") or 0)
     D      = max(NFO, 0)
     E      = mktcap
+    if E == 0:
+        print("  [annual_report] WARNING: mktCap=0 — WACC collapses to pure-debt cost. Check FMP profile.")
     V      = D + E if (D + E) > 0 else 1
     wacc   = (D / V) * rD + (E / V) * rE
 
