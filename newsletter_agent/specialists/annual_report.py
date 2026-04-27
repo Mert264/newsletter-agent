@@ -17,7 +17,7 @@ from newsletter_agent.specialists.annual_report_kpi import build_chart_specs
 
 
 def fetch_annual_report(task: dict) -> dict:
-    # Ticker can be at top level (correct) or inside series[0] (LLM sometimes nests it)
+    # Ticker can be at top level (correct) or inside series[0] (LLM sometimes nests it wrong)
     _series0 = task.get("series", [{}])[0] if task.get("series") else {}
     ticker = (
         task.get("ticker") or
@@ -25,11 +25,6 @@ def fetch_annual_report(task: dict) -> dict:
         task.get("label") or
         ""
     ).upper().strip()
-    # Strip company name if LLM put "AAPL" embedded in a label like "Apple Inc. (AAPL)"
-    import re as _re
-    _ticker_match = _re.search(r'\b([A-Z]{1,5}(?:\.[A-Z]{1,2})?)\b', ticker)
-    if not ticker or (len(ticker) > 6 and _ticker_match):
-        ticker = _ticker_match.group(1) if _ticker_match else ticker
     if not ticker:
         raise ValueError("annual_report specialist requires 'ticker' field in task.")
 
