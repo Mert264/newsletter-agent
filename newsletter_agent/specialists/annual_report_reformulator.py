@@ -19,7 +19,8 @@ def reformulate(fmp_data: dict, t: float) -> dict:
         revenue = _safe(inc.get("revenue"))
         ebit    = _safe(inc.get("operatingIncome"))
         OI      = ebit * (1 - t)
-        comp_ni = _safe(inc.get("comprehensiveIncomePeriodChange") or inc.get("netIncome"))
+        _comp = inc.get("comprehensiveIncomePeriodChange")
+        comp_ni = _safe(_comp if _comp is not None else inc.get("netIncome"))
         interest= _safe(inc.get("interestExpense"))
 
         fin_assets = (_safe(bal.get("cashAndCashEquivalents"))
