@@ -50,16 +50,15 @@ def review_valuation(wacc_data: dict, dcf_results: dict,
                      market_price: float, client: anthropic.Anthropic) -> str:
     price = dcf_results["price_per_share"]
     ratio = price / market_price if market_price > 0 else 0
+    ev = dcf_results["EV"]
+    tv_share_str = f"{dcf_results['PV_TV']/ev:.0%}" if ev != 0 else "N/A (EV≤0)"
     user = (
         f"WACC: {wacc_data['wacc']:.4f}, rf: {wacc_data['rf']:.4f}, "
         f"rE: {wacc_data['rE']:.4f}, rD: {wacc_data['rD']:.4f}\n"
         f"β_raw={wacc_data['beta_raw']:.2f}, β_adj={wacc_data['beta_adj']:.4f}\n"
         f"DCF price/share: {price:.2f}, Market price: {market_price:.2f} "
         f"(ratio: {ratio:.2f}x)\n"
-        f"EV: {dcf_results['EV']:,.0f}, TV share: "
-        f"{(dcf_results['PV_TV']/dcf_results['EV']):.0%}\n"
-        if dcf_results['EV'] != 0 else
-        f"EV: {dcf_results['EV']:,.0f}, TV share: N/A (EV≤0)\n"
+        f"EV: {ev:,.0f}, TV share: {tv_share_str}\n"
         f"g={dcf_results['g']:.3f}\n\n"
         "Review: Is rf consistent? Is β_adj applied? Is terminal growth ≤ long-run GDP? "
         "Is EV > 0? Flag if price/share is outside 0.2x–5x of market price."
