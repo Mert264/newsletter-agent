@@ -360,9 +360,10 @@ def build_chart_specs(
         seg_latest = seg_data[0] if seg_data else {}
         seg_vals   = {k: v for k, v in seg_latest.items() if k != "date" and v}
         if seg_vals:
-            idx  = pd.DatetimeIndex([pd.Timestamp(f"{years[-1]}-12-31")] * len(seg_vals))
-            df_g = pd.DataFrame({"value": list(seg_vals.values())},
-                                 index=pd.Index(list(seg_vals.keys())))
+            df_g = pd.DataFrame(
+                {k: [v] for k, v in seg_vals.items()},
+                index=pd.DatetimeIndex([pd.Timestamp(f"{years[-1]}-12-31")]),
+            )
             dfs[lbl_seg] = df_g
             specs.append({
                 "type": "G", "title": f"{company_name} — Geografisk Omsætningsfordeling",
