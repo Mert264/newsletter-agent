@@ -57,16 +57,31 @@ STATUTORY_TAX_RATE = {
 }
 
 _COUNTRY_NAME_MAP = {
+    # Full names
     "denmark": "DNK", "sweden": "SWE", "norway": "NOR", "germany": "DEU",
-    "united states": "USA", "us": "USA", "usa": "USA",
-    "united kingdom": "GBR", "uk": "GBR", "gb": "GBR",
+    "united states": "USA", "united states of america": "USA",
+    "united kingdom": "GBR", "great britain": "GBR",
     "france": "FRA", "china": "CHN", "japan": "JPN",
     "switzerland": "CHE", "netherlands": "NLD", "finland": "FIN",
     "austria": "AUT", "poland": "POL", "hungary": "HUN",
     "brazil": "BRA", "india": "IND", "mexico": "MEX",
     "turkey": "TUR", "russia": "RUS", "saudi arabia": "SAU",
-    "united arab emirates": "ARE", "dnk": "DNK", "swe": "SWE",
-    "nor": "NOR", "deu": "DEU", "gbr": "GBR",
+    "united arab emirates": "ARE", "ireland": "IRL",
+    "south korea": "KOR", "korea": "KOR", "australia": "AUS",
+    "canada": "CAN", "italy": "ITA", "spain": "ESP",
+    # ISO 3-letter (identity mappings)
+    "dnk": "DNK", "swe": "SWE", "nor": "NOR", "deu": "DEU", "gbr": "GBR",
+    "usa": "USA", "fra": "FRA", "chn": "CHN", "jpn": "JPN", "che": "CHE",
+    "nld": "NLD", "fin": "FIN", "aut": "AUT", "pol": "POL", "hun": "HUN",
+    "bra": "BRA", "ind": "IND", "mex": "MEX", "tur": "TUR", "rus": "RUS",
+    "sau": "SAU", "are": "ARE",
+    # ISO 2-letter (what FMP often returns in profile.country)
+    "us": "USA", "gb": "GBR", "uk": "GBR", "dk": "DNK", "se": "SWE",
+    "no": "NOR", "de": "DEU", "fr": "FRA", "jp": "JPN", "ch": "CHE",
+    "nl": "NLD", "fi": "FIN", "at": "AUT", "pl": "POL", "hu": "HUN",
+    "br": "BRA", "in": "IND", "mx": "MEX", "tr": "TUR", "ru": "RUS",
+    "sa": "SAU", "ae": "ARE", "ie": "IRL", "kr": "KOR", "au": "AUS",
+    "ca": "CAN", "it": "ITA", "es": "ESP", "cn": "CHN",
 }
 
 
