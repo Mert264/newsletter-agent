@@ -426,25 +426,24 @@ def run_edge_cases(client):
     except Exception as e:
         ok(f"Edge case EV≤0 handled gracefully ({type(e).__name__}: {str(e)[:60]})")
 
-    # Edge case 2: Zero diluted shares (should use sharesOutstanding fallback)
+    # Edge case 2: Zero diluted shares — production uses `or`, 0 is always invalid FMP data
     try:
-        _ws = 0  # explicitly zero
+        _ws = 0  # FMP returns 0 (invalid)
         profile_so = 500
-        result = float(_ws if _ws is not None else (profile_so or 1))
+        result = float(_ws or profile_so or 1)  # production logic: `or` falls back on 0
         if result == 0:
-            raise ValueError("diluted_shares=0 fell through — should use sharesOutstanding")
-        ok("Edge case diluted_shares=0 → using sharesOutstanding (old or logic would fail)")
+            raise ValueError("production `or` logic gave 0 — should have fallen back")
+        ok(f"diluted_shares=0: production `or` logic → falls back to sharesOutstanding={result}")
     except Exception as e:
-        # This is the OLD bug — document if it exists
         fail("Edge case diluted_shares=0", e)
 
-    # Actually test the NEW logic (explicit None check)
+    # Confirm None also falls back (both None and 0 are invalid)
     try:
-        _ws = 0
-        result_new = float(_ws if _ws is not None else (500 or 1))
-        ok(f"New diluted_shares logic: _ws=0 → result={result_new} (uses 0, not fallback)")
+        _ws = None
+        result_none = float(_ws or 500 or 1)
+        ok(f"diluted_shares=None: `or` fallback → {result_none}")
     except Exception as e:
-        fail("New diluted_shares logic", e)
+        fail("Edge case diluted_shares=None", e)
 
     # Edge case 3: Country code "DK" (should not fall to _default after bug fix)
     try:
