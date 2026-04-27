@@ -220,10 +220,25 @@ if __name__ == "__main__":
         # Step 1: Orchestrator
         task = test_orchestrator(brief, ticker)
 
-        # If orchestrator failed or returned wrong ticker, still test with synthetic task
+        # If orchestrator returned series-nested ticker, the specialist should still extract it
+        if task is not None and not task.get("ticker") and task.get("series"):
+            nested = task["series"][0].get("ticker", "")
+            print(f"  [check] Orchestrator nested ticker in series[0]: '{nested}' — testing fallback extraction")
+            # Verify specialist can extract it
+            from newsletter_agent.specialists.annual_report import fetch_annual_report as _far
+            import inspect
+            src = inspect.getsource(_far)
+            if "_series0" not in src:
+                fail(f"{ticker} series[0] fallback", detail="fetch_annual_report missing series[0] fallback")
+            else:
+                ok(f"{ticker} series[0] fallback extraction: specialist has fallback for nested ticker")
+
         if task is None:
             print(f"  [fallback] Using synthetic task for {ticker}")
             task = {"ticker": ticker, "label": f"{ticker} Analysis", "charts": [], "source": "annual_report"}
+        elif not task.get("ticker"):
+            # Use the series[0] nested format as-is — specialist should now handle it
+            print(f"  [info] Using task as returned by orchestrator (series-nested ticker)")
 
         # Step 2: Specialist
         result = test_specialist_execution(task, AAPL_DATA, ticker)
