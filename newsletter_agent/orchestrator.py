@@ -235,9 +235,12 @@ The available Danish names are exactly: Naturgas, Kul, Kerneenergi, Vandkraft, V
 Omit "product_filter" entirely when the brief does not restrict the energy sources to show.
 
 COMPANY VALUATION & ANNUAL REPORT — FMP (Financial Modeling Prep):
-- annual_report: DCF valuation of a public company. Use for: "analyse af [virksomhed]", "hvad er [ticker] værd", "DCF", "WACC", "årsrapport analyse".
-  Task format: {"source": "annual_report", "label": "Company Analysis", "ticker": "CARL", "charts": []}
-  Returns 18 charts (type A/B/D) with full transparency labeling. Always pass ticker symbol (e.g. CARL, AAPL, NOVO), not company name.
+- annual_report: DCF valuation of a public company. Use for: "analyse af [virksomhed]", "hvad er [ticker] værd", "DCF", "WACC", "årsrapport analyse", "årsregnskab", "Penman".
+  CRITICAL: The task format is FLAT — do NOT use a "series" array. The ticker must be a TOP-LEVEL key:
+  CORRECT:   {"ticker": "AAPL", "label": "Apple Inc. — Årsregnskabsanalyse", "charts": []}
+  WRONG:     {"series": [{"ticker": "AAPL", ...}], "charts": []}
+  The specialist ignores "series" entirely. Always place "ticker" at the top level.
+  Returns 18 charts (type A/B/D) with full transparency labeling. Always pass ticker symbol (e.g. CARL, AAPL, NVO, MSFT, SHEL), not company name.
 
 NOT available (do NOT attempt — these sources do not exist in this system):
   - GIE gas storage, CME FedWatch probability data, Bloomberg, BlackRock, JPMorgan, ICE real-time data

@@ -1,150 +1,16 @@
 {
   "specialists": [
-    "worldbank"
+    "annual_report"
   ],
-  "worldbank": {
+  "annual_report": {
     "series": [
       {
-        "ticker": "NY.GDP.MKTP.KD.ZG",
-        "source": "worldbank",
-        "label": "BNP-v\u00e6kst (%)",
-        "country": "CHN",
-        "years": 20,
-        "unit": "%"
-      },
-      {
-        "ticker": "FP.CPI.TOTL.ZG",
-        "source": "worldbank",
-        "label": "Inflation, CPI (%)",
-        "country": "CHN",
-        "years": 20,
-        "unit": "%"
-      },
-      {
-        "ticker": "SL.UEM.TOTL.ZS",
-        "source": "worldbank",
-        "label": "Arbejdsl\u00f8shed (%)",
-        "country": "CHN",
-        "years": 20,
-        "unit": "%"
-      },
-      {
-        "ticker": "BN.CAB.XOKA.GD.ZS",
-        "source": "worldbank",
-        "label": "Betalingsbalance (% af BNP)",
-        "country": "CHN",
-        "years": 20,
-        "unit": "%"
+        "ticker": "NVO",
+        "source": "annual_report",
+        "label": "Novo Nordisk A/S \u2014 DCF-analyse",
+        "unit": "USD"
       }
     ],
-    "charts": [
-      {
-        "type": "A",
-        "title": "Kina \u2014 BNP-v\u00e6kst (%)",
-        "x_label": "Dato",
-        "y_label": "%",
-        "period_days": 7300,
-        "series_labels": [
-          "BNP-v\u00e6kst (%)"
-        ],
-        "note": "Kinas \u00e5rlige reale BNP-v\u00e6kst i procent. Dataene stammer fra Verdensbanken og d\u00e6kker de seneste 20 \u00e5r. V\u00e6ksten afspejler Kinas udvikling fra h\u00f8j tocifret v\u00e6kst til en mere moderat, men stadig relativt h\u00f8j v\u00e6kstrate."
-      },
-      {
-        "type": "D",
-        "title": "Kina \u2014 N\u00f8gletal (oversigt)",
-        "x_label": "",
-        "y_label": "%",
-        "period_days": 7300,
-        "series_labels": [
-          "BNP-v\u00e6kst (%)",
-          "Inflation, CPI (%)",
-          "Arbejdsl\u00f8shed (%)",
-          "Betalingsbalance (% af BNP)"
-        ],
-        "before_date": "2006-01-01",
-        "after_date": "latest",
-        "col_before": "For 20 \u00e5r siden",
-        "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Oversigt over Kinas centrale makro\u00f8konomiske n\u00f8gletal. Kolonnen 'For 20 \u00e5r siden' viser v\u00e6rdier omkring 2006, mens 'Senest tilg\u00e6ngelige' viser de nyeste tilg\u00e6ngelige observationer fra Verdensbanken. Offentlig g\u00e6ld er udeladt grundet datamangel for Kina."
-      },
-      {
-        "type": "A",
-        "title": "Kina \u2014 Inflation, CPI (%)",
-        "x_label": "Dato",
-        "y_label": "%",
-        "period_days": 7300,
-        "series_labels": [
-          "Inflation, CPI (%)"
-        ],
-        "note": "Kinas \u00e5rlige forbrugerprisinflation m\u00e5lt ved CPI i procent. Dataene stammer fra Verdensbanken og d\u00e6kker de seneste 20 \u00e5r. Kina har historisk set haft relativt lav og stabil inflation sammenlignet med andre store \u00f8konomier."
-      },
-      {
-        "type": "D",
-        "title": "Kina \u2014 Inflation, CPI (%) \u2014 Snapshot",
-        "x_label": "",
-        "y_label": "%",
-        "period_days": 7300,
-        "series_labels": [
-          "Inflation, CPI (%)"
-        ],
-        "before_date": "2006-01-01",
-        "after_date": "latest",
-        "col_before": "For 20 \u00e5r siden",
-        "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Kinas forbrugerprisinflation. Viser den seneste tilg\u00e6ngelige observation sammenlignet med niveauet for 20 \u00e5r siden."
-      },
-      {
-        "type": "A",
-        "title": "Kina \u2014 Arbejdsl\u00f8shed (%)",
-        "x_label": "Dato",
-        "y_label": "%",
-        "period_days": 7300,
-        "series_labels": [
-          "Arbejdsl\u00f8shed (%)"
-        ],
-        "note": "Kinas officielle arbejdsl\u00f8shedsprocent if\u00f8lge Verdensbanken. Data d\u00e6kker de seneste 20 \u00e5r. Det bem\u00e6rkes, at den officielle kinesiske arbejdsl\u00f8shedsstatistik kan undervurdere den faktiske ledighed, s\u00e6rligt i landdistrikterne."
-      },
-      {
-        "type": "D",
-        "title": "Kina \u2014 Arbejdsl\u00f8shed (%) \u2014 Snapshot",
-        "x_label": "",
-        "y_label": "%",
-        "period_days": 7300,
-        "series_labels": [
-          "Arbejdsl\u00f8shed (%)"
-        ],
-        "before_date": "2006-01-01",
-        "after_date": "latest",
-        "col_before": "For 20 \u00e5r siden",
-        "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Kinas arbejdsl\u00f8shedsprocent. Viser den seneste tilg\u00e6ngelige observation sammenlignet med niveauet for 20 \u00e5r siden."
-      },
-      {
-        "type": "A",
-        "title": "Kina \u2014 Betalingsbalance (% af BNP)",
-        "x_label": "Dato",
-        "y_label": "%",
-        "period_days": 7300,
-        "series_labels": [
-          "Betalingsbalance (% af BNP)"
-        ],
-        "note": "Kinas betalingsbalance p\u00e5 de l\u00f8bende poster som andel af BNP. Dataene stammer fra Verdensbanken og d\u00e6kker de seneste 20 \u00e5r. Et positivt tal indikerer et overskud, mens et negativt tal indikerer et underskud i udenrigshandlen og kapitalstr\u00f8mmene."
-      },
-      {
-        "type": "D",
-        "title": "Kina \u2014 Betalingsbalance (% af BNP) \u2014 Snapshot",
-        "x_label": "",
-        "y_label": "%",
-        "period_days": 7300,
-        "series_labels": [
-          "Betalingsbalance (% af BNP)"
-        ],
-        "before_date": "2006-01-01",
-        "after_date": "latest",
-        "col_before": "For 20 \u00e5r siden",
-        "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af Kinas betalingsbalance som andel af BNP. Viser den seneste tilg\u00e6ngelige observation sammenlignet med niveauet for 20 \u00e5r siden."
-      }
-    ]
+    "charts": []
   }
 }
