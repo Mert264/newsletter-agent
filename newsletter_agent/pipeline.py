@@ -180,14 +180,17 @@ def _enforce_worldbank_single_country_layout(manifest: dict, period_days: int = 
     return manifest
 
 
+from newsletter_agent.specialists.annual_report import fetch_annual_report
+
 SPECIALIST_MAP = {
-    "energy":      fetch_energy,
-    "rates":       fetch_rates,
-    "macro":       fetch_macro,
-    "commodities": fetch_commodities,
-    "equities":    fetch_equities,
-    "eurostat":    fetch_eurostat,
-    "worldbank":   fetch_worldbank,
+    "energy":        fetch_energy,
+    "rates":         fetch_rates,
+    "macro":         fetch_macro,
+    "commodities":   fetch_commodities,
+    "equities":      fetch_equities,
+    "eurostat":      fetch_eurostat,
+    "worldbank":     fetch_worldbank,
+    "annual_report": fetch_annual_report,
 }
 
 CHART_RENDERER_MAP = {
