@@ -11,6 +11,12 @@ RF_BY_COUNTRY = {
     "NLD": {"rate": 0.0270, "maturity_yr": 30, "spot": 0.027, "bond_name": "Dutch State Loan 30yr avg"},
     "FRA": {"rate": 0.0290, "maturity_yr": 30, "spot": 0.031, "bond_name": "OAT 30yr avg"},
     "JPN": {"rate": 0.0150, "maturity_yr": 30, "spot": 0.015, "bond_name": "JGB 30yr avg"},
+    "IRL": {"rate": 0.0300, "maturity_yr": 30, "spot": 0.030, "bond_name": "Irish Govt Bond 30yr avg"},
+    "AUS": {"rate": 0.0420, "maturity_yr": 30, "spot": 0.042, "bond_name": "Australian Govt Bond 30yr avg"},
+    "CAN": {"rate": 0.0390, "maturity_yr": 30, "spot": 0.039, "bond_name": "Canada Govt Bond 30yr avg"},
+    "ITA": {"rate": 0.0380, "maturity_yr": 30, "spot": 0.038, "bond_name": "BTP 30yr avg"},
+    "ESP": {"rate": 0.0330, "maturity_yr": 30, "spot": 0.033, "bond_name": "Bono 30yr avg"},
+    "KOR": {"rate": 0.0350, "maturity_yr": 30, "spot": 0.035, "bond_name": "KTB 30yr avg"},
     "_default": {"rate": 0.0450, "maturity_yr": 10, "spot": 0.045, "bond_name": "10yr govt bond"},
 }
 
