@@ -576,7 +576,15 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
 
     # ── Type D — Snapshot / before-after table ────────────────────────────
     if chart_type == "D":
-        path = _build_table(dfs, chart_spec, kilde_str, output_path)
+        if chart_spec.get("table_data"):
+            from newsletter_agent.renderers.tables import render_type_d
+            path = render_type_d(
+                chart_spec["table_data"],
+                {**chart_spec, "kilde": kilde_str},
+                output_path,
+            )
+        else:
+            path = _build_table(dfs, chart_spec, kilde_str, output_path)
 
     # ── Type E — Before/after grouped bar chart ───────────────────────────
     elif chart_type == "E":
