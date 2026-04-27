@@ -18,6 +18,14 @@ def test_moody_spread_lookup():
 def test_icr_spread_lookup():
     # ICR = 5.0 → between 4.25 and 5.50 → spread 0.0125
     assert icr_to_spread(5.0) == 0.0125
+    # Boundary: ICR exactly 8.50 → highest band → spread 0.0063
+    assert icr_to_spread(8.50) == 0.0063
+    # Very high ICR
+    assert icr_to_spread(100.0) == 0.0063
+    # Low ICR < 0.20 → highest risk band → spread 0.0850
+    assert icr_to_spread(0.10) == 0.0850
+    # Negative ICR (distressed company)
+    assert icr_to_spread(-5.0) == 0.1300
 
 def test_normalize_country():
     assert normalize_country("Denmark") == "DNK"
