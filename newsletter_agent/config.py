@@ -30,6 +30,7 @@ API_KEYS = {
     "anthropic": os.getenv("ANTHROPIC_API_KEY", ""),
     "fred":      os.getenv("FRED_API_KEY", ""),
     "eia":       os.getenv("EIA_API_KEY", ""),
+    "fmp":       os.getenv("FMP_API_KEY", ""),
 }
 
 # LLM models — orchestrator uses Sonnet for reliable JSON, reviewer uses Haiku (cheaper)
