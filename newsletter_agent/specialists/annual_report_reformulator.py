@@ -96,6 +96,8 @@ def reformulate(fmp_data: dict, t: float) -> dict:
 
     valid_idx = [i for i, y in enumerate(years) if y not in excluded_yrs and FCF_l[i] is not None]
     if not valid_idx:
+        valid_idx = [i for i in range(len(years)) if FCF_l[i] is not None]
+    if not valid_idx:
         valid_idx = list(range(len(years)))
 
     avg_OG  = sum(OG_l[i]  for i in valid_idx) / len(valid_idx)
