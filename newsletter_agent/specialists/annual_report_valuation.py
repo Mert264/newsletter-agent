@@ -5,7 +5,7 @@ from newsletter_agent.specialists.annual_report_constants import (
 
 
 def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
-    iso3     = normalize_country(hq_country) if len(hq_country) > 3 else hq_country.upper()
+    iso3     = normalize_country(hq_country)
     rf_entry = RF_BY_COUNTRY.get(iso3, RF_BY_COUNTRY["_default"])
     rf       = rf_entry["rate"]
     t        = STATUTORY_TAX_RATE.get(iso3, STATUTORY_TAX_RATE["_default"])
