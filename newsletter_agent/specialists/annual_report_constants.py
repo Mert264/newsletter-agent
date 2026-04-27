@@ -78,4 +78,3 @@ def icr_to_spread(icr: float) -> float:
     for lo, hi, spread in ICR_TO_SPREAD:
         if lo <= icr < hi:
             return spread
-    return ICR_TO_SPREAD[-1][2]
