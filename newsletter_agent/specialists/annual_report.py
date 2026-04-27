@@ -84,6 +84,9 @@ def fetch_annual_report(task: dict) -> dict:
     )
 
     market_price = float(profile.get("price") or 0)
+    if dcf_results["price_per_share"] < 0:
+        print(f"  [annual_report] WARNING: price_per_share={dcf_results['price_per_share']:.2f} < 0 "
+              f"(EV={dcf_results['EV']:,.0f} < NFO+NCI={NFO+NCI:,.0f}). Equity value is negative.")
     da3 = review_valuation(wacc_data, dcf_results, market_price, client)
     print(f"  [annual_report] DA #3 (valuation): {da3[:120]}...")
 
