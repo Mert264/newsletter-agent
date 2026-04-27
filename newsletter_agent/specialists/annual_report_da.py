@@ -57,7 +57,9 @@ def review_valuation(wacc_data: dict, dcf_results: dict,
         f"DCF price/share: {price:.2f}, Market price: {market_price:.2f} "
         f"(ratio: {ratio:.2f}x)\n"
         f"EV: {dcf_results['EV']:,.0f}, TV share: "
-        f"{dcf_results['PV_TV']/dcf_results['EV']:.0%}\n"
+        f"{(dcf_results['PV_TV']/dcf_results['EV']):.0%}\n"
+        if dcf_results['EV'] != 0 else
+        f"EV: {dcf_results['EV']:,.0f}, TV share: N/A (EV≤0)\n"
         f"g={dcf_results['g']:.3f}\n\n"
         "Review: Is rf consistent? Is β_adj applied? Is terminal growth ≤ long-run GDP? "
         "Is EV > 0? Flag if price/share is outside 0.2x–5x of market price."
