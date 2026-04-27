@@ -1,14 +1,28 @@
 from typing import Union
+import time
 import requests
 
 _BASE = "https://financialmodelingprep.com/api/v3"
+_MAX_RETRIES = 3
 
 
 def _get(path: str, api_key: str, **params) -> Union[list, dict]:
     params["apikey"] = api_key
-    resp = requests.get(f"{_BASE}/{path}", params=params, timeout=15)
-    resp.raise_for_status()
-    return resp.json()
+    url = f"{_BASE}/{path}"
+    for attempt in range(_MAX_RETRIES):
+        try:
+            resp = requests.get(url, params=params, timeout=15)
+            resp.raise_for_status()
+            return resp.json()
+        except (requests.Timeout, requests.ConnectionError) as e:
+            if attempt == _MAX_RETRIES - 1:
+                raise
+            time.sleep(2 ** attempt)
+        except requests.HTTPError as e:
+            if resp.status_code == 429 and attempt < _MAX_RETRIES - 1:
+                time.sleep(2 ** attempt)
+            else:
+                raise
 
 
 def fetch_all(ticker: str, api_key: str) -> dict:
