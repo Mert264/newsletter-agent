@@ -62,7 +62,10 @@ CRP_BY_COUNTRY = {
 STATUTORY_TAX_RATE = {
     "DNK": 0.22, "SWE": 0.206, "NOR": 0.22, "DEU": 0.298,
     "USA": 0.21, "GBR": 0.25, "FRA": 0.2572, "CHN": 0.25,
-    "JPN": 0.2974, "NLD": 0.258, "CHE": 0.1468, "_default": 0.22,
+    "JPN": 0.2974, "NLD": 0.258, "CHE": 0.1468,
+    "IRL": 0.125, "AUS": 0.30, "CAN": 0.265, "ITA": 0.2772,
+    "ESP": 0.25, "KOR": 0.264,
+    "_default": 0.22,
 }
 
 _COUNTRY_NAME_MAP = {
