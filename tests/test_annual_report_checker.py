@@ -60,11 +60,12 @@ def test_effective_tax_fails():
     assert result["passed"] is False
 
 
-def test_nci_absent_fails():
+def test_nci_absent_passes():
+    # nci_present=False means no minority interests — valid, should not block
     inputs = _valid_inputs()
     inputs["nci_present"] = False
     result = check(inputs)
-    assert result["passed"] is False
+    assert result["passed"] is True, f"Expected pass with nci_present=False, got: {result['issues']}"
 
 
 def test_inflation_linked_bond_fails():
