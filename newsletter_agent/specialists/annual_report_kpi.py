@@ -260,7 +260,7 @@ def build_chart_specs(
                 _frow(f"Driftsoverskud (OI) [EST]", dcf_results["OI_forecast"]),
                 _frow(f"NOA [EST]", dcf_results["NOA_forecast"]),
                 _frow(f"ΔNOA [EST]", dcf_results["dNOA_forecast"]),
-                _frow(f"Discount factor [CALC]", [round(d, 4) for d in dcf_results["discount_factors"]]),
+                {**{"indicator": "Discount factor [CALC]"}, **{yr: f"{d:.4f}" for yr, d in zip(fy, dcf_results["discount_factors"])}, "Terminalår": ""},
                 _frow(f"FCF (OI − ΔNOA) [EST]", dcf_results["FCF_forecast"]),
                 _frow(f"Nutidsværdi af FCF [CALC]", dcf_results["PV_FCF"]),
                 {"indicator": ""},
