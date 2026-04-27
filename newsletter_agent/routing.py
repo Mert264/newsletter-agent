@@ -28,6 +28,12 @@ _GDP  = _re(r"\b(gdp|bnp|growth|vækst)\b")
 _COUNTRY_ECON_KW = _re(r"\b(økonomi|makroprofil|makroøkonomisk|landeprofil|bnp|inflation i|gæld|betalingsbalance|arbejdsløshed i|ledighed i)\b")
 
 ROUTING_RULES = [
+    # Annual report / company valuation → annual_report specialist (FMP)
+    (
+        lambda b: _ANNUAL.search(b),
+        "For selskabsanalyse og DCF-værdiansættelse: brug specialist='annual_report', source='fmp'. "
+        "Angiv ticker-symbol (fx 'CARL', 'NOVO B', 'AAPL'). Returnerer type A/B/D charts.",
+    ),
     # EU energy mix → Eurostat
     (
         lambda b: _EU.search(b) and _NRG.search(b),
