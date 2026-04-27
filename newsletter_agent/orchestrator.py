@@ -15,7 +15,7 @@ SPROG: Dansk er det primære sprog. Engelsk er det sekundære sprog.
 
 Given a free-form topic brief, return a JSON TaskManifest with exactly this structure:
 {
-  "specialists": ["energy", "rates"],   // list of specialists needed — choose from: energy, rates, macro, commodities, equities, eurostat
+  "specialists": ["energy", "rates"],   // list of specialists needed — choose from: energy, rates, macro, commodities, equities, eurostat, annual_report
   "energy": {                           // one key per specialist listed above
     "series": [
       {
