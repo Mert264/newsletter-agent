@@ -65,9 +65,9 @@ def fetch_annual_report(task: dict) -> dict:
     print(f"  [annual_report] Running DCF valuation...")
     NFO           = reformulated["NFO"][-1]
     NCI           = reformulated["NCI"][-1]
+    _ws = fmp_data["income"][0].get("weightedAverageShsOutDil")
     diluted_shares = float(
-        fmp_data["income"][0].get("weightedAverageShsOutDil") or
-        profile.get("sharesOutstanding") or 1
+        _ws if _ws is not None else (profile.get("sharesOutstanding") or 1)
     )
     base_year = reformulated["years"][-1]
     wacc      = wacc_data["wacc"]
