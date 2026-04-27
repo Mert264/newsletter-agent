@@ -234,6 +234,11 @@ CRITICAL: When the brief explicitly names specific energy sources to include, yo
 The available Danish names are exactly: Naturgas, Kul, Kerneenergi, Vandkraft, Vindkraft, Solenergi, Olie, Bioenergi.
 Omit "product_filter" entirely when the brief does not restrict the energy sources to show.
 
+COMPANY VALUATION & ANNUAL REPORT — FMP (Financial Modeling Prep):
+- annual_report: DCF valuation of a public company. Use for: "analyse af [virksomhed]", "hvad er [ticker] værd", "DCF", "WACC", "årsrapport analyse".
+  Task format: {"source": "annual_report", "label": "Company Analysis", "ticker": "CARL", "charts": []}
+  Returns 18 charts (type A/B/D) with full transparency labeling. Always pass ticker symbol (e.g. CARL, AAPL, NOVO), not company name.
+
 NOT available (do NOT attempt — these sources do not exist in this system):
   - GIE gas storage, CME FedWatch probability data, Bloomberg, BlackRock, JPMorgan, ICE real-time data
   - UK NBP gas prices (not on yfinance — only TTF=F is available for European gas)
