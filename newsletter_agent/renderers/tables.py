@@ -73,7 +73,10 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     header_row = [""] + wrapped_cols
     # Make header row taller if any header wraps to 2+ lines
     max_header_lines = max((c.count("\n") + 1) for c in header_row)
-    cell_text  = [[r.get("indicator", "")] + [r.get(c, "") for c in cols] for r in rows]
+    # Wrap indicator text to prevent clipping in narrow indicator column
+    _ind_max_chars = int(indicator_w * 85)  # approx chars that fit per line at current font
+    cell_text  = [["\n".join(textwrap.wrap(r.get("indicator", ""), width=_ind_max_chars)) or ""]
+                  + [r.get(c, "") for c in cols] for r in rows]
 
     # ── Cell colours ─────────────────────────────────────────────────────
     header_colors = [[BRAND["primary"]] * n_cols]
