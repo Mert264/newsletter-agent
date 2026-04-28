@@ -238,7 +238,7 @@ def build_chart_specs(
         "type": "A", "title": f"{company_name} — Finansiel Gearing (FLEV) og NFO ({currency}m)",
         "y_label": "Indekseret (basis=100)",
         "series_labels": [lbl_flev, lbl_nfo],
-        "note": "FLEV = NFO / Egenkapital. NFO = Finansielle forpligtelser − Finansielle aktiver (Penman). Serier indekseret til 100 (fælles startpunkt) da enhederne er usammenlignelige (ratio vs. {currency}m) [CALC].",
+        "note": f"FLEV = NFO / Egenkapital. NFO = Finansielle forpligtelser − Finansielle aktiver (Penman). Serier indekseret til 100 (fælles startpunkt) da enhederne er usammenlignelige (ratio vs. {currency}m) [CALC].",
         "kilde": kilde,
     })
 
