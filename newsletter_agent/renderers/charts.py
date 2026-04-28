@@ -383,10 +383,14 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     y_range = max(values) - min(values) if len(values) > 1 else abs(values[0]) if values else 1
     offset = y_range * 0.02 or 0.5
 
+    # Only show "+" prefix when chart has mixed sign values (spread/change charts).
+    # For pure absolute value comparisons (e.g. price bars), suppress the "+" prefix.
+    has_mixed_signs = any(v >= 0 for v in values) and any(v < 0 for v in values)
     for bar, val in zip(bars, values):
+        label = (f"+{val:.2f}" if (val >= 0 and has_mixed_signs) else f"{val:.2f}")
         ax.text(bar.get_x() + bar.get_width() / 2,
                 bar.get_height() + (offset if val >= 0 else -offset),
-                f"+{val:.2f}" if val >= 0 else f"{val:.2f}",
+                label,
                 ha="center", va="bottom" if val >= 0 else "top",
                 fontsize=9, fontweight="bold", color=BRAND["secondary"])
 
