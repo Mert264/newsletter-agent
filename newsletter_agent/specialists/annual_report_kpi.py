@@ -344,18 +344,30 @@ def build_chart_specs(
     # Chart 17: Multiples table
     metrics = fmp_data.get("metrics", [{}])
     m = metrics[0] if metrics else {}
+    mkt_cap = fmp_data["profile"].get("marketCap", 0) or 0  # already scaled to USDm
+    _inc0   = fmp_data["income"][0] if fmp_data.get("income") else {}
+    _bal0   = fmp_data["balance"][0] if fmp_data.get("balance") else {}
+    _rev    = _inc0.get("revenue") or _inc0.get("totalRevenue") or 0
+    _equity = _bal0.get("totalStockholdersEquity") or 0
+    # P/B and P/S fallback: compute from market cap + balance/income when FMP key-metrics lacks them
+    def _ratio_str(numerator, denominator):
+        if numerator and denominator and denominator != 0:
+            return f"{numerator / denominator:.1f}x"
+        return "N/A"
+    pb_val  = m.get("pbRatio") or (mkt_cap / _equity if _equity else None)
+    ps_val  = m.get("priceToSalesRatio") or (mkt_cap / _rev if _rev else None)
     specs.append({
         "type": "D", "title": f"{company_name} — Nøgletalssammenligning [SOURCED/CALC]",
-        "note": "Trailing multiples fra FMP [SOURCED]. Forward multiples kun hvis analytikerestimat tilgængeligt [EST].",
+        "note": "Trailing multiples fra FMP [SOURCED]. P/B og P/S beregnet fra markedsværdi / bogført egenkapital og omsætning hvis ikke direkte tilgængeligt [CALC].",
         "kilde": kilde,
         "table_data": {
             "columns": ["Multipel", "Trailing [SOURCED]"],
             "rows": [
-                {"indicator": "P/E",       "Multipel": "P/E",       "Trailing [SOURCED]": f"{m.get('peRatio', 'N/A'):.1f}x" if m.get("peRatio") else "N/A"},
-                {"indicator": "EV/EBITDA", "Multipel": "EV/EBITDA", "Trailing [SOURCED]": f"{m.get('evToEbitda', 'N/A'):.1f}x" if m.get("evToEbitda") else "N/A"},
-                {"indicator": "P/B",       "Multipel": "P/B",       "Trailing [SOURCED]": f"{m.get('pbRatio', 'N/A'):.1f}x"   if m.get("pbRatio") else "N/A"},
-                {"indicator": "P/S",       "Multipel": "P/S",       "Trailing [SOURCED]": f"{m.get('priceToSalesRatio', 'N/A'):.1f}x" if m.get("priceToSalesRatio") else "N/A"},
-                {"indicator": "P/FCF",     "Multipel": "P/FCF",     "Trailing [SOURCED]": f"{m.get('pfcfRatio', 'N/A'):.1f}x" if m.get("pfcfRatio") else "N/A"},
+                {"indicator": "P/E",       "Multipel": "P/E",       "Trailing [SOURCED]": f"{m['peRatio']:.1f}x" if m.get("peRatio") else "N/A"},
+                {"indicator": "EV/EBITDA", "Multipel": "EV/EBITDA", "Trailing [SOURCED]": f"{m['evToEbitda']:.1f}x" if m.get("evToEbitda") else "N/A"},
+                {"indicator": "P/B",       "Multipel": "P/B",       "Trailing [SOURCED]": f"{pb_val:.1f}x" if pb_val else "N/A"},
+                {"indicator": "P/S",       "Multipel": "P/S",       "Trailing [SOURCED]": f"{ps_val:.1f}x" if ps_val else "N/A"},
+                {"indicator": "P/FCF",     "Multipel": "P/FCF",     "Trailing [SOURCED]": f"{m['pfcfRatio']:.1f}x" if m.get("pfcfRatio") else "N/A"},
             ],
         },
     })
