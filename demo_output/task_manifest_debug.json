@@ -3,14 +3,8 @@
     "annual_report"
   ],
   "annual_report": {
-    "series": [
-      {
-        "ticker": "NVO",
-        "source": "annual_report",
-        "label": "Novo Nordisk A/S \u2014 DCF-analyse",
-        "unit": "USD"
-      }
-    ],
+    "ticker": "NVO",
+    "label": "Novo Nordisk A/S \u2014 \u00c5rsregnskabsanalyse & DCF-v\u00e6rdians\u00e6ttelse",
     "charts": []
   }
 }

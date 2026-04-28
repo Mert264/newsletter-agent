@@ -877,14 +877,18 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
             executor.submit(_run_specialist, name, manifest[name]): name
             for name in specialists
         }
+        _specialist_errors: dict[str, str] = {}
         for future in as_completed(futures):
             name = futures[future]
             try:
                 _, result = future.result()
                 specialist_results[name] = result
             except Exception as exc:
-                print(f"  [{name}] FAILED — skipping specialist: {exc}")
-                # Remove from specialists list so its charts are silently skipped
+                import traceback as _tb
+                err_detail = str(exc)
+                print(f"  [{name}] FAILED — skipping specialist: {err_detail}")
+                print(f"  [{name}] Traceback: {_tb.format_exc()[-400:]}")
+                _specialist_errors[name] = err_detail
                 specialists = [s for s in specialists if s != name]
 
     # Step 2b: Apply unit conversions (date-matched FX where needed)
