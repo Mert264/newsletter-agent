@@ -173,7 +173,7 @@ def run_pipeline_test(prompt_id, brief, period_days, preferred_types=None):
 
     try:
         with redirect_stdout(buf):
-            figures = run_pipeline(
+            figures, _errs = run_pipeline(
                 brief=brief,
                 output_dir="demo_output/test",
                 preferred_types=preferred_types or ["A", "D"],
