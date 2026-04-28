@@ -220,11 +220,17 @@ def build_chart_specs(
         "note": "FCF = OI − ΔNOA (Penman). Første år mangler da ΔNOA kræver forudgående år [CALC].",
         "kilde": kilde,
     })
+    _rnoa_latest = reformulated["RNOA"][-1] if reformulated.get("RNOA") else 0
+    _rnoa_note_extra = (
+        f" RNOA > 100% skyldes ekstremt lav NOA (negativt driftsarbejdskapital og store leverandørkreditter) — "
+        f"karakteristisk for kapitallettte forbrugsteknologiselskaber."
+        if _rnoa_latest > 1.0 else ""
+    )
     specs.append({
         "type": "A", "title": f"{company_name} — RNOA, ROCE og SPREAD (%)",
         "y_label": "%",
         "series_labels": [lbl_rnoa, lbl_roce, lbl_spread],
-        "note": "RNOA = OI / avg NOA. ROCE = Comprehensive NI / avg egenkapital. SPREAD = RNOA − NBC [CALC].",
+        "note": f"RNOA = OI / avg NOA. ROCE = Comprehensive NI / avg egenkapital. SPREAD = RNOA − NBC [CALC].{_rnoa_note_extra}",
         "kilde": kilde,
     })
     specs.append({
