@@ -872,6 +872,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
     n_charts = sum(len(manifest.get(s, {}).get("charts", [])) for s in specialists)
     print(f"\n[2/4] Fetching data — {len(specialists)} specialist(s), ~{n_charts} chart(s) planned...")
     specialist_results: dict[str, dict] = {}
+    _specialist_errors: dict[str, str] = {}
     with ThreadPoolExecutor(max_workers=len(specialists) or 1) as executor:
         futures = {
             executor.submit(_run_specialist, name, manifest[name]): name
