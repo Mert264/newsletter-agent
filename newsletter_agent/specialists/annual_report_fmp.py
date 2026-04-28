@@ -42,13 +42,13 @@ def _normalize_metrics(m: dict) -> dict:
 
 
 def fetch_all(ticker: str, api_key: str) -> dict:
-    income    = _get("income-statement",        api_key, symbol=ticker, limit=10, period="annual")
-    balance   = _get("balance-sheet-statement", api_key, symbol=ticker, limit=10, period="annual")
-    cashflow  = _get("cash-flow-statement",     api_key, symbol=ticker, limit=10, period="annual")
+    income    = _get("income-statement",        api_key, symbol=ticker, period="annual")
+    balance   = _get("balance-sheet-statement", api_key, symbol=ticker, period="annual")
+    cashflow  = _get("cash-flow-statement",     api_key, symbol=ticker, period="annual")
     profile   = _get("profile",                 api_key, symbol=ticker)
     rating    = _get("ratings-snapshot",        api_key, symbol=ticker)
-    metrics   = _get("key-metrics",             api_key, symbol=ticker, limit=10, period="annual")
-    estimates = _get("financial-estimates",     api_key, symbol=ticker, limit=5,  period="annual")
+    metrics   = _get("key-metrics",             api_key, symbol=ticker, period="annual")
+    estimates = _get("financial-estimates",     api_key, symbol=ticker, period="annual")
 
     if isinstance(income, dict) and "Error Message" in income:
         raise ValueError(f"FMP income statement error for '{ticker}': {income['Error Message']}")
