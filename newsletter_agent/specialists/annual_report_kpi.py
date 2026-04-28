@@ -315,8 +315,8 @@ def build_chart_specs(
         sens_rows.append(row)
     specs.append({
         "type": "D", "title": f"{company_name} — Følsomhedsanalyse: Pris/aktie ({currency}) [CALC]",
-        "note": (f"★ = base case (WACC={_pct(wacc_base)}, g={_pct(g_base)}) [ASSUMED]. "
-                 f"Pris per aktie varierer med WACC ± 1 pct.point (0,25% trin) og g 1–3% [CALC]."),
+        "note": (f"Kolonner = WACC (%). Rækker = g (vækst). ★ = base case (WACC={_pct(wacc_base)}, g={_pct(g_base)}) [ASSUMED]. "
+                 f"Pris varierer med WACC ± 1 pct.point (0,25% trin) og g 1–3% [CALC]."),
         "kilde": kilde,
         "table_data": {"columns": sens_cols, "rows": sens_rows},
     })
