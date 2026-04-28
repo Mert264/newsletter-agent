@@ -302,16 +302,16 @@ def build_chart_specs(
     g_axis    = sensitivity["g_axis"]
     wacc_base = sensitivity["wacc_base"]
     g_base    = sensitivity["g_base"]
-    sens_cols = [f"WACC {_pct(w)}" for w in wacc_axis]
+    sens_cols = [_pct(w) for w in wacc_axis]
     sens_rows = []
     for row_idx, g in enumerate(g_axis):
-        row = {"indicator": f"g = {_pct(g)} [ASSUMED]"}
+        row = {"indicator": f"g={_pct(g)}"}
         for col_idx, w in enumerate(wacc_axis):
             cell_val = sensitivity["grid"][row_idx][col_idx]
             cell_str = f"{cell_val:.1f}" if cell_val is not None else "—"
             if abs(w - wacc_base) < 1e-6 and abs(g - g_base) < 1e-6:
-                cell_str = f"★ {cell_str}"  # highlight base case
-            row[f"WACC {_pct(w)}"] = cell_str
+                cell_str = f"★{cell_str}"
+            row[_pct(w)] = cell_str
         sens_rows.append(row)
     specs.append({
         "type": "D", "title": f"{company_name} — Følsomhedsanalyse: Pris/aktie ({currency}) [CALC]",
