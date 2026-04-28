@@ -61,10 +61,11 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     fig.patch.set_facecolor(BRAND["background"])
 
     # ── Column widths ─────────────────────────────────────────────────────
-    # Indicator column gets 40 % of width; remaining columns share the rest equally
-    indicator_w = 0.40
-    other_w     = (1.0 - indicator_w) / len(cols) if cols else 1.0
-    col_widths  = [indicator_w] + [other_w] * len(cols)
+    # Shrink indicator column for wide tables so data columns have enough space
+    n_data_cols = len(cols)
+    indicator_w = 0.25 if n_data_cols >= 8 else (0.30 if n_data_cols >= 5 else 0.40)
+    other_w     = (1.0 - indicator_w) / n_data_cols if n_data_cols else 1.0
+    col_widths  = [indicator_w] + [other_w] * n_data_cols
 
     # ── Build cell text ───────────────────────────────────────────────────
     # Wrap column headers so long text never overflows narrow cells
