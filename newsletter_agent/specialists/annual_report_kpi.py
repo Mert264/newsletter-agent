@@ -332,6 +332,7 @@ def build_chart_specs(
     direction = "undervurderet" if dcf_price > price else "overvurderet"
     specs.append({
         "type": "B", "title": f"{company_name} — Fundamental vs. Markedspris ({currency})",
+        "y_label": f"{currency} pr. aktie",
         "series_labels": [lbl_fund, lbl_market],
         "note": (f"Fundamental pris = {dcf_price:.2f} {currency} [CALC]. "
                  f"Markedspris = {price:.2f} {currency} [SOURCED]. "
