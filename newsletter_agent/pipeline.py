@@ -878,7 +878,6 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
             executor.submit(_run_specialist, name, manifest[name]): name
             for name in specialists
         }
-        _specialist_errors: dict[str, str] = {}
         for future in as_completed(futures):
             name = futures[future]
             try:
