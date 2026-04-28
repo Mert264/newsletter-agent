@@ -924,15 +924,27 @@ function renderFigures(figures) {
          </div>`
       : '';
 
+    const noteHtml = fig.note
+      ? `<div class="fig-note">${fig.note.length > 160 ? fig.note.slice(0, 157) + '…' : fig.note}</div>`
+      : '';
+    const kildeHtml = fig.kilde
+      ? `<div class="fig-kilde">Kilde: ${fig.kilde}</div>`
+      : '';
+
     const card = document.createElement('div');
     card.className = 'fig-card';
     card.id = `figcard-${i}`;
     card.innerHTML = `
       <img src="/figures/${fig.path}?t=${Date.now()}" alt="${fig.title}"
            id="figimg-${i}" onclick="openLightbox(this.src)" />
+      <div class="fig-caption">
+        <div class="fig-title">${fig.title}</div>
+        ${noteHtml}
+        ${kildeHtml}
+      </div>
       <div class="fig-footer">
         <a href="/figures/${fig.path}" download="${fig.path}" class="fig-download">
-          &#8681; Download
+          &#8681; Download PNG
         </a>
       </div>
       ${flagHtml ? `<div class="fig-meta">${flagHtml}</div>` : ''}`;
