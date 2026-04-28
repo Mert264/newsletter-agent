@@ -5,6 +5,9 @@ import requests
 _BASE = "https://financialmodelingprep.com/stable"
 _MAX_RETRIES = 3
 
+# Fields in income/cashflow that are per-share ratios (do NOT scale to millions)
+_NO_SCALE_INCOME = {"eps", "epsDiluted"}
+
 
 def _get(path: str, api_key: str, **params) -> Union[list, dict]:
     params["apikey"] = api_key
@@ -25,17 +28,22 @@ def _get(path: str, api_key: str, **params) -> Union[list, dict]:
                 raise
 
 
+def _scale(row: dict, no_scale: set = frozenset()) -> dict:
+    """Divide all numeric fields by 1,000,000 to convert raw dollars → millions."""
+    return {
+        k: (v / 1_000_000 if isinstance(v, (int, float)) and k not in no_scale else v)
+        for k, v in row.items()
+    }
+
+
 def _normalize_metrics(m: dict) -> dict:
     """Map stable API key-metric field names to the names the rest of the codebase expects."""
     result = dict(m)
-    # PE ratio: new API exposes earningsYield = 1/PE
     ey = m.get("earningsYield")
     if ey and ey != 0:
         result.setdefault("peRatio", 1.0 / ey)
-    # EV/EBITDA: capitalization changed
     if "evToEBITDA" in m:
         result.setdefault("evToEbitda", m["evToEBITDA"])
-    # P/FCF: approximate via EV/FCF
     if "evToFreeCashFlow" in m:
         result.setdefault("pfcfRatio", m["evToFreeCashFlow"])
     return result
@@ -59,13 +67,20 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     if not balance:
         raise ValueError(f"No balance sheet data for ticker '{ticker}'.")
 
-    # Profile: stable API returns a list; also normalize field names
+    # Scale financial statements: stable API returns raw dollars, pipeline expects millions
+    income   = [_scale(r, no_scale=_NO_SCALE_INCOME) for r in income]
+    balance  = [_scale(r) for r in balance]
+    cashflow = [_scale(r) for r in cashflow]
+
+    # Profile: stable API returns a list; normalize field names; scale monetary fields
     profile_dict = profile[0] if isinstance(profile, list) and profile else (profile or {})
     profile_dict = dict(profile_dict)
-    profile_dict.setdefault("mktCap", profile_dict.get("marketCap", 0))
-    profile_dict.setdefault("sharesOutstanding", income[0].get("weightedAverageShsOut"))
+    mkt_cap_raw = profile_dict.get("marketCap", 0) or 0
+    profile_dict["marketCap"]       = mkt_cap_raw / 1_000_000
+    profile_dict["mktCap"]          = profile_dict["marketCap"]
+    profile_dict["sharesOutstanding"] = income[0].get("weightedAverageShsOut")  # already scaled
 
-    # Balance: stable API omits minorityInterest — derive it
+    # Balance: stable API omits minorityInterest — derive it (already scaled)
     for b in balance:
         if "minorityInterest" not in b:
             b["minorityInterest"] = (
