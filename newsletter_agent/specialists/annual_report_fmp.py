@@ -34,8 +34,12 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     metrics   = _get(f"key-metrics/{ticker}", api_key, limit=10, period="annual")
     estimates = _get(f"analyst-estimates/{ticker}", api_key, limit=5, period="annual")
 
+    if isinstance(income, dict) and "Error Message" in income:
+        raise ValueError(f"FMP income statement error for '{ticker}': {income['Error Message']}")
     if not income:
         raise ValueError(f"No income statement data for ticker '{ticker}' — check ticker symbol or FMP subscription.")
+    if isinstance(balance, dict) and "Error Message" in balance:
+        raise ValueError(f"FMP balance sheet error for '{ticker}': {balance['Error Message']}")
     if not balance:
         raise ValueError(f"No balance sheet data for ticker '{ticker}'.")
 
