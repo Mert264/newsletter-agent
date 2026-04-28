@@ -360,34 +360,35 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
 def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     """
-    Type B — Cross-country / comparison bar chart.
-    Handles two layouts:
-    - String index, single column: index entries are categories (original use).
-    - DatetimeIndex, multiple columns: each column is a bar (latest row used as snapshot).
+    Type B — Comparison bar chart.
+    Two layouts:
+    - DatetimeIndex / multiple columns: each column is one bar (snapshot of latest row).
+    - String index, single column: index entries are categories (original cross-country use).
     """
-    import pandas as pd as _pd
-
     fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
 
-    # Snapshot layout: multiple columns with DatetimeIndex → each column is one bar
-    if isinstance(df.index, _pd.DatetimeIndex) or len(df.columns) > 1:
+    if isinstance(df.index, pd.DatetimeIndex) or len(df.columns) > 1:
+        # Snapshot: columns → bars, strip ticker prefix from label
         latest = df.iloc[-1]
         labels = [c.split(" — ")[-1] for c in latest.index]
-        values = latest.values
+        values = list(latest.values)
     else:
         col = df.columns[0]
-        values = df[col].values
-        labels = df.index
+        values = list(df[col].values)
+        labels = list(df.index)
 
     colors = [BRAND["primary"] if v >= 0 else "#dc2626" for v in values]
-    bars = ax.bar(labels, values, color=colors, width=0.6, edgecolor="white")
+    bars = ax.bar(labels, values, color=colors, width=0.5, edgecolor="white")
 
-    # Value labels on bars
+    y_range = max(values) - min(values) if len(values) > 1 else abs(values[0]) if values else 1
+    offset = y_range * 0.02 or 0.5
+
     for bar, val in zip(bars, values):
         ax.text(bar.get_x() + bar.get_width() / 2,
-                bar.get_height() + (0.01 if val >= 0 else -0.03),
-                f"{val:+.2f}", ha="center", va="bottom" if val >= 0 else "top",
-                fontsize=7, color=BRAND["secondary"])
+                bar.get_height() + (offset if val >= 0 else -offset),
+                f"+{val:.2f}" if val >= 0 else f"{val:.2f}",
+                ha="center", va="bottom" if val >= 0 else "top",
+                fontsize=9, fontweight="bold", color=BRAND["secondary"])
 
     ax.axhline(0, color=BRAND["secondary"], linewidth=0.6)
     ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
