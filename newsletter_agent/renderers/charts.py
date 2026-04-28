@@ -360,17 +360,27 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
 def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     """
-    Type B — Cross-country bar chart.
-    df: DataFrame with country names as index, single value column.
-    spec: {"title", "x_label", "y_label"}
+    Type B — Cross-country / comparison bar chart.
+    Handles two layouts:
+    - String index, single column: index entries are categories (original use).
+    - DatetimeIndex, multiple columns: each column is a bar (latest row used as snapshot).
     """
+    import pandas as pd as _pd
+
     fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
 
-    col = df.columns[0]
-    values = df[col]
-    colors = [BRAND["primary"] if v >= 0 else "#dc2626" for v in values]
+    # Snapshot layout: multiple columns with DatetimeIndex → each column is one bar
+    if isinstance(df.index, _pd.DatetimeIndex) or len(df.columns) > 1:
+        latest = df.iloc[-1]
+        labels = [c.split(" — ")[-1] for c in latest.index]
+        values = latest.values
+    else:
+        col = df.columns[0]
+        values = df[col].values
+        labels = df.index
 
-    bars = ax.bar(df.index, values, color=colors, width=0.6, edgecolor="white")
+    colors = [BRAND["primary"] if v >= 0 else "#dc2626" for v in values]
+    bars = ax.bar(labels, values, color=colors, width=0.6, edgecolor="white")
 
     # Value labels on bars
     for bar, val in zip(bars, values):
