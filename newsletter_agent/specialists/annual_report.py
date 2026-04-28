@@ -108,15 +108,6 @@ def fetch_annual_report(task: dict) -> dict:
     da5 = review_final(chart_specs, dcf_results["price_per_share"], market_price, client)
     print(f"  [annual_report] DA #5 (final): {da5[:120]}...")
 
-    if chart_specs:
-        da_summary = (
-            f"\n\nDA Reviews: "
-            f"[#1 Reformulation] {da1[:80]} | "
-            f"[#3 Valuation] {da3[:80]} | "
-            f"[#5 Final] {da5[:80]}"
-        )
-        chart_specs[0]["note"] = chart_specs[0].get("note", "") + da_summary
-
     return {
         "dataframes":  dataframes,
         "kilde":       ["FMP", "Damodaran"],
