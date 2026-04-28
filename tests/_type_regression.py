@@ -74,7 +74,7 @@ for test in TESTS:
     print(f"{'='*72}")
     try:
         outdir = tempfile.mkdtemp(prefix="nl_test_")
-        packages = run(
+        packages, _errs = run(
             brief=test["brief"],
             output_dir=outdir,
             preferred_types=test.get("preferred_types"),
