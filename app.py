@@ -139,7 +139,11 @@ def start_run():
                 for i, p in enumerate(packages)
             ]
 
-            done_msg = {"type": "done", "figures": figures}
+            done_msg = {
+                "type": "done",
+                "figures": figures,
+                "specialist_errors": specialist_errors,
+            }
             _last_result.update(done_msg)
             with open(_LAST_RESULT_PATH, "w") as _f:
                 json.dump(done_msg, _f, ensure_ascii=False)
