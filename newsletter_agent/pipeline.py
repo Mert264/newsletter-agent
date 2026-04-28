@@ -1094,4 +1094,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
         json.dump({"brief": brief, "date": str(date.today()), "figures": packages}, f, indent=2, default=str)
 
     print(f"\n[4/4] Done. {len(packages)} figure(s) saved to '{output_dir}/'")
-    return packages
+    if _specialist_errors:
+        for name, err in _specialist_errors.items():
+            print(f"  [pipeline] Specialist '{name}' failed: {err}")
+    return packages, _specialist_errors
