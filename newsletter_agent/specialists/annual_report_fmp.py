@@ -48,7 +48,7 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     profile   = _get("profile",                 api_key, symbol=ticker)
     rating    = _get("ratings-snapshot",        api_key, symbol=ticker)
     metrics   = _get("key-metrics",             api_key, symbol=ticker, period="annual")
-    estimates = _get("financial-estimates",     api_key, symbol=ticker, period="annual")
+    estimates = _get("analyst-estimates",       api_key, symbol=ticker, period="annual")
 
     if isinstance(income, dict) and "Error Message" in income:
         raise ValueError(f"FMP income statement error for '{ticker}': {income['Error Message']}")
