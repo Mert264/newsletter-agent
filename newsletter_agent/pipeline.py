@@ -1030,7 +1030,8 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
             _DXY_FP_PHRASES = ("natural index", "trades as an index", "dxy is a natural",
                                 "not a rebased", "remove 'basis=100'", "remove basis=100")
             if last_flag and any(p in last_flag.lower() for p in _DXY_FP_PHRASES):
-                series_labels_lower = [l.lower() for l in dfs.keys()]
+                _chart_dfs = dfs if "dfs" in dir() else {}
+                series_labels_lower = [l.lower() for l in _chart_dfs.keys()]
                 if any("dxy" in l or "dollar index" in l for l in series_labels_lower):
                     print(f"  [reviewer] Suppressed DXY+FX rebasing false positive — see Live log")
                     last_flag = None
