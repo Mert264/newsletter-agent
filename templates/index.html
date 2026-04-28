@@ -847,6 +847,16 @@ function startRun() {
         `Færdig — ${msg.figures.length} figur(er)`;
       document.getElementById('statusMsg').className = '';
       document.getElementById('statusDot').className = 'status-dot';
+      if (msg.specialist_errors && Object.keys(msg.specialist_errors).length > 0) {
+        for (const [name, err] of Object.entries(msg.specialist_errors)) {
+          appendLog(`FEJL i specialist '${name}': ${err}`);
+        }
+        if (msg.figures.length === 0) {
+          document.getElementById('statusMsg').textContent = 'Fejl — se log for detaljer';
+          document.getElementById('statusMsg').className = 'error';
+          document.getElementById('statusDot').className = 'status-dot error';
+        }
+      }
       eventSource.close();
       eventSource = null;
     } else if (msg.type === 'error') {
