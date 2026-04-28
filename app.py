@@ -115,7 +115,7 @@ def start_run():
 
             run_dir = os.path.join(OUTPUT_DIR, datetime.now().strftime("%Y%m%d_%H%M%S"))
             os.makedirs(run_dir, exist_ok=True)
-            packages = run(brief, output_dir=run_dir, preferred_types=preferred_types, period_days=period_days)
+            packages, specialist_errors = run(brief, output_dir=run_dir, preferred_types=preferred_types, period_days=period_days)
 
             # Load rerender context
             ctx_path = os.path.join(run_dir, "rerender_context.json")
