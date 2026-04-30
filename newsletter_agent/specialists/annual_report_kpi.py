@@ -198,23 +198,26 @@ def build_chart_specs(
         },
     })
 
-    # Charts 7–12: Type A time series
+    # Charts 7–12: Type A time series (freq="A" forces annual x-axis labels)
     specs.append({
-        "type": "A", "title": f"{company_name} — Omsætning ({currency}m)",
+        "type": "A", "freq": "A",
+        "title": f"{company_name} — Omsætning ({currency}m)",
         "y_label": f"{currency}m",
         "series_labels": [lbl_rev],
         "note": f"10-årig historisk omsætning [CALC]. Revenue CAGR = {_pct(reformulated['historical_avgs']['revenue_cagr'])} (organisk, M&A-justeret [ASSUMED]).",
         "kilde": kilde,
     })
     specs.append({
-        "type": "A", "title": f"{company_name} — Driftsoverskud OI/NOPAT ({currency}m)",
+        "type": "A", "freq": "A",
+        "title": f"{company_name} — Driftsoverskud OI/NOPAT ({currency}m)",
         "y_label": f"{currency}m",
         "series_labels": [lbl_oi],
         "note": f"OI = EBIT × (1 − t). t = {_pct(wacc_data['t'])} [ASSUMED]. Penman definition [CALC].",
         "kilde": kilde,
     })
     specs.append({
-        "type": "A", "title": f"{company_name} — Frit Cashflow FCF ({currency}m)",
+        "type": "A", "freq": "A",
+        "title": f"{company_name} — Frit Cashflow FCF ({currency}m)",
         "y_label": f"{currency}m",
         "series_labels": [lbl_fcf],
         "note": "FCF = OI − ΔNOA (Penman). Første år mangler da ΔNOA kræver forudgående år [CALC].",
@@ -227,21 +230,24 @@ def build_chart_specs(
         if _rnoa_latest > 1.0 else ""
     )
     specs.append({
-        "type": "A", "title": f"{company_name} — RNOA, ROCE og SPREAD (%)",
+        "type": "A", "freq": "A",
+        "title": f"{company_name} — RNOA, ROCE og SPREAD (%)",
         "y_label": "%",
         "series_labels": [lbl_rnoa, lbl_roce, lbl_spread],
         "note": f"RNOA = OI / avg NOA. ROCE = Comprehensive NI / avg egenkapital. SPREAD = RNOA − NBC [CALC].{_rnoa_note_extra}",
         "kilde": kilde,
     })
     specs.append({
-        "type": "A", "title": f"{company_name} — RNOA vs. WACC Spread (%)",
+        "type": "A", "freq": "A",
+        "title": f"{company_name} — RNOA vs. WACC Spread (%)",
         "y_label": "%",
         "series_labels": [lbl_rnoa_vs],
         "note": f"Positiv bar → RNOA > WACC → virksomheden skaber reel driftsøkonomisk værdi. WACC = {_pct(wacc)} [CALC].",
         "kilde": kilde,
     })
     specs.append({
-        "type": "A", "title": f"{company_name} — Finansiel Gearing (FLEV) og NFO ({currency}m)",
+        "type": "A", "freq": "A",
+        "title": f"{company_name} — Finansiel Gearing (FLEV) og NFO ({currency}m)",
         "y_label": "Indekseret (basis=100)",
         "series_labels": [lbl_flev, lbl_nfo],
         "note": f"FLEV = NFO / Egenkapital. NFO = Finansielle forpligtelser − Finansielle aktiver (Penman). Serier indekseret til 100 (fælles startpunkt) da enhederne er usammenlignelige (ratio vs. {currency}m) [CALC].",
