@@ -68,8 +68,9 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     col_widths  = [indicator_w] + [other_w] * n_data_cols
 
     # ── Build cell text ───────────────────────────────────────────────────
-    # Wrap column headers so long text never overflows narrow cells
-    wrapped_cols = [_wrap_col(c) for c in cols]
+    # Wrap column headers using actual column width (not a fixed 14-char cap)
+    _header_max = max(12, int(other_w * 90))
+    wrapped_cols = [_wrap_col(c, max_chars=_header_max) for c in cols]
     header_row = [""] + wrapped_cols
     # Make header row taller if any header wraps to 2+ lines
     max_header_lines = max((c.count("\n") + 1) for c in header_row)
