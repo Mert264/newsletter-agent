@@ -10,8 +10,7 @@ from newsletter_agent.specialists.annual_report_valuation import (
     compute_wacc, compute_dcf, compute_sensitivity,
 )
 from newsletter_agent.specialists.annual_report_da import (
-    review_reformulation, review_consistency, review_valuation,
-    review_kpi_specs, review_final,
+    review_reformulation, review_valuation, review_final,
 )
 from newsletter_agent.specialists.annual_report_kpi import build_chart_specs
 
