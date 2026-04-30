@@ -65,13 +65,22 @@ def reformulate(fmp_data: dict, t: float) -> dict:
     flags        = []
     excluded_yrs = set()
 
-    # Exclude years with non-positive NOA from averages — RNOA and ATO are mathematically
-    # undefined (or extreme) when NOA ≤ 0. Values still shown in snapshot for transparency.
+    # Exclude years with non-positive ending NOA — RNOA/ATO are undefined when NOA ≤ 0.
     for i, noa in enumerate(NOA_l):
         if noa <= 0:
             flags.append(
                 f"{years[i]}: NOA = {noa:,.0f} (negativ/nul) — "
                 f"RNOA og ATO er ikke meningsfulde; året er udeladt fra gennemsnit [CALC]"
+            )
+            excluded_yrs.add(years[i])
+
+    # Also exclude transition years where avg_NOA ≤ 0 even though ending NOA is positive.
+    # avg_NOA straddles a negative-NOA year → ATO/RNOA still extreme (e.g. -733x for Apple 2022).
+    for i, avg_noa in enumerate(avg_NOA_l):
+        if avg_noa <= 0 and years[i] not in excluded_yrs:
+            flags.append(
+                f"{years[i]}: Gns. NOA = {avg_noa:,.0f} (negativ) — "
+                f"ATO/RNOA upålidelige; overgangsår efter negativt NOA-år; udeladt fra gennemsnit [CALC]"
             )
             excluded_yrs.add(years[i])
 
