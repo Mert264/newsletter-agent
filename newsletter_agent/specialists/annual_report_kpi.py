@@ -12,7 +12,10 @@ def _pct(v: float) -> str:
     return f"{v:.2%}"
 
 def _num(v: float, scale: float = 1) -> str:
-    return f"{v / scale:,.1f}"
+    val = v / scale
+    if val == int(val):
+        return f"{int(val):,}"
+    return f"{val:,.1f}"
 
 
 def build_chart_specs(
