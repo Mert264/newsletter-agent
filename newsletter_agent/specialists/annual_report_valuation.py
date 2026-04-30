@@ -81,7 +81,15 @@ def _dcf_price(reformulated: dict, wacc: float, g: float,
     base_rev = reformulated["revenue"][-1]
 
     forecast_years, rev_f, oi_f, noa_f, dnoa_f, fcf_f, df_f, pv_f = [], [], [], [], [], [], [], []
-    prev_NOA = reformulated["NOA"][-1]
+
+    # Q1: If latest reported NOA is anomalous vs historical ATO, normalize the starting point.
+    # This prevents a spurious first-year ΔNOA reversal from dominating the valuation.
+    noa_raw         = reformulated["NOA"][-1]
+    noa_ato_implied = base_rev / ato_avg if ato_avg > 0 else noa_raw
+    if noa_raw > 2.0 * noa_ato_implied and noa_ato_implied > 0:
+        prev_NOA = noa_ato_implied   # ATO-normalised starting NOA
+    else:
+        prev_NOA = noa_raw
 
     for t_idx in range(1, n_years + 1):
         yr_label = f"{base_year + t_idx}E"
