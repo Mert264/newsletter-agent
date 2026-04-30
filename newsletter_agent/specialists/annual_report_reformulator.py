@@ -65,6 +65,20 @@ def reformulate(fmp_data: dict, t: float) -> dict:
     flags        = []
     excluded_yrs = set()
 
+    # Q1: Flag NOA spikes — large YoY NOA jump with proportional ATO drop signals
+    # reclassification or data anomaly, not genuine operating capital growth
+    for i in range(1, len(NOA_l)):
+        if NOA_l[i - 1] > 0 and ATO_l[i - 1] != 0:
+            noa_chg   = (NOA_l[i] - NOA_l[i - 1]) / abs(NOA_l[i - 1])
+            ato_ratio = ATO_l[i] / ATO_l[i - 1]
+            if noa_chg > 0.75 and ato_ratio < 0.60:
+                flags.append(
+                    f"{years[i]}: NOA steg {noa_chg:.0%} YoY mens ATO faldt fra "
+                    f"{ATO_l[i - 1]:.2f}x til {ATO_l[i]:.2f}x — mulig omklassificering "
+                    f"eller dataanomali. Udeladt fra gennemsnit; DCF anvender ATO-normaliseret startpunkt [ASSUMED]"
+                )
+                excluded_yrs.add(years[i])
+
     for i in range(1, len(OI_l)):
         if OI_l[i - 1] != 0:
             chg = abs((OI_l[i] - OI_l[i - 1]) / OI_l[i - 1])
