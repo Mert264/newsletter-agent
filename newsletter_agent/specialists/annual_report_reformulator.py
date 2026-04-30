@@ -65,6 +65,16 @@ def reformulate(fmp_data: dict, t: float) -> dict:
     flags        = []
     excluded_yrs = set()
 
+    # Exclude years with non-positive NOA from averages — RNOA and ATO are mathematically
+    # undefined (or extreme) when NOA ≤ 0. Values still shown in snapshot for transparency.
+    for i, noa in enumerate(NOA_l):
+        if noa <= 0:
+            flags.append(
+                f"{years[i]}: NOA = {noa:,.0f} (negativ/nul) — "
+                f"RNOA og ATO er ikke meningsfulde; året er udeladt fra gennemsnit [CALC]"
+            )
+            excluded_yrs.add(years[i])
+
     # Q1: Flag NOA spikes — large YoY NOA jump with proportional ATO drop signals
     # reclassification or data anomaly, not genuine operating capital growth
     for i in range(1, len(NOA_l)):
