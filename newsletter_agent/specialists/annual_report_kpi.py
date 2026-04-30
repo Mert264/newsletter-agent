@@ -91,11 +91,22 @@ def build_chart_specs(
         f"karakteristisk for kapitallettte teknologiselskaber [CALC]."
         if _rnoa_latest > 1.0 else ""
     )
+
+    # Collect negative-NOA and spike notes covering the displayed years
+    _neg_noa_yrs = [
+        y for y in show_yrs
+        if reformulated["NOA"][years.index(y)] <= 0
+    ]
     _noa_flag_note = ""
+    if _neg_noa_yrs:
+        _noa_flag_note = (
+            f" ⚠ NOA ≤ 0 i {', '.join(str(y) for y in _neg_noa_yrs)}: "
+            f"RNOA/ATO ikke meningsfulde — udeladt fra gennemsnit [CALC]."
+        )
     for flag in reformulated.get("flags", []):
         if "NOA steg" in flag:
-            _noa_flag_note = (
-                f" ⚠ NOA-anomali detekteret i {show_yrs[-1]}: DCF anvender ATO-normaliseret startpunkt [ASSUMED]."
+            _noa_flag_note += (
+                f" ⚠ NOA-anomali i {show_yrs[-1]}: DCF anvender ATO-normaliseret startpunkt [ASSUMED]."
             )
             break
 
