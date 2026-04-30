@@ -281,8 +281,8 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
         else:                               # < 3 months → tick every 2 weeks
             ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=2))
             ax.xaxis.set_major_formatter(mdates.DateFormatter("%d %b"))
-    plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha="right",
-             fontsize=BRAND["font_size_axis"])
+        plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha="right",
+                 fontsize=BRAND["font_size_axis"])
 
     # More y-axis ticks for larger figure
     ax.yaxis.set_major_locator(mticker.MaxNLocator(nbins=10, steps=[1,2,2.5,5,10]))
