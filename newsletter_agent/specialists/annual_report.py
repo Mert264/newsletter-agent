@@ -98,11 +98,8 @@ def fetch_annual_report(task: dict) -> dict:
         reformulated, wacc_data, dcf_results, sensitivity, fmp_data,
     )
 
-    da4 = review_kpi_specs(chart_specs, client)
-    print(f"  [annual_report] DA #4 (KPI specs): {da4[:120]}...")
-
     da5 = review_final(chart_specs, dcf_results["price_per_share"], market_price, client)
-    print(f"  [annual_report] DA #5 (final): {da5[:120]}...")
+    print(f"  [annual_report] DA #3 (final): {da5[:120]}...")
 
     return {
         "dataframes":  dataframes,
