@@ -26,9 +26,9 @@ def reformulate(fmp_data: dict, t: float) -> dict:
         fin_assets = (_safe(bal.get("cashAndCashEquivalents"))
                       + _safe(bal.get("shortTermInvestments"))
                       + _safe(bal.get("longTermInvestments")))
+        # Capital lease obligations classified as operating (ROU asset is already in op_assets)
         fin_liabs  = (_safe(bal.get("shortTermDebt"))
-                      + _safe(bal.get("longTermDebt"))
-                      + _safe(bal.get("capitalLeaseObligations")))
+                      + _safe(bal.get("longTermDebt")))
         op_assets  = _safe(bal.get("totalAssets")) - fin_assets
         op_liabs   = _safe(bal.get("totalLiabilities")) - fin_liabs
 
