@@ -59,11 +59,8 @@ def fetch_annual_report(task: dict) -> dict:
 
     print(f"  [annual_report] Running consistency check...")
     check_result = check(wacc_data["checker_inputs"])
-    da2 = review_consistency(check_result, client)
-    print(f"  [annual_report] DA #2 (consistency): {da2[:120]}...")
-
     if not check_result["passed"]:
-        print(f"  [annual_report] WARNING: Consistency check non-blocking issues for {ticker}:")
+        print(f"  [annual_report] WARNING: Consistency check issues for {ticker}:")
         for issue in check_result["issues"]:
             print(f"    • {issue}")
 
