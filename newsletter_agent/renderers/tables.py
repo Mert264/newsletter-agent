@@ -79,8 +79,12 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     def _wrap_cell(text: str, max_chars: int) -> str:
         if not text:
             return ""
-        lines = textwrap.wrap(str(text), width=max(8, max_chars))
-        return "\n".join(lines) if lines else str(text)
+        s = str(text)
+        # Never break tokens with no whitespace (numbers, codes) — only wrap text with spaces
+        if " " not in s:
+            return s
+        lines = textwrap.wrap(s, width=max(8, max_chars))
+        return "\n".join(lines) if lines else s
     cell_text  = [[_wrap_cell(r.get("indicator", ""), _ind_max_chars)]
                   + [_wrap_cell(r.get(c, ""), _data_max_chars) for c in cols]
                   for r in rows]
