@@ -99,7 +99,7 @@ def fetch_annual_report(task: dict) -> dict:
     )
 
     da5 = review_final(chart_specs, dcf_results["price_per_share"], market_price, client)
-    print(f"  [annual_report] DA #3 (final): {da5[:120]}...")
+    print(f"  [annual_report] DA #2 (final): {da5[:120]}...")
 
     return {
         "dataframes":  dataframes,
