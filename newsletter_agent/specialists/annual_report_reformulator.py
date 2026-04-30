@@ -58,7 +58,7 @@ def reformulate(fmp_data: dict, t: float) -> dict:
         RNOA_l.append(RNOA); OG_l.append(OG); ATO_l.append(ATO)
         FLEV_l.append(FLEV); NBC_l.append(NBC); SPREAD_l.append(SPREAD)
         ROCE_l.append(ROCE); NCI_l.append(nci); equity_l.append(common_eq)
-        goodwill_l.append(goodwill)
+        goodwill_l.append(goodwill); avg_NOA_l.append(avg_NOA)
 
         prev_NOA, prev_NFO, prev_equity = NOA, NFO, common_eq
 
