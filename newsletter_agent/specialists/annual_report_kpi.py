@@ -72,7 +72,7 @@ def _confidence(upside: float, reformulated: dict) -> str:
     return "Medium — standard DCF uncertainty applies"
 
 
-def _analyst_next_rev(estimates: list) -> str | None:
+def _analyst_next_rev(estimates: list):
     valid = sorted(
         [e for e in (estimates or []) if (e.get("estimatedRevenueAvg") or 0) > 0],
         key=lambda x: x.get("date", ""),
