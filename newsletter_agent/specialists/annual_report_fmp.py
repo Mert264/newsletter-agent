@@ -77,6 +77,11 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     metrics   = _get("key-metrics",             api_key, symbol=ticker, period="annual")
     estimates = _get("analyst-estimates",       api_key, symbol=ticker, period="annual")
 
+    # Quarterly data for LTM (Last Twelve Months) computation
+    income_q   = _get("income-statement",        api_key, symbol=ticker, period="quarter", limit=5)
+    cashflow_q = _get("cash-flow-statement",     api_key, symbol=ticker, period="quarter", limit=5)
+    balance_q  = _get("balance-sheet-statement", api_key, symbol=ticker, period="quarter", limit=2)
+
     if isinstance(income, dict) and "Error Message" in income:
         raise ValueError(f"FMP income statement error for '{ticker}': {income['Error Message']}")
     if not income:
