@@ -121,11 +121,14 @@ def fetch_all(ticker: str, api_key: str) -> dict:
             )
 
     return {
-        "income":    income,
-        "balance":   balance,
-        "cashflow":  cashflow,
-        "profile":   profile_dict,
-        "rating":    rating if isinstance(rating, list) else [],
-        "metrics":   [_normalize_metrics(m) for m in metrics] if isinstance(metrics, list) else [],
-        "estimates": estimates if isinstance(estimates, list) else [],
+        "income":        income,
+        "balance":       balance,
+        "cashflow":      cashflow,
+        "profile":       profile_dict,
+        "rating":        rating if isinstance(rating, list) else [],
+        "metrics":       [_normalize_metrics(m) for m in metrics] if isinstance(metrics, list) else [],
+        "estimates":     estimates if isinstance(estimates, list) else [],
+        "ltm_income":    ltm_income,
+        "ltm_cashflow":  ltm_cashflow,
+        "ltm_balance":   ltm_balance,
     }
