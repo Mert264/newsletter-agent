@@ -134,6 +134,57 @@ def compute_dcf(reformulated: dict, wacc: float, g: float = 0.02,
     return detail
 
 
+def _analyst_fwd_cagr(estimates: list, base_rev: float) -> float | None:
+    """Derive forward CAGR from analyst consensus revenue estimates (already in millions)."""
+    if not estimates or base_rev <= 0:
+        return None
+    valid = sorted(
+        [e for e in estimates if (e.get("estimatedRevenueAvg") or 0) > 0],
+        key=lambda x: x.get("date", ""),
+    )
+    if not valid:
+        return None
+    est_rev = float(valid[-1]["estimatedRevenueAvg"])
+    n_yrs   = len(valid)
+    return (est_rev / base_rev) ** (1.0 / n_yrs) - 1
+
+
+def compute_dcf_scenarios(
+    reformulated: dict, wacc_base: float,
+    NFO: float, NCI: float, diluted_shares: float, base_year: int,
+    estimates: list | None = None,
+) -> dict:
+    """Run Bear / Base / Bull DCF scenarios. Returns dict keyed by scenario name."""
+    avgs      = reformulated["historical_avgs"]
+    hist_cagr = avgs["revenue_cagr"]
+    base_rev  = reformulated["revenue"][-1]
+
+    fwd_cagr = _analyst_fwd_cagr(estimates, base_rev)
+    base_cagr = fwd_cagr if fwd_cagr is not None else hist_cagr
+
+    scenario_params = {
+        "bear": (max(base_cagr - 0.04, -0.02), -0.02, +0.010, 0.015),
+        "base": (base_cagr,                     0.00,  0.000,  0.020),
+        "bull": (min(base_cagr + 0.04,  0.20),  0.02,  -0.010, 0.025),
+    }
+
+    results = {}
+    for name, (cagr, og_delta, wacc_delta, g) in scenario_params.items():
+        wacc = wacc_base + wacc_delta
+        og   = avgs["OG"] + og_delta
+        mod  = {**reformulated, "historical_avgs": {**avgs, "OG": og, "revenue_cagr": cagr}}
+        price, detail = _dcf_price(mod, wacc, g, NFO, NCI, diluted_shares, base_year)
+        results[name] = {
+            "price":  round(price, 2),
+            "detail": detail,
+            "wacc":   round(wacc, 4),
+            "og":     round(og, 4),
+            "cagr":   round(cagr, 4),
+            "g":      g,
+        }
+    return results
+
+
 def compute_sensitivity(reformulated: dict, wacc_base: float, g_base: float,
                         NFO: float, NCI: float, diluted_shares: float,
                         base_year: int) -> dict:
