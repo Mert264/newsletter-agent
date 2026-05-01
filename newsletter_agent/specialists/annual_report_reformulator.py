@@ -3,8 +3,10 @@ def _safe(val, default=0.0):
 
 
 def reformulate(fmp_data: dict, t: float) -> dict:
-    income  = list(reversed(fmp_data["income"]))
-    balance = list(reversed(fmp_data["balance"]))
+    income   = list(reversed(fmp_data["income"]))
+    balance  = list(reversed(fmp_data["balance"]))
+    cf_list  = list(reversed(fmp_data.get("cashflow", [])))
+    cf_by_yr = {int(c["date"][:4]): c for c in cf_list if c.get("date")}
     n = min(len(income), len(balance))
 
     years, revenue_l, NOA_l, NFO_l, OI_l, FCF_l = [], [], [], [], [], []
