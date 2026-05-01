@@ -5,8 +5,27 @@ import requests
 _BASE = "https://financialmodelingprep.com/stable"
 _MAX_RETRIES = 3
 
-# Fields in income/cashflow that are per-share ratios (do NOT scale to millions)
 _NO_SCALE_INCOME = {"eps", "epsDiluted"}
+
+_LTM_INCOME_FIELDS = [
+    "revenue", "operatingIncome", "netIncome", "interestExpense",
+    "weightedAverageShsOutDil", "weightedAverageShsOut",
+]
+_LTM_CASHFLOW_FIELDS = [
+    "operatingCashFlow", "capitalExpenditure", "freeCashFlow",
+    "commonStockRepurchased", "dividendsPaid",
+]
+
+
+def _compute_ltm(quarterly_rows: list, fields: list) -> dict:
+    """Sum the most recent 4 quarterly rows (newest-first) for flow-statement fields."""
+    last4 = quarterly_rows[:4]
+    if not last4:
+        return {}
+    ltm = {"date": last4[0].get("date", "")}
+    for field in fields:
+        ltm[field] = sum((r.get(field) or 0) for r in last4)
+    return ltm
 
 
 def _get(path: str, api_key: str, **params) -> Union[list, dict]:
