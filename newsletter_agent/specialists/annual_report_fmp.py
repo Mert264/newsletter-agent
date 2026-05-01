@@ -91,10 +91,19 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     if not balance:
         raise ValueError(f"No balance sheet data for ticker '{ticker}'.")
 
-    # Scale financial statements: stable API returns raw dollars, pipeline expects millions
+    # Scale annual statements
     income   = [_scale(r, no_scale=_NO_SCALE_INCOME) for r in income]
     balance  = [_scale(r) for r in balance]
     cashflow = [_scale(r) for r in cashflow]
+
+    # Scale quarterly statements (guard against non-list responses)
+    income_q   = [_scale(r, no_scale=_NO_SCALE_INCOME) for r in income_q]   if isinstance(income_q,   list) else []
+    cashflow_q = [_scale(r) for r in cashflow_q]  if isinstance(cashflow_q, list) else []
+    balance_q  = [_scale(r) for r in balance_q]   if isinstance(balance_q,  list) else []
+
+    ltm_income   = _compute_ltm(income_q,   _LTM_INCOME_FIELDS)
+    ltm_cashflow = _compute_ltm(cashflow_q, _LTM_CASHFLOW_FIELDS)
+    ltm_balance  = balance_q[0] if balance_q else {}
 
     # Profile: stable API returns a list; normalize field names; scale monetary fields
     profile_dict = profile[0] if isinstance(profile, list) and profile else (profile or {})
