@@ -59,8 +59,20 @@ def reformulate(fmp_data: dict, t: float) -> dict:
         NFO_l.append(NFO); OI_l.append(OI); FCF_l.append(FCF)
         RNOA_l.append(RNOA); OG_l.append(OG); ATO_l.append(ATO)
         FLEV_l.append(FLEV); NBC_l.append(NBC); SPREAD_l.append(SPREAD)
+        # Cash FCF = OCF - |CapEx| from cash flow statement (capex negative in FMP)
+        cf = cf_by_yr.get(year, {})
+        _ocf   = _safe(cf.get("operatingCashFlow"))
+        _capex = _safe(cf.get("capitalExpenditure"))
+        _cfcf  = _safe(cf.get("freeCashFlow"))
+        if _cfcf != 0:
+            cash_fcf = _cfcf
+        elif _ocf != 0:
+            cash_fcf = _ocf + _capex
+        else:
+            cash_fcf = None
+
         ROCE_l.append(ROCE); NCI_l.append(nci); equity_l.append(common_eq)
-        goodwill_l.append(goodwill); avg_NOA_l.append(avg_NOA)
+        goodwill_l.append(goodwill); avg_NOA_l.append(avg_NOA); cash_fcf_l.append(cash_fcf)
 
         prev_NOA, prev_NFO, prev_equity = NOA, NFO, common_eq
 
