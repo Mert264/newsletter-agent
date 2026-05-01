@@ -152,7 +152,7 @@ def _analyst_fwd_cagr(estimates: list, base_rev: float):
 def compute_dcf_scenarios(
     reformulated: dict, wacc_base: float,
     NFO: float, NCI: float, diluted_shares: float, base_year: int,
-    estimates: list | None = None,
+    estimates=None,
 ) -> dict:
     """Run Bear / Base / Bull DCF scenarios. Returns dict keyed by scenario name."""
     avgs      = reformulated["historical_avgs"]
