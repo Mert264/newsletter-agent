@@ -1,33 +1,114 @@
 # newsletter_agent/specialists/annual_report_kpi.py
 #
-# Produces 7 clean, investor-focused charts following the Penman/WACC/DCF paper structure.
-# Flow: Financial Snapshot → Trend Chart → WACC → DCF → Valuation Bridge → Sensitivity → Multiples
+# 7 clean, investor-focused charts.
+# Structure: Executive Summary → Snapshot + LTM → Trend → WACC → DCF Scenarios → Sensitivity → Multiples
+import datetime
 import pandas as pd
-from newsletter_agent.specialists.annual_report_constants import MSCI_WORLD_35YR_RETURN
+from newsletter_agent.specialists.annual_report_constants import (
+    MSCI_WORLD_35YR_RETURN, STATUTORY_TAX_RATE,
+)
 
+
+# ── Formatting helpers ────────────────────────────────────────────────────────
 
 def _ts(years: list, values: list, label: str) -> pd.DataFrame:
-    """Build a DatetimeIndex DataFrame (Dec-31 per year) from year list and values."""
     idx = pd.DatetimeIndex([pd.Timestamp(f"{y}-12-31") for y in years])
     return pd.DataFrame({label: values}, index=idx)
 
 
-def _pct(v: float) -> str:
-    return f"{v:.2%}"
+def _pct(v: float, decimals: int = 2) -> str:
+    return f"{v:.{decimals}%}"
+
 
 def _num(v: float) -> str:
-    """Format as integer thousands if whole, else 1 decimal place."""
-    if v == int(v):
-        return f"{int(v):,}"
+    if v is None:
+        return "—"
+    if abs(v) >= 1e6:
+        return f"{v/1e6:.1f}T" if abs(v) >= 1e9 else f"{v/1e6:.1f}bn"
+    try:
+        if v == int(v):
+            return f"{int(v):,}"
+    except (OverflowError, ValueError):
+        pass
     return f"{v:,.1f}"
 
-def _x(v: float, decimals: int = 2) -> str:
-    return f"{v:.{decimals}f}x"
 
+def _x(v: float, dec: int = 2) -> str:
+    return f"{v:.{dec}f}x"
+
+
+def _fy_label(year: int) -> str:
+    return f"FY{year}A"
+
+
+def _ltm_label(date_str: str) -> str:
+    if not date_str:
+        return "LTM"
+    try:
+        d = datetime.date.fromisoformat(date_str[:10])
+        return f"LTM {d.strftime('%b %Y')}"
+    except Exception:
+        return "LTM"
+
+
+def _last_updated(fmp_data: dict) -> str:
+    date_str = (fmp_data.get("income") or [{}])[0].get("date", "")
+    if not date_str:
+        return "N/A"
+    try:
+        d = datetime.date.fromisoformat(date_str[:10])
+        return d.strftime("%d %b %Y")
+    except Exception:
+        return date_str[:10]
+
+
+def _confidence(upside: float, reformulated: dict) -> str:
+    flags   = reformulated.get("flags", [])
+    bad     = sum(1 for f in flags if "negativ" in f.lower() or "anomali" in f.lower())
+    if bad > 2 or abs(upside) > 1.0:
+        return "Low — data quality issues detected"
+    if bad > 0 or abs(upside) > 0.5:
+        return "Medium — validate balance sheet classification"
+    return "Medium — standard DCF uncertainty applies"
+
+
+def _analyst_next_rev(estimates: list) -> str | None:
+    valid = sorted(
+        [e for e in (estimates or []) if (e.get("estimatedRevenueAvg") or 0) > 0],
+        key=lambda x: x.get("date", ""),
+    )
+    if not valid:
+        return None
+    e  = valid[0]
+    lo = e.get("estimatedRevenueLow",  0) or 0
+    av = e.get("estimatedRevenueAvg",  0) or 0
+    hi = e.get("estimatedRevenueHigh", 0) or 0
+    yr = (e.get("date") or "")[:4]
+    label = f"FY{yr}E" if yr else "Next FY"
+    if lo and hi:
+        return f"{label}: {_num(av)}m  ({_num(lo)}–{_num(hi)}m)"
+    return f"{label}: {_num(av)}m"
+
+
+# ── LTM balance-sheet derived metrics ────────────────────────────────────────
+
+def _ltm_noa_nfo(ltm_bal: dict) -> tuple[float | None, float | None]:
+    if not ltm_bal:
+        return None, None
+    def s(k):
+        return float(ltm_bal.get(k) or 0)
+    fin_assets = s("cashAndCashEquivalents") + s("shortTermInvestments") + s("longTermInvestments")
+    fin_liabs  = s("shortTermDebt") + s("longTermDebt")
+    op_assets  = s("totalAssets") - fin_assets
+    op_liabs   = s("totalLiabilities") - fin_liabs
+    return op_assets - op_liabs, fin_liabs - fin_assets
+
+
+# ── Main builder ─────────────────────────────────────────────────────────────
 
 def build_chart_specs(
     ticker: str, company_name: str, hq_country: str,
-    reformulated: dict, wacc_data: dict, dcf_results: dict,
+    reformulated: dict, wacc_data: dict, dcf_scenarios: dict,
     sensitivity: dict, fmp_data: dict,
 ) -> tuple[list[dict], dict[str, pd.DataFrame]]:
 
@@ -38,302 +119,326 @@ def build_chart_specs(
     kilde    = "FMP, Damodaran"
     rf_entry = wacc_data["rf_entry"]
     wacc     = wacc_data["wacc"]
-    dcf_price = dcf_results["price_per_share"]
+    iso3     = wacc_data["iso3"]
 
-    # ── Shared DataFrames ─────────────────────────────────────────────────────
+    base_sc    = dcf_scenarios["base"]
+    bear_sc    = dcf_scenarios["bear"]
+    bull_sc    = dcf_scenarios["bull"]
+    base_price = base_sc["price"]
+    bear_price = bear_sc["price"]
+    bull_price = bull_sc["price"]
+
+    t = STATUTORY_TAX_RATE.get(iso3, STATUTORY_TAX_RATE["_default"])
+
+    # LTM data
+    ltm_inc = fmp_data.get("ltm_income",   {}) or {}
+    ltm_cf  = fmp_data.get("ltm_cashflow", {}) or {}
+    ltm_bal = fmp_data.get("ltm_balance",  {}) or {}
+    has_ltm = bool(ltm_inc.get("revenue"))
+
     dfs: dict[str, pd.DataFrame] = {}
-
-    lbl_rev = f"{ticker} — Omsætning ({currency}m)"
-    lbl_oi  = f"{ticker} — OI/NOPAT ({currency}m)"
-    dfs[lbl_rev] = _ts(years, reformulated["revenue"], lbl_rev)
-    dfs[lbl_oi]  = _ts(years, reformulated["OI"],      lbl_oi)
-
-    # Fundamental vs market (Type B)
-    lbl_fund   = "Fundamental pris"
-    lbl_market = "Markedspris"
-    dfs[lbl_fund]   = _ts([years[-1]], [dcf_price], lbl_fund)
-    dfs[lbl_market] = _ts([years[-1]], [price],     lbl_market)
-
     specs = []
 
     # ══════════════════════════════════════════════════════════════════════════
-    # Chart 1 — Penman Regnskabsanalyse (Financial snapshot, last 3–5 years)
-    # Shows what an investor wants to see first: business quality over time
+    # Chart 1 — Executive Summary
     # ══════════════════════════════════════════════════════════════════════════
-    n_show    = min(5, len(years))
-    show_yrs  = years[-n_show:]
-    show_idx  = [years.index(y) for y in show_yrs]
-    yr_cols   = [str(y) for y in show_yrs]
+    upside     = (base_price - price) / price if price > 0 else 0
+    nfo_latest = reformulated["NFO"][-1]
+    net_cash   = -nfo_latest
+    nc_str     = (f"+{_num(net_cash)}m (net cash)" if net_cash >= 0
+                  else f"{_num(net_cash)}m (net debt)")
 
-    def _snap_row(label, vals, fmt_fn):
-        row = {"indicator": label}
-        for y, i in zip(show_yrs, show_idx):
-            v = vals[i]
-            row[str(y)] = fmt_fn(v) if v is not None else "—"
-        return row
+    rev_cagr  = reformulated["historical_avgs"]["revenue_cagr"]
+    og_avg    = reformulated["historical_avgs"]["OG"]
+    fy_latest = _fy_label(years[-1])
 
-    fcf_vals = reformulated["FCF"]
-    snap_rows = [
-        _snap_row(f"Nettoomsætning ({currency}m)", reformulated["revenue"], _num),
-        _snap_row(f"OI/NOPAT ({currency}m)",       reformulated["OI"],      _num),
-        _snap_row(f"FCF ({currency}m)",             fcf_vals,                _num),
-        _snap_row(f"NOA ({currency}m)",             reformulated["NOA"],     _num),
-        _snap_row(f"NFO ({currency}m)",             reformulated["NFO"],     _num),
-        _snap_row("RNOA",                           reformulated["RNOA"],    _pct),
-        _snap_row("OG (overskudsgrad)",             reformulated["OG"],      _pct),
-        _snap_row("ATO",                            reformulated["ATO"],     lambda v: _x(v)),
-        _snap_row("SPREAD (RNOA − NBC)",            reformulated["SPREAD"],  _pct),
+    exec_rows = [
+        {"indicator": "Current Price",         "Value": f"{price:.2f} {currency}"},
+        {"indicator": "Fair Value Range",       "Value": f"{bear_price:.0f} – {bull_price:.0f} {currency}"},
+        {"indicator": "Base Fair Value",        "Value": f"{base_price:.2f} {currency}"},
+        {"indicator": "Upside / Downside",      "Value": f"{upside:+.1%}"},
+        {"indicator": "",                       "Value": ""},
+        {"indicator": "WACC",                   "Value": _pct(wacc)},
+        {"indicator": "Terminal Growth",        "Value": _pct(base_sc["g"])},
+        {"indicator": f"Net Cash / (Debt)",     "Value": nc_str},
+        {"indicator": f"{fy_latest} Revenue",   "Value": f"{_num(reformulated['revenue'][-1])}m {currency}"},
     ]
 
-    _rnoa_latest = reformulated["RNOA"][-1]
-    _noa_note    = (
-        f" RNOA > 100%: ekstremt lav NOA (negativt driftskapital) — "
-        f"karakteristisk for kapitallettte teknologiselskaber [CALC]."
-        if _rnoa_latest > 1.0 else ""
-    )
+    est_str = _analyst_next_rev(fmp_data.get("estimates", []))
+    if est_str:
+        exec_rows.append({"indicator": "Consensus Revenue",  "Value": est_str})
 
-    # Collect negative-NOA and spike notes covering the displayed years
-    _neg_noa_yrs = [
-        y for y in show_yrs
-        if reformulated["NOA"][years.index(y)] <= 0
+    exec_rows += [
+        {"indicator": "",                          "Value": ""},
+        {"indicator": "Revenue CAGR (historical)", "Value": _pct(rev_cagr)},
+        {"indicator": "Operating Margin (avg)",    "Value": _pct(og_avg)},
+        {"indicator": "Confidence",                "Value": _confidence(upside, reformulated)},
+        {"indicator": "Last Updated",              "Value": _last_updated(fmp_data)},
     ]
-    _noa_flag_note = ""
-    if _neg_noa_yrs:
-        _noa_flag_note = (
-            f" ⚠ NOA ≤ 0 i {', '.join(str(y) for y in _neg_noa_yrs)}: "
-            f"RNOA/ATO ikke meningsfulde — udeladt fra gennemsnit [CALC]."
-        )
-    for flag in reformulated.get("flags", []):
-        if "NOA steg" in flag:
-            _noa_flag_note += (
-                f" ⚠ NOA-anomali i {show_yrs[-1]}: DCF anvender ATO-normaliseret startpunkt [ASSUMED]."
-            )
-            break
 
     specs.append({
         "type": "D",
-        "title": f"{company_name} — Penman Regnskabsanalyse [CALC]",
+        "title": f"{company_name} — Valuation Summary",
         "note": (
-            f"OI = EBIT × (1−t), t = {_pct(wacc_data['t'])} [ASSUMED]. "
-            f"FCF = OI − ΔNOA (første år mangler ΔNOA) [CALC]. "
-            f"NOA = Driftsaktiver − Driftsforpligtelser. NFO = Finansiel gæld − Finansielle aktiver [CALC]."
-            f"{_noa_note}{_noa_flag_note}"
+            f"Fair value range = Bear {bear_price:.0f} / Base {base_price:.0f} / Bull {bull_price:.0f} {currency}. "
+            f"WACC {_pct(wacc)}, terminal growth {_pct(base_sc['g'])}. "
+            f"Penman DCF methodology (OI − ΔNOA). Data: FMP."
         ),
+        "kilde": kilde,
+        "table_data": {"columns": ["Value"], "rows": exec_rows},
+    })
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # Chart 2 — Financial Snapshot (FY2021A–FY2025A + LTM)
+    # ══════════════════════════════════════════════════════════════════════════
+    n_show   = min(5, len(years))
+    show_yrs = years[-n_show:]
+    show_idx = [years.index(y) for y in show_yrs]
+
+    # Annual FMP rows ordered oldest→newest for the shown window
+    annual_rows = list(reversed(fmp_data["income"][:n_show]))
+
+    yr_cols: list[str] = [_fy_label(y) for y in show_yrs]
+
+    # LTM column
+    ltm_col = _ltm_label(ltm_inc.get("date", "")) if has_ltm else None
+    if ltm_col:
+        yr_cols.append(ltm_col)
+
+    # LTM computed values
+    ltm_noa, ltm_nfo = _ltm_noa_nfo(ltm_bal) if has_ltm else (None, None)
+    ltm_oi  = float(ltm_inc.get("operatingIncome") or 0) * (1 - t) if has_ltm else None
+    ltm_rev = float(ltm_inc.get("revenue") or 0) if has_ltm else None
+    ltm_fcf = (float(ltm_cf.get("freeCashFlow") or 0) or
+               float((ltm_cf.get("operatingCashFlow") or 0) +
+                     (ltm_cf.get("capitalExpenditure") or 0))) if has_ltm else None
+    if has_ltm and ltm_fcf == 0:
+        ltm_fcf = None
+    prev_noa_for_ltm = reformulated["NOA"][-1] if reformulated["NOA"] else None
+    ltm_avg_noa  = ((ltm_noa + prev_noa_for_ltm) / 2
+                    if ltm_noa is not None and prev_noa_for_ltm else ltm_noa)
+    ltm_rnoa = (ltm_oi / ltm_avg_noa if ltm_oi and ltm_avg_noa else None)
+    ltm_og   = (ltm_oi / ltm_rev if ltm_oi and ltm_rev else None)
+    ltm_ato  = (ltm_rev / ltm_avg_noa if ltm_rev and ltm_avg_noa else None)
+    ltm_spread = (ltm_rnoa - (wacc_data["rD"] if ltm_rnoa else 0)) if ltm_rnoa else None
+
+    def _snap_row(label, hist_vals, fmt_fn, ltm_val=None):
+        row = {"indicator": label}
+        for ci, (col, idx) in enumerate(zip(yr_cols[:n_show], show_idx)):
+            v = hist_vals[idx]
+            row[col] = fmt_fn(v) if v is not None else "—"
+        if ltm_col and ltm_val is not None:
+            row[ltm_col] = fmt_fn(ltm_val)
+        elif ltm_col:
+            row[ltm_col] = "—"
+        return row
+
+    snap_rows = [
+        _snap_row(f"Revenue ({currency}m)",     reformulated["revenue"],  _num,  ltm_rev),
+        _snap_row(f"Operating Income ({currency}m)", reformulated["OI"],  _num,  ltm_oi),
+        _snap_row(f"Cash FCF ({currency}m)",    reformulated["cash_fcf"], _num,  ltm_fcf),
+        _snap_row(f"NOA ({currency}m)",         reformulated["NOA"],      _num,  ltm_noa),
+        _snap_row(f"Net Fin. Obligations ({currency}m)", reformulated["NFO"], _num, ltm_nfo),
+        _snap_row("RNOA",                       reformulated["RNOA"],     _pct,  ltm_rnoa),
+        _snap_row("Operating Margin",           reformulated["OG"],       _pct,  ltm_og),
+        _snap_row("Asset Turnover (ATO)",       reformulated["ATO"],      _x,    ltm_ato),
+        _snap_row("SPREAD (RNOA − NBC)",        reformulated["SPREAD"],   _pct,  ltm_spread),
+    ]
+
+    # Collect any anomaly notes
+    _notes = []
+    neg_noa_yrs = [y for y in show_yrs if reformulated["NOA"][years.index(y)] <= 0]
+    if neg_noa_yrs:
+        _notes.append(
+            f"NOA ≤ 0 in {', '.join(str(y) for y in neg_noa_yrs)} — "
+            f"RNOA/ATO excluded from averages."
+        )
+    if any("NOA steg" in f for f in reformulated.get("flags", [])):
+        _notes.append(f"NOA anomaly in {show_yrs[-1]} — DCF uses ATO-normalised starting NOA.")
+
+    snap_note = (
+        f"OI = EBIT × (1−t), t = {_pct(t)}. "
+        f"Penman FCF = OI − ΔNOA; Cash FCF = OCF − CapEx. "
+        f"NOA = Operating Assets − Operating Liabilities. "
+        + (" ".join(_notes) if _notes else "")
+    )
+
+    specs.append({
+        "type": "D",
+        "title": f"{company_name} — Financial Snapshot",
+        "note": snap_note,
         "kilde": kilde,
         "table_data": {"columns": yr_cols, "rows": snap_rows},
     })
 
     # ══════════════════════════════════════════════════════════════════════════
-    # Chart 2 — Omsætning & OI Trend (Type A — historical line chart)
+    # Chart 3 — Revenue & Operating Income Trend (line chart)
     # ══════════════════════════════════════════════════════════════════════════
+    lbl_rev = f"{ticker} — Revenue ({currency}m)"
+    lbl_oi  = f"{ticker} — Operating Income ({currency}m)"
+    dfs[lbl_rev] = _ts(years, reformulated["revenue"], lbl_rev)
+    dfs[lbl_oi]  = _ts(years, reformulated["OI"],      lbl_oi)
+
     df_trend = dfs[lbl_rev].join(dfs[lbl_oi])
     dfs["trend_rev_oi"] = df_trend
 
-    rev_cagr = reformulated["historical_avgs"]["revenue_cagr"]
     specs.append({
         "type": "A", "freq": "A",
-        "title": f"{company_name} — Omsætning & OI/NOPAT ({currency}m)",
+        "title": f"{company_name} — Revenue & Operating Income ({currency}m)",
         "y_label": f"{currency}m",
         "series_labels": ["trend_rev_oi"],
         "note": (
-            f"Historisk omsætning og driftsoverskud efter skat [CALC]. "
-            f"Revenue CAGR = {_pct(rev_cagr)} (organisk, M&A-justeret) [ASSUMED]."
+            f"Revenue CAGR = {_pct(rev_cagr)} (organic, M&A-adjusted). "
+            f"Operating Income = EBIT × (1−t = {_pct(t)})."
         ),
         "kilde": kilde,
     })
 
     # ══════════════════════════════════════════════════════════════════════════
-    # Chart 3 — WACC Beregning (step-by-step, one comprehensive table)
-    # Follows paper methodology exactly: rf → β → MRP → CRP → rE → rs → rD → WACC
+    # Chart 4 — WACC Calculation
     # ══════════════════════════════════════════════════════════════════════════
-    MRP = MSCI_WORLD_35YR_RETURN - wacc_data["rf"]   # country-specific MRP
-    iso3 = wacc_data["iso3"]
+    MRP = MSCI_WORLD_35YR_RETURN - wacc_data["rf"]
 
     wacc_rows = [
-        {"indicator": "1. Risikofri rente",
-         "Parameter": "rf", "Værdi": _pct(wacc_data["rf"]), "Label": "ASSUMED",
-         "Kilde": f"{rf_entry['bond_name']} ({rf_entry['maturity_yr']}yr hist. avg)"},
-        {"indicator": "2. Beta (ukorrigeret)",
-         "Parameter": "β_raw", "Værdi": f"{wacc_data['beta_raw']:.4f}", "Label": "SOURCED",
-         "Kilde": "FMP /profile"},
-        {"indicator": "3. Beta (Blume 1975)",
-         "Parameter": "β_adj", "Værdi": f"{wacc_data['beta_adj']:.4f}", "Label": "CALC",
-         "Kilde": "2/3×β_raw + 1/3"},
-        {"indicator": "4. Markedsrisikopræmie",
-         "Parameter": "MRP", "Værdi": _pct(MRP), "Label": "SOURCED",
-         "Kilde": f"MSCI World 35yr aritm. − rf_{iso3}"},
-        {"indicator": "5. Landerisikopræmie",
-         "Parameter": "CRP", "Værdi": _pct(wacc_data["CRP"]), "Label": "SOURCED",
-         "Kilde": f"Damodaran {iso3}"},
-        {"indicator": "6. Egenkapitalomkostning",
-         "Parameter": "rE", "Værdi": _pct(wacc_data["rE"]), "Label": "CALC",
-         "Kilde": "rf + β × (MRP + CRP)"},
-        {"indicator": "7. Kreditvurdering / rs",
-         "Parameter": "rs", "Værdi": _pct(wacc_data["rs"]), "Label": "SOURCED",
-         "Kilde": wacc_data["rating"] if wacc_data["rating"] else "ICR fallback"},
-        {"indicator": "8. Skattesats",
-         "Parameter": "t", "Værdi": _pct(wacc_data["t"]), "Label": "ASSUMED",
-         "Kilde": f"Statutory {iso3}"},
-        {"indicator": "9. Gældsomkostning (efter skat)",
-         "Parameter": "rD", "Værdi": _pct(wacc_data["rD"]), "Label": "CALC",
-         "Kilde": "(rf + rs) × (1 − t)"},
-        {"indicator": "10. Egenkapitalvægt",
-         "Parameter": "E/V", "Værdi": _pct(wacc_data["E"] / wacc_data["V"]), "Label": "CALC",
-         "Kilde": "Markedsværdi / (E + D)"},
-        {"indicator": "11. Gældsvægt",
-         "Parameter": "D/V", "Værdi": _pct(wacc_data["D"] / wacc_data["V"]), "Label": "CALC",
-         "Kilde": "NFO / (E + D)"},
-        {"indicator": "═══ WACC",
-         "Parameter": "WACC", "Værdi": _pct(wacc), "Label": "CALC",
-         "Kilde": "E/V×rE + D/V×rD"},
+        {"indicator": "Risk-free Rate",         "Parameter": "rf",     "Value": _pct(wacc_data["rf"]),
+         "Source": f"{rf_entry['bond_name']} ({rf_entry['maturity_yr']}yr hist. avg)"},
+        {"indicator": "Beta (raw)",             "Parameter": "β",      "Value": f"{wacc_data['beta_raw']:.4f}",
+         "Source": "FMP /profile"},
+        {"indicator": "Beta (Blume adj.)",      "Parameter": "β_adj",  "Value": f"{wacc_data['beta_adj']:.4f}",
+         "Source": "2/3 × β + 1/3"},
+        {"indicator": "Equity Risk Premium",    "Parameter": "MRP",    "Value": _pct(MRP),
+         "Source": f"MSCI World 35yr arithmetic avg − rf_{iso3}"},
+        {"indicator": "Country Risk Premium",   "Parameter": "CRP",    "Value": _pct(wacc_data["CRP"]),
+         "Source": f"Damodaran {iso3}"},
+        {"indicator": "Cost of Equity",         "Parameter": "rE",     "Value": _pct(wacc_data["rE"]),
+         "Source": "rf + β_adj × (MRP + CRP)"},
+        {"indicator": "Credit Spread",          "Parameter": "rs",     "Value": _pct(wacc_data["rs"]),
+         "Source": wacc_data["rating"] or "ICR fallback"},
+        {"indicator": "Tax Rate",               "Parameter": "t",      "Value": _pct(wacc_data["t"]),
+         "Source": f"Statutory {iso3}"},
+        {"indicator": "Cost of Debt (after-tax)", "Parameter": "rD",   "Value": _pct(wacc_data["rD"]),
+         "Source": "(rf + rs) × (1 − t)"},
+        {"indicator": "Equity Weight",          "Parameter": "E/V",    "Value": _pct(wacc_data["E"] / wacc_data["V"]),
+         "Source": "Market cap / (E + D)"},
+        {"indicator": "Debt Weight",            "Parameter": "D/V",    "Value": _pct(wacc_data["D"] / wacc_data["V"]),
+         "Source": "NFO / (E + D)"},
+        {"indicator": "━━ WACC",               "Parameter": "WACC",   "Value": _pct(wacc),
+         "Source": "E/V × rE + D/V × rD"},
     ]
 
     specs.append({
         "type": "D",
-        "title": f"{company_name} — WACC Beregning [CALC]",
+        "title": f"{company_name} — WACC",
         "note": (
-            f"WACC = E/V × rE + D/V × rD = {_pct(wacc)} [CALC]. "
-            f"rf = {rf_entry['maturity_yr']}år historisk gns. for {iso3} [ASSUMED]. "
-            f"MRP = MSCI World 35år aritmetisk gns. − rf = {_pct(MRP)} [SOURCED]. "
-            f"β justeret med Blume (1975): β_adj = 2/3×β_raw + 1/3 [CALC]."
+            f"WACC = {_pct(wacc)}. "
+            f"rf = {rf_entry['maturity_yr']}-year historical avg for {iso3}. "
+            f"MRP = MSCI World 35-year arithmetic avg − rf = {_pct(MRP)}. "
+            f"Beta adjusted via Blume (1975)."
         ),
         "kilde": kilde,
-        "table_data": {"columns": ["Parameter", "Værdi", "Label", "Kilde"], "rows": wacc_rows},
+        "table_data": {"columns": ["Parameter", "Value", "Source"], "rows": wacc_rows},
     })
 
     # ══════════════════════════════════════════════════════════════════════════
-    # Chart 4 — DCF Prognosemodel (5yr forecast + terminal, paper's Table 7 format)
+    # Chart 5 — DCF Scenarios: Bear / Base / Bull
     # ══════════════════════════════════════════════════════════════════════════
-    fy   = dcf_results["forecast_years"]
-    cols = fy + ["Terminalår"]
+    def _sc_price_str(sc_name):
+        sc = dcf_scenarios[sc_name]
+        vs = (sc["price"] - price) / price if price > 0 else 0
+        return f"{sc['price']:.0f} {currency}  ({vs:+.0%})"
 
-    def _frow(label, vals, terminal_val=None):
-        row = {"indicator": label}
-        for i, yr in enumerate(fy):
-            row[yr] = _num(vals[i]) if vals[i] is not None else "—"
-        row["Terminalår"] = _num(terminal_val) if terminal_val is not None else ""
-        return row
-
-    dcf_rows = [
-        _frow(f"Nettoomsætning [EST]",         dcf_results["revenue_forecast"]),
-        _frow(f"Driftsoverskud OI [EST]",       dcf_results["OI_forecast"]),
-        _frow(f"NOA [EST]",                     dcf_results["NOA_forecast"]),
-        _frow(f"ΔNOA [EST]",                    dcf_results["dNOA_forecast"]),
-        {**{"indicator": "Discount faktor [CALC]"},
-         **{yr: f"{d:.4f}" for yr, d in zip(fy, dcf_results["discount_factors"])},
-         "Terminalår": ""},
-        _frow(f"FCF (OI − ΔNOA) [EST]",         dcf_results["FCF_forecast"]),
-        _frow(f"Nutidsværdi af FCF [CALC]",      dcf_results["PV_FCF"]),
+    sc_rows = [
+        {"indicator": "Revenue Growth (CAGR)",
+         "Bear": _pct(bear_sc["cagr"]), "Base": _pct(base_sc["cagr"]), "Bull": _pct(bull_sc["cagr"])},
+        {"indicator": "Operating Margin",
+         "Bear": _pct(bear_sc["og"]), "Base": _pct(base_sc["og"]), "Bull": _pct(bull_sc["og"])},
+        {"indicator": "WACC",
+         "Bear": _pct(bear_sc["wacc"]), "Base": _pct(base_sc["wacc"]), "Bull": _pct(bull_sc["wacc"])},
+        {"indicator": "Terminal Growth",
+         "Bear": _pct(bear_sc["g"]), "Base": _pct(base_sc["g"]), "Bull": _pct(bull_sc["g"])},
         {"indicator": ""},
-        {"indicator": "Total nutidsværdi [CALC]",          "Terminalår": _num(dcf_results["total_PV"])},
-        {"indicator": "Terminalværdi [CALC]",              "Terminalår": _num(dcf_results["TV"])},
-        {"indicator": "Nutidsværdi af terminalværdi [CALC]","Terminalår": _num(dcf_results["PV_TV"])},
-        {"indicator": ""},
-        {"indicator": "Virksomhedsværdi EV [CALC]",        "Terminalår": _num(dcf_results["EV"])},
-        {"indicator": "− NFO [CALC]",                      "Terminalår": _num(dcf_results["NFO"])},
-        {"indicator": "Egenkapitalværdi [CALC]",           "Terminalår": _num(dcf_results["equity_value"])},
-        {"indicator": "Antal aktier (fortyndet) [SOURCED]","Terminalår": f"{dcf_results['diluted_shares']:.0f}m"},
-        {"indicator": "Pris per aktie [CALC]",             "Terminalår": f"{dcf_price:.2f} {currency}"},
+        {"indicator": f"Enterprise Value ({currency}m)",
+         "Bear": _num(bear_sc["detail"]["EV"]),
+         "Base": _num(base_sc["detail"]["EV"]),
+         "Bull": _num(bull_sc["detail"]["EV"])},
+        {"indicator": f"Fair Value / Share ({currency})",
+         "Bear": f"{bear_price:.0f}", "Base": f"{base_price:.0f}", "Bull": f"{bull_price:.0f}"},
+        {"indicator": "vs. Current Price",
+         "Bear": f"{(bear_price - price)/price if price > 0 else 0:+.1%}",
+         "Base": f"{(base_price - price)/price if price > 0 else 0:+.1%}",
+         "Bull": f"{(bull_price - price)/price if price > 0 else 0:+.1%}"},
     ]
 
-    og_avg  = reformulated["historical_avgs"]["OG"]
-    ato_avg = reformulated["historical_avgs"]["ATO"]
     specs.append({
         "type": "D",
-        "title": f"{company_name} — DCF Prognosemodel [EST/CALC]",
+        "title": f"{company_name} — DCF Scenarios",
         "note": (
-            f"5-årig prognose (Penman FCF = OI − ΔNOA) [CALC]. "
-            f"Salgsvækst = {_pct(rev_cagr)} [ASSUMED]. "
-            f"OG = {_pct(og_avg)} (hist. gns.) [CALC]. "
-            f"ATO = {ato_avg:.2f}x (hist. gns.) [CALC]. "
-            f"WACC = {_pct(wacc)}, g = {_pct(dcf_results['g'])} [ASSUMED]. "
-            f"TV = FCF_T+1 / (WACC − g) [CALC]."
+            f"Penman FCF = OI − ΔNOA. 5-year forecast + Gordon Growth terminal value. "
+            f"Bear: low growth, compressed margins, higher WACC. "
+            f"Bull: higher growth, expanding margins, lower WACC. "
+            f"Current price = {price:.2f} {currency}."
         ),
         "kilde": kilde,
-        "table_data": {"columns": cols, "rows": dcf_rows},
+        "table_data": {"columns": ["Bear", "Base", "Bull"], "rows": sc_rows},
     })
 
     # ══════════════════════════════════════════════════════════════════════════
-    # Chart 5 — Fundamental vs. Markedspris (Type B bar chart)
-    # ══════════════════════════════════════════════════════════════════════════
-    pct_diff  = (dcf_price - price) / price if price > 0 else 0
-    direction = "undervurderet" if dcf_price > price else "overvurderet"
-    specs.append({
-        "type": "B",
-        "title": f"{company_name} — Fundamental vs. Markedspris ({currency})",
-        "y_label": f"{currency} pr. aktie",
-        "series_labels": [lbl_fund, lbl_market],
-        "note": (
-            f"Fundamental pris = {dcf_price:.2f} {currency} [CALC]. "
-            f"Markedspris = {price:.2f} {currency} [SOURCED]. "
-            f"Afvigelse: {_pct(abs(pct_diff))} ({direction}). "
-            f"WACC = {_pct(wacc)}, g = {_pct(dcf_results['g'])} [ASSUMED]."
-        ),
-        "kilde": kilde,
-    })
-
-    # ══════════════════════════════════════════════════════════════════════════
-    # Chart 6 — Følsomhedsanalyse: Pris/aktie over WACC × g
+    # Chart 6 — Sensitivity: Fair Value / Share over WACC × g
     # ══════════════════════════════════════════════════════════════════════════
     wacc_axis  = sensitivity["wacc_axis"]
     g_axis     = sensitivity["g_axis"]
     wacc_base  = sensitivity["wacc_base"]
     g_base     = sensitivity["g_base"]
-    sens_cols  = [_pct(w) for w in wacc_axis]
+    sens_cols  = [_pct(w, decimals=2) for w in wacc_axis]
     sens_rows  = []
-    for row_idx, g in enumerate(g_axis):
-        row = {"indicator": f"g={_pct(g)}"}
-        for col_idx, w in enumerate(wacc_axis):
-            cell_val = sensitivity["grid"][row_idx][col_idx]
-            cell_str = f"{cell_val:.1f}" if cell_val is not None else "—"
+    for ri, g in enumerate(g_axis):
+        row = {"indicator": f"g = {_pct(g)}"}
+        for ci, w in enumerate(wacc_axis):
+            val = sensitivity["grid"][ri][ci]
+            cell = f"{val:.0f}" if val is not None else "—"
             if abs(w - wacc_base) < 1e-6 and abs(g - g_base) < 1e-6:
-                cell_str = f"★{cell_str}"
-            row[_pct(w)] = cell_str
+                cell = f"★ {cell}"
+            row[_pct(w, 2)] = cell
         sens_rows.append(row)
 
     specs.append({
         "type": "D",
-        "title": f"{company_name} — Følsomhedsanalyse: Pris/aktie ({currency}) [CALC]",
+        "title": f"{company_name} — Sensitivity: Fair Value / Share ({currency})",
         "note": (
-            f"Kolonner = WACC (%). Rækker = terminalvækst g. "
-            f"★ = base case (WACC={_pct(wacc_base)}, g={_pct(g_base)}) [ASSUMED]. "
-            f"Interval: WACC ± 1 pct.point (0,25% trin), g 1–3% [CALC]."
+            f"Columns = WACC. Rows = terminal growth g. "
+            f"★ = base case (WACC = {_pct(wacc_base)}, g = {_pct(g_base)}). "
+            f"Range: WACC ± 1 ppt in 0.25 ppt steps, g 1–3%."
         ),
         "kilde": kilde,
         "table_data": {"columns": sens_cols, "rows": sens_rows},
     })
 
     # ══════════════════════════════════════════════════════════════════════════
-    # Chart 7 — Markedsmultipler (quick investor reference)
+    # Chart 7 — Market Multiples
     # ══════════════════════════════════════════════════════════════════════════
-    metrics = fmp_data.get("metrics", [{}])
-    m       = metrics[0] if metrics else {}
-    mkt_cap = fmp_data["profile"].get("marketCap", 0) or 0
-    _inc0   = fmp_data["income"][0] if fmp_data.get("income") else {}
-    _bal0   = fmp_data["balance"][0] if fmp_data.get("balance") else {}
-    _rev    = _inc0.get("revenue") or _inc0.get("totalRevenue") or 0
-    _equity = _bal0.get("totalStockholdersEquity") or 0
+    m       = (fmp_data.get("metrics") or [{}])[0]
+    mkt_cap = float(profile.get("marketCap") or profile.get("mktCap") or 0)
+    _inc0   = (fmp_data.get("income") or [{}])[0]
+    _bal0   = (fmp_data.get("balance") or [{}])[0]
+    _rev    = float(_inc0.get("revenue") or 0)
+    _equity = float(_bal0.get("totalStockholdersEquity") or 0)
     pb_val  = m.get("pbRatio") or (mkt_cap / _equity if _equity else None)
     ps_val  = m.get("priceToSalesRatio") or (mkt_cap / _rev if _rev else None)
 
+    mult_rows = [
+        {"indicator": "P/E",       "Trailing": f"{m['peRatio']:.1f}x"    if m.get("peRatio")    else "N/A"},
+        {"indicator": "EV/EBITDA", "Trailing": f"{m['evToEbitda']:.1f}x" if m.get("evToEbitda") else "N/A"},
+        {"indicator": "P/B",       "Trailing": f"{pb_val:.1f}x"          if pb_val              else "N/A"},
+        {"indicator": "P/S",       "Trailing": f"{ps_val:.1f}x"          if ps_val              else "N/A"},
+        {"indicator": "P/FCF",     "Trailing": f"{m['pfcfRatio']:.1f}x"  if m.get("pfcfRatio")  else "N/A"},
+    ]
+
     specs.append({
         "type": "D",
-        "title": f"{company_name} — Markedsmultipler [SOURCED/CALC]",
-        "note": (
-            "Trailing multiples fra FMP [SOURCED]. "
-            "P/B og P/S beregnet fra markedsværdi / bogført egenkapital/omsætning hvis ikke direkte tilgængeligt [CALC]."
-        ),
+        "title": f"{company_name} — Market Multiples",
+        "note": "Trailing multiples from FMP. P/B and P/S computed from market cap if not directly available.",
         "kilde": kilde,
-        "table_data": {
-            "columns": ["Multipel", "Trailing [SOURCED]"],
-            "rows": [
-                {"indicator": "P/E",       "Multipel": "P/E",       "Trailing [SOURCED]": f"{m['peRatio']:.1f}x"   if m.get("peRatio")    else "N/A"},
-                {"indicator": "EV/EBITDA", "Multipel": "EV/EBITDA", "Trailing [SOURCED]": f"{m['evToEbitda']:.1f}x" if m.get("evToEbitda") else "N/A"},
-                {"indicator": "P/B",       "Multipel": "P/B",       "Trailing [SOURCED]": f"{pb_val:.1f}x"         if pb_val              else "N/A"},
-                {"indicator": "P/S",       "Multipel": "P/S",       "Trailing [SOURCED]": f"{ps_val:.1f}x"         if ps_val              else "N/A"},
-                {"indicator": "P/FCF",     "Multipel": "P/FCF",     "Trailing [SOURCED]": f"{m['pfcfRatio']:.1f}x" if m.get("pfcfRatio")  else "N/A"},
-            ],
-        },
+        "table_data": {"columns": ["Trailing"], "rows": mult_rows},
     })
 
     return specs, dfs
