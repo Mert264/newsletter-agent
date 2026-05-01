@@ -92,7 +92,7 @@ def _analyst_next_rev(estimates: list):
 
 # ── LTM balance-sheet derived metrics ────────────────────────────────────────
 
-def _ltm_noa_nfo(ltm_bal: dict) -> tuple[float | None, float | None]:
+def _ltm_noa_nfo(ltm_bal: dict):
     if not ltm_bal:
         return None, None
     def s(k):
