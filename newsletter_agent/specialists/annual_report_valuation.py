@@ -134,7 +134,7 @@ def compute_dcf(reformulated: dict, wacc: float, g: float = 0.02,
     return detail
 
 
-def _analyst_fwd_cagr(estimates: list, base_rev: float) -> float | None:
+def _analyst_fwd_cagr(estimates: list, base_rev: float):
     """Derive forward CAGR from analyst consensus revenue estimates (already in millions)."""
     if not estimates or base_rev <= 0:
         return None
