@@ -7,7 +7,7 @@ from newsletter_agent.specialists.annual_report_fmp import fetch_all
 from newsletter_agent.specialists.annual_report_reformulator import reformulate
 from newsletter_agent.specialists.annual_report_checker import check
 from newsletter_agent.specialists.annual_report_valuation import (
-    compute_wacc, compute_dcf, compute_sensitivity,
+    compute_wacc, compute_dcf_scenarios, compute_sensitivity,
 )
 from newsletter_agent.specialists.annual_report_da import (
     review_reformulation, review_valuation, review_final,
@@ -16,7 +16,6 @@ from newsletter_agent.specialists.annual_report_kpi import build_chart_specs
 
 
 def fetch_annual_report(task: dict) -> dict:
-    # Ticker can be at top level (correct) or inside series[0] (LLM sometimes nests it wrong)
     _series0 = task.get("series", [{}])[0] if task.get("series") else {}
     ticker = (
         task.get("ticker") or
@@ -64,20 +63,22 @@ def fetch_annual_report(task: dict) -> dict:
         for issue in check_result["issues"]:
             print(f"    • {issue}")
 
-    print(f"  [annual_report] Running DCF valuation...")
-    NFO           = reformulated["NFO"][-1]
-    NCI           = reformulated["NCI"][-1]
+    print(f"  [annual_report] Running DCF scenarios (Bear / Base / Bull)...")
+    NFO            = reformulated["NFO"][-1]
+    NCI            = reformulated["NCI"][-1]
     diluted_shares = float(
         fmp_data["income"][0].get("weightedAverageShsOutDil") or
         profile.get("sharesOutstanding") or 1
     )
     base_year = reformulated["years"][-1]
     wacc      = wacc_data["wacc"]
+    estimates = fmp_data.get("estimates", [])
 
-    dcf_results = compute_dcf(
-        reformulated, wacc=wacc, g=0.02,
+    dcf_scenarios = compute_dcf_scenarios(
+        reformulated, wacc_base=wacc,
         NFO=NFO, NCI=NCI,
         diluted_shares=diluted_shares, base_year=base_year,
+        estimates=estimates,
     )
     sensitivity = compute_sensitivity(
         reformulated, wacc_base=wacc, g_base=0.02,
@@ -86,19 +87,23 @@ def fetch_annual_report(task: dict) -> dict:
     )
 
     market_price = float(profile.get("price") or 0)
-    if dcf_results["price_per_share"] < 0:
-        print(f"  [annual_report] WARNING: price_per_share={dcf_results['price_per_share']:.2f} < 0 "
-              f"(EV={dcf_results['EV']:,.0f} < NFO+NCI={NFO+NCI:,.0f}). Equity value is negative.")
-    da3 = review_valuation(wacc_data, dcf_results, market_price, client)
+    base_price   = dcf_scenarios["base"]["price"]
+    if base_price < 0:
+        print(f"  [annual_report] WARNING: base fair value={base_price:.2f} < 0 "
+              f"(EV={dcf_scenarios['base']['detail']['EV']:,.0f} < NFO+NCI={NFO+NCI:,.0f}).")
+
+    da3 = review_valuation(wacc_data, dcf_scenarios, market_price, client)
     print(f"  [annual_report] DA #3 (valuation): {da3[:120]}...")
 
     print(f"  [annual_report] Building chart specs...")
     chart_specs, dataframes = build_chart_specs(
         ticker, company_name, iso3,
-        reformulated, wacc_data, dcf_results, sensitivity, fmp_data,
+        reformulated, wacc_data, dcf_scenarios, sensitivity, fmp_data,
     )
 
-    da5 = review_final(chart_specs, dcf_results["price_per_share"], market_price, client)
+    bear_price = dcf_scenarios["bear"]["price"]
+    bull_price = dcf_scenarios["bull"]["price"]
+    da5 = review_final(chart_specs, (bear_price, base_price, bull_price), market_price, client)
     print(f"  [annual_report] DA #2 (final): {da5[:120]}...")
 
     return {
