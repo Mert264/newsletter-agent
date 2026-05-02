@@ -49,13 +49,15 @@ def _ltm_label(date_str: str) -> str:
         return "LTM"
 
 
-def _last_updated(fmp_data: dict) -> str:
-    date_str = (fmp_data.get("income") or [{}])[0].get("date", "")
+def _last_updated(fmp_data: dict, ltm_date: str = "") -> str:
+    # Prefer LTM date (more current than annual filing date)
+    date_str = ltm_date or (fmp_data.get("income") or [{}])[0].get("date", "")
     if not date_str:
         return "N/A"
     try:
         d = datetime.date.fromisoformat(date_str[:10])
-        return d.strftime("%d %b %Y")
+        suffix = " (LTM)" if ltm_date else " (Annual)"
+        return d.strftime("%d %b %Y") + suffix
     except Exception:
         return date_str[:10]
 
