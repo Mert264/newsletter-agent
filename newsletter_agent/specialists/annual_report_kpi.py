@@ -151,20 +151,23 @@ def build_chart_specs(
     nc_str     = (f"+{_num(net_cash)}m (net cash)" if net_cash >= 0
                   else f"{_num(net_cash)}m (net debt)")
 
-    rev_cagr  = reformulated["historical_avgs"]["revenue_cagr"]
-    og_avg    = reformulated["historical_avgs"]["OG"]
-    fy_latest = _fy_label(years[-1])
+    rev_cagr   = reformulated["historical_avgs"]["revenue_cagr"]
+    og_avg     = reformulated["historical_avgs"]["OG"]
+    fy_latest  = _fy_label(years[-1])
+    n_avg_yrs  = reformulated.get("n_avg_years", len(years))
+    cagr_label = f"FY{years[0]}–FY{years[-1]}"
+    ltm_date   = ltm_inc.get("date", "") if has_ltm else ""
 
     exec_rows = [
-        {"indicator": "Current Price",         "Value": f"{price:.2f} {currency}"},
-        {"indicator": "Fair Value Range",       "Value": f"{bear_price:.0f} – {bull_price:.0f} {currency}"},
-        {"indicator": "Base Fair Value",        "Value": f"{base_price:.2f} {currency}"},
-        {"indicator": "Upside / Downside",      "Value": f"{upside:+.1%}"},
-        {"indicator": "",                       "Value": ""},
-        {"indicator": "WACC",                   "Value": _pct(wacc)},
-        {"indicator": "Terminal Growth",        "Value": _pct(base_sc["g"])},
-        {"indicator": f"Net Cash / (Debt)",     "Value": nc_str},
-        {"indicator": f"{fy_latest} Revenue",   "Value": f"{_num(reformulated['revenue'][-1])}m {currency}"},
+        {"indicator": "Current Price",              "Value": f"{price:.2f} {currency}"},
+        {"indicator": "Fair Value Range",           "Value": f"{bear_price:.0f} – {bull_price:.0f} {currency}"},
+        {"indicator": "Base Fair Value",            "Value": f"{base_price:.2f} {currency}"},
+        {"indicator": "Upside / Downside",          "Value": f"{upside:+.1%}"},
+        {"indicator": "",                           "Value": ""},
+        {"indicator": "WACC",                       "Value": _pct(wacc)},
+        {"indicator": "Terminal Growth",            "Value": _pct(base_sc["g"])},
+        {"indicator": "Net Fin. Obligations (NFO)", "Value": nc_str},
+        {"indicator": f"{fy_latest} Revenue",       "Value": f"{_num(reformulated['revenue'][-1])}m {currency}"},
     ]
 
     est_str = _analyst_next_rev(fmp_data.get("estimates", []))
@@ -172,11 +175,11 @@ def build_chart_specs(
         exec_rows.append({"indicator": "Consensus Revenue",  "Value": est_str})
 
     exec_rows += [
-        {"indicator": "",                          "Value": ""},
-        {"indicator": "Revenue CAGR (historical)", "Value": _pct(rev_cagr)},
-        {"indicator": "Operating Margin (avg)",    "Value": _pct(og_avg)},
-        {"indicator": "Confidence",                "Value": _confidence(upside, reformulated)},
-        {"indicator": "Last Updated",              "Value": _last_updated(fmp_data)},
+        {"indicator": "",                                        "Value": ""},
+        {"indicator": f"Revenue CAGR ({cagr_label})",           "Value": _pct(rev_cagr)},
+        {"indicator": f"NOPAT Margin ({n_avg_yrs}yr avg)",      "Value": _pct(og_avg)},
+        {"indicator": "Confidence",                             "Value": _confidence(upside, reformulated)},
+        {"indicator": "Last Updated",                           "Value": _last_updated(fmp_data, ltm_date)},
     ]
 
     specs.append({
@@ -185,7 +188,7 @@ def build_chart_specs(
         "note": (
             f"Fair value range = Bear {bear_price:.0f} / Base {base_price:.0f} / Bull {bull_price:.0f} {currency}. "
             f"WACC {_pct(wacc)}, terminal growth {_pct(base_sc['g'])}. "
-            f"Penman DCF methodology (OI − ΔNOA). Data: FMP."
+            f"Penman DCF: FCF = NOPAT − ΔNOA. Data: FMP. Valuation is model output, not a factual result."
         ),
         "kilde": kilde,
         "table_data": {"columns": ["Value"], "rows": exec_rows},
