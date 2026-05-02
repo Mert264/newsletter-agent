@@ -1,5 +1,5 @@
 from newsletter_agent.specialists.annual_report_constants import (
-    RF_BY_COUNTRY, MSCI_WORLD_35YR_RETURN, MOODY_TO_SPREAD,
+    RF_BY_COUNTRY, US_MATURE_ERP, MOODY_TO_SPREAD,
     CRP_BY_COUNTRY, STATUTORY_TAX_RATE, normalize_country, icr_to_spread,
 )
 
