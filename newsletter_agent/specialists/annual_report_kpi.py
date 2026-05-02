@@ -337,8 +337,8 @@ def build_chart_specs(
         "title": f"{company_name} — WACC",
         "note": (
             f"WACC = {_pct(wacc)}. "
-            f"rf = {rf_entry['maturity_yr']}-year historical avg for {iso3}. "
-            f"MRP = MSCI World 35-year arithmetic avg − rf = {_pct(MRP)}. "
+            f"rf = {rf_entry['bond_name']} spot yield ({iso3}). "
+            f"MRP = Damodaran US mature-market ERP = {_pct(MRP)}. "
             f"Beta adjusted via Blume (1975)."
         ),
         "kilde": kilde,
