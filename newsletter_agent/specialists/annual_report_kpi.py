@@ -98,7 +98,7 @@ def _ltm_noa_nfo(ltm_bal: dict):
     def s(k):
         return float(ltm_bal.get(k) or 0)
     fin_assets = s("cashAndCashEquivalents") + s("shortTermInvestments") + s("longTermInvestments")
-    fin_liabs  = s("shortTermDebt") + s("longTermDebt")
+    fin_liabs  = s("shortTermDebt") + s("longTermDebt") + s("capitalLeaseObligations")
     op_assets  = s("totalAssets") - fin_assets
     op_liabs   = s("totalLiabilities") - fin_liabs
     return op_assets - op_liabs, fin_liabs - fin_assets
