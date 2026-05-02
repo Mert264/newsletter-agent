@@ -291,7 +291,7 @@ def build_chart_specs(
     # Chart 3 — Revenue & Operating Income Trend (line chart)
     # ══════════════════════════════════════════════════════════════════════════
     lbl_rev = f"{ticker} — Revenue ({currency}m)"
-    lbl_oi  = f"{ticker} — Operating Income ({currency}m)"
+    lbl_oi  = f"{ticker} — NOPAT ({currency}m)"
     dfs[lbl_rev] = _ts(years, reformulated["revenue"], lbl_rev)
     dfs[lbl_oi]  = _ts(years, reformulated["OI"],      lbl_oi)
 
@@ -300,12 +300,12 @@ def build_chart_specs(
 
     specs.append({
         "type": "A", "freq": "A",
-        "title": f"{company_name} — Revenue & Operating Income ({currency}m)",
+        "title": f"{company_name} — Revenue & NOPAT ({currency}m)",
         "y_label": f"{currency}m",
         "series_labels": ["trend_rev_oi"],
         "note": (
-            f"Revenue CAGR = {_pct(rev_cagr)} (organic, M&A-adjusted). "
-            f"Operating Income = EBIT × (1−t = {_pct(t)})."
+            f"Revenue CAGR = {_pct(rev_cagr)} ({cagr_label}, organic, M&A-adjusted). "
+            f"NOPAT = EBIT × (1−t = {_pct(t)}) — after-tax operating income (not GAAP operating income)."
         ),
         "kilde": kilde,
     })
