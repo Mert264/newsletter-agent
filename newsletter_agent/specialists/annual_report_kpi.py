@@ -305,17 +305,17 @@ def build_chart_specs(
     # ══════════════════════════════════════════════════════════════════════════
     # Chart 4 — WACC Calculation
     # ══════════════════════════════════════════════════════════════════════════
-    MRP = MSCI_WORLD_35YR_RETURN - wacc_data["rf"]
+    MRP = wacc_data["MRP"]
 
     wacc_rows = [
         {"indicator": "Risk-free Rate",         "Parameter": "rf",     "Value": _pct(wacc_data["rf"]),
-         "Source": f"{rf_entry['bond_name']} ({rf_entry['maturity_yr']}yr hist. avg)"},
+         "Source": f"{rf_entry['bond_name']} (spot)"},
         {"indicator": "Beta (raw)",             "Parameter": "β",      "Value": f"{wacc_data['beta_raw']:.4f}",
          "Source": "FMP /profile"},
         {"indicator": "Beta (Blume adj.)",      "Parameter": "β_adj",  "Value": f"{wacc_data['beta_adj']:.4f}",
          "Source": "2/3 × β + 1/3"},
         {"indicator": "Equity Risk Premium",    "Parameter": "MRP",    "Value": _pct(MRP),
-         "Source": f"MSCI World 35yr arithmetic avg − rf_{iso3}"},
+         "Source": "Damodaran US mature-market ERP"},
         {"indicator": "Country Risk Premium",   "Parameter": "CRP",    "Value": _pct(wacc_data["CRP"]),
          "Source": f"Damodaran {iso3}"},
         {"indicator": "Cost of Equity",         "Parameter": "rE",     "Value": _pct(wacc_data["rE"]),
