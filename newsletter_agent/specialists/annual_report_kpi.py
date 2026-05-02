@@ -248,15 +248,15 @@ def build_chart_specs(
         return row
 
     snap_rows = [
-        _snap_row(f"Revenue ({currency}m)",     reformulated["revenue"],  _num,  ltm_rev),
-        _snap_row(f"Operating Income ({currency}m)", reformulated["OI"],  _num,  ltm_oi),
-        _snap_row(f"Cash FCF ({currency}m)",    reformulated["cash_fcf"], _num,  ltm_fcf),
-        _snap_row(f"NOA ({currency}m)",         reformulated["NOA"],      _num,  ltm_noa),
-        _snap_row(f"Net Fin. Obligations ({currency}m)", reformulated["NFO"], _num, ltm_nfo),
-        _snap_row("RNOA",                       reformulated["RNOA"],     _pct,  ltm_rnoa),
-        _snap_row("Operating Margin",           reformulated["OG"],       _pct,  ltm_og),
-        _snap_row("Asset Turnover (ATO)",       reformulated["ATO"],      _x,    ltm_ato),
-        _snap_row("SPREAD (RNOA − NBC)",        reformulated["SPREAD"],   _pct,  ltm_spread),
+        _snap_row(f"Revenue ({currency}m)",          reformulated["revenue"],  _num,  ltm_rev),
+        _snap_row(f"NOPAT ({currency}m)",            reformulated["OI"],       _num,  ltm_oi),
+        _snap_row(f"Cash FCF ({currency}m)",         reformulated["cash_fcf"], _num,  ltm_fcf),
+        _snap_row(f"NOA ({currency}m)",              reformulated["NOA"],      _num,  ltm_noa),
+        _snap_row(f"NFO ({currency}m)",              reformulated["NFO"],      _num,  ltm_nfo),
+        _snap_row("RNOA",                            reformulated["RNOA"],     _pct,  ltm_rnoa),
+        _snap_row("NOPAT Margin",                    reformulated["OG"],       _pct,  ltm_og),
+        _snap_row("Asset Turnover (ATO)",            reformulated["ATO"],      _x,    ltm_ato),
+        _snap_row("SPREAD (RNOA − NBC)",             reformulated["SPREAD"],   _pct,  ltm_spread),
     ]
 
     # Collect any anomaly notes
@@ -271,9 +271,11 @@ def build_chart_specs(
         _notes.append(f"NOA anomaly in {show_yrs[-1]} — DCF uses ATO-normalised starting NOA.")
 
     snap_note = (
-        f"OI = EBIT × (1−t), t = {_pct(t)}. "
-        f"Penman FCF = OI − ΔNOA; Cash FCF = OCF − CapEx. "
+        f"NOPAT = EBIT × (1−t), t = {_pct(t)} statutory (normalized, not effective rate). "
+        f"Penman FCF = NOPAT − ΔNOA; Cash FCF = OCF − CapEx. "
         f"NOA = Operating Assets − Operating Liabilities. "
+        f"NFO = Net Financial Obligations (term debt + lease liabilities − excess cash − marketable securities). "
+        f"Negative NFO = net cash position. "
         + (" ".join(_notes) if _notes else "")
     )
 
