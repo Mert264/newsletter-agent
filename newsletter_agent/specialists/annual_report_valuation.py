@@ -152,12 +152,25 @@ def _analyst_fwd_cagr(estimates: list, base_rev: float):
 def compute_dcf_scenarios(
     reformulated: dict, wacc_base: float,
     NFO: float, NCI: float, diluted_shares: float, base_year: int,
-    estimates=None,
+    estimates=None, ltm_income=None,
 ) -> dict:
     """Run Bear / Base / Bull DCF scenarios. Returns dict keyed by scenario name."""
     avgs      = reformulated["historical_avgs"]
     hist_cagr = avgs["revenue_cagr"]
-    base_rev  = reformulated["revenue"][-1]
+
+    # Determine DCF base revenue: LTM > last full FY > 3yr trailing avg (if latest year flagged)
+    excluded = reformulated.get("excluded_years", set())
+    latest_yr = reformulated["years"][-1] if reformulated["years"] else None
+    if ltm_income and float(ltm_income.get("revenue") or 0) > 0:
+        base_rev = float(ltm_income["revenue"])
+    elif latest_yr in excluded:
+        valid_rev = [(y, r) for y, r in zip(reformulated["years"], reformulated["revenue"])
+                     if y not in excluded]
+        trailing = valid_rev[-3:] if len(valid_rev) >= 3 else valid_rev
+        base_rev = sum(r for _, r in trailing) / len(trailing) if trailing else reformulated["revenue"][-1]
+        print(f"  [annual_report] INFO: Latest year {latest_yr} flagged — using 3yr trailing avg revenue as DCF base ({base_rev:,.0f})")
+    else:
+        base_rev = reformulated["revenue"][-1]
 
     fwd_cagr = _analyst_fwd_cagr(estimates, base_rev)
     base_cagr = fwd_cagr if fwd_cagr is not None else hist_cagr
