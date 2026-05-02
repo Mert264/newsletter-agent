@@ -4,9 +4,7 @@
 # Structure: Executive Summary → Snapshot + LTM → Trend → WACC → DCF Scenarios → Sensitivity → Multiples
 import datetime
 import pandas as pd
-from newsletter_agent.specialists.annual_report_constants import (
-    MSCI_WORLD_35YR_RETURN, STATUTORY_TAX_RATE,
-)
+from newsletter_agent.specialists.annual_report_constants import STATUTORY_TAX_RATE
 
 
 # ── Formatting helpers ────────────────────────────────────────────────────────
