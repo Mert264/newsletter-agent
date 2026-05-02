@@ -2,10 +2,10 @@ def _safe(val, default=0.0):
     return float(val) if val is not None else default
 
 
-def reformulate(fmp_data: dict, t: float) -> dict:
-    income   = list(reversed(fmp_data["income"]))
-    balance  = list(reversed(fmp_data["balance"]))
-    cf_list  = list(reversed(fmp_data.get("cashflow", [])))
+def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
+    income   = list(reversed(fmp_data["income"]))[:n_years_history]
+    balance  = list(reversed(fmp_data["balance"]))[:n_years_history]
+    cf_list  = list(reversed(fmp_data.get("cashflow", [])))[:n_years_history]
     cf_by_yr = {int(c["date"][:4]): c for c in cf_list if c.get("date")}
     n = min(len(income), len(balance))
 
