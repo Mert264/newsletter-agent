@@ -220,7 +220,15 @@ def build_chart_specs(
     ltm_rnoa = (ltm_oi / ltm_avg_noa if ltm_oi and ltm_avg_noa else None)
     ltm_og   = (ltm_oi / ltm_rev if ltm_oi and ltm_rev else None)
     ltm_ato  = (ltm_rev / ltm_avg_noa if ltm_rev and ltm_avg_noa else None)
-    ltm_spread = (ltm_rnoa - (wacc_data["rD"] if ltm_rnoa else 0)) if ltm_rnoa else None
+    # SPREAD = RNOA − NBC; compute LTM NBC from interest expense / avg NFO
+    ltm_nbc = None
+    if ltm_nfo is not None and ltm_nfo != 0:
+        ltm_int_ex  = float(ltm_inc.get("interestExpense") or 0)
+        prior_nfo   = reformulated["NFO"][-1] if reformulated["NFO"] else 0
+        avg_ltm_nfo = (ltm_nfo + prior_nfo) / 2 if prior_nfo else ltm_nfo
+        if avg_ltm_nfo != 0:
+            ltm_nbc = (ltm_int_ex * (1 - t)) / avg_ltm_nfo
+    ltm_spread = (ltm_rnoa - ltm_nbc) if (ltm_rnoa is not None and ltm_nbc is not None) else None
 
     def _snap_row(label, hist_vals, fmt_fn, ltm_val=None):
         row = {"indicator": label}
