@@ -207,9 +207,9 @@ def build_chart_specs(
         yr_cols.append(ltm_col)
 
     # LTM computed values
-    ltm_noa, ltm_nfo = _ltm_noa_nfo(ltm_bal) if has_ltm else (None, None)
-    ltm_oi  = float(ltm_inc.get("operatingIncome") or 0) * (1 - t) if has_ltm else None
     ltm_rev = float(ltm_inc.get("revenue") or 0) if has_ltm else None
+    ltm_noa, ltm_nfo = _ltm_noa_nfo(ltm_bal, ltm_rev or 0.0) if has_ltm else (None, None)
+    ltm_oi  = float(ltm_inc.get("operatingIncome") or 0) * (1 - t) if has_ltm else None
     ltm_fcf = (float(ltm_cf.get("freeCashFlow") or 0) or
                float((ltm_cf.get("operatingCashFlow") or 0) +
                      (ltm_cf.get("capitalExpenditure") or 0))) if has_ltm else None
