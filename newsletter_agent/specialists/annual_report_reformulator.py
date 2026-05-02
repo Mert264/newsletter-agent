@@ -25,12 +25,15 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
         comp_ni = _safe(_comp if _comp is not None else inc.get("netIncome"))
         interest= _safe(inc.get("interestExpense"))
 
-        fin_assets = (_safe(bal.get("cashAndCashEquivalents"))
+        cash_total  = _safe(bal.get("cashAndCashEquivalents"))
+        op_cash_floor = 0.02 * revenue  # 2% of revenue treated as trapped operating cash
+        excess_cash   = max(0.0, cash_total - op_cash_floor)
+        fin_assets = (excess_cash
                       + _safe(bal.get("shortTermInvestments"))
                       + _safe(bal.get("longTermInvestments")))
-        # Capital lease obligations classified as operating (ROU asset is already in op_assets)
         fin_liabs  = (_safe(bal.get("shortTermDebt"))
-                      + _safe(bal.get("longTermDebt")))
+                      + _safe(bal.get("longTermDebt"))
+                      + _safe(bal.get("capitalLeaseObligations")))
         op_assets  = _safe(bal.get("totalAssets")) - fin_assets
         op_liabs   = _safe(bal.get("totalLiabilities")) - fin_liabs
 
