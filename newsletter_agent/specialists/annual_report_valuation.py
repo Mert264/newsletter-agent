@@ -34,7 +34,8 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
 
     rs = rs_moody if rs_moody is not None else rs_icr
     if rs_moody is None:
-        rating = f"ICR fallback (ICR={icr:.1f})"
+        icr_display = "Aaa equiv." if icr > 100 else f"{icr:.1f}"
+        rating = f"ICR fallback (ICR={icr_display})"
 
     rD = (rf + rs) * (1 - t)
 
