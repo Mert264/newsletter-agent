@@ -186,5 +186,6 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
         "cash_fcf":       cash_fcf_l,
         "flags":          flags,
         "excluded_years": excluded_yrs,
-        "assumptions":    [f"t={t:.1%} statutory corporate tax rate applied to OI and NBC"],
+        "n_avg_years":    len(valid_idx),
+        "assumptions":    [f"t={t:.1%} statutory corporate tax rate (normalized, not effective) applied to NOPAT and NBC"],
     }
