@@ -438,7 +438,7 @@ def build_chart_specs(
         {"indicator": "EV/EBITDA", "Trailing": f"{m['evToEbitda']:.1f}x" if m.get("evToEbitda") else "N/A"},
         {"indicator": "P/B",       "Trailing": f"{pb_val:.1f}x"          if pb_val              else "N/A"},
         {"indicator": "P/S",       "Trailing": f"{ps_val:.1f}x"          if ps_val              else "N/A"},
-        {"indicator": "P/FCF",     "Trailing": f"{m['pfcfRatio']:.1f}x"  if m.get("pfcfRatio")  else "N/A"},
+        {"indicator": "EV/FCF",    "Trailing": f"{m['evToFCF']:.1f}x"    if m.get("evToFCF")    else "N/A"},
     ]
 
     specs.append({
