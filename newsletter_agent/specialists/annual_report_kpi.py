@@ -366,7 +366,7 @@ def build_chart_specs(
     sc_rows = [
         {"indicator": "Revenue Growth (CAGR)",
          "Bear": _pct(bear_sc["cagr"]), "Base": _pct(base_sc["cagr"]), "Bull": _pct(bull_sc["cagr"])},
-        {"indicator": "Operating Margin",
+        {"indicator": "NOPAT Margin",
          "Bear": _pct(bear_sc["og"]), "Base": _pct(base_sc["og"]), "Bull": _pct(bull_sc["og"])},
         {"indicator": "WACC",
          "Bear": _pct(bear_sc["wacc"]), "Base": _pct(base_sc["wacc"]), "Bull": _pct(bull_sc["wacc"])},
