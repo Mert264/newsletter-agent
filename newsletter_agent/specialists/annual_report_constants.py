@@ -1,4 +1,5 @@
 MSCI_WORLD_35YR_RETURN = 0.0758
+US_MATURE_ERP = 0.055  # Damodaran mature-market equity risk premium (Jan 2025)
 
 RF_BY_COUNTRY = {
     "DNK": {"rate": 0.0384, "maturity_yr": 35, "spot": 0.028, "bond_name": "Dansk statsobligation 35år avg"},
