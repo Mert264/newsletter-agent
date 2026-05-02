@@ -90,12 +90,15 @@ def _analyst_next_rev(estimates: list):
 
 # ── LTM balance-sheet derived metrics ────────────────────────────────────────
 
-def _ltm_noa_nfo(ltm_bal: dict):
+def _ltm_noa_nfo(ltm_bal: dict, ltm_revenue: float = 0.0):
     if not ltm_bal:
         return None, None
     def s(k):
         return float(ltm_bal.get(k) or 0)
-    fin_assets = s("cashAndCashEquivalents") + s("shortTermInvestments") + s("longTermInvestments")
+    cash_total    = s("cashAndCashEquivalents")
+    op_cash_floor = 0.02 * ltm_revenue
+    excess_cash   = max(0.0, cash_total - op_cash_floor)
+    fin_assets = excess_cash + s("shortTermInvestments") + s("longTermInvestments")
     fin_liabs  = s("shortTermDebt") + s("longTermDebt") + s("capitalLeaseObligations")
     op_assets  = s("totalAssets") - fin_assets
     op_liabs   = s("totalLiabilities") - fin_liabs
