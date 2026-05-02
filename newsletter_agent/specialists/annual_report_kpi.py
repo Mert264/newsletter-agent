@@ -389,10 +389,11 @@ def build_chart_specs(
         "type": "D",
         "title": f"{company_name} — DCF Scenarios",
         "note": (
-            f"Penman FCF = OI − ΔNOA. 5-year forecast + Gordon Growth terminal value. "
+            f"Penman FCF = NOPAT − ΔNOA. 5-year forecast + Gordon Growth terminal value. "
+            f"NOPAT margin = after-tax operating margin (model assumption, not guaranteed). "
             f"Bear: low growth, compressed margins, higher WACC. "
             f"Bull: higher growth, expanding margins, lower WACC. "
-            f"Current price = {price:.2f} {currency}."
+            f"Current price = {price:.2f} {currency}. Fair value is scenario-dependent model output."
         ),
         "kilde": kilde,
         "table_data": {"columns": ["Bear", "Base", "Bull"], "rows": sc_rows},
