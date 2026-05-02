@@ -14,7 +14,7 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
     beta_raw = float(profile.get("beta") or 1.0)
     beta_adj = (2 / 3) * beta_raw + (1 / 3)
 
-    MRP = MSCI_WORLD_35YR_RETURN - rf
+    MRP = US_MATURE_ERP
     CRP = CRP_BY_COUNTRY.get(iso3, CRP_BY_COUNTRY["_default"])
     rE  = rf + beta_adj * (MRP + CRP)
 
