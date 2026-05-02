@@ -183,7 +183,8 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
             "ATO":          avg_ATO,
             "revenue_cagr": rev_cagr,
         },
-        "cash_fcf":    cash_fcf_l,
-        "flags":       flags,
-        "assumptions": [f"t={t:.1%} statutory corporate tax rate applied to OI and NBC"],
+        "cash_fcf":       cash_fcf_l,
+        "flags":          flags,
+        "excluded_years": excluded_yrs,
+        "assumptions":    [f"t={t:.1%} statutory corporate tax rate applied to OI and NBC"],
     }
