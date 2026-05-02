@@ -64,7 +64,7 @@ def _normalize_metrics(m: dict) -> dict:
     if "evToEBITDA" in m:
         result.setdefault("evToEbitda", m["evToEBITDA"])
     if "evToFreeCashFlow" in m:
-        result.setdefault("pfcfRatio", m["evToFreeCashFlow"])
+        result["evToFCF"] = m["evToFreeCashFlow"]
     return result
 
 
