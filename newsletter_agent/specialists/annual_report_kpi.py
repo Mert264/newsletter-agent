@@ -21,8 +21,8 @@ def _pct(v: float, decimals: int = 2) -> str:
 def _num(v: float) -> str:
     if v is None:
         return "—"
-    if abs(v) >= 1e6:
-        return f"{v/1e6:.1f}T" if abs(v) >= 1e9 else f"{v/1e6:.1f}bn"
+    if abs(v) >= 1_000_000:   # ≥ $1T in USDm
+        return f"{v/1_000_000:.2f}T"
     try:
         if v == int(v):
             return f"{int(v):,}"
