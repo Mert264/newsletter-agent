@@ -57,7 +57,7 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
         "shares_source": "diluted",
         "tax_type":      "statutory",
         "nci_present":   any(v > 0 for v in reformulated["NCI"]),
-        "bond_type":     "nominal",
+        "bond_type":     "spot",
     }
 
     return {
