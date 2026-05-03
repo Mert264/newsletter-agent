@@ -46,17 +46,27 @@ def review_valuation(wacc_data: dict, dcf_scenarios: dict,
     ratio      = base_price / market_price if market_price > 0 else 0
     ev         = base["detail"]["EV"]
     tv_share   = f"{base['detail']['PV_TV']/ev:.0%}" if ev != 0 else "N/A (EV≤0)"
+    D, E, NFO  = wacc_data["D"], wacc_data["E"], wacc_data.get("D", 0) + wacc_data.get("E", 0)
+    net_cash   = wacc_data["D"] == 0 and base["detail"]["NFO"] < 0
+    cap_note   = (
+        "Net cash company (NFO < 0): D=0 by model design, so WACC = rE is EXPECTED and correct. "
+        "Do NOT flag WACC = rE as an error for net-cash companies."
+        if net_cash else
+        f"D={wacc_data['D']:,.0f}, E={wacc_data['E']:,.0f}, V={wacc_data['V']:,.0f}"
+    )
     user = (
         f"WACC: {wacc_data['wacc']:.4f}, rf: {wacc_data['rf']:.4f}, "
         f"rE: {wacc_data['rE']:.4f}, rD: {wacc_data['rD']:.4f}\n"
         f"β_raw={wacc_data['beta_raw']:.2f}, β_adj={wacc_data['beta_adj']:.4f}\n"
+        f"Capital structure: {cap_note}\n"
         f"Fair value range: {bear_price:.2f} – {bull_price:.2f} (base: {base_price:.2f})\n"
         f"Market price: {market_price:.2f} (base ratio: {ratio:.2f}x)\n"
         f"EV (base): {ev:,.0f}, TV share: {tv_share}\n"
         f"g (base)={base['g']:.3f}, Rev CAGR (base)={base['cagr']:.3f}\n\n"
         "Review: Is rf consistent? Is β_adj applied? Is terminal growth ≤ long-run GDP? "
         "Is EV > 0? Flag if base fair value is outside 0.2x–5x of market price. "
-        "Is the range bear < base < bull?"
+        "Is the range bear < base < bull? "
+        "IMPORTANT: Do NOT flag WACC = rE as suspicious if the capital structure note says net cash."
     )
     return _call(client, _SYSTEM, user)
 
