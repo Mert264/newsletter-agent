@@ -54,7 +54,10 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     row_height = 0.38         # inches per data row
     header_h   = 0.42
     fig_h      = max(2.2, header_h + n_rows * row_height + 0.6)
-    fig_w      = BRAND["figure_width_px"] / BRAND["figure_dpi"]
+    base_fig_w = BRAND["figure_width_px"] / BRAND["figure_dpi"]
+    # Widen figure for tables with many data columns so headers don't overflow
+    n_data_cols_local = len(cols)
+    fig_w = base_fig_w * max(1.0, n_data_cols_local / 5.0) if n_data_cols_local >= 6 else base_fig_w
 
     fig, ax = plt.subplots(figsize=(fig_w, fig_h), dpi=BRAND["figure_dpi"])
     ax.axis("off")
