@@ -44,7 +44,8 @@ def _ltm_label(date_str: str) -> str:
         return "LTM"
     try:
         d = datetime.date.fromisoformat(date_str[:10])
-        return f"LTM {d.strftime('%b\'%y')}"   # e.g. "LTM Mar'26" — fits narrow columns
+        fmt = d.strftime("%b'%y")   # e.g. "Mar'26" — fits narrow columns
+        return f"LTM {fmt}"
     except Exception:
         return "LTM"
 
