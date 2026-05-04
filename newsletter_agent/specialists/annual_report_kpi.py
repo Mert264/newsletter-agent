@@ -309,11 +309,13 @@ def build_chart_specs(
         )
 
     snap_note = (
-        f"NOPAT = EBIT × (1−t), t = {_pct(t)} statutory (normalized, not effective rate). "
-        f"Penman FCF = NOPAT − ΔNOA; Cash FCF = OCF − CapEx. "
-        f"NOA = Operating Assets − Operating Liabilities. "
-        f"NFO = Net Financial Obligations (term debt + lease liabilities − excess cash − marketable securities). "
-        f"Negative NFO = net cash position. "
+        f"This table tracks the operating and financial health of the business over time — the foundation for the DCF. "
+        f"NOPAT (Net Operating Profit After Tax = EBIT × (1−t), t = {_pct(t)} statutory) isolates earnings from operations, stripping out financing effects. "
+        f"NOA (Net Operating Assets = Operating Assets − Operating Liabilities) is the capital tied up in running the business; "
+        f"healthy businesses grow NOA in line with or slower than revenue. "
+        f"NOPAT margin above 10% and ATO (Revenue / NOA) above 1× are generally strong benchmarks for large-caps. "
+        f"Penman FCF = NOPAT − ΔNOA (profit minus reinvestment); Cash FCF = OCF − CapEx (direct cash). "
+        f"NFO = Net Financial Obligations (term debt + lease liabilities − excess cash − securities); negative NFO = net cash company. "
         + (" ".join(_notes) if _notes else "")
     )
 
