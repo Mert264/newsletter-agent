@@ -97,6 +97,21 @@ def fetch_worldbank(task: dict) -> dict:
     chart_specs = []
     for chart in task.get("charts", []):
         spec = dict(chart)
+        required   = spec.get("series_labels", [])
+        available  = [lbl for lbl in required if lbl in dataframes]
+        missing_s  = [lbl for lbl in required if lbl not in dataframes]
+
+        # Drop chart entirely if no series have data — avoids publishing empty figures
+        if required and not available:
+            print(f"    [worldbank] Dropping chart '{spec.get('title')}' — no data for any required series.")
+            continue
+
+        # Annotate note when some (but not all) series are unavailable
+        if missing_s:
+            unavail_str = ", ".join(missing_s)
+            missing_note = f"Note: data unavailable for {unavail_str} — not published by World Bank for this country/period."
+            spec["note"] = (spec.get("note", "") + " " + missing_note).strip()
+
         existing = spec.get("note", "")
         if _LAG_NOTE not in existing:
             spec["note"] = (existing + " " + _LAG_NOTE).strip()
