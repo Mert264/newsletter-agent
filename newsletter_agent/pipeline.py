@@ -980,7 +980,12 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None, pe
                 package = package[-1]     # combined figure → continues to review below
                 output_path = package["path"]
 
-            # Step 4: Devil's Advocate review (max 2 loops)
+            # Step 4: Devil's Advocate review (max 2 loops) — skip for summary cards
+            if package.get("metadata", {}).get("_skip_review"):
+                packages.append(package)
+                _rerender_ctx_map.append(None)
+                fig_idx += 1
+                continue
             print(f"  [reviewer] Checking figure {fig_idx + 1}...")
             final_approved = False
             last_flag = None
