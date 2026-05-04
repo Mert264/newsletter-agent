@@ -34,25 +34,32 @@ def _fetch_indicator(iso3: str, code: str, years: int) -> Optional[pd.DataFrame]
             pass  # corrupt cache entry — fall through to live fetch
 
     url = _WB_BASE.format(iso3=iso3, code=code, years=years)
-    try:
-        resp = requests.get(url, timeout=10)
-        resp.raise_for_status()
-        payload = resp.json()
-        if not payload or len(payload) < 2 or not payload[1]:
+    for attempt in range(2):
+        try:
+            resp = requests.get(url, timeout=25)
+            resp.raise_for_status()
+            payload = resp.json()
+            if not payload or len(payload) < 2 or not payload[1]:
+                return None
+            records = [
+                (pd.Timestamp(f"{row['date']}-01-01"), row["value"])
+                for row in payload[1]
+                if row.get("value") is not None
+            ]
+            if not records:
+                return None
+            cache_put("wb", [[str(d), v] for d, v in records], iso3=iso3, code=code, years=years)
+            return _records_to_df(records)
+        except requests.exceptions.Timeout:
+            if attempt == 0:
+                print(f"    [worldbank] Timeout for {iso3}/{code} — retrying...")
+                continue
+            print(f"    [worldbank] Timeout after retry for {iso3}/{code} — skipping.")
             return None
-        records = [
-            (pd.Timestamp(f"{row['date']}-01-01"), row["value"])
-            for row in payload[1]
-            if row.get("value") is not None
-        ]
-        if not records:
+        except Exception as e:
+            print(f"    [worldbank] Failed to fetch {iso3}/{code}: {e}")
             return None
-        # Persist to cache as ISO-format strings (JSON-serialisable)
-        cache_put("wb", [[str(d), v] for d, v in records], iso3=iso3, code=code, years=years)
-        return _records_to_df(records)
-    except Exception as e:
-        print(f"    [worldbank] Failed to fetch {iso3}/{code}: {e}")
-        return None
+    return None
 
 
 def fetch_worldbank(task: dict) -> dict:
