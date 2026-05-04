@@ -418,16 +418,30 @@ def build_chart_specs(
          "Bull": f"{(bull_price - price)/price if price > 0 else 0:+.1%}"},
     ]
 
+    _dcf_note = (
+        f"Penman FCF = NOPAT − ΔNOA. 5-year forecast + Gordon Growth terminal value. "
+        f"NOPAT margin = after-tax operating margin (model assumption, not guaranteed). "
+        f"Bear: low growth, compressed margins, higher WACC. "
+        f"Bull: higher growth, expanding margins, lower WACC. "
+        f"Current price = {price:.2f} {currency}. Fair value is scenario-dependent model output."
+    )
+    if price > 0 and abs(upside) > 0.50:
+        if upside < 0:
+            _dcf_note += (
+                f" All three scenarios price below market ({upside:+.0%} base). "
+                f"Penman DCF does not capitalise intangible assets (brand, IP, network effects). "
+                f"The discount to market likely reflects intangible value absent from the balance sheet, not model error."
+            )
+        else:
+            _dcf_note += (
+                f" All scenarios imply material upside ({upside:+.0%} base). "
+                f"Cross-check NOA classification and verify no data anomalies before drawing conclusions."
+            )
+
     specs.append({
         "type": "D",
         "title": f"{company_name} — DCF Scenarios",
-        "note": (
-            f"Penman FCF = NOPAT − ΔNOA. 5-year forecast + Gordon Growth terminal value. "
-            f"NOPAT margin = after-tax operating margin (model assumption, not guaranteed). "
-            f"Bear: low growth, compressed margins, higher WACC. "
-            f"Bull: higher growth, expanding margins, lower WACC. "
-            f"Current price = {price:.2f} {currency}. Fair value is scenario-dependent model output."
-        ),
+        "note": _dcf_note,
         "kilde": kilde,
         "table_data": {"columns": ["Bear", "Base", "Bull"], "rows": sc_rows},
     })
