@@ -432,23 +432,25 @@ def build_chart_specs(
     ]
 
     _dcf_note = (
-        f"Penman FCF = NOPAT − ΔNOA. 5-year forecast + Gordon Growth terminal value. "
-        f"NOPAT margin = after-tax operating margin (model assumption, not guaranteed). "
-        f"Bear: low growth, compressed margins, higher WACC. "
-        f"Bull: higher growth, expanding margins, lower WACC. "
-        f"Current price = {price:.2f} {currency}. Fair value is scenario-dependent model output."
+        f"This table shows how the fair value estimate shifts under three distinct operating and macro assumptions — "
+        f"the investor's risk/reward map. "
+        f"Bear = slower growth, compressed NOPAT margin, higher WACC (most conservative). "
+        f"Bull = stronger growth, expanding margin, lower WACC (most optimistic). "
+        f"The range is designed to capture realistic downside and upside, not tail scenarios. "
+        f"Model: 5-year Penman FCF forecast (FCF = NOPAT − ΔNOA) + Gordon Growth terminal value. "
+        f"Current price = {price:.2f} {currency}. A wide bear-to-bull range signals high model sensitivity; a tight range signals a stable, predictable business."
     )
     if price > 0 and abs(upside) > 0.50:
         if upside < 0:
             _dcf_note += (
                 f" All three scenarios price below market ({upside:+.0%} base). "
-                f"Penman DCF does not capitalise intangible assets (brand, IP, network effects). "
-                f"The discount to market likely reflects intangible value absent from the balance sheet, not model error."
+                f"Penman DCF does not capitalise intangibles (brand, IP, network effects). "
+                f"The market premium likely reflects franchise value absent from the balance sheet."
             )
         else:
             _dcf_note += (
                 f" All scenarios imply material upside ({upside:+.0%} base). "
-                f"Cross-check NOA classification and verify no data anomalies before drawing conclusions."
+                f"Cross-check NOA classification and data completeness before drawing conclusions."
             )
 
     specs.append({
