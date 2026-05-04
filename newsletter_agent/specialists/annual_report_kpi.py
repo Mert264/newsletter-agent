@@ -271,6 +271,24 @@ def build_chart_specs(
     if any("NOA steg" in f for f in reformulated.get("flags", [])):
         _notes.append(f"NOA anomaly in {show_yrs[-1]} — DCF uses ATO-normalised starting NOA.")
 
+    # Cash FCF vs Penman FCF divergence — explain when gap is large (>20%)
+    _penman_fcf = reformulated["FCF"][-1]
+    _cash_fcf   = reformulated["cash_fcf"][-1]
+    if (_penman_fcf is not None and _cash_fcf is not None
+            and _penman_fcf != 0 and abs((_cash_fcf - _penman_fcf) / abs(_penman_fcf)) > 0.20):
+        _gap_pct  = (_cash_fcf - _penman_fcf) / abs(_penman_fcf)
+        _direction = "higher" if _gap_pct > 0 else "lower"
+        _delta_noa = (reformulated["NOA"][-1] - reformulated["NOA"][-2]
+                      if len(reformulated["NOA"]) >= 2 else 0)
+        _notes.append(
+            f"Cash FCF ({_num(_cash_fcf)}m) is {abs(_gap_pct):.0%} {_direction} than Penman FCF "
+            f"({_num(_penman_fcf)}m). The gap is driven by a ΔNOA of {_num(_delta_noa)}m — the model "
+            f"treats every dollar of NOA growth as capital reinvested in the business and deducts it "
+            f"from NOPAT. When NOA grows sharply (e.g. asset expansion or lease reclassification), "
+            f"Penman FCF understates the cash the company actually generated. "
+            f"Cash FCF is the more direct read on real cash collected."
+        )
+
     snap_note = (
         f"NOPAT = EBIT × (1−t), t = {_pct(t)} statutory (normalized, not effective rate). "
         f"Penman FCF = NOPAT − ΔNOA; Cash FCF = OCF − CapEx. "
