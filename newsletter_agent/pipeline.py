@@ -824,6 +824,8 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
             merged_for_events = merged
 
     _no_axis_types = {"D", "P"}
+    # D-type charts rendered from table_data have no dataframe series — clear region_labels
+    _table_data_chart = chart_spec.get("type") == "D" and bool(chart_spec.get("table_data"))
     metadata = {
         "title":         chart_spec["title"],
         "chart_type":    chart_spec.get("type", "?"),
@@ -831,7 +833,7 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
         "y_label":       "" if chart_spec.get("type") in _no_axis_types else chart_spec.get("y_label", ""),
         "note":          chart_spec.get("note", ""),
         "kilde":         kilde_str,
-        "region_labels": list(dfs.keys()),
+        "region_labels": [] if _table_data_chart else list(dfs.keys()),
     }
     pkg = {
         "path":     path,
