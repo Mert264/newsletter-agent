@@ -41,8 +41,7 @@ def render_type_summary(bullets: list, spec: dict, output_path: str) -> str:
     )
 
     # Thin accent line under title
-    ax.axhline(y=0.97, xmin=0.0, xmax=1.0, color=BRAND["primary"], linewidth=1.5,
-               transform=ax.transAxes)
+    ax.axhline(y=0.97, xmin=0.0, xmax=1.0, color=BRAND["primary"], linewidth=1.5)
 
     # Bullet points
     y = 0.88
