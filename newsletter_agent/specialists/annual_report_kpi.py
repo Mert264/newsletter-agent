@@ -389,10 +389,13 @@ def build_chart_specs(
         "type": "D",
         "title": f"{company_name} — WACC",
         "note": (
-            f"WACC = {_pct(wacc)}. "
-            f"rf = {rf_entry['bond_name']} spot yield ({iso3}). "
-            f"MRP = Damodaran US mature-market ERP = {_pct(MRP)}. "
-            f"Beta adjusted via Blume (1975)."
+            f"WACC is the hurdle rate used to discount future cash flows — the most sensitive single input in any DCF. "
+            f"A 1 ppt change in WACC typically shifts fair value by 15–25%. "
+            f"This table shows every component so the investor can challenge the discount rate. "
+            f"rf = {rf_entry['bond_name']} current spot yield (forward-looking, not historical average). "
+            f"Beta is Blume-adjusted toward the market mean (2/3 β + 1/3), standard for long-horizon valuation. "
+            f"MRP = Damodaran US mature-market ERP {_pct(MRP)} + country risk premium. "
+            f"WACC = {_pct(wacc)}. Typical range: 7–10% for investment-grade large-caps, 10–14% for capital-intensive or higher-risk names."
         ),
         "kilde": kilde,
         "table_data": {"columns": ["Parameter", "Value", "Source"], "rows": wacc_rows},
