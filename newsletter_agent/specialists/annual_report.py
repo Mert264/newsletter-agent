@@ -13,6 +13,59 @@ from newsletter_agent.specialists.annual_report_da import (
     review_reformulation, review_valuation, review_final,
 )
 from newsletter_agent.specialists.annual_report_kpi import build_chart_specs
+from newsletter_agent.config import REVIEWER_MODEL
+
+
+def _generate_summary_bullets(
+    company_name: str, ticker: str, currency: str,
+    reformulated: dict, wacc_data: dict, dcf_scenarios: dict,
+    market_price: float, da_reviews: list[str],
+    client: anthropic.Anthropic,
+) -> list[str]:
+    """Call Claude for 4 concise analyst bullet points tailored to this company's numbers."""
+    nopat_margin = reformulated["historical_avgs"]["OG"]
+    ato          = reformulated["historical_avgs"]["ATO"]
+    base_price   = dcf_scenarios["base"]["price"]
+    upside       = (base_price - market_price) / market_price if market_price > 0 else 0
+    wacc         = wacc_data["wacc"]
+    nfo          = reformulated["NFO"][-1]
+    net_cash     = nfo < 0
+    cap_str      = "net cash" if net_cash else f"net debt {abs(nfo):,.0f}m {currency}"
+    n_avg        = reformulated.get("n_avg_years", "?")
+    rev_cagr     = reformulated["historical_avgs"]["revenue_cagr"]
+
+    # Extract any WARN/BLOCK flags from DA reviews
+    flags = []
+    for review in da_reviews:
+        for line in review.splitlines():
+            if "WARN" in line or "BLOCK" in line:
+                flags.append(line.strip("•– ").strip())
+    flags_str = "; ".join(flags[:2]) if flags else "None"
+
+    prompt = (
+        f"Write exactly 4 short bullet points for a professional equity investor summary of {company_name} ({ticker}).\n"
+        f"Each bullet: max 18 words. Be specific to the numbers. No hedging.\n\n"
+        f"Numbers:\n"
+        f"- NOPAT margin ({n_avg}yr avg): {nopat_margin:.1%} (benchmark: >10% strong for large-caps)\n"
+        f"- ATO (Revenue/NOA): {ato:.2f}× (benchmark: >1× healthy)\n"
+        f"- Revenue CAGR: {rev_cagr:.1%}\n"
+        f"- WACC: {wacc:.1%} (typical 7–10% investment-grade large-caps)\n"
+        f"- Capital structure: {cap_str}\n"
+        f"- Base fair value: {base_price:.0f} {currency} vs market: {market_price:.0f} {currency} ({upside:+.0%})\n"
+        f"- Model flags: {flags_str}\n\n"
+        f"Bullets (return only the 4 lines, no numbering, no bullet symbols):\n"
+        f"1. NOPAT margin vs benchmark — what it signals about profitability\n"
+        f"2. Capital efficiency (ATO) and revenue growth — what they reveal\n"
+        f"3. Fair value vs market — is the gap a model limitation or a real signal?\n"
+        f"4. Key risk or flag — or 'No critical model flags' if clean\n"
+    )
+    msg = client.messages.create(
+        model=REVIEWER_MODEL,
+        max_tokens=180,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    lines = [ln.strip() for ln in msg.content[0].text.strip().splitlines() if ln.strip()]
+    return lines[:4]
 
 
 def fetch_annual_report(task: dict) -> dict:
