@@ -417,25 +417,19 @@ def build_chart_specs(
     ]
 
     _dcf_note = (
-        f"This table shows how the fair value estimate shifts under three distinct operating and macro assumptions — "
-        f"the investor's risk/reward map. "
-        f"Bear = slower growth, compressed NOPAT margin, higher WACC (most conservative). "
-        f"Bull = stronger growth, expanding margin, lower WACC (most optimistic). "
-        f"The range is designed to capture realistic downside and upside, not tail scenarios. "
-        f"Model: 5-year Penman FCF forecast (FCF = NOPAT − ΔNOA) + Gordon Growth terminal value. "
-        f"Current price = {price:.2f} {currency}. A wide bear-to-bull range signals high model sensitivity; a tight range signals a stable, predictable business."
+        f"5-year Penman FCF (NOPAT − ΔNOA) + Gordon Growth terminal value. "
+        f"Bear = low growth, compressed margins, higher WACC. Bull = stronger growth, expanding margins, lower WACC. "
+        f"Wide bear-to-bull spread = high sensitivity; tight spread = stable, predictable business. "
+        f"Current price = {price:.2f} {currency}."
     )
     if price > 0 and abs(upside) > 0.50:
         if upside < 0:
             _dcf_note += (
-                f" All three scenarios price below market ({upside:+.0%} base). "
-                f"Penman DCF does not capitalise intangibles (brand, IP, network effects). "
-                f"The market premium likely reflects franchise value absent from the balance sheet."
+                f" All scenarios below market ({upside:+.0%} base): gap likely reflects intangible franchise value not on the balance sheet."
             )
         else:
             _dcf_note += (
-                f" All scenarios imply material upside ({upside:+.0%} base). "
-                f"Cross-check NOA classification and data completeness before drawing conclusions."
+                f" All scenarios above market ({upside:+.0%} base): verify NOA and data completeness before acting."
             )
 
     specs.append({
