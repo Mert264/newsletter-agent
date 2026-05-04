@@ -331,6 +331,7 @@ def build_chart_specs(
     specs.append({
         "type": "A", "freq": "A",
         "title": f"{company_name} — Revenue & NOPAT ({currency}m)",
+        "x_label": "Fiscal Year",
         "y_label": f"{currency}m",
         "series_labels": ["trend_rev_oi"],
         "note": (
