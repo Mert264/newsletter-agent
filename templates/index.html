@@ -733,17 +733,18 @@ const BRIEF_PERIODS = {
 const BRIEF_VIZ_TYPES = {
   12: ['bar', 'P'],          // EU energiomstilling — stacked bar + pie
   15: ['bar', 'P'],          // EU elproduktion — stacked bar + pie
-  4:  ['bar'],               // EU obligations — bar chart
+  4:  ['bar'],               // EU obligations — horizontal bar snapshot
+  6:  ['A', 'D'],            // Central banks — time series + change table
   9:  ['A'],                 // Grøn energi — time series
   13: ['A', 'D'],            // Global inflation — time series + table
-  14: ['D'],                 // Scorecard — table
+  14: ['D'],                 // Scorecard — table only
   16: ['A', 'D'],            // single country — time series + table
   17: ['A', 'bar'],          // comparison — time series + bar
   18: ['A', 'D'],            // single country — time series + table
-  20: ['A', 'D', 'bar'],     // annual report — specialist generates all 18 charts internally
-  21: ['A', 'D', 'bar'],     // annual report — specialist generates all 18 charts internally
-  22: ['A', 'D', 'bar'],     // annual report — specialist generates all 18 charts internally
-  23: ['A', 'D', 'bar'],     // annual report — specialist generates all 18 charts internally
+  20: ['A', 'D'],            // annual report — specialist generates A (trend) + D (tables) only
+  21: ['A', 'D'],            // annual report — specialist generates A (trend) + D (tables) only
+  22: ['A', 'D'],            // annual report — specialist generates A (trend) + D (tables) only
+  23: ['A', 'D'],            // annual report — specialist generates A (trend) + D (tables) only
 };
 
 let _activeQuickId = null;  // tracks which quick prompt is loaded
