@@ -160,6 +160,25 @@ def fetch_annual_report(task: dict) -> dict:
     da5 = review_final(chart_specs, (bear_price, base_price, bull_price), market_price, client)
     print(f"  [annual_report] DA #2 (final): {da5[:120]}...")
 
+    # Analyst summary card — prepended so it appears first in the output
+    print(f"  [annual_report] Generating analyst summary...")
+    try:
+        bullets = _generate_summary_bullets(
+            company_name, ticker, currency,
+            reformulated, wacc_data, dcf_scenarios,
+            market_price, [da3, da5], client,
+        )
+        summary_spec = {
+            "type":    "summary",
+            "title":   f"{company_name} ({ticker}) — Analyst Summary",
+            "bullets": bullets,
+            "note":    "Penman DCF model. Data: FMP, Damodaran. Model output — not a factual result.",
+            "kilde":   "FMP, Damodaran",
+        }
+        chart_specs = [summary_spec] + chart_specs
+    except Exception as exc:
+        print(f"  [annual_report] Summary generation failed (non-fatal): {exc}")
+
     return {
         "dataframes":  dataframes,
         "kilde":       ["FMP", "Damodaran"],
