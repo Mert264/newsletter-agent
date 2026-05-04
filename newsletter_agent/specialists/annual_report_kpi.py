@@ -184,21 +184,26 @@ def build_chart_specs(
     ]
 
     _exec_note = (
-        f"Fair value range = Bear {bear_price:.0f} / Base {base_price:.0f} / Bull {bull_price:.0f} {currency}. "
-        f"WACC {_pct(wacc)}, terminal growth {_pct(base_sc['g'])}. "
-        f"Penman DCF: FCF = NOPAT − ΔNOA. Data: FMP. Valuation is model output, not a factual result."
+        f"Bottom line: where the model prices this stock vs. where it trades. "
+        f"Fair value range Bear {bear_price:.0f} / Base {base_price:.0f} / Bull {bull_price:.0f} {currency} "
+        f"is produced by a Penman DCF (FCF = NOPAT − ΔNOA) discounted at WACC {_pct(wacc)}, terminal growth {_pct(base_sc['g'])}. "
+        f"A base fair value within 0.1×–10× of the market price is model-consistent; "
+        f"values outside this band typically signal a data quality issue or a premium for intangible assets not on the balance sheet. "
+        f"Typical WACC for large-cap developed-market equities: 7–10%; lower for net-cash or defensive businesses, higher for capital-intensive or emerging-market names. "
+        f"Source: FMP. Valuation is model output — not a factual result."
     )
     if price > 0 and abs(upside) > 0.50:
         if upside < 0:
             _exec_note += (
-                f" Large gap vs market price ({upside:+.0%}): Penman DCF values earnings on accounting capital only. "
-                f"Companies with strong intangible assets — brand, platform, IP, or customer lock-in — typically "
-                f"trade above Penman intrinsic value. The implied downside reflects the accounting gap, not necessarily mispricing."
+                f" Note ({upside:+.0%} implied downside): Penman DCF values only accounting capital — "
+                f"brand, platform, IP, and customer lock-in are not on the balance sheet. "
+                f"Companies with strong intangible franchises routinely trade above Penman intrinsic value. "
+                f"This gap reflects an accounting limitation, not necessarily mispricing."
             )
         else:
             _exec_note += (
-                f" Large gap vs market price ({upside:+.0%}): Penman DCF implies significant upside. "
-                f"Verify data quality and NOA classification before acting on this signal."
+                f" Note ({upside:+.0%} implied upside): Model implies significant undervaluation. "
+                f"Verify NOA classification and data completeness before acting on this signal."
             )
 
     specs.append({
