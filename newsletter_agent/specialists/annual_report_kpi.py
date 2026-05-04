@@ -183,14 +183,28 @@ def build_chart_specs(
         {"indicator": "Last Updated",                           "Value": _last_updated(fmp_data, ltm_date)},
     ]
 
+    _exec_note = (
+        f"Fair value range = Bear {bear_price:.0f} / Base {base_price:.0f} / Bull {bull_price:.0f} {currency}. "
+        f"WACC {_pct(wacc)}, terminal growth {_pct(base_sc['g'])}. "
+        f"Penman DCF: FCF = NOPAT − ΔNOA. Data: FMP. Valuation is model output, not a factual result."
+    )
+    if price > 0 and abs(upside) > 0.50:
+        if upside < 0:
+            _exec_note += (
+                f" Large gap vs market price ({upside:+.0%}): Penman DCF values earnings on accounting capital only. "
+                f"Companies with strong intangible assets — brand, platform, IP, or customer lock-in — typically "
+                f"trade above Penman intrinsic value. The implied downside reflects the accounting gap, not necessarily mispricing."
+            )
+        else:
+            _exec_note += (
+                f" Large gap vs market price ({upside:+.0%}): Penman DCF implies significant upside. "
+                f"Verify data quality and NOA classification before acting on this signal."
+            )
+
     specs.append({
         "type": "D",
         "title": f"{company_name} — Valuation Summary",
-        "note": (
-            f"Fair value range = Bear {bear_price:.0f} / Base {base_price:.0f} / Bull {bull_price:.0f} {currency}. "
-            f"WACC {_pct(wacc)}, terminal growth {_pct(base_sc['g'])}. "
-            f"Penman DCF: FCF = NOPAT − ΔNOA. Data: FMP. Valuation is model output, not a factual result."
-        ),
+        "note": _exec_note,
         "kilde": kilde,
         "table_data": {"columns": ["Value"], "rows": exec_rows},
     })
