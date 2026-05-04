@@ -344,8 +344,11 @@ def build_chart_specs(
         "y_label": f"{currency}m",
         "series_labels": ["trend_rev_oi"],
         "note": (
-            f"Revenue CAGR = {_pct(rev_cagr)} ({cagr_label}, organic, M&A-adjusted). "
-            f"NOPAT = EBIT × (1−t = {_pct(t)}) — after-tax operating income (not GAAP operating income)."
+            f"This chart shows whether the business is growing and whether that growth is profitable — "
+            f"the two inputs that drive DCF value most. "
+            f"Revenue CAGR = {_pct(rev_cagr)} ({cagr_label}). "
+            f"NOPAT = EBIT × (1−t = {_pct(t)}) — after-tax operating profit, comparable across capital structures. "
+            f"A NOPAT line growing faster than revenue signals margin expansion, the most value-creative outcome."
         ),
         "kilde": kilde,
     })
