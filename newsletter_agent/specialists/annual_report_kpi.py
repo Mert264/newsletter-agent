@@ -495,11 +495,9 @@ def build_chart_specs(
         "type": "D",
         "title": f"{company_name} — Market Multiples",
         "note": (
-            "Market multiples cross-validate the DCF: if the model says cheap but EV/EBITDA is already at a 30× premium, "
-            "the DCF likely underweights intangible or franchise value. "
-            "Reference ranges for large-cap equities — P/E 15–25×, EV/EBITDA 10–18×, EV/FCF 20–35×, P/B 2–5×, P/S 1–4×. "
-            "Capital-intensive businesses (energy, industrials) trade at the low end; asset-light platforms (software, consumer brands) at the high end. "
-            "All multiples are trailing (last 12 months). Source: FMP."
+            "Cross-validates DCF with market-based pricing. "
+            "Reference: P/E 15–25×, EV/EBITDA 10–18×, EV/FCF 20–35×, P/B 2–5×, P/S 1–4×. "
+            "Capital-intensive at the low end, asset-light platforms at the high end. Trailing 12 months. Source: FMP."
         ),
         "kilde": kilde,
         "table_data": {"columns": ["Trailing"], "rows": mult_rows},
