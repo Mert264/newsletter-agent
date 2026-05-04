@@ -91,6 +91,7 @@ def fetch_annual_report(task: dict) -> dict:
     profile      = fmp_data["profile"]
     hq_country   = profile.get("country", "_default")
     company_name = profile.get("companyName", ticker)
+    currency     = profile.get("currency", "USD")
     iso3         = normalize_country(hq_country)
     t            = STATUTORY_TAX_RATE.get(iso3, STATUTORY_TAX_RATE["_default"])
 
