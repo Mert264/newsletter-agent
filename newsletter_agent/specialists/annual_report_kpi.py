@@ -184,26 +184,20 @@ def build_chart_specs(
     ]
 
     _exec_note = (
-        f"Bottom line: where the model prices this stock vs. where it trades. "
-        f"Fair value range Bear {bear_price:.0f} / Base {base_price:.0f} / Bull {bull_price:.0f} {currency} "
-        f"is produced by a Penman DCF (FCF = NOPAT − ΔNOA) discounted at WACC {_pct(wacc)}, terminal growth {_pct(base_sc['g'])}. "
-        f"A base fair value within 0.1×–10× of the market price is model-consistent; "
-        f"values outside this band typically signal a data quality issue or a premium for intangible assets not on the balance sheet. "
-        f"Typical WACC for large-cap developed-market equities: 7–10%; lower for net-cash or defensive businesses, higher for capital-intensive or emerging-market names. "
-        f"Source: FMP. Valuation is model output — not a factual result."
+        f"Penman DCF: FCF = NOPAT − ΔNOA, WACC {_pct(wacc)}, terminal growth {_pct(base_sc['g'])}. "
+        f"Base fair value within 0.1×–10× of market price is model-consistent; "
+        f"a wider gap typically reflects intangible assets not captured on the balance sheet. "
+        f"Source: FMP — model output, not a factual result."
     )
     if price > 0 and abs(upside) > 0.50:
         if upside < 0:
             _exec_note += (
-                f" Note ({upside:+.0%} implied downside): Penman DCF values only accounting capital — "
-                f"brand, platform, IP, and customer lock-in are not on the balance sheet. "
-                f"Companies with strong intangible franchises routinely trade above Penman intrinsic value. "
-                f"This gap reflects an accounting limitation, not necessarily mispricing."
+                f" {upside:+.0%} implied downside: Penman values accounting capital only — "
+                f"brand, platform, and IP are off-balance-sheet. Gap reflects accounting limitation, not necessarily mispricing."
             )
         else:
             _exec_note += (
-                f" Note ({upside:+.0%} implied upside): Model implies significant undervaluation. "
-                f"Verify NOA classification and data completeness before acting on this signal."
+                f" {upside:+.0%} implied upside: verify NOA classification and data completeness before acting on this signal."
             )
 
     specs.append({
