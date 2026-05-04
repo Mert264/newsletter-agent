@@ -463,12 +463,9 @@ def build_chart_specs(
         "type": "D",
         "title": f"{company_name} — Sensitivity: Fair Value / Share ({currency})",
         "note": (
-            f"The standard professional sanity check on any DCF: every cell is the fair value per share "
-            f"at a given (WACC, terminal growth g) combination. "
-            f"Reading across a row shows sensitivity to the discount rate; reading down a column shows sensitivity to perpetual growth. "
-            f"★ = base case (WACC {_pct(wacc_base)}, g {_pct(g_base)}). "
-            f"The ★ cell should be in the same neighbourhood as the base fair value in Chart 1. "
-            f"WACC axis: base ± 1 ppt in 0.25 ppt steps. g axis: 1–3%."
+            f"Each cell = fair value per share at a given (WACC, g) pair. "
+            f"Columns = WACC, rows = terminal growth g. ★ = base case (WACC {_pct(wacc_base)}, g {_pct(g_base)}). "
+            f"WACC axis: ±1 ppt in 0.25 ppt steps. g axis: 1–3%."
         ),
         "kilde": kilde,
         "table_data": {"columns": sens_cols, "rows": sens_rows},
