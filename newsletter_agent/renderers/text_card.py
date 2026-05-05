@@ -10,6 +10,11 @@ _BULLET = "▸"
 _LINE_HEIGHT = 0.17   # axes-fraction units per bullet line
 
 
+def _esc(text: str) -> str:
+    """Escape $ so matplotlib does not treat them as LaTeX math delimiters."""
+    return text.replace("$", r"\$")
+
+
 def render_type_summary(bullets: list, spec: dict, output_path: str) -> str:
     """
     Render an analyst summary card: title + bullet points on a clean background.
