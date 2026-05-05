@@ -1,10 +1,143 @@
 {
   "specialists": [
-    "annual_report"
+    "worldbank"
   ],
-  "annual_report": {
-    "ticker": "MSFT",
-    "label": "Microsoft Corporation \u2014 Penman-baseret \u00e5rsregnskabsanalyse",
-    "charts": []
+  "worldbank": {
+    "series": [
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 BNP-v\u00e6kst (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "NY.GDP.MKTP.KD.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 BNP-v\u00e6kst (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Inflation, CPI (%)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "FP.CPI.TOTL.ZG",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Inflation, CPI (%)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "DNK",
+        "years": 20,
+        "unit": "%"
+      },
+      {
+        "ticker": "GC.DOD.TOTL.GD.ZS",
+        "source": "worldbank",
+        "label": "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)",
+        "country": "SWE",
+        "years": 20,
+        "unit": "%"
+      }
+    ],
+    "charts": [
+      {
+        "type": "A",
+        "title": "Danmark og Sverige \u2014 BNP-v\u00e6kst (%) de seneste 20 \u00e5r",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 7300,
+        "series_labels": [
+          "Danmark \u2014 BNP-v\u00e6kst (%)",
+          "Sverige \u2014 BNP-v\u00e6kst (%)"
+        ],
+        "note": "\u00c5rlig real BNP-v\u00e6kst for Danmark og Sverige over de seneste 20 \u00e5r. V\u00e6ksten m\u00e5les som den procentvise \u00e6ndring i det faste priser-BNP fra \u00e5r til \u00e5r."
+      },
+      {
+        "type": "D",
+        "title": "Danmark og Sverige \u2014 BNP-v\u00e6kst, n\u00f8gletal",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 7300,
+        "series_labels": [
+          "Danmark \u2014 BNP-v\u00e6kst (%)",
+          "Sverige \u2014 BNP-v\u00e6kst (%)"
+        ],
+        "before_date": "2006-01-01",
+        "after_date": "latest",
+        "col_before": "For 20 \u00e5r siden",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af BNP-v\u00e6kst for Danmark og Sverige. \u00c6ndringen viser forskellen i procentpoint mellem den tidligste og seneste tilg\u00e6ngelige observation."
+      },
+      {
+        "type": "A",
+        "title": "Danmark og Sverige \u2014 Inflation, CPI (%) de seneste 20 \u00e5r",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 7300,
+        "series_labels": [
+          "Danmark \u2014 Inflation, CPI (%)",
+          "Sverige \u2014 Inflation, CPI (%)"
+        ],
+        "note": "\u00c5rlig forbrugerprisinflation (CPI) for Danmark og Sverige over de seneste 20 \u00e5r. Serien m\u00e5ler den gennemsnitlige prisstigning fra \u00e5r til \u00e5r."
+      },
+      {
+        "type": "D",
+        "title": "Danmark og Sverige \u2014 Inflation, CPI, n\u00f8gletal",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 7300,
+        "series_labels": [
+          "Danmark \u2014 Inflation, CPI (%)",
+          "Sverige \u2014 Inflation, CPI (%)"
+        ],
+        "before_date": "2006-01-01",
+        "after_date": "latest",
+        "col_before": "For 20 \u00e5r siden",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af CPI-inflation for Danmark og Sverige. \u00c6ndringen viser forskellen i procentpoint mellem den tidligste og seneste tilg\u00e6ngelige observation."
+      },
+      {
+        "type": "A",
+        "title": "Danmark og Sverige \u2014 Offentlig g\u00e6ld (% af BNP) de seneste 20 \u00e5r",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 7300,
+        "series_labels": [
+          "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+          "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)"
+        ],
+        "note": "Den offentlige bruttog\u00e6ld som andel af BNP for Danmark og Sverige over de seneste 20 \u00e5r. Et lavt niveau indikerer en solid finanspolitisk position."
+      },
+      {
+        "type": "D",
+        "title": "Danmark og Sverige \u2014 Offentlig g\u00e6ld, n\u00f8gletal",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 7300,
+        "series_labels": [
+          "Danmark \u2014 Offentlig g\u00e6ld (% af BNP)",
+          "Sverige \u2014 Offentlig g\u00e6ld (% af BNP)"
+        ],
+        "before_date": "2006-01-01",
+        "after_date": "latest",
+        "col_before": "For 20 \u00e5r siden",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af offentlig g\u00e6ld som andel af BNP for Danmark og Sverige. \u00c6ndringen viser forskellen i procentpoint mellem den tidligste og seneste tilg\u00e6ngelige observation."
+      }
+    ]
   }
 }

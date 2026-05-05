@@ -2,6 +2,7 @@ from __future__ import annotations
 """World Bank REST API specialist — no authentication required.
 Fetches all series in parallel (ThreadPoolExecutor) and caches results for 48 hours.
 """
+import re
 import requests
 import pandas as pd
 from typing import Optional
