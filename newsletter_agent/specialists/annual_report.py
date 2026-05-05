@@ -43,8 +43,8 @@ def _generate_summary_bullets(
     flags_str = "; ".join(flags[:2]) if flags else "None"
 
     prompt = (
-        f"Write exactly 4 short bullet points for a professional equity investor summary of {company_name} ({ticker}).\n"
-        f"Each bullet: max 12 words. Be specific to the numbers. No hedging.\n\n"
+        f"Skriv præcis 4 korte punkter til en professionel aktieanalyse-opsummering af {company_name} ({ticker}). Skriv på dansk.\n"
+        f"Hvert punkt: maks 12 ord. Vær specifik på tallene. Ingen forbehold.\n\n"
         f"Numbers:\n"
         f"- NOPAT margin ({n_avg}yr avg): {nopat_margin:.1%} (benchmark: >10% strong for large-caps)\n"
         f"- ATO (Revenue/NOA): {ato:.2f}× (benchmark: >1× healthy)\n"
