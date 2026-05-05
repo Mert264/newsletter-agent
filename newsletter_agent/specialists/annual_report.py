@@ -44,7 +44,7 @@ def _generate_summary_bullets(
 
     prompt = (
         f"Write exactly 4 short bullet points for a professional equity investor summary of {company_name} ({ticker}).\n"
-        f"Each bullet: max 18 words. Be specific to the numbers. No hedging.\n\n"
+        f"Each bullet: max 12 words. Be specific to the numbers. No hedging.\n\n"
         f"Numbers:\n"
         f"- NOPAT margin ({n_avg}yr avg): {nopat_margin:.1%} (benchmark: >10% strong for large-caps)\n"
         f"- ATO (Revenue/NOA): {ato:.2f}× (benchmark: >1× healthy)\n"
