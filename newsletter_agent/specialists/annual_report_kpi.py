@@ -335,9 +335,10 @@ def build_chart_specs(
         "y_label": f"{currency}m",
         "series_labels": ["trend_rev_oi"],
         "note": (
-            f"Revenue CAGR = {_pct(rev_cagr)} ({cagr_label}, full history). "
-            f"NOPAT = EBIT × (1−t = {_pct(t)}) — after-tax operating profit. "
-            f"NOPAT growing faster than revenue signals margin expansion — the most value-creative outcome."
+            f"Tracks top-line growth (Revenue) against after-tax operating profit (NOPAT = EBIT×(1−{_pct(t)})). "
+            f"Revenue CAGR: {_pct(rev_cagr)} ({cagr_label}). "
+            f"When NOPAT grows faster than revenue, margins are expanding — the most value-creative signal. "
+            f"Widening gap between the lines reveals operating leverage; narrowing gap signals cost pressure."
         ),
         "kilde": kilde,
     })
