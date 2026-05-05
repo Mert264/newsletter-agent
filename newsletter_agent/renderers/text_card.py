@@ -37,7 +37,7 @@ def render_type_summary(bullets: list, spec: dict, output_path: str) -> str:
 
     # Title
     ax.set_title(
-        spec.get("title", ""),
+        _esc(spec.get("title", "")),
         fontsize=BRAND["font_size_title"],
         fontweight="bold",
         loc="left",
