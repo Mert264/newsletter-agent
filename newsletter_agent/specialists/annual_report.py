@@ -173,7 +173,7 @@ def fetch_annual_report(task: dict) -> dict:
             "type":    "summary",
             "title":   f"{company_name} ({ticker}) — Analyst Summary",
             "bullets": bullets,
-            "note":    "Penman DCF model. Data: FMP, Damodaran. Model output — not a factual result.",
+            "note":    "Penman DCF-model. Data: FMP, Damodaran. Modeloutput — ikke et faktisk resultat.",
             "kilde":   "FMP, Damodaran",
         }
         chart_specs = [summary_spec] + chart_specs
