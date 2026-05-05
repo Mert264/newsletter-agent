@@ -107,11 +107,20 @@ def fetch_worldbank(task: dict) -> dict:
             print(f"    [worldbank] Dropping chart '{spec.get('title')}' — no data for any required series.")
             continue
 
-        # Annotate note when some (but not all) series are unavailable
+        # Annotate note and update title when some (but not all) series are unavailable
         if missing_s:
             unavail_str = ", ".join(missing_s)
             missing_note = f"Note: data unavailable for {unavail_str} — not published by World Bank for this country/period."
             spec["note"] = (spec.get("note", "") + " " + missing_note).strip()
+
+            # Strip missing country names from the chart title so it matches the data
+            _title = spec.get("title", "")
+            for lbl in missing_s:
+                _country = lbl.split(" — ")[0].strip() if " — " in lbl else lbl.strip()
+                _title = re.sub(rf"\s+og\s+{re.escape(_country)}", "", _title)
+                _title = re.sub(rf"{re.escape(_country)}\s+og\s+", "", _title)
+                _title = _title.replace(_country, "").strip()
+            spec["title"] = _title.strip(" —").strip()
 
         existing = spec.get("note", "")
         if _LAG_NOTE not in existing:
