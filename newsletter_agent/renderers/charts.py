@@ -163,7 +163,7 @@ def _add_footer(fig, spec: dict) -> float:
 
     fig.text(
         0.01, 0.005,
-        footer_text,
+        footer_text.replace("$", r"\$"),
         fontsize=7,
         color="#888888",
         va="bottom",
