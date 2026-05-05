@@ -55,7 +55,7 @@ def render_type_summary(bullets: list, spec: dict, output_path: str) -> str:
         for line in lines:
             prefix = f"{_BULLET}  " if first else "    "
             ax.text(
-                0.02, y, prefix + line,
+                0.02, y, _esc(prefix + line),
                 transform=ax.transAxes,
                 fontsize=9,
                 color=BRAND["secondary"],
