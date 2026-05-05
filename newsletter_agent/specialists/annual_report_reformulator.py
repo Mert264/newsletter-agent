@@ -153,7 +153,14 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
     avg_OG  = sum(OG_l[i]  for i in valid_idx) / len(valid_idx)
     avg_ATO = sum(ATO_l[i] for i in valid_idx) / len(valid_idx)
 
+    # CAGR uses ALL available years — OI volatility exclusions apply only to margin/return averages,
+    # not to revenue growth (which is a factual trajectory, not a normalised metric).
+    # M&A-distorted years (goodwill spike + revenue jump) are still excluded via excluded_yrs
+    # only if NO non-excluded years remain as endpoints.
     valid_rev = [(years[i], revenue_l[i]) for i in range(len(years)) if years[i] not in excluded_yrs]
+    if len(valid_rev) < 2:
+        # Fall back to all years when too many are excluded (e.g. high-growth companies)
+        valid_rev = [(years[i], revenue_l[i]) for i in range(len(years))]
     if len(valid_rev) >= 2:
         y0, r0 = valid_rev[0]
         yn, rn = valid_rev[-1]
