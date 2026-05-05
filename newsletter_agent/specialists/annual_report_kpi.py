@@ -335,7 +335,7 @@ def build_chart_specs(
         "y_label": f"{currency}m",
         "series_labels": ["trend_rev_oi"],
         "note": (
-            f"Revenue CAGR = {_pct(rev_cagr)} ({cagr_label}). "
+            f"Revenue CAGR = {_pct(rev_cagr)} ({cagr_label}, full history). "
             f"NOPAT = EBIT × (1−t = {_pct(t)}) — after-tax operating profit. "
             f"NOPAT growing faster than revenue signals margin expansion — the most value-creative outcome."
         ),
