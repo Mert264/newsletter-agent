@@ -53,11 +53,11 @@ def _generate_summary_bullets(
         f"- Capital structure: {cap_str}\n"
         f"- Base fair value: {base_price:.0f} {currency} vs market: {market_price:.0f} {currency} ({upside:+.0%})\n"
         f"- Model flags: {flags_str}\n\n"
-        f"Bullets (return only the 4 lines, no numbering, no bullet symbols):\n"
-        f"1. NOPAT margin vs benchmark — what it signals about profitability\n"
-        f"2. Capital efficiency (ATO) and revenue growth — what they reveal\n"
-        f"3. Fair value vs market — is the gap a model limitation or a real signal?\n"
-        f"4. Key risk or flag — or 'No critical model flags' if clean\n"
+        f"Punkter (returner kun de 4 linjer, ingen nummerering, ingen punktsymboler):\n"
+        f"1. NOPAT-margin vs. benchmark — hvad det signalerer om lønsomhed\n"
+        f"2. Kapitaleffektivitet (ATO) og omsætningsvækst — hvad de afslører\n"
+        f"3. Fair value vs. marked — er gabet en modelbegraensning eller et reelt signal?\n"
+        f"4. Vaesntligste risiko eller flag — eller 'Ingen kritiske modelflag' hvis rent\n"
     )
     msg = client.messages.create(
         model=REVIEWER_MODEL,
