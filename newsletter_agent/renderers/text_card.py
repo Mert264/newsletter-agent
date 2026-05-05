@@ -6,8 +6,9 @@ import matplotlib.pyplot as plt
 from newsletter_agent.config import BRAND
 from newsletter_agent.renderers.charts import _add_footer
 
-_BULLET = "▸"
-_LINE_HEIGHT = 0.17   # axes-fraction units per bullet line
+_BULLET     = "▸"
+_LINE_H_IN  = 0.20   # inches per wrapped text line at 9pt
+_INTER_IN   = 0.06   # extra vertical gap between bullets (inches)
 
 
 def _esc(text: str) -> str:
@@ -24,12 +25,18 @@ def render_type_summary(bullets: list, spec: dict, output_path: str) -> str:
     if not bullets:
         bullets = ["No summary available."]
 
-    # Wrap each bullet to ~90 chars so long lines don't overflow
-    wrapped: list[list[str]] = [textwrap.wrap(b, width=90) or [b] for b in bullets]
+    # Wrap each bullet to ~65 chars so lines stay compact
+    wrapped: list[list[str]] = [textwrap.wrap(b, width=65) or [b] for b in bullets]
     total_lines = sum(len(w) for w in wrapped)
+    n_bullets   = len(wrapped)
 
-    fig_w = BRAND["figure_width_px"] / BRAND["figure_dpi"]
-    fig_h = max(2.2, 0.55 + total_lines * _LINE_HEIGHT * fig_w + 0.5)
+    fig_w  = BRAND["figure_width_px"] / BRAND["figure_dpi"]
+    # Height sized exactly to content: title area + lines + inter-bullet gaps + footer margin
+    fig_h  = max(2.0, 0.50 + total_lines * _LINE_H_IN + n_bullets * _INTER_IN + 0.45)
+
+    # Axes-fraction step sizes derived from actual figure height
+    line_frac  = _LINE_H_IN / fig_h
+    inter_frac = _INTER_IN  / fig_h
 
     fig, ax = plt.subplots(figsize=(fig_w, fig_h), dpi=BRAND["figure_dpi"])
     ax.axis("off")
@@ -60,11 +67,10 @@ def render_type_summary(bullets: list, spec: dict, output_path: str) -> str:
                 fontsize=9,
                 color=BRAND["secondary"],
                 va="top",
-                fontfamily="monospace" if False else None,
             )
-            y -= _LINE_HEIGHT
+            y -= line_frac
             first = False
-        y -= 0.03  # extra gap between bullets
+        y -= inter_frac
 
     bottom = _add_footer(fig, spec)
     plt.tight_layout(rect=[0.0, bottom, 1.0, 1.0])
