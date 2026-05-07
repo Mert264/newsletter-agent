@@ -574,29 +574,8 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
             chart_spec  = {**chart_spec,  "y_label": "USD/MWh"}
     merged_for_events = None  # populated for Type A charts; used by event impact table
 
-    # ── Type summary — Analyst summary text card (annual report) ─────────
-    if chart_type == "summary":
-        from newsletter_agent.renderers.text_card import render_type_summary
-        path = render_type_summary(
-            chart_spec.get("bullets", []),
-            {**chart_spec, "kilde": kilde_str},
-            output_path,
-        )
-        if not path:
-            return None
-        return {
-            "path":     path,
-            "metadata": {
-                "title":   chart_spec.get("title", ""),
-                "type":    "summary",
-                "note":    chart_spec.get("note", ""),
-                "kilde":   kilde_str,
-                "_skip_review": True,
-            },
-        }
-
     # ── Type D — Snapshot / before-after table ────────────────────────────
-    elif chart_type == "D":
+    if chart_type == "D":
         if chart_spec.get("table_data"):
             from newsletter_agent.renderers.tables import render_type_d
             path = render_type_d(
