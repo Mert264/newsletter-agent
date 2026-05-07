@@ -110,24 +110,23 @@ def fetch_annual_report(task: dict) -> dict:
     da5 = review_final(chart_specs, (bear_price, base_price, bull_price), market_price, client)
     print(f"  [annual_report] DA #2 (final): {da5[:120]}...")
 
-    # Analyst summary card — prepended so it appears first in the output
-    print(f"  [annual_report] Generating analyst summary...")
+    # Statement Auditor — insert after Valuation Summary (position 1) if flags found
+    print(f"  [annual_report] Running statement auditor...")
     try:
-        bullets = _generate_summary_bullets(
-            company_name, ticker, currency,
-            reformulated, wacc_data, dcf_scenarios,
-            market_price, [da3, da5], client,
-        )
-        summary_spec = {
-            "type":    "summary",
-            "title":   f"{company_name} ({ticker}) — Analyst Summary",
-            "bullets": bullets,
-            "note":    "Penman DCF-model. Data: FMP, Damodaran. Modeloutput — ikke et faktisk resultat.",
-            "kilde":   "FMP, Damodaran",
-        }
-        chart_specs = [summary_spec] + chart_specs
+        audit_spec = audit_statements(fmp_data, reformulated)
+        if audit_spec:
+            chart_specs.insert(1, audit_spec)
     except Exception as exc:
-        print(f"  [annual_report] Summary generation failed (non-fatal): {exc}")
+        print(f"  [annual_report] Auditor failed (non-fatal): {exc}")
+
+    # Market Researcher — append news card at end
+    print(f"  [annual_report] Fetching market news...")
+    try:
+        news_spec = fetch_market_researcher(ticker, company_name, client)
+        if news_spec:
+            chart_specs.append(news_spec)
+    except Exception as exc:
+        print(f"  [annual_report] Market researcher failed (non-fatal): {exc}")
 
     return {
         "dataframes":  dataframes,
