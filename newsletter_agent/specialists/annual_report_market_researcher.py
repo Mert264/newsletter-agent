@@ -95,8 +95,9 @@ def fetch_market_researcher(
         f"Materielle nyheder inkluderer: resultatoverraskelser, guidancejusteringer, M&A-aktivitet, "
         f"kapitalallokering (tilbagekøb, udbytte, udstedelse), regulering eller ledelsesændringer. "
         f"Ignorer generelle markedskommentarer og irrelevante omtaler af virksomheden.\n\n"
+        f"VIGTIGT: Oversæt ALTID overskrift og implikation til dansk — uanset originalsprog.\n\n"
         f"For hver materiel nyhed, returner præcis én linje:\n"
-        f"DATO | KATEGORI | OVERSKRIFT (max 10 ord på dansk) | IMPLIKATION (max 8 ord på dansk)\n\n"
+        f"DATO | KATEGORI | OVERSKRIFT (maks 6 ord — OVERSÆT TIL DANSK) | IMPLIKATION (maks 5 ord — OVERSÆT TIL DANSK)\n\n"
         f"Gyldige kategorier: Resultater | Guidance | M&A | Kapital | Regulering | Ledelse\n"
         f"Svar kun med linjerne. Hvis ingen materielle nyheder: skriv kun INGEN."
     )
