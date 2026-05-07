@@ -201,6 +201,26 @@ def build_chart_specs(
         {"indicator": "Senest opdateret",                         "Value": _last_updated(fmp_data, ltm_date)},
     ]
 
+    # DCF-implied multiples vs sector benchmarks
+    _shares_m  = float(fmp_data["income"][0].get("weightedAverageShsOutDil") or 1)
+    _eps       = float(fmp_data["income"][0].get("epsDiluted") or 0)
+    _ebitda_m  = float(fmp_data["income"][0].get("ebitda") or 0) or float(fmp_data["income"][0].get("operatingIncome") or 0)
+    _dcf_mktcp = base_price * _shares_m          # USD millions
+    _dcf_ev    = _dcf_mktcp + nfo_latest          # USD millions (NFO already in millions)
+    _dcf_pe    = f"{base_price / _eps:.1f}×"      if _eps > 0       else "N/A"
+    _dcf_ev_eb = f"{_dcf_ev / _ebitda_m:.1f}×"   if _ebitda_m > 0  else "N/A"
+    _sector    = profile.get("sector", "_default")
+    _bench     = _SECTOR_BENCHMARKS.get(_sector, _SECTOR_BENCHMARKS["_default"])
+
+    exec_rows += [
+        {"indicator": "",                                  "Value": ""},
+        {"indicator": "━━ DCF-Implied Multiples",         "Value": ""},
+        {"indicator": "DCF Implied P/E",                  "Value": _dcf_pe},
+        {"indicator": "DCF Implied EV/EBITDA",            "Value": _dcf_ev_eb},
+        {"indicator": f"Sektorbenchmark P/E ({_sector})", "Value": _bench["pe"]},
+        {"indicator": "Sektorbenchmark EV/EBITDA",        "Value": _bench["ev_ebitda"]},
+    ]
+
     _exec_note = (
         f"Penman DCF: FCF = NOPAT − ΔNOA, WACC {_pct(wacc)}, terminal vækst {_pct(base_sc['g'])}. "
         f"Basis fair value inden for 0,1×–10× af markedsprisen er modelkonsistent; "
