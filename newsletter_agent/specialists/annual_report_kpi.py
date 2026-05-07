@@ -494,7 +494,7 @@ def build_chart_specs(
     _best_note = ""
     if _best_val and price > 0:
         _best_updown = (_best_val - price) / price
-        _best_note = f" Selv ved bedste scenarie ({_pct(sens_cols[-1][-1])} WACC, g {_pct(g_axis[0])}) er fair value {_best_val:.0f} {currency} ({_best_updown:+.0%} vs. marked)."
+        _best_note = f" Selv ved bedste scenarie ({sens_cols[-1]} WACC, g {_pct(g_axis[0])}) er fair value {_best_val:.0f} {currency} ({_best_updown:+.0%} vs. marked)."
 
     specs.append({
         "type": "D",
