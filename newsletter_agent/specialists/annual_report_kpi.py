@@ -108,6 +108,24 @@ def _ltm_noa_nfo(ltm_bal: dict, ltm_revenue: float = 0.0):
     return op_assets - op_liabs, fin_liabs - fin_assets
 
 
+# ── Sector valuation benchmarks (Damodaran / market consensus ranges) ─────────
+
+_SECTOR_BENCHMARKS: dict[str, dict] = {
+    "Technology":             {"pe": "22–35×", "ev_ebitda": "18–28×"},
+    "Consumer Cyclical":      {"pe": "18–25×", "ev_ebitda": "10–16×"},
+    "Healthcare":             {"pe": "18–25×", "ev_ebitda": "13–20×"},
+    "Financial Services":     {"pe": "10–16×", "ev_ebitda": "N/A"},
+    "Energy":                 {"pe": "10–15×", "ev_ebitda": "5–9×"},
+    "Utilities":              {"pe": "14–20×", "ev_ebitda": "8–12×"},
+    "Communication Services": {"pe": "16–26×", "ev_ebitda": "9–15×"},
+    "Consumer Defensive":     {"pe": "18–24×", "ev_ebitda": "11–16×"},
+    "Industrials":            {"pe": "17–25×", "ev_ebitda": "11–17×"},
+    "Real Estate":            {"pe": "28–50×", "ev_ebitda": "16–22×"},
+    "Basic Materials":        {"pe": "12–20×", "ev_ebitda": "7–11×"},
+    "_default":               {"pe": "15–25×", "ev_ebitda": "10–18×"},
+}
+
+
 # ── Main builder ─────────────────────────────────────────────────────────────
 
 def build_chart_specs(
