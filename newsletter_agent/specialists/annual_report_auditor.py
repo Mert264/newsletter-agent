@@ -4,6 +4,7 @@ Statement Auditor — automatic accounting consistency checks.
 Returns a D-type chart spec if issues are found, None if the statements are clean.
 Only material flags are surfaced; minor noise is suppressed.
 """
+from __future__ import annotations
 
 
 def _safe(val) -> float:
