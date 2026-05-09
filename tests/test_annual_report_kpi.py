@@ -71,13 +71,13 @@ FAKE_FMP = {
 
 def test_returns_18_chart_specs():
     specs, dfs = build_chart_specs("CARL", "TestCo A/S", "DNK",
-                                   REFORMULATED, WACC_DATA, DCF, SENSITIVITY, FAKE_FMP)
-    assert len(specs) == 18
+                                   REFORMULATED, WACC_DATA, DCF_SCENARIOS, SENSITIVITY, FAKE_FMP)
+    assert len(specs) == 8
 
 
 def test_all_specs_have_title_note_kilde():
     specs, _ = build_chart_specs("CARL", "TestCo A/S", "DNK",
-                                  REFORMULATED, WACC_DATA, DCF, SENSITIVITY, FAKE_FMP)
+                                  REFORMULATED, WACC_DATA, DCF_SCENARIOS, SENSITIVITY, FAKE_FMP)
     for i, s in enumerate(specs):
         assert s.get("title"),  f"Chart #{i+1} missing title"
         assert s.get("note"),   f"Chart #{i+1} missing note"
@@ -86,7 +86,7 @@ def test_all_specs_have_title_note_kilde():
 
 def test_type_d_charts_have_table_data():
     specs, _ = build_chart_specs("CARL", "TestCo A/S", "DNK",
-                                  REFORMULATED, WACC_DATA, DCF, SENSITIVITY, FAKE_FMP)
+                                  REFORMULATED, WACC_DATA, DCF_SCENARIOS, SENSITIVITY, FAKE_FMP)
     for s in specs:
         if s["type"] == "D":
             assert "table_data" in s, f"Type D chart '{s['title']}' missing table_data"
@@ -96,7 +96,7 @@ def test_type_d_charts_have_table_data():
 
 def test_type_a_charts_have_series_labels():
     specs, dfs = build_chart_specs("CARL", "TestCo A/S", "DNK",
-                                    REFORMULATED, WACC_DATA, DCF, SENSITIVITY, FAKE_FMP)
+                                    REFORMULATED, WACC_DATA, DCF_SCENARIOS, SENSITIVITY, FAKE_FMP)
     for s in specs:
         if s["type"] == "A":
             assert "series_labels" in s, f"Type A chart '{s['title']}' missing series_labels"
@@ -106,15 +106,15 @@ def test_type_a_charts_have_series_labels():
 
 def test_type_a_dataframes_have_datetime_index():
     _, dfs = build_chart_specs("CARL", "TestCo A/S", "DNK",
-                                REFORMULATED, WACC_DATA, DCF, SENSITIVITY, FAKE_FMP)
+                                REFORMULATED, WACC_DATA, DCF_SCENARIOS, SENSITIVITY, FAKE_FMP)
     for label, df in dfs.items():
         assert isinstance(df.index, pd.DatetimeIndex), f"DataFrame '{label}' missing DatetimeIndex"
 
 
 def test_dcf_table_has_transparency_labels():
     specs, _ = build_chart_specs("CARL", "TestCo A/S", "DNK",
-                                  REFORMULATED, WACC_DATA, DCF, SENSITIVITY, FAKE_FMP)
-    # Chart 13 is the DCF forecast table — find it by type D and "DCF" in title and "forecast" in title (case-insensitive)
+                                  REFORMULATED, WACC_DATA, DCF_SCENARIOS, SENSITIVITY, FAKE_FMP)
+    # DCF Prognose (Basis) table — find by type D + "dcf" in title + "prognose/forecast/tabel" in title
     dcf_spec = next(
         (s for s in specs if s["type"] == "D" and "dcf" in s.get("title", "").lower()
          and any(kw in s.get("title", "").lower() for kw in ["forecast", "prognose", "tabel"])),
