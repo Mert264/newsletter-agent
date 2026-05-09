@@ -62,10 +62,14 @@ SENSITIVITY = {
 }
 FAKE_FMP = {
     "profile": {"price": 550.0, "companyName": "TestCo A/S", "country": "Denmark",
-                "mktCap": 275_000, "currency": "DKK"},
+                "mktCap": 275_000, "currency": "DKK", "sector": "Consumer Staples"},
     "estimates": [],
     "metrics": [{"peRatio": 18.5, "pbRatio": 3.2, "priceToSalesRatio": 2.8,
                  "pfcfRatio": 20.1, "evToEbitda": 12.3, "date": "2024-12-31"}],
+    "income":  [{"weightedAverageShsOutDil": 500, "epsDiluted": 5.0,
+                 "ebitda": 20_000, "operatingIncome": 20_000, "revenue": 100_000,
+                 "date": "2024-12-31"}],
+    "balance": [{"totalStockholdersEquity": 55_000, "date": "2024-12-31"}],
 }
 
 
