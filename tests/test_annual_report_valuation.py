@@ -43,7 +43,7 @@ def test_compute_wacc_beta_adj():
 
 def test_compute_wacc_rf_dnk():
     result = compute_wacc(FAKE_FMP, FAKE_REFORMULATED, "DNK")
-    assert abs(result["rf"] - 0.0384) < 1e-4
+    assert abs(result["rf"] - 0.028) < 1e-4
 
 
 def test_compute_wacc_moody_spread():
