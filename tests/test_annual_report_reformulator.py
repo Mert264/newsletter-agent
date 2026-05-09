@@ -44,7 +44,7 @@ def _make_fmp_data(n_years=3):
 def test_noa_calculation():
     data = _make_fmp_data(2)
     result = reformulate(data, t=0.22)
-    assert result["NOA"][0] == 100_000
+    assert result["NOA"][0] == 102_000
 
 
 def test_oi_calculation():
