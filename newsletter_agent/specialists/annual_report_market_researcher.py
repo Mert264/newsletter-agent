@@ -11,7 +11,7 @@ from newsletter_agent.config import API_KEYS, REVIEWER_MODEL
 from newsletter_agent.cache import get as cache_get, put as cache_put
 
 _TTL = 30 * 24 * 3600   # 30-day cache
-_FMP_BASE = "https://financialmodelingprep.com/stable"
+_FMP_V3 = "https://financialmodelingprep.com/api/v3"
 
 
 def _fetch_news(ticker: str, api_key: str) -> list:
@@ -22,27 +22,19 @@ def _fetch_news(ticker: str, api_key: str) -> list:
 
     try:
         resp = requests.get(
-            f"{_FMP_BASE}/news/stock",
-            params={"symbols": ticker, "limit": 50, "apikey": api_key},
+            f"{_FMP_V3}/stock_news",
+            params={"tickers": ticker, "limit": 50, "apikey": api_key},
             timeout=15,
         )
         resp.raise_for_status()
         data = resp.json()
     except Exception as e:
-        print(f"  [market_researcher] News fetch failed ({e}), trying fallback endpoint...")
-        try:
-            resp = requests.get(
-                f"{_FMP_BASE}/stock_news",
-                params={"tickers": ticker, "limit": 50, "apikey": api_key},
-                timeout=15,
-            )
-            resp.raise_for_status()
-            data = resp.json()
-        except Exception as e2:
-            print(f"  [market_researcher] Fallback also failed: {e2}")
-            return []
+        print(f"  [market_researcher] News fetch failed: {e}")
+        return []
 
     news = data if isinstance(data, list) else []
+    apple_count = sum(1 for n in news if ticker.lower() in n.get("symbol", "").lower())
+    print(f"  [market_researcher] Fetched {len(news)} items ({apple_count} ticker-matched) for {ticker}")
     if news:
         cache_put("market_news", news, ticker=ticker)
     return news
