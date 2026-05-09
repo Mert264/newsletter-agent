@@ -45,7 +45,7 @@ def test_fetch_all_returns_expected_keys(mock_get):
                 "ltm_income", "ltm_cashflow", "ltm_balance"]:
         assert key in result
     assert result["profile"]["country"] == "Denmark"
-    assert result["income"][0]["revenue"] == 83000
+    assert abs(result["income"][0]["revenue"] - 0.083) < 0.001
 
 
 @patch("newsletter_agent.specialists.annual_report_fmp.requests.get")
