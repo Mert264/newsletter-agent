@@ -57,7 +57,7 @@ def test_compute_wacc_checker_inputs_structure():
     assert ci["rf_re"] == ci["rf_rd"]   # same rf used everywhere
     assert ci["shares_source"] == "diluted"
     assert ci["tax_type"] == "statutory"
-    assert ci["bond_type"] == "nominal"
+    assert ci["bond_type"] == "spot"
 
 
 def test_compute_dcf_returns_required_keys():
