@@ -470,7 +470,43 @@ def build_chart_specs(
     })
 
     # ══════════════════════════════════════════════════════════════════════════
-    # Chart 6 — Sensitivity
+    # Chart 6 — DCF Prognose (Basis) — transparency table
+    # ══════════════════════════════════════════════════════════════════════════
+    _bd         = base_sc["detail"]
+    _rev_source = "[EST]" if fmp_data.get("estimates") else "[CALC]"
+    _pv_fcf_sum = _bd.get("total_PV", 0)
+    _pv_tv      = _bd.get("PV_TV", 0)
+    _ev_val     = _bd.get("EV", 0)
+    _eq_val     = _bd.get("equity_value", 0)
+
+    dcf_detail_rows = [
+        {"indicator": f"Omsætningsvækst (CAGR) {_rev_source}",  "Basisscenarie": _pct(base_sc["cagr"])},
+        {"indicator": "NOPAT-margin [CALC]",                     "Basisscenarie": _pct(base_sc["og"])},
+        {"indicator": "WACC [ASSUMED]",                          "Basisscenarie": _pct(base_sc["wacc"])},
+        {"indicator": "Terminal vækst [ASSUMED]",                "Basisscenarie": _pct(base_sc["g"])},
+        {"indicator": ""},
+        {"indicator": f"PV(FCF) sum ({currency}m) [CALC]",      "Basisscenarie": _num(_pv_fcf_sum)},
+        {"indicator": f"Terminalværdi PV ({currency}m) [CALC]", "Basisscenarie": _num(_pv_tv)},
+        {"indicator": f"Virksomhedsværdi ({currency}m) [CALC]", "Basisscenarie": _num(_ev_val)},
+        {"indicator": f"Egenkapitalværdi ({currency}m) [CALC]", "Basisscenarie": _num(_eq_val)},
+        {"indicator": f"Fair value / aktie ({currency}) [CALC]","Basisscenarie": f"{base_price:.0f}"},
+    ]
+
+    specs.append({
+        "type": "D",
+        "title": f"{company_name} — DCF Prognose (Basis)",
+        "note": (
+            f"Basisscenarie: CAGR {_pct(base_sc['cagr'])} {_rev_source}, NOPAT-margin {_pct(base_sc['og'])} [CALC]. "
+            f"WACC {_pct(base_sc['wacc'])} og terminal vækst {_pct(base_sc['g'])} er [ASSUMED] modelindgange. "
+            f"EV = PV(FCF) + PV(terminalværdi). Egenkapitalværdi = EV − NFO − NCI. "
+            f"[EST] = analytikerkonsensus; [CALC] = Penman-model; [ASSUMED] = modelindgang."
+        ),
+        "kilde": kilde,
+        "table_data": {"columns": ["Basisscenarie"], "rows": dcf_detail_rows},
+    })
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # Chart 7 — Sensitivity
     # ══════════════════════════════════════════════════════════════════════════
     wacc_axis = sensitivity["wacc_axis"]
     g_axis    = sensitivity["g_axis"]
