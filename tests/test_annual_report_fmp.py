@@ -36,9 +36,13 @@ def test_fetch_all_returns_expected_keys(mock_get):
         _mock_response(FAKE_RATING),
         _mock_response(FAKE_METRICS),
         _mock_response(FAKE_ESTIMATES),
+        _mock_response(FAKE_INCOME),   # income_q
+        _mock_response(FAKE_CF),       # cashflow_q
+        _mock_response(FAKE_BALANCE),  # balance_q
     ]
     result = fetch_all("CARL", "test_key")
-    for key in ["income", "balance", "cashflow", "profile", "rating", "metrics", "estimates"]:
+    for key in ["income", "balance", "cashflow", "profile", "rating", "metrics", "estimates",
+                "ltm_income", "ltm_cashflow", "ltm_balance"]:
         assert key in result
     assert result["profile"]["country"] == "Denmark"
     assert result["income"][0]["revenue"] == 83000
@@ -54,6 +58,9 @@ def test_fetch_all_raises_on_empty_income(mock_get):
         _mock_response(FAKE_RATING),
         _mock_response(FAKE_METRICS),
         _mock_response(FAKE_ESTIMATES),
+        _mock_response([]),   # income_q
+        _mock_response([]),   # cashflow_q
+        _mock_response([]),   # balance_q
     ]
     with pytest.raises(ValueError, match="No income statement"):
         fetch_all("INVALID", "test_key")
@@ -69,6 +76,9 @@ def test_profile_unwrapped_from_list(mock_get):
         _mock_response(FAKE_RATING),
         _mock_response(FAKE_METRICS),
         _mock_response(FAKE_ESTIMATES),
+        _mock_response(FAKE_INCOME),   # income_q
+        _mock_response(FAKE_CF),       # cashflow_q
+        _mock_response(FAKE_BALANCE),  # balance_q
     ]
     result = fetch_all("CARL", "test_key")
     # profile must be a dict (unwrapped from list), not a list
