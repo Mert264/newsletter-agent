@@ -8,6 +8,7 @@ REFORMULATED = {
     "NFO":           [40_000]  * 5,
     "OI":            [15_600]  * 5,
     "FCF":           [None, 15_600, 15_600, 15_600, 15_600],
+    "cash_fcf":      [None, 14_000, 14_000, 14_000, 14_000],
     "RNOA":          [0.156] * 5,
     "OG":            [0.156] * 5,
     "ATO":           [1.0]   * 5,
@@ -19,17 +20,19 @@ REFORMULATED = {
     "common_equity": [55_000] * 5,
     "historical_avgs": {"OG": 0.156, "ATO": 1.0, "revenue_cagr": 0.03},
     "flags": [],
+    "excluded_years": set(),
+    "n_avg_years": 5,
 }
 WACC_DATA = {
-    "rf": 0.0384, "rf_entry": {"rate": 0.0384, "maturity_yr": 35,
-                                "spot": 0.028, "bond_name": "Dansk statsobligation 35år avg"},
+    "rf": 0.028, "rf_entry": {"rate": 0.0384, "maturity_yr": 35,
+                               "spot": 0.028, "bond_name": "Dansk statsobligation 35år avg"},
     "t": 0.22, "beta_raw": 0.90, "beta_adj": 0.933,
     "MRP": 0.0374, "CRP": 0.0, "rE": 0.073,
     "rating": "A2", "rs": 0.0125, "rs_moody": 0.0125, "rs_icr": 0.013,
     "rD": 0.0398, "D": 40_000, "E": 300_000, "V": 340_000,
     "wacc": 0.065, "iso3": "DNK",
 }
-DCF = {
+_BASE_DETAIL = {
     "forecast_years": ["2025E", "2026E", "2027E", "2028E", "2029E"],
     "revenue_forecast": [103_000, 106_090, 109_273, 112_551, 115_927],
     "OI_forecast":      [16_068, 16_550, 17_046, 17_558, 18_085],
@@ -42,6 +45,14 @@ DCF = {
     "EV": 294_028, "NFO": 40_000, "NCI": 5_000,
     "equity_value": 249_028, "diluted_shares": 500,
     "price_per_share": 498.06, "g": 0.02, "n_years": 5,
+}
+DCF_SCENARIOS = {
+    "bear": {"price": 375.0,  "detail": {**_BASE_DETAIL, "EV": 220_000, "equity_value": 175_000},
+             "wacc": 0.075, "og": 0.136, "cagr": -0.01, "g": 0.015},
+    "base": {"price": 498.06, "detail": _BASE_DETAIL,
+             "wacc": 0.065, "og": 0.156, "cagr": 0.03,  "g": 0.02},
+    "bull": {"price": 640.0,  "detail": {**_BASE_DETAIL, "EV": 380_000, "equity_value": 335_000},
+             "wacc": 0.055, "og": 0.176, "cagr": 0.07,  "g": 0.025},
 }
 SENSITIVITY = {
     "wacc_axis": [0.054, 0.0565, 0.059, 0.0615, 0.065, 0.0665, 0.069, 0.0715, 0.074],
