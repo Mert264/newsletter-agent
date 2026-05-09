@@ -68,6 +68,29 @@ def _normalize_metrics(m: dict) -> dict:
     return result
 
 
+_ESTIMATE_SCALE_FIELDS = {
+    "estimatedRevenueLow", "estimatedRevenueAvg", "estimatedRevenueHigh",
+    "estimatedEpsLow", "estimatedEpsAvg", "estimatedEpsHigh",
+    "estimatedNetIncomeLow", "estimatedNetIncomeAvg", "estimatedNetIncomeHigh",
+    "estimatedEbitdaLow", "estimatedEbitdaAvg", "estimatedEbitdaHigh",
+    "estimatedEbitLow", "estimatedEbitAvg", "estimatedEbitHigh",
+}
+
+
+def _normalize_estimates(e: dict) -> dict:
+    """Scale monetary estimate fields to millions; alias alternate field names."""
+    result = {}
+    for k, v in e.items():
+        if k in _ESTIMATE_SCALE_FIELDS and isinstance(v, (int, float)):
+            result[k] = v / 1_000_000
+        else:
+            result[k] = v
+    # Handle stable API variant: estimatedRevenue → estimatedRevenueAvg
+    if "estimatedRevenue" in result and "estimatedRevenueAvg" not in result:
+        result["estimatedRevenueAvg"] = result["estimatedRevenue"]
+    return result
+
+
 def fetch_all(ticker: str, api_key: str) -> dict:
     income    = _get("income-statement",        api_key, symbol=ticker, period="annual")
     balance   = _get("balance-sheet-statement", api_key, symbol=ticker, period="annual")
