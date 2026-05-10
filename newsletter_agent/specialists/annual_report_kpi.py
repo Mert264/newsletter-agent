@@ -319,6 +319,14 @@ def build_chart_specs(
         )
     if any("NOA steg" in f for f in reformulated.get("flags", [])):
         _notes.append(f"NOA-anomali i {show_yrs[-1]} — DCF anvender ATO-normaliseret start-NOA.")
+    # Extreme RNOA: asset-light / platform companies where NOA << earnings
+    _rnoa_vals = [v for v in reformulated["RNOA"] if v is not None]
+    if _rnoa_vals and max(_rnoa_vals) > 1.0:
+        _notes.append(
+            f"RNOA >100% indikerer at selskabet skaber meget overskud relativt til regnskabsmæssig kapital "
+            f"— typisk for platform- og teknologiselskaber med store immaterielle aktiver (brand, IP) "
+            f"der ikke aktiveres i balancen. Penman-modellen undervurderer NOA for disse selskaber."
+        )
 
     _penman_fcf = reformulated["FCF"][-1]
     _cash_fcf   = reformulated["cash_fcf"][-1]
