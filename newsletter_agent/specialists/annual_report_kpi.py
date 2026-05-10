@@ -73,8 +73,13 @@ def _confidence(upside: float, reformulated: dict) -> str:
 
 
 def _analyst_next_rev(estimates: list):
+    from datetime import date as _date
+    today_str = _date.today().isoformat()
+    # Keep only future estimates with a valid revenue avg
     valid = sorted(
-        [e for e in (estimates or []) if (e.get("estimatedRevenueAvg") or 0) > 0],
+        [e for e in (estimates or [])
+         if (e.get("estimatedRevenueAvg") or 0) > 0
+         and (e.get("date") or "") >= today_str],
         key=lambda x: x.get("date", ""),
     )
     if not valid:
