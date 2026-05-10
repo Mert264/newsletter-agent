@@ -75,12 +75,15 @@ def review_final(chart_specs: list, price_range: tuple,
                  market_price: float, client: anthropic.Anthropic) -> str:
     bear, base, bull = price_range
     ratio = base / market_price if market_price > 0 else 0
+    ordering_ok = bear < base < bull
     user = (
-        f"Fair value range: {bear:.0f} – {bull:.0f}, base: {base:.2f}\n"
-        f"Market price: {market_price:.2f} (base/market ratio: {ratio:.2f}x)\n"
+        f"Bear fair value:  {bear:.2f}\n"
+        f"Base fair value:  {base:.2f}\n"
+        f"Bull fair value:  {bull:.2f}\n"
+        f"Market price:     {market_price:.2f} (base/market ratio: {ratio:.2f}x)\n"
+        f"Bear < Base < Bull ordering: {'CORRECT' if ordering_ok else 'VIOLATED'}\n"
         f"Charts generated: {len(chart_specs)}\n\n"
-        "Final gate: Is bear < base < bull ordering correct? "
-        "Is the valuation conclusion directionally consistent with the sensitivity table midpoint? "
-        "Are all values plausible?"
+        "Final gate: confirm ordering is correct, base/market ratio is plausible (0.1x–10x), "
+        "and all values are positive. Flag only real issues with WARN or BLOCK."
     )
     return _call(client, _SYSTEM, user)
