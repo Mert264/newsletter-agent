@@ -115,18 +115,17 @@ def test_type_a_dataframes_have_datetime_index():
         assert isinstance(df.index, pd.DatetimeIndex), f"DataFrame '{label}' missing DatetimeIndex"
 
 
-def test_dcf_table_has_transparency_labels():
+def test_dcf_table_has_required_rows():
     specs, _ = build_chart_specs("CARL", "TestCo A/S", "DNK",
                                   REFORMULATED, WACC_DATA, DCF_SCENARIOS, SENSITIVITY, FAKE_FMP)
-    # DCF Prognose (Basis) table — find by type D + "dcf" in title + "prognose/forecast/tabel" in title
     dcf_spec = next(
         (s for s in specs if s["type"] == "D" and "dcf" in s.get("title", "").lower()
          and any(kw in s.get("title", "").lower() for kw in ["forecast", "prognose", "tabel"])),
         None
     )
-    assert dcf_spec is not None, "DCF forecast table (chart 13) not found"
+    assert dcf_spec is not None, "DCF Prognose (Basis) table not found"
     rows = dcf_spec["table_data"]["rows"]
-    labeled = [r["indicator"] for r in rows if any(
-        tag in r.get("indicator", "") for tag in ["[EST]", "[CALC]", "[ASSUMED]", "[SOURCED]"]
-    )]
-    assert len(labeled) >= 5, f"DCF table must have at least 5 labeled rows, got {len(labeled)}: {labeled}"
+    indicators = [r.get("indicator", "") for r in rows]
+    for required in ["Omsætningsvækst (CAGR)", "NOPAT-margin", "WACC",
+                     "Terminal vækst", "Virksomhedsværdi"]:
+        assert any(required in ind for ind in indicators), f"DCF table missing row: {required}"
