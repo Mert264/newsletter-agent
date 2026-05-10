@@ -386,9 +386,9 @@ def build_chart_specs(
 
     specs.append({
         "type": "A", "freq": "A",
-        "title": f"{company_name} — Omsætning & NOPAT ({currency}m)",
+        "title": f"{company_name} — Omsætning & NOPAT ({_unit})",
         "x_label": "Regnskabsår",
-        "y_label": f"{currency}m",
+        "y_label": _unit,
         "series_labels": ["trend_rev_oi"],
         "note": (
             f"Viser omsætningsudvikling (toplinje) over for driftsoverskud efter skat (NOPAT = EBIT×(1−{_pct(t)})). "
