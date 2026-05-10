@@ -180,6 +180,13 @@ def build_chart_specs(
     cagr_label = f"FY{years[0]}–FY{years[-1]}"
     ltm_date   = ltm_inc.get("date", "") if has_ltm else ""
 
+    # Gross debt from most recent annual balance sheet
+    _b0 = fmp_data.get("balance", [{}])[0] if fmp_data.get("balance") else {}
+    _gross_debt = (float(_b0.get("shortTermDebt") or 0)
+                   + float(_b0.get("longTermDebt") or 0)
+                   + float(_b0.get("capitalLeaseObligations") or 0))
+    _gross_debt_str = f"{_num(_gross_debt)}m {currency}" if _gross_debt > 0 else f"0m {currency}"
+
     exec_rows = [
         {"indicator": "Aktuel kurs",                 "Værdi": f"{price:.2f} {currency}"},
         {"indicator": "Fair value-interval",         "Værdi": f"{bear_price:.0f} – {bull_price:.0f} {currency}"},
@@ -188,7 +195,8 @@ def build_chart_specs(
         {"indicator": "",                            "Værdi": ""},
         {"indicator": "WACC",                        "Værdi": _pct(wacc)},
         {"indicator": "Terminal vækst",              "Værdi": _pct(base_sc["g"])},
-        {"indicator": "Netto fin. forpl. (NFO)",     "Værdi": nc_str},
+        {"indicator": "Bruttogæld",                  "Værdi": _gross_debt_str},
+        {"indicator": "Netto finansiel stilling",    "Værdi": nc_str},
         {"indicator": f"{fy_latest} Omsætning",      "Værdi": f"{_num(reformulated['revenue'][-1])}m {currency}"},
     ]
 
