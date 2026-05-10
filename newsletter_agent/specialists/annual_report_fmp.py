@@ -68,24 +68,38 @@ def _normalize_metrics(m: dict) -> dict:
     return result
 
 
-_ESTIMATE_SCALE_FIELDS = {
+_ESTIMATE_MONETARY_FIELDS = {
+    # v3 API names
     "estimatedRevenueLow", "estimatedRevenueAvg", "estimatedRevenueHigh",
     "estimatedEpsLow", "estimatedEpsAvg", "estimatedEpsHigh",
     "estimatedNetIncomeLow", "estimatedNetIncomeAvg", "estimatedNetIncomeHigh",
     "estimatedEbitdaLow", "estimatedEbitdaAvg", "estimatedEbitdaHigh",
     "estimatedEbitLow", "estimatedEbitAvg", "estimatedEbitHigh",
+    # stable API names (no "estimated" prefix)
+    "revenueLow", "revenueAvg", "revenueHigh",
+    "netIncomeLow", "netIncomeAvg", "netIncomeHigh",
+    "ebitdaLow", "ebitdaAvg", "ebitdaHigh",
+    "ebitLow", "ebitAvg", "ebitHigh",
+    "sgaExpenseLow", "sgaExpenseAvg", "sgaExpenseHigh",
 }
 
 
 def _normalize_estimates(e: dict) -> dict:
-    """Scale monetary estimate fields to millions; alias alternate field names."""
+    """Scale monetary estimate fields to millions; alias stable→v3 field names."""
     result = {}
     for k, v in e.items():
-        if k in _ESTIMATE_SCALE_FIELDS and isinstance(v, (int, float)):
+        if k in _ESTIMATE_MONETARY_FIELDS and isinstance(v, (int, float)):
             result[k] = v / 1_000_000
         else:
             result[k] = v
-    # Handle stable API variant: estimatedRevenue → estimatedRevenueAvg
+    # Alias stable API names → v3 names expected by _analyst_next_rev
+    for prefix in ("revenue", "netIncome", "ebitda", "ebit"):
+        for suffix in ("Low", "Avg", "High"):
+            stable_k = f"{prefix}{suffix}"
+            v3_k = f"estimated{prefix[0].upper()}{prefix[1:]}{suffix}"
+            if stable_k in result and v3_k not in result:
+                result[v3_k] = result[stable_k]
+    # Also alias estimatedRevenue → estimatedRevenueAvg (some endpoints)
     if "estimatedRevenue" in result and "estimatedRevenueAvg" not in result:
         result["estimatedRevenueAvg"] = result["estimatedRevenue"]
     return result
