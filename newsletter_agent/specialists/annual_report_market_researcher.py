@@ -26,15 +26,18 @@ def _fetch_news(ticker: str, api_key: str) -> list:
             params={"tickers": ticker, "limit": 50, "apikey": api_key},
             timeout=15,
         )
+        if resp.status_code in (402, 403):
+            print(f"  [market_researcher] FMP news requires a higher plan (HTTP {resp.status_code}) — skipping.")
+            return []
         resp.raise_for_status()
         data = resp.json()
     except Exception as e:
         print(f"  [market_researcher] News fetch failed: {e}")
         return []
 
-    news = data if isinstance(data, list) else []
-    apple_count = sum(1 for n in news if ticker.lower() in n.get("symbol", "").lower())
-    print(f"  [market_researcher] Fetched {len(news)} items ({apple_count} ticker-matched) for {ticker}")
+    news = [n for n in (data if isinstance(data, list) else [])
+            if ticker.upper() in (n.get("symbol", "") or "").upper()]
+    print(f"  [market_researcher] Fetched {len(news)} ticker-matched items for {ticker}")
     if news:
         cache_put("market_news", news, ticker=ticker)
     return news
