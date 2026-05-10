@@ -369,10 +369,19 @@ def build_chart_specs(
     # ══════════════════════════════════════════════════════════════════════════
     # Chart 3 — Revenue & NOPAT Trend
     # ══════════════════════════════════════════════════════════════════════════
-    lbl_rev = f"{ticker} — Omsætning ({currency}m)"
-    lbl_oi  = f"{ticker} — NOPAT ({currency}m)"
-    dfs[lbl_rev] = _ts(years, reformulated["revenue"], lbl_rev)
-    dfs[lbl_oi]  = _ts(years, reformulated["OI"],      lbl_oi)
+    # Auto-scale: if any revenue value exceeds 10,000m, display in billions
+    _max_rev = max((v for v in reformulated["revenue"] if v is not None), default=0)
+    _use_bn  = _max_rev > 10_000
+    _scale_f = 1_000 if _use_bn else 1
+    _unit    = f"{currency}mia." if _use_bn else f"{currency}m"
+
+    _rev_scaled = [v / _scale_f if v is not None else None for v in reformulated["revenue"]]
+    _oi_scaled  = [v / _scale_f if v is not None else None for v in reformulated["OI"]]
+
+    lbl_rev = f"{ticker} — Omsætning ({_unit})"
+    lbl_oi  = f"{ticker} — NOPAT ({_unit})"
+    dfs[lbl_rev] = _ts(years, _rev_scaled, lbl_rev)
+    dfs[lbl_oi]  = _ts(years, _oi_scaled,  lbl_oi)
     dfs["trend_rev_oi"] = dfs[lbl_rev].join(dfs[lbl_oi])
 
     specs.append({
