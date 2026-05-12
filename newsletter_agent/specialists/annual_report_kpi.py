@@ -320,16 +320,45 @@ def build_chart_specs(
             row[ltm_col] = "—"
         return row
 
+    def _sep(label):
+        row = {"indicator": f"━━ {label}"}
+        for col in yr_cols:
+            row[col] = ""
+        return row
+
+    capex_abs_hist = [abs(v) if v is not None else None
+                      for v in reformulated.get("capex", [None] * len(years))]
+
     snap_rows = [
-        _snap_row(f"Omsætning ({currency}m)",   reformulated["revenue"],  _num,  ltm_rev),
-        _snap_row(f"NOPAT ({currency}m)",        reformulated["OI"],       _num,  ltm_oi),
-        _snap_row(f"Cash FCF ({currency}m)",     reformulated["cash_fcf"], _num,  ltm_fcf),
-        _snap_row(f"NOA ({currency}m)",          reformulated["NOA"],      _num,  ltm_noa),
-        _snap_row(f"NFO ({currency}m)",          reformulated["NFO"],      _num,  ltm_nfo),
-        _snap_row("RNOA",                        reformulated["RNOA"],     _pct,  ltm_rnoa),
-        _snap_row("NOPAT-margin",                reformulated["OG"],       _pct,  ltm_og),
-        _snap_row("Aktivomsætning (ATO)",        reformulated["ATO"],      _x,    ltm_ato),
-        _snap_row("SPREAD (RNOA − NBC)",         reformulated["SPREAD"],   _pct,  ltm_spread),
+        # ── P&L ──────────────────────────────────────────────────────────────────
+        _sep("Resultatopgørelse"),
+        _snap_row(f"Omsætning ({currency}m)",             reformulated["revenue"],      _num, ltm_rev),
+        _snap_row(f"Bruttoavance ({currency}m)",          reformulated["gross_profit"], _num, ltm_gross_profit),
+        _snap_row(f"EBIT ({currency}m)",                  reformulated["ebit"],         _num, ltm_ebit),
+        _snap_row(f"NOPAT ({currency}m)",                 reformulated["OI"],           _num, ltm_oi),
+        _snap_row("NOPAT-margin",                         reformulated["OG"],           _pct, ltm_og),
+
+        # ── FCF bridge (fra NOPAT) ────────────────────────────────────────────────
+        _sep("FCF (fra NOPAT)"),
+        _snap_row(f"+ D&A ({currency}m)",                 reformulated["dna"],          _num, ltm_dna),
+        _snap_row(f"− CapEx ({currency}m)",               capex_abs_hist,               _num, ltm_capex_abs),
+        _snap_row(f"± ΔNWC ({currency}m)",                reformulated["dnwc"],         _num, ltm_dnwc),
+        _snap_row(f"= Cash FCF ({currency}m)",            reformulated["cash_fcf"],     _num, ltm_fcf),
+
+        # ── Kapitalstruktur ───────────────────────────────────────────────────────
+        _sep("Kapitalstruktur"),
+        _snap_row(f"Driftsaktiver ({currency}m)",         reformulated["op_assets"],    _num, ltm_op_assets),
+        _snap_row(f"− Driftsforpligtelser ({currency}m)", reformulated["op_liabs"],     _num, ltm_op_liabs),
+        _snap_row(f"= NOA ({currency}m)",                 reformulated["NOA"],          _num, ltm_noa),
+        _snap_row(f"Bruttogæld ({currency}m)",            reformulated["gross_debt"],   _num, ltm_gross_debt),
+        _snap_row(f"− Finansielle aktiver ({currency}m)", reformulated["fin_assets"],   _num, ltm_fin_assets),
+        _snap_row(f"= NFO ({currency}m)",                 reformulated["NFO"],          _num, ltm_nfo),
+
+        # ── Afkastnøgletal ────────────────────────────────────────────────────────
+        _sep("Afkastnøgletal"),
+        _snap_row("RNOA",                                 reformulated["RNOA"],         _pct, ltm_rnoa),
+        _snap_row("Aktivomsætning (ATO)",                 reformulated["ATO"],          _x,   ltm_ato),
+        _snap_row("SPREAD (RNOA − NBC)",                  reformulated["SPREAD"],       _pct, ltm_spread),
     ]
 
     _notes = []
