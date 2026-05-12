@@ -105,3 +105,48 @@ def test_revenue_cagr_stable_data():
     data = _make_fmp_data(5)
     result = reformulate(data, t=0.22)
     assert abs(result["historical_avgs"]["revenue_cagr"]) < 0.001
+
+
+def test_returns_new_component_keys():
+    data = _make_fmp_data(3)
+    result = reformulate(data, t=0.22)
+    for key in ["gross_profit", "ebit", "dna", "capex", "dnwc",
+                "op_assets", "op_liabs", "gross_debt", "fin_assets"]:
+        assert key in result, f"Missing new key: {key}"
+        assert len(result[key]) == len(result["years"]), f"{key} length mismatch"
+
+
+def test_ebit_matches_nopat_pretax():
+    data = _make_fmp_data(3)
+    result = reformulate(data, t=0.22)
+    for i, ebit in enumerate(result["ebit"]):
+        expected_oi = ebit * (1 - 0.22)
+        assert abs(result["OI"][i] - expected_oi) < 0.01, \
+            f"Year {result['years'][i]}: EBIT*(1-t) != NOPAT"
+
+
+def test_noa_equals_op_assets_minus_op_liabs():
+    data = _make_fmp_data(3)
+    result = reformulate(data, t=0.22)
+    for i in range(len(result["years"])):
+        expected = result["op_assets"][i] - result["op_liabs"][i]
+        assert abs(result["NOA"][i] - expected) < 0.01, \
+            f"Year {result['years'][i]}: NOA bridge mismatch"
+
+
+def test_nfo_equals_gross_debt_minus_fin_assets():
+    data = _make_fmp_data(3)
+    result = reformulate(data, t=0.22)
+    for i in range(len(result["years"])):
+        expected = result["gross_debt"][i] - result["fin_assets"][i]
+        assert abs(result["NFO"][i] - expected) < 0.01, \
+            f"Year {result['years'][i]}: NFO bridge mismatch"
+
+
+def test_dna_and_capex_populated_from_cashflow():
+    data = _make_fmp_data(3, with_cf=True)
+    result = reformulate(data, t=0.22)
+    for i in range(len(result["years"])):
+        assert abs(result["dna"][i] - 5_000) < 0.01, f"D&A wrong year {i}"
+        assert abs(result["capex"][i] - (-8_000)) < 0.01, f"CapEx wrong year {i}"
+        assert abs(result["dnwc"][i] - (-1_000)) < 0.01, f"ΔNWC wrong year {i}"
