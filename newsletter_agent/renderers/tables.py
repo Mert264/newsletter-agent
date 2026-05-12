@@ -164,10 +164,24 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
         # Row border
         table[i, 0].set_edgecolor("#e4eaea")
 
+    # Style separator (section-header) rows
+    for idx in sep_row_indices:
+        trow = idx + 1  # +1 for header row
+        for j in range(n_cols):
+            cell = table[trow, j]
+            cell.set_facecolor("#cce8e6")
+            cell.set_edgecolor("#89c8c4")
+            cell.set_height(cell.get_height() * 1.3)
+        table[trow, 0].set_text_props(
+            ha="left", fontweight="bold", color=BRAND["primary"],
+            fontsize=base_font + 1,
+        )
+        table[trow, 0].PAD = 0.06
+
     # ── Title ─────────────────────────────────────────────────────────────
-    ax.set_title(spec.get("title", ""), fontsize=BRAND["font_size_title"],
+    ax.set_title(spec.get("title", ""), fontsize=BRAND["font_size_title"] + 1,
                  fontweight="bold", loc="left", color=BRAND["secondary"],
-                 pad=10)
+                 pad=14)
 
     bottom = _add_footer(fig, spec)
     plt.tight_layout(rect=[0.0, bottom, 1.0, 1.0])
