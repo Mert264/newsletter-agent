@@ -1,16 +1,18 @@
 from newsletter_agent.specialists.annual_report_reformulator import reformulate
 
 
-def _make_fmp_data(n_years=3):
+def _make_fmp_data(n_years=3, with_cf=False):
     """Produces n_years of identical synthetic FMP data (newest first)."""
     income = []
     balance = []
+    cashflow = []
     for i in range(n_years):
         year = 2024 - i
         income.append({
             "date": f"{year}-12-31",
             "revenue": 100_000,
             "operatingIncome": 20_000,
+            "grossProfit": 40_000,
             "netIncome": 12_000,
             "comprehensiveIncomePeriodChange": 11_500,
             "interestExpense": 2_000,
@@ -30,10 +32,19 @@ def _make_fmp_data(n_years=3):
             "minorityInterest": 5_000,
             "goodwillAndIntangibleAssets": 20_000,
         })
+        if with_cf:
+            cashflow.append({
+                "date": f"{year}-12-31",
+                "operatingCashFlow": 16_000,
+                "capitalExpenditure": -8_000,
+                "freeCashFlow": 0,
+                "depreciationAndAmortization": 5_000,
+                "changeInWorkingCapital": -1_000,
+            })
     return {
         "income": income,
         "balance": balance,
-        "cashflow": [],
+        "cashflow": cashflow if with_cf else [],
         "profile": {},
         "rating": [],
         "metrics": [],
