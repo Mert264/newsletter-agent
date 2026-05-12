@@ -394,9 +394,13 @@ def build_chart_specs(
         )
 
     snap_note = (
-        f"NOPAT = EBIT × (1−t = {_pct(t)} lovpligtig) — driftsoverskud efter skat, uafhængig af kapitalstruktur. "
-        f"NOA = Driftsaktiver − Driftsforpligtelser. Benchmarks: NOPAT-margin >10%, ATO >1×. "
-        f"Penman FCF = NOPAT − ΔNOA; Cash FCF = OCF − CapEx. NFO negativ = nettokasse. "
+        f"P&L: Bruttoavance = Omsætning − COGS. EBIT = driftsoverskud før skat. "
+        f"NOPAT = EBIT × (1−t = {_pct(t)} lovpligtig) — driftsoverskud efter skat, uafhæng af kapitalstruktur. "
+        f"FCF: Cash FCF = NOPAT + D&A − CapEx ± ΔNWC (rapporterede pengestrømsopgørelsesværdier; "
+        f"øvrige poster, fx udskudt skat og aktiebaseret vederlæggelse, indgår ikke i broen). "
+        f"Kapital: NOA = Driftsaktiver − Driftsforpligtelser. "
+        f"NFO = Bruttogæld − Finansielle aktiver; negativ = nettokasse. "
+        f"Benchmarks: NOPAT-margin >10%, ATO >1×. SPREAD > 0 er værdiskabende finansiel gearing. "
         + (" ".join(_notes) if _notes else "")
     )
 
