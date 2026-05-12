@@ -275,7 +275,12 @@ def build_chart_specs(
         yr_cols.append(ltm_col)
 
     ltm_rev = float(ltm_inc.get("revenue") or 0) if has_ltm else None
-    ltm_noa, ltm_nfo = _ltm_noa_nfo(ltm_bal, ltm_rev or 0.0) if has_ltm else (None, None)
+    (ltm_noa, ltm_nfo,
+     ltm_op_assets, ltm_op_liabs,
+     ltm_gross_debt, ltm_fin_assets) = (
+        _ltm_noa_nfo(ltm_bal, ltm_rev or 0.0) if has_ltm
+        else (None, None, None, None, None, None)
+    )
     ltm_oi  = float(ltm_inc.get("operatingIncome") or 0) * (1 - t) if has_ltm else None
     ltm_fcf = (float(ltm_cf.get("freeCashFlow") or 0) or
                float((ltm_cf.get("operatingCashFlow") or 0) +
