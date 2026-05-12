@@ -10,10 +10,12 @@ _NO_SCALE_INCOME = {"eps", "epsDiluted"}
 _LTM_INCOME_FIELDS = [
     "revenue", "operatingIncome", "netIncome", "interestExpense",
     "weightedAverageShsOutDil", "weightedAverageShsOut",
+    "grossProfit",
 ]
 _LTM_CASHFLOW_FIELDS = [
     "operatingCashFlow", "capitalExpenditure", "freeCashFlow",
     "commonStockRepurchased", "dividendsPaid",
+    "depreciationAndAmortization", "changeInWorkingCapital",
 ]
 
 
