@@ -302,6 +302,13 @@ def build_chart_specs(
             ltm_nbc = (ltm_int_ex * (1 - t)) / avg_ltm_nfo
     ltm_spread = (ltm_rnoa - ltm_nbc) if (ltm_rnoa is not None and ltm_nbc is not None) else None
 
+    ltm_gross_profit = float(ltm_inc.get("grossProfit") or 0) if has_ltm else None
+    ltm_ebit         = float(ltm_inc.get("operatingIncome") or 0) if has_ltm else None
+    ltm_dna          = float(ltm_cf.get("depreciationAndAmortization") or 0) if has_ltm else None
+    ltm_capex_raw    = float(ltm_cf.get("capitalExpenditure") or 0) if has_ltm else None
+    ltm_capex_abs    = abs(ltm_capex_raw) if ltm_capex_raw is not None else None
+    ltm_dnwc         = float(ltm_cf.get("changeInWorkingCapital") or 0) if has_ltm else None
+
     def _snap_row(label, hist_vals, fmt_fn, ltm_val=None):
         row = {"indicator": label}
         for col, idx in zip(yr_cols[:n_show], show_idx):
