@@ -140,3 +140,36 @@ def test_dcf_table_has_required_rows():
     for required in ["Omsætningsvækst (CAGR)", "NOPAT-margin", "WACC",
                      "Terminal vækst", "Virksomhedsværdi"]:
         assert any(required in ind for ind in indicators), f"DCF table missing row: {required}"
+
+
+def _get_chart2_indicators(specs):
+    chart2 = next(
+        s for s in specs
+        if s["type"] == "D" and "regnskab" in s.get("title", "").lower()
+    )
+    return [r.get("indicator", "") for r in chart2["table_data"]["rows"]]
+
+
+def test_chart2_has_pl_bridge_rows():
+    specs, _ = build_chart_specs("CARL", "TestCo A/S", "DNK",
+                                  REFORMULATED, WACC_DATA, DCF_SCENARIOS, SENSITIVITY, FAKE_FMP)
+    inds = _get_chart2_indicators(specs)
+    for expected in ["Bruttoavance", "EBIT", "NOPAT"]:
+        assert any(expected in i for i in inds), f"P&L bridge missing: {expected}"
+
+
+def test_chart2_has_fcf_bridge_rows():
+    specs, _ = build_chart_specs("CARL", "TestCo A/S", "DNK",
+                                  REFORMULATED, WACC_DATA, DCF_SCENARIOS, SENSITIVITY, FAKE_FMP)
+    inds = _get_chart2_indicators(specs)
+    for expected in ["+ D&A", "− CapEx", "± ΔNWC", "= Cash FCF"]:
+        assert any(expected in i for i in inds), f"FCF bridge missing: {expected}"
+
+
+def test_chart2_has_capital_bridge_rows():
+    specs, _ = build_chart_specs("CARL", "TestCo A/S", "DNK",
+                                  REFORMULATED, WACC_DATA, DCF_SCENARIOS, SENSITIVITY, FAKE_FMP)
+    inds = _get_chart2_indicators(specs)
+    for expected in ["Driftsaktiver", "Driftsforpligtelser", "= NOA",
+                     "Bruttogæld", "Finansielle aktiver", "= NFO"]:
+        assert any(expected in i for i in inds), f"Capital bridge missing: {expected}"
