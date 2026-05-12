@@ -148,7 +148,7 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     for j in range(n_cols):
         cell = table[0, j]
         cell.set_facecolor(BRAND["primary"])
-        cell.set_text_props(color="white", fontweight="bold", fontsize=9)
+        cell.set_text_props(color="white", fontweight="bold", fontsize=10)
         cell.set_edgecolor("#0a5550")
 
     # Style data rows
