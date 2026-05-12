@@ -99,7 +99,7 @@ def _analyst_next_rev(estimates: list):
 
 def _ltm_noa_nfo(ltm_bal: dict, ltm_revenue: float = 0.0):
     if not ltm_bal:
-        return None, None
+        return None, None, None, None, None, None
     def s(k):
         return float(ltm_bal.get(k) or 0)
     cash_total    = s("cashAndCashEquivalents")
@@ -109,7 +109,8 @@ def _ltm_noa_nfo(ltm_bal: dict, ltm_revenue: float = 0.0):
     fin_liabs  = s("shortTermDebt") + s("longTermDebt") + s("capitalLeaseObligations")
     op_assets  = s("totalAssets") - fin_assets
     op_liabs   = s("totalLiabilities") - fin_liabs
-    return op_assets - op_liabs, fin_liabs - fin_assets
+    return (op_assets - op_liabs, fin_liabs - fin_assets,
+            op_assets, op_liabs, fin_liabs, fin_assets)
 
 
 # ── Sector valuation benchmarks (Damodaran / market consensus ranges) ─────────
