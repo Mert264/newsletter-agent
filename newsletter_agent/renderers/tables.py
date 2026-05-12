@@ -97,9 +97,14 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     # ── Cell colours ─────────────────────────────────────────────────────
     header_colors = [[BRAND["primary"]] * n_cols]
 
+    sep_row_indices = {i for i, r in enumerate(rows)
+                       if r.get("indicator", "").startswith("━")}
     change_col = cols[-1] if cols else None
     row_colors = []
-    for r in rows:
+    for i, r in enumerate(rows):
+        if i in sep_row_indices:
+            row_colors.append(["#cce8e6"] * n_cols)
+            continue
         base = [BRAND["background"]] * n_cols
         if change_col:
             change = str(r.get(change_col, ""))
@@ -109,8 +114,10 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
                 base[-1] = "#fee2e2"   # light red
         row_colors.append(base)
 
-    # Alternating row shading
+    # Alternating row shading (skip separator rows)
     for i in range(0, len(row_colors), 2):
+        if i in sep_row_indices:
+            continue
         row_colors[i] = [
             "#f3fafa" if c == BRAND["background"] else c
             for c in row_colors[i]
