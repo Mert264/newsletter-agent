@@ -87,7 +87,10 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
             return s
         lines = textwrap.wrap(s, width=max(8, max_chars))
         return "\n".join(lines) if lines else s
-    cell_text  = [[_wrap_cell(r.get("indicator", ""), _ind_max_chars)]
+    _bridge_pfx = ("+", "−", "±", "=")  # +, −, ±, =
+    def _indent(text: str) -> str:
+        return ("   " + text) if text.startswith(_bridge_pfx) else text
+    cell_text  = [[_wrap_cell(_indent(r.get("indicator", "")), _ind_max_chars)]
                   + [_wrap_cell(r.get(c, ""), _data_max_chars) for c in cols]
                   for r in rows]
 
