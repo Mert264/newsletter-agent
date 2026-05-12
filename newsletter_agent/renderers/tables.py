@@ -51,8 +51,8 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     n_cols = len(cols) + 1   # +1 for indicator column
 
     # Dynamic height: taller for more rows
-    row_height = 0.38         # inches per data row
-    header_h   = 0.42
+    row_height = 0.46         # inches per data row
+    header_h   = 0.50
     fig_h      = max(2.2, header_h + n_rows * row_height + 0.6)
     base_fig_w = BRAND["figure_width_px"] / BRAND["figure_dpi"]
     fig_w = base_fig_w  # all tables use the same width for visual consistency
