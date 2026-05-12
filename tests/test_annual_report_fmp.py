@@ -84,3 +84,47 @@ def test_profile_unwrapped_from_list(mock_get):
     # profile must be a dict (unwrapped from list), not a list
     assert isinstance(result["profile"], dict)
     assert result["profile"]["beta"] == 0.85
+
+
+@patch("newsletter_agent.specialists.annual_report_fmp.requests.get")
+def test_ltm_cashflow_includes_dna_and_dnwc(mock_get):
+    cf_row = {**FAKE_CF[0], "changeInWorkingCapital": -1_000}
+    mock_get.side_effect = [
+        _mock_response(FAKE_INCOME),
+        _mock_response(FAKE_BALANCE),
+        _mock_response(FAKE_CF),
+        _mock_response(FAKE_PROFILE),
+        _mock_response(FAKE_RATING),
+        _mock_response(FAKE_METRICS),
+        _mock_response(FAKE_ESTIMATES),
+        _mock_response(FAKE_INCOME),          # income_q
+        _mock_response([cf_row] * 4),         # cashflow_q — 4 identical quarters
+        _mock_response(FAKE_BALANCE),         # balance_q
+    ]
+    result = fetch_all("CARL", "test_key")
+    ltm_cf = result["ltm_cashflow"]
+    assert "depreciationAndAmortization" in ltm_cf, "D&A missing from LTM cashflow"
+    assert "changeInWorkingCapital" in ltm_cf, "ΔNWC missing from LTM cashflow"
+    # 4 quarters summed and scaled to millions
+    assert abs(ltm_cf["depreciationAndAmortization"] - 4 * 3500 / 1e6) < 0.001
+    assert abs(ltm_cf["changeInWorkingCapital"] - 4 * (-1_000) / 1e6) < 0.001
+
+
+@patch("newsletter_agent.specialists.annual_report_fmp.requests.get")
+def test_ltm_income_includes_gross_profit(mock_get):
+    inc_row = {**FAKE_INCOME[0], "grossProfit": 35_000}
+    mock_get.side_effect = [
+        _mock_response(FAKE_INCOME),
+        _mock_response(FAKE_BALANCE),
+        _mock_response(FAKE_CF),
+        _mock_response(FAKE_PROFILE),
+        _mock_response(FAKE_RATING),
+        _mock_response(FAKE_METRICS),
+        _mock_response(FAKE_ESTIMATES),
+        _mock_response([inc_row] * 4),        # income_q — 4 identical quarters
+        _mock_response(FAKE_CF),              # cashflow_q
+        _mock_response(FAKE_BALANCE),         # balance_q
+    ]
+    result = fetch_all("CARL", "test_key")
+    assert "grossProfit" in result["ltm_income"], "grossProfit missing from LTM income"
+    assert abs(result["ltm_income"]["grossProfit"] - 4 * 35_000 / 1e6) < 0.001
