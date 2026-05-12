@@ -12,6 +12,8 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
     years, revenue_l, NOA_l, NFO_l, OI_l, FCF_l = [], [], [], [], [], []
     RNOA_l, OG_l, ATO_l, FLEV_l, NBC_l, SPREAD_l, ROCE_l = [], [], [], [], [], [], []
     NCI_l, equity_l, goodwill_l, avg_NOA_l, cash_fcf_l = [], [], [], [], []
+    gross_profit_l, ebit_l, dna_l, capex_l, dnwc_l = [], [], [], [], []
+    op_assets_l, op_liabs_l, gross_debt_l, fin_assets_l = [], [], [], []
 
     prev_NOA = prev_NFO = prev_equity = None
 
