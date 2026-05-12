@@ -80,6 +80,15 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
 
         ROCE_l.append(ROCE); NCI_l.append(nci); equity_l.append(common_eq)
         goodwill_l.append(goodwill); avg_NOA_l.append(avg_NOA); cash_fcf_l.append(cash_fcf)
+        gross_profit_l.append(_safe(inc.get("grossProfit")))
+        ebit_l.append(ebit)
+        dna_l.append(_dna)
+        capex_l.append(_capex)
+        dnwc_l.append(_dnwc)
+        op_assets_l.append(op_assets)
+        op_liabs_l.append(op_liabs)
+        gross_debt_l.append(fin_liabs)
+        fin_assets_l.append(fin_assets)
 
         prev_NOA, prev_NFO, prev_equity = NOA, NFO, common_eq
 
