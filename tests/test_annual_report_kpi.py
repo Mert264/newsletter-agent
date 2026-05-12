@@ -2,6 +2,7 @@ import pandas as pd
 from newsletter_agent.specialists.annual_report_kpi import build_chart_specs
 
 REFORMULATED = {
+    # --- existing keys (unchanged) ---
     "years": [2020, 2021, 2022, 2023, 2024],
     "revenue":       [100_000] * 5,
     "NOA":           [100_000] * 5,
@@ -22,6 +23,16 @@ REFORMULATED = {
     "flags": [],
     "excluded_years": set(),
     "n_avg_years": 5,
+    # --- new keys ---
+    "gross_profit":  [40_000]  * 5,
+    "ebit":          [20_000]  * 5,
+    "dna":           [5_000]   * 5,
+    "capex":         [-8_000]  * 5,
+    "dnwc":          [-2_000]  * 5,
+    "op_assets":     [150_000] * 5,
+    "op_liabs":      [50_000]  * 5,
+    "gross_debt":    [80_000]  * 5,
+    "fin_assets":    [40_000]  * 5,
 }
 WACC_DATA = {
     "rf": 0.028, "rf_entry": {"rate": 0.0384, "maturity_yr": 35,
