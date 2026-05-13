@@ -840,14 +840,57 @@ def _run_specialist(name: str, task: dict) -> tuple[str, dict]:
     return name, result
 
 
-def run(brief: str, output_dir: str = "output", preferred_types: list = None, period_days: int = None, model: str = None) -> list:
+def _write_excel(specialist_results: dict, output_dir: str) -> str:
+    """Export all fetched DataFrames to a single Excel workbook, one sheet per series."""
+    try:
+        import openpyxl
+    except ImportError:
+        return ""
+    try:
+        excel_path = os.path.join(output_dir, "data_export.xlsx")
+        with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
+            written = 0
+            for spec_name, result in specialist_results.items():
+                dfs = result.get("dataframes", {})
+                for label, df in dfs.items():
+                    if df is None or df.empty:
+                        continue
+                    # Sheet name: max 31 chars, no special chars
+                    sheet = f"{label}"[:31].replace("/", "-").replace("\\", "-").replace("*", "").replace("?", "").replace("[", "").replace("]", "").replace(":", "-")
+                    df_out = df.copy()
+                    if hasattr(df_out.index, "strftime"):
+                        df_out.index = df_out.index.strftime("%Y-%m-%d")
+                    df_out.index.name = "Dato"
+                    df_out.to_excel(writer, sheet_name=sheet)
+                    written += 1
+            if written == 0:
+                return ""
+        return excel_path
+    except Exception as e:
+        print(f"  [excel] Export failed: {e}")
+        return ""
+
+
+def run(brief: str, output_dir: str = "output", preferred_types: list = None,
+        period_days: int = None, model: str = None,
+        start_date: str = None, end_date: str = None) -> list:
     """
     Main pipeline entry point.
     brief: free-form topic string from department.
     output_dir: where to save PNG files and manifest.json.
     preferred_types: optional list of chart type codes e.g. ["A", "G"] — passed to orchestrator.
+    start_date / end_date: explicit ISO date strings — override period_days when provided.
     Returns list of FigurePackage dicts: [{"path": str, "metadata": dict}, ...]
     """
+    # If explicit dates provided, derive period_days from them so existing logic still works
+    if start_date and not period_days:
+        try:
+            from datetime import date as _date
+            _s = pd.Timestamp(start_date)
+            _e = pd.Timestamp(end_date) if end_date else pd.Timestamp.today()
+            period_days = max(1, (_e - _s).days)
+        except Exception:
+            pass
     os.makedirs(output_dir, exist_ok=True)
 
     # Step 1: Orchestrate — 1 LLM call → TaskManifest
