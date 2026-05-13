@@ -1145,7 +1145,12 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     with open(ctx_path, "w") as f:
         json.dump(rerender_ctx, f, indent=2, default=str)
 
-    # Step 5: Save manifest
+    # Step 5: Excel data export
+    excel_path = _write_excel(specialist_results, output_dir)
+    if excel_path:
+        print(f"       Excel: {os.path.basename(excel_path)} ({len(specialist_results)} specialists)")
+
+    # Step 6: Save manifest
     manifest_path = os.path.join(output_dir, "manifest.json")
     with open(manifest_path, "w") as f:
         json.dump({"brief": brief, "date": str(date.today()), "figures": packages}, f, indent=2, default=str)
@@ -1154,4 +1159,4 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     if _specialist_errors:
         for name, err in _specialist_errors.items():
             print(f"  [pipeline] Specialist '{name}' failed: {err}")
-    return packages, _specialist_errors
+    return packages, _specialist_errors, excel_path
