@@ -556,19 +556,48 @@
           </div>
         </div>
       </div>
-      <div style="margin-top:14px;margin-bottom:4px">
-        <div style="font-size:10px;color:#6b7280;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Tidsperiode</div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:11px;color:#9ca3af;min-width:22px">1 år</span>
-          <input type="range" id="periodSlider" min="1" max="10" step="1" value="2"
-                 oninput="onSliderChange(this)"
-                 style="flex:1;accent-color:#11716c;height:4px;cursor:pointer"/>
-          <span style="font-size:11px;color:#9ca3af;min-width:28px;text-align:right">10 år</span>
-          <span id="periodLabel" style="min-width:38px;text-align:right;font-size:13px;font-weight:700;color:#11716c">2 år</span>
+      <!-- ── Period picker ── -->
+      <div style="margin-top:14px;background:#f0f8f7;border:1px solid #b6dbd8;border-radius:7px;padding:12px 14px">
+        <div style="font-size:10px;color:#0d6b66;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:9px">Tidsperiode</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">
+          <button class="period-btn" onclick="setPeriodPreset('5D')">5D</button>
+          <button class="period-btn" onclick="setPeriodPreset('1W')">1U</button>
+          <button class="period-btn" onclick="setPeriodPreset('1M')">1M</button>
+          <button class="period-btn" onclick="setPeriodPreset('3M')">3M</button>
+          <button class="period-btn" onclick="setPeriodPreset('6M')">6M</button>
+          <button class="period-btn" onclick="setPeriodPreset('1Y')">1 År</button>
+          <button class="period-btn" onclick="setPeriodPreset('3Y')">3 År</button>
+          <button class="period-btn" onclick="setPeriodPreset('5Y')">5 År</button>
+          <button class="period-btn" onclick="setPeriodPreset('10Y')">10 År</button>
+          <button class="period-btn" onclick="setPeriodPreset('Max')">Max</button>
+          <button class="period-btn" id="customPeriodBtn" onclick="toggleCustomDates()"
+                  style="border-color:#11716c;color:#11716c">Vælg datoer</button>
           <button id="llmBtn" onclick="setLLMPeriod()"
-                  style="font-size:11px;padding:4px 12px;border-radius:20px;border:1.5px solid #d1d5db;background:#fff;color:#6b7280;cursor:pointer;transition:all .15s;white-space:nowrap;margin-left:4px">
+                  style="font-size:11px;padding:5px 13px;border-radius:6px;border:1.5px solid #d1d5db;background:#fff;color:#6b7280;cursor:pointer;transition:all .15s;white-space:nowrap;min-height:34px">
             LLM ✦
           </button>
+        </div>
+        <!-- Custom date inputs — hidden by default -->
+        <div id="customDatesRow" style="display:none;margin-top:10px;padding:10px 12px;background:#fff;border:1px solid #c8e0de;border-radius:5px">
+          <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end">
+            <div>
+              <div style="font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;margin-bottom:5px">Fra</div>
+              <input type="text" id="dateFrom" placeholder="ÅÅÅÅ-MM-DD"
+                     style="font-size:13px;padding:6px 10px;border:1.5px solid #d1d5db;border-radius:5px;width:130px;font-family:inherit;color:#1a2a2a"
+                     oninput="onCustomDateChange()">
+            </div>
+            <div>
+              <div style="font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;margin-bottom:5px">Til</div>
+              <input type="text" id="dateTo" placeholder="ÅÅÅÅ-MM-DD"
+                     style="font-size:13px;padding:6px 10px;border:1.5px solid #d1d5db;border-radius:5px;width:130px;font-family:inherit;color:#1a2a2a"
+                     oninput="onCustomDateChange()">
+            </div>
+            <div style="flex:1;min-width:200px">
+              <div style="font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;margin-bottom:5px">Specifikke datoer <span style="font-weight:400;text-transform:none">(kommasepareret)</span></div>
+              <input type="text" id="snapshotDates" placeholder="2022-02-24, 2023-10-07"
+                     style="font-size:13px;padding:6px 10px;border:1.5px solid #d1d5db;border-radius:5px;width:100%;font-family:inherit;color:#1a2a2a">
+            </div>
+          </div>
         </div>
       </div>
       <div class="run-row">
