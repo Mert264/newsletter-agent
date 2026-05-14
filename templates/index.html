@@ -670,7 +670,15 @@
 
   <!-- ── Generated figures ── -->
   <div class="card full-width" id="figuresPanel">
-    <div class="card-header">📊 Genererede figurer</div>
+    <div class="card-header" style="justify-content:space-between">
+      <span>📊 Genererede figurer</span>
+      <a id="excelBtn" href="/download/excel" download="maj_invest_data_export.xlsx"
+         style="display:none;align-items:center;gap:7px;background:#11716c;color:#fff;border-radius:6px;padding:5px 14px;font-size:12px;font-weight:600;text-decoration:none;letter-spacing:.01em;transition:background .15s"
+         onmouseover="this.style.background='#0d5a56'" onmouseout="this.style.background='#11716c'">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex-shrink:0"><path d="M6.5 1v7M3.5 5.5l3 3 3-3M2 10h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download Excel
+      </a>
+    </div>
     <div class="card-body">
       <div id="emptyState" class="empty-state">
         <div class="empty-state-icon">📈</div>
