@@ -275,13 +275,35 @@ def last_result():
 
 @app.route("/figures/<filename>")
 def serve_figure(filename):
-    # Search timestamped run dirs (newest first) then fall back to root OUTPUT_DIR
     import glob as _glob
     run_dirs = sorted(_glob.glob(os.path.join(OUTPUT_DIR, "2*")), reverse=True)
     for d in run_dirs:
         if os.path.exists(os.path.join(d, filename)):
             return send_from_directory(d, filename)
     return send_from_directory(OUTPUT_DIR, filename)
+
+
+@app.route("/download/excel")
+def download_excel():
+    """Serve the most recent Excel data export."""
+    global _last_excel_path
+    # Also search newest run dir if in-memory path is stale
+    if not _last_excel_path or not os.path.exists(_last_excel_path):
+        import glob as _glob
+        run_dirs = sorted(_glob.glob(os.path.join(OUTPUT_DIR, "2*")), reverse=True)
+        for d in run_dirs:
+            candidate = os.path.join(d, "data_export.xlsx")
+            if os.path.exists(candidate):
+                _last_excel_path = candidate
+                break
+    if _last_excel_path and os.path.exists(_last_excel_path):
+        return send_from_directory(
+            os.path.dirname(_last_excel_path),
+            os.path.basename(_last_excel_path),
+            as_attachment=True,
+            download_name="maj_invest_data_export.xlsx",
+        )
+    return jsonify({"error": "Ingen data endnu — kør en analyse først."}), 404
 
 
 if __name__ == "__main__":
