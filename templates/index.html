@@ -1116,8 +1116,10 @@ window.addEventListener('load', () => {
       document.getElementById('statusMsg').textContent =
         `Seneste kørsel gendannet — ${msg.figures.length} figur(er)`;
       renderFigures(msg.figures);
+      const excelBtn = document.getElementById('excelBtn');
+      if (excelBtn && msg.excel_available) excelBtn.style.display = 'flex';
     }
-  }).catch(() => {});  // silently ignore if /last not available
+  }).catch(() => {});
 });
 // Init: default to LLM bestemmer on page load
 setLLMPeriod();
