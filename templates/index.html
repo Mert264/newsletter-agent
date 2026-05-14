@@ -981,41 +981,88 @@ function renderFigures(figures) {
 }
 
 // ── Period selector ──
-let selectedPeriodDays = 0;  // 0 = LLM bestemmer (default)
+const PRESET_DAYS = { '5D':5, '1W':7, '1M':30, '3M':90, '6M':180, '1Y':365, '3Y':1095, '5Y':1825, '10Y':3650, 'Max':10950 };
+let selectedPeriodDays = 0;   // 0 = LLM decides
+let selectedStartDate  = '';
+let selectedEndDate    = '';
 
-function onSliderChange(slider) {
-  const years = parseInt(slider.value, 10);
-  selectedPeriodDays = years * 365;
-  document.getElementById('periodLabel').textContent = years + ' år';
-  const llm = document.getElementById('llmBtn');
-  llm.style.background = '#fff';
-  llm.style.color = '#6b7280';
-  llm.style.borderColor = '#d1d5db';
+function _clearPresetActive() {
+  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('llmBtn').style.background = '#fff';
+  document.getElementById('llmBtn').style.color = '#6b7280';
+  document.getElementById('llmBtn').style.borderColor = '#d1d5db';
+}
+
+function setPeriodPreset(preset) {
+  _clearPresetActive();
+  selectedStartDate = '';
+  selectedEndDate   = '';
+  document.getElementById('customDatesRow').style.display = 'none';
+  document.getElementById('customPeriodBtn').classList.remove('active');
+  const days = PRESET_DAYS[preset] || 0;
+  selectedPeriodDays = days;
+  // Mark active button
+  document.querySelectorAll('.period-btn').forEach(b => {
+    const label = b.textContent.trim();
+    const map = {'5D':'5D','1U':'1W','1M':'1M','3M':'3M','6M':'6M','1 År':'1Y','3 År':'3Y','5 År':'5Y','10 År':'10Y','Max':'Max'};
+    if (map[label] === preset) b.classList.add('active');
+  });
+}
+
+function toggleCustomDates() {
+  const row = document.getElementById('customDatesRow');
+  const btn = document.getElementById('customPeriodBtn');
+  const visible = row.style.display !== 'none';
+  if (visible) {
+    row.style.display = 'none';
+    btn.classList.remove('active');
+    btn.style.background = '#fff';
+    btn.style.color = '#11716c';
+  } else {
+    _clearPresetActive();
+    selectedPeriodDays = 0;
+    row.style.display = 'block';
+    btn.classList.add('active');
+    btn.style.background = '#11716c';
+    btn.style.color = '#fff';
+    document.getElementById('dateFrom').focus();
+  }
+}
+
+function onCustomDateChange() {
+  selectedStartDate = document.getElementById('dateFrom').value.trim();
+  selectedEndDate   = document.getElementById('dateTo').value.trim();
+  selectedPeriodDays = 0;  // explicit dates override period_days
 }
 
 function setLLMPeriod() {
+  _clearPresetActive();
   selectedPeriodDays = 0;
-  document.getElementById('periodLabel').textContent = '—';
-  document.getElementById('periodSlider').value = 2;
+  selectedStartDate  = '';
+  selectedEndDate    = '';
+  document.getElementById('customDatesRow').style.display = 'none';
+  document.getElementById('customPeriodBtn').classList.remove('active');
+  document.getElementById('customPeriodBtn').style.background = '#fff';
+  document.getElementById('customPeriodBtn').style.color = '#11716c';
   const llm = document.getElementById('llmBtn');
   llm.style.background = '#11716c';
   llm.style.color = '#fff';
   llm.style.borderColor = '#11716c';
 }
 
-// Called by setQuick to sync slider + LLM button
+// Called by setQuick to auto-select period
 function setPeriodDays(days) {
   if (days === 0) {
     setLLMPeriod();
   } else {
-    const years = Math.max(1, Math.min(10, Math.round(days / 365)));
-    document.getElementById('periodSlider').value = years;
-    selectedPeriodDays = years * 365;
-    document.getElementById('periodLabel').textContent = years + ' år';
-    const llm = document.getElementById('llmBtn');
-    llm.style.background = '#fff';
-    llm.style.color = '#6b7280';
-    llm.style.borderColor = '#d1d5db';
+    // Find best matching preset
+    const presets = ['5D','1W','1M','3M','6M','1Y','3Y','5Y','10Y','Max'];
+    let best = 'Max';
+    for (const p of presets) {
+      if (PRESET_DAYS[p] >= days) { best = p; break; }
+    }
+    setPeriodPreset(best);
+    selectedPeriodDays = days;  // preserve exact value even if no perfect match
   }
 }
 
