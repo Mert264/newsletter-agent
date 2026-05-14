@@ -87,19 +87,24 @@ def index():
     return render_template("index.html")
 
 
+_last_excel_path: str = ""   # path to most-recent Excel export on this server
+
+
 @app.route("/run", methods=["POST"])
 def start_run():
+    global _last_excel_path
     body = request.json or {}
-    brief = body.get("brief", "").strip()
-    preferred_types = body.get("preferred_types", None)  # e.g. ["A", "G"]
-    period_days = body.get("period_days", None)          # e.g. 365, 730, 1825
+    brief        = body.get("brief", "").strip()
+    preferred_types = body.get("preferred_types", None)
+    period_days  = body.get("period_days", None)
+    start_date   = body.get("start_date", None) or None
+    end_date     = body.get("end_date", None) or None
     if not brief:
         return jsonify({"error": "Brief is required"}), 400
 
     if not _run_lock.acquire(blocking=False):
         return jsonify({"error": "A run is already in progress"}), 429
 
-    # Drain any stale messages
     while not _run_queue.empty():
         try:
             _run_queue.get_nowait()
@@ -107,6 +112,7 @@ def start_run():
             break
 
     def do_run():
+        global _last_excel_path
         orig = sys.stdout
         sys.stdout = _StreamWriter(_run_queue, orig)
         try:
@@ -115,9 +121,17 @@ def start_run():
 
             run_dir = os.path.join(OUTPUT_DIR, datetime.now().strftime("%Y%m%d_%H%M%S"))
             os.makedirs(run_dir, exist_ok=True)
-            packages, specialist_errors = run(brief, output_dir=run_dir, preferred_types=preferred_types, period_days=period_days)
+            packages, specialist_errors, excel_path = run(
+                brief,
+                output_dir=run_dir,
+                preferred_types=preferred_types,
+                period_days=period_days,
+                start_date=start_date,
+                end_date=end_date,
+            )
+            if excel_path:
+                _last_excel_path = excel_path
 
-            # Load rerender context
             ctx_path = os.path.join(run_dir, "rerender_context.json")
             rerender_ctx = {}
             if os.path.exists(ctx_path):
@@ -140,9 +154,10 @@ def start_run():
             ]
 
             done_msg = {
-                "type": "done",
-                "figures": figures,
+                "type":              "done",
+                "figures":           figures,
                 "specialist_errors": specialist_errors,
+                "excel_available":   bool(excel_path),
             }
             _last_result.update(done_msg)
             with open(_LAST_RESULT_PATH, "w") as _f:
@@ -150,6 +165,7 @@ def start_run():
             _run_queue.put(done_msg)
 
         except Exception as exc:
+            import traceback
             err_msg = {"type": "error", "text": str(exc)}
             _last_result.update(err_msg)
             _run_queue.put(err_msg)
