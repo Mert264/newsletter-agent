@@ -933,10 +933,18 @@ function startRun() {
   };
 
   // Then POST the run
+  const snapshotRaw = (document.getElementById('snapshotDates')?.value || '').trim();
   fetch('/run', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ brief, preferred_types: getPreferredTypes(), period_days: selectedPeriodDays || null }),
+    body: JSON.stringify({
+      brief,
+      preferred_types: getPreferredTypes(),
+      period_days:  selectedPeriodDays || null,
+      start_date:   selectedStartDate  || null,
+      end_date:     selectedEndDate    || null,
+      snapshot_dates: snapshotRaw ? snapshotRaw.split(',').map(s => s.trim()).filter(Boolean) : null,
+    }),
   }).then(r => {
     if (r.status === 429) {
       document.getElementById('statusMsg').textContent = 'En kørsel er allerede i gang — vent venligst.';
