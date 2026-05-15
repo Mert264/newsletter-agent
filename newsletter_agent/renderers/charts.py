@@ -360,45 +360,111 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
 def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     """
-    Type B — Comparison bar chart.
-    Two layouts:
-    - DatetimeIndex / multiple columns: each column is one bar (snapshot of latest row).
-    - String index, single column: index entries are categories (original cross-country use).
+    Type B — Bar chart. Three modes:
+    - DatetimeIndex + single column: time-series bars (one bar per period).
+    - DatetimeIndex + multiple columns: snapshot bars (each column = latest-row value).
+    - String index: category comparison bars.
     """
     fig, ax = plt.subplots(figsize=FIGSIZE, dpi=BRAND["figure_dpi"])
 
-    if isinstance(df.index, pd.DatetimeIndex) or len(df.columns) > 1:
-        # Snapshot: columns → bars, strip ticker prefix from label
+    is_timeseries = isinstance(df.index, pd.DatetimeIndex) and len(df.columns) == 1
+
+    if is_timeseries:
+        col = df.columns[0]
+        series = df[col].dropna()
+
+        # Detect typical gap between observations to decide whether to downsample
+        if len(series) > 1:
+            typical_gap = (series.index[-1] - series.index[0]).days / len(series)
+        else:
+            typical_gap = 30
+
+        # Daily/weekly data with many points → aggregate to monthly
+        if typical_gap <= 10 and len(series) > 60:
+            series = series.resample("ME").mean().dropna()
+        # Monthly data over a very long period → aggregate to quarterly
+        elif 20 <= typical_gap <= 45 and len(series) > 100:
+            series = series.resample("QE").mean().dropna()
+
+        values = series.values
+        x_pos = np.arange(len(values))
+        colors = [BRAND["primary"] if v >= 0 else "#dc2626" for v in values]
+        bar_width = max(0.4, min(0.85, 40.0 / max(len(values), 1)))
+        bars = ax.bar(x_pos, values, color=colors, width=bar_width, edgecolor="white")
+
+        # Value labels — only when bars are few enough to stay readable
+        if len(values) <= 30:
+            y_range = (max(values) - min(values)) if len(values) > 1 else (abs(values[0]) if len(values) else 1)
+            offset = y_range * 0.025 or 0.5
+            has_mixed = any(v >= 0 for v in values) and any(v < 0 for v in values)
+            for bar, val in zip(bars, values):
+                lbl = (f"+{val:,.0f}" if (val >= 0 and has_mixed) else f"{val:,.0f}")
+                ax.text(bar.get_x() + bar.get_width() / 2,
+                        bar.get_height() + (offset if val >= 0 else -offset),
+                        lbl, ha="center", va="bottom" if val >= 0 else "top",
+                        fontsize=6, color=BRAND["secondary"])
+
+        # X-axis date labels — adapt density to number of bars
+        n_bars = len(series)
+        if n_bars > 40:
+            tick_step = max(1, n_bars // 10)
+            fmt = "%Y"
+        elif n_bars > 16:
+            tick_step = max(1, n_bars // 8)
+            fmt = "%b '%y"
+        else:
+            tick_step = 1
+            fmt = "%b '%y"
+
+        tick_pos = x_pos[::tick_step]
+        tick_lbls = [series.index[i].strftime(fmt) for i in range(0, len(series), tick_step)]
+        ax.set_xticks(tick_pos)
+        ax.set_xticklabels(tick_lbls, rotation=45, ha="right",
+                           fontsize=BRAND["font_size_axis"])
+
+    elif isinstance(df.index, pd.DatetimeIndex) or len(df.columns) > 1:
+        # Multi-column snapshot: each column → one bar from latest row
         latest = df.iloc[-1]
         labels = [c.split(" — ")[-1] for c in latest.index]
         values = list(latest.values)
+        colors = [BRAND["primary"] if v >= 0 else "#dc2626" for v in values]
+        bars = ax.bar(labels, values, color=colors, width=0.5, edgecolor="white")
+        y_range = max(values) - min(values) if len(values) > 1 else abs(values[0]) if values else 1
+        offset = y_range * 0.02 or 0.5
+        has_mixed_signs = any(v >= 0 for v in values) and any(v < 0 for v in values)
+        for bar, val in zip(bars, values):
+            label = (f"+{val:.2f}" if (val >= 0 and has_mixed_signs) else f"{val:.2f}")
+            ax.text(bar.get_x() + bar.get_width() / 2,
+                    bar.get_height() + (offset if val >= 0 else -offset),
+                    label, ha="center", va="bottom" if val >= 0 else "top",
+                    fontsize=9, fontweight="bold", color=BRAND["secondary"])
+
     else:
+        # Category bars: string index, single column
         col = df.columns[0]
         values = list(df[col].values)
         labels = list(df.index)
-
-    colors = [BRAND["primary"] if v >= 0 else "#dc2626" for v in values]
-    bars = ax.bar(labels, values, color=colors, width=0.5, edgecolor="white")
-
-    y_range = max(values) - min(values) if len(values) > 1 else abs(values[0]) if values else 1
-    offset = y_range * 0.02 or 0.5
-
-    # Only show "+" prefix when chart has mixed sign values (spread/change charts).
-    # For pure absolute value comparisons (e.g. price bars), suppress the "+" prefix.
-    has_mixed_signs = any(v >= 0 for v in values) and any(v < 0 for v in values)
-    for bar, val in zip(bars, values):
-        label = (f"+{val:.2f}" if (val >= 0 and has_mixed_signs) else f"{val:.2f}")
-        ax.text(bar.get_x() + bar.get_width() / 2,
-                bar.get_height() + (offset if val >= 0 else -offset),
-                label,
-                ha="center", va="bottom" if val >= 0 else "top",
-                fontsize=9, fontweight="bold", color=BRAND["secondary"])
+        colors = [BRAND["primary"] if v >= 0 else "#dc2626" for v in values]
+        bars = ax.bar(labels, values, color=colors, width=0.5, edgecolor="white")
+        y_range = max(values) - min(values) if len(values) > 1 else abs(values[0]) if values else 1
+        offset = y_range * 0.02 or 0.5
+        has_mixed_signs = any(v >= 0 for v in values) and any(v < 0 for v in values)
+        for bar, val in zip(bars, values):
+            label = (f"+{val:.2f}" if (val >= 0 and has_mixed_signs) else f"{val:.2f}")
+            ax.text(bar.get_x() + bar.get_width() / 2,
+                    bar.get_height() + (offset if val >= 0 else -offset),
+                    label, ha="center", va="bottom" if val >= 0 else "top",
+                    fontsize=9, fontweight="bold", color=BRAND["secondary"])
 
     ax.axhline(0, color=BRAND["secondary"], linewidth=0.6)
     ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
-    ax.set_xlabel(spec.get("x_label", ""), fontsize=BRAND["font_size_axis"])
-    ax.set_ylabel(spec.get("y_label", ""), fontsize=BRAND["font_size_axis"])
+    raw_xlabel = spec.get("x_label", "")
+    if raw_xlabel.strip().lower() in ("dato", "date", "år", "year", "month", "måned"):
+        raw_xlabel = ""
+    ax.set_xlabel(raw_xlabel, fontsize=BRAND["font_size_axis"], color=BRAND["secondary"])
+    ax.set_ylabel(spec.get("y_label", ""), fontsize=BRAND["font_size_axis"],
+                  color=BRAND["secondary"])
     _apply_brand(ax, fig)
     bottom = _add_footer(fig, spec)
     plt.tight_layout(rect=[0.0, bottom, 1.0, 1.0])
