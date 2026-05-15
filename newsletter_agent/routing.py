@@ -24,6 +24,7 @@ _HH   = _re(r"\b(henry hub|hh)\b")
 _INFL = _re(r"\b(inflation|hicp|prisvækst)\b")
 _UNEM = _re(r"\b(unemployment|ledighed|arbejdsløs)\b")
 _GDP  = _re(r"\b(gdp|bnp|growth|vækst)\b")
+_EMPL = _re(r"\b(beskæftigelse|jobvækst|jobrapport|lønmodtager|payroll|nonfarm|jobs added|arbejdspladser|employment report)\b")
 # Country economy keyword — fires only with an economy keyword AND a non-EU/US context
 _COUNTRY_ECON_KW = _re(r"\b(økonomi|makroprofil|makroøkonomisk|landeprofil|bnp|inflation i|gæld|betalingsbalance|arbejdsløshed i|ledighed i)\b")
 
