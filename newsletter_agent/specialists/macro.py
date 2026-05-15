@@ -91,11 +91,13 @@ def fetch_macro(task: dict) -> dict:
                     es_params = {**known["params"], **es_params}
                 else:
                     es_dataset = es_ticker
-                cutoff = pd.Timestamp(date.today()) - pd.Timedelta(days=period_days)
+                cutoff = pd.Timestamp(start)
                 raw = _eurostat_get(es_dataset, es_params)
                 df = _parse_timeseries(raw, label)
                 if df is not None:
                     df = df[df.index >= cutoff]
+                    if task.get("end_date"):
+                        df = df[df.index <= pd.Timestamp(end)]
                     if not df.empty:
                         dataframes[label] = df
                         if "Eurostat" not in kilde:
