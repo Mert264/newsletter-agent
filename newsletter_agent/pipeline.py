@@ -1180,10 +1180,16 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     with open(ctx_path, "w") as f:
         json.dump(rerender_ctx, f, indent=2, default=str)
 
-    # Step 5: Excel data export
-    excel_path = _write_excel(specialist_results, output_dir)
-    if excel_path:
-        print(f"       Excel: {os.path.basename(excel_path)} ({len(specialist_results)} specialists)")
+    # Step 5: Per-figure Excel export
+    excel_paths = _write_excel_per_figure(packages, specialist_results, output_dir)
+    n_excel = 0
+    for i, ep in enumerate(excel_paths):
+        if ep and i < len(packages):
+            packages[i]["metadata"]["excel_path"] = os.path.basename(ep)
+            n_excel += 1
+    excel_path = "per_figure" if n_excel > 0 else ""
+    if n_excel:
+        print(f"       Excel: {n_excel} per-figure workbook(s) written")
 
     # Step 6: Save manifest
     manifest_path = os.path.join(output_dir, "manifest.json")
