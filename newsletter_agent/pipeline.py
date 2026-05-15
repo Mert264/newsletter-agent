@@ -281,12 +281,12 @@ def _build_table(dfs: dict, chart_spec: dict, kilde_str: str, output_path: str) 
         if target_value is not None:
             dist = after_val - target_value
             sign = "+" if dist >= 0 else ""
-            change_str = f"{sign}{dist:.2f} pp"
+            change_str = f"{sign}{dist:.2f}".replace(".", ",") + " pp"
         else:
             change = after_val - before_val
             sign   = "+" if change >= 0 else ""
             if use_absolute:
-                change_str = f"{sign}{change:.2f} pp"
+                change_str = f"{sign}{change:.2f}".replace(".", ",") + " pp"
             else:
                 pct = (change / abs(before_val) * 100) if before_val != 0 else 0.0
                 change_str = f"{sign}{pct:.1f}%"
