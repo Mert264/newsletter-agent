@@ -341,6 +341,8 @@ def fetch_eurostat(task: dict) -> dict:
             df = _parse_timeseries(raw, label)
             if df is not None:
                 df = df[df.index >= cutoff]
+                if end_ts is not None:
+                    df = df[df.index <= end_ts]
                 if not df.empty:
                     dataframes[label] = df
 
