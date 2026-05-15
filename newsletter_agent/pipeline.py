@@ -886,7 +886,7 @@ def _write_excel_per_figure(packages: list, specialist_results: dict, output_dir
                     for row in ws.iter_rows(min_row=2, min_col=2):
                         for cell in row:
                             if isinstance(cell.value, (int, float)):
-                                cell.number_format = da_fmt
+                                cell.number_format = EXCEL_NUM_FORMAT
                     written += 1
             if written == 0:
                 excel_paths.append("")
