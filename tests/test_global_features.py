@@ -310,6 +310,62 @@ class TestRouting:
 # 6. Pipeline date injection covers all specialists
 # ---------------------------------------------------------------------------
 
+class TestMultiTypePreference:
+    """When multiple preferred_types are selected the orchestrator prompt must
+    instruct the LLM to produce at least one of each type."""
+
+    def test_prompt_contains_both_types(self):
+        """The build_task_manifest prompt must tell the LLM to produce A AND B."""
+        captured_prompt = {}
+
+        import newsletter_agent.orchestrator as orch
+
+        original_call = orch.call_llm
+
+        def fake_call_llm(prompt, model=None):
+            captured_prompt["p"] = prompt
+            # Return minimal valid manifest so the function doesn't crash
+            return {
+                "specialists": [],
+            }
+
+        import unittest.mock as mock
+        with mock.patch.object(orch, "call_llm", side_effect=fake_call_llm):
+            orch.build_task_manifest(
+                "Arbejdsbeskæftigelsen i USA",
+                preferred_types=["A", "B", "G", "F"],
+            )
+
+        prompt = captured_prompt.get("p", "")
+        assert "AT LEAST ONE chart" in prompt or "REQUIREMENT" in prompt, \
+            "Prompt does not instruct LLM to produce all types"
+        assert "A" in prompt and "B" in prompt, \
+            "Prompt missing type A or B requirement"
+
+    def test_employment_routing_hint_mentions_both_types(self):
+        from newsletter_agent.routing import get_routing_hint
+        hint = get_routing_hint("Søjlediagram over arbejdsbeskæftigelsen i USA")
+        assert "type A" in hint or "type='A'" in hint or "Linjegraf" in hint, \
+            "Routing hint must mention type A for employment"
+        assert "type B" in hint or "type='B'" in hint or "Søjlediagram" in hint, \
+            "Routing hint must mention type B for employment"
+
+
+class TestColorFromBrief:
+    """Orchestrator chart spec docs must include color parsing instructions."""
+
+    def test_color_keywords_in_system_prompt(self):
+        from newsletter_agent.orchestrator import SYSTEM_PROMPT
+        assert "highlight_last_n" in SYSTEM_PROMPT
+        assert "orange" in SYSTEM_PROMPT or "#d4843e" in SYSTEM_PROMPT
+        assert "PARSE FROM BRIEF" in SYSTEM_PROMPT or "farv" in SYSTEM_PROMPT.lower()
+
+    def test_bar_color_in_system_prompt(self):
+        from newsletter_agent.orchestrator import SYSTEM_PROMPT
+        assert "bar_color" in SYSTEM_PROMPT
+        assert "highlight_color" in SYSTEM_PROMPT
+
+
 class TestPeriodDaysEnforcement:
     """Pipeline must clamp LLM-generated period_days to user's selection."""
 
