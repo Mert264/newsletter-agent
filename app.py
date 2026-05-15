@@ -149,6 +149,7 @@ def start_run():
                     "chart_type":    p["metadata"].get("chart_type", "A"),
                     "figure_id":     i,
                     "rerender_ctx":  rerender_ctx.get(i, {}),
+                    "excel_path":    p["metadata"].get("excel_path", ""),
                 }
                 for i, p in enumerate(packages)
             ]
