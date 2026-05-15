@@ -127,9 +127,17 @@ Inflation:
   CPIENGSL (CPI Energy), CPIFABSL (CPI Food)
 Growth & labor:
   GDPC1 (US real GDP, quarterly), INDPRO (Industrial production)
-  UNRATE (Unemployment rate %), PAYEMS (Nonfarm payrolls, thousands)
+  UNRATE (Unemployment rate, already in % — do NOT apply transform)
+  PAYEMS (Nonfarm payrolls LEVEL, thousands — ~155,000 = 155 million total jobs)
+    CRITICAL: PAYEMS is a LEVEL. For MONTHLY JOB GROWTH/CHANGE, you MUST add "transform": "diff".
+    Without "diff", the chart shows a flat line at ~155,000 — NOT the monthly change.
+    Correct series entry for monthly job growth:
+      {"ticker": "PAYEMS", "source": "fred", "label": "Månedlig jobvækst (USA)", "unit": "Tusinde", "transform": "diff"}
+    Set y_label="Tusinde personer" and period_days=1460 (4 years) for a meaningful bar chart.
+    Chart type B (time-series bar) is the correct type for this data.
+    NEVER mix PAYEMS-diff data with UNRATE or ICSA in the same chart — incompatible units.
   RSAFS (Retail sales), UMCSENT (U Michigan consumer sentiment)
-  ICSA (Initial jobless claims, weekly)
+  ICSA (Initial jobless claims, weekly — already a change/flow series, no transform needed)
   NAEXKP01JPQ657S (Japan real GDP, quarterly — OECD, 2015=100; set y_label="YoY %" and period_days>=760)
 Central banks:
   ECBDFR (ECB deposit rate)
