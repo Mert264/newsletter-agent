@@ -469,6 +469,10 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     ax.set_ylabel(spec.get("y_label", ""), fontsize=BRAND["font_size_axis"],
                   color=BRAND["secondary"])
     _apply_brand(ax, fig)
+    # After _apply_brand: for time-series bars, suppress vertical gridlines
+    if is_timeseries:
+        ax.xaxis.grid(False)
+        ax.yaxis.grid(True, color=BRAND["grid_color"], linewidth=0.5, linestyle="-")
     bottom = _add_footer(fig, spec)
     plt.tight_layout(rect=[0.0, bottom, 1.0, 1.0])
 
