@@ -114,6 +114,12 @@ def fetch_macro(task: dict) -> dict:
                 series = _fred_get(fred, ticker, start)
                 if task.get("end_date"):
                     series = series[series.index <= pd.Timestamp(end)]
+                # Apply optional transforms BEFORE making the DataFrame
+                _transform = s.get("transform", "")
+                if _transform == "diff":
+                    series = series.diff().dropna()
+                elif _transform == "pct_change":
+                    series = series.pct_change().dropna() * 100
                 df = series.to_frame(name=label)
                 df.index = pd.to_datetime(df.index)
                 dataframes[label] = df
