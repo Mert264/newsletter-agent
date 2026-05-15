@@ -967,16 +967,26 @@ function renderFigures(figures) {
          </div>`
       : '';
 
+    const excelFooterBtn = fig.excel_path
+      ? `<a href="/download/excel/${encodeURIComponent(fig.excel_path)}" download="${fig.excel_path}"
+            style="display:inline-flex;align-items:center;gap:5px;color:#11716c;font-size:11px;font-weight:600;text-decoration:none;padding:3px 8px;border:1px solid #b6dbd8;border-radius:4px;background:#f0faf9"
+            onmouseover="this.style.background='#d4eeeb'" onmouseout="this.style.background='#f0faf9'">
+           <svg width="11" height="11" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v7M3.5 5.5l3 3 3-3M2 10h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+           Excel
+         </a>`
+      : '';
+
     const card = document.createElement('div');
     card.className = 'fig-card';
     card.id = `figcard-${i}`;
     card.innerHTML = `
       <img src="/figures/${fig.path}?t=${Date.now()}" alt="${fig.title}"
            id="figimg-${i}" onclick="openLightbox(this.src)" />
-      <div class="fig-footer">
+      <div class="fig-footer" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
         <a href="/figures/${fig.path}" download="${fig.path}" class="fig-download">
           &#8681; Download PNG
         </a>
+        ${excelFooterBtn}
       </div>
       ${flagHtml ? `<div class="fig-meta">${flagHtml}</div>` : ''}`;
 
