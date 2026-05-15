@@ -903,6 +903,14 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     specialists = manifest.get("specialists", [])
     print(f"      Specialists activated: {', '.join(specialists)}")
 
+    # Inject explicit date bounds into each specialist task so they don't fetch beyond the window
+    if start_date or end_date:
+        for spec_name in specialists:
+            if start_date:
+                manifest[spec_name]["start_date"] = start_date
+            if end_date:
+                manifest[spec_name]["end_date"] = end_date
+
     # Hard-enforce preferred_types: drop chart specs the LLM included despite the instruction,
     # and normalize Type D specs (strip axis labels so the reviewer never flags them).
     if preferred_types:
