@@ -498,9 +498,12 @@ Rules:
   (2) TIME-SERIES BAR: One bar per time period for a SINGLE series over multiple years/months.
       Use this when the user asks for "søjlediagram" of a monthly or quarterly metric over time
       (e.g. monthly job growth NFP, quarterly GDP growth, monthly industrial production).
-      CRITICAL for time-series mode: set period_days >= 1460 (4 years) so the chart shows
-      a meaningful trend — do NOT use 90 or 365 days for employment/macro bar charts.
-      The pipeline auto-colours all bars teal, last 2 amber (preliminary data), no value labels.
+      DEFAULT period_days for time-series mode when the user has NOT set a specific Tidsperiode:
+      use period_days >= 1460 (4 years) so the chart shows a meaningful trend.
+      EXCEPTION: if a PREFERRED TIME PERIOD is set (the user explicitly selected a time window),
+      ALWAYS use that period_days exactly — even if it is less than 1460. Never override the user's
+      chosen Tidsperiode for employment or any other chart type.
+      The pipeline auto-colours all bars teal, no value labels.
 - CHOOSING BETWEEN B, G, F when all three appear in preferred_types:
   * F (stacked bar): data represents COMPOSITION/SHARES over multiple time periods (energy mix,
     trade structure, portfolio allocation over years). The x-axis is TIME, y-axis is "Pct. af total".
