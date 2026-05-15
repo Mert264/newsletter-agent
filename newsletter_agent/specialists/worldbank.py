@@ -101,7 +101,15 @@ def fetch_worldbank(task: dict) -> dict:
 
             if df is not None and not df.empty:
                 df.columns = [label]
-                dataframes[label] = df
+                if _start_ts is not None:
+                    df = df[df.index >= _start_ts]
+                if _end_ts is not None:
+                    df = df[df.index <= _end_ts]
+                if not df.empty:
+                    dataframes[label] = df
+                else:
+                    print(f"    [worldbank] No data in range — skipping '{label}'")
+                    skipped.append(label)
             else:
                 print(f"    [worldbank] No data — skipping '{label}'")
                 skipped.append(label)
