@@ -65,15 +65,27 @@ def _fetch_indicator(iso3: str, code: str, years: int) -> Optional[pd.DataFrame]
 def fetch_worldbank(task: dict) -> dict:
     """Fetch World Bank data series defined in task['series']. Returns SpecialistResult dict.
     All series are fetched in parallel; results are cached 48 hours per (iso3, code, years)."""
+    from datetime import date as _date
+    import pandas as _pd
+
     dataframes: dict[str, pd.DataFrame] = {}
     skipped: list[str] = []
     series_list = task.get("series", [])
+
+    # Derive date bounds — explicit task dates override per-series "years"
+    _start_str = task.get("start_date")
+    _end_str   = task.get("end_date")
+    _start_ts  = _pd.Timestamp(_start_str) if _start_str else None
+    _end_ts    = _pd.Timestamp(_end_str)   if _end_str   else None
 
     def _fetch_one(s: dict):
         label = s.get("label", s.get("ticker", ""))
         iso3  = s.get("country", "WLD")
         code  = s.get("ticker", "")
-        years = int(s.get("years", 20))
+        if _start_str:
+            years = _date.today().year - _pd.Timestamp(_start_str).year + 1
+        else:
+            years = int(s.get("years", 20))
         return label, _fetch_indicator(iso3, code, years)
 
     with ThreadPoolExecutor(max_workers=min(_MAX_WORKERS, len(series_list) or 1)) as pool:
