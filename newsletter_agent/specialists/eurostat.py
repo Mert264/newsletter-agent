@@ -318,7 +318,8 @@ def fetch_eurostat(task: dict) -> dict:
         (c.get("period_days", 730) for c in task.get("charts", [])),
         default=730,
     )
-    cutoff = pd.Timestamp(date.today()) - pd.Timedelta(days=period_days)
+    cutoff = pd.Timestamp(task.get("start_date") or (date.today() - __import__("datetime").timedelta(days=period_days)))
+    end_ts = pd.Timestamp(task.get("end_date")) if task.get("end_date") else None
 
     for s in task["series"]:
         label   = s["label"]
