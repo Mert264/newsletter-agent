@@ -868,6 +868,7 @@ def _write_excel_per_figure(packages: list, specialist_results: dict, output_dir
 
         safe_title = re.sub(r'[\\/*?:\[\]|<>]', '-', metadata.get("title", f"figure_{i:02d}"))[:45]
         excel_path = os.path.join(output_dir, f"figure_{i:02d}_{safe_title}.xlsx")
+        figure_png = package.get("path", "")
 
         try:
             with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
@@ -888,6 +889,21 @@ def _write_excel_per_figure(packages: list, specialist_results: dict, output_dir
                             if isinstance(cell.value, (int, float)):
                                 cell.number_format = EXCEL_NUM_FORMAT
                     written += 1
+
+                # Embed the chart image on a dedicated "Grafik" sheet
+                if figure_png and os.path.exists(figure_png):
+                    try:
+                        from openpyxl.drawing.image import Image as XLImage
+                        ws_img = writer.book.create_sheet("Grafik", 0)  # first sheet
+                        img = XLImage(figure_png)
+                        # Scale to fit a standard screen width (~900px at 96dpi ≈ col width ~130)
+                        img.width  = 900
+                        img.height = int(img.height * 900 / img.width) if img.width else 500
+                        ws_img.add_image(img, "B2")
+                        ws_img.sheet_view.showGridLines = False
+                    except Exception as img_err:
+                        print(f"  [excel] Image embed failed for figure {i}: {img_err}")
+
             if written == 0:
                 excel_paths.append("")
                 continue
