@@ -840,23 +840,47 @@ def _run_specialist(name: str, task: dict) -> tuple[str, dict]:
     return name, result
 
 
-def _write_excel(specialist_results: dict, output_dir: str) -> str:
-    """Export all fetched DataFrames to a single Excel workbook, one sheet per series."""
+def _safe_sheet_name(label: str) -> str:
+    return label[:31].replace("/", "-").replace("\\", "-").replace("*", "").replace("?", "").replace("[", "").replace("]", "").replace(":", "-")
+
+
+def _write_excel_per_figure(packages: list, specialist_results: dict, output_dir: str) -> list:
+    """Write one Excel file per figure. Returns list of paths, empty string for figures with no data."""
     try:
         import openpyxl
     except ImportError:
-        return ""
-    try:
-        excel_path = os.path.join(output_dir, "data_export.xlsx")
-        with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
-            written = 0
-            for spec_name, result in specialist_results.items():
-                dfs = result.get("dataframes", {})
-                for label, df in dfs.items():
+        return [""] * len(packages)
+
+    all_dfs: dict = {}
+    for result in specialist_results.values():
+        all_dfs.update(result.get("dataframes", {}))
+
+    excel_paths = []
+    for i, package in enumerate(packages):
+        metadata = package.get("metadata", {})
+        chart_type = metadata.get("chart_type", "")
+        series_labels = metadata.get("region_labels", [])
+
+        # D-type tables don't have time-series data to export
+        if chart_type == "D" or not series_labels:
+            excel_paths.append("")
+            continue
+
+        relevant = {lbl: all_dfs[lbl] for lbl in series_labels if lbl in all_dfs}
+        if not relevant:
+            excel_paths.append("")
+            continue
+
+        safe_title = re.sub(r'[\\/*?:\[\]|<>]', '-', metadata.get("title", f"figure_{i:02d}"))[:45]
+        excel_path = os.path.join(output_dir, f"figure_{i:02d}_{safe_title}.xlsx")
+
+        try:
+            with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
+                written = 0
+                for label, df in relevant.items():
                     if df is None or df.empty:
                         continue
-                    # Sheet name: max 31 chars, no special chars
-                    sheet = f"{label}"[:31].replace("/", "-").replace("\\", "-").replace("*", "").replace("?", "").replace("[", "").replace("]", "").replace(":", "-")
+                    sheet = _safe_sheet_name(label)
                     df_out = df.copy()
                     if hasattr(df_out.index, "strftime"):
                         df_out.index = df_out.index.strftime("%Y-%m-%d")
@@ -864,11 +888,14 @@ def _write_excel(specialist_results: dict, output_dir: str) -> str:
                     df_out.to_excel(writer, sheet_name=sheet)
                     written += 1
             if written == 0:
-                return ""
-        return excel_path
-    except Exception as e:
-        print(f"  [excel] Export failed: {e}")
-        return ""
+                excel_paths.append("")
+                continue
+            excel_paths.append(excel_path)
+        except Exception as e:
+            print(f"  [excel] Failed for figure {i}: {e}")
+            excel_paths.append("")
+
+    return excel_paths
 
 
 def run(brief: str, output_dir: str = "output", preferred_types: list = None,
