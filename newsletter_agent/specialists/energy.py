@@ -5,12 +5,13 @@ from datetime import date, timedelta
 from newsletter_agent.config import YF_LOCK, API_KEYS
 
 
-def _fetch_yfinance(ticker: str, period_days: int, label: str) -> pd.DataFrame:
+def _fetch_yfinance(ticker: str, period_days: int, label: str,
+                    start_date: str = None, end_date: str = None) -> pd.DataFrame:
     """Fetch OHLCV from yfinance, return Close column renamed to label."""
-    end = date.today()
-    start = end - timedelta(days=period_days)
+    end_str = end_date or str(date.today())
+    start_str = start_date or str(date.today() - timedelta(days=period_days))
     with YF_LOCK:
-        raw = yf.download(ticker, start=str(start), end=str(end),
+        raw = yf.download(ticker, start=start_str, end=end_str,
                           progress=False, auto_adjust=True)
     if raw.empty:
         raise ValueError(f"yfinance returned no data for {ticker}")
