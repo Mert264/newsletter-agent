@@ -883,7 +883,6 @@ def _write_excel_per_figure(packages: list, specialist_results: dict, output_dir
                     df_out.to_excel(writer, sheet_name=sheet)
                     # Apply Danish number format to all numeric cells
                     ws = writer.sheets[sheet]
-                    da_fmt = '#,##0.00'
                     for row in ws.iter_rows(min_row=2, min_col=2):
                         for cell in row:
                             if isinstance(cell.value, (int, float)):
