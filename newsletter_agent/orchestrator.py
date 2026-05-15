@@ -694,12 +694,12 @@ def build_task_manifest(brief: str, preferred_types: list = None, routing_hint: 
     if period_days:
         parts.append(
             f"PREFERRED TIME PERIOD: The user selected {period_days} days (~{period_days // 365} year(s)). "
-            f"This is the MINIMUM period_days for ALL charts — NEVER go below {period_days}. "
-            f"You may ONLY increase period_days beyond {period_days} in these cases: "
-            f"(1) y_label contains 'YoY' — minimum 760 days required for the transform to produce data; "
+            f"Set period_days = {period_days} for ALL charts. "
+            f"Do NOT increase this value unless (1) y_label contains 'YoY' — then minimum 760 days is required; "
             f"(2) the brief explicitly names a start date EARLIER than {period_days} days ago. "
-            f"Event markers do NOT reduce period_days: if an event date falls within the user's window "
-            f"it is already covered. NEVER shrink period_days to just surround an event date."
+            f"CRITICAL: Any guidance in routing hints or chart type descriptions about 'minimum 1460 days' "
+            f"or 'use 5 years for bar charts' is the DEFAULT for when no Tidsperiode is set. "
+            f"It does NOT apply when the user has selected a specific Tidsperiode — respect {period_days} days exactly."
         )
     if routing_hint:
         parts.append(routing_hint)
