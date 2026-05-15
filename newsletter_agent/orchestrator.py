@@ -686,10 +686,25 @@ def build_task_manifest(brief: str, preferred_types: list = None, routing_hint: 
     import json as _json, os as _os
     parts = [f"Topic brief: {brief}"]
     if preferred_types:
+        # Collapse bar subtypes for the user-facing instruction — we only need to tell
+        # the LLM "produce a bar chart" not which subtype; it picks B/G/F itself.
+        _display_types = []
+        _bar_added = False
+        for _t in preferred_types:
+            if _t in ("B", "G", "F"):
+                if not _bar_added:
+                    _display_types.append("B/G/F (søjlediagram — LLM picks subtype)")
+                    _bar_added = True
+            else:
+                _display_types.append(_t)
         parts.append(
-            f"PREFERRED CHART TYPES (strict — only produce charts of these types): {preferred_types}. "
-            f"Do NOT add type D, E, or any other type not listed here, even if you think it would be useful. "
-            f"If a listed type is fundamentally incompatible with the data, skip it silently rather than substituting another type."
+            f"PREFERRED CHART TYPES: {preferred_types}. "
+            f"REQUIREMENT: produce AT LEAST ONE chart for EACH distinct type in this list when data supports it. "
+            f"If the list contains both 'A' and 'B' (or 'G' or 'F'), generate a line chart AND a bar chart — "
+            f"use different data or a different view of the data for each type (e.g. rate as a line, monthly change as bars). "
+            f"Do NOT produce only one type when multiple are requested. "
+            f"Do NOT add types not in this list. "
+            f"If a type is genuinely incompatible with the data, skip it silently — but try to satisfy all listed types first."
         )
     if period_days:
         parts.append(
