@@ -83,7 +83,10 @@ ROUTING_RULES = [
         "PAYEMS = månedlig jobvækst (nonfarm payrolls): "
         "{\"ticker\": \"PAYEMS\", \"transform\": \"diff\", \"label\": \"Månedlig jobvækst (tusinder)\"}. "
         "KRITISK: brug transform='diff' — uden det viser PAYEMS niveauet ~155.000, IKKE månedlig ændring. "
-        "Brug type='B', y_label='Tusinder', x_label=''. "
+        "Søjlediagram (type B): PAYEMS-diff, y_label='Tusinder', x_label=''. "
+        "Linjegraf (type A): brug UNRATE (arbejdsløshedsprocent) eller PAYEMS-diff som tidsserie — "
+        "giver god kontekst ved siden af søjlediagrammet. "
+        "Producér én chart per requested type: B hvis 'B' er i preferred_types, A hvis 'A' er i preferred_types. "
         "period_days: brug brugerens valgte Tidsperiode præcist — standardværdi 1825 KUN når ingen Tidsperiode er valgt.",
     ),
     # Country economy → World Bank (fires when country-specific economy keyword present, not EU/US)
