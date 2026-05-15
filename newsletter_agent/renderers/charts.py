@@ -455,7 +455,7 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
                     label, ha="center", va="bottom" if val >= 0 else "top",
                     fontsize=9, fontweight="bold", color=BRAND["secondary"])
 
-    ax.axhline(0, color=BRAND["secondary"], linewidth=0.6)
+    ax.axhline(0, color="#888888", linewidth=0.7)
     ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
     raw_xlabel = spec.get("x_label", "")
@@ -464,6 +464,8 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     ax.set_xlabel(raw_xlabel, fontsize=BRAND["font_size_axis"], color=BRAND["secondary"])
     ax.set_ylabel(spec.get("y_label", ""), fontsize=BRAND["font_size_axis"],
                   color=BRAND["secondary"])
+    if is_timeseries:
+        ax.yaxis.set_major_locator(mticker.MaxNLocator(nbins=10, steps=[1, 2, 2.5, 5, 10]))
     _apply_brand(ax, fig)
     # After _apply_brand: for time-series bars, suppress vertical gridlines
     if is_timeseries:
