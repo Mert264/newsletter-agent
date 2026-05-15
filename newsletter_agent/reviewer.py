@@ -98,7 +98,7 @@ def review_figure(figure_path: str, metadata: dict) -> dict:
     prompt = f"""Chart metadata:
 Chart type: {metadata.get('chart_type', '?')}
   A = time series line chart (x=date, y=metric)
-  B = vertical bar chart (x=entity/year, y=metric)
+  B = vertical bar chart — TWO valid modes: (a) cross-entity snapshot (x=entity, y=metric), OR (b) time-series bars over time (x=time periods like months/years, y=metric). BOTH are valid. Do NOT flag type B for monthly/quarterly sequential data.
   D = snapshot table (no axis labels needed)
   E = before/after grouped bar chart
   F = 100% stacked bar chart (x=year, y=% share — composition over time)
