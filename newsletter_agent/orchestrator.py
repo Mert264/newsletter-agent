@@ -66,7 +66,12 @@ Given a free-form topic brief, return a JSON TaskManifest with exactly this stru
         "bar_color": "#11716c",           // OPTIONAL (Type B only): hex color for all bars. Default is brand teal #11716c.
                                           // Set this if user requests a specific bar color, e.g. "blå søjler" → "#1d4ed8".
                                           // Examples: rød="#dc2626", blå="#1d4ed8", grøn="#16a34a", teal="#11716c", grå="#6b7280"
-        "highlight_last_n": 2,            // OPTIONAL (Type B time-series only): highlight the last N bars with highlight_color.
+        "highlight_last_n": 2,            // OPTIONAL (Type B only): highlight the last N bars with highlight_color.
+                                          // PARSE FROM BRIEF: if the user writes e.g. "farv de 2 seneste søjler orange",
+                                          // "mark the last 3 bars red", "de sidste 2 søjler gule" — extract N and color:
+                                          //   orange/amber → "#d4843e", rød/red → "#dc2626", blå/blue → "#1d4ed8",
+                                          //   gul/yellow → "#eab308", grøn/green → "#16a34a", lilla → "#7c3aed"
+                                          // Also parse bar_color if user says e.g. "blå søjler" (all bars blue).
                                           // Set this when user asks to mark recent/preliminary data, e.g. "marker de 2 seneste".
                                           // Default is 0 (no highlight). Only use when user explicitly requests it.
         "highlight_color": "#d4843e"      // OPTIONAL: color for the highlighted bars (default amber #d4843e).
