@@ -369,58 +369,61 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
     is_timeseries = isinstance(df.index, pd.DatetimeIndex) and len(df.columns) == 1
 
+    _RECENT_COLOR = "#d4843e"   # amber — highlights most-recent / preliminary bars
+    _N_RECENT    = 2            # last N bars shown in amber
+
     if is_timeseries:
         col = df.columns[0]
         series = df[col].dropna()
 
-        # Detect typical gap between observations to decide whether to downsample
+        # Detect typical gap to decide whether to downsample
         if len(series) > 1:
             typical_gap = (series.index[-1] - series.index[0]).days / len(series)
         else:
             typical_gap = 30
 
-        # Daily/weekly data with many points → aggregate to monthly
         if typical_gap <= 10 and len(series) > 60:
+            # Daily/weekly → resample to monthly mean (preserves sign of change data)
             series = series.resample("ME").mean().dropna()
-        # Monthly data over a very long period → aggregate to quarterly
-        elif 20 <= typical_gap <= 45 and len(series) > 100:
+        elif 20 <= typical_gap <= 45 and len(series) > 120:
             series = series.resample("QE").mean().dropna()
 
         values = series.values
-        x_pos = np.arange(len(values))
-        colors = [BRAND["primary"] if v >= 0 else "#dc2626" for v in values]
-        bar_width = max(0.4, min(0.85, 40.0 / max(len(values), 1)))
-        bars = ax.bar(x_pos, values, color=colors, width=bar_width, edgecolor="white")
+        n_bars = len(values)
+        x_pos  = np.arange(n_bars)
 
-        # Value labels — only when bars are few enough to stay readable
-        if len(values) <= 30:
-            y_range = (max(values) - min(values)) if len(values) > 1 else (abs(values[0]) if len(values) else 1)
-            offset = y_range * 0.025 or 0.5
-            has_mixed = any(v >= 0 for v in values) and any(v < 0 for v in values)
-            for bar, val in zip(bars, values):
-                lbl = (f"+{val:,.0f}" if (val >= 0 and has_mixed) else f"{val:,.0f}")
-                ax.text(bar.get_x() + bar.get_width() / 2,
-                        bar.get_height() + (offset if val >= 0 else -offset),
-                        lbl, ha="center", va="bottom" if val >= 0 else "top",
-                        fontsize=6, color=BRAND["secondary"])
+        # All bars teal; last _N_RECENT bars amber (preliminary data)
+        colors = [BRAND["primary"]] * n_bars
+        for j in range(max(0, n_bars - _N_RECENT), n_bars):
+            colors[j] = _RECENT_COLOR
 
-        # X-axis date labels — adapt density to number of bars
-        n_bars = len(series)
-        if n_bars > 40:
-            tick_step = max(1, n_bars // 10)
-            fmt = "%Y"
-        elif n_bars > 16:
-            tick_step = max(1, n_bars // 8)
-            fmt = "%b '%y"
+        bar_width = max(0.55, min(0.88, 50.0 / max(n_bars, 1)))
+        ax.bar(x_pos, values, color=colors, width=bar_width, edgecolor="white", linewidth=0.3)
+
+        # X-axis: year labels centred under each year's group of bars (like Image #8)
+        years = [d.year for d in series.index]
+        year_groups: dict = {}
+        for i, y in enumerate(years):
+            year_groups.setdefault(y, []).append(i)
+
+        if len(year_groups) > 1:
+            year_ticks = [np.mean(idxs) for idxs in year_groups.values()]
+            year_labels = [str(y) for y in year_groups.keys()]
+            ax.set_xticks(year_ticks)
+            ax.set_xticklabels(year_labels, rotation=0, ha="center",
+                               fontsize=BRAND["font_size_axis"], color=BRAND["secondary"])
         else:
-            tick_step = 1
-            fmt = "%b '%y"
+            # Single year → show monthly labels
+            tick_step = max(1, n_bars // 8)
+            ax.set_xticks(x_pos[::tick_step])
+            ax.set_xticklabels([series.index[i].strftime("%b '%y")
+                                 for i in range(0, n_bars, tick_step)],
+                               rotation=45, ha="right",
+                               fontsize=BRAND["font_size_axis"])
 
-        tick_pos = x_pos[::tick_step]
-        tick_lbls = [series.index[i].strftime(fmt) for i in range(0, len(series), tick_step)]
-        ax.set_xticks(tick_pos)
-        ax.set_xticklabels(tick_lbls, rotation=45, ha="right",
-                           fontsize=BRAND["font_size_axis"])
+        # Horizontal gridlines only (vertical grids add clutter)
+        ax.xaxis.grid(False)
+        ax.yaxis.grid(True, color=BRAND["grid_color"], linewidth=0.5, linestyle="-")
 
     elif isinstance(df.index, pd.DatetimeIndex) or len(df.columns) > 1:
         # Multi-column snapshot: each column → one bar from latest row
