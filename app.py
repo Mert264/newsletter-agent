@@ -111,7 +111,6 @@ def start_run():
             break
 
     def do_run():
-        global _last_excel_path
         orig = sys.stdout
         sys.stdout = _StreamWriter(_run_queue, orig)
         try:
