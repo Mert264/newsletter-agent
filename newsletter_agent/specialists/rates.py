@@ -51,9 +51,8 @@ def fetch_rates(task: dict) -> dict:
                 print(f"    [rates] Failed to fetch '{ticker}' ({label}) after retries: {e}")
         elif source == "yfinance":
             import yfinance as yf
-            end = date.today()
             with YF_LOCK:
-                raw = yf.download(s["ticker"], start=start, end=str(end),
+                raw = yf.download(s["ticker"], start=start, end=end,
                                   progress=False, auto_adjust=True)
             if raw.empty:
                 print(f"    [rates] WARNING: ticker '{s['ticker']}' (label='{label}') returned no data")
