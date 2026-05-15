@@ -7,6 +7,7 @@ import matplotlib.dates as mdates
 import pandas as pd
 import numpy as np
 from newsletter_agent.config import BRAND
+from newsletter_agent.formatting import fmt_da
 
 
 # Distinct colours for event markers — kept visually separate from LINE_COLORS
