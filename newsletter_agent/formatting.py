@@ -13,12 +13,14 @@ Use:
 EXCEL_NUM_FORMAT is the openpyxl number_format string that produces Danish-style
 output when the file is opened in a Danish-locale Excel.
 """
+from __future__ import annotations
+from typing import Optional
 
 
 EXCEL_NUM_FORMAT = "#,##0.00"
 
 
-def fmt_da(val: float, decimals: int | None = None) -> str:
+def fmt_da(val: float, decimals: Optional[int] = None) -> str:
     """Format *val* in Danish number style.
 
     decimals=None  → auto-select precision based on magnitude
