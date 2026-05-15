@@ -60,9 +60,17 @@ Given a free-form topic brief, return a JSON TaskManifest with exactly this stru
           {"y": 2.0, "label": "2%-mål", "color": "#9ca3af"}
         ],                                // Use for policy targets (inflation 2%, zero line, etc.).
                                           // Add for any multi-country inflation chart — always include the 2% central bank target.
-        "target_value": 2.0               // OPTIONAL (Type D companion tables only): when set, the third column shows
+        "target_value": 2.0,              // OPTIONAL (Type D companion tables only): when set, the third column shows
                                           // "Afstand til X%-mål" (current value minus target) instead of period change.
                                           // Use on companion D tables to inflation A charts. Set to 2.0 for CPI/HICP charts.
+        "bar_color": "#11716c",           // OPTIONAL (Type B only): hex color for all bars. Default is brand teal #11716c.
+                                          // Set this if user requests a specific bar color, e.g. "blå søjler" → "#1d4ed8".
+                                          // Examples: rød="#dc2626", blå="#1d4ed8", grøn="#16a34a", teal="#11716c", grå="#6b7280"
+        "highlight_last_n": 2,            // OPTIONAL (Type B time-series only): highlight the last N bars with highlight_color.
+                                          // Set this when user asks to mark recent/preliminary data, e.g. "marker de 2 seneste".
+                                          // Default is 0 (no highlight). Only use when user explicitly requests it.
+        "highlight_color": "#d4843e"      // OPTIONAL: color for the highlighted bars (default amber #d4843e).
+                                          // Only used when highlight_last_n > 0.
       }
     ]
   }
