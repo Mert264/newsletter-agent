@@ -217,17 +217,7 @@ def _snapshot_value(series: pd.Series, date_str: str) -> float:
 
 def _fmt(val: float) -> str:
     """Format a number for table display in Danish style (2.000.000,00)."""
-    if abs(val) >= 1000:
-        s = f"{val:,.0f}"               # "2,000,000"
-        return s.replace(",", ".")       # "2.000.000"
-    if abs(val) >= 10:
-        s = f"{val:.2f}"                # "12.50"
-        return s.replace(".", ",")       # "12,50"
-    if abs(val) >= 0.1:
-        s = f"{val:.3f}"
-        return s.replace(".", ",")
-    s = f"{val:.4f}"
-    return s.replace(".", ",")
+    return fmt_da(val)
 
 
 def _build_table(dfs: dict, chart_spec: dict, kilde_str: str, output_path: str) -> str:
