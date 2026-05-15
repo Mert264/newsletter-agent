@@ -112,6 +112,9 @@ def fetch_macro(task: dict) -> dict:
                 continue
             try:
                 series = _fred_get(fred, ticker, start)
+                # Post-fetch clip to exact bounds (FRED returns from observation_start
+                # but we apply both bounds explicitly for safety)
+                series = series[series.index >= pd.Timestamp(start)]
                 if task.get("end_date"):
                     series = series[series.index <= pd.Timestamp(end)]
                 # Apply optional transforms BEFORE making the DataFrame
