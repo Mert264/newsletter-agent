@@ -102,12 +102,14 @@ def fetch_energy(task: dict) -> dict:
         (c.get("period_days", 365) for c in task.get("charts", [])),
         default=365
     )
+    start_date = task.get("start_date")
+    end_date = task.get("end_date")
 
     for s in task["series"]:
         label = s["label"]
         source = s["source"]
         if source == "yfinance":
-            df = _fetch_yfinance(s["ticker"], period_days, label)
+            df = _fetch_yfinance(s["ticker"], period_days, label, start_date, end_date)
             dataframes[label] = df
             if "Yahoo Finance" not in kilde:
                 kilde.append("Yahoo Finance")
