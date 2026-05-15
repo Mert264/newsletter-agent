@@ -7,30 +7,46 @@
       {
         "ticker": "^GSPC",
         "source": "yfinance",
-        "label": "S&P 500 (markedsv\u00e6gtet)",
+        "label": "S&P 500 (kapitalisationsv\u00e6gtet)",
         "region": "USA",
-        "unit": "Indekseret (basis=100)"
+        "unit": "Indeks"
       },
       {
         "ticker": "RSP",
         "source": "yfinance",
-        "label": "S&P 500 (ligev\u00e6gtet)",
+        "label": "S&P 500 Ligev\u00e6gtet (RSP ETF)",
         "region": "USA",
-        "unit": "Indekseret (basis=100)"
+        "unit": "Indeks"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "S&P 500 markedsv\u00e6gtet vs. ligev\u00e6gtet",
+        "title": "S&P 500: Kapitalisationsv\u00e6gtet vs. ligev\u00e6gtet",
         "x_label": "Dato",
         "y_label": "Indekseret (basis=100)",
-        "period_days": 730,
+        "period_days": 2555,
         "series_labels": [
-          "S&P 500 (markedsv\u00e6gtet)",
-          "S&P 500 (ligev\u00e6gtet)"
+          "S&P 500 (kapitalisationsv\u00e6gtet)",
+          "S&P 500 Ligev\u00e6gtet (RSP ETF)"
         ],
-        "note": "Sammenligning af det markedsv\u00e6gtede S&P 500 indeks (^GSPC) og det ligev\u00e6gtede S&P 500 (RSP ETF), begge indekseret til 100 ved periodens start. Forskellen afspejler, om de st\u00f8rste selskaber driver afkastet relativt til den brede masse af aktier i indekset."
+        "note": "Sammenligning af S&P 500 i sin traditionelle kapitalisationsv\u00e6gtede form og den ligev\u00e6gtede variant (Invesco RSP ETF), hvor alle 500 selskaber v\u00e6gter ens. Begge serier er indekseret til 100 ved periodens start for at muligg\u00f8re direkte sammenligning af afkastudviklingen over de seneste 7 \u00e5r."
+      },
+      {
+        "type": "D",
+        "title": "S&P 500: Kapitalisationsv\u00e6gtet vs. ligev\u00e6gtet \u2014 n\u00f8gletal",
+        "x_label": "",
+        "y_label": "Indekseret (basis=100)",
+        "period_days": 2555,
+        "series_labels": [
+          "S&P 500 (kapitalisationsv\u00e6gtet)",
+          "S&P 500 Ligev\u00e6gtet (RSP ETF)"
+        ],
+        "before_date": "2018-04-01",
+        "after_date": "latest",
+        "col_before": "For 7 \u00e5r siden",
+        "col_after": "Nu",
+        "note": "Snapshot af de to S&P 500-varianter med \u00e6ndring over de seneste 7 \u00e5r. Den kapitalisationsv\u00e6gtede version er domineret af de st\u00f8rste teknologiselskaber, mens den ligev\u00e6gtede giver alle 500 selskaber samme eksponering og dermed bredere markedsrepr\u00e6sentation."
       }
     ]
   }

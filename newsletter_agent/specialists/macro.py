@@ -49,7 +49,8 @@ def fetch_macro(task: dict) -> dict:
         (c.get("period_days", 365 * 3) for c in task.get("charts", [])),
         default=365 * 3
     )
-    start = str(date.today() - timedelta(days=period_days))
+    start = task.get("start_date") or str(date.today() - timedelta(days=period_days))
+    end = task.get("end_date") or str(date.today())
 
     for s in task["series"]:
         label = s["label"]
