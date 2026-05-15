@@ -24,6 +24,12 @@ Given a free-form topic brief, return a JSON TaskManifest with exactly this stru
         "label": "Brent Crude",       // human-readable label for chart legend
         "region": "Global",           // region label shown on chart
         "unit": "USD/barrel",         // exact unit string for axis label
+        "transform": "",              // OPTIONAL: "diff" to convert a LEVEL series to PERIOD CHANGE.
+                                      // Use "diff" for PAYEMS when asking for monthly job growth/change.
+                                      // Without "diff", PAYEMS shows the LEVEL (~155,000 thousand = 155M total jobs)
+                                      // which is NOT the monthly change. With "diff", it gives +100 to +400 (change in thousands).
+                                      // Also use "diff" for any other FRED level series where you want period-over-period change.
+                                      // Omit or leave empty when the series is already in change/% form.
         "conversion": ""              // OPTIONAL: "USD_MMBtu_to_USD_MWh" | "EUR_MWh_to_USD_MWh"
                                       // Set when this series needs unit conversion before plotting.
                                       // USD_MMBtu_to_USD_MWh: for Henry Hub (NG=F) when comparing with TTF on same chart.
