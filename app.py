@@ -284,27 +284,17 @@ def serve_figure(filename):
     return send_from_directory(OUTPUT_DIR, filename)
 
 
-@app.route("/download/excel")
-def download_excel():
-    """Serve the most recent Excel data export."""
-    global _last_excel_path
-    # Also search newest run dir if in-memory path is stale
-    if not _last_excel_path or not os.path.exists(_last_excel_path):
-        import glob as _glob
-        run_dirs = sorted(_glob.glob(os.path.join(OUTPUT_DIR, "2*")), reverse=True)
-        for d in run_dirs:
-            candidate = os.path.join(d, "data_export.xlsx")
-            if os.path.exists(candidate):
-                _last_excel_path = candidate
-                break
-    if _last_excel_path and os.path.exists(_last_excel_path):
-        return send_from_directory(
-            os.path.dirname(_last_excel_path),
-            os.path.basename(_last_excel_path),
-            as_attachment=True,
-            download_name="maj_invest_data_export.xlsx",
-        )
-    return jsonify({"error": "Ingen data endnu — kør en analyse først."}), 404
+@app.route("/download/excel/<filename>")
+def download_excel(filename):
+    """Serve a per-figure Excel file by name."""
+    import glob as _glob
+    run_dirs = sorted(_glob.glob(os.path.join(OUTPUT_DIR, "2*")), reverse=True)
+    for d in run_dirs:
+        candidate = os.path.join(d, filename)
+        if os.path.exists(candidate):
+            return send_from_directory(d, filename, as_attachment=True,
+                                       download_name=filename)
+    return jsonify({"error": "Fil ikke fundet."}), 404
 
 
 if __name__ == "__main__":
