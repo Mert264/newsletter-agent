@@ -480,8 +480,15 @@ Rules:
 - Chart type G (horizontal bar) — use when comparing a single metric across many sectors, countries,
   or companies (e.g. "AI-adoption rate by sector", "renewable share by country"). Bars are sorted
   descending so largest is at top. Single value column per entity/row.
-- Chart type B (vertical bar) — use for small cross-entity comparisons with ≤6 items (e.g. comparing
-  GDP growth across 4 major economies, or 3 central bank rates). Prefer G over B when entities > 6.
+- Chart type B (vertical bar) — TWO valid modes:
+  (1) CROSS-ENTITY SNAPSHOT: ≤6 entities compared on one metric (e.g. GDP growth of 4 economies,
+      3 central bank rates). Each entity = one bar with its latest value. Prefer G when entities > 6.
+  (2) TIME-SERIES BAR: One bar per time period for a SINGLE series over multiple years/months.
+      Use this when the user asks for "søjlediagram" of a monthly or quarterly metric over time
+      (e.g. monthly job growth NFP, quarterly GDP growth, monthly industrial production).
+      CRITICAL for time-series mode: set period_days >= 1460 (4 years) so the chart shows
+      a meaningful trend — do NOT use 90 or 365 days for employment/macro bar charts.
+      The pipeline auto-colours all bars teal, last 2 amber (preliminary data), no value labels.
 - CHOOSING BETWEEN B, G, F when all three appear in preferred_types:
   * F (stacked bar): data represents COMPOSITION/SHARES over multiple time periods (energy mix,
     trade structure, portfolio allocation over years). The x-axis is TIME, y-axis is "Pct. af total".
