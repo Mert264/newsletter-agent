@@ -112,6 +112,8 @@ def fetch_macro(task: dict) -> dict:
                 continue
             try:
                 series = _fred_get(fred, ticker, start)
+                if task.get("end_date"):
+                    series = series[series.index <= pd.Timestamp(end)]
                 df = series.to_frame(name=label)
                 df.index = pd.to_datetime(df.index)
                 dataframes[label] = df
