@@ -127,9 +127,6 @@ def start_run():
                 start_date=start_date,
                 end_date=end_date,
             )
-            if excel_path:
-                _last_excel_path = excel_path
-
             ctx_path = os.path.join(run_dir, "rerender_context.json")
             rerender_ctx = {}
             if os.path.exists(ctx_path):
