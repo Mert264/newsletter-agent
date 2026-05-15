@@ -60,7 +60,7 @@ def fetch_macro(task: dict) -> dict:
         if source == "yfinance":
             try:
                 with YF_LOCK:
-                    raw = yf.download(ticker, start=start, end=str(date.today()),
+                    raw = yf.download(ticker, start=start, end=end,
                                       progress=False, auto_adjust=True)
                 if isinstance(raw.columns, pd.MultiIndex):
                     close = raw["Close"]
