@@ -91,7 +91,6 @@ def index():
 
 @app.route("/run", methods=["POST"])
 def start_run():
-    global _last_excel_path
     body = request.json or {}
     brief        = body.get("brief", "").strip()
     preferred_types = body.get("preferred_types", None)
