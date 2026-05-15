@@ -370,8 +370,10 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
     is_timeseries = isinstance(df.index, pd.DatetimeIndex) and len(df.columns) == 1
 
-    _RECENT_COLOR = "#d4843e"   # amber — highlights most-recent / preliminary bars
-    _N_RECENT    = 2            # last N bars shown in amber
+    # User-controlled color fields from chart spec
+    _bar_color      = spec.get("bar_color") or BRAND["primary"]      # default teal
+    _highlight_n    = int(spec.get("highlight_last_n", 0))            # 0 = no highlight
+    _highlight_color = spec.get("highlight_color") or "#d4843e"       # amber if used
 
     if is_timeseries:
         col = df.columns[0]
@@ -393,10 +395,11 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
         n_bars = len(values)
         x_pos  = np.arange(n_bars)
 
-        # All bars teal; last _N_RECENT bars amber (preliminary data)
-        colors = [BRAND["primary"]] * n_bars
-        for j in range(max(0, n_bars - _N_RECENT), n_bars):
-            colors[j] = _RECENT_COLOR
+        # All bars use bar_color; optionally highlight the last N bars
+        colors = [_bar_color] * n_bars
+        if _highlight_n > 0:
+            for j in range(max(0, n_bars - _highlight_n), n_bars):
+                colors[j] = _highlight_color
 
         bar_width = max(0.55, min(0.88, 50.0 / max(n_bars, 1)))
         ax.bar(x_pos, values, color=colors, width=bar_width, edgecolor="white", linewidth=0.3)
