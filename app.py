@@ -87,7 +87,6 @@ def index():
     return render_template("index.html")
 
 
-_last_excel_path: str = ""   # path to most-recent Excel export on this server
 
 
 @app.route("/run", methods=["POST"])
