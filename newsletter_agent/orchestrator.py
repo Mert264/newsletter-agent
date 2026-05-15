@@ -480,6 +480,10 @@ Rules:
 - Chart type G (horizontal bar) — use when comparing a single metric across many sectors, countries,
   or companies (e.g. "AI-adoption rate by sector", "renewable share by country"). Bars are sorted
   descending so largest is at top. Single value column per entity/row.
+  CRITICAL — MIXED SCALES IN TYPE G: NEVER combine series with incompatible units in one Type G chart.
+  Specifically: NEVER put PAYEMS/ICSA (level in thousands, 100–500,000) and UNRATE (%, 3–10) in the
+  same Type G chart — the rate bar becomes invisible next to the thousands-scale bar. Always generate
+  SEPARATE charts for level-in-thousands data vs. rate/% data.
 - Chart type B (vertical bar) — TWO valid modes:
   (1) CROSS-ENTITY SNAPSHOT: ≤6 entities compared on one metric (e.g. GDP growth of 4 economies,
       3 central bank rates). Each entity = one bar with its latest value. Prefer G when entities > 6.
