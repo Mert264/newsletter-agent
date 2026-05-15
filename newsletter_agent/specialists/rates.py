@@ -27,7 +27,8 @@ def fetch_rates(task: dict) -> dict:
         (c.get("period_days", 365) for c in task.get("charts", [])),
         default=365
     )
-    start = str(date.today() - timedelta(days=period_days))
+    start = task.get("start_date") or str(date.today() - timedelta(days=period_days))
+    end = task.get("end_date") or str(date.today())
 
     for s in task["series"]:
         label = s["label"]
@@ -39,6 +40,8 @@ def fetch_rates(task: dict) -> dict:
                 continue
             try:
                 series = _fred_get(fred, ticker, start)
+                if task.get("end_date"):
+                    series = series[series.index <= pd.Timestamp(end)]
                 df = series.to_frame(name=label)
                 df.index = pd.to_datetime(df.index)
                 dataframes[label] = df
