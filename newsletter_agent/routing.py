@@ -72,6 +72,16 @@ ROUTING_RULES = [
         "For EU/US-gassammenligning: brug TTF=F (EUR/MWh, conversion='EUR_MWh_to_USD_MWh') "
         "og NG=F (USD/MMBtu, conversion='USD_MMBtu_to_USD_MWh'). Fælles y-akse: USD/MWh. Type='A'.",
     ),
+    # US labor market / employment → PAYEMS with diff transform
+    (
+        lambda b: _EMPL.search(b),
+        "For beskæftigelsesdata (USA og globalt): brug specialist='macro', source='fred'. "
+        "PAYEMS = månedlig jobvækst (nonfarm payrolls): "
+        "{\"ticker\": \"PAYEMS\", \"transform\": \"diff\", \"label\": \"Månedlig jobvækst (tusinder)\"}. "
+        "KRITISK: brug transform='diff' — uden det viser PAYEMS niveauet ~155.000, IKKE månedlig ændring. "
+        "Sæt period_days=1825 (5 år) for type B søjlediagram. "
+        "Brug type='B', y_label='Tusinder', x_label=''.",
+    ),
     # Country economy → World Bank (fires when country-specific economy keyword present, not EU/US)
     (
         lambda b: _COUNTRY_ECON_KW.search(b) and not _EU.search(b) and not _US.search(b),
