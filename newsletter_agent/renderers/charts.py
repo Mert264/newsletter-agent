@@ -430,7 +430,7 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
         latest = df.iloc[-1]
         labels = [c.split(" — ")[-1] for c in latest.index]
         values = list(latest.values)
-        colors = [BRAND["primary"] if v >= 0 else "#dc2626" for v in values]
+        colors = [_bar_color if v >= 0 else "#dc2626" for v in values]
         bars = ax.bar(labels, values, color=colors, width=0.5, edgecolor="white")
         y_range = max(values) - min(values) if len(values) > 1 else abs(values[0]) if values else 1
         offset = y_range * 0.02 or 0.5
