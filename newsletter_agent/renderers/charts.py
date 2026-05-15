@@ -421,10 +421,6 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
                                rotation=45, ha="right",
                                fontsize=BRAND["font_size_axis"])
 
-        # Horizontal gridlines only (vertical grids add clutter)
-        ax.xaxis.grid(False)
-        ax.yaxis.grid(True, color=BRAND["grid_color"], linewidth=0.5, linestyle="-")
-
     elif isinstance(df.index, pd.DatetimeIndex) or len(df.columns) > 1:
         # Multi-column snapshot: each column → one bar from latest row
         latest = df.iloc[-1]
