@@ -433,7 +433,7 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
         offset = y_range * 0.02 or 0.5
         has_mixed_signs = any(v >= 0 for v in values) and any(v < 0 for v in values)
         for bar, val in zip(bars, values):
-            label = (f"+{val:.2f}" if (val >= 0 and has_mixed_signs) else f"{val:.2f}")
+            label = ("+" if (val >= 0 and has_mixed_signs) else "") + fmt_da(val)
             ax.text(bar.get_x() + bar.get_width() / 2,
                     bar.get_height() + (offset if val >= 0 else -offset),
                     label, ha="center", va="bottom" if val >= 0 else "top",
@@ -450,7 +450,7 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
         offset = y_range * 0.02 or 0.5
         has_mixed_signs = any(v >= 0 for v in values) and any(v < 0 for v in values)
         for bar, val in zip(bars, values):
-            label = (f"+{val:.2f}" if (val >= 0 and has_mixed_signs) else f"{val:.2f}")
+            label = ("+" if (val >= 0 and has_mixed_signs) else "") + fmt_da(val)
             ax.text(bar.get_x() + bar.get_width() / 2,
                     bar.get_height() + (offset if val >= 0 else -offset),
                     label, ha="center", va="bottom" if val >= 0 else "top",
