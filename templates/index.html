@@ -903,9 +903,6 @@ function startRun() {
         `Færdig — ${msg.figures.length} figur(er)`;
       document.getElementById('statusMsg').className = '';
       document.getElementById('statusDot').className = 'status-dot';
-      // Show Excel download button if data was exported
-      const excelBtn = document.getElementById('excelBtn');
-      if (excelBtn) excelBtn.style.display = msg.excel_available ? 'flex' : 'none';
       if (msg.specialist_errors && Object.keys(msg.specialist_errors).length > 0) {
         for (const [name, err] of Object.entries(msg.specialist_errors)) {
           appendLog(`FEJL i specialist '${name}': ${err}`);
