@@ -11,12 +11,13 @@ def fetch_equities(task: dict) -> dict:
         (c.get("period_days", 365) for c in task.get("charts", [])),
         default=365
     )
-    start = str(date.today() - timedelta(days=period_days))
+    start = task.get("start_date") or str(date.today() - timedelta(days=period_days))
+    end = task.get("end_date") or str(date.today())
 
     for s in task["series"]:
         label = s["label"]
         with YF_LOCK:
-            raw = yf.download(s["ticker"], start=start, end=str(date.today()),
+            raw = yf.download(s["ticker"], start=start, end=end,
                               progress=False, auto_adjust=True)
         if raw.empty:
             print(f"    [equities] WARNING: ticker '{s['ticker']}' (label='{label}') returned no data — check ticker symbol")
