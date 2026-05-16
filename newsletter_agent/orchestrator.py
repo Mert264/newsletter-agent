@@ -2,6 +2,7 @@
 import json
 import re
 import anthropic
+from newsletter_agent.llm_retry import llm_call_with_retry
 from newsletter_agent.config import API_KEYS, LLM_MODEL
 
 SYSTEM_PROMPT = """Du er en erfaren makroøkonom og ekspert i globale finansmarkeder.
