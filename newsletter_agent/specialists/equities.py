@@ -13,6 +13,8 @@ def fetch_equities(task: dict) -> dict:
     )
     start = task.get("start_date") or str(date.today() - timedelta(days=period_days))
     end = task.get("end_date") or str(date.today())
+    _start_ts = pd.Timestamp(start)
+    _end_ts   = pd.Timestamp(end)
 
     for s in task["series"]:
         label = s["label"]
@@ -32,6 +34,7 @@ def fetch_equities(task: dict) -> dict:
         # Deduplicate index — yfinance occasionally returns duplicate timestamps
         if df.index.duplicated().any():
             df = df[~df.index.duplicated(keep="last")]
+        df = df[(df.index >= _start_ts) & (df.index <= _end_ts)]
         dataframes[label] = df
         if "Yahoo Finance" not in kilde:
             kilde.append("Yahoo Finance")
