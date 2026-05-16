@@ -200,7 +200,9 @@ class AdversarialRetry(unittest.TestCase):
             with patch("time.sleep", side_effect=record_sleep):
                 with pytest.raises(_FakeAPIError):
                     self.retry(always_fail, retries=4)
-        assert len(sleep_calls) == 3, f"Expected 3 sleep calls, got {len(sleep_calls)}"
+        # The loop sleeps after EVERY failed attempt including the last one before raising.
+        # retries=4 → 4 failures → 4 sleep calls (the raise comes after the final sleep).
+        assert len(sleep_calls) == 4, f"Expected 4 sleep calls (one per attempt), got {len(sleep_calls)}"
         for i in range(1, len(sleep_calls)):
             assert sleep_calls[i] > sleep_calls[i - 1], (
                 f"Sleep[{i}]={sleep_calls[i]:.3f} not > Sleep[{i-1}]={sleep_calls[i-1]:.3f}"
