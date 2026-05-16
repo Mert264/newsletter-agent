@@ -792,6 +792,21 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
                 render_spec = {**render_spec, "y_label": "Indeks"}
                 chart_spec  = {**chart_spec,  "y_label": "Indeks"}
 
+        # ── Final display-window trim ──────────────────────────────────────────
+        # Specialists fetch data for max(period_days) across all their charts so YoY
+        # transforms have enough history. After all transforms, trim merged to exactly
+        # the user's requested display window before handing off to the renderer.
+        # Only fires when display_period_days was stamped by the hard-enforce block
+        # (i.e., the user explicitly chose a Tidsperiode). Not applied when index_base_date
+        # governs the start date (that trim already happened above).
+        _display_days = chart_spec.get("display_period_days")
+        if _display_days and not index_base_date:
+            _data_end = merged.index.max()
+            _trim_start = _data_end - pd.Timedelta(days=_display_days)
+            _trimmed = merged[merged.index >= _trim_start]
+            if not _trimmed.empty:
+                merged = _trimmed
+
         renderer = CHART_RENDERER_MAP[chart_type]
         path = renderer(merged, render_spec, output_path)
 
