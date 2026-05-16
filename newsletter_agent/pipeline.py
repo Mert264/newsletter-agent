@@ -207,12 +207,24 @@ CHART_RENDERER_MAP = {
 
 
 def _snapshot_value(series: pd.Series, date_str: str) -> float:
-    """Return the series value closest to date_str ('latest' → last observation)."""
+    """Return the series value closest to date_str ('latest' → last observation).
+
+    If date_str falls outside the series range, clamps to the nearest boundary value
+    rather than silently returning the wrong end-point (which would make before=after → +0.0%).
+    Raises ValueError when the series is empty.
+    """
+    clean = series.dropna()
     if not date_str or date_str == "latest":
-        return float(series.dropna().iloc[-1])
+        return float(clean.iloc[-1])
     ts = pd.Timestamp(date_str)
-    idx = series.dropna().index.get_indexer([ts], method="nearest")[0]
-    return float(series.dropna().iloc[idx])
+    # Guard: if requested date is AFTER series end, raise so caller can detect the problem
+    if ts > clean.index.max():
+        raise ValueError(
+            f"Requested date {date_str} is after series end {clean.index.max().date()}. "
+            "before_date was not patched correctly — check end_date injection."
+        )
+    idx = clean.index.get_indexer([ts], method="nearest")[0]
+    return float(clean.iloc[idx])
 
 
 def _fmt(val: float) -> str:
