@@ -1042,20 +1042,27 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
             print(f"  [{spec_name}] Conversion: {conv_note[:80]}...")
 
     # Universal date bounds enforcement — clip ALL DataFrames from ALL specialists.
-    # This is the final safety net: even if a specialist didn't filter, data will never
-    # extend beyond the user's chosen window before it reaches the chart renderer.
-    if start_date or end_date:
-        _start_ts = pd.Timestamp(start_date) if start_date else None
-        _end_ts   = pd.Timestamp(end_date)   if end_date   else None
+    # Fires for both explicit date ranges (start_date/end_date) and preset periods
+    # (period_days). Specialists may fetch more data than needed (e.g. a YoY chart
+    # inflates period_days to 760 for transform history, pulling extra data for other
+    # series on the same specialist). The display-window trim in _render_figure handles
+    # the per-chart precision; this net ensures no data exceeds the end boundary.
+    _net_end_ts = (
+        pd.Timestamp(end_date) if end_date
+        else pd.Timestamp.today().normalize() if (start_date or period_days)
+        else None
+    )
+    _net_start_ts = pd.Timestamp(start_date) if start_date else None
+    if _net_start_ts or _net_end_ts:
         for _sp in specialists:
             _dfs = specialist_results.get(_sp, {}).get("dataframes", {})
             for _lbl, _df in list(_dfs.items()):
                 if not isinstance(_df.index, pd.DatetimeIndex):
                     continue  # EIA mix uses string-year index — handled separately
-                if _start_ts is not None:
-                    _df = _df[_df.index >= _start_ts]
-                if _end_ts is not None:
-                    _df = _df[_df.index <= _end_ts]
+                if _net_start_ts is not None:
+                    _df = _df[_df.index >= _net_start_ts]
+                if _net_end_ts is not None:
+                    _df = _df[_df.index <= _net_end_ts]
                 _dfs[_lbl] = _df
 
     # Build global data pool for cross-specialist chart resolution.
