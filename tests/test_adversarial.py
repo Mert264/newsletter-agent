@@ -574,11 +574,22 @@ class AdversarialRouting(unittest.TestCase):
         )
 
     def test_both_gas_rules_ttf_henry_hub(self):
-        """'TTF Henry Hub' → cross-region gas rule fires."""
-        brief = "TTF og Henry Hub gaspriser"
-        result = self.hint(brief)
-        assert "TTF" in result or "gas" in result.lower() or "EUR/MWh" in result, (
-            f"Gas cross-region hint not found in: {result}"
+        """Gas cross-region rule requires _GAS AND (_TTF OR _EU) AND (_HH OR _US).
+        'gaspriser' does NOT match _GAS (word boundary: \\b(gas|naturgas|natural gas)\\b).
+        The correct brief must contain the standalone word 'gas'.
+        Documents the boundary sensitivity of _GAS regex.
+        """
+        # 'gaspriser' fails _GAS — must use 'gas' as a standalone word
+        brief_no_match = "TTF og Henry Hub gaspriser"
+        result_no = self.hint(brief_no_match)
+        assert result_no == "", (
+            f"'gaspriser' should NOT match _GAS (word boundary), but got hint: {result_no}"
+        )
+        # Correct brief with standalone 'gas' DOES fire
+        brief_match = "gas TTF EU Henry Hub US priser"
+        result_yes = self.hint(brief_match)
+        assert "TTF" in result_yes or "EUR/MWh" in result_yes or "gas" in result_yes.lower(), (
+            f"Gas cross-region hint not found with explicit 'gas' keyword: {result_yes}"
         )
 
     def test_long_prompt_no_timeout(self):
