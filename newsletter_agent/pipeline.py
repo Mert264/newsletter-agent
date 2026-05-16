@@ -983,6 +983,33 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
                 chart["period_days"] = max(min_days, period_days) if is_yoy else period_days
                 chart["display_period_days"] = period_days  # user's actual display window
 
+    # Patch before_date in companion D-type tables when end_date is a historical date.
+    # The orchestrator computes before_date as "today - N days" (e.g. 2025-05-16 for "1 år siden").
+    # When TIL is in the past (e.g. 2010-09-10), that date falls AFTER the data ends, so
+    # _snapshot_value returns the last available value for both "Nu" and "1 år siden" → +0.0%.
+    # Fix: recompute before_date relative to end_date instead of today.
+    if end_date:
+        _end_ts   = pd.Timestamp(end_date)
+        _today_ts = pd.Timestamp.today().normalize()
+        for spec_name in specialists:
+            for chart in manifest.get(spec_name, {}).get("charts", []):
+                if chart.get("type") != "D":
+                    continue
+                bd = chart.get("before_date", "")
+                if not bd or bd in ("latest", ""):
+                    continue
+                try:
+                    _bd_ts = pd.Timestamp(bd)
+                    if _bd_ts > _end_ts:
+                        # before_date was computed relative to today — rederive relative to end_date
+                        _offset_days = max(0, (_today_ts - _bd_ts).days)
+                        _corrected   = _end_ts - pd.Timedelta(days=_offset_days)
+                        chart["before_date"] = str(_corrected.date())
+                        print(f"  [table] Patched before_date {bd} → {chart['before_date']} "
+                              f"(relative to end_date={end_date})")
+                except Exception:
+                    pass
+
     # Hard-enforce preferred_types: drop chart specs the LLM included despite the instruction,
     # and normalize Type D specs (strip axis labels so the reviewer never flags them).
     if preferred_types:
