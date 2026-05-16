@@ -91,6 +91,16 @@ ROUTING_RULES = [
         "Producér én chart per requested type: B hvis 'B' er i preferred_types, A hvis 'A' er i preferred_types. "
         "period_days: brug brugerens valgte Tidsperiode præcist — standardværdi 1825 KUN når ingen Tidsperiode er valgt.",
     ),
+    # Scorecard / multi-asset dashboard → enforce FRED in macro, rest in domain specialists
+    (
+        lambda b: _SCORECARD.search(b),
+        "For scorecards og markedsoverblik med blandede aktivklasser: "
+        "ALLE FRED-serier (DGS10, DGS2, DFF, T10Y2Y, T10YIE, osv.) → specialist='macro', source='fred'. "
+        "yfinance-tickers (BZ=F, GC=F, ^GSPC, EURUSD=X, DX-Y.NYB) → domain specialist (energy/commodities/equities/rates). "
+        "DGS10 MÅ ALDRIG placeres under specialist='equities' eller 'rates' — FRED serier går KUN i 'macro'. "
+        "For Type A oversigtsgraf med blandede enheder: sæt y_label='Indekseret (basis=100)'. "
+        "Brug specialist='macro' for ALLE rente- og obligationsserier uanset context.",
+    ),
     # Country economy → World Bank (fires when country-specific economy keyword present, not EU/US)
     (
         lambda b: _COUNTRY_ECON_KW.search(b) and not _EU.search(b) and not _US.search(b),
