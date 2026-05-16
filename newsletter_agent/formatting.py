@@ -26,16 +26,30 @@ def fmt_da(val: float, decimals: Optional[int] = None) -> str:
     decimals=None  → auto-select precision based on magnitude
     decimals=0     → integer (no decimal part)
     decimals=N     → fixed N decimal places
+
+    Special values: inf → "∞", -inf → "-∞", nan → "—" (em dash, used in tables).
+    Negative zero is normalised to 0 before formatting.
     """
+    import math
+    # Guard: IEEE special values that break f-string formatting
+    if isinstance(val, float):
+        if math.isnan(val):
+            return "—"
+        if math.isinf(val):
+            return "∞" if val > 0 else "-∞"
+        # Normalise -0.0 → 0.0 to avoid "-0,00"
+        if val == 0.0:
+            val = 0.0
+
     if decimals is not None:
         s = f"{val:,.{decimals}f}"          # "1,234,567.00"
         if decimals == 0:
             return s.replace(",", ".")       # "1.234.567"
-        # split on the last "." which is always the decimal point in Python format
+        # split on the last "." — always the decimal separator in Python's format
         int_part, dec_part = s.rsplit(".", 1)
         return int_part.replace(",", ".") + "," + dec_part  # "1.234.567,00"
 
-    # Auto-select precision
+    # Auto-select precision by magnitude
     abs_val = abs(val)
     if abs_val >= 1000:
         return fmt_da(val, 0)
