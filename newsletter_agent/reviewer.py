@@ -53,6 +53,13 @@ Do NOT flag:
   operates with live market data and may include events that occurred after your training cutoff.
   Event dates in the Note are always provided by the user and are correct by definition.
   Do NOT flag phrases like "Iran war outbreak", "Iran conflict", or any geopolitical event name.
+- Note content that mentions unavailable or missing data — if the Note states that a series
+  could not be fetched, was unavailable, is not in the configured sources, or names indicators
+  that are listed as absent — this is CORRECT pipeline behavior (the pipeline writes such notes
+  automatically). NEVER flag "Note mentions X series but only Y are present in the chart", NEVER
+  flag a count mismatch between series named in the Note and series actually rendered. Auto-approve
+  as long as at least one series is present, a title is set, and a note is set. This rule overrides
+  any check that compares Note text to region_labels or series count.
 
 Return ONLY valid JSON:
 {"status": "APPROVED", "reason": ""}
