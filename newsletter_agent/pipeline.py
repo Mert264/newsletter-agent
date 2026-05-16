@@ -253,7 +253,13 @@ def _build_table(dfs: dict, chart_spec: dict, kilde_str: str, output_path: str) 
         try:
             after_val  = _snapshot_value(series, after_date)
             before_val = _snapshot_value(series, before_date) if before_date else float(series.iloc[0])
+            # Sanity check: if before == after, the before_date likely wasn't patched
+            if before_date and abs(before_val - after_val) < 1e-9:
+                print(f"    [warn] Table '{label}': before_val == after_val ({before_val:.4f}) — "
+                      f"before_date={before_date!r} may be outside data range.")
             raw_rows.append((label, before_val, after_val))
+        except ValueError as e:
+            print(f"    [warn] Table '{label}': {e} — skipping row.")
         except Exception as e:
             print(f"    [warn] Could not build table row for '{label}': {e}")
 
