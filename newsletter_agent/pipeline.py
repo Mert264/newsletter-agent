@@ -874,7 +874,7 @@ def _write_excel_per_figure(packages: list, specialist_results: dict, output_dir
             with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
                 written = 0
                 for label, df in relevant.items():
-                    if df is None or df.empty:
+                    if df is None or df.empty or df.dropna(how="all").empty:
                         continue
                     sheet = _safe_sheet_name(label)
                     df_out = df.copy()
