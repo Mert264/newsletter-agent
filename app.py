@@ -100,6 +100,11 @@ def start_run():
     if not brief:
         return jsonify({"error": "Brief is required"}), 400
 
+    # Auto-correct reversed date range instead of failing silently
+    if start_date and end_date and start_date > end_date:
+        start_date, end_date = end_date, start_date
+        print(f"[app] Reversed date range detected — auto-swapped to FRA={start_date}, TIL={end_date}")
+
     if not _run_lock.acquire(blocking=False):
         return jsonify({"error": "A run is already in progress"}), 429
 
