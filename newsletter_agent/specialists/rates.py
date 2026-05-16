@@ -40,6 +40,7 @@ def fetch_rates(task: dict) -> dict:
                 continue
             try:
                 series = _fred_get(fred, ticker, start)
+                series = series[series.index >= pd.Timestamp(start)]
                 if task.get("end_date"):
                     series = series[series.index <= pd.Timestamp(end)]
                 df = series.to_frame(name=label)
