@@ -370,10 +370,17 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
     is_timeseries = isinstance(df.index, pd.DatetimeIndex) and len(df.columns) == 1
 
-    # User-controlled color fields from chart spec
-    _bar_color      = spec.get("bar_color") or BRAND["primary"]      # default teal
-    _highlight_n    = int(spec.get("highlight_last_n", 0))            # 0 = no highlight
-    _highlight_color = spec.get("highlight_color") or "#d4843e"       # amber if used
+    # User-controlled color fields from chart spec — validate hex before use
+    def _safe_color(raw, fallback: str) -> str:
+        """Return raw if it looks like a valid hex color, else fallback."""
+        import re as _re
+        if raw and _re.match(r"^#[0-9a-fA-F]{3,8}$", str(raw).strip()):
+            return str(raw).strip()
+        return fallback
+
+    _bar_color       = _safe_color(spec.get("bar_color"), BRAND["primary"])
+    _highlight_n     = int(spec.get("highlight_last_n", 0))           # 0 = no highlight
+    _highlight_color = _safe_color(spec.get("highlight_color"), "#d4843e")
 
     if is_timeseries:
         col = df.columns[0]
