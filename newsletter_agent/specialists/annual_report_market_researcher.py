@@ -99,7 +99,8 @@ def fetch_market_researcher(
     )
 
     try:
-        msg = client.messages.create(
+        msg = llm_call_with_retry(
+            client.messages.create,
             model=REVIEWER_MODEL,
             max_tokens=350,
             messages=[{"role": "user", "content": prompt}],
