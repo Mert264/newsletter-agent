@@ -8,6 +8,7 @@ import requests
 from datetime import datetime, timedelta
 import anthropic
 from newsletter_agent.config import API_KEYS, REVIEWER_MODEL
+from newsletter_agent.llm_retry import llm_call_with_retry
 from newsletter_agent.cache import get as cache_get, put as cache_put
 
 _TTL = 30 * 24 * 3600   # 30-day cache
