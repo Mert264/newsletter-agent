@@ -1023,6 +1023,23 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
             specialist_results[spec_name]["conversion_note"] = conv_note
             print(f"  [{spec_name}] Conversion: {conv_note[:80]}...")
 
+    # Universal date bounds enforcement — clip ALL DataFrames from ALL specialists.
+    # This is the final safety net: even if a specialist didn't filter, data will never
+    # extend beyond the user's chosen window before it reaches the chart renderer.
+    if start_date or end_date:
+        _start_ts = pd.Timestamp(start_date) if start_date else None
+        _end_ts   = pd.Timestamp(end_date)   if end_date   else None
+        for _sp in specialists:
+            _dfs = specialist_results.get(_sp, {}).get("dataframes", {})
+            for _lbl, _df in list(_dfs.items()):
+                if not isinstance(_df.index, pd.DatetimeIndex):
+                    continue  # EIA mix uses string-year index — handled separately
+                if _start_ts is not None:
+                    _df = _df[_df.index >= _start_ts]
+                if _end_ts is not None:
+                    _df = _df[_df.index <= _end_ts]
+                _dfs[_lbl] = _df
+
     # Build global data pool for cross-specialist chart resolution.
     # Charts authored under specialist A can reference series fetched by specialist B
     # (e.g. global inflation: US/UK/JP from macro + EA from eurostat on one chart).
