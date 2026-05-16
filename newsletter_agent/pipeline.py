@@ -958,12 +958,15 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     # Hard-enforce the user's period_days on every chart spec.
     # The LLM may inflate period_days (e.g. routing hints say 1825 days for employment)
     # even when the user selected a shorter window. Clamp here — YoY charts get 760 minimum.
+    # display_period_days = the user's actual requested window, stored separately so the
+    # renderer can trim to it even when period_days was inflated for YoY transform needs.
     if period_days:
         for spec_name in specialists:
             for chart in manifest.get(spec_name, {}).get("charts", []):
                 is_yoy = "YoY" in chart.get("y_label", "") or "yoy" in chart.get("y_label", "").lower()
                 min_days = 760 if is_yoy else period_days
                 chart["period_days"] = max(min_days, period_days) if is_yoy else period_days
+                chart["display_period_days"] = period_days  # user's actual display window
 
     # Hard-enforce preferred_types: drop chart specs the LLM included despite the instruction,
     # and normalize Type D specs (strip axis labels so the reviewer never flags them).
