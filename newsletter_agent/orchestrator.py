@@ -385,6 +385,18 @@ WORLDBANK — MULTI-METRIC CHART Y-AXIS:
   Preferred approach: use separate charts per indicator rather than mixing 5 on one chart.
 
 Rules:
+- CRITICAL — FRED SERIES SPECIALIST: Every series with source="fred" MUST use specialist="macro",
+  no exceptions. FRED series IDs (DGS10, DGS2, DFF, DFEDTARU, PAYEMS, UNRATE, T10Y2Y, T10YIE,
+  T5YIE, BAMLC0A0CM, BAMLH0A0HYM2, IRLTLT01*, CP0000*, CPALTT01*, ECBDFR, IUDSOIA, GDPC1,
+  INDPRO, RSAFS, UMCSENT, ICSA, and ALL other FRED series IDs) are ONLY accessible via the
+  macro specialist. NEVER place FRED series IDs under specialist="equities", "commodities",
+  "energy", or "rates" — those specialists only support yfinance tickers and will fail on any
+  FRED series ID.
+  FOR MIXED-ASSET SCORECARDS (e.g. oil + gold + S&P 500 + EUR/USD + 10Y yield in one brief):
+    - yfinance tickers (BZ=F, GC=F, ^GSPC, EURUSD=X, DX-Y.NYB) → their domain specialists
+    - ANY FRED series (DGS10, DFF, T10Y2Y, etc.) → ALWAYS specialist="macro", source="fred"
+  NEVER group DGS10 with ^GSPC or EURUSD=X under equities/commodities/rates — DGS10 is a FRED
+  series and must go in macro. This is a hard constraint, not a preference.
 - Maximum 4 charts per specialist for most specialists (to accommodate Type D table companions and F+P dual output — see below).
   EXCEPTION — worldbank single-country profile: up to 10 charts (1 Type A + 1 combined overview Type D + 4 indicator Type A/D pairs). Use the mandatory single-country layout above. Omit gæld pair for data-gap countries → 8 charts.
   EXCEPTION — worldbank two-country peer comparison: up to 5 charts (4 Type A indicators + 1 combined Type D nøgletal table).
