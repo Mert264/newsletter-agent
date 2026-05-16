@@ -72,7 +72,8 @@ def call_llm_text(prompt: str) -> str:
         Raw JSON string from LLM.
     """
     client = anthropic.Anthropic(api_key=API_KEYS["anthropic"])
-    message = client.messages.create(
+    message = llm_call_with_retry(
+        client.messages.create,
         model=REVIEWER_MODEL,
         max_tokens=256,
         system=REVIEWER_PROMPT,
