@@ -104,26 +104,43 @@ def fetch_energy(task: dict) -> dict:
     )
     start_date = task.get("start_date")
     end_date = task.get("end_date")
+    _start_ts = pd.Timestamp(start_date) if start_date else None
+    _end_ts   = pd.Timestamp(end_date)   if end_date   else None
 
     for s in task["series"]:
         label = s["label"]
         source = s["source"]
         if source == "yfinance":
             df = _fetch_yfinance(s["ticker"], period_days, label, start_date, end_date)
+            if _start_ts is not None:
+                df = df[df.index >= _start_ts]
+            if _end_ts is not None:
+                df = df[df.index <= _end_ts]
             dataframes[label] = df
             if "Yahoo Finance" not in kilde:
                 kilde.append("Yahoo Finance")
         elif source == "eia":
             df = _fetch_eia(s["ticker"], label, API_KEYS.get("eia", ""))
             if df is not None:
-                dataframes[label] = df
+                if _start_ts is not None:
+                    df = df[df.index >= _start_ts]
+                if _end_ts is not None:
+                    df = df[df.index <= _end_ts]
+                if not df.empty:
+                    dataframes[label] = df
                 if "EIA" not in kilde:
                     kilde.append("EIA")
         elif source == "eia_mix":
             # Special: fetch a full energy-mix snapshot (multiple MSN codes → one wide DataFrame)
+            # EIA mix uses string-year index — filter by start/end year if provided
             mix_df = _fetch_eia_mix(s.get("msn_codes", {}), API_KEYS.get("eia", ""))
             if mix_df is not None:
-                dataframes[label] = mix_df
+                if _start_ts is not None:
+                    mix_df = mix_df[mix_df.index.astype(int) >= _start_ts.year]
+                if _end_ts is not None:
+                    mix_df = mix_df[mix_df.index.astype(int) <= _end_ts.year]
+                if not mix_df.empty:
+                    dataframes[label] = mix_df
                 if "EIA" not in kilde:
                     kilde.append("EIA")
 
