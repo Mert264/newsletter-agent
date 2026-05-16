@@ -1,9 +1,11 @@
 import anthropic
 from newsletter_agent.config import REVIEWER_MODEL
+from newsletter_agent.llm_retry import llm_call_with_retry
 
 
 def _call(client: anthropic.Anthropic, system: str, user: str) -> str:
-    msg = client.messages.create(
+    msg = llm_call_with_retry(
+        client.messages.create,
         model=REVIEWER_MODEL,
         max_tokens=600,
         system=system,
