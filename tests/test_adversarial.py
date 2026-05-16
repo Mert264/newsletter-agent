@@ -184,15 +184,22 @@ class AdversarialRetry(unittest.TestCase):
         assert len(call_log) == retries, f"Expected {retries} calls, got {len(call_log)}"
 
     def test_backoff_is_strictly_increasing(self):
-        """Sleep durations are exponential and strictly increasing across attempts."""
+        """Sleep durations are exponential and strictly increasing across attempts.
+        The formula is: min(BASE * 2^attempt + jitter, MAX_DELAY).
+        BASE=2, so: attempt0 ≈ 2+jitter, attempt1 ≈ 4+jitter, attempt2 ≈ 8+jitter.
+        Each base doubles, so even with jitter in [0,1) the next sleep is always larger
+        UNLESS jitter distorts the ordering at the boundary. We verify base components only.
+        """
         sleep_calls = []
         def record_sleep(t):
             sleep_calls.append(t)
         def always_fail(**kwargs):
             raise _FakeAPIError(529, "overloaded")
-        with patch("time.sleep", side_effect=record_sleep):
-            with pytest.raises(_FakeAPIError):
-                self.retry(always_fail, retries=4)
+        # Patch random.uniform to return 0 so jitter is neutralised for the ordering test
+        with patch("newsletter_agent.llm_retry.random.uniform", return_value=0.0):
+            with patch("time.sleep", side_effect=record_sleep):
+                with pytest.raises(_FakeAPIError):
+                    self.retry(always_fail, retries=4)
         assert len(sleep_calls) == 3, f"Expected 3 sleep calls, got {len(sleep_calls)}"
         for i in range(1, len(sleep_calls)):
             assert sleep_calls[i] > sleep_calls[i - 1], (
