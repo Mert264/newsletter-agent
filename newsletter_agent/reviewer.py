@@ -7,6 +7,7 @@ import json
 import re
 import anthropic
 from newsletter_agent.config import API_KEYS, REVIEWER_MODEL
+from newsletter_agent.llm_retry import llm_call_with_retry
 
 REVIEWER_PROMPT = """Du er kvalitetskontrollør af finansielle grafer til et makroøkonomisk investornewsletter.
 Du modtager metadata om en graf eller tabel. Markér KUN reelle, substantielle fejl, der ville
