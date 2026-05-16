@@ -635,7 +635,8 @@ EVENT MARKERS:
 def call_llm(prompt: str, max_tokens: int = 8192, model: str = None) -> dict:
     """Make one LLM call and return parsed JSON response."""
     client = anthropic.Anthropic(api_key=API_KEYS["anthropic"])
-    message = client.messages.create(
+    message = llm_call_with_retry(
+        client.messages.create,
         model=model or LLM_MODEL,
         max_tokens=max_tokens,
         system=SYSTEM_PROMPT,
