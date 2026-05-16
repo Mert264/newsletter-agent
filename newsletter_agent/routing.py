@@ -31,6 +31,8 @@ _EMPL = re.compile(
 )
 # Country economy keyword — fires only with an economy keyword AND a non-EU/US context
 _COUNTRY_ECON_KW = _re(r"\b(økonomi|makroprofil|makroøkonomisk|landeprofil|bnp|inflation i|gæld|betalingsbalance|arbejdsløshed i|ledighed i)\b")
+# Scorecard / multi-asset dashboard — enforces FRED-in-macro rule
+_SCORECARD = _re(r"\b(scorecard|dashboard|markedsscorecard|overblik|markedsoverblik|oversigt)\b")
 
 ROUTING_RULES = [
     # Annual report / company valuation → annual_report specialist (FMP)
