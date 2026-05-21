@@ -67,7 +67,7 @@ def start_run():
         sys.stdout = _StreamWriter(_run_queue, orig)
         try:
             from newsletter_agent.pipeline import run
-            packages, _specialist_errors, _excel_path = run(brief, output_dir=OUTPUT_DIR,
+            packages = run(brief, output_dir=OUTPUT_DIR,
                            start_date=start_date, end_date=end_date,
                            period_days=period_days)
             figures = [

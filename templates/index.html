@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nyhedsbrev AI Agent</title>
+  <title>Newsletter AI Agent</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -35,6 +35,7 @@
       margin-top: 2px;
     }
     header .badge {
+      margin-left: auto;
       background: rgba(255,255,255,.15);
       border: 1px solid rgba(255,255,255,.25);
       border-radius: 20px;
@@ -95,81 +96,49 @@
     }
     textarea:focus { outline: none; border-color: #11716c; }
 
-    .prompt-categories {
-      margin-top: 4px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
+    .quick-briefs {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .prompt-category-block { padding: 8px 10px 8px 0; }
-    .prompt-category-block:nth-child(odd)  { border-right: 1px solid #f0f4f4; padding-right: 14px; }
-    .prompt-category-block:nth-child(even) { padding-left: 14px; }
-    /* Last category spans full width if it's the only one in its row */
-    .prompt-category-block.full-width { grid-column: 1 / -1; border-right: none; padding-right: 0; border-top: 1px solid #f0f4f4; }
-    .prompt-category-label {
-      font-size: 10px; color: #6b7280; font-weight: 700;
-      letter-spacing: .06em; text-transform: uppercase; margin-bottom: 5px;
-    }
-    .prompt-group { display: flex; flex-wrap: wrap; gap: 6px; }
     .quick-btn {
       background: #f0faf9;
-      border: 1.5px solid #a7d9d5;
+      border: 1px solid #a7d9d5;
       color: #0d6b66;
       border-radius: 20px;
-      padding: 6px 14px;
+      padding: 5px 14px;
       font-size: 12px;
-      font-weight: 500;
       cursor: pointer;
-      transition: background .12s, border-color .12s;
-      min-height: 32px;
+      transition: background .15s;
     }
-    .quick-btn:hover { background: #d1f0ec; border-color: #11716c; }
-    .quick-btn:active { background: #b6e8e3; }
+    .quick-btn:hover { background: #d1f0ec; }
 
     .run-row {
-      margin-top: 18px;
+      margin-top: 16px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
     #runBtn {
       background: #11716c;
       color: #fff;
       border: none;
-      border-radius: 8px;
-      padding: 13px 32px;
-      font-size: 15px;
+      border-radius: 7px;
+      padding: 11px 28px;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      transition: background .2s, box-shadow .2s;
-      box-shadow: 0 2px 6px rgba(17,113,108,.25);
-      letter-spacing: .01em;
+      transition: background .2s;
     }
-    #runBtn:hover:not(:disabled) { background: #0d5a56; box-shadow: 0 3px 10px rgba(17,113,108,.35); }
-    #runBtn:active:not(:disabled) { background: #0a4a46; }
-    #runBtn:disabled { background: #93c5c2; cursor: not-allowed; box-shadow: none; }
-    .status-indicator { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #6b7280; }
-    .status-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: #22c55e; flex-shrink: 0;
-      transition: background .3s;
+    #runBtn:hover:not(:disabled) { background: #0d5a56; }
+    #runBtn:disabled { background: #93c5c2; cursor: not-allowed; }
+    #statusMsg {
+      font-size: 13px;
+      color: #6b7280;
     }
-    .status-dot.running { background: #f59e0b; animation: pulse 1s infinite; }
-    .status-dot.error   { background: #ef4444; animation: none; }
-    #statusMsg { transition: color .2s; }
     #statusMsg.running { color: #11716c; font-weight: 600; }
     #statusMsg.error   { color: #dc2626; font-weight: 600; }
-
-    /* ── Empty state ── */
-    .empty-state {
-      text-align: center;
-      padding: 36px 20px;
-      color: #9ca3af;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-    .empty-state-icon { font-size: 28px; margin-bottom: 8px; opacity: .45; }
-    .empty-state-title { font-weight: 600; color: #6b7280; margin-bottom: 4px; font-size: 14px; }
 
     /* ── Pipeline steps panel ── */
     #stepsPanel { grid-column: 1 / 2; }
@@ -236,7 +205,7 @@
     .log-line.dim   { color: #4b8a87; }
 
     /* ── Figures panel ── */
-    #figuresPanel { grid-column: 1 / -1; }
+    #figuresPanel { grid-column: 1 / -1; display: none; }
     .figures-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
@@ -260,28 +229,243 @@
     }
     .fig-meta .fig-title { font-size: 13px; font-weight: 600; color: #1a2a2a; }
 
-    /* ── Figure caption (title + source shown below image) ── */
-    .fig-caption {
-      padding: 10px 14px 6px;
-      border-top: 1px solid #e4eaea;
-      background: #fff;
+    /* ── Tidsperiode / Date Range Picker ── */
+    .tidsperiode-section {
+      margin-top: 16px;
+      padding: 14px 16px 14px;
+      border: 1.5px solid #e4eaea;
+      border-radius: 8px;
+      background: #f8fafa;
     }
-    .fig-caption .fig-title {
-      font-size: 13px;
+    .tidsperiode-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #11716c;
+      margin-bottom: 10px;
+    }
+    /* Preset button row */
+    .tp-presets-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .tp-btn {
+      background: #fff;
+      border: 1.5px solid #d1d5db;
+      border-radius: 6px;
+      color: #374151;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 5px 13px;
+      cursor: pointer;
+      transition: border-color .15s, background .15s, color .15s;
+      white-space: nowrap;
+    }
+    .tp-btn:hover       { border-color: #11716c; color: #11716c; background: #f0faf9; }
+    .tp-btn.tp-active   { background: #11716c; border-color: #11716c; color: #fff; }
+    .tp-btn--vaelg      { border-color: #11716c; color: #11716c; }
+    .tp-btn--vaelg.tp-active { background: #11716c; color: #fff; }
+    .tp-btn--llm        { border-style: dashed; color: #6b7280; }
+    .tp-btn--llm.tp-active   { background: #6b7280; border-color: #6b7280; color: #fff; border-style: solid; }
+
+    /* Date custom row — hidden until "Vælg datoer" active */
+    .date-custom-row {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #e4eaea;
+      flex-wrap: wrap;
+    }
+    .date-custom-row.open { display: flex; }
+    .date-field {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 7px;
+      padding: 7px 12px;
+      cursor: pointer;
+      background: #fff;
+      transition: border-color .2s, background .15s, box-shadow .15s;
+      min-width: 158px;
+      user-select: none;
+    }
+    .date-field:hover  { border-color: #11716c; background: #f0faf9; }
+    .date-field.active { border-color: #11716c; background: #f0faf9; box-shadow: 0 0 0 3px rgba(17,113,108,.12); }
+    .date-field-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #11716c;
+    }
+    .date-field-val          { font-size: 13px; color: #374151; }
+    .date-field-val.placeholder { color: #9ca3af; font-family: monospace; font-size: 12px; }
+    .date-clear-btn {
+      background: none;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 6px;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 6px 10px;
+      line-height: 1;
+      transition: border-color .15s, color .15s;
+    }
+    .date-clear-btn:hover { border-color: #dc2626; color: #dc2626; }
+
+    /* ── Calendar popup ── */
+    .cal-popup {
+      position: fixed;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.18), 0 1px 4px rgba(0,0,0,.1);
+      padding: 16px;
+      z-index: 500;
+      display: none;
+      width: 280px;
+      user-select: none;
+    }
+    .cal-popup.open { display: block; }
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .cal-nav-btn {
+      background: none;
+      border: 1px solid #e5e7eb;
+      border-radius: 5px;
+      color: #374151;
+      cursor: pointer;
+      font-size: 14px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s, border-color .15s;
+      flex-shrink: 0;
+    }
+    .cal-nav-btn:hover { background: #f0faf9; border-color: #11716c; color: #11716c; }
+    .cal-title-area {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      justify-content: center;
+    }
+    .cal-month-lbl, .cal-year-lbl {
+      font-size: 14px;
       font-weight: 700;
       color: #1a2a2a;
-      margin-bottom: 3px;
+      cursor: pointer;
+      padding: 2px 5px;
+      border-radius: 4px;
+      transition: background .15s;
     }
-    .fig-caption .fig-note {
-      font-size: 11px;
-      color: #6b7280;
-      line-height: 1.45;
-      margin-bottom: 3px;
+    .cal-month-lbl:hover, .cal-year-lbl:hover { background: #f0faf9; color: #11716c; }
+    .cal-year-input {
+      width: 54px;
+      border: 1.5px solid #11716c;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      padding: 1px 4px;
+      color: #1a2a2a;
+      outline: none;
     }
-    .fig-caption .fig-kilde {
-      font-size: 10.5px;
+    /* Month grid (shown when user clicks month label) */
+    .cal-month-grid {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .cal-month-grid.open { display: grid; }
+    .cal-month-item {
+      text-align: center;
+      padding: 6px 4px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      border: 1px solid transparent;
+      transition: background .15s;
+    }
+    .cal-month-item:hover { background: #f0faf9; border-color: #11716c; color: #11716c; }
+    .cal-month-item.selected { background: #11716c; color: #fff; }
+    /* Day grid */
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 4px;
+    }
+    .cal-weekdays span {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .04em;
       color: #9ca3af;
-      font-style: italic;
+      padding: 2px 0;
+    }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+    }
+    .cal-day {
+      text-align: center;
+      padding: 6px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12.5px;
+      color: #374151;
+      transition: background .1s, color .1s;
+      position: relative;
+    }
+    .cal-day:hover:not(.cal-day--empty):not(.cal-day--disabled) { background: #d1f0ec; color: #0d5a56; }
+    .cal-day--empty  { cursor: default; }
+    .cal-day--other  { color: #d1d5db; }
+    .cal-day--today::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      background: #11716c;
+      border-radius: 50%;
+    }
+    .cal-day--start, .cal-day--end {
+      background: #11716c !important;
+      color: #fff !important;
+      font-weight: 700;
+      border-radius: 5px;
+    }
+    .cal-day--in-range {
+      background: #d1f0ec;
+      color: #0d5a56;
+      border-radius: 0;
+    }
+    .cal-day--in-range:first-child, .cal-day--start + .cal-day--in-range { border-radius: 5px 0 0 5px; }
+    .cal-mode-hint {
+      font-size: 11px;
+      color: #11716c;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #f0f4f4;
     }
 
     /* ── Lightbox ── */
@@ -299,362 +483,143 @@
       position: absolute; top: 18px; right: 24px;
       color: #fff; font-size: 28px; cursor: pointer; line-height: 1;
     }
-    /* ── Period selector ── */
-    .period-btn {
-      padding: 7px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;
-      border: 1.5px solid #d1d5db; background: #fff; color: #374151;
-      transition: background .12s, border-color .12s;
-      min-height: 34px; font-weight: 500;
-    }
-    .period-btn:hover:not(.active) { border-color: #a7d9d5; background: #f0faf9; }
-    .period-btn.active { background: #11716c; color: #fff; border-color: #11716c; }
-
-    /* ── Viz type panel ── */
-    #topRow {
-      display: grid;
-      grid-template-columns: 210px 1fr;
-      gap: 20px;
-    }
-    #vizPanel .card-header {
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: .05em;
-    }
-    .viz-section-label {
-      font-size: 9px;
-      color: #9ca3af;
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: .06em;
-      margin-bottom: 6px;
-    }
-    .viz-opt {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      padding: 9px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-bottom: 5px;
-      border: 1.5px solid #d1d5db;
-      background: #fff;
-      transition: border-color .12s, background .12s;
-      min-height: 38px;
-    }
-    .viz-opt:hover:not(.active) { border-color: #a7d9d5; background: #fafefe; }
-    .viz-opt.active {
-      border: 2px solid #11716c;
-      background: #f0faf9;
-    }
-    .viz-opt-labels { flex: 1; }
-    .viz-opt-name { font-weight: 600; font-size: 11px; color: #374151; }
-    .viz-opt.active .viz-opt-name { color: #11716c; }
-    .viz-opt-desc { font-size: 9px; color: #6b7280; }
-    .viz-check { color: #11716c; font-size: 12px; font-weight: 700; display: none; }
-    .viz-opt.active .viz-check { display: block; }
-    .viz-sub { margin: 4px 0 2px 23px; display: flex; flex-direction: column; gap: 3px; }
-    .viz-sub-opt {
-      display: flex; align-items: center; gap: 7px;
-      padding: 5px 8px; border-radius: 4px; font-size: 10px; cursor: pointer;
-      background: #f9fafb; border: 1.5px solid #e5e7eb; color: #6b7280;
-    }
-    .viz-sub-opt.active {
-      background: #e8f7f6; border-color: #11716c; color: #11716c; font-weight: 600;
-    }
-    .viz-sub-dot { width: 6px; height: 6px; border-radius: 50%; background: #d1d5db; flex-shrink: 0; }
-    .viz-sub-opt.active .viz-sub-dot { background: #11716c; }
-    .viz-hint {
-      margin-top: 8px; padding-top: 6px;
-      border-top: 1px solid #f3f4f6;
-      font-size: 9px; color: #9ca3af; line-height: 1.5;
-    }
-
-    /* ── Figure card footer ── */
-    .fig-footer {
-      padding: 8px 12px;
-      background: #f8fafa;
-      border-top: 1px solid #e4eaea;
-      display: flex;
-      justify-content: flex-end;
-    }
-    .fig-download {
-      font-size: 11px; color: #11716c; text-decoration: none; font-weight: 600;
-    }
-    .fig-download:hover { text-decoration: underline; }
-
   </style>
 </head>
 <body>
 
 <header>
   <div>
-    <div class="logo">Nyhedsbrev AI Agent</div>
-    <div class="subtitle">Makroøkonomisk figur-pipeline &nbsp;·&nbsp; Global Økonomi &amp; Finansmarkederne</div>
+    <div class="logo">Newsletter AI Agent</div>
+    <div class="subtitle">Macro Research Figures &amp; Tables — FRED · Yahoo Finance</div>
   </div>
-  <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
-    <span class="badge">Maj Invest</span>
-    <span class="badge" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);display:flex;align-items:center;gap:5px">
-      <span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block"></span>
-      Realtidsdata
-    </span>
-    {% if session.get('authenticated') %}
-    <a href="/logout" style="font-size:11px;color:rgba(255,255,255,.45);text-decoration:none;margin-left:4px">Log ud</a>
-    {% endif %}
-  </div>
+  <span class="badge">Maj Invest style</span>
 </header>
 
 <main>
 
-  <!-- ── Top row: viz panel + brief ── -->
-  <div class="full-width" id="topRow">
-
-  <!-- Visualization type panel -->
-  <div class="card" id="vizPanel">
-    <div class="card-header">Visualiseringstype</div>
-    <div class="card-body" style="padding:10px">
-      <div class="viz-section-label">Vælg én eller flere</div>
-
-      <!-- Figur -->
-      <div class="viz-opt active" id="vopt-A" onclick="toggleVizOpt('A')">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
-          <polyline points="1,11 4,7 7,9 10,4 13,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div class="viz-opt-labels">
-          <div class="viz-opt-name">Figur</div>
-          <div class="viz-opt-desc">Tidsserie — linjegraf</div>
+  <!-- ── Brief input ── -->
+  <div class="card full-width">
+    <div class="card-header">📝 Topic Brief</div>
+    <div class="card-body">
+      <div class="brief-label">Describe the macro topic you want to visualise:</div>
+      <textarea id="briefInput" placeholder="e.g. Show the EUR/USD exchange rate over the past two years to illustrate how the US dollar has devalued against the euro..."></textarea>
+      <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:12px;margin-bottom:6px;">Try a prompt</div>
+      <div class="quick-briefs">
+        <button class="quick-btn" onclick="setQuick(1)">Iran war — oil &amp; gas shock</button>
+        <button class="quick-btn" onclick="setQuick(2)">Trump tariffs — market impact</button>
+        <button class="quick-btn" onclick="setQuick(3)">Defense stocks — rearmament wave</button>
+        <button class="quick-btn" onclick="setQuick(4)">Gold &amp; safe-haven demand</button>
+        <button class="quick-btn" onclick="setQuick(5)">US inflation &amp; Fed rates</button>
+        <button class="quick-btn" onclick="setQuick(6)">US vs Europe — macro overview</button>
+        <button class="quick-btn" onclick="setQuick(7)">Dollar strength vs major currencies</button>
+        <button class="quick-btn" onclick="setQuick(8)">Yield curve &amp; recession signal</button>
+        <button class="quick-btn" onclick="setQuick(9)">Global equity markets</button>
+        <button class="quick-btn" onclick="setQuick(10)">European bond stress</button>
+      </div>
+      <!-- Tidsperiode -->
+      <div class="tidsperiode-section">
+        <div class="tidsperiode-label">Tidsperiode</div>
+        <div class="tp-presets-row">
+          <button class="tp-btn" onclick="setTidspreset(5,this)">5D</button>
+          <button class="tp-btn" onclick="setTidspreset(7,this)">1U</button>
+          <button class="tp-btn" onclick="setTidspreset(30,this)">1M</button>
+          <button class="tp-btn" onclick="setTidspreset(90,this)">3M</button>
+          <button class="tp-btn" onclick="setTidspreset(180,this)">6M</button>
+          <button class="tp-btn" onclick="setTidspreset(365,this)">1 År</button>
+          <button class="tp-btn" onclick="setTidspreset(1095,this)">3 År</button>
+          <button class="tp-btn" onclick="setTidspreset(1825,this)">5 År</button>
+          <button class="tp-btn" onclick="setTidspreset(3650,this)">10 År</button>
+          <button class="tp-btn" onclick="setTidspreset(9999,this)">Max</button>
+          <button class="tp-btn tp-btn--vaelg" id="vaelgDatoerBtn" onclick="setTidspreset('custom',this)">Vælg datoer</button>
+          <button class="tp-btn tp-btn--llm tp-active" id="llmBtn" onclick="setTidspreset('llm',this)">LLM ✦</button>
         </div>
-        <span class="viz-check">&#10003;</span>
+        <!-- Only visible when "Vælg datoer" is active -->
+        <div class="date-custom-row" id="dateCustomRow">
+          <div class="date-field" id="startField" onclick="openCal('start')">
+            <span class="date-field-label">Fra</span>
+            <span class="date-field-val placeholder" id="startDisplay">ÅÅÅÅ-MM-DD</span>
+          </div>
+          <div class="date-field" id="endField" onclick="openCal('end')">
+            <span class="date-field-label">Til</span>
+            <span class="date-field-val placeholder" id="endDisplay">ÅÅÅÅ-MM-DD</span>
+          </div>
+          <button class="date-clear-btn" onclick="clearDates()" title="Nulstil datoer">✕</button>
+        </div>
       </div>
 
-      <!-- Tabel -->
-      <div class="viz-opt" id="vopt-D" onclick="toggleVizOpt('D')">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
-          <rect x="1" y="1" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.4"/>
-          <line x1="1" y1="5" x2="13" y2="5" stroke="currentColor" stroke-width="1.2"/>
-          <line x1="1" y1="9" x2="13" y2="9" stroke="currentColor" stroke-width="1.2"/>
-          <line x1="5" y1="1" x2="5" y2="13" stroke="currentColor" stroke-width="1.2"/>
-        </svg>
-        <div class="viz-opt-labels">
-          <div class="viz-opt-name">Tabel</div>
-          <div class="viz-opt-desc">Nøgletal — snapshot-oversigt</div>
-        </div>
-        <span class="viz-check">&#10003;</span>
+      <div class="run-row">
+        <button id="runBtn" onclick="startRun()">Generate figures</button>
+        <span id="statusMsg">Ready</span>
       </div>
-
-      <!-- Søjlediagram -->
-      <div class="viz-opt" id="vopt-bar-parent" onclick="toggleVizOpt('bar')">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
-          <rect x="1" y="5" width="3" height="8" rx=".5" fill="currentColor"/>
-          <rect x="5.5" y="2" width="3" height="11" rx=".5" fill="currentColor"/>
-          <rect x="10" y="7" width="3" height="6" rx=".5" fill="currentColor"/>
-        </svg>
-        <div class="viz-opt-labels">
-          <div class="viz-opt-name">Søjlediagram</div>
-          <div class="viz-opt-desc">Sammenligning, ranking eller fordeling</div>
-        </div>
-        <span class="viz-check">&#10003;</span>
-      </div>
-
-      <!-- Cirkeldiagram -->
-      <div class="viz-opt" id="vopt-P" onclick="toggleVizOpt('P')">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
-          <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/>
-          <path d="M7 7 L7 1.5 A5.5 5.5 0 0 1 12.5 7 Z" fill="#d1d5db"/>
-          <path d="M7 7 L12.5 7 A5.5 5.5 0 0 1 4 12 Z" fill="#e5e7eb"/>
-        </svg>
-        <div class="viz-opt-labels">
-          <div class="viz-opt-name">Cirkeldiagram</div>
-          <div class="viz-opt-desc">Snapshot — ét år, sum = 100%</div>
-        </div>
-        <span class="viz-check">&#10003;</span>
-      </div>
-
-      <div class="viz-hint">Systemet respekterer dine valg som præference. Tilpasser automatisk til dataens natur.</div>
     </div>
   </div>
 
-  <!-- Brief card -->
-  <div class="card">
-    <div class="card-header">Emne-brief</div>
-    <div class="card-body">
-      <div class="brief-label">Beskriv det makroøkonomiske emne, du vil visualisere:</div>
-      <textarea id="briefInput"
-        placeholder="Beskriv hvad du vil visualisere — f.eks. 'Vis Brent olie og TTF-gas siden Ukraine-krigen...'"
-        oninput="_activeQuickId=null;this.style.height='auto';this.style.height=Math.max(90,this.scrollHeight)+'px'"></textarea>
-
-      <div style="display:flex;align-items:center;gap:10px;margin-top:14px;margin-bottom:6px">
-        <span style="font-size:10px;color:#9ca3af;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap">Eksempel-prompts</span>
-        <div style="flex:1;height:1px;background:#e5e7eb"></div>
+  <!-- Calendar popup (shared for start + end) -->
+  <div class="cal-popup" id="calPopup">
+    <div class="cal-header">
+      <button class="cal-nav-btn" onclick="navYear(-1)" title="Forrige år">«</button>
+      <button class="cal-nav-btn" onclick="navMonth(-1)" title="Forrige måned">‹</button>
+      <div class="cal-title-area">
+        <span class="cal-month-lbl" id="calMonthLbl" onclick="toggleMonthPicker()"></span>
+        <span id="calYearLbl" class="cal-year-lbl" onclick="editYear()"></span>
+        <input class="cal-year-input" id="calYearInput" type="number" style="display:none"
+               onblur="commitYear()" onkeydown="if(event.key==='Enter')commitYear()" />
       </div>
-
-      <div class="prompt-categories">
-        <!-- Row 1: Geopolitik | Renter & Obligationer -->
-        <div class="prompt-category-block">
-          <div class="prompt-category-label">Geopolitik</div>
-          <div class="prompt-group">
-            <button class="quick-btn" onclick="setQuick(1)">Iran-krig — Olie &amp; Gas</button>
-            <button class="quick-btn" onclick="setQuick(2)">Forsvarsaktier — Genoprusning</button>
-            <button class="quick-btn" onclick="setQuick(11)">Trump-toldsatser</button>
-          </div>
-        </div>
-        <div class="prompt-category-block">
-          <div class="prompt-category-label">Renter &amp; Obligationer</div>
-          <div class="prompt-group">
-            <button class="quick-btn" onclick="setQuick(4)">Europæiske Statsrenter</button>
-            <button class="quick-btn" onclick="setQuick(5)">Rentekurve &amp; Recessionssignal</button>
-            <button class="quick-btn" onclick="setQuick(6)">Fed, ECB &amp; Bank of England</button>
-          </div>
-        </div>
-        <!-- Row 2: Aktier & Valuta | Energi & Europa -->
-        <div class="prompt-category-block" style="border-top:1px solid #f0f4f4">
-          <div class="prompt-category-label">Aktier &amp; Valuta</div>
-          <div class="prompt-group">
-            <button class="quick-btn" onclick="setQuick(7)">Globale Aktiemarkeder</button>
-            <button class="quick-btn" onclick="setQuick(8)">Dollarstyrke &amp; Geopolitisk Risiko</button>
-            <button class="quick-btn" onclick="setQuick(3)">Guld &amp; Safe Haven</button>
-          </div>
-        </div>
-        <div class="prompt-category-block" style="border-top:1px solid #f0f4f4">
-          <div class="prompt-category-label">Energi &amp; Europa</div>
-          <div class="prompt-group">
-            <button class="quick-btn" onclick="setQuick(9)">Grøn Energi vs. Oliemajorer</button>
-            <button class="quick-btn" onclick="setQuick(12)">EU Energiomstilling</button>
-            <button class="quick-btn" onclick="setQuick(15)">EU Elproduktion</button>
-            <button class="quick-btn" onclick="setQuick(10)">EU Obligationsrenter &amp; Stress</button>
-          </div>
-        </div>
-        <!-- Row 3: Global Økonomi | Makro & Inflation -->
-        <div class="prompt-category-block" style="border-top:1px solid #f0f4f4">
-          <div class="prompt-category-label">Global Økonomi</div>
-          <div class="prompt-group">
-            <button class="quick-btn" onclick="setQuick(14)">Globalt Markedsscorecard</button>
-          </div>
-        </div>
-        <div class="prompt-category-block" style="border-top:1px solid #f0f4f4">
-          <div class="prompt-category-label">Makro &amp; Inflation</div>
-          <div class="prompt-group">
-            <button class="quick-btn" onclick="setQuick(13)">Global Inflation — US, EU, UK, CN</button>
-          </div>
-        </div>
-        <!-- Row 4: Lande & Økonomi -->
-        <div class="prompt-category-block" style="border-top:1px solid #f0f4f4">
-          <div class="prompt-category-label">Lande &amp; Økonomi</div>
-          <div class="prompt-group">
-            <button class="quick-btn" onclick="setQuick(16)">Ungarns Økonomi</button>
-            <button class="quick-btn" onclick="setQuick(17)">Danmark vs. Sverige</button>
-            <button class="quick-btn" onclick="setQuick(18)">Kinas Makroprofil</button>
-          </div>
-        </div>
-        <!-- Row 5: Årsregnskab & Valuering -->
-        <div class="prompt-category-block" style="border-top:1px solid #f0f4f4">
-          <div class="prompt-category-label">Årsregnskab &amp; Valuering</div>
-          <div class="prompt-group">
-            <button class="quick-btn" onclick="setQuick(20)">Apple — AAPL</button>
-            <button class="quick-btn" onclick="setQuick(21)">Amazon — AMZN</button>
-            <button class="quick-btn" onclick="setQuick(22)">Microsoft — MSFT</button>
-            <button class="quick-btn" onclick="setQuick(23)">Nvidia — NVDA</button>
-          </div>
-        </div>
-      </div>
-      <!-- ── Period picker ── -->
-      <div style="margin-top:14px;background:#f0f8f7;border:1px solid #b6dbd8;border-radius:7px;padding:12px 14px">
-        <div style="font-size:10px;color:#0d6b66;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:9px">Tidsperiode</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">
-          <button class="period-btn" onclick="setPeriodPreset('5D')">5D</button>
-          <button class="period-btn" onclick="setPeriodPreset('1W')">1U</button>
-          <button class="period-btn" onclick="setPeriodPreset('1M')">1M</button>
-          <button class="period-btn" onclick="setPeriodPreset('3M')">3M</button>
-          <button class="period-btn" onclick="setPeriodPreset('6M')">6M</button>
-          <button class="period-btn" onclick="setPeriodPreset('1Y')">1 År</button>
-          <button class="period-btn" onclick="setPeriodPreset('3Y')">3 År</button>
-          <button class="period-btn" onclick="setPeriodPreset('5Y')">5 År</button>
-          <button class="period-btn" onclick="setPeriodPreset('10Y')">10 År</button>
-          <button class="period-btn" onclick="setPeriodPreset('Max')">Max</button>
-          <button class="period-btn" id="customPeriodBtn" onclick="toggleCustomDates()"
-                  style="border-color:#11716c;color:#11716c">Vælg datoer</button>
-          <button id="llmBtn" onclick="setLLMPeriod()"
-                  style="font-size:11px;padding:5px 13px;border-radius:6px;border:1.5px solid #d1d5db;background:#fff;color:#6b7280;cursor:pointer;transition:all .15s;white-space:nowrap;min-height:34px">
-            LLM ✦
-          </button>
-        </div>
-        <!-- Custom date inputs — hidden by default -->
-        <div id="customDatesRow" style="display:none;margin-top:10px;padding:10px 12px;background:#fff;border:1px solid #c8e0de;border-radius:5px">
-          <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end">
-            <div>
-              <div style="font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;margin-bottom:5px">Fra</div>
-              <input type="text" id="dateFrom" placeholder="ÅÅÅÅ-MM-DD"
-                     style="font-size:13px;padding:6px 10px;border:1.5px solid #d1d5db;border-radius:5px;width:130px;font-family:inherit;color:#1a2a2a"
-                     oninput="onCustomDateChange()">
-            </div>
-            <div>
-              <div style="font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;margin-bottom:5px">Til</div>
-              <input type="text" id="dateTo" placeholder="ÅÅÅÅ-MM-DD"
-                     style="font-size:13px;padding:6px 10px;border:1.5px solid #d1d5db;border-radius:5px;width:130px;font-family:inherit;color:#1a2a2a"
-                     oninput="onCustomDateChange()">
-            </div>
-            <div style="flex:1;min-width:200px">
-              <div style="font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;margin-bottom:5px">Specifikke datoer <span style="font-weight:400;text-transform:none">(kommasepareret)</span></div>
-              <input type="text" id="snapshotDates" placeholder="2022-02-24, 2023-10-07"
-                     style="font-size:13px;padding:6px 10px;border:1.5px solid #d1d5db;border-radius:5px;width:100%;font-family:inherit;color:#1a2a2a">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="run-row">
-        <button id="runBtn" onclick="startRun()">Generer figurer</button>
-        <div class="status-indicator">
-          <div class="status-dot" id="statusDot"></div>
-          <span id="statusMsg">Klar</span>
-        </div>
-      </div>
+      <button class="cal-nav-btn" onclick="navMonth(1)" title="Næste måned">›</button>
+      <button class="cal-nav-btn" onclick="navYear(1)" title="Næste år">»</button>
     </div>
-  </div><!-- end brief card -->
-  </div><!-- end #topRow -->
+    <div class="cal-month-grid" id="calMonthGrid"></div>
+    <div class="cal-weekdays">
+      <span>Ma</span><span>Ti</span><span>On</span><span>To</span><span>Fr</span><span>Lø</span><span>Sø</span>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-mode-hint" id="calHint"></div>
+  </div>
 
   <!-- ── Pipeline steps ── -->
-  <div class="card full-width" id="stepsPanel">
-    <div class="card-header">⚙️ Pipeline-trin</div>
+  <div class="card" id="stepsPanel">
+    <div class="card-header">⚙️ Pipeline Steps</div>
     <div class="card-body">
       <div class="step" id="step-1">
         <div class="step-icon">1</div>
         <div>
-          <div class="step-label">Lead Agent — Planlægning</div>
-          <div class="step-detail" id="step-1-detail">LLM læser briefen og producerer en TaskManifest: hvilke specialister der aktiveres, hvilke tickers der hentes, og hvilke graftyper der skal renderes.</div>
+          <div class="step-label">Lead Agent — Plan</div>
+          <div class="step-detail" id="step-1-detail">LLM reads the brief and outputs a TaskManifest: which specialists to activate, which tickers to fetch, and what chart types to render.</div>
         </div>
       </div>
       <div class="step" id="step-2">
         <div class="step-icon">2</div>
         <div>
-          <div class="step-label">Specialister — Hent data</div>
-          <div class="step-detail" id="step-2-detail">Parallelle dataarbejdere henter samtidigt fra Yahoo Finance (markedspriser), FRED (US/EU makroserier) og Eurostat (EU energi &amp; økonomi).</div>
+          <div class="step-label">Specialists — Fetch Data</div>
+          <div class="step-detail" id="step-2-detail">Parallel data workers hit Yahoo Finance (market prices) and FRED (US/EU macro series) simultaneously.</div>
         </div>
       </div>
       <div class="step" id="step-3">
         <div class="step-icon">3</div>
         <div>
-          <div class="step-label">Normaliser — Rens &amp; transformer</div>
-          <div class="step-detail" id="step-3-detail">Fjerner tomme værdier, justerer datoperioder og anvender ÅoÅ %-transformationer og basis-100-indeksering efter behov.</div>
+          <div class="step-label">Normalize — Clean &amp; Transform</div>
+          <div class="step-detail" id="step-3-detail">Drop nulls, align date ranges, apply YoY % transforms and base-100 indexing where needed.</div>
         </div>
       </div>
       <div class="step" id="step-4">
         <div class="step-icon">4</div>
         <div>
-          <div class="step-label">Render — Byg grafer</div>
-          <div class="step-detail" id="step-4-detail">Matplotlib renderer hver figur (type A/B/D/E/F/G/P) med Maj Invest-brandstil, etiketter ved linjeslut og Note- og Kilde-fodnoter.</div>
+          <div class="step-label">Render — Build Charts</div>
+          <div class="step-detail" id="step-4-detail">Matplotlib renders each figure (type A/B/D/E) with Maj Invest brand styling, end-of-line labels, Note and Kilde footer.</div>
         </div>
       </div>
       <div class="step" id="step-5">
         <div class="step-icon">5</div>
         <div>
-          <div class="step-label">Reviewer — Kvalitetstjek</div>
-          <div class="step-detail" id="step-5-detail">En djævlens advokat-LLM gennemgår hver PNG og markerer fejl. Afvises figuren, renderes den om (maks. 2 forsøg).</div>
+          <div class="step-label">Reviewer — Quality Check</div>
+          <div class="step-detail" id="step-5-detail">A devil's advocate LLM inspects each PNG and flags issues. If rejected, the figure is re-rendered (max 2 loops).</div>
         </div>
       </div>
       <div class="step" id="step-6">
         <div class="step-icon">✓</div>
         <div>
-          <div class="step-label">Output — Figurer klar</div>
-          <div class="step-detail" id="step-6-detail">PNG-filer gemt på disk, metadata skrevet til manifest.json.</div>
+          <div class="step-label">Output — Figures Ready</div>
+          <div class="step-detail" id="step-6-detail">PNG files saved to disk, metadata written to manifest.json.</div>
         </div>
       </div>
     </div>
@@ -662,23 +627,16 @@
 
   <!-- ── Live log ── -->
   <div class="card" id="logPanel">
-    <div class="card-header">🖥️ Live log</div>
+    <div class="card-header">🖥️ Live Log</div>
     <div class="card-body" style="padding:12px">
-      <div id="logBox"><span class="log-line dim">Afventer kørsel...</span></div>
+      <div id="logBox"><span class="log-line dim">Waiting for run...</span></div>
     </div>
   </div>
 
   <!-- ── Generated figures ── -->
-  <div class="card full-width" id="figuresPanel">
-    <div class="card-header" style="justify-content:space-between">
-      <span>📊 Genererede figurer</span>
-    </div>
+  <div class="card" id="figuresPanel">
+    <div class="card-header">📊 Generated Figures</div>
     <div class="card-body">
-      <div id="emptyState" class="empty-state">
-        <div class="empty-state-icon">📈</div>
-        <div class="empty-state-title">Ingen figurer endnu</div>
-        Skriv et brief ovenfor og tryk <strong>Generer figurer</strong> for at starte pipeline'en.
-      </div>
       <div class="figures-grid" id="figuresGrid"></div>
     </div>
   </div>
@@ -692,122 +650,270 @@
 </div>
 
 <script>
-const BRIEFS = {
-  // Geopolitik
-  1: "Iran-konflikten brød ud den 28. februar 2026. Vis Brent-råolie og europæisk naturgas (TTF), og markér Iran-konflikten den 28. februar 2026. Vis også amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA på gas.",
-  2: "Iran-konflikten og Ukraine-krigen har accelereret det globale forsvarsforbrug. Vis Lockheed Martin, Rheinmetall, BAE Systems og Northrop Grumman indekseret til 100. Markér de geopolitiske begivenheder der falder inden for den valgte tidsperiode.",
-  3: "Guld er steget som safe haven siden Iran-konflikten den 28. februar 2026. Vis guldpriser og markér Iran-konflikten den 28. februar 2026. Vis også kobberpriser for at sammenligne safe haven-rally med industrimetallers signal.",
-  11: "Trump-toldsatserne blev annonceret den 2. april 2025. Vis Brent olie, S&P 500, EUR/USD og guld — sammenlign markedspriserne før og efter Trump-toldsatserne den 2. april 2025.",
-  // Renter & Obligationer
-  4: "Rentespændet inden for Europa afspejler investorernes tillid til de enkelte landes økonomi. Vis 10-årige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt søjlediagram sorteret fra højest til lavest rente og sammenlign med den amerikanske 10-årige statsobligationsrente. Ændringer i renteniveauet vises i procentpoint.",
-  5: "Den amerikanske rentekurve har været en vigtig recessionindikator. Vis den 2-årige statsobligationsrente (DGS2) og den 10-årige statsobligationsrente (DGS10), og vis spændet (T10Y2Y) separat for at vise, hvornår kurven inverterede og normaliserede sig. Ændringer vises i procentpoint.",
-  6: "Sammenlign de tre store centralbankers politikrenter: Federal Reserve (USA), ECB (Eurozonen) og Bank of England (UK). Vis hvornår de begyndte at hæve politikrenterne for at bekæmpe inflation, og hvornår de begyndte at sænke dem igen. Ændringer vises i procentpoint i den medfølgende tabel.",
-  // Aktier & Valuta
-  7: "Sammenlign kursudviklingen for de globale aktiemarkeder: S&P 500 (USA), Euro Stoxx 50 (Europa), Nikkei 225 (Japan) og MSCI Emerging Markets — indekseret til 100 for at illustrere, hvilke regioner der har leveret det bedste afkast.",
-  8: "Den amerikanske dollar er styrket på baggrund af geopolitisk risiko fra Iran-konflikten (28. februar 2026) og Trump-toldsatserne (2. april 2025). Vis DXY-indekset, EUR/USD, GBP/USD og JPY/USD og markér begge begivenheder.",
-  // Energi & Europa
-  9: "Vis kursudviklingen for europæiske vedvarende energiselskaber (Ørsted: ORSTED.CO, Vestas: VWS.CO, Iberdrola: IBE.MC) sammenlignet med store oliemajorer (Shell: SHEL.L, TotalEnergies: TTE.PA) — alle indekseret til 100. Illustrér om den grønne energiomstilling har leveret afkast til investorerne.",
-  12: "Vis EU's energiomstilling over tid som 100% stacked bar — fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilgængelige år.",
-  15: "Vis EU's elproduktion opdelt på energikilder — vind, sol, vandkraft, kerneenergi, gas og kul. Vis hvordan el-mixen har ændret sig over de seneste årtier, og hvor stor en andel vedvarende energi udgør i dag.",
-  10: "Vis 10-årige statsobligationsrenter for Tyskland, Frankrig og Italien som absolutte niveauer — og vis rentespændet (Frankrig og Italien vs. Tyskland) i en separat figur. Dette illustrerer stressniveauer i europæiske obligationsmarkeder og presset på perifere landes finansiering.",
-  // Lande & Økonomi
-  16: "Vis Ungarns makroøkonomiske profil — BNP-vækst, inflation, arbejdsløshed, offentlig gæld og betalingsbalance de seneste 20 år.",
-  17: "Sammenlign Danmarks og Sveriges økonomi — BNP-vækst, inflation og offentlig gæld de seneste 20 år.",
-  18: "Vis Kinas makroøkonomiske udvikling — BNP-vækst, inflation og betalingsbalance de seneste 20 år.",
-  // Makro & Inflation
-  13: "Sammenlign den globale inflationsudvikling for USA, Euroområdet, UK og Kina. Vis inflationstoppen i 2021–2022, den efterfølgende disinflation og de fire economies' vidt forskellige inflationsniveauer.",
-  14: "Vis et globalt markedsscorecard: Brent olie, guld, S&P 500, EUR/USD og den 10-årige amerikanske statsrente — nuværende niveauer sammenlignet med for 1 år siden.",
-  // Årsregnskab & Valuering
-  20: "Hvad er Apple værd? Lav en årsregnskabsanalyse og estimér den fundamentale aktiekurs.",
-  21: "Hvad er Amazon værd? Lav en årsregnskabsanalyse og estimér den fundamentale aktiekurs.",
-  22: "Hvad er Microsoft værd? Lav en årsregnskabsanalyse og estimér den fundamentale aktiekurs.",
-  23: "Analysér Nvidia og estimér den fundamentale aktiekurs ud fra årsregnskabet.",
-};
+// ── Scroll to top on every page load/refresh ──
+window.addEventListener('load', () => window.scrollTo(0, 0));
+history.scrollRestoration = 'manual';
 
-// Internal technical briefs — override what's sent to the API for specific prompts.
-// The user sees the friendly BRIEFS text above; the pipeline receives the exact series
-// instructions below. Only populated for prompts that need explicit data routing.
-const INTERNAL_BRIEFS = {
-  12: "Vis EU's samlede energiomstilling over tid som 100% stacked bar og cirkeldiagram. Brug eu_energy_mix (source='eurostat_mix') i eurostat-specialisten. Inkludér naturgas, kul, kerneenergi, vind, sol og vandkraft. VIGTIGT: I note-feltet på BEGGE figurer (søjlediagrammet og cirkeldiagrammet) skal det fremgå tydeligt: 'Viser bruttoindenlandsforbrug (GIC) — ikke elproduktion alene. Vedvarende energis andel i elproduktionen er væsentligt højere.'",
-  13: "Sammenlign den globale inflationsudvikling — USA, Euroområdet, UK og Kina — headline CPI/HICP år-over-år i procent. Brug følgende serier alle i macro-specialist: CPALTT01USM659N (source='fred', label='USA'), ea_hicp_yoy (source='eurostat_ts', label='Euroområdet'), CPALTT01GBM659N (source='fred', label='UK'), CPALTT01CNM659N (source='fred', label='Kina'). Alle serier er allerede i YoY % — sæt y_label='%'. Brug titlen 'Inflationsudvikling i USA, euroområdet, UK og Kina (headline CPI/HICP)'. Ingen reference_lines. På den tilhørende Type D-tabel: sæt col_after='Nu'. Vis inflationstoppen i 2021–2022 og den efterfølgende disinflation — bemærk Kinas markant lavere inflation og deflationstendens.",
-  15: "Vis EU's elproduktionsmix over tid. Brug eu_elec_mix (source='eurostat_mix') i eurostat-specialisten — dette dækker KUN elproduktion (KTOE), ikke samlet energiforbrug. Lav både et 100% stacked søjlediagram (Type F) med titel 'EU's elproduktionsmix over tid — bruttoelproduktion' OG et cirkeldiagram (Type P) med titel 'EU's elproduktionsmix — seneste tilgængelige år'. VIGTIGT: I note-feltet på BEGGE figurer skal det fremgå tydeligt: 'Viser bruttoelproduktion (KTOE) — ikke samlet energiforbrug. Vedvarende energis andel er lavere i det samlede energimix (GIC). Data fra Eurostat med 1–2 års publiceringsefterslæb.'",
-};
+// ── Tidsperiode state ──
+let tpMode     = 'llm';   // 'preset' | 'custom' | 'llm'
+let tpDays     = null;    // number of days for preset mode
+let tpActiveBtn = document.getElementById ? document.getElementById('llmBtn') : null;
 
-// Natural period for each quick prompt (days) — 0 = LLM bestemmer (slider controls)
-const BRIEF_PERIODS = {
-  1: 730,   // Iran war — 2 years covers the event
-  2: 1825,  // Defense stocks — 5 years covers Ukraine + Iran
-  3: 730,   // Gold safe haven — 2 years
-  11: 730,  // Trump tariffs — 2 years covers the April 2025 event
-  4: 0,     // Yield snapshot G-type — LLM picks
-  5: 1825,  // Yield curve — 5 years shows inversion + normalisation
-  6: 1825,  // Central banks — 5 years shows full hike + cut cycle
-  7: 1826,  // Global equities — 5 years for broad comparison
-  8: 730,   // Dollar strength — 2 years
-  9: 3650,  // Green vs. fossil equities — 10 years shows full boom/bust cycle
-  12: 0,    // EU energy transition F-type — LLM picks multi-year
-  15: 0,    // EU electricity generation mix — LLM picks (10–15 years)
-  10: 730,  // European bond stress — 2 years
-  13: 0,    // Global inflation — LLM picks (needs ≥760 for YoY)
-  14: 0,    // Market scorecard — LLM picks (1-year lookback)
-  16: 0,    // World Bank — LLM picks years=20
-  17: 0,    // World Bank comparison — LLM picks years=20
-  18: 0,    // World Bank — LLM picks years=20
-  20: 0,    // Annual report — FMP fetches 10yr annual data regardless
-  21: 0,    // Annual report — FMP fetches 10yr annual data regardless
-  22: 0,    // Annual report — FMP fetches 10yr annual data regardless
-  23: 0,    // Annual report — FMP fetches 10yr annual data regardless
-};
+// ── Calendar state ──
+let calStart  = null;   // Date | null
+let calEnd    = null;   // Date | null
+let calMode   = null;   // 'start' | 'end' | null
+let calYear   = new Date().getFullYear();
+let calMonth  = new Date().getMonth();   // 0-11
+let calHover  = null;   // Date | null (range preview on hover)
 
-// Viz types required by each quick prompt — omit for prompts that use the default (A only).
-// Keys: 'A', 'D', 'P' toggle individually; 'bar' activates Søjlediagram (B/G/F).
-const BRIEF_VIZ_TYPES = {
-  12: ['bar', 'P'],          // EU energiomstilling — stacked bar + pie
-  15: ['bar', 'P'],          // EU elproduktion — stacked bar + pie
-  4:  ['bar'],               // EU obligations — horizontal bar snapshot
-  6:  ['A', 'D'],            // Central banks — time series + change table
-  9:  ['A'],                 // Grøn energi — time series
-  13: ['A', 'D'],            // Global inflation — time series + table
-  14: ['D'],                 // Scorecard — table only
-  16: ['A', 'D'],            // single country — time series + table
-  17: ['A', 'bar'],          // comparison — time series + bar
-  18: ['A', 'D'],            // single country — time series + table
-  20: ['A', 'D'],            // annual report — specialist generates A (trend) + D (tables) only
-  21: ['A', 'D'],            // annual report — specialist generates A (trend) + D (tables) only
-  22: ['A', 'D'],            // annual report — specialist generates A (trend) + D (tables) only
-  23: ['A', 'D'],            // annual report — specialist generates A (trend) + D (tables) only
-};
+const MONTH_NAMES = ['Januar','Februar','Marts','April','Maj','Juni',
+                     'Juli','August','September','Oktober','November','December'];
+const MONTH_SHORT = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
 
-let _activeQuickId = null;  // tracks which quick prompt is loaded
-
-function _applyVizTypes(types) {
-  // Reset all toggles to off first
-  activeVizTypes = new Set();
-  barActive = false;
-  ['A', 'D', 'P'].forEach(k => {
-    const el = document.getElementById(`vopt-${k}`);
-    if (el) el.classList.remove('active');
-  });
-  document.getElementById('vopt-bar-parent').classList.remove('active');
-
-  // Activate requested types
-  (types || ['A']).forEach(k => {
-    if (k === 'bar') {
-      barActive = true;
-      document.getElementById('vopt-bar-parent').classList.add('active');
-    } else {
-      activeVizTypes.add(k);
-      const el = document.getElementById(`vopt-${k}`);
-      if (el) el.classList.add('active');
-    }
-  });
+function fmtDate(d) {
+  return d.getDate() + '. ' + MONTH_SHORT[d.getMonth()] + ' ' + d.getFullYear();
 }
+function sameDay(a, b) {
+  return a && b && a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+}
+function dateOnly(d) {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+}
+
+// ── Open / close calendar ──
+function openCal(mode) {
+  if (tpMode !== 'custom') return;   // calendar only works when "Vælg datoer" is active
+  calMode = mode;
+  // Seed the view at the relevant selected date
+  const seed = mode === 'start' ? calStart : calEnd;
+  if (seed) { calYear = seed.getFullYear(); calMonth = seed.getMonth(); }
+  renderCal();
+  const popup  = document.getElementById('calPopup');
+  const anchor = document.getElementById(mode === 'start' ? 'startField' : 'endField');
+  const rect   = anchor.getBoundingClientRect();
+  popup.style.top  = (rect.bottom + window.scrollY + 6) + 'px';
+  popup.style.left = Math.min(rect.left, window.innerWidth - 296) + 'px';
+  popup.classList.add('open');
+  document.getElementById(mode+'Field').classList.add('active');
+}
+
+function hideCal() {
+  document.getElementById('calPopup').classList.remove('open');
+  document.getElementById('startField').classList.remove('active');
+  document.getElementById('endField').classList.remove('active');
+  calMode = null;
+  calHover = null;
+  closeMonthPicker();
+}
+
+document.addEventListener('click', e => {
+  const popup = document.getElementById('calPopup');
+  if (!popup.classList.contains('open')) return;
+  if (!popup.contains(e.target) &&
+      !document.getElementById('startField').contains(e.target) &&
+      !document.getElementById('endField').contains(e.target)) {
+    hideCal();
+  }
+});
+
+// ── Navigation ──
+function navMonth(d) {
+  calMonth += d;
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0;  calYear++; }
+  closeMonthPicker();
+  renderCal();
+}
+function navYear(d) {
+  calYear += d;
+  renderCal();
+}
+
+// ── Month picker overlay ──
+function toggleMonthPicker() {
+  const grid = document.getElementById('calMonthGrid');
+  if (grid.classList.contains('open')) { closeMonthPicker(); return; }
+  grid.innerHTML = '';
+  MONTH_SHORT.forEach((name, i) => {
+    const el = document.createElement('div');
+    el.className = 'cal-month-item' + (i === calMonth ? ' selected' : '');
+    el.textContent = name;
+    el.onclick = () => { calMonth = i; closeMonthPicker(); renderCal(); };
+    grid.appendChild(el);
+  });
+  grid.classList.add('open');
+  document.getElementById('calGrid').style.display = 'none';
+  document.getElementById('calWeekdays') && (document.getElementById('calWeekdays').style.display='none');
+}
+function closeMonthPicker() {
+  document.getElementById('calMonthGrid').classList.remove('open');
+  document.getElementById('calGrid').style.display = 'grid';
+}
+
+// ── Year edit ──
+function editYear() {
+  const lbl = document.getElementById('calYearLbl');
+  const inp = document.getElementById('calYearInput');
+  lbl.style.display = 'none';
+  inp.style.display = 'inline-block';
+  inp.value = calYear;
+  inp.focus(); inp.select();
+}
+function commitYear() {
+  const inp = document.getElementById('calYearInput');
+  const lbl = document.getElementById('calYearLbl');
+  const v = parseInt(inp.value, 10);
+  if (v >= 1950 && v <= 2100) calYear = v;
+  inp.style.display = 'none';
+  lbl.style.display = 'inline-block';
+  renderCal();
+}
+
+// ── Render calendar grid ──
+function renderCal() {
+  document.getElementById('calMonthLbl').textContent = MONTH_NAMES[calMonth];
+  document.getElementById('calYearLbl').textContent  = calYear;
+
+  const grid  = document.getElementById('calGrid');
+  const hint  = document.getElementById('calHint');
+  hint.textContent = calMode === 'start' ? 'Vælg startdato' : 'Vælg slutdato';
+
+  const firstDay   = new Date(calYear, calMonth, 1);
+  const lastDay    = new Date(calYear, calMonth + 1, 0);
+  const startPad   = (firstDay.getDay() + 6) % 7;   // Mon=0
+  const today      = dateOnly(new Date());
+
+  // Determine effective range (using hover preview if picking end date)
+  let rStart = calStart ? dateOnly(calStart) : null;
+  let rEnd   = (calMode === 'end' && calHover) ? dateOnly(calHover) : (calEnd ? dateOnly(calEnd) : null);
+  if (rStart && rEnd && rEnd < rStart) { let tmp = rStart; rStart = rEnd; rEnd = tmp; }
+
+  grid.innerHTML = '';
+
+  // Leading empty cells
+  for (let i = 0; i < startPad; i++) {
+    const el = document.createElement('div');
+    el.className = 'cal-day cal-day--empty';
+    grid.appendChild(el);
+  }
+
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    const day = new Date(calYear, calMonth, d);
+    const el  = document.createElement('div');
+    el.className = 'cal-day';
+    el.textContent = d;
+
+    if (sameDay(day, today)) el.classList.add('cal-day--today');
+    if (rStart && sameDay(day, rStart)) el.classList.add('cal-day--start');
+    else if (rEnd && sameDay(day, rEnd)) el.classList.add('cal-day--end');
+    else if (rStart && rEnd && day > rStart && day < rEnd) el.classList.add('cal-day--in-range');
+
+    el.addEventListener('mouseenter', () => {
+      if (calMode === 'end' && calStart) { calHover = day; renderCal(); }
+    });
+    el.addEventListener('mouseleave', () => {
+      if (calMode === 'end') { calHover = null; renderCal(); }
+    });
+    el.addEventListener('click', () => selectDay(day));
+    grid.appendChild(el);
+  }
+}
+
+// ── Day selection ──
+function selectDay(day) {
+  clearPreset();
+  if (calMode === 'start') {
+    calStart = day;
+    if (calEnd && calEnd < calStart) calEnd = null;
+    updateDisplays();
+    // auto-switch to end
+    calMode = 'end';
+    calHover = null;
+    renderCal();
+    document.getElementById('startField').classList.remove('active');
+    document.getElementById('endField').classList.add('active');
+  } else {
+    if (calStart && day < calStart) {
+      // swap: clicked before start → treat as new start
+      calEnd = calStart;
+      calStart = day;
+    } else {
+      calEnd = day;
+    }
+    updateDisplays();
+    hideCal();
+  }
+}
+
+// ── Tidsperiode preset switching ──
+function setTidspreset(keyOrDays, btn) {
+  // Deactivate previous button
+  if (tpActiveBtn) tpActiveBtn.classList.remove('tp-active');
+  btn.classList.add('tp-active');
+  tpActiveBtn = btn;
+
+  const customRow = document.getElementById('dateCustomRow');
+
+  if (keyOrDays === 'custom') {
+    tpMode = 'custom';
+    tpDays = null;
+    customRow.classList.add('open');
+    // Don't clear existing dates — let user keep prior selection
+
+  } else if (keyOrDays === 'llm') {
+    tpMode = 'llm';
+    tpDays = null;
+    calStart = null; calEnd = null;
+    customRow.classList.remove('open');
+    updateDisplays();
+    hideCal();
+
+  } else {
+    // Numeric preset
+    tpMode = 'preset';
+    tpDays = keyOrDays;
+    const end   = dateOnly(new Date());
+    const start = keyOrDays >= 9000
+      ? new Date(1970, 0, 1)                             // Max: from 1970
+      : dateOnly(new Date(end - keyOrDays * 86400000));
+    calStart = start;
+    calEnd   = end;
+    customRow.classList.remove('open');
+    updateDisplays();
+    hideCal();
+  }
+}
+
+function clearDates() {
+  calStart = null; calEnd = null;
+  updateDisplays();
+}
+
+function updateDisplays() {
+  const sEl = document.getElementById('startDisplay');
+  const eEl = document.getElementById('endDisplay');
+  if (calStart) { sEl.textContent = fmtDate(calStart); sEl.classList.remove('placeholder'); }
+  else          { sEl.textContent = 'Vælg dato';       sEl.classList.add('placeholder'); }
+  if (calEnd)   { eEl.textContent = fmtDate(calEnd);   eEl.classList.remove('placeholder'); }
+  else          { eEl.textContent = 'Vælg dato';       eEl.classList.add('placeholder'); }
+}
+
+const BRIEFS = {
+  1: "Iran declared war on Israel on 28 February 2026, sending shockwaves through energy markets. Show Brent crude and European natural gas (TTF) prices from 2024 to today, marking the outbreak on 28 February 2026. Also show US natural gas (Henry Hub) to illustrate the EU vs US gas price differential.",
+  2: "Trump announced sweeping tariffs on 2 April 2025 ('Liberation Day'), triggering a global market selloff. Show S&P 500, Euro Stoxx 50, and MSCI Emerging Markets indexed to 100 from January 2025 to today, marking 2 April 2025 as the tariff announcement. Also show the VIX fear gauge over the same period.",
+  3: "The Iran war on 28 February 2026 and the Ukraine war since February 2022 have accelerated defence spending globally. Show Lockheed Martin, Rheinmetall, BAE Systems, and Northrop Grumman indexed to 100 from February 2022 to today, marking the Ukraine invasion on 24 February 2022 and the Iran war outbreak on 28 February 2026.",
+  4: "Gold has surged as a safe haven since the Iran war broke out on 28 February 2026. Show gold prices from 2023 to today, marking 28 February 2026. Also show copper prices over the same period to compare the safe-haven rally against the industrial metals signal.",
+  5: "US inflation has remained stubborn despite Fed tightening. Show US CPI year-over-year from 2021 to today. On a separate chart, show the Fed Funds rate and the 2-year Treasury yield over the same period to illustrate the policy transmission lag.",
+  6: "Compare US and Eurozone macro fundamentals since 2022: US CPI vs Eurozone HICP inflation (year-over-year), Fed Funds rate vs ECB deposit rate, and US vs Germany 10-year bond yields.",
+  7: "The US dollar has strengthened sharply amid geopolitical risk from the Iran war (28 February 2026) and Trump tariffs (2 April 2025). Show the DXY index, EUR/USD, GBP/USD, and JPY/USD from January 2024 to today, marking both events.",
+  8: "The US yield curve has been a key recession indicator. Show the 2-year Treasury yield (DGS2) and 10-year Treasury yield (DGS10) from 2022 to today, and the 10Y-2Y spread (T10Y2Y) separately to show when the curve inverted and when it normalised.",
+  9: "Global equities have been volatile in 2025-2026 amid tariffs and geopolitical risk. Compare S&P 500, Euro Stoxx 50, Nikkei 225, and MSCI Emerging Markets indexed to 100 from January 2024 to today. Mark Trump tariff announcement on 2 April 2025 and Iran war outbreak on 28 February 2026.",
+  10: "European bond markets are under stress from high deficits and rising defence spending. Show Germany, France, and Italy 10-year bond yields from 2023 to today to illustrate the spread between core and peripheral Europe.",
+};
 
 function setQuick(n) {
   document.getElementById('briefInput').value = BRIEFS[n];
-  setPeriodDays(BRIEF_PERIODS[n] ?? 0);
-  _applyVizTypes(BRIEF_VIZ_TYPES[n] || ['A']);
-  _activeQuickId = n;
 }
 
 // ── Step management ──
@@ -870,19 +976,25 @@ function appendLog(text) {
 let eventSource = null;
 
 function startRun() {
-  const displayBrief = document.getElementById('briefInput').value.trim();
-  if (!displayBrief) { alert('Angiv venligst et emne-brief.'); return; }
-  // Use the internal technical brief if a quick prompt is active and has one;
-  // otherwise send exactly what the user typed.
-  const brief = (_activeQuickId && INTERNAL_BRIEFS[_activeQuickId]) ? INTERNAL_BRIEFS[_activeQuickId] : displayBrief;
+  const brief = document.getElementById('briefInput').value.trim();
+  if (!brief) { alert('Please enter a topic brief.'); return; }
+
+  // Build POST body — include explicit dates when set for rock-solid backend enforcement
+  const body = { brief };
+  if (tpMode === 'custom' && calStart && calEnd) {
+    body.start_date  = calStart.toISOString().slice(0, 10);
+    body.end_date    = calEnd.toISOString().slice(0, 10);
+  } else if (tpMode === 'preset' && tpDays) {
+    body.period_days = tpDays >= 9000 ? 18250 : tpDays;  // Max → 50 years
+  }
+  // tpMode === 'llm': no date constraints, LLM decides from brief
 
   document.getElementById('runBtn').disabled = true;
-  document.getElementById('statusMsg').textContent = 'Kører pipeline...';
+  document.getElementById('statusMsg').textContent = 'Running pipeline…';
   document.getElementById('statusMsg').className = 'running';
-  document.getElementById('statusDot').className = 'status-dot running';
   document.getElementById('logBox').innerHTML = '';
+  document.getElementById('figuresPanel').style.display = 'none';
   document.getElementById('figuresGrid').innerHTML = '';
-  document.getElementById('emptyState').style.display = 'block';
   resetSteps();
 
   if (eventSource) { eventSource.close(); eventSource = null; }
@@ -899,54 +1011,23 @@ function startRun() {
       finishAllSteps();
       renderFigures(msg.figures);
       document.getElementById('runBtn').disabled = false;
-      document.getElementById('statusMsg').textContent =
-        `Færdig — ${msg.figures.length} figur(er)`;
+      document.getElementById('statusMsg').textContent = `Done — ${msg.figures.length} figure(s) generated`;
       document.getElementById('statusMsg').className = '';
-      document.getElementById('statusDot').className = 'status-dot';
-      if (msg.specialist_errors && Object.keys(msg.specialist_errors).length > 0) {
-        for (const [name, err] of Object.entries(msg.specialist_errors)) {
-          appendLog(`FEJL i specialist '${name}': ${err}`);
-        }
-        if (msg.figures.length === 0) {
-          document.getElementById('statusMsg').textContent = 'Fejl — se log for detaljer';
-          document.getElementById('statusMsg').className = 'error';
-          document.getElementById('statusDot').className = 'status-dot error';
-        }
-      }
       eventSource.close();
-      eventSource = null;
     } else if (msg.type === 'error') {
       appendLog('ERROR: ' + msg.text);
       document.getElementById('runBtn').disabled = false;
-      document.getElementById('statusMsg').textContent = 'Fejl — se log';
+      document.getElementById('statusMsg').textContent = 'Error — see log';
       document.getElementById('statusMsg').className = 'error';
-      document.getElementById('statusDot').className = 'status-dot error';
       eventSource.close();
-      eventSource = null;
     }
   };
 
   // Then POST the run
-  const snapshotRaw = (document.getElementById('snapshotDates')?.value || '').trim();
   fetch('/run', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      brief,
-      preferred_types: getPreferredTypes(),
-      period_days:  selectedPeriodDays || null,
-      start_date:   selectedStartDate  || null,
-      end_date:     selectedEndDate    || null,
-      snapshot_dates: snapshotRaw ? snapshotRaw.split(',').map(s => s.trim()).filter(Boolean) : null,
-    }),
-  }).then(r => {
-    if (r.status === 429) {
-      document.getElementById('statusMsg').textContent = 'En kørsel er allerede i gang — vent venligst.';
-      document.getElementById('statusMsg').className = 'error';
-      document.getElementById('statusDot').className = 'status-dot error';
-      document.getElementById('runBtn').disabled = false;
-      if (eventSource) { eventSource.close(); eventSource = null; }
-    }
+    body: JSON.stringify({ brief }),
   }).catch(err => {
     appendLog('Network error: ' + err);
     document.getElementById('runBtn').disabled = false;
@@ -956,149 +1037,21 @@ function startRun() {
 function renderFigures(figures) {
   const grid = document.getElementById('figuresGrid');
   grid.innerHTML = '';
-  document.getElementById('emptyState').style.display = figures.length ? 'none' : 'block';
-  figures.forEach((fig, i) => {
+  figures.forEach(fig => {
     const flagHtml = fig.reviewer_flag
       ? `<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border:1px solid #fed7aa;border-radius:5px;font-size:11px;color:#92400e;">
-           <strong>Reviewer flag:</strong> ${fig.reviewer_flag}
+           ⚠️ <strong>Reviewer flag:</strong> ${fig.reviewer_flag}
          </div>`
       : '';
-
-    const excelFooterBtn = fig.excel_path
-      ? `<a href="/download/excel/${encodeURIComponent(fig.excel_path)}" download="${fig.excel_path}"
-            style="display:inline-flex;align-items:center;gap:5px;color:#11716c;font-size:11px;font-weight:600;text-decoration:none;padding:3px 8px;border:1px solid #b6dbd8;border-radius:4px;background:#f0faf9"
-            onmouseover="this.style.background='#d4eeeb'" onmouseout="this.style.background='#f0faf9'">
-           <svg width="11" height="11" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v7M3.5 5.5l3 3 3-3M2 10h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-           Excel
-         </a>`
-      : '';
-
     const card = document.createElement('div');
     card.className = 'fig-card';
-    card.id = `figcard-${i}`;
     card.innerHTML = `
-      <img src="/figures/${fig.path}?t=${Date.now()}" alt="${fig.title}"
-           id="figimg-${i}" onclick="openLightbox(this.src)" />
-      <div class="fig-footer" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-        <a href="/figures/${fig.path}" download="${fig.path}" class="fig-download">
-          &#8681; Download PNG
-        </a>
-        ${excelFooterBtn}
-      </div>
+      <img src="/figures/${fig.path}?t=${Date.now()}" alt="${fig.title}" onclick="openLightbox(this.src)" />
       ${flagHtml ? `<div class="fig-meta">${flagHtml}</div>` : ''}`;
-
     grid.appendChild(card);
   });
+  document.getElementById('figuresPanel').style.display = 'block';
   document.getElementById('figuresPanel').scrollIntoView({ behavior: 'smooth' });
-}
-
-// ── Period selector ──
-const PRESET_DAYS = { '5D':5, '1W':7, '1M':30, '3M':90, '6M':180, '1Y':365, '3Y':1095, '5Y':1825, '10Y':3650, 'Max':10950 };
-let selectedPeriodDays = 0;   // 0 = LLM decides
-let selectedStartDate  = '';
-let selectedEndDate    = '';
-
-function _clearPresetActive() {
-  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('llmBtn').style.background = '#fff';
-  document.getElementById('llmBtn').style.color = '#6b7280';
-  document.getElementById('llmBtn').style.borderColor = '#d1d5db';
-}
-
-function setPeriodPreset(preset) {
-  _clearPresetActive();
-  selectedStartDate = '';
-  selectedEndDate   = '';
-  document.getElementById('customDatesRow').style.display = 'none';
-  document.getElementById('customPeriodBtn').classList.remove('active');
-  const days = PRESET_DAYS[preset] || 0;
-  selectedPeriodDays = days;
-  // Mark active button
-  document.querySelectorAll('.period-btn').forEach(b => {
-    const label = b.textContent.trim();
-    const map = {'5D':'5D','1U':'1W','1M':'1M','3M':'3M','6M':'6M','1 År':'1Y','3 År':'3Y','5 År':'5Y','10 År':'10Y','Max':'Max'};
-    if (map[label] === preset) b.classList.add('active');
-  });
-}
-
-function toggleCustomDates() {
-  const row = document.getElementById('customDatesRow');
-  const btn = document.getElementById('customPeriodBtn');
-  const visible = row.style.display !== 'none';
-  if (visible) {
-    row.style.display = 'none';
-    btn.classList.remove('active');
-    btn.style.background = '#fff';
-    btn.style.color = '#11716c';
-  } else {
-    _clearPresetActive();
-    selectedPeriodDays = 0;
-    row.style.display = 'block';
-    btn.classList.add('active');
-    btn.style.background = '#11716c';
-    btn.style.color = '#fff';
-    document.getElementById('dateFrom').focus();
-  }
-}
-
-function onCustomDateChange() {
-  selectedStartDate = document.getElementById('dateFrom').value.trim();
-  selectedEndDate   = document.getElementById('dateTo').value.trim();
-  selectedPeriodDays = 0;  // explicit dates override period_days
-}
-
-function setLLMPeriod() {
-  _clearPresetActive();
-  selectedPeriodDays = 0;
-  selectedStartDate  = '';
-  selectedEndDate    = '';
-  document.getElementById('customDatesRow').style.display = 'none';
-  document.getElementById('customPeriodBtn').classList.remove('active');
-  document.getElementById('customPeriodBtn').style.background = '#fff';
-  document.getElementById('customPeriodBtn').style.color = '#11716c';
-  const llm = document.getElementById('llmBtn');
-  llm.style.background = '#11716c';
-  llm.style.color = '#fff';
-  llm.style.borderColor = '#11716c';
-}
-
-// Called by setQuick to auto-select period
-function setPeriodDays(days) {
-  if (days === 0) {
-    setLLMPeriod();
-  } else {
-    // Find best matching preset
-    const presets = ['5D','1W','1M','3M','6M','1Y','3Y','5Y','10Y','Max'];
-    let best = 'Max';
-    for (const p of presets) {
-      if (PRESET_DAYS[p] >= days) { best = p; break; }
-    }
-    setPeriodPreset(best);
-    selectedPeriodDays = days;  // preserve exact value even if no perfect match
-  }
-}
-
-// ── Visualization type panel ──
-let activeVizTypes = new Set(['A']);  // Figur selected by default
-let barActive = false;
-
-function toggleVizOpt(key) {
-  if (key === 'bar') {
-    const el = document.getElementById('vopt-bar-parent');
-    barActive = el.classList.toggle('active');
-  } else {
-    const el = document.getElementById(`vopt-${key}`);
-    const isActive = el.classList.toggle('active');
-    if (isActive) activeVizTypes.add(key);
-    else activeVizTypes.delete(key);
-  }
-}
-
-function getPreferredTypes() {
-  const types = [...activeVizTypes];
-  // Søjlediagram: send all three subtypes, LLM picks the most appropriate one
-  if (barActive) types.push('B', 'G', 'F');
-  return types;
 }
 
 function openLightbox(src) {
@@ -1109,19 +1062,6 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-// Restore last run on page load (survives browser reload)
-window.addEventListener('load', () => {
-  fetch('/last').then(r => r.json()).then(msg => {
-    if (msg.type === 'done' && msg.figures && msg.figures.length > 0) {
-      document.getElementById('statusMsg').textContent =
-        `Seneste kørsel gendannet — ${msg.figures.length} figur(er)`;
-      renderFigures(msg.figures);
-    }
-  }).catch(() => {});
-});
-// Init: default to LLM bestemmer on page load
-setLLMPeriod();
 </script>
 </body>
 </html>
