@@ -1029,6 +1029,11 @@ function finishAllSteps() {
   });
 }
 
+// ── Utility ──
+function escHtml(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 // ── Figures ──
 function renderFigures(figures) {
   if (!figures || !figures.length) return;
@@ -1036,14 +1041,25 @@ function renderFigures(figures) {
   const grid  = document.getElementById('figuresGrid');
   panel.style.display = 'block';
   grid.innerHTML = '';
+  const ts = Date.now();
   figures.forEach(fig => {
     const card = document.createElement('div');
     card.className = 'fig-card';
-    const url = `/figures/${fig.path}?t=${Date.now()}`;
+    const url    = `/figures/${escHtml(fig.path)}?t=${ts}`;
+    const dlName = escHtml(fig.path);
+    const flagHtml = fig.reviewer_flag
+      ? `<div class="fig-flag">⚠️ ${escHtml(fig.reviewer_flag)}</div>`
+      : '';
     card.innerHTML = `
-      <img src="${url}" alt="${fig.title || ''}" onclick="openLightbox('${url}')">
+      <img src="${url}" alt="${escHtml(fig.title)}" onclick="openLightbox('${url}')">
+      <div class="fig-meta">
+        ${fig.title  ? `<div class="fig-title">${escHtml(fig.title)}</div>` : ''}
+        ${fig.note   ? `<div class="fig-note">${escHtml(fig.note)}</div>`   : ''}
+        ${fig.kilde  ? `<div class="fig-kilde"><strong>Kilde:</strong> ${escHtml(fig.kilde)}</div>` : ''}
+        ${flagHtml}
+      </div>
       <div class="fig-actions">
-        <a class="fig-dl-btn" href="${url}" download="${fig.path}">⬇ Download PNG</a>
+        <a class="fig-dl-btn" href="${url}" download="${dlName}">⬇ Download PNG</a>
         <a class="fig-dl-btn excel" href="/download/excel" download="maj_invest_data.xlsx">↑ Excel</a>
       </div>`;
     grid.appendChild(card);
