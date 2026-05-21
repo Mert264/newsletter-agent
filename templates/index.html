@@ -851,10 +851,11 @@ function startRun() {
   resetSteps();
 
   // Build payload
+  const subLabels = { lodret: 'lodret søjlediagram', vandret: 'vandret søjlediagram', stablet: '100% stablet søjlediagram' };
   const vizHints = {
     figur: '',
     tabel: ' [Præference: Tabel/snapshot-oversigt]',
-    soejle: ' [Præference: Søjlediagram/sammenligning]',
+    soejle: ` [Præference: ${subLabels[activeVizSub] || 'Søjlediagram'}]`,
     cirkel: ' [Præference: Cirkeldiagram/andele]',
   };
   let fullBrief = brief + (vizHints[activeViz] || '');
