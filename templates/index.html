@@ -456,40 +456,75 @@
       <div class="viz-panel-title">Visualiseringstype</div>
       <div class="viz-sublabel">Vælg én eller flere</div>
       <div id="vizOptions">
+
+        <!-- Figur -->
         <div class="viz-option active" data-type="figur" onclick="setViz(this)">
-          <span class="viz-icon">📈</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:2px">
+            <polyline points="1,11 4,7 7,9 10,4 13,6" stroke="#11716c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <div class="viz-text">
             <div class="viz-name">Figur</div>
-            <div class="viz-desc">Tidsserie — Indekseret</div>
+            <div class="viz-desc">Time series — linjegraf</div>
           </div>
           <span class="viz-check">✓</span>
         </div>
+
+        <!-- Søjlediagram with sub-options -->
+        <div class="viz-option" data-type="soejle" onclick="setViz(this)" id="soejleOption">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:2px">
+            <rect x="1" y="5" width="3" height="8" rx=".5" fill="#9ca3af"/>
+            <rect x="5.5" y="2" width="3" height="11" rx=".5" fill="#9ca3af"/>
+            <rect x="10" y="7" width="3" height="6" rx=".5" fill="#9ca3af"/>
+          </svg>
+          <div class="viz-text" style="flex:1">
+            <div class="viz-name">Søjlediagram</div>
+            <div class="viz-desc">Vælg visningstype nedenfor</div>
+          </div>
+          <span class="viz-check">✓</span>
+        </div>
+        <div class="viz-subopts" id="soejleSubopts">
+          <div class="viz-subopt active" data-sub="lodret" onclick="setSub(event,'lodret')">
+            <span class="viz-subdot"></span>Lodret — sammenligning
+          </div>
+          <div class="viz-subopt" data-sub="vandret" onclick="setSub(event,'vandret')">
+            <span class="viz-subdot"></span>Vandret — ranking
+          </div>
+          <div class="viz-subopt" data-sub="stablet" onclick="setSub(event,'stablet')">
+            <span class="viz-subdot"></span>Stablet — fordeling over tid
+          </div>
+        </div>
+
+        <!-- Tabel -->
         <div class="viz-option" data-type="tabel" onclick="setViz(this)">
-          <span class="viz-icon">📋</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:2px">
+            <rect x="1" y="1" width="12" height="12" rx="1" stroke="#9ca3af" stroke-width="1.2"/>
+            <line x1="1" y1="5" x2="13" y2="5" stroke="#9ca3af" stroke-width="1"/>
+            <line x1="1" y1="9" x2="13" y2="9" stroke="#9ca3af" stroke-width="1"/>
+            <line x1="5" y1="1" x2="5" y2="13" stroke="#9ca3af" stroke-width="1"/>
+          </svg>
           <div class="viz-text">
             <div class="viz-name">Tabel</div>
-            <div class="viz-desc">Mål/tal — Snapshot-oversigt</div>
+            <div class="viz-desc">Snapshot — nøgletal</div>
           </div>
           <span class="viz-check">✓</span>
         </div>
-        <div class="viz-option" data-type="soejle" onclick="setViz(this)">
-          <span class="viz-icon">📊</span>
-          <div class="viz-text">
-            <div class="viz-name">Søjlediagram</div>
-            <div class="viz-desc">Sammenligning, ranking eller fordeling</div>
-          </div>
-          <span class="viz-check">✓</span>
-        </div>
+
+        <!-- Cirkeldiagram -->
         <div class="viz-option" data-type="cirkel" onclick="setViz(this)">
-          <span class="viz-icon">🥧</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:2px">
+            <circle cx="7" cy="7" r="5.5" stroke="#9ca3af" stroke-width="1.2"/>
+            <path d="M7 7 L7 1.5 A5.5 5.5 0 0 1 12.5 7 Z" fill="#d1d5db"/>
+            <path d="M7 7 L12.5 7 A5.5 5.5 0 0 1 4 12 Z" fill="#e5e7eb"/>
+          </svg>
           <div class="viz-text">
             <div class="viz-name">Cirkeldiagram</div>
-            <div class="viz-desc">Snapshot — del som + sum = 100%</div>
+            <div class="viz-desc">Snapshot — ét år, sum = 100%</div>
           </div>
           <span class="viz-check">✓</span>
         </div>
+
       </div>
-      <div class="viz-note">Systemagenten anvender valget som præference ved generering af figurer. Agenten tilpasser output til den valgte type.</div>
+      <div class="viz-note">Systemet respekterer dine valg som præference. Tilpasser automatisk til datans natur.</div>
     </div>
 
     <!-- Right: Brief + prompts + period + run -->
