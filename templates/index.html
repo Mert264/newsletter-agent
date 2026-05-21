@@ -798,30 +798,29 @@ function setPeriod(btn) {
   }
 }
 
-// ── Prompts ──
+// ── Prompts — exact texts from original bulletproof_test.py ──
 const PROMPTS = {
-  1:  "Iran-konflikten brød ud 28. februar 2026. Vis Brent råolie og TTF naturgas fra januar 2025 til i dag, med hændelsesmarkør ved krigsstart. Vis også S&P 500 energisektoren.",
-  2:  "Europæiske forsvarsakier er steget markant siden Ukraine- og Iran-konflikten. Vis SAAB, Rheinmetall, BAE Systems og Thales indekseret til 100 fra januar 2024 til i dag.",
-  3:  "Trump annoncerede toldsatser 2. april 2025. Vis USD-indeks (DXY), EUR/USD og JPY/USD fra januar 2025 til i dag, marker 2. april som toldbegivenheden.",
-  4:  "Vis globale aktieindeks — S&P 500, Euro Stoxx 50, Nikkei 225 og MSCI EM — indekseret til 100 fra januar 2024 til i dag.",
-  5:  "Vis USD-indeks (DXY) mod EUR/USD, GBP/USD og JPY/USD over de seneste 2 år for at illustrere dollarstyrke og geopolitisk valutarisiko.",
-  6:  "Guld er steget som safe haven siden Iran-konflikten. Vis guldpriser fra 2023 til i dag med sammenligning mod sølv og Bitcoin.",
-  7:  "Vis et globalt makro-scorecard: S&P 500, DXY, Brent olie, guld, 10-årig US statsrente og VIX — alle over det seneste år.",
-  8:  "Vis Ungarns økonomi: BNP-vækst, inflation, forint-kurs mod EUR og centralbankens styrerente over de seneste 3 år.",
-  9:  "Sammenlign Danmark og Sverige: inflation, BNP-vækst og centralbanksrenter over de seneste 3 år.",
-  10: "Vis Kinas makroprofil: BNP-vækst, CPI-inflation, PMI-fremstilling, CNY/USD og Shanghai Composite over 3 år.",
-  11: "Vis europæiske statsrenter: Tyskland 10Y, Frankrig 10Y, Italien 10Y, Spanien 10Y og Grækenland 10Y — over de seneste 2 år.",
-  12: "Vis den amerikanske rentekurve: 2Y og 10Y Treasury-renter samt 10Y-2Y-spænd fra 2020 til i dag. Marker Fed-rentestigningscyklusser.",
-  13: "Vis Federal Funds Rate, ECBs indlånsrente og Bank of Englands basisrente fra 2021 til i dag. Vis også US-, EU- og UK-inflation (CPI).",
-  14: "Sammenlign vedvarende energiaktier (Ørsted, Vestas) med store olieselskaber (Shell, BP, TotalEnergies) indekseret fra januar 2022.",
-  15: "Vis EUs energiomstillingsindikatorer: naturgaspriser (TTF), elpriser og vedvarende energiandel over de seneste 2 år.",
-  16: "Vis EU's elproduktionsmix og elpriser over de seneste 2 år.",
-  17: "Vis europæiske statsobligationsrenter og kreditspænd med fokus på stressperioder siden 2022.",
-  18: "Vis CPI-inflation år-til-år for USA, EU, UK og Kina fra 2020 til i dag på ét diagram.",
-  19: "Vis Apple (AAPL) aktiekurs og nøgletal over de seneste 3 år. Sammenlign med S&P 500.",
-  20: "Vis Amazon (AMZN) aktieudvikling og vigtige finansielle nøgletal over de seneste 3 år.",
-  21: "Vis Microsoft (MSFT) aktieudvikling og AI-drevet omsætningsvækst over de seneste 3 år.",
-  22: "Vis Nvidia (NVDA) aktiekurs fra 2022 til i dag med fokus på AI-chipefterspørgslen.",
+  1:  "Iran erklærede krig mod Israel den 28. februar 2026. Vis Brent-råolie og europæisk naturgas (TTF), og markér udbruddet den 28. februar 2026. Vis også amerikansk naturgas (Henry Hub) for at illustrere prisforskellen mellem EU og USA på gas.",
+  2:  "Iran-krigen og Ukraine-krigen har accelereret det globale forsvarsforbrug. Vis Lockheed Martin, Rheinmetall, BAE Systems og Northrop Grumman indekseret til 100. Markér de geopolitiske begivenheder der falder inden for den valgte tidsperiode.",
+  3:  "Guld er steget som safe haven siden Iran-krigen brød ud den 28. februar 2026. Vis guldpriser og markér 28. februar 2026. Vis også kobberpriser for at sammenligne safe haven-rally med industrimetallers signal.",
+  4:  "Rentespændet inden for Europa afspejler investorernes tillid til de enkelte landes økonomi. Vis 10-årige statsobligationsrenter for Tyskland, Frankrig, Italien, Spanien og UK i et horisontalt søjlediagram sorteret fra højest til lavest rente og sammenlign med den amerikanske 10-årige statsobligationsrente.",
+  5:  "Den amerikanske rentekurve har været en vigtig recessionindikator. Vis den 2-årige statsobligationsrente (DGS2) og den 10-årige statsobligationsrente (DGS10), og vis spændet (T10Y2Y) separat for at vise, hvornår kurven inverterede og normaliserede sig.",
+  6:  "Sammenlign de tre store centralbankers politikrenter: Federal Reserve (USA), ECB (Eurozonen) og Bank of England (UK). Vis hvornår de begyndte at hæve renter for at bekæmpe inflation, og hvornår de begyndte at sænke dem igen.",
+  7:  "Sammenlign kursudviklingen for de globale aktiemarkeder: S&P 500 (USA), Euro Stoxx 50 (Europa), Nikkei 225 (Japan) og MSCI Emerging Markets — indekseret til 100 for at illustrere, hvilke regioner der har leveret det bedste afkast.",
+  8:  "Den amerikanske dollar er styrket på baggrund af geopolitisk risiko fra Iran-krigen (28. februar 2026) og Trump-toldsatserne (2. april 2025). Vis DXY-indekset, EUR/USD, GBP/USD og JPY/USD og markér begge begivenheder.",
+  9:  "Vis kursudviklingen for europæiske vedvarende energiselskaber (Ørsted: ORSTED.CO, Vestas: VWS.CO, Iberdrola: IBE.MC) sammenlignet med store oliemajorer (Shell: SHEL.L, TotalEnergies: TTE.PA) — alle indekseret til 100. Illustrér om den grønne energiomstilling har leveret afkast til investorerne.",
+  10: "Vis 10-årige statsobligationsrenter for Tyskland, Frankrig og Italien som absolutte niveauer — og vis rentespændet (Frankrig og Italien vs. Tyskland) i en separat figur. Dette illustrerer stressniveauer i europæiske obligationsmarkeder og presset på perifere landes finansiering.",
+  11: "Trump-administrationen indførte historiske toldsatser den 2. april 2025. Vis Brent olie, S&P 500, EUR/USD og guld — sammenlign markedspriserne før og efter toldannoncen den 2. april 2025.",
+  12: "Vis EU's energiomstilling over tid som 100% stacked bar — fra kul og gas mod vedvarende energi. Vis andelen af naturgas, kul, kerneenergi, vind, sol og vandkraft for de seneste tilgængelige år.",
+  13: "Sammenlign den globale inflationsudvikling — USA, Euroområdet, UK og Japan — headline CPI/HICP år-over-år i procent. Vis inflationstoppen i 2021–2022, disinflationen og nærheden til centralbankernes 2%-mål.",
+  14: "Vis et globalt markedsscorecard: Brent olie, guld, S&P 500, EUR/USD og den 10-årige amerikanske statsrente — nuværende niveauer sammenlignet med for 1 år siden.",
+  16: "Vis Ungarns makroøkonomiske profil — BNP-vækst, inflation, arbejdsløshed, offentlig gæld og betalingsbalance de seneste 20 år.",
+  17: "Sammenlign Danmarks og Sveriges økonomi — BNP-vækst, inflation og offentlig gæld de seneste 20 år.",
+  18: "Vis Kinas makroøkonomiske udvikling — BNP-vækst, inflation og betalingsbalance de seneste 20 år.",
+  19: "Lav en komplet årsregnskabsanalyse af Apple Inc. (AAPL) — reformulér balancen, dekomponér RNOA, beregn WACC og estimer den fundamentale aktiekurs via en 5-årig DCF-model.",
+  20: "Lav en komplet årsregnskabsanalyse af Amazon.com (AMZN) — reformulér balancen, dekomponér RNOA, beregn WACC og estimer den fundamentale aktiekurs via en 5-årig DCF-model.",
+  21: "Lav en komplet årsregnskabsanalyse af Microsoft Corp. (MSFT) — reformulér balancen, dekomponér RNOA, beregn WACC og estimer den fundamentale aktiekurs via en 5-årig DCF-model.",
+  22: "Lav en komplet årsregnskabsanalyse af Nvidia Corp. (NVDA) — reformulér balancen, dekomponér RNOA, beregn WACC og estimer den fundamentale aktiekurs via en 5-årig DCF-model.",
 };
 
 function setPrompt(id) {
