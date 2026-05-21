@@ -973,8 +973,10 @@ function appendLog(text, cls) {
   let classes = 'log-line';
   if (cls) {
     classes += ' ' + cls;
-  } else if (text.includes('[warn]')) {
+  } else if (text.includes('[warn]') || text.toLowerCase().includes('warning')) {
     classes += ' warn';
+  } else if (/error|fejl/i.test(text) && !text.includes('EventSource')) {
+    classes += ' error';
   } else if (/Done\.|APPROVED|\[4\/4\]|\[3\/4\]|\[2\/4\]|\[1\/4\]/.test(text)) {
     classes += ' ok';
   } else if (text.includes('connected')) {
