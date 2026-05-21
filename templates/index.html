@@ -947,7 +947,7 @@ function startStream() {
       renderFigures(msg.figures || []);
       const statusMsg = document.getElementById('statusMsg');
       statusMsg.className = 'done';
-      statusMsg.textContent = `● Seneste kørsel gendannet — ${n} figur(er)`;
+      statusMsg.textContent = `✓ ${n} figur${n === 1 ? '' : 'er'} klar`;
       document.getElementById('runBtn').disabled = false;
       try { localStorage.setItem('njFigures', JSON.stringify(msg.figures)); } catch(e) {}
       es.close();
