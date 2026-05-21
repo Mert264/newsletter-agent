@@ -137,6 +137,40 @@
       line-height: 1.5;
       padding: 0 2px;
     }
+    .viz-subopts {
+      display: none;
+      flex-direction: column;
+      gap: 3px;
+      margin: 2px 0 4px 23px;
+    }
+    .viz-option.active + .viz-subopts { display: flex; }
+    .viz-subopt {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 10.5px;
+      cursor: pointer;
+      border: 1.5px solid #e5e7eb;
+      background: #f9fafb;
+      color: #6b7280;
+      transition: all .15s;
+    }
+    .viz-subopt.active {
+      background: #e8f7f6;
+      border-color: #11716c;
+      color: #11716c;
+      font-weight: 600;
+    }
+    .viz-subdot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d1d5db;
+      flex-shrink: 0;
+    }
+    .viz-subopt.active .viz-subdot { background: #11716c; }
 
     /* ── Brief panel ── */
     .brief-panel { display: flex; flex-direction: column; }
