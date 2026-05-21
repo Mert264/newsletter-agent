@@ -119,6 +119,16 @@ def serve_figure(filename):
     return send_from_directory(OUTPUT_DIR, filename)
 
 
+@app.route("/download/excel")
+def download_excel():
+    path = os.path.join(OUTPUT_DIR, "data_export.xlsx")
+    if os.path.isfile(path):
+        return send_from_directory(OUTPUT_DIR, "data_export.xlsx",
+                                   as_attachment=True,
+                                   download_name="maj_invest_data.xlsx")
+    return jsonify({"error": "Ingen dataeksport tilgængelig — kør en analyse først."}), 404
+
+
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5050))
     print(f"Newsletter AI Agent — http://localhost:{port}")
