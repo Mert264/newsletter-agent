@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter AI Agent</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      color: #1a2a2a;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #11716c;
+      color: #fff;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+    header .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -.5px;
+    }
+    header .subtitle {
+      font-size: 13px;
+      opacity: .75;
+      margin-top: 2px;
+    }
+    header .badge {
+      margin-left: auto;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+    }
+
+    /* ── Main layout ── */
+    main {
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+    .card-header {
+      background: #f8fafa;
+      border-bottom: 1px solid #e4eaea;
+      padding: 14px 20px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #11716c;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-body { padding: 20px; }
+
+    /* ── Input section (full width) ── */
+    .full-width { grid-column: 1 / -1; }
+
+    .brief-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    textarea {
+      width: 100%;
+      border: 1.5px solid #d1d5db;
+      border-radius: 7px;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 90px;
+      transition: border-color .2s;
+      color: #1a2a2a;
+    }
+    textarea:focus { outline: none; border-color: #11716c; }
+
+    .quick-briefs {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .quick-btn {
+      background: #f0faf9;
+      border: 1px solid #a7d9d5;
+      color: #0d6b66;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .quick-btn:hover { background: #d1f0ec; }
+
+    .run-row {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    #runBtn {
+      background: #11716c;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 11px 28px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    #runBtn:hover:not(:disabled) { background: #0d5a56; }
+    #runBtn:disabled { background: #93c5c2; cursor: not-allowed; }
+    #statusMsg {
+      font-size: 13px;
+      color: #6b7280;
+    }
+    #statusMsg.running { color: #11716c; font-weight: 600; }
+    #statusMsg.error   { color: #dc2626; font-weight: 600; }
+
+    /* ── Pipeline steps panel ── */
+    #stepsPanel { grid-column: 1 / 2; }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f4f4;
+      font-size: 13px;
+      opacity: .35;
+      transition: opacity .3s;
+    }
+    .step.active  { opacity: 1; }
+    .step.done    { opacity: 1; }
+    .step-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #d1d5db;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+    .step.active .step-icon {
+      border-color: #11716c;
+      background: #f0faf9;
+      color: #11716c;
+      animation: pulse 1.2s infinite;
+    }
+    .step.done .step-icon {
+      border-color: #11716c;
+      background: #11716c;
+      color: #fff;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(17,113,108,.3); }
+      50%       { box-shadow: 0 0 0 5px rgba(17,113,108,0); }
+    }
+    .step-label { font-weight: 600; color: #374151; }
+    .step-detail { font-size: 12px; color: #6b7280; margin-top: 2px; }
+
+    /* ── Live log panel ── */
+    #logPanel { grid-column: 2 / 3; }
+    #logBox {
+      background: #0f1b1a;
+      border-radius: 7px;
+      padding: 14px;
+      height: 280px;
+      overflow-y: auto;
+      font-family: "SF Mono", "Fira Code", "Menlo", monospace;
+      font-size: 11.5px;
+      color: #a3d9d6;
+      line-height: 1.6;
+    }
+    .log-line { white-space: pre-wrap; word-break: break-word; }
+    .log-line.warn  { color: #fbbf24; }
+    .log-line.error { color: #f87171; }
+    .log-line.ok    { color: #6ee7b7; }
+    .log-line.dim   { color: #4b8a87; }
+
+    /* ── Figures panel ── */
+    #figuresPanel { grid-column: 1 / -1; display: none; }
+    .figures-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 20px;
+      margin-top: 4px;
+    }
+    .fig-card {
+      border: 1px solid #e4eaea;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .fig-card img {
+      width: 100%;
+      display: block;
+      cursor: zoom-in;
+    }
+    .fig-meta {
+      padding: 10px 14px;
+      background: #f8fafa;
+      border-top: 1px solid #e4eaea;
+    }
+    .fig-meta .fig-title { font-size: 13px; font-weight: 600; color: #1a2a2a; }
+
+    /* ── Tidsperiode / Date Range Picker ── */
+    .tidsperiode-section {
+      margin-top: 16px;
+      padding: 14px 16px 14px;
+      border: 1.5px solid #e4eaea;
+      border-radius: 8px;
+      background: #f8fafa;
+    }
+    .tidsperiode-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #11716c;
+      margin-bottom: 10px;
+    }
+    /* Preset button row */
+    .tp-presets-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .tp-btn {
+      background: #fff;
+      border: 1.5px solid #d1d5db;
+      border-radius: 6px;
+      color: #374151;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 5px 13px;
+      cursor: pointer;
+      transition: border-color .15s, background .15s, color .15s;
+      white-space: nowrap;
+    }
+    .tp-btn:hover       { border-color: #11716c; color: #11716c; background: #f0faf9; }
+    .tp-btn.tp-active   { background: #11716c; border-color: #11716c; color: #fff; }
+    .tp-btn--vaelg      { border-color: #11716c; color: #11716c; }
+    .tp-btn--vaelg.tp-active { background: #11716c; color: #fff; }
+    .tp-btn--llm        { border-style: dashed; color: #6b7280; }
+    .tp-btn--llm.tp-active   { background: #6b7280; border-color: #6b7280; color: #fff; border-style: solid; }
+
+    /* Date custom row — hidden until "Vælg datoer" active */
+    .date-custom-row {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #e4eaea;
+      flex-wrap: wrap;
+    }
+    .date-custom-row.open { display: flex; }
+    .date-field {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 7px;
+      padding: 7px 12px;
+      cursor: pointer;
+      background: #fff;
+      transition: border-color .2s, background .15s, box-shadow .15s;
+      min-width: 158px;
+      user-select: none;
+    }
+    .date-field:hover  { border-color: #11716c; background: #f0faf9; }
+    .date-field.active { border-color: #11716c; background: #f0faf9; box-shadow: 0 0 0 3px rgba(17,113,108,.12); }
+    .date-field-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #11716c;
+    }
+    .date-field-val          { font-size: 13px; color: #374151; }
+    .date-field-val.placeholder { color: #9ca3af; font-family: monospace; font-size: 12px; }
+    .date-clear-btn {
+      background: none;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 6px;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 6px 10px;
+      line-height: 1;
+      transition: border-color .15s, color .15s;
+    }
+    .date-clear-btn:hover { border-color: #dc2626; color: #dc2626; }
+
+    /* ── Calendar popup ── */
+    .cal-popup {
+      position: fixed;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.18), 0 1px 4px rgba(0,0,0,.1);
+      padding: 16px;
+      z-index: 500;
+      display: none;
+      width: 280px;
+      user-select: none;
+    }
+    .cal-popup.open { display: block; }
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .cal-nav-btn {
+      background: none;
+      border: 1px solid #e5e7eb;
+      border-radius: 5px;
+      color: #374151;
+      cursor: pointer;
+      font-size: 14px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s, border-color .15s;
+      flex-shrink: 0;
+    }
+    .cal-nav-btn:hover { background: #f0faf9; border-color: #11716c; color: #11716c; }
+    .cal-title-area {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      justify-content: center;
+    }
+    .cal-month-lbl, .cal-year-lbl {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a2a2a;
+      cursor: pointer;
+      padding: 2px 5px;
+      border-radius: 4px;
+      transition: background .15s;
+    }
+    .cal-month-lbl:hover, .cal-year-lbl:hover { background: #f0faf9; color: #11716c; }
+    .cal-year-input {
+      width: 54px;
+      border: 1.5px solid #11716c;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      padding: 1px 4px;
+      color: #1a2a2a;
+      outline: none;
+    }
+    /* Month grid (shown when user clicks month label) */
+    .cal-month-grid {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .cal-month-grid.open { display: grid; }
+    .cal-month-item {
+      text-align: center;
+      padding: 6px 4px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      border: 1px solid transparent;
+      transition: background .15s;
+    }
+    .cal-month-item:hover { background: #f0faf9; border-color: #11716c; color: #11716c; }
+    .cal-month-item.selected { background: #11716c; color: #fff; }
+    /* Day grid */
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 4px;
+    }
+    .cal-weekdays span {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: #9ca3af;
+      padding: 2px 0;
+    }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+    }
+    .cal-day {
+      text-align: center;
+      padding: 6px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12.5px;
+      color: #374151;
+      transition: background .1s, color .1s;
+      position: relative;
+    }
+    .cal-day:hover:not(.cal-day--empty):not(.cal-day--disabled) { background: #d1f0ec; color: #0d5a56; }
+    .cal-day--empty  { cursor: default; }
+    .cal-day--other  { color: #d1d5db; }
+    .cal-day--today::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      background: #11716c;
+      border-radius: 50%;
+    }
+    .cal-day--start, .cal-day--end {
+      background: #11716c !important;
+      color: #fff !important;
+      font-weight: 700;
+      border-radius: 5px;
+    }
+    .cal-day--in-range {
+      background: #d1f0ec;
+      color: #0d5a56;
+      border-radius: 0;
+    }
+    .cal-day--in-range:first-child, .cal-day--start + .cal-day--in-range { border-radius: 5px 0 0 5px; }
+    .cal-mode-hint {
+      font-size: 11px;
+      color: #11716c;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #f0f4f4;
+    }
+
+    /* ── Lightbox ── */
+    #lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.82);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 6px; }
+    #lightbox-close {
+      position: absolute; top: 18px; right: 24px;
+      color: #fff; font-size: 28px; cursor: pointer; line-height: 1;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">Newsletter AI Agent</div>
+    <div class="subtitle">Macro Research Figures &amp; Tables — FRED · Yahoo Finance</div>
+  </div>
+  <span class="badge">Maj Invest style</span>
+</header>
+
+<main>
+
+  <!-- ── Brief input ── -->
+  <div class="card full-width">
+    <div class="card-header">📝 Topic Brief</div>
+    <div class="card-body">
+      <div class="brief-label">Describe the macro topic you want to visualise:</div>
+      <textarea id="briefInput" placeholder="e.g. Show the EUR/USD exchange rate over the past two years to illustrate how the US dollar has devalued against the euro..."></textarea>
+      <div style="font-size:11px;color:#6b7280;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:12px;margin-bottom:6px;">Try a prompt</div>
+      <div class="quick-briefs">
+        <button class="quick-btn" onclick="setQuick(1)">Iran war — oil &amp; gas shock</button>
+        <button class="quick-btn" onclick="setQuick(2)">Trump tariffs — market impact</button>
+        <button class="quick-btn" onclick="setQuick(3)">Defense stocks — rearmament wave</button>
+        <button class="quick-btn" onclick="setQuick(4)">Gold &amp; safe-haven demand</button>
+        <button class="quick-btn" onclick="setQuick(5)">US inflation &amp; Fed rates</button>
+        <button class="quick-btn" onclick="setQuick(6)">US vs Europe — macro overview</button>
+        <button class="quick-btn" onclick="setQuick(7)">Dollar strength vs major currencies</button>
+        <button class="quick-btn" onclick="setQuick(8)">Yield curve &amp; recession signal</button>
+        <button class="quick-btn" onclick="setQuick(9)">Global equity markets</button>
+        <button class="quick-btn" onclick="setQuick(10)">European bond stress</button>
+      </div>
+      <!-- Tidsperiode -->
+      <div class="tidsperiode-section">
+        <div class="tidsperiode-label">Tidsperiode</div>
+        <div class="tp-presets-row">
+          <button class="tp-btn" onclick="setTidspreset(5,this)">5D</button>
+          <button class="tp-btn" onclick="setTidspreset(7,this)">1U</button>
+          <button class="tp-btn" onclick="setTidspreset(30,this)">1M</button>
+          <button class="tp-btn" onclick="setTidspreset(90,this)">3M</button>
+          <button class="tp-btn" onclick="setTidspreset(180,this)">6M</button>
+          <button class="tp-btn" onclick="setTidspreset(365,this)">1 År</button>
+          <button class="tp-btn" onclick="setTidspreset(1095,this)">3 År</button>
+          <button class="tp-btn" onclick="setTidspreset(1825,this)">5 År</button>
+          <button class="tp-btn" onclick="setTidspreset(3650,this)">10 År</button>
+          <button class="tp-btn" onclick="setTidspreset(9999,this)">Max</button>
+          <button class="tp-btn tp-btn--vaelg" id="vaelgDatoerBtn" onclick="setTidspreset('custom',this)">Vælg datoer</button>
+          <button class="tp-btn tp-btn--llm tp-active" id="llmBtn" onclick="setTidspreset('llm',this)">LLM ✦</button>
+        </div>
+        <!-- Only visible when "Vælg datoer" is active -->
+        <div class="date-custom-row" id="dateCustomRow">
+          <div class="date-field" id="startField" onclick="openCal('start')">
+            <span class="date-field-label">Fra</span>
+            <span class="date-field-val placeholder" id="startDisplay">ÅÅÅÅ-MM-DD</span>
+          </div>
+          <div class="date-field" id="endField" onclick="openCal('end')">
+            <span class="date-field-label">Til</span>
+            <span class="date-field-val placeholder" id="endDisplay">ÅÅÅÅ-MM-DD</span>
+          </div>
+          <button class="date-clear-btn" onclick="clearDates()" title="Nulstil datoer">✕</button>
+        </div>
+      </div>
+
+      <div class="run-row">
+        <button id="runBtn" onclick="startRun()">Generate figures</button>
+        <span id="statusMsg">Ready</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar popup (shared for start + end) -->
+  <div class="cal-popup" id="calPopup">
+    <div class="cal-header">
+      <button class="cal-nav-btn" onclick="navYear(-1)" title="Forrige år">«</button>
+      <button class="cal-nav-btn" onclick="navMonth(-1)" title="Forrige måned">‹</button>
+      <div class="cal-title-area">
+        <span class="cal-month-lbl" id="calMonthLbl" onclick="toggleMonthPicker()"></span>
+        <span id="calYearLbl" class="cal-year-lbl" onclick="editYear()"></span>
+        <input class="cal-year-input" id="calYearInput" type="number" style="display:none"
+               onblur="commitYear()" onkeydown="if(event.key==='Enter')commitYear()" />
+      </div>
+      <button class="cal-nav-btn" onclick="navMonth(1)" title="Næste måned">›</button>
+      <button class="cal-nav-btn" onclick="navYear(1)" title="Næste år">»</button>
+    </div>
+    <div class="cal-month-grid" id="calMonthGrid"></div>
+    <div class="cal-weekdays">
+      <span>Ma</span><span>Ti</span><span>On</span><span>To</span><span>Fr</span><span>Lø</span><span>Sø</span>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-mode-hint" id="calHint"></div>
+  </div>
+
+  <!-- ── Pipeline steps ── -->
+  <div class="card" id="stepsPanel">
+    <div class="card-header">⚙️ Pipeline Steps</div>
+    <div class="card-body">
+      <div class="step" id="step-1">
+        <div class="step-icon">1</div>
+        <div>
+          <div class="step-label">Lead Agent — Plan</div>
+          <div class="step-detail" id="step-1-detail">LLM reads the brief and outputs a TaskManifest: which specialists to activate, which tickers to fetch, and what chart types to render.</div>
+        </div>
+      </div>
+      <div class="step" id="step-2">
+        <div class="step-icon">2</div>
+        <div>
+          <div class="step-label">Specialists — Fetch Data</div>
+          <div class="step-detail" id="step-2-detail">Parallel data workers hit Yahoo Finance (market prices) and FRED (US/EU macro series) simultaneously.</div>
+        </div>
+      </div>
+      <div class="step" id="step-3">
+        <div class="step-icon">3</div>
+        <div>
+          <div class="step-label">Normalize — Clean &amp; Transform</div>
+          <div class="step-detail" id="step-3-detail">Drop nulls, align date ranges, apply YoY % transforms and base-100 indexing where needed.</div>
+        </div>
+      </div>
+      <div class="step" id="step-4">
+        <div class="step-icon">4</div>
+        <div>
+          <div class="step-label">Render — Build Charts</div>
+          <div class="step-detail" id="step-4-detail">Matplotlib renders each figure (type A/B/D/E) with Maj Invest brand styling, end-of-line labels, Note and Kilde footer.</div>
+        </div>
+      </div>
+      <div class="step" id="step-5">
+        <div class="step-icon">5</div>
+        <div>
+          <div class="step-label">Reviewer — Quality Check</div>
+          <div class="step-detail" id="step-5-detail">A devil's advocate LLM inspects each PNG and flags issues. If rejected, the figure is re-rendered (max 2 loops).</div>
+        </div>
+      </div>
+      <div class="step" id="step-6">
+        <div class="step-icon">✓</div>
+        <div>
+          <div class="step-label">Output — Figures Ready</div>
+          <div class="step-detail" id="step-6-detail">PNG files saved to disk, metadata written to manifest.json.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Live log ── -->
+  <div class="card" id="logPanel">
+    <div class="card-header">🖥️ Live Log</div>
+    <div class="card-body" style="padding:12px">
+      <div id="logBox"><span class="log-line dim">Waiting for run...</span></div>
+    </div>
+  </div>
+
+  <!-- ── Generated figures ── -->
+  <div class="card" id="figuresPanel">
+    <div class="card-header">📊 Generated Figures</div>
+    <div class="card-body">
+      <div class="figures-grid" id="figuresGrid"></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<script>
+// ── Scroll to top on every page load/refresh ──
+window.addEventListener('load', () => window.scrollTo(0, 0));
+history.scrollRestoration = 'manual';
+
+// ── Tidsperiode state ──
+let tpMode     = 'llm';   // 'preset' | 'custom' | 'llm'
+let tpDays     = null;    // number of days for preset mode
+let tpActiveBtn = document.getElementById ? document.getElementById('llmBtn') : null;
+
+// ── Calendar state ──
+let calStart  = null;   // Date | null
+let calEnd    = null;   // Date | null
+let calMode   = null;   // 'start' | 'end' | null
+let calYear   = new Date().getFullYear();
+let calMonth  = new Date().getMonth();   // 0-11
+let calHover  = null;   // Date | null (range preview on hover)
+
+const MONTH_NAMES = ['Januar','Februar','Marts','April','Maj','Juni',
+                     'Juli','August','September','Oktober','November','December'];
+const MONTH_SHORT = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
+
+function fmtDate(d) {
+  return d.getDate() + '. ' + MONTH_SHORT[d.getMonth()] + ' ' + d.getFullYear();
+}
+function sameDay(a, b) {
+  return a && b && a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+}
+function dateOnly(d) {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+}
+
+// ── Open / close calendar ──
+function openCal(mode) {
+  calMode = mode;
+  // Seed the view at the relevant selected date
+  const seed = mode === 'start' ? calStart : calEnd;
+  if (seed) { calYear = seed.getFullYear(); calMonth = seed.getMonth(); }
+  renderCal();
+  const popup  = document.getElementById('calPopup');
+  const anchor = document.getElementById(mode === 'start' ? 'startField' : 'endField');
+  const rect   = anchor.getBoundingClientRect();
+  popup.style.top  = (rect.bottom + window.scrollY + 6) + 'px';
+  popup.style.left = Math.min(rect.left, window.innerWidth - 296) + 'px';
+  popup.classList.add('open');
+  document.getElementById(mode+'Field').classList.add('active');
+}
+
+function hideCal() {
+  document.getElementById('calPopup').classList.remove('open');
+  document.getElementById('startField').classList.remove('active');
+  document.getElementById('endField').classList.remove('active');
+  calMode = null;
+  calHover = null;
+  closeMonthPicker();
+}
+
+document.addEventListener('click', e => {
+  const popup = document.getElementById('calPopup');
+  if (!popup.classList.contains('open')) return;
+  if (!popup.contains(e.target) &&
+      !document.getElementById('startField').contains(e.target) &&
+      !document.getElementById('endField').contains(e.target)) {
+    hideCal();
+  }
+});
+
+// ── Navigation ──
+function navMonth(d) {
+  calMonth += d;
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0;  calYear++; }
+  closeMonthPicker();
+  renderCal();
+}
+function navYear(d) {
+  calYear += d;
+  renderCal();
+}
+
+// ── Month picker overlay ──
+function toggleMonthPicker() {
+  const grid = document.getElementById('calMonthGrid');
+  if (grid.classList.contains('open')) { closeMonthPicker(); return; }
+  grid.innerHTML = '';
+  MONTH_SHORT.forEach((name, i) => {
+    const el = document.createElement('div');
+    el.className = 'cal-month-item' + (i === calMonth ? ' selected' : '');
+    el.textContent = name;
+    el.onclick = () => { calMonth = i; closeMonthPicker(); renderCal(); };
+    grid.appendChild(el);
+  });
+  grid.classList.add('open');
+  document.getElementById('calGrid').style.display = 'none';
+  document.getElementById('calWeekdays') && (document.getElementById('calWeekdays').style.display='none');
+}
+function closeMonthPicker() {
+  document.getElementById('calMonthGrid').classList.remove('open');
+  document.getElementById('calGrid').style.display = 'grid';
+}
+
+// ── Year edit ──
+function editYear() {
+  const lbl = document.getElementById('calYearLbl');
+  const inp = document.getElementById('calYearInput');
+  lbl.style.display = 'none';
+  inp.style.display = 'inline-block';
+  inp.value = calYear;
+  inp.focus(); inp.select();
+}
+function commitYear() {
+  const inp = document.getElementById('calYearInput');
+  const lbl = document.getElementById('calYearLbl');
+  const v = parseInt(inp.value, 10);
+  if (v >= 1950 && v <= 2100) calYear = v;
+  inp.style.display = 'none';
+  lbl.style.display = 'inline-block';
+  renderCal();
+}
+
+// ── Render calendar grid ──
+function renderCal() {
+  document.getElementById('calMonthLbl').textContent = MONTH_NAMES[calMonth];
+  document.getElementById('calYearLbl').textContent  = calYear;
+
+  const grid  = document.getElementById('calGrid');
+  const hint  = document.getElementById('calHint');
+  hint.textContent = calMode === 'start' ? 'Vælg startdato' : 'Vælg slutdato';
+
+  const firstDay   = new Date(calYear, calMonth, 1);
+  const lastDay    = new Date(calYear, calMonth + 1, 0);
+  const startPad   = (firstDay.getDay() + 6) % 7;   // Mon=0
+  const today      = dateOnly(new Date());
+
+  // Determine effective range (using hover preview if picking end date)
+  let rStart = calStart ? dateOnly(calStart) : null;
+  let rEnd   = (calMode === 'end' && calHover) ? dateOnly(calHover) : (calEnd ? dateOnly(calEnd) : null);
+  if (rStart && rEnd && rEnd < rStart) { let tmp = rStart; rStart = rEnd; rEnd = tmp; }
+
+  grid.innerHTML = '';
+
+  // Leading empty cells
+  for (let i = 0; i < startPad; i++) {
+    const el = document.createElement('div');
+    el.className = 'cal-day cal-day--empty';
+    grid.appendChild(el);
+  }
+
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    const day = new Date(calYear, calMonth, d);
+    const el  = document.createElement('div');
+    el.className = 'cal-day';
+    el.textContent = d;
+
+    if (sameDay(day, today)) el.classList.add('cal-day--today');
+    if (rStart && sameDay(day, rStart)) el.classList.add('cal-day--start');
+    else if (rEnd && sameDay(day, rEnd)) el.classList.add('cal-day--end');
+    else if (rStart && rEnd && day > rStart && day < rEnd) el.classList.add('cal-day--in-range');
+
+    el.addEventListener('mouseenter', () => {
+      if (calMode === 'end' && calStart) { calHover = day; renderCal(); }
+    });
+    el.addEventListener('mouseleave', () => {
+      if (calMode === 'end') { calHover = null; renderCal(); }
+    });
+    el.addEventListener('click', () => selectDay(day));
+    grid.appendChild(el);
+  }
+}
+
+// ── Day selection ──
+function selectDay(day) {
+  clearPreset();
+  if (calMode === 'start') {
+    calStart = day;
+    if (calEnd && calEnd < calStart) calEnd = null;
+    updateDisplays();
+    // auto-switch to end
+    calMode = 'end';
+    calHover = null;
+    renderCal();
+    document.getElementById('startField').classList.remove('active');
+    document.getElementById('endField').classList.add('active');
+  } else {
+    if (calStart && day < calStart) {
+      // swap: clicked before start → treat as new start
+      calEnd = calStart;
+      calStart = day;
+    } else {
+      calEnd = day;
+    }
+    updateDisplays();
+    hideCal();
+  }
+}
+
+// ── Tidsperiode preset switching ──
+function setTidspreset(keyOrDays, btn) {
+  // Deactivate previous button
+  if (tpActiveBtn) tpActiveBtn.classList.remove('tp-active');
+  btn.classList.add('tp-active');
+  tpActiveBtn = btn;
+
+  const customRow = document.getElementById('dateCustomRow');
+
+  if (keyOrDays === 'custom') {
+    tpMode = 'custom';
+    tpDays = null;
+    customRow.classList.add('open');
+    // Don't clear existing dates — let user keep prior selection
+
+  } else if (keyOrDays === 'llm') {
+    tpMode = 'llm';
+    tpDays = null;
+    calStart = null; calEnd = null;
+    customRow.classList.remove('open');
+    updateDisplays();
+    hideCal();
+
+  } else {
+    // Numeric preset
+    tpMode = 'preset';
+    tpDays = keyOrDays;
+    const end   = dateOnly(new Date());
+    const start = keyOrDays >= 9000
+      ? new Date(1970, 0, 1)                             // Max: from 1970
+      : dateOnly(new Date(end - keyOrDays * 86400000));
+    calStart = start;
+    calEnd   = end;
+    customRow.classList.remove('open');
+    updateDisplays();
+    hideCal();
+  }
+}
+
+function clearDates() {
+  calStart = null; calEnd = null;
+  updateDisplays();
+}
+
+function updateDisplays() {
+  const sEl = document.getElementById('startDisplay');
+  const eEl = document.getElementById('endDisplay');
+  if (calStart) { sEl.textContent = fmtDate(calStart); sEl.classList.remove('placeholder'); }
+  else          { sEl.textContent = 'Vælg dato';       sEl.classList.add('placeholder'); }
+  if (calEnd)   { eEl.textContent = fmtDate(calEnd);   eEl.classList.remove('placeholder'); }
+  else          { eEl.textContent = 'Vælg dato';       eEl.classList.add('placeholder'); }
+}
+
+const BRIEFS = {
+  1: "Iran declared war on Israel on 28 February 2026, sending shockwaves through energy markets. Show Brent crude and European natural gas (TTF) prices from 2024 to today, marking the outbreak on 28 February 2026. Also show US natural gas (Henry Hub) to illustrate the EU vs US gas price differential.",
+  2: "Trump announced sweeping tariffs on 2 April 2025 ('Liberation Day'), triggering a global market selloff. Show S&P 500, Euro Stoxx 50, and MSCI Emerging Markets indexed to 100 from January 2025 to today, marking 2 April 2025 as the tariff announcement. Also show the VIX fear gauge over the same period.",
+  3: "The Iran war on 28 February 2026 and the Ukraine war since February 2022 have accelerated defence spending globally. Show Lockheed Martin, Rheinmetall, BAE Systems, and Northrop Grumman indexed to 100 from February 2022 to today, marking the Ukraine invasion on 24 February 2022 and the Iran war outbreak on 28 February 2026.",
+  4: "Gold has surged as a safe haven since the Iran war broke out on 28 February 2026. Show gold prices from 2023 to today, marking 28 February 2026. Also show copper prices over the same period to compare the safe-haven rally against the industrial metals signal.",
+  5: "US inflation has remained stubborn despite Fed tightening. Show US CPI year-over-year from 2021 to today. On a separate chart, show the Fed Funds rate and the 2-year Treasury yield over the same period to illustrate the policy transmission lag.",
+  6: "Compare US and Eurozone macro fundamentals since 2022: US CPI vs Eurozone HICP inflation (year-over-year), Fed Funds rate vs ECB deposit rate, and US vs Germany 10-year bond yields.",
+  7: "The US dollar has strengthened sharply amid geopolitical risk from the Iran war (28 February 2026) and Trump tariffs (2 April 2025). Show the DXY index, EUR/USD, GBP/USD, and JPY/USD from January 2024 to today, marking both events.",
+  8: "The US yield curve has been a key recession indicator. Show the 2-year Treasury yield (DGS2) and 10-year Treasury yield (DGS10) from 2022 to today, and the 10Y-2Y spread (T10Y2Y) separately to show when the curve inverted and when it normalised.",
+  9: "Global equities have been volatile in 2025-2026 amid tariffs and geopolitical risk. Compare S&P 500, Euro Stoxx 50, Nikkei 225, and MSCI Emerging Markets indexed to 100 from January 2024 to today. Mark Trump tariff announcement on 2 April 2025 and Iran war outbreak on 28 February 2026.",
+  10: "European bond markets are under stress from high deficits and rising defence spending. Show Germany, France, and Italy 10-year bond yields from 2023 to today to illustrate the spread between core and peripheral Europe.",
+};
+
+function setQuick(n) {
+  document.getElementById('briefInput').value = BRIEFS[n];
+}
+
+// ── Step management ──
+const STEP_TRIGGERS = [
+  { id: 'step-1', patterns: ['[1/4]', 'Orchestrating'] },
+  { id: 'step-2', patterns: ['[2/4]', 'Fetching data', 'specialist'] },
+  { id: 'step-3', patterns: ['Rendering', '[3/4]'] },
+  { id: 'step-4', patterns: ['Rendering figure', 'render'] },
+  { id: 'step-5', patterns: ['[reviewer]'] },
+  { id: 'step-6', patterns: ['[4/4]', 'Done.'] },
+];
+let activeStep = null;
+
+function activateStep(id) {
+  if (activeStep && activeStep !== id) {
+    const prev = document.getElementById(activeStep);
+    if (prev) { prev.classList.remove('active'); prev.classList.add('done'); prev.querySelector('.step-icon').textContent = '✓'; }
+  }
+  const el = document.getElementById(id);
+  if (el && !el.classList.contains('done')) { el.classList.add('active'); activeStep = id; }
+}
+
+function finishAllSteps() {
+  STEP_TRIGGERS.forEach(t => {
+    const el = document.getElementById(t.id);
+    if (el) { el.classList.remove('active'); el.classList.add('done'); el.querySelector('.step-icon').textContent = '✓'; }
+  });
+}
+
+function resetSteps() {
+  STEP_TRIGGERS.forEach(t => {
+    const el = document.getElementById(t.id);
+    if (el) { el.classList.remove('active', 'done'); el.querySelector('.step-icon').textContent = t.id.split('-')[1]; }
+  });
+  // restore last icon
+  document.querySelector('#step-6 .step-icon').textContent = '✓';
+  activeStep = null;
+}
+
+// ── Log rendering ──
+function appendLog(text) {
+  const box = document.getElementById('logBox');
+  const div = document.createElement('div');
+  div.className = 'log-line';
+  if (text.includes('[warn]') || text.includes('WARN'))    div.classList.add('warn');
+  else if (text.includes('error') || text.includes('Error')) div.classList.add('error');
+  else if (text.includes('APPROVED') || text.includes('Done.')) div.classList.add('ok');
+  else if (text.startsWith('  ') || text.includes('debug')) div.classList.add('dim');
+  div.textContent = text;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+
+  // Step detection
+  STEP_TRIGGERS.forEach(t => {
+    if (t.patterns.some(p => text.includes(p))) activateStep(t.id);
+  });
+}
+
+// ── Run ──
+let eventSource = null;
+
+function startRun() {
+  const brief = document.getElementById('briefInput').value.trim();
+  if (!brief) { alert('Please enter a topic brief.'); return; }
+
+  // Build POST body — include explicit dates when set for rock-solid backend enforcement
+  const body = { brief };
+  if (tpMode === 'custom' && calStart && calEnd) {
+    body.start_date  = calStart.toISOString().slice(0, 10);
+    body.end_date    = calEnd.toISOString().slice(0, 10);
+  } else if (tpMode === 'preset' && tpDays) {
+    body.period_days = tpDays >= 9000 ? 18250 : tpDays;  // Max → 50 years
+  }
+  // tpMode === 'llm': no date constraints, LLM decides from brief
+
+  document.getElementById('runBtn').disabled = true;
+  document.getElementById('statusMsg').textContent = 'Running pipeline…';
+  document.getElementById('statusMsg').className = 'running';
+  document.getElementById('logBox').innerHTML = '';
+  document.getElementById('figuresPanel').style.display = 'none';
+  document.getElementById('figuresGrid').innerHTML = '';
+  resetSteps();
+
+  if (eventSource) { eventSource.close(); eventSource = null; }
+
+  // Open SSE first
+  eventSource = new EventSource('/stream');
+  eventSource.onmessage = (e) => {
+    const msg = JSON.parse(e.data);
+    if (msg.type === 'connected') return;
+    if (msg.type === 'heartbeat') return;
+    if (msg.type === 'log') {
+      appendLog(msg.text);
+    } else if (msg.type === 'done') {
+      finishAllSteps();
+      renderFigures(msg.figures);
+      document.getElementById('runBtn').disabled = false;
+      document.getElementById('statusMsg').textContent = `Done — ${msg.figures.length} figure(s) generated`;
+      document.getElementById('statusMsg').className = '';
+      eventSource.close();
+    } else if (msg.type === 'error') {
+      appendLog('ERROR: ' + msg.text);
+      document.getElementById('runBtn').disabled = false;
+      document.getElementById('statusMsg').textContent = 'Error — see log';
+      document.getElementById('statusMsg').className = 'error';
+      eventSource.close();
+    }
+  };
+
+  // Then POST the run
+  fetch('/run', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ brief }),
+  }).catch(err => {
+    appendLog('Network error: ' + err);
+    document.getElementById('runBtn').disabled = false;
+  });
+}
+
+function renderFigures(figures) {
+  const grid = document.getElementById('figuresGrid');
+  grid.innerHTML = '';
+  figures.forEach(fig => {
+    const flagHtml = fig.reviewer_flag
+      ? `<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border:1px solid #fed7aa;border-radius:5px;font-size:11px;color:#92400e;">
+           ⚠️ <strong>Reviewer flag:</strong> ${fig.reviewer_flag}
+         </div>`
+      : '';
+    const card = document.createElement('div');
+    card.className = 'fig-card';
+    card.innerHTML = `
+      <img src="/figures/${fig.path}?t=${Date.now()}" alt="${fig.title}" onclick="openLightbox(this.src)" />
+      ${flagHtml ? `<div class="fig-meta">${flagHtml}</div>` : ''}`;
+    grid.appendChild(card);
+  });
+  document.getElementById('figuresPanel').style.display = 'block';
+  document.getElementById('figuresPanel').scrollIntoView({ behavior: 'smooth' });
+}
+
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>

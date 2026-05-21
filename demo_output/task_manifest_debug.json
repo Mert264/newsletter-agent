@@ -1,3 +1,62 @@
 {
-  "specialists": []
+  "specialists": [
+    "macro"
+  ],
+  "macro": {
+    "series": [
+      {
+        "ticker": "BFXE_USD",
+        "source": "fred",
+        "label": "USA \u2014 NIIP",
+        "region": "USA",
+        "unit": "Mia. dollar"
+      },
+      {
+        "ticker": "BFXE_USD_DEU",
+        "source": "fred",
+        "label": "Tyskland \u2014 NIIP",
+        "region": "DEU",
+        "unit": "Mia. dollar"
+      },
+      {
+        "ticker": "BFXE_USD_CHN",
+        "source": "fred",
+        "label": "Kina \u2014 NIIP",
+        "region": "CHN",
+        "unit": "Mia. dollar"
+      }
+    ],
+    "charts": [
+      {
+        "type": "A",
+        "title": "International nettoinvesteringsposition (NIIP) \u2014 USA, Tyskland og Kina",
+        "x_label": "Dato",
+        "y_label": "Mia. dollar",
+        "period_days": 7300,
+        "series_labels": [
+          "USA \u2014 NIIP",
+          "Tyskland \u2014 NIIP",
+          "Kina \u2014 NIIP"
+        ],
+        "note": "Kvartalsvise data for den internationale nettoinvesteringsposition (NIIP) for USA, Tyskland og Kina fra 2006 til i dag. NIIP m\u00e5ler forskellen mellem et lands udenlandske aktiver og passiver; en negativ v\u00e6rdi indikerer, at landet skylder mere til udlandet, end det ejer. Data er opgjort i milliarder amerikanske dollars. Kilde: IMF Balance of Payments Statistics."
+      },
+      {
+        "type": "D",
+        "title": "NIIP \u2014 N\u00f8gletal: USA, Tyskland og Kina",
+        "x_label": "",
+        "y_label": "Mia. dollar",
+        "period_days": 7300,
+        "series_labels": [
+          "USA \u2014 NIIP",
+          "Tyskland \u2014 NIIP",
+          "Kina \u2014 NIIP"
+        ],
+        "before_date": "2006-01-01",
+        "after_date": "latest",
+        "col_before": "2006",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af NIIP for USA, Tyskland og Kina. \u00c6ndringen viser udviklingen fra 2006 til det senest tilg\u00e6ngelige kvartal og illustrerer, hvordan de tre landes nettoeksponering over for udlandet har \u00e6ndret sig markant over perioden."
+      }
+    ]
+  }
 }
