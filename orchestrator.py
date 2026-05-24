@@ -277,6 +277,9 @@ Rules:
   the time period, and any key methodology detail. Written for a non-expert investor.
   ALWAYS write the note in Danish. Example: "Daglige lukkepriser for Brent råolie siden
   januar 2024. Brent er det globale benchmark for råoliepriser på verdensmarkedet."
+  CRITICAL: NEVER include source attribution in the "note" field. Do NOT write "Kilde:",
+  "Source:", "Data fra:", or any data source reference inside "note". Sources belong
+  exclusively in the "kilde" field of the specialist. The note is for methodology only.
 
 SNAPSHOT TABLES (type D) and BEFORE/AFTER BAR CHARTS (type E):
 - Use type D when the brief asks for a key-numbers overview, scorecard, or before/after table

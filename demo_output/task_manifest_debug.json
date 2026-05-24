@@ -1,61 +1,103 @@
 {
   "specialists": [
-    "macro"
+    "energy"
   ],
-  "macro": {
+  "energy": {
     "series": [
       {
-        "ticker": "BFXE_USD",
-        "source": "fred",
-        "label": "USA \u2014 NIIP",
+        "ticker": "BZ=F",
+        "source": "yfinance",
+        "label": "Brent r\u00e5olie",
+        "region": "Global",
+        "unit": "USD/t\u00f8nde",
+        "transform": "",
+        "conversion": ""
+      },
+      {
+        "ticker": "TTF=F",
+        "source": "yfinance",
+        "label": "TTF naturgas (EU)",
+        "region": "Europa",
+        "unit": "EUR/MWh",
+        "transform": "",
+        "conversion": "EUR_MWh_to_USD_MWh"
+      },
+      {
+        "ticker": "NG=F",
+        "source": "yfinance",
+        "label": "Henry Hub naturgas (USA)",
         "region": "USA",
-        "unit": "Mia. dollar"
-      },
-      {
-        "ticker": "BFXE_USD_DEU",
-        "source": "fred",
-        "label": "Tyskland \u2014 NIIP",
-        "region": "DEU",
-        "unit": "Mia. dollar"
-      },
-      {
-        "ticker": "BFXE_USD_CHN",
-        "source": "fred",
-        "label": "Kina \u2014 NIIP",
-        "region": "CHN",
-        "unit": "Mia. dollar"
+        "unit": "USD/MMBtu",
+        "transform": "",
+        "conversion": "USD_MMBtu_to_USD_MWh"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "International nettoinvesteringsposition (NIIP) \u2014 USA, Tyskland og Kina",
+        "title": "Brent r\u00e5olie \u2014 pris siden Iran-konflikten",
         "x_label": "Dato",
-        "y_label": "Mia. dollar",
-        "period_days": 7300,
+        "y_label": "USD/t\u00f8nde",
+        "period_days": 730,
         "series_labels": [
-          "USA \u2014 NIIP",
-          "Tyskland \u2014 NIIP",
-          "Kina \u2014 NIIP"
+          "Brent r\u00e5olie"
         ],
-        "note": "Kvartalsvise data for den internationale nettoinvesteringsposition (NIIP) for USA, Tyskland og Kina fra 2006 til i dag. NIIP m\u00e5ler forskellen mellem et lands udenlandske aktiver og passiver; en negativ v\u00e6rdi indikerer, at landet skylder mere til udlandet, end det ejer. Data er opgjort i milliarder amerikanske dollars. Kilde: IMF Balance of Payments Statistics."
+        "note": "Daglige lukkepriser for Brent r\u00e5olie de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og reagerer typisk kraftigt p\u00e5 geopolitiske sp\u00e6ndinger i Mellem\u00f8sten.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran-konflikten (28 feb 2026)"
+          }
+        ]
       },
       {
         "type": "D",
-        "title": "NIIP \u2014 N\u00f8gletal: USA, Tyskland og Kina",
+        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal f\u00f8r og efter Iran-konflikten",
         "x_label": "",
-        "y_label": "Mia. dollar",
-        "period_days": 7300,
+        "y_label": "USD/t\u00f8nde",
+        "period_days": 730,
         "series_labels": [
-          "USA \u2014 NIIP",
-          "Tyskland \u2014 NIIP",
-          "Kina \u2014 NIIP"
+          "Brent r\u00e5olie"
         ],
-        "before_date": "2006-01-01",
+        "before_date": "2026-02-28",
         "after_date": "latest",
-        "col_before": "2006",
-        "col_after": "Senest tilg\u00e6ngelige",
-        "note": "Snapshot af NIIP for USA, Tyskland og Kina. \u00c6ndringen viser udviklingen fra 2006 til det senest tilg\u00e6ngelige kvartal og illustrerer, hvordan de tre landes nettoeksponering over for udlandet har \u00e6ndret sig markant over perioden."
+        "col_before": "F\u00f8r konflikten (28 feb 2026)",
+        "col_after": "Nu",
+        "note": "Snapshot af Brent r\u00e5oliepris umiddelbart f\u00f8r Iran-konflikten br\u00f8d ud den 28. februar 2026 sammenlignet med den seneste tilg\u00e6ngelige pris."
+      },
+      {
+        "type": "A",
+        "title": "EU vs. USA naturgas \u2014 prissammenligning (USD/MWh)",
+        "x_label": "Dato",
+        "y_label": "USD/MWh",
+        "period_days": 730,
+        "series_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ],
+        "note": "TTF (nederlandsk benchmark for europ\u00e6isk gas) og Henry Hub (amerikansk benchmark) er omregnet til f\u00e6lles enhed USD/MWh for direkte sammenligning. Prisforskellen afspejler strukturelle forskelle i de to markeder, herunder LNG-eksport og geopolitisk eksponering.",
+        "events": [
+          {
+            "date": "2026-02-28",
+            "label": "Iran-konflikten (28 feb 2026)"
+          }
+        ]
+      },
+      {
+        "type": "D",
+        "title": "EU vs. USA naturgas \u2014 n\u00f8gletal f\u00f8r og efter Iran-konflikten",
+        "x_label": "",
+        "y_label": "USD/MWh",
+        "period_days": 730,
+        "series_labels": [
+          "TTF naturgas (EU)",
+          "Henry Hub naturgas (USA)"
+        ],
+        "before_date": "2026-02-28",
+        "after_date": "latest",
+        "col_before": "F\u00f8r konflikten (28 feb 2026)",
+        "col_after": "Nu",
+        "note": "Snapshot af TTF- og Henry Hub-gaspriser omregnet til USD/MWh umiddelbart f\u00f8r Iran-konflikten br\u00f8d ud den 28. februar 2026 sammenlignet med den seneste tilg\u00e6ngelige pris. Prisforskellen illustrerer det strukturelle gab mellem europ\u00e6iske og amerikanske gasmarkeder."
       }
     ]
   }

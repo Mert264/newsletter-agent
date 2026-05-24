@@ -2,18 +2,18 @@
   "1": {
     "label": "Iran-krig — Olie & Gas",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkaUHymtQfHExXyeCf'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFq1RqAvg2DCNo3LiW9'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFmgdQFMf7idpC8y9Qr'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrWutqXVDxpSRTsmZJ'}"
     ],
     "figures": 0
   },
   "2": {
     "label": "Forsvarsaktier — Genoprusning",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkcdmWNaUwVPsMW5Tv'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqEgoQYtBz41ZhJUwA'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -22,7 +22,7 @@
   "3": {
     "label": "Guld & Safe Haven",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkdkzDWpp1YNX4KC9r'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqPNC6Yb9nbeW5cuG6'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -31,7 +31,7 @@
   "4": {
     "label": "Europæiske Statsrenter",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkf5MycqDQ8HmKdZip'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqRujU4rkfQt6gkhWA'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -40,51 +40,51 @@
   "5": {
     "label": "Rentekurve & Recessionsignal",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkgMzxnC1T2Q2nHyXG'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqT99zpMe68XQNXBmn'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFmp2edBZF1BKsToKs3'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrYFWikF5id3dZ52oo'}"
     ],
     "figures": 0
   },
   "6": {
     "label": "Fed, ECB & Bank of England",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkhzjCyW5rNciRGXph'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqUJbfrCv2Y8CE1Dqd'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFmwwuCLL6wRLJNvjWk'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrZWfDEryCwZ8Tkntt'}"
     ],
     "figures": 0
   },
   "7": {
     "label": "Globale Aktiemarked",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkjkeGB4PLQuiJ7JN9'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqXAFD3JvvZgANsL98'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFn4HPxf6Z6w9CcdtFS'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrabuA7i3N12zcA8J7'}"
     ],
     "figures": 0
   },
   "8": {
     "label": "Dollarstyrke & Geopolitisk Risiko",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFknTcjC9Nacjnxoc34'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqaWuas7XUbmpvQ73k'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFn5Squb6Wrnweo5ARr'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrbpp9ZX7tcEgfF5HS'}"
     ],
     "figures": 0
   },
   "9": {
     "label": "Grøn Energi vs. Oliemagter",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkoqxS374UfyXsNTro'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqbiLxFyTTZfz9HGxm'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -93,7 +93,7 @@
   "10": {
     "label": "EU Obligationsrenter & Stress",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkrpoB56usQupKkx34'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqe1FhxgszaWfgMy4V'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -102,18 +102,18 @@
   "11": {
     "label": "Trump-toldsatser",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFksrobd3cpJrHXK8CG'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqfhxLbUKqCkQsfYQ7'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFn75aG4Ey3iZCXRHpj'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrfX5522zYxwAeJXwC'}"
     ],
     "figures": 0
   },
   "12": {
     "label": "EU Energiomstilling",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkuM6s1AomKH8bGkv8'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqhdnmPJrDm1JiyMyX'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -122,29 +122,29 @@
   "13": {
     "label": "Global Inflation — US, EU, UK, CN",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkwMQHFjaXkErwjigS'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqjCYXegBxFWxSzfBM'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFn8Zs8qGaxuYrJ5Hfb'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrheJrrdzujV4pEFKF'}"
     ],
     "figures": 0
   },
   "14": {
     "label": "Globalt Markedsscorecard",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkxb4gqqVjZLVBx8Cu'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqkGnmjgJJ7F8Lmwkh'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFnAE5bR7zcgQEVtkYb'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrjRifDPvvV62SCerg'}"
     ],
     "figures": 0
   },
   "15": {
     "label": "EU Elproduktion",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFkyqUR7SdbyCF234eS'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqqGB6Kw8mTTRaKSQe'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -153,7 +153,7 @@
   "16": {
     "label": "Ungarns Økonomi",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFm1XvVTwxF9vpFQiW8'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqzPr3RxmtuPCXX5Uv'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -162,7 +162,7 @@
   "17": {
     "label": "Danmark vs. Sverige",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFm2Zw886WuKhVaYZoD'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrAJeyAKVSx1zGw36f'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -171,7 +171,7 @@
   "18": {
     "label": "Kinas Makroprofil",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFm3gA6pQr7kF5zwUqf'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrGkrPN84TwthiaQyr'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -180,7 +180,7 @@
   "19": {
     "label": "Apple — AAPL",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFm5JdZddbw2AmVjtLt'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrKfUXJZpiKaCPk2Xe'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -189,7 +189,7 @@
   "20": {
     "label": "Amazon — AMZN",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFm6R7KwGb8jHvshN96'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrMCk1ubtfbWjpNHMt'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -198,7 +198,7 @@
   "21": {
     "label": "Microsoft — MSFT",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFm7d2unQ6W1rH89Rvc'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrNYrVhfg62sZmvgVh'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -207,7 +207,7 @@
   "22": {
     "label": "Nvidia — NVDA",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFm8rD3zK13K651CZYA'}"
+      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrPuhze7VJW4KgYqzP'}"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
