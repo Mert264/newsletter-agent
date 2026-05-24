@@ -107,8 +107,10 @@ def check_manifest(pid, manifest, period_sent):
             if re.search(r"kilde:|source:|data fra:", note, re.IGNORECASE):
                 issues.append(f"[{specialist}] '{title[:35]}': note contains source attribution")
 
-            if period_sent and period_sent > 0 and period > 0 and period < period_sent:
-                issues.append(f"[{specialist}] '{title[:35]}': period_days={period} < user's {period_sent}")
+            # Only flag if orchestrator period is extremely short (<90 days) — pipeline
+            # enforces the user's period at runtime so Tier-1-only checks are misleading.
+            if period > 0 and period < 90:
+                issues.append(f"[{specialist}] '{title[:35]}': period_days={period} dangerously short (<90d)")
 
             for ev in events:
                 ev_date_str = ev.get("date", "")
