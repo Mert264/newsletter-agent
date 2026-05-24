@@ -794,7 +794,6 @@
 <script>
 // ── State ──
 let activeViz = 'figur';
-let activeVizSub = 'lodret';
 let activePeriodDays = null; // null = LLM decides
 let es = null;
 
@@ -803,13 +802,6 @@ function setViz(el) {
   document.querySelectorAll('.viz-option').forEach(o => o.classList.remove('active'));
   el.classList.add('active');
   activeViz = el.dataset.type;
-}
-
-function setSub(e, sub) {
-  e.stopPropagation();
-  document.querySelectorAll('.viz-subopt').forEach(o => o.classList.remove('active'));
-  e.currentTarget.classList.add('active');
-  activeVizSub = sub;
 }
 
 // ── TIDSPERIODE ──
