@@ -1046,13 +1046,16 @@ function renderFigures(figures) {
   panel.style.display = 'block';
   grid.innerHTML = '';
   const ts = Date.now();
-  figures.forEach(fig => {
+  figures.forEach((fig, idx) => {
     const card = document.createElement('div');
     card.className = 'fig-card';
     const url    = `/figures/${escHtml(fig.path)}?t=${ts}`;
     const dlName = escHtml(fig.path);
     const flagHtml = fig.reviewer_flag
       ? `<div class="fig-flag">⚠️ ${escHtml(fig.reviewer_flag)}</div>`
+      : '';
+    const excelBtn = idx === 0
+      ? `<a class="fig-dl-btn excel" href="/download/excel" download="maj_invest_data.xlsx">↑ Excel</a>`
       : '';
     card.innerHTML = `
       <img src="${url}" alt="${escHtml(fig.title)}" onclick="openLightbox('${url}')">
@@ -1064,7 +1067,7 @@ function renderFigures(figures) {
       </div>
       <div class="fig-actions">
         <a class="fig-dl-btn" href="${url}" download="${dlName}">⬇ Download PNG</a>
-        <a class="fig-dl-btn excel" href="/download/excel" download="maj_invest_data.xlsx">↑ Excel</a>
+        ${excelBtn}
       </div>`;
     grid.appendChild(card);
   });
