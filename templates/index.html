@@ -536,7 +536,22 @@
           </svg>
           <div class="viz-text">
             <div class="viz-name">Figur</div>
-            <div class="viz-desc">Time series — linjegraf</div>
+            <div class="viz-desc">Tidsserie — linjegraf</div>
+          </div>
+          <span class="viz-check">✓</span>
+        </div>
+
+        <!-- Tabel -->
+        <div class="viz-option" data-type="tabel" onclick="setViz(this)">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:2px">
+            <rect x="1" y="1" width="12" height="12" rx="1" stroke="#9ca3af" stroke-width="1.2"/>
+            <line x1="1" y1="5" x2="13" y2="5" stroke="#9ca3af" stroke-width="1"/>
+            <line x1="1" y1="9" x2="13" y2="9" stroke="#9ca3af" stroke-width="1"/>
+            <line x1="5" y1="1" x2="5" y2="13" stroke="#9ca3af" stroke-width="1"/>
+          </svg>
+          <div class="viz-text">
+            <div class="viz-name">Tabel</div>
+            <div class="viz-desc">Snapshot — nøgletal (oversigt)</div>
           </div>
           <span class="viz-check">✓</span>
         </div>
@@ -550,7 +565,7 @@
           </svg>
           <div class="viz-text" style="flex:1">
             <div class="viz-name">Søjlediagram</div>
-            <div class="viz-desc">Vælg visningstype nedenfor</div>
+            <div class="viz-desc">Sammenligning, ranking eller fordeling</div>
           </div>
           <span class="viz-check">✓</span>
         </div>
@@ -564,21 +579,6 @@
           <div class="viz-subopt" data-sub="stablet" onclick="setSub(event,'stablet')">
             <span class="viz-subdot"></span>Stablet — fordeling over tid
           </div>
-        </div>
-
-        <!-- Tabel -->
-        <div class="viz-option" data-type="tabel" onclick="setViz(this)">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:2px">
-            <rect x="1" y="1" width="12" height="12" rx="1" stroke="#9ca3af" stroke-width="1.2"/>
-            <line x1="1" y1="5" x2="13" y2="5" stroke="#9ca3af" stroke-width="1"/>
-            <line x1="1" y1="9" x2="13" y2="9" stroke="#9ca3af" stroke-width="1"/>
-            <line x1="5" y1="1" x2="5" y2="13" stroke="#9ca3af" stroke-width="1"/>
-          </svg>
-          <div class="viz-text">
-            <div class="viz-name">Tabel</div>
-            <div class="viz-desc">Snapshot — nøgletal</div>
-          </div>
-          <span class="viz-check">✓</span>
         </div>
 
         <!-- Cirkeldiagram -->
