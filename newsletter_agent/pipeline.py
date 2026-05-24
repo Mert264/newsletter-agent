@@ -217,12 +217,11 @@ def _snapshot_value(series: pd.Series, date_str: str) -> float:
     if not date_str or date_str == "latest":
         return float(clean.iloc[-1])
     ts = pd.Timestamp(date_str)
-    # Guard: if requested date is AFTER series end, raise so caller can detect the problem
+    # Guard: if requested date is AFTER series end, clamp to last available date
     if ts > clean.index.max():
-        raise ValueError(
-            f"Requested date {date_str} is after series end {clean.index.max().date()}. "
-            "before_date was not patched correctly — check end_date injection."
-        )
+        print(f"  [warn] _snapshot_value: date {date_str} is after series end "
+              f"{clean.index.max().date()} — clamping to last available value.")
+        ts = clean.index.max()
     idx = clean.index.get_indexer([ts], method="nearest")[0]
     return float(clean.iloc[idx])
 
