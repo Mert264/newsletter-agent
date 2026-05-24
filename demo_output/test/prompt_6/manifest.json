@@ -5,24 +5,24 @@
     {
       "path": "demo_output/test/prompt_6/figure_00.png",
       "metadata": {
-        "title": "Centralbankers politikrenter \u2014 Fed, ECB og Bank of England",
+        "title": "Centralbankers politikrenter: Fed, ECB og Bank of England",
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "%",
-        "note": "Politikrenter for de tre store centralbanker siden 2019. Federal Reserve og Bank of England begyndte renteforh\u00f8jelserne i 2022 for at bek\u00e6mpe h\u00f8j inflation, efterfulgt af ECB. Alle tre banker er efterf\u00f8lgende begyndt at s\u00e6nke renterne igen i takt med, at inflationen er faldet.",
+        "note": "Daglige politikrenter for de tre st\u00f8rste centralbanker siden 2021. Alle tre banker begyndte at h\u00e6ve renter markant i 2022 som reaktion p\u00e5 stigende inflation og har efterf\u00f8lgende p\u00e5begyndt lempelsescyklusser i forskelligt tempo.",
         "kilde": "FRED",
         "region_labels": [
           "Federal Reserve (USA)",
           "ECB (Eurozonen)",
           "Bank of England (UK)"
         ],
-        "excel_path": "figure_00_Centralbankers politikrenter \u2014 Fed, ECB og Ba.xlsx"
+        "excel_path": "figure_00_Centralbankers politikrenter- Fed, ECB og Ban.xlsx"
       }
     },
     {
       "path": "demo_output/test/prompt_6/figure_01.png",
       "metadata": {
-        "title": "Event impact \u2014 Centralbankers politikrenter \u2014 Fed, ECB og Bank of England",
+        "title": "Event impact \u2014 Centralbankers politikrenter: Fed, ECB og Bank of England",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
@@ -38,7 +38,7 @@
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Sammenligning af politikrenterne f\u00f8r rentestigningscyklussen begyndte i 2022 og det senest tilg\u00e6ngelige niveau. \u00c6ndringen vises i procentpoint.",
+        "note": "Sammenligning af politikrenterne f\u00f8r renteh\u00e6vningscyklussen begyndte i begyndelsen af 2022 og de seneste tilg\u00e6ngelige niveauer. \u00c6ndringen vises i procentpoint.",
         "kilde": "FRED",
         "region_labels": [
           "Federal Reserve (USA)",

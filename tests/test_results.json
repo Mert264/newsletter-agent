@@ -74,7 +74,7 @@
     "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
-    "figures": 9
+    "figures": 8
   },
   "12": {
     "label": "EU Energiomstilling",
@@ -99,9 +99,7 @@
   },
   "15": {
     "label": "EU Elproduktion",
-    "manifest_issues": [
-      "[eurostat] 'EU's elproduktion fordelt på energi': note contains source attribution"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0

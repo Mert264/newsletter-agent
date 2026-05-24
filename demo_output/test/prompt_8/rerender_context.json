@@ -6,7 +6,7 @@
       {
         "ticker": "DX-Y.NYB",
         "source": "yfinance",
-        "label": "DXY (Dollar Index)",
+        "label": "DXY (Dollar Indeks)",
         "region": "Global",
         "unit": "Indeks"
       },
@@ -34,17 +34,17 @@
     ],
     "chart_spec": {
       "type": "A",
-      "title": "Amerikansk dollar: DXY og vigtige valutakurser",
+      "title": "Den amerikanske dollar: DXY, EUR/USD, GBP/USD og JPY/USD",
       "x_label": "Dato",
       "y_label": "Indekseret (basis=100)",
       "period_days": 730,
       "series_labels": [
-        "DXY (Dollar Index)",
+        "DXY (Dollar Indeks)",
         "EUR/USD",
         "GBP/USD",
         "JPY/USD"
       ],
-      "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. DXY m\u00e5ler den brede styrkelse af den amerikanske dollar mod en kurv af valutaer, mens EUR/USD, GBP/USD og JPY/USD viser bilaterale kursforhold.",
+      "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. En stigning i DXY afspejler en styrkelse af dollaren; en stigning i EUR/USD og GBP/USD afspejler en sv\u00e6kkelse af dollaren over for euro og pund, mens et fald i JPY/USD afspejler en sv\u00e6kkelse af yennen.",
       "events": [
         {
           "date": "2025-04-02",
@@ -66,7 +66,7 @@
       {
         "ticker": "DX-Y.NYB",
         "source": "yfinance",
-        "label": "DXY (Dollar Index)",
+        "label": "DXY (Dollar Indeks)",
         "region": "Global",
         "unit": "Indeks"
       },
@@ -94,12 +94,12 @@
     ],
     "chart_spec": {
       "type": "D",
-      "title": "Valutan\u00f8gletal \u2014 DXY og vigtige valutakurser",
+      "title": "Valutan\u00f8gletal \u2014 DXY og vigtige valutapar",
       "x_label": "",
       "y_label": "",
       "period_days": 730,
       "series_labels": [
-        "DXY (Dollar Index)",
+        "DXY (Dollar Indeks)",
         "EUR/USD",
         "GBP/USD",
         "JPY/USD"
@@ -108,7 +108,7 @@
       "after_date": "latest",
       "col_before": "Jan 2025",
       "col_after": "Nu",
-      "note": "Snapshot af DXY-indekset og udvalgte valutakurser. \u00c6ndringer afspejler bev\u00e6gelser siden starten af 2025, hvor b\u00e5de Trump-toldsatser og Iran-krigen har pr\u00e6get dollarkursen.",
+      "note": "Snapshot af DXY-dollarindekset og udvalgte valutakurser. \u00c6ndringer afspejler den absolutte bev\u00e6gelse i kurserne siden starten af 2025, hvor b\u00e5de Trump-toldpolitik og geopolitiske sp\u00e6ndinger begyndte at p\u00e5virke valutamarkederne.",
       "display_period_days": 730
     },
     "brief": "Den amerikanske dollar er styrket p\u00e5 baggrund af geopolitisk risiko fra Iran-krigen (28. februar 2026) og Trump-toldsatserne (2. april 2025). Vis DXY-indekset, EUR/USD, GBP/USD og JPY/USD og mark\u00e9r begge begivenheder."

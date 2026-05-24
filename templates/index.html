@@ -759,15 +759,21 @@
 
 <script>
 // ── State ──
-let activeViz = 'figur';
+let activeVizSet = new Set(['figur']);
 let activePeriodDays = null; // null = LLM decides
 let es = null;
 
 // ── VISUALISERINGSTYPE ──
 function setViz(el) {
-  document.querySelectorAll('.viz-option').forEach(o => o.classList.remove('active'));
-  el.classList.add('active');
-  activeViz = el.dataset.type;
+  const type = el.dataset.type;
+  if (activeVizSet.has(type)) {
+    if (activeVizSet.size === 1) return; // keep at least one selected
+    activeVizSet.delete(type);
+    el.classList.remove('active');
+  } else {
+    activeVizSet.add(type);
+    el.classList.add('active');
+  }
 }
 
 // ── TIDSPERIODE ──

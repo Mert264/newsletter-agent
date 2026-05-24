@@ -9,7 +9,7 @@
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "Indekseret (basis=100)",
-        "note": "Alle fire indeks er indekseret til 100 ved periodens start for at muligg\u00f8re direkte sammenligning af det relative afkast p\u00e5 tv\u00e6rs af regioner. S&P 500 repr\u00e6senterer det amerikanske marked, Euro Stoxx 50 de 50 st\u00f8rste europ\u00e6iske virksomheder, Nikkei 225 det japanske marked og EEM ETF'en fungerer som proxy for MSCI Emerging Markets.",
+        "note": "Kursudviklingen for fire globale aktieindeks over de seneste fem \u00e5r, indekseret til 100 ved periodens start. Sammenligningen viser, hvilke regioner der har leveret det relativt bedste afkast. EEM (iShares MSCI Emerging Markets ETF) anvendes som proxy for emerging markets.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "S&P 500 (USA)",
@@ -27,7 +27,7 @@
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af de fire regionale aktieindeks med angivelse af det samlede indekserede afkast over den valgte 5-\u00e5rige periode. Emerging Markets repr\u00e6senteres af iShares MSCI Emerging Markets ETF (EEM).",
+        "note": "Snapshot af indekserede kursniveauer for de fire globale aktiemarkeder. \u00c6ndringen afspejler den samlede kursudvikling over den seneste fem\u00e5rsperiode.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "S&P 500 (USA)",

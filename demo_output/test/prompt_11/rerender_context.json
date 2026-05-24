@@ -8,25 +8,23 @@
         "source": "yfinance",
         "label": "Brent r\u00e5olie",
         "region": "Global",
-        "unit": "USD/t\u00f8nde",
-        "transform": "",
-        "conversion": ""
+        "unit": "USD/t\u00f8nde"
       }
     ],
     "chart_spec": {
       "type": "A",
-      "title": "Brent r\u00e5olie \u2014 pris f\u00f8r og efter Trump-toldsatser",
+      "title": "Brent r\u00e5olie \u2014 f\u00f8r og efter Trump-toldsatser",
       "x_label": "Dato",
       "y_label": "USD/t\u00f8nde",
       "period_days": 730,
       "series_labels": [
         "Brent r\u00e5olie"
       ],
-      "note": "Daglige lukkepriser for Brent r\u00e5olie. Den stiplede linje markerer datoen for Trumps toldannonce den 2. april 2025, som udl\u00f8ste betydelig markedsuro p\u00e5 globale r\u00e5varemarkeder.",
+      "note": "Daglige lukkepriser for Brent r\u00e5olie. Den 2. april 2025 annoncerede Trump-administrationen historiske toldsatser, som sendte chokb\u00f8lger gennem globale r\u00e5varemarkeder.",
       "events": [
         {
           "date": "2025-04-02",
-          "label": "Trump-toldsatser (2 apr 2025)"
+          "label": "Trump-toldsatser (2. apr 2025)"
         }
       ],
       "display_period_days": 730
@@ -42,14 +40,12 @@
         "source": "yfinance",
         "label": "Brent r\u00e5olie",
         "region": "Global",
-        "unit": "USD/t\u00f8nde",
-        "transform": "",
-        "conversion": ""
+        "unit": "USD/t\u00f8nde"
       }
     ],
     "chart_spec": {
       "type": "D",
-      "title": "Brent r\u00e5olie \u2014 f\u00f8r og efter toldannoncen",
+      "title": "Brent r\u00e5olie \u2014 n\u00f8gletal f\u00f8r og efter toldannonce",
       "x_label": "",
       "y_label": "USD/t\u00f8nde",
       "period_days": 730,
@@ -58,9 +54,9 @@
       ],
       "before_date": "2025-04-02",
       "after_date": "latest",
-      "col_before": "F\u00f8r toldsatser (2 apr 2025)",
+      "col_before": "F\u00f8r toldsatser (2. apr 2025)",
       "col_after": "Nu",
-      "note": "Snapshot af Brent r\u00e5oliepris p\u00e5 dagen for Trumps toldannonce sammenlignet med den seneste tilg\u00e6ngelige pris. \u00c6ndringen afspejler markedets reaktion p\u00e5 den \u00f8gede handelspolitiske usikkerhed.",
+      "note": "Snapshot af Brent r\u00e5olieprisen umiddelbart f\u00f8r toldannoncen den 2. april 2025 sammenlignet med den seneste tilg\u00e6ngelige pris.",
       "display_period_days": 730
     },
     "brief": "Trump-administrationen indf\u00f8rte historiske toldsatser den 2. april 2025. Vis Brent olie, S&P 500, EUR/USD og guld \u2014 sammenlign markedspriserne f\u00f8r og efter toldannoncen den 2. april 2025."
@@ -74,35 +70,40 @@
         "source": "yfinance",
         "label": "S&P 500",
         "region": "USA",
-        "unit": "Indeks",
-        "transform": "",
-        "conversion": ""
+        "unit": "Indeks"
       },
       {
         "ticker": "GC=F",
         "source": "yfinance",
         "label": "Guld",
         "region": "Global",
-        "unit": "USD/troy oz",
-        "transform": "",
-        "conversion": ""
+        "unit": "USD/troy oz"
+      },
+      {
+        "ticker": "EURUSD=X",
+        "source": "yfinance",
+        "label": "EUR/USD",
+        "region": "Global",
+        "unit": "USD per EUR"
       }
     ],
     "chart_spec": {
       "type": "A",
-      "title": "S&P 500 og guld \u2014 indekseret udvikling f\u00f8r og efter Trump-toldsatser",
+      "title": "S&P 500, guld og EUR/USD \u2014 indekseret siden 2. april 2025",
       "x_label": "Dato",
       "y_label": "Indekseret (basis=100)",
       "period_days": 730,
       "series_labels": [
         "S&P 500",
-        "Guld"
+        "Guld",
+        "EUR/USD"
       ],
-      "note": "S&P 500 og guldpris indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig prisskalering. Den stiplede linje markerer Trumps toldannonce den 2. april 2025.",
+      "index_base_date": "2025-04-02",
+      "note": "Alle serier er indekseret til 100 ved toldannoncen den 2. april 2025 for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. Viser den relative prisudvikling for aktier, guld og euro/dollar siden Trump-administrationens historiske toldsatser.",
       "events": [
         {
           "date": "2025-04-02",
-          "label": "Trump-toldsatser (2 apr 2025)"
+          "label": "Trump-toldsatser (2. apr 2025)"
         }
       ],
       "display_period_days": 730
@@ -110,7 +111,7 @@
     "brief": "Trump-administrationen indf\u00f8rte historiske toldsatser den 2. april 2025. Vis Brent olie, S&P 500, EUR/USD og guld \u2014 sammenlign markedspriserne f\u00f8r og efter toldannoncen den 2. april 2025."
   },
   {
-    "figure_id": 5,
+    "figure_id": 4,
     "specialist": "equities",
     "series_specs": [
       {
@@ -118,67 +119,68 @@
         "source": "yfinance",
         "label": "S&P 500",
         "region": "USA",
-        "unit": "Indeks",
-        "transform": "",
-        "conversion": ""
+        "unit": "Indeks"
       },
       {
         "ticker": "GC=F",
         "source": "yfinance",
         "label": "Guld",
         "region": "Global",
-        "unit": "USD/troy oz",
-        "transform": "",
-        "conversion": ""
-      }
-    ],
-    "chart_spec": {
-      "type": "D",
-      "title": "S&P 500 og guld \u2014 f\u00f8r og efter toldannoncen",
-      "x_label": "",
-      "y_label": "",
-      "period_days": 730,
-      "series_labels": [
-        "S&P 500",
-        "Guld"
-      ],
-      "before_date": "2025-04-02",
-      "after_date": "latest",
-      "col_before": "F\u00f8r toldsatser (2 apr 2025)",
-      "col_after": "Nu",
-      "note": "Snapshot af S&P 500 og guldpris p\u00e5 dagen for Trumps toldannonce sammenlignet med den seneste tilg\u00e6ngelige pris. Guld fungerer traditionelt som sikker havn under handelspolitisk usikkerhed.",
-      "display_period_days": 730
-    },
-    "brief": "Trump-administrationen indf\u00f8rte historiske toldsatser den 2. april 2025. Vis Brent olie, S&P 500, EUR/USD og guld \u2014 sammenlign markedspriserne f\u00f8r og efter toldannoncen den 2. april 2025."
-  },
-  {
-    "figure_id": 6,
-    "specialist": "macro",
-    "series_specs": [
+        "unit": "USD/troy oz"
+      },
       {
         "ticker": "EURUSD=X",
         "source": "yfinance",
         "label": "EUR/USD",
         "region": "Global",
-        "unit": "USD per EUR",
-        "transform": "",
-        "conversion": ""
+        "unit": "USD per EUR"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "S&P 500, guld og EUR/USD \u2014 n\u00f8gletal f\u00f8r og efter toldannonce",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 730,
+      "series_labels": [
+        "S&P 500",
+        "Guld",
+        "EUR/USD"
+      ],
+      "before_date": "2025-04-02",
+      "after_date": "latest",
+      "col_before": "F\u00f8r toldsatser (2. apr 2025)",
+      "col_after": "Nu",
+      "note": "Snapshot af S&P 500, guld og EUR/USD umiddelbart f\u00f8r toldannoncen den 2. april 2025 sammenlignet med den seneste tilg\u00e6ngelige pris. Serierne har forskellige enheder og kan ikke sammenlignes direkte p\u00e5 absolutte niveauer.",
+      "display_period_days": 730
+    },
+    "brief": "Trump-administrationen indf\u00f8rte historiske toldsatser den 2. april 2025. Vis Brent olie, S&P 500, EUR/USD og guld \u2014 sammenlign markedspriserne f\u00f8r og efter toldannoncen den 2. april 2025."
+  },
+  {
+    "figure_id": 5,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA 10-\u00e5rig statsrente",
+        "unit": "%"
       }
     ],
     "chart_spec": {
       "type": "A",
-      "title": "EUR/USD valutakurs \u2014 f\u00f8r og efter Trump-toldsatser",
+      "title": "USA 10-\u00e5rig statsrente \u2014 reaktion p\u00e5 Trump-toldsatser",
       "x_label": "Dato",
-      "y_label": "USD per EUR",
+      "y_label": "%",
       "period_days": 730,
       "series_labels": [
-        "EUR/USD"
+        "USA 10-\u00e5rig statsrente"
       ],
-      "note": "Daglige lukkepriser for EUR/USD valutakursen. En stigende kurs betyder en st\u00e6rkere euro relativt til dollaren. Den stiplede linje markerer Trumps toldannonce den 2. april 2025.",
+      "note": "Den amerikanske 10-\u00e5rige statsrente er en central indikator for markedets forventninger til v\u00e6kst og inflation. Rentebev\u00e6gelserne efter toldannoncen den 2. april 2025 afspejler markedets vurdering af de makro\u00f8konomiske konsekvenser.",
       "events": [
         {
           "date": "2025-04-02",
-          "label": "Trump-toldsatser (2 apr 2025)"
+          "label": "Trump-toldsatser (2. apr 2025)"
         }
       ],
       "display_period_days": 730
@@ -186,33 +188,30 @@
     "brief": "Trump-administrationen indf\u00f8rte historiske toldsatser den 2. april 2025. Vis Brent olie, S&P 500, EUR/USD og guld \u2014 sammenlign markedspriserne f\u00f8r og efter toldannoncen den 2. april 2025."
   },
   {
-    "figure_id": 8,
+    "figure_id": 7,
     "specialist": "macro",
     "series_specs": [
       {
-        "ticker": "EURUSD=X",
-        "source": "yfinance",
-        "label": "EUR/USD",
-        "region": "Global",
-        "unit": "USD per EUR",
-        "transform": "",
-        "conversion": ""
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA 10-\u00e5rig statsrente",
+        "unit": "%"
       }
     ],
     "chart_spec": {
       "type": "D",
-      "title": "EUR/USD \u2014 f\u00f8r og efter toldannoncen",
+      "title": "USA 10-\u00e5rig statsrente \u2014 n\u00f8gletal f\u00f8r og efter toldannonce",
       "x_label": "",
-      "y_label": "USD per EUR",
+      "y_label": "%",
       "period_days": 730,
       "series_labels": [
-        "EUR/USD"
+        "USA 10-\u00e5rig statsrente"
       ],
       "before_date": "2025-04-02",
       "after_date": "latest",
-      "col_before": "F\u00f8r toldsatser (2 apr 2025)",
+      "col_before": "F\u00f8r toldsatser (2. apr 2025)",
       "col_after": "Nu",
-      "note": "Snapshot af EUR/USD valutakursen p\u00e5 dagen for Trumps toldannonce sammenlignet med den seneste tilg\u00e6ngelige kurs. \u00c6ndringen afspejler skiftet i markedets vurdering af relativ styrke mellem euro og dollar under handelskonflikten.",
+      "note": "Snapshot af den amerikanske 10-\u00e5rige statsrente umiddelbart f\u00f8r toldannoncen den 2. april 2025 sammenlignet med den seneste tilg\u00e6ngelige rente. \u00c6ndringer vises i procentpoint.",
       "display_period_days": 730
     },
     "brief": "Trump-administrationen indf\u00f8rte historiske toldsatser den 2. april 2025. Vis Brent olie, S&P 500, EUR/USD og guld \u2014 sammenlign markedspriserne f\u00f8r og efter toldannoncen den 2. april 2025."

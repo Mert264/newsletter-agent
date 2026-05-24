@@ -20,21 +20,21 @@
     "charts": [
       {
         "type": "A",
-        "title": "Brent r\u00e5olie \u2014 prisniveau",
+        "title": "Brent r\u00e5olie \u2014 kursniveau",
         "x_label": "Dato",
         "y_label": "USD/t\u00f8nde",
-        "period_days": 730,
+        "period_days": 425,
         "series_labels": [
           "Brent r\u00e5olie"
         ],
-        "note": "Daglige lukkepriser for Brent r\u00e5olie over de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser p\u00e5 verdensmarkedet."
+        "note": "Daglige lukkepriser for Brent r\u00e5olie over de seneste ca. 14 m\u00e5neder. Brent er det globale benchmark for r\u00e5oliepriser og afspejler udbuddet fra Nords\u00f8en og Mellem\u00f8sten."
       },
       {
         "type": "D",
-        "title": "Brent r\u00e5olie \u2014 snapshot",
+        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "USD/t\u00f8nde",
-        "period_days": 730,
+        "period_days": 425,
         "series_labels": [
           "Brent r\u00e5olie"
         ],
@@ -42,7 +42,7 @@
         "after_date": "latest",
         "col_before": "1 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Sammenligning af Brent r\u00e5oliepris nu versus for \u00e9t \u00e5r siden. Viser den absolutte pris\u00e6ndring i USD pr. t\u00f8nde."
+        "note": "Snapshot af Brent r\u00e5oliepris nu sammenlignet med for et \u00e5r siden."
       }
     ]
   },
@@ -61,21 +61,21 @@
     "charts": [
       {
         "type": "A",
-        "title": "Guld \u2014 prisniveau",
+        "title": "Guld \u2014 kursniveau",
         "x_label": "Dato",
         "y_label": "USD/troy oz",
-        "period_days": 730,
+        "period_days": 425,
         "series_labels": [
           "Guld"
         ],
-        "note": "Daglige lukkepriser for guld (spot/futures) over de seneste to \u00e5r. Guld anvendes bredt som inflationssikring og safe-haven aktiv."
+        "note": "Daglige lukkepriser for guld (spot, USD pr. troy ounce) over de seneste ca. 14 m\u00e5neder. Guld betragtes som et sikkert aktiv og inflationsafd\u00e6kning p\u00e5 de globale finansmarkeder."
       },
       {
         "type": "D",
-        "title": "Guld \u2014 snapshot",
+        "title": "Guld \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "USD/troy oz",
-        "period_days": 730,
+        "period_days": 425,
         "series_labels": [
           "Guld"
         ],
@@ -83,7 +83,7 @@
         "after_date": "latest",
         "col_before": "1 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Sammenligning af guldprisen nu versus for \u00e9t \u00e5r siden. Viser den absolutte pris\u00e6ndring i USD pr. troy ounce."
+        "note": "Snapshot af guldpris nu sammenlignet med for et \u00e5r siden."
       }
     ]
   },
@@ -111,22 +111,22 @@
     "charts": [
       {
         "type": "A",
-        "title": "Globalt markedsscorecard \u2014 indekseret overblik",
+        "title": "S&P 500 og EUR/USD \u2014 indekseret sammenligning",
         "x_label": "Dato",
         "y_label": "Indekseret (basis=100)",
-        "period_days": 730,
+        "period_days": 425,
         "series_labels": [
           "S&P 500",
           "EUR/USD"
         ],
-        "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. Viser relativ prisudvikling for S&P 500 og EUR/USD over de seneste to \u00e5r."
+        "note": "S&P 500 (det brede amerikanske aktieindeks) og EUR/USD-valutakursen indekseret til 100 ved periodens start for sammenlignbarhed. Afspejler henholdsvis udviklingen p\u00e5 det amerikanske aktiemarked og dollarens styrke over for euroen."
       },
       {
         "type": "D",
-        "title": "S&P 500 og EUR/USD \u2014 snapshot",
+        "title": "S&P 500 og EUR/USD \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "",
-        "period_days": 730,
+        "period_days": 425,
         "series_labels": [
           "S&P 500",
           "EUR/USD"
@@ -135,7 +135,7 @@
         "after_date": "latest",
         "col_before": "1 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Sammenligning af S&P 500-indeks og EUR/USD-valutakurs nu versus for \u00e9t \u00e5r siden. \u00c6ndringer viser den absolutte bev\u00e6gelse i henholdsvis indekspoint og valutakurs."
+        "note": "Snapshot af S&P 500-indeksniveau og EUR/USD-kurs nu sammenlignet med for et \u00e5r siden."
       }
     ]
   },
@@ -157,18 +157,18 @@
         "title": "10-\u00e5rig amerikansk statsrente",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 730,
+        "period_days": 425,
         "series_labels": [
           "10-\u00e5rig amerikansk statsrente"
         ],
-        "note": "Den 10-\u00e5rige amerikanske statsrente (US Treasury) er et centralt benchmark for globale obligationsmarkeder og afspejler markedets forventninger til v\u00e6kst og inflation i USA."
+        "note": "Den 10-\u00e5rige amerikanske statsobligationsrente (US Treasury 10Y yield) er det vigtigste benchmark for de globale kapitalmarkeder og afspejler forventningerne til v\u00e6kst, inflation og Federal Reserves pengepolitik."
       },
       {
         "type": "D",
-        "title": "10-\u00e5rig amerikansk statsrente \u2014 snapshot",
+        "title": "10-\u00e5rig amerikansk statsrente \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
-        "period_days": 730,
+        "period_days": 425,
         "series_labels": [
           "10-\u00e5rig amerikansk statsrente"
         ],
@@ -176,7 +176,7 @@
         "after_date": "latest",
         "col_before": "1 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Sammenligning af den 10-\u00e5rige amerikanske statsrente nu versus for \u00e9t \u00e5r siden. \u00c6ndringer vises i procentpoint."
+        "note": "Snapshot af den 10-\u00e5rige amerikanske statsrente nu sammenlignet med for et \u00e5r siden. \u00c6ndringer vises i procentpoint."
       }
     ]
   }
