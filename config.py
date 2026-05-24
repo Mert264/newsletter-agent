@@ -1,14 +1,14 @@
 # newsletter_agent/config.py
 import os
 import threading
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
 # Global lock to serialize yfinance downloads across parallel specialist threads.
 # yfinance has internal shared session state that is NOT thread-safe when multiple
 # yf.download() calls happen simultaneously — data gets cross-contaminated between tickers.
 YF_LOCK = threading.Lock()
 
-load_dotenv()
+load_dotenv(find_dotenv(usecwd=False, raise_error_if_not_found=False))
 
 BRAND = {
     "primary":        "#11716c",   # Maj Invest green
