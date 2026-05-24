@@ -9,95 +9,37 @@
         "source": "yfinance",
         "label": "Brent r\u00e5olie",
         "region": "Global",
-        "unit": "USD/t\u00f8nde",
+        "unit": "USD/barrel",
         "transform": "",
         "conversion": ""
-      },
-      {
-        "ticker": "TTF=F",
-        "source": "yfinance",
-        "label": "TTF naturgas (EU)",
-        "region": "Europa",
-        "unit": "EUR/MWh",
-        "transform": "",
-        "conversion": "EUR_MWh_to_USD_MWh"
-      },
-      {
-        "ticker": "NG=F",
-        "source": "yfinance",
-        "label": "Henry Hub naturgas (USA)",
-        "region": "USA",
-        "unit": "USD/MMBtu",
-        "transform": "",
-        "conversion": "USD_MMBtu_to_USD_MWh"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Brent r\u00e5olie \u2014 pris siden Iran-konflikten",
+        "title": "Brent r\u00e5olie \u2014 pris seneste \u00e5r",
         "x_label": "Dato",
-        "y_label": "USD/t\u00f8nde",
-        "period_days": 730,
+        "y_label": "USD/barrel",
+        "period_days": 365,
         "series_labels": [
           "Brent r\u00e5olie"
         ],
-        "note": "Daglige lukkepriser for Brent r\u00e5olie de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og reagerer typisk kraftigt p\u00e5 geopolitiske sp\u00e6ndinger i Mellem\u00f8sten.",
-        "events": [
-          {
-            "date": "2026-02-28",
-            "label": "Iran-konflikten (28 feb 2026)"
-          }
-        ]
+        "note": "Daglige lukkepriser for Brent r\u00e5olie over det seneste \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og handles p\u00e5 ICE-b\u00f8rsen i London."
       },
       {
         "type": "D",
-        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal f\u00f8r og efter Iran-konflikten",
+        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
         "x_label": "",
-        "y_label": "USD/t\u00f8nde",
-        "period_days": 730,
+        "y_label": "USD/barrel",
+        "period_days": 365,
         "series_labels": [
           "Brent r\u00e5olie"
         ],
-        "before_date": "2026-02-28",
+        "before_date": "2025-04-16",
         "after_date": "latest",
-        "col_before": "F\u00f8r konflikten (28 feb 2026)",
+        "col_before": "1 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Snapshot af Brent r\u00e5oliepris umiddelbart f\u00f8r Iran-konflikten br\u00f8d ud den 28. februar 2026 sammenlignet med den seneste tilg\u00e6ngelige pris."
-      },
-      {
-        "type": "A",
-        "title": "EU vs. USA naturgas \u2014 prissammenligning (USD/MWh)",
-        "x_label": "Dato",
-        "y_label": "USD/MWh",
-        "period_days": 730,
-        "series_labels": [
-          "TTF naturgas (EU)",
-          "Henry Hub naturgas (USA)"
-        ],
-        "note": "TTF (nederlandsk benchmark for europ\u00e6isk gas) og Henry Hub (amerikansk benchmark) er omregnet til f\u00e6lles enhed USD/MWh for direkte sammenligning. Prisforskellen afspejler strukturelle forskelle i de to markeder, herunder LNG-eksport og geopolitisk eksponering.",
-        "events": [
-          {
-            "date": "2026-02-28",
-            "label": "Iran-konflikten (28 feb 2026)"
-          }
-        ]
-      },
-      {
-        "type": "D",
-        "title": "EU vs. USA naturgas \u2014 n\u00f8gletal f\u00f8r og efter Iran-konflikten",
-        "x_label": "",
-        "y_label": "USD/MWh",
-        "period_days": 730,
-        "series_labels": [
-          "TTF naturgas (EU)",
-          "Henry Hub naturgas (USA)"
-        ],
-        "before_date": "2026-02-28",
-        "after_date": "latest",
-        "col_before": "F\u00f8r konflikten (28 feb 2026)",
-        "col_after": "Nu",
-        "note": "Snapshot af TTF- og Henry Hub-gaspriser omregnet til USD/MWh umiddelbart f\u00f8r Iran-konflikten br\u00f8d ud den 28. februar 2026 sammenlignet med den seneste tilg\u00e6ngelige pris. Prisforskellen illustrerer det strukturelle gab mellem europ\u00e6iske og amerikanske gasmarkeder."
+        "note": "Snapshot af Brent r\u00e5oliepris nu sammenlignet med for \u00e9t \u00e5r siden. Viser den absolutte pris\u00e6ndring i USD per t\u00f8nde over perioden."
       }
     ]
   }

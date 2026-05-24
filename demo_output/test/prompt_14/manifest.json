@@ -1,0 +1,124 @@
+{
+  "brief": "Vis et globalt markedsscorecard: Brent olie, guld, S&P 500, EUR/USD og den 10-\u00e5rige amerikanske statsrente \u2014 nuv\u00e6rende niveauer sammenlignet med for 1 \u00e5r siden.",
+  "date": "2026-05-24",
+  "figures": [
+    {
+      "path": "demo_output/test/prompt_14/figure_00.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie \u2014 kurvenudvikling",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/t\u00f8nde",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie. Brent er det globale benchmark for r\u00e5oliepriser og afspejler udbud og eftersp\u00f8rgsel p\u00e5 verdensmarkedet.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ],
+        "excel_path": "figure_00_Brent r\u00e5olie \u2014 kurvenudvikling.xlsx"
+      }
+    },
+    {
+      "path": "demo_output/test/prompt_14/figure_01.png",
+      "metadata": {
+        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Brent r\u00e5olieprisen nu sammenlignet med for ca. \u00e9t \u00e5r siden.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Brent r\u00e5olie"
+        ]
+      }
+    },
+    {
+      "path": "demo_output/test/prompt_14/figure_02.png",
+      "metadata": {
+        "title": "Guld \u2014 kurvenudvikling",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "USD/troy oz",
+        "note": "Daglige lukkepriser for guld (spot/futures). Guld betragtes som en sikker havn og er f\u00f8lsomt over for renter, dollarstyrke og geopolitisk usikkerhed.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Guld"
+        ],
+        "excel_path": "figure_02_Guld \u2014 kurvenudvikling.xlsx"
+      }
+    },
+    {
+      "path": "demo_output/test/prompt_14/figure_03.png",
+      "metadata": {
+        "title": "Guld \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af guldprisen nu sammenlignet med for ca. \u00e9t \u00e5r siden.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "Guld"
+        ]
+      }
+    },
+    {
+      "path": "demo_output/test/prompt_14/figure_04.png",
+      "metadata": {
+        "title": "S&P 500 og EUR/USD \u2014 indekseret udvikling",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "Indekseret (basis=100)",
+        "note": "Daglige lukkepriser for S&P 500-aktieindekset og EUR/USD-valutakursen, indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig skala.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "S&P 500",
+          "EUR/USD"
+        ],
+        "excel_path": "figure_04_S&P 500 og EUR-USD \u2014 indekseret udvikling.xlsx"
+      }
+    },
+    {
+      "path": "demo_output/test/prompt_14/figure_05.png",
+      "metadata": {
+        "title": "S&P 500 og EUR/USD \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af S&P 500-niveauet og EUR/USD-valutakursen nu sammenlignet med for ca. \u00e9t \u00e5r siden.",
+        "kilde": "Yahoo Finance",
+        "region_labels": [
+          "S&P 500",
+          "EUR/USD"
+        ]
+      }
+    },
+    {
+      "path": "demo_output/test/prompt_14/figure_06.png",
+      "metadata": {
+        "title": "10-\u00e5rig amerikansk statsrente \u2014 udvikling",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Den 10-\u00e5rige amerikanske statsrente (US Treasury 10Y yield) er et centralt benchmark for globale obligationsmarkeder og p\u00e5virker kreditomkostninger, aktievurderinger og valutakurser verdenen over.",
+        "kilde": "FRED",
+        "region_labels": [
+          "10-\u00e5rig amerikansk statsrente"
+        ],
+        "excel_path": "figure_06_10-\u00e5rig amerikansk statsrente \u2014 udvikling.xlsx"
+      }
+    },
+    {
+      "path": "demo_output/test/prompt_14/figure_07.png",
+      "metadata": {
+        "title": "10-\u00e5rig amerikansk statsrente \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af den 10-\u00e5rige amerikanske statsrente nu sammenlignet med for ca. \u00e9t \u00e5r siden. \u00c6ndringer vises i procentpoint.",
+        "kilde": "FRED",
+        "region_labels": [
+          "10-\u00e5rig amerikansk statsrente"
+        ]
+      }
+    }
+  ]
+}

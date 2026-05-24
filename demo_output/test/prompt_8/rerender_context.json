@@ -1,0 +1,116 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "equities",
+    "series_specs": [
+      {
+        "ticker": "DX-Y.NYB",
+        "source": "yfinance",
+        "label": "DXY (Dollar Indeks)",
+        "region": "Global",
+        "unit": "Indeks"
+      },
+      {
+        "ticker": "EURUSD=X",
+        "source": "yfinance",
+        "label": "EUR/USD",
+        "region": "Global",
+        "unit": "USD per EUR"
+      },
+      {
+        "ticker": "GBPUSD=X",
+        "source": "yfinance",
+        "label": "GBP/USD",
+        "region": "Global",
+        "unit": "USD per GBP"
+      },
+      {
+        "ticker": "JPYUSD=X",
+        "source": "yfinance",
+        "label": "JPY/USD",
+        "region": "Global",
+        "unit": "USD per JPY"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Den amerikanske dollar: DXY, EUR/USD, GBP/USD og JPY/USD",
+      "x_label": "Dato",
+      "y_label": "Indekseret (basis=100)",
+      "period_days": 730,
+      "series_labels": [
+        "DXY (Dollar Indeks)",
+        "EUR/USD",
+        "GBP/USD",
+        "JPY/USD"
+      ],
+      "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. DXY m\u00e5ler dollarens styrke over for en kurv af valutaer, mens EUR/USD, GBP/USD og JPY/USD viser bilaterale kursforhold.",
+      "events": [
+        {
+          "date": "2025-04-02",
+          "label": "Trump-toldsatser (2 apr 2025)"
+        },
+        {
+          "date": "2026-02-28",
+          "label": "Iran-krigen (28 feb 2026)"
+        }
+      ],
+      "display_period_days": 730
+    },
+    "brief": "Den amerikanske dollar er styrket p\u00e5 baggrund af geopolitisk risiko fra Iran-krigen (28. februar 2026) og Trump-toldsatserne (2. april 2025). Vis DXY-indekset, EUR/USD, GBP/USD og JPY/USD og mark\u00e9r begge begivenheder."
+  },
+  {
+    "figure_id": 2,
+    "specialist": "equities",
+    "series_specs": [
+      {
+        "ticker": "DX-Y.NYB",
+        "source": "yfinance",
+        "label": "DXY (Dollar Indeks)",
+        "region": "Global",
+        "unit": "Indeks"
+      },
+      {
+        "ticker": "EURUSD=X",
+        "source": "yfinance",
+        "label": "EUR/USD",
+        "region": "Global",
+        "unit": "USD per EUR"
+      },
+      {
+        "ticker": "GBPUSD=X",
+        "source": "yfinance",
+        "label": "GBP/USD",
+        "region": "Global",
+        "unit": "USD per GBP"
+      },
+      {
+        "ticker": "JPYUSD=X",
+        "source": "yfinance",
+        "label": "JPY/USD",
+        "region": "Global",
+        "unit": "USD per JPY"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Valutan\u00f8gletal \u2014 DXY og udvalgte valutapar",
+      "x_label": "",
+      "y_label": "",
+      "period_days": 730,
+      "series_labels": [
+        "DXY (Dollar Indeks)",
+        "EUR/USD",
+        "GBP/USD",
+        "JPY/USD"
+      ],
+      "before_date": "2025-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2025",
+      "col_after": "Nu",
+      "note": "Snapshot af DXY-indekset og udvalgte valutakurser med angivelse af \u00e6ndringer siden januar 2025. Stigende DXY og faldende EUR/USD, GBP/USD og JPY/USD indikerer en st\u00e6rkere dollar.",
+      "display_period_days": 730
+    },
+    "brief": "Den amerikanske dollar er styrket p\u00e5 baggrund af geopolitisk risiko fra Iran-krigen (28. februar 2026) og Trump-toldsatserne (2. april 2025). Vis DXY-indekset, EUR/USD, GBP/USD og JPY/USD og mark\u00e9r begge begivenheder."
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "figure_id": 0,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPALTT01USM659N",
+        "source": "fred",
+        "label": "USA",
+        "region": "USA",
+        "unit": "%"
+      },
+      {
+        "ticker": "ea_hicp_yoy",
+        "source": "eurostat_ts",
+        "label": "Euroomr\u00e5det",
+        "region": "Euroomr\u00e5det",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01GBM659N",
+        "source": "fred",
+        "label": "UK",
+        "region": "UK",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01JPM659N",
+        "source": "fred",
+        "label": "Japan",
+        "region": "Japan",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Global inflation \u2014 headline CPI/HICP \u00e5r-over-\u00e5r",
+      "x_label": "Dato",
+      "y_label": "%",
+      "period_days": 1826,
+      "series_labels": [
+        "USA",
+        "Euroomr\u00e5det",
+        "UK",
+        "Japan"
+      ],
+      "note": "\u00c5rlig inflation (headline CPI/HICP) for USA, Euroomr\u00e5det, UK og Japan fra 2021 til i dag. Alle serier er allerede opgjort som \u00e5r-over-\u00e5r procent\u00e6ndring. Inflationstoppen i 2021\u20132022 og den efterf\u00f8lgende disinflation fremg\u00e5r tydeligt.",
+      "reference_lines": [
+        {
+          "y": 2.0,
+          "label": "2%-m\u00e5l",
+          "color": "#9ca3af"
+        }
+      ]
+    },
+    "brief": "Sammenlign den globale inflationsudvikling \u2014 USA, Euroomr\u00e5det, UK og Japan \u2014 headline CPI/HICP \u00e5r-over-\u00e5r i procent. Vis inflationstoppen i 2021\u20132022, disinflationen og n\u00e6rheden til centralbankernes 2%-m\u00e5l."
+  },
+  {
+    "figure_id": 1,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPALTT01USM659N",
+        "source": "fred",
+        "label": "USA",
+        "region": "USA",
+        "unit": "%"
+      },
+      {
+        "ticker": "ea_hicp_yoy",
+        "source": "eurostat_ts",
+        "label": "Euroomr\u00e5det",
+        "region": "Euroomr\u00e5det",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01GBM659N",
+        "source": "fred",
+        "label": "UK",
+        "region": "UK",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPALTT01JPM659N",
+        "source": "fred",
+        "label": "Japan",
+        "region": "Japan",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "D",
+      "title": "Global inflation \u2014 n\u00f8gletal og afstand til 2%-m\u00e5l",
+      "x_label": "",
+      "y_label": "%",
+      "period_days": 1826,
+      "series_labels": [
+        "USA",
+        "Euroomr\u00e5det",
+        "UK",
+        "Japan"
+      ],
+      "before_date": "2022-06-01",
+      "after_date": "latest",
+      "col_before": "Inflationstoppen (jun 2022)",
+      "col_after": "Nu",
+      "target_value": 2.0,
+      "note": "Snapshot af inflationsniveauer ved den omtrentlige f\u00e6lles inflationstop i juni 2022 sammenlignet med det senest tilg\u00e6ngelige datapunkt. Afstand til 2%-m\u00e5let viser, hvor t\u00e6t hver \u00f8konomi er p\u00e5 centralbankernes m\u00e5ls\u00e6tning."
+    },
+    "brief": "Sammenlign den globale inflationsudvikling \u2014 USA, Euroomr\u00e5det, UK og Japan \u2014 headline CPI/HICP \u00e5r-over-\u00e5r i procent. Vis inflationstoppen i 2021\u20132022, disinflationen og n\u00e6rheden til centralbankernes 2%-m\u00e5l."
+  }
+]

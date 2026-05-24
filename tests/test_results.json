@@ -1,150 +1,147 @@
 {
   "1": {
     "label": "Iran-krig — Olie & Gas",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFq1RqAvg2DCNo3LiW9'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrWutqXVDxpSRTsmZJ'}"
+      "Unexpected figure type in result: list",
+      "Figure missing title",
+      "Figure '?' missing kilde",
+      "Unexpected figure type in result: str"
     ],
-    "figures": 0
+    "figures": 3
   },
   "2": {
     "label": "Forsvarsaktier — Genoprusning",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqEgoQYtBz41ZhJUwA'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "3": {
     "label": "Guld & Safe Haven",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqPNC6Yb9nbeW5cuG6'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "4": {
     "label": "Europæiske Statsrenter",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqRujU4rkfQt6gkhWA'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "5": {
     "label": "Rentekurve & Recessionsignal",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqT99zpMe68XQNXBmn'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrYFWikF5id3dZ52oo'}"
+      "Unexpected figure type in result: list",
+      "Figure missing title",
+      "Figure '?' missing kilde",
+      "Unexpected figure type in result: str"
     ],
-    "figures": 0
+    "figures": 3
   },
   "6": {
     "label": "Fed, ECB & Bank of England",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqUJbfrCv2Y8CE1Dqd'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrZWfDEryCwZ8Tkntt'}"
+      "Unexpected figure type in result: list",
+      "Figure missing title",
+      "Figure '?' missing kilde",
+      "Unexpected figure type in result: str"
     ],
-    "figures": 0
+    "figures": 3
   },
   "7": {
     "label": "Globale Aktiemarked",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqXAFD3JvvZgANsL98'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrabuA7i3N12zcA8J7'}"
+      "Unexpected figure type in result: list",
+      "Figure missing title",
+      "Figure '?' missing kilde",
+      "Unexpected figure type in result: str"
     ],
-    "figures": 0
+    "figures": 3
   },
   "8": {
     "label": "Dollarstyrke & Geopolitisk Risiko",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqaWuas7XUbmpvQ73k'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrbpp9ZX7tcEgfF5HS'}"
+      "Unexpected figure type in result: list",
+      "Figure missing title",
+      "Figure '?' missing kilde",
+      "Unexpected figure type in result: str"
     ],
-    "figures": 0
+    "figures": 3
   },
   "9": {
     "label": "Grøn Energi vs. Oliemagter",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqbiLxFyTTZfz9HGxm'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "10": {
     "label": "EU Obligationsrenter & Stress",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqe1FhxgszaWfgMy4V'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "11": {
     "label": "Trump-toldsatser",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqfhxLbUKqCkQsfYQ7'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrfX5522zYxwAeJXwC'}"
+      "Unexpected figure type in result: list",
+      "Figure missing title",
+      "Figure '?' missing kilde",
+      "Unexpected figure type in result: str"
     ],
-    "figures": 0
+    "figures": 3
   },
   "12": {
     "label": "EU Energiomstilling",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqhdnmPJrDm1JiyMyX'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "13": {
     "label": "Global Inflation — US, EU, UK, CN",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqjCYXegBxFWxSzfBM'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrheJrrdzujV4pEFKF'}"
+      "[warn] Table 'Japan': Requested date 2022-06-01 is after series end 2021-06-01. before_date was not patched correctly — check end_date injection. — skipping row.",
+      "Unexpected figure type in result: list",
+      "Figure missing title",
+      "Figure '?' missing kilde",
+      "Unexpected figure type in result: str"
     ],
-    "figures": 0
+    "figures": 3
   },
   "14": {
     "label": "Globalt Markedsscorecard",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqkGnmjgJJ7F8Lmwkh'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrjRifDPvvV62SCerg'}"
+      "Unexpected figure type in result: list",
+      "Figure missing title",
+      "Figure '?' missing kilde",
+      "Unexpected figure type in result: str"
     ],
-    "figures": 0
+    "figures": 3
   },
   "15": {
     "label": "EU Elproduktion",
     "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqqGB6Kw8mTTRaKSQe'}"
+      "[eurostat] 'EU's elproduktion fordelt på energi': note contains source attribution"
     ],
     "manifest_warnings": [],
     "pipeline_issues": [],
@@ -152,63 +149,49 @@
   },
   "16": {
     "label": "Ungarns Økonomi",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFqzPr3RxmtuPCXX5Uv'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "17": {
     "label": "Danmark vs. Sverige",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrAJeyAKVSx1zGw36f'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "18": {
     "label": "Kinas Makroprofil",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrGkrPN84TwthiaQyr'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "19": {
     "label": "Apple — AAPL",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrKfUXJZpiKaCPk2Xe'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "20": {
     "label": "Amazon — AMZN",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrMCk1ubtfbWjpNHMt'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "21": {
     "label": "Microsoft — MSFT",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrNYrVhfg62sZmvgVh'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0
   },
   "22": {
     "label": "Nvidia — NVDA",
-    "manifest_issues": [
-      "EXCEPTION: AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMFrPuhze7VJW4KgYqzP'}"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0

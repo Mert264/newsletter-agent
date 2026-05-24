@@ -5,22 +5,22 @@
     {
       "path": "demo_output/test/prompt_1/figure_00.png",
       "metadata": {
-        "title": "Brent r\u00e5olie \u2014 pris siden Iran-konflikten",
+        "title": "Brent r\u00e5olie \u2014 daglige priser",
         "chart_type": "A",
         "x_label": "Dato",
-        "y_label": "USD/t\u00f8nde",
-        "note": "Daglige lukkepriser for Brent r\u00e5olie de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og reagerer typisk kraftigt p\u00e5 geopolitiske sp\u00e6ndinger i Mellem\u00f8sten.",
+        "y_label": "USD/barrel",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie over de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og reagerer typisk hurtigt p\u00e5 geopolitiske forstyrrelser i Mellem\u00f8sten.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "Brent r\u00e5olie"
         ],
-        "excel_path": "figure_00_Brent r\u00e5olie \u2014 pris siden Iran-konflikten.xlsx"
+        "excel_path": "figure_00_Brent r\u00e5olie \u2014 daglige priser.xlsx"
       }
     },
     {
       "path": "demo_output/test/prompt_1/figure_01.png",
       "metadata": {
-        "title": "Event impact \u2014 Brent r\u00e5olie \u2014 pris siden Iran-konflikten",
+        "title": "Event impact \u2014 Brent r\u00e5olie \u2014 daglige priser",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
@@ -32,11 +32,11 @@
     {
       "path": "demo_output/test/prompt_1/figure_02.png",
       "metadata": {
-        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal f\u00f8r og efter Iran-konflikten",
+        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af Brent r\u00e5oliepris umiddelbart f\u00f8r Iran-konflikten br\u00f8d ud den 28. februar 2026 sammenlignet med den seneste tilg\u00e6ngelige pris.",
+        "note": "Snapshot af Brent r\u00e5olieprisen umiddelbart f\u00f8r og efter udbruddet af Iran-Israel-krigen den 28. februar 2026.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "Brent r\u00e5olie"
@@ -46,23 +46,23 @@
     {
       "path": "demo_output/test/prompt_1/figure_03.png",
       "metadata": {
-        "title": "EU vs. USA naturgas \u2014 prissammenligning (USD/MWh)",
+        "title": "EU- og USA-gaspriser \u2014 sammenligning i USD/MWh",
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "USD/MWh",
-        "note": "TTF (nederlandsk benchmark for europ\u00e6isk gas) og Henry Hub (amerikansk benchmark) er omregnet til f\u00e6lles enhed USD/MWh for direkte sammenligning. Prisforskellen afspejler strukturelle forskelle i de to markeder, herunder LNG-eksport og geopolitisk eksponering.",
+        "note": "TTF (nederlandsk benchmark for europ\u00e6isk naturgas) er konverteret fra EUR/MWh til USD/MWh ved hj\u00e6lp af l\u00f8bende EUR/USD-kurs. Henry Hub (amerikansk benchmark) er konverteret fra USD/MMBtu til USD/MWh (1 MMBtu = 0,293 MWh). Sammenligningen illustrerer den strukturelle prisforskel mellem de to markeder.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "TTF naturgas (EU)",
           "Henry Hub naturgas (USA)"
         ],
-        "excel_path": "figure_03_EU vs. USA naturgas \u2014 prissammenligning (USD-.xlsx"
+        "excel_path": "figure_03_EU- og USA-gaspriser \u2014 sammenligning i USD-MW.xlsx"
       }
     },
     {
       "path": "demo_output/test/prompt_1/figure_04.png",
       "metadata": {
-        "title": "Event impact \u2014 EU vs. USA naturgas \u2014 prissammenligning (USD/MWh)",
+        "title": "Event impact \u2014 EU- og USA-gaspriser \u2014 sammenligning i USD/MWh",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
@@ -74,11 +74,11 @@
     {
       "path": "demo_output/test/prompt_1/figure_05.png",
       "metadata": {
-        "title": "EU vs. USA naturgas \u2014 n\u00f8gletal f\u00f8r og efter Iran-konflikten",
+        "title": "EU- og USA-gaspriser \u2014 n\u00f8gletal",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af TTF- og Henry Hub-gaspriser omregnet til USD/MWh umiddelbart f\u00f8r Iran-konflikten br\u00f8d ud den 28. februar 2026 sammenlignet med den seneste tilg\u00e6ngelige pris. Prisforskellen illustrerer det strukturelle gab mellem europ\u00e6iske og amerikanske gasmarkeder.",
+        "note": "Snapshot af europ\u00e6iske (TTF) og amerikanske (Henry Hub) gaspriser omregnet til USD/MWh, f\u00f8r og efter udbruddet af Iran-Israel-krigen den 28. februar 2026.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "TTF naturgas (EU)",

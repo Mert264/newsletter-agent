@@ -1314,4 +1314,4 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     if _specialist_errors:
         for name, err in _specialist_errors.items():
             print(f"  [pipeline] Specialist '{name}' failed: {err}")
-    return packages, _specialist_errors, excel_path
+    return packages
