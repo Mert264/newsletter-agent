@@ -404,10 +404,17 @@ def run(brief: str, output_dir: str = "output",
 
     # Inject user-specified period_days into every specialist task so the LLM
     # window is overridden by what the user actually selected in the UI.
+    # Must update BOTH specialist-level AND per-chart period_days because
+    # specialists (e.g. fetch_equities) read from chart-level, not specialist-level.
     if _period_days is not None:
         for sp in specialists:
-            if sp in manifest and "series" in manifest[sp]:
+            if sp in manifest and isinstance(manifest[sp], dict):
                 manifest[sp]["period_days"] = _period_days
+                for chart in manifest[sp].get("charts", []):
+                    if isinstance(chart, dict):
+                        chart["period_days"] = max(
+                            chart.get("period_days", 0), _period_days
+                        )
     print(f"      Specialists activated: {', '.join(specialists)}")
 
     # Step 2: Run all specialists in parallel
