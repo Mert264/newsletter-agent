@@ -9,7 +9,7 @@
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "%",
-        "note": "Daglige observationer af de tre store centralbankers politikrenter de seneste 5 \u00e5r. Alle tre centralbanker begyndte at h\u00e6ve renterne i 2022 for at bek\u00e6mpe den kraftige inflation og er siden begyndt at s\u00e6nke dem igen i takt med, at inflationen er aftaget.",
+        "note": "Daglige data for de tre store centralbankers politikrenter over de seneste 5 \u00e5r. Federal Reserve begyndte at h\u00e6ve renten i marts 2022, ECB i juli 2022 og Bank of England i december 2021 \u2014 alle som reaktion p\u00e5 kraftigt stigende inflation. Alle tre centralbanker er efterf\u00f8lgende begyndt at s\u00e6nke renterne i takt med, at inflationen er faldet tilbage.",
         "kilde": "FRED",
         "region_labels": [
           "Federal Reserve (USA)",
@@ -34,11 +34,11 @@
     {
       "path": "demo_output/test/prompt_6/figure_02.png",
       "metadata": {
-        "title": "Politikrenter \u2014 n\u00f8gletal oversigt",
+        "title": "Centralbankers politikrenter \u2014 n\u00f8gletal",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Sammenligning af de tre centralbankers politikrenter ved starten af rentestramningscyklussen i begyndelsen af 2022 og det seneste tilg\u00e6ngelige niveau. \u00c6ndringen vises i procentpoint.",
+        "note": "Snapshot af de tre centralbankers politikrenter f\u00f8r renteh\u00e6vningscyklussen begyndte og ved seneste observation. \u00c6ndringen vises i procentpoint.",
         "kilde": "FRED",
         "region_labels": [
           "Federal Reserve (USA)",

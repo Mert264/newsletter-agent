@@ -14,7 +14,7 @@
         "ticker": "ECBDFR",
         "source": "fred",
         "label": "ECB (Eurozonen)",
-        "region": "Eurozone",
+        "region": "Eurozonen",
         "unit": "%"
       },
       {
@@ -36,27 +36,19 @@
         "ECB (Eurozonen)",
         "Bank of England (UK)"
       ],
-      "note": "Daglige observationer af de tre store centralbankers politikrenter de seneste 5 \u00e5r. Alle tre centralbanker begyndte at h\u00e6ve renterne i 2022 for at bek\u00e6mpe den kraftige inflation og er siden begyndt at s\u00e6nke dem igen i takt med, at inflationen er aftaget.",
+      "note": "Daglige data for de tre store centralbankers politikrenter over de seneste 5 \u00e5r. Federal Reserve begyndte at h\u00e6ve renten i marts 2022, ECB i juli 2022 og Bank of England i december 2021 \u2014 alle som reaktion p\u00e5 kraftigt stigende inflation. Alle tre centralbanker er efterf\u00f8lgende begyndt at s\u00e6nke renterne i takt med, at inflationen er faldet tilbage.",
       "events": [
         {
+          "date": "2021-12-16",
+          "label": "BoE f\u00f8rste renteh\u00e6vning (dec 2021)"
+        },
+        {
           "date": "2022-03-16",
-          "label": "Fed begynder rentestigninger (mar 2022)"
+          "label": "Fed f\u00f8rste renteh\u00e6vning (mar 2022)"
         },
         {
-          "date": "2022-07-27",
-          "label": "ECB begynder rentestigninger (jul 2022)"
-        },
-        {
-          "date": "2024-06-06",
-          "label": "ECB begynder rentes\u00e6nkninger (jun 2024)"
-        },
-        {
-          "date": "2024-09-18",
-          "label": "Fed begynder rentes\u00e6nkninger (sep 2024)"
-        },
-        {
-          "date": "2024-08-01",
-          "label": "BoE begynder rentes\u00e6nkninger (aug 2024)"
+          "date": "2022-07-21",
+          "label": "ECB f\u00f8rste renteh\u00e6vning (jul 2022)"
         }
       ],
       "reference_lines": [
@@ -85,7 +77,7 @@
         "ticker": "ECBDFR",
         "source": "fred",
         "label": "ECB (Eurozonen)",
-        "region": "Eurozone",
+        "region": "Eurozonen",
         "unit": "%"
       },
       {
@@ -98,7 +90,7 @@
     ],
     "chart_spec": {
       "type": "D",
-      "title": "Politikrenter \u2014 n\u00f8gletal oversigt",
+      "title": "Centralbankers politikrenter \u2014 n\u00f8gletal",
       "x_label": "",
       "y_label": "%",
       "period_days": 1825,
@@ -107,11 +99,11 @@
         "ECB (Eurozonen)",
         "Bank of England (UK)"
       ],
-      "before_date": "2022-01-01",
+      "before_date": "2021-06-01",
       "after_date": "latest",
-      "col_before": "Jan 2022 (f\u00f8r stramninger)",
+      "col_before": "F\u00f8r renteh\u00e6vningerne (jun 2021)",
       "col_after": "Nu",
-      "note": "Sammenligning af de tre centralbankers politikrenter ved starten af rentestramningscyklussen i begyndelsen af 2022 og det seneste tilg\u00e6ngelige niveau. \u00c6ndringen vises i procentpoint.",
+      "note": "Snapshot af de tre centralbankers politikrenter f\u00f8r renteh\u00e6vningscyklussen begyndte og ved seneste observation. \u00c6ndringen vises i procentpoint.",
       "display_period_days": 1825
     },
     "brief": "Sammenlign de tre store centralbankers politikrenter: Federal Reserve (USA), ECB (Eurozonen) og Bank of England (UK). Vis hvorn\u00e5r de begyndte at h\u00e6ve renter for at bek\u00e6mpe inflation, og hvorn\u00e5r de begyndte at s\u00e6nke dem igen."

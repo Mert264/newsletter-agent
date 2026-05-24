@@ -3,13 +3,8 @@
     "label": "Iran-krig — Olie & Gas",
     "manifest_issues": [],
     "manifest_warnings": [],
-    "pipeline_issues": [
-      "Unexpected figure type in result: list",
-      "Figure missing title",
-      "Figure '?' missing kilde",
-      "Unexpected figure type in result: str"
-    ],
-    "figures": 3
+    "pipeline_issues": [],
+    "figures": 6
   },
   "2": {
     "label": "Forsvarsaktier — Genoprusning",
@@ -36,48 +31,28 @@
     "label": "Rentekurve & Recessionsignal",
     "manifest_issues": [],
     "manifest_warnings": [],
-    "pipeline_issues": [
-      "Unexpected figure type in result: list",
-      "Figure missing title",
-      "Figure '?' missing kilde",
-      "Unexpected figure type in result: str"
-    ],
-    "figures": 3
+    "pipeline_issues": [],
+    "figures": 4
   },
   "6": {
     "label": "Fed, ECB & Bank of England",
     "manifest_issues": [],
     "manifest_warnings": [],
-    "pipeline_issues": [
-      "Unexpected figure type in result: list",
-      "Figure missing title",
-      "Figure '?' missing kilde",
-      "Unexpected figure type in result: str"
-    ],
+    "pipeline_issues": [],
     "figures": 3
   },
   "7": {
     "label": "Globale Aktiemarked",
     "manifest_issues": [],
     "manifest_warnings": [],
-    "pipeline_issues": [
-      "Unexpected figure type in result: list",
-      "Figure missing title",
-      "Figure '?' missing kilde",
-      "Unexpected figure type in result: str"
-    ],
-    "figures": 3
+    "pipeline_issues": [],
+    "figures": 2
   },
   "8": {
     "label": "Dollarstyrke & Geopolitisk Risiko",
     "manifest_issues": [],
     "manifest_warnings": [],
-    "pipeline_issues": [
-      "Unexpected figure type in result: list",
-      "Figure missing title",
-      "Figure '?' missing kilde",
-      "Unexpected figure type in result: str"
-    ],
+    "pipeline_issues": [],
     "figures": 3
   },
   "9": {
@@ -98,13 +73,8 @@
     "label": "Trump-toldsatser",
     "manifest_issues": [],
     "manifest_warnings": [],
-    "pipeline_issues": [
-      "Unexpected figure type in result: list",
-      "Figure missing title",
-      "Figure '?' missing kilde",
-      "Unexpected figure type in result: str"
-    ],
-    "figures": 3
+    "pipeline_issues": [],
+    "figures": 9
   },
   "12": {
     "label": "EU Energiomstilling",
@@ -118,31 +88,21 @@
     "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [
-      "[warn] Table 'Japan': Requested date 2022-06-01 is after series end 2021-06-01. before_date was not patched correctly — check end_date injection. — skipping row.",
-      "Unexpected figure type in result: list",
-      "Figure missing title",
-      "Figure '?' missing kilde",
-      "Unexpected figure type in result: str"
+      "[warn] _snapshot_value: date 2022-06-01 is after series end 2021-06-01 — clamping to last available value.",
+      "[warn] Table 'Japan': before_val == after_val (-0.5000) — before_date='2022-06-01' may be outside data range."
     ],
-    "figures": 3
+    "figures": 2
   },
   "14": {
     "label": "Globalt Markedsscorecard",
     "manifest_issues": [],
     "manifest_warnings": [],
-    "pipeline_issues": [
-      "Unexpected figure type in result: list",
-      "Figure missing title",
-      "Figure '?' missing kilde",
-      "Unexpected figure type in result: str"
-    ],
-    "figures": 3
+    "pipeline_issues": [],
+    "figures": 8
   },
   "15": {
     "label": "EU Elproduktion",
-    "manifest_issues": [
-      "[eurostat] 'EU's elproduktion fordelt på energi': note contains source attribution"
-    ],
+    "manifest_issues": [],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0

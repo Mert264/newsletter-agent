@@ -219,7 +219,7 @@ def _snapshot_value(series: pd.Series, date_str: str) -> float:
     ts = pd.Timestamp(date_str)
     # Guard: if requested date is AFTER series end, clamp to last available date
     if ts > clean.index.max():
-        print(f"  [warn] _snapshot_value: date {date_str} is after series end "
+        print(f"  [info] _snapshot_value: date {date_str} is after series end "
               f"{clean.index.max().date()} — clamping to last available value.")
         ts = clean.index.max()
     idx = clean.index.get_indexer([ts], method="nearest")[0]

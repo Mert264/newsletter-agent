@@ -9,7 +9,7 @@
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "Indekseret (basis=100)",
-        "note": "Kursudviklingen for fire globale aktiemarkeder indekseret til 100 ved periodens start, s\u00e5 afkastene kan sammenlignes direkte p\u00e5 tv\u00e6rs af regioner. EEM (iShares MSCI Emerging Markets ETF) anvendes som proxy for emerging markets.",
+        "note": "Kursudviklingen for fire globale aktiemarkeder over de seneste 5 \u00e5r, indekseret til 100 ved periodens start. Alle serier er i lokal valuta og rebasseret for at muligg\u00f8re direkte sammenligning af afkast p\u00e5 tv\u00e6rs af regioner.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "S&P 500 (USA)",
@@ -27,7 +27,7 @@
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af de fire regioners aktiekursindeks med angivelse af den absolutte \u00e6ndring over den seneste 5-\u00e5rsperiode. EEM anvendes som proxy for MSCI Emerging Markets.",
+        "note": "Snapshot af indekserede kursniveauer for de fire aktiemarkeder. \u00c6ndringen angiver det samlede afkast i procentpoint siden periodens start ca. 5 \u00e5r tilbage.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "S&P 500 (USA)",

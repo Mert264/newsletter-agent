@@ -5,25 +5,25 @@
     {
       "path": "demo_output/test/prompt_8/figure_00.png",
       "metadata": {
-        "title": "Den amerikanske dollar: DXY, EUR/USD, GBP/USD og JPY/USD",
+        "title": "US Dollar styrke \u2014 DXY og vigtige valutakryds",
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "Indeks",
-        "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. DXY m\u00e5ler dollarens styrke over for en kurv af valutaer, mens EUR/USD, GBP/USD og JPY/USD viser bilaterale kursforhold.",
+        "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. DXY m\u00e5ler dollarens styrke over for en kurv af valutaer; EUR/USD, GBP/USD og JPY/USD viser 1 enhed udenlandsk valuta i USD.",
         "kilde": "Yahoo Finance",
         "region_labels": [
-          "DXY (Dollar Indeks)",
+          "DXY (US Dollar Indeks)",
           "EUR/USD",
           "GBP/USD",
           "JPY/USD"
         ],
-        "excel_path": "figure_00_Den amerikanske dollar- DXY, EUR-USD, GBP-USD.xlsx"
+        "excel_path": "figure_00_US Dollar styrke \u2014 DXY og vigtige valutakryds.xlsx"
       }
     },
     {
       "path": "demo_output/test/prompt_8/figure_01.png",
       "metadata": {
-        "title": "Event impact \u2014 Den amerikanske dollar: DXY, EUR/USD, GBP/USD og JPY/USD",
+        "title": "Event impact \u2014 US Dollar styrke \u2014 DXY og vigtige valutakryds",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
@@ -35,14 +35,14 @@
     {
       "path": "demo_output/test/prompt_8/figure_02.png",
       "metadata": {
-        "title": "Valutan\u00f8gletal \u2014 DXY og udvalgte valutapar",
+        "title": "N\u00f8gletal \u2014 US Dollar og valutakryds",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af DXY-indekset og udvalgte valutakurser med angivelse af \u00e6ndringer siden januar 2025. Stigende DXY og faldende EUR/USD, GBP/USD og JPY/USD indikerer en st\u00e6rkere dollar.",
+        "note": "Snapshot af DXY og vigtige valutakryds med udgangspunkt i starten af 2025. \u00c6ndringer afspejler dollarens bev\u00e6gelse i k\u00f8lvandet p\u00e5 Trump-toldsatserne og Iran-krigen.",
         "kilde": "Yahoo Finance",
         "region_labels": [
-          "DXY (Dollar Indeks)",
+          "DXY (US Dollar Indeks)",
           "EUR/USD",
           "GBP/USD",
           "JPY/USD"
