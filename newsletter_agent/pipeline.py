@@ -976,6 +976,13 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
         print(f"      [routing] Hint injected: {routing_hint.strip()[:80]}...")
     manifest = build_task_manifest(brief, preferred_types=preferred_types, routing_hint=routing_hint, period_days=period_days, model=model)
     manifest = _enforce_worldbank_single_country_layout(manifest, period_days=period_days)
+    # Strip accidental source attribution from note fields — LLM occasionally includes
+    # "Kilde: X" or "Source: X" despite the prompt rule; enforce it programmatically.
+    _src_pat = re.compile(r'\s*(Kilde|Source|Data fra|Datakilde)\s*:\s*[^\.\n]+\.?', re.IGNORECASE)
+    for _sp in manifest.get("specialists", []):
+        for _chart in manifest.get(_sp, {}).get("charts", []):
+            if "note" in _chart:
+                _chart["note"] = _src_pat.sub("", _chart["note"]).strip()
     specialists = manifest.get("specialists", [])
     print(f"      Specialists activated: {', '.join(specialists)}")
 
