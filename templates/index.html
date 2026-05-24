@@ -850,7 +850,8 @@ function startRun() {
     soejle: ' [Præference: Søjlediagram — vælg selv lodret, vandret eller stablet efter datans natur]',
     cirkel: ' [Præference: Cirkeldiagram/andele]',
   };
-  let fullBrief = brief + (vizHints[activeViz] || '');
+  const hintParts = [...activeVizSet].map(v => vizHints[v] || '').filter(Boolean);
+  let fullBrief = brief + hintParts.join('');
 
   const payload = { brief: fullBrief };
 
