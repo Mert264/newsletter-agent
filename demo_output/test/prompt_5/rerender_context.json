@@ -9,7 +9,8 @@
         "label": "2-\u00e5rig statsobligation (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       },
       {
         "ticker": "DGS10",
@@ -17,15 +18,17 @@
         "label": "10-\u00e5rig statsobligation (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       },
       {
         "ticker": "T10Y2Y",
         "source": "fred",
-        "label": "Rentekurvesp\u00e6nd (10Y-2Y)",
+        "label": "Rentesp\u00e6nd 10Y-2Y (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       }
     ],
     "chart_spec": {
@@ -38,7 +41,7 @@
         "2-\u00e5rig statsobligation (USA)",
         "10-\u00e5rig statsobligation (USA)"
       ],
-      "note": "Daglige renter p\u00e5 2-\u00e5rige og 10-\u00e5rige amerikanske statsobligationer de seneste 5 \u00e5r. N\u00e5r den 2-\u00e5rige rente overstiger den 10-\u00e5rige, er rentekurven inverteret \u2014 historisk set et advarselssignal om recession.",
+      "note": "Daglige renter p\u00e5 amerikanske statsobligationer med 2 og 10 \u00e5rs l\u00f8betid. N\u00e5r den 2-\u00e5rige rente overstiger den 10-\u00e5rige, er rentekurven inverteret \u2014 historisk set et signal om kommende recession.",
       "reference_lines": [
         {
           "y": 0.0,
@@ -60,7 +63,8 @@
         "label": "2-\u00e5rig statsobligation (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       },
       {
         "ticker": "DGS10",
@@ -68,20 +72,22 @@
         "label": "10-\u00e5rig statsobligation (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       },
       {
         "ticker": "T10Y2Y",
         "source": "fred",
-        "label": "Rentekurvesp\u00e6nd (10Y-2Y)",
+        "label": "Rentesp\u00e6nd 10Y-2Y (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       }
     ],
     "chart_spec": {
       "type": "D",
-      "title": "Rentekurve \u2014 absolutte niveauer, n\u00f8gletal",
+      "title": "Rentekurve \u2014 n\u00f8gletal (2-\u00e5rig og 10-\u00e5rig)",
       "x_label": "",
       "y_label": "%",
       "period_days": 1825,
@@ -93,7 +99,7 @@
       "after_date": "latest",
       "col_before": "For 5 \u00e5r siden",
       "col_after": "Nu",
-      "note": "Snapshot af de absolutte renteniveauer p\u00e5 2-\u00e5rige og 10-\u00e5rige amerikanske statsobligationer. \u00c6ndringer vises i procentpoint.",
+      "note": "Snapshot af de 2- og 10-\u00e5rige amerikanske statsrenter nu sammenlignet med niveauet for fem \u00e5r siden, inden den aggressive rentestramningscyklus begyndte.",
       "display_period_days": 1825
     },
     "brief": "Den amerikanske rentekurve har v\u00e6ret en vigtig recessionindikator. Vis den 2-\u00e5rige statsobligationsrente (DGS2) og den 10-\u00e5rige statsobligationsrente (DGS10), og vis sp\u00e6ndet (T10Y2Y) separat for at vise, hvorn\u00e5r kurven inverterede og normaliserede sig."
@@ -108,7 +114,8 @@
         "label": "2-\u00e5rig statsobligation (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       },
       {
         "ticker": "DGS10",
@@ -116,31 +123,33 @@
         "label": "10-\u00e5rig statsobligation (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       },
       {
         "ticker": "T10Y2Y",
         "source": "fred",
-        "label": "Rentekurvesp\u00e6nd (10Y-2Y)",
+        "label": "Rentesp\u00e6nd 10Y-2Y (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       }
     ],
     "chart_spec": {
       "type": "A",
-      "title": "Rentekurvesp\u00e6nd USA \u2014 10-\u00e5rig minus 2-\u00e5rig statsobligation",
+      "title": "Rentesp\u00e6nd 10Y minus 2Y \u2014 amerikansk rentekurve",
       "x_label": "Dato",
       "y_label": "%",
       "period_days": 1825,
       "series_labels": [
-        "Rentekurvesp\u00e6nd (10Y-2Y)"
+        "Rentesp\u00e6nd 10Y-2Y (USA)"
       ],
-      "note": "Det daglige sp\u00e6nd mellem den 10-\u00e5rige og den 2-\u00e5rige amerikanske statsobligation de seneste 5 \u00e5r. Negative v\u00e6rdier indikerer en inverteret rentekurve, som historisk har forudg\u00e5et recessioner med 12-24 m\u00e5neders forsinkelse.",
+      "note": "Sp\u00e6ndet mellem den 10-\u00e5rige og den 2-\u00e5rige amerikanske statsobligation. Negative v\u00e6rdier (inverteret rentekurve) har historisk forudvarslet recession med 12-18 m\u00e5neders forsinkelse.",
       "reference_lines": [
         {
           "y": 0.0,
-          "label": "Inverteret/normaliseret gr\u00e6nse",
+          "label": "Inverteret/normal gr\u00e6nse",
           "color": "#dc2626"
         }
       ],
@@ -158,7 +167,8 @@
         "label": "2-\u00e5rig statsobligation (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       },
       {
         "ticker": "DGS10",
@@ -166,31 +176,33 @@
         "label": "10-\u00e5rig statsobligation (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       },
       {
         "ticker": "T10Y2Y",
         "source": "fred",
-        "label": "Rentekurvesp\u00e6nd (10Y-2Y)",
+        "label": "Rentesp\u00e6nd 10Y-2Y (USA)",
         "region": "USA",
         "unit": "%",
-        "transform": ""
+        "transform": "",
+        "conversion": ""
       }
     ],
     "chart_spec": {
       "type": "D",
-      "title": "Rentekurvesp\u00e6nd (10Y-2Y) \u2014 n\u00f8gletal",
+      "title": "Rentesp\u00e6nd 10Y-2Y \u2014 n\u00f8gletal",
       "x_label": "",
       "y_label": "%",
       "period_days": 1825,
       "series_labels": [
-        "Rentekurvesp\u00e6nd (10Y-2Y)"
+        "Rentesp\u00e6nd 10Y-2Y (USA)"
       ],
       "before_date": "2021-04-01",
       "after_date": "latest",
       "col_before": "For 5 \u00e5r siden",
       "col_after": "Nu",
-      "note": "Snapshot af rentekurvesp\u00e6ndet (10Y minus 2Y) for USA. Negative v\u00e6rdier viser perioder med inverteret rentekurve. \u00c6ndringer vises i procentpoint.",
+      "note": "Snapshot af rentesp\u00e6ndet mellem 10-\u00e5rige og 2-\u00e5rige amerikanske statsobligationer nu sammenlignet med niveauet for fem \u00e5r siden. Et positivt sp\u00e6nd indikerer en normal opadskr\u00e5nende rentekurve.",
       "display_period_days": 1825
     },
     "brief": "Den amerikanske rentekurve har v\u00e6ret en vigtig recessionindikator. Vis den 2-\u00e5rige statsobligationsrente (DGS2) og den 10-\u00e5rige statsobligationsrente (DGS10), og vis sp\u00e6ndet (T10Y2Y) separat for at vise, hvorn\u00e5r kurven inverterede og normaliserede sig."

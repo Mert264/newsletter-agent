@@ -5,11 +5,11 @@
     {
       "path": "demo_output/test/prompt_13/figure_00.png",
       "metadata": {
-        "title": "Global inflationsudvikling \u2014 headline CPI/HICP \u00e5r-over-\u00e5r",
+        "title": "Global inflationsudvikling \u2014 headline CPI/HICP (\u00e5r-over-\u00e5r)",
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "%",
-        "note": "\u00c5rlig \u00e6ndring i forbrugerpriser (CPI/HICP) for USA, Euroomr\u00e5det, UK og Japan. Alle serier er allerede opgjort som \u00e5r-over-\u00e5r procent. Den stiplede linje markerer centralbankernes f\u00e6lles 2%-m\u00e5l.",
+        "note": "\u00c5rlig \u00e6ndring i forbrugerprisindekset (CPI/HICP) for USA, Euroomr\u00e5det, UK og Japan. Alle serier er allerede opgjort som \u00e5r-over-\u00e5r procent \u2014 ingen yderligere transformation er foretaget. Den stiplede linje markerer centralbankernes f\u00e6lles 2%-inflationsm\u00e5l.",
         "kilde": "FRED og Eurostat",
         "region_labels": [
           "USA",
@@ -23,11 +23,11 @@
     {
       "path": "demo_output/test/prompt_13/figure_01.png",
       "metadata": {
-        "title": "Global inflation \u2014 n\u00f8gletal og afstand til 2%-m\u00e5l",
+        "title": "Global inflation \u2014 n\u00f8gletal (\u00e5r-over-\u00e5r, %)",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af den aktuelle inflation sammenlignet med inflationstoppen i juni 2022. Kolonnen 'Afstand til 2%-m\u00e5l' viser, hvor langt hver \u00f8konomi er fra centralbankernes m\u00e5ls\u00e6tning (positivt = over m\u00e5let, negativt = under m\u00e5let).",
+        "note": "Snapshot af headline-inflation for de fire store centralbankers jurisdiktioner. S\u00f8jlen 'Afstand til 2%-m\u00e5l' viser, hvor mange procentpoint den aktuelle inflation afviger fra 2%-m\u00e5let. Negative v\u00e6rdier angiver, at inflationen nu er under m\u00e5let.",
         "kilde": "FRED og Eurostat",
         "region_labels": [
           "USA",

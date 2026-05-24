@@ -87,10 +87,7 @@
     "label": "Global Inflation — US, EU, UK, CN",
     "manifest_issues": [],
     "manifest_warnings": [],
-    "pipeline_issues": [
-      "[warn] _snapshot_value: date 2022-06-01 is after series end 2021-06-01 — clamping to last available value.",
-      "[warn] Table 'Japan': before_val == after_val (-0.5000) — before_date='2022-06-01' may be outside data range."
-    ],
+    "pipeline_issues": [],
     "figures": 2
   },
   "14": {
@@ -102,7 +99,9 @@
   },
   "15": {
     "label": "EU Elproduktion",
-    "manifest_issues": [],
+    "manifest_issues": [
+      "[eurostat] 'EU's elproduktion fordelt på energi': note contains source attribution"
+    ],
     "manifest_warnings": [],
     "pipeline_issues": [],
     "figures": 0

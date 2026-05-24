@@ -9,7 +9,7 @@
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "USD/barrel",
-        "note": "Daglige lukkepriser for Brent r\u00e5olie over de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og er s\u00e6rligt f\u00f8lsom over for geopolitiske begivenheder i Mellem\u00f8sten.",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og er s\u00e6rligt f\u00f8lsomt over for geopolitiske sp\u00e6ndinger i Mellem\u00f8sten.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "Brent r\u00e5olie"
@@ -32,11 +32,11 @@
     {
       "path": "demo_output/test/prompt_1/figure_02.png",
       "metadata": {
-        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal f\u00f8r og efter Iran-konflikten",
+        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af Brent r\u00e5oliepris umiddelbart ved konfliktens udbrud sammenlignet med den senest tilg\u00e6ngelige pris.",
+        "note": "Snapshot af Brent r\u00e5olieprisen umiddelbart f\u00f8r og efter udbruddet af Iran-Israel-konflikten den 28. februar 2026.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "Brent r\u00e5olie"
@@ -50,10 +50,10 @@
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "USD/MWh",
-        "note": "Sammenligning af europ\u00e6iske (TTF, Holland) og amerikanske (Henry Hub) naturgaspriser omregnet til f\u00e6lles enhed USD/MWh. TTF er det prim\u00e6re europ\u00e6iske gasbenchmark, mens Henry Hub afspejler det amerikanske gasmarked. Prisforskellen illustrerer den strukturelle kl\u00f8ft mellem de to markeder, som bl.a. skyldes begr\u00e6nset LNG-eksportkapacitet.",
+        "note": "Sammenligning af europ\u00e6iske (TTF, nederlandsk benchmark) og amerikanske (Henry Hub) naturgaspriser omregnet til f\u00e6lles enhed USD/MWh. TTF er konverteret fra EUR/MWh ved brug af l\u00f8bende EUR/USD-kurs; Henry Hub er konverteret fra USD/MMBtu (1 MMBtu \u2248 0,293 MWh).",
         "kilde": "Yahoo Finance",
         "region_labels": [
-          "TTF naturgas (EU)",
+          "TTF naturgas (Europa)",
           "Henry Hub naturgas (USA)"
         ],
         "excel_path": "figure_03_EU vs. USA naturgas \u2014 prisforskel (USD-MWh).xlsx"
@@ -74,14 +74,14 @@
     {
       "path": "demo_output/test/prompt_1/figure_05.png",
       "metadata": {
-        "title": "EU vs. USA naturgas \u2014 n\u00f8gletal f\u00f8r og efter Iran-konflikten",
+        "title": "EU vs. USA naturgas \u2014 n\u00f8gletal (USD/MWh)",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af TTF- og Henry Hub-gaspriser ved konfliktens udbrud sammenlignet med det seneste niveau. Begge serier er omregnet til USD/MWh for direkte sammenlignelighed.",
+        "note": "Snapshot af TTF- og Henry Hub-gaspriser (begge i USD/MWh) f\u00f8r og efter udbruddet af Iran-Israel-konflikten den 28. februar 2026. Illustrerer prispr\u00e6mien Europa betaler i forhold til USA.",
         "kilde": "Yahoo Finance",
         "region_labels": [
-          "TTF naturgas (EU)",
+          "TTF naturgas (Europa)",
           "Henry Hub naturgas (USA)"
         ]
       }

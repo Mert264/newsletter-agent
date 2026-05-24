@@ -9,7 +9,7 @@
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "%",
-        "note": "Daglige renter p\u00e5 2-\u00e5rige og 10-\u00e5rige amerikanske statsobligationer de seneste 5 \u00e5r. N\u00e5r den 2-\u00e5rige rente overstiger den 10-\u00e5rige, er rentekurven inverteret \u2014 historisk set et advarselssignal om recession.",
+        "note": "Daglige renter p\u00e5 amerikanske statsobligationer med 2 og 10 \u00e5rs l\u00f8betid. N\u00e5r den 2-\u00e5rige rente overstiger den 10-\u00e5rige, er rentekurven inverteret \u2014 historisk set et signal om kommende recession.",
         "kilde": "FRED",
         "region_labels": [
           "2-\u00e5rig statsobligation (USA)",
@@ -21,11 +21,11 @@
     {
       "path": "demo_output/test/prompt_5/figure_01.png",
       "metadata": {
-        "title": "Rentekurve \u2014 absolutte niveauer, n\u00f8gletal",
+        "title": "Rentekurve \u2014 n\u00f8gletal (2-\u00e5rig og 10-\u00e5rig)",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af de absolutte renteniveauer p\u00e5 2-\u00e5rige og 10-\u00e5rige amerikanske statsobligationer. \u00c6ndringer vises i procentpoint.",
+        "note": "Snapshot af de 2- og 10-\u00e5rige amerikanske statsrenter nu sammenlignet med niveauet for fem \u00e5r siden, inden den aggressive rentestramningscyklus begyndte.",
         "kilde": "FRED",
         "region_labels": [
           "2-\u00e5rig statsobligation (USA)",
@@ -36,29 +36,29 @@
     {
       "path": "demo_output/test/prompt_5/figure_02.png",
       "metadata": {
-        "title": "Rentekurvesp\u00e6nd USA \u2014 10-\u00e5rig minus 2-\u00e5rig statsobligation",
+        "title": "Rentesp\u00e6nd 10Y minus 2Y \u2014 amerikansk rentekurve",
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "%",
-        "note": "Det daglige sp\u00e6nd mellem den 10-\u00e5rige og den 2-\u00e5rige amerikanske statsobligation de seneste 5 \u00e5r. Negative v\u00e6rdier indikerer en inverteret rentekurve, som historisk har forudg\u00e5et recessioner med 12-24 m\u00e5neders forsinkelse.",
+        "note": "Sp\u00e6ndet mellem den 10-\u00e5rige og den 2-\u00e5rige amerikanske statsobligation. Negative v\u00e6rdier (inverteret rentekurve) har historisk forudvarslet recession med 12-18 m\u00e5neders forsinkelse.",
         "kilde": "FRED",
         "region_labels": [
-          "Rentekurvesp\u00e6nd (10Y-2Y)"
+          "Rentesp\u00e6nd 10Y-2Y (USA)"
         ],
-        "excel_path": "figure_02_Rentekurvesp\u00e6nd USA \u2014 10-\u00e5rig minus 2-\u00e5rig st.xlsx"
+        "excel_path": "figure_02_Rentesp\u00e6nd 10Y minus 2Y \u2014 amerikansk rentekur.xlsx"
       }
     },
     {
       "path": "demo_output/test/prompt_5/figure_03.png",
       "metadata": {
-        "title": "Rentekurvesp\u00e6nd (10Y-2Y) \u2014 n\u00f8gletal",
+        "title": "Rentesp\u00e6nd 10Y-2Y \u2014 n\u00f8gletal",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af rentekurvesp\u00e6ndet (10Y minus 2Y) for USA. Negative v\u00e6rdier viser perioder med inverteret rentekurve. \u00c6ndringer vises i procentpoint.",
+        "note": "Snapshot af rentesp\u00e6ndet mellem 10-\u00e5rige og 2-\u00e5rige amerikanske statsobligationer nu sammenlignet med niveauet for fem \u00e5r siden. Et positivt sp\u00e6nd indikerer en normal opadskr\u00e5nende rentekurve.",
         "kilde": "FRED",
         "region_labels": [
-          "Rentekurvesp\u00e6nd (10Y-2Y)"
+          "Rentesp\u00e6nd 10Y-2Y (USA)"
         ]
       }
     }

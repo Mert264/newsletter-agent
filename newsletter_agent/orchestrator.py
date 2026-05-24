@@ -739,6 +739,14 @@ def build_task_manifest(brief: str, preferred_types: list = None, routing_hint: 
         parts.append(routing_hint)
     prompt = "\n".join(parts)
     manifest = call_llm(prompt, model=model)
+    # Strip accidental source attribution from note fields — enforced here so both
+    # the orchestrator-only path (Tier 1 tests) and the full pipeline see clean notes.
+    import re as _re
+    _src_pat = _re.compile(r'\s*(Kilde|Source|Data fra|Datakilde)\s*:\s*[^\.\n]+\.?', _re.IGNORECASE)
+    for _sp in manifest.get("specialists", []):
+        for _chart in manifest.get(_sp, {}).get("charts", []):
+            if "note" in _chart:
+                _chart["note"] = _src_pat.sub("", _chart["note"]).strip()
     # Save for debugging — overwritten each run
     _debug_path = _os.path.join("demo_output", "task_manifest_debug.json")
     _os.makedirs("demo_output", exist_ok=True)

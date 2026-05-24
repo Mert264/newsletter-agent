@@ -5,25 +5,25 @@
     {
       "path": "demo_output/test/prompt_8/figure_00.png",
       "metadata": {
-        "title": "US Dollar styrke \u2014 DXY og vigtige valutakryds",
+        "title": "Amerikansk dollar: DXY og vigtige valutakurser",
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "Indeks",
-        "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. DXY m\u00e5ler dollarens styrke over for en kurv af valutaer; EUR/USD, GBP/USD og JPY/USD viser 1 enhed udenlandsk valuta i USD.",
+        "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. DXY m\u00e5ler den brede styrkelse af den amerikanske dollar mod en kurv af valutaer, mens EUR/USD, GBP/USD og JPY/USD viser bilaterale kursforhold.",
         "kilde": "Yahoo Finance",
         "region_labels": [
-          "DXY (US Dollar Indeks)",
+          "DXY (Dollar Index)",
           "EUR/USD",
           "GBP/USD",
           "JPY/USD"
         ],
-        "excel_path": "figure_00_US Dollar styrke \u2014 DXY og vigtige valutakryds.xlsx"
+        "excel_path": "figure_00_Amerikansk dollar- DXY og vigtige valutakurse.xlsx"
       }
     },
     {
       "path": "demo_output/test/prompt_8/figure_01.png",
       "metadata": {
-        "title": "Event impact \u2014 US Dollar styrke \u2014 DXY og vigtige valutakryds",
+        "title": "Event impact \u2014 Amerikansk dollar: DXY og vigtige valutakurser",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
@@ -35,14 +35,14 @@
     {
       "path": "demo_output/test/prompt_8/figure_02.png",
       "metadata": {
-        "title": "N\u00f8gletal \u2014 US Dollar og valutakryds",
+        "title": "Valutan\u00f8gletal \u2014 DXY og vigtige valutakurser",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af DXY og vigtige valutakryds med udgangspunkt i starten af 2025. \u00c6ndringer afspejler dollarens bev\u00e6gelse i k\u00f8lvandet p\u00e5 Trump-toldsatserne og Iran-krigen.",
+        "note": "Snapshot af DXY-indekset og udvalgte valutakurser. \u00c6ndringer afspejler bev\u00e6gelser siden starten af 2025, hvor b\u00e5de Trump-toldsatser og Iran-krigen har pr\u00e6get dollarkursen.",
         "kilde": "Yahoo Finance",
         "region_labels": [
-          "DXY (US Dollar Indeks)",
+          "DXY (Dollar Index)",
           "EUR/USD",
           "GBP/USD",
           "JPY/USD"

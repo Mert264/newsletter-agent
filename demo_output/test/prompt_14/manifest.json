@@ -5,26 +5,26 @@
     {
       "path": "demo_output/test/prompt_14/figure_00.png",
       "metadata": {
-        "title": "Brent r\u00e5olie \u2014 kurssudvikling",
+        "title": "Brent r\u00e5olie \u2014 prisniveau",
         "chart_type": "A",
         "x_label": "Dato",
-        "y_label": "USD/barrel",
-        "note": "Daglige lukkepriser for Brent r\u00e5olie de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser p\u00e5 verdensmarkedet.",
+        "y_label": "USD/t\u00f8nde",
+        "note": "Daglige lukkepriser for Brent r\u00e5olie over de seneste to \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser p\u00e5 verdensmarkedet.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "Brent r\u00e5olie"
         ],
-        "excel_path": "figure_00_Brent r\u00e5olie \u2014 kurssudvikling.xlsx"
+        "excel_path": "figure_00_Brent r\u00e5olie \u2014 prisniveau.xlsx"
       }
     },
     {
       "path": "demo_output/test/prompt_14/figure_01.png",
       "metadata": {
-        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
+        "title": "Brent r\u00e5olie \u2014 snapshot",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Sammenligning af Brent r\u00e5oliepris nu og for \u00e9t \u00e5r siden. Viser det absolutte prisniveau i USD pr. t\u00f8nde.",
+        "note": "Sammenligning af Brent r\u00e5oliepris nu versus for \u00e9t \u00e5r siden. Viser den absolutte pris\u00e6ndring i USD pr. t\u00f8nde.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "Brent r\u00e5olie"
@@ -34,26 +34,26 @@
     {
       "path": "demo_output/test/prompt_14/figure_02.png",
       "metadata": {
-        "title": "Guld \u2014 kursudvikling",
+        "title": "Guld \u2014 prisniveau",
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "USD/troy oz",
-        "note": "Daglige lukkepriser for guld (spot) de seneste to \u00e5r. Guld anvendes ofte som sikkerheds- og inflationsafd\u00e6kning i globale portef\u00f8ljer.",
+        "note": "Daglige lukkepriser for guld (spot/futures) over de seneste to \u00e5r. Guld anvendes bredt som inflationssikring og safe-haven aktiv.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "Guld"
         ],
-        "excel_path": "figure_02_Guld \u2014 kursudvikling.xlsx"
+        "excel_path": "figure_02_Guld \u2014 prisniveau.xlsx"
       }
     },
     {
       "path": "demo_output/test/prompt_14/figure_03.png",
       "metadata": {
-        "title": "Guld \u2014 n\u00f8gletal",
+        "title": "Guld \u2014 snapshot",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Sammenligning af guldpris nu og for \u00e9t \u00e5r siden. Viser det absolutte prisniveau i USD pr. troy ounce.",
+        "note": "Sammenligning af guldprisen nu versus for \u00e9t \u00e5r siden. Viser den absolutte pris\u00e6ndring i USD pr. troy ounce.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "Guld"
@@ -63,27 +63,27 @@
     {
       "path": "demo_output/test/prompt_14/figure_04.png",
       "metadata": {
-        "title": "Globalt markedsscorecard \u2014 indekseret oversigt",
+        "title": "Globalt markedsscorecard \u2014 indekseret overblik",
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "Indekseret (basis=100)",
-        "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig skala. Viser relativ kursudvikling for S&P 500 og EUR/USD de seneste to \u00e5r.",
+        "note": "Alle serier er indekseret til 100 ved periodens start for at muligg\u00f8re sammenligning p\u00e5 tv\u00e6rs af forskellig valutaskala. Viser relativ prisudvikling for S&P 500 og EUR/USD over de seneste to \u00e5r.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "S&P 500",
           "EUR/USD"
         ],
-        "excel_path": "figure_04_Globalt markedsscorecard \u2014 indekseret oversig.xlsx"
+        "excel_path": "figure_04_Globalt markedsscorecard \u2014 indekseret overbli.xlsx"
       }
     },
     {
       "path": "demo_output/test/prompt_14/figure_05.png",
       "metadata": {
-        "title": "S&P 500 og EUR/USD \u2014 n\u00f8gletal",
+        "title": "S&P 500 og EUR/USD \u2014 snapshot",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Sammenligning af S&P 500-indeksniveau og EUR/USD-valutakurs nu og for \u00e9t \u00e5r siden. Enheder er ikke sammenlignelige p\u00e5 tv\u00e6rs af r\u00e6kker \u2014 se absolutte niveauer.",
+        "note": "Sammenligning af S&P 500-indeks og EUR/USD-valutakurs nu versus for \u00e9t \u00e5r siden. \u00c6ndringer viser den absolutte bev\u00e6gelse i henholdsvis indekspoint og valutakurs.",
         "kilde": "Yahoo Finance",
         "region_labels": [
           "S&P 500",
@@ -98,7 +98,7 @@
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "%",
-        "note": "Daglige observationer af den 10-\u00e5rige amerikanske statsobligationsrente (US Treasury 10Y yield) de seneste to \u00e5r. Renten afspejler markedets forventninger til v\u00e6kst, inflation og pengepolitik p\u00e5 lang sigt.",
+        "note": "Den 10-\u00e5rige amerikanske statsrente (US Treasury) er et centralt benchmark for globale obligationsmarkeder og afspejler markedets forventninger til v\u00e6kst og inflation i USA.",
         "kilde": "FRED",
         "region_labels": [
           "10-\u00e5rig amerikansk statsrente"
@@ -109,11 +109,11 @@
     {
       "path": "demo_output/test/prompt_14/figure_07.png",
       "metadata": {
-        "title": "10-\u00e5rig amerikansk statsrente \u2014 n\u00f8gletal",
+        "title": "10-\u00e5rig amerikansk statsrente \u2014 snapshot",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Sammenligning af den 10-\u00e5rige amerikanske statsobligationsrente nu og for \u00e9t \u00e5r siden. \u00c6ndringen vises i procentpoint.",
+        "note": "Sammenligning af den 10-\u00e5rige amerikanske statsrente nu versus for \u00e9t \u00e5r siden. \u00c6ndringer vises i procentpoint.",
         "kilde": "FRED",
         "region_labels": [
           "10-\u00e5rig amerikansk statsrente"
