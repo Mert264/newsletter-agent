@@ -168,6 +168,9 @@ def run_full_pipeline(pid, brief, period_days):
         pipe_issues += re.findall(r"\[warn\].*", log)
 
     for fig in figures:
+        if not isinstance(fig, dict):
+            pipe_issues.append(f"Unexpected figure type in result: {type(fig).__name__}")
+            continue
         meta = fig.get("metadata", {})
         flag = meta.get("reviewer_flag", "")
         if flag:
