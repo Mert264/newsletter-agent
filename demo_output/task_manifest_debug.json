@@ -1,206 +1,70 @@
 {
   "specialists": [
-    "energy",
-    "commodities",
-    "equities",
     "macro"
   ],
-  "energy": {
-    "series": [
-      {
-        "ticker": "BZ=F",
-        "source": "yfinance",
-        "label": "Brent r\u00e5olie",
-        "region": "Global",
-        "unit": "USD/t\u00f8nde",
-        "transform": "",
-        "conversion": ""
-      }
-    ],
-    "charts": [
-      {
-        "type": "A",
-        "title": "Brent r\u00e5olie \u2014 pris i USD/t\u00f8nde",
-        "x_label": "Dato",
-        "y_label": "USD/t\u00f8nde",
-        "period_days": 1825,
-        "series_labels": [
-          "Brent r\u00e5olie"
-        ],
-        "note": "Daglige lukkepriser for Brent r\u00e5olie de seneste 5 \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og afspejler udbud og eftersp\u00f8rgsel p\u00e5 verdensmarkedet."
-      },
-      {
-        "type": "D",
-        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
-        "x_label": "",
-        "y_label": "USD/t\u00f8nde",
-        "period_days": 1825,
-        "series_labels": [
-          "Brent r\u00e5olie"
-        ],
-        "before_date": "2021-04-01",
-        "after_date": "latest",
-        "col_before": "For 5 \u00e5r siden",
-        "col_after": "Nu",
-        "note": "Snapshot af Brent r\u00e5oliepris sammenlignet med niveauet for 5 \u00e5r siden."
-      }
-    ]
-  },
-  "commodities": {
-    "series": [
-      {
-        "ticker": "GC=F",
-        "source": "yfinance",
-        "label": "Guld",
-        "region": "Global",
-        "unit": "USD/troy oz",
-        "transform": "",
-        "conversion": ""
-      }
-    ],
-    "charts": [
-      {
-        "type": "A",
-        "title": "Guld \u2014 pris i USD/troy oz",
-        "x_label": "Dato",
-        "y_label": "USD/troy oz",
-        "period_days": 1825,
-        "series_labels": [
-          "Guld"
-        ],
-        "note": "Daglige lukkepriser for guld de seneste 5 \u00e5r. Guld betragtes som et sikkert aktiv og anvendes som inflations- og risikoafd\u00e6kning af investorer globalt."
-      },
-      {
-        "type": "D",
-        "title": "Guld \u2014 n\u00f8gletal",
-        "x_label": "",
-        "y_label": "USD/troy oz",
-        "period_days": 1825,
-        "series_labels": [
-          "Guld"
-        ],
-        "before_date": "2021-04-01",
-        "after_date": "latest",
-        "col_before": "For 5 \u00e5r siden",
-        "col_after": "Nu",
-        "note": "Snapshot af guldpris sammenlignet med niveauet for 5 \u00e5r siden."
-      }
-    ]
-  },
-  "equities": {
-    "series": [
-      {
-        "ticker": "^GSPC",
-        "source": "yfinance",
-        "label": "S&P 500",
-        "region": "USA",
-        "unit": "Indeks",
-        "transform": "",
-        "conversion": ""
-      },
-      {
-        "ticker": "EURUSD=X",
-        "source": "yfinance",
-        "label": "EUR/USD",
-        "region": "Global",
-        "unit": "USD per EUR",
-        "transform": "",
-        "conversion": ""
-      }
-    ],
-    "charts": [
-      {
-        "type": "A",
-        "title": "S&P 500 \u2014 indeksudvikling",
-        "x_label": "Dato",
-        "y_label": "Indeks",
-        "period_days": 1825,
-        "series_labels": [
-          "S&P 500"
-        ],
-        "note": "Daglige lukkepriser for S&P 500-indekset de seneste 5 \u00e5r. S&P 500 er det bredeste m\u00e5l for det amerikanske aktiemarked og inkluderer 500 af de st\u00f8rste b\u00f8rsnoterede selskaber i USA."
-      },
-      {
-        "type": "D",
-        "title": "S&P 500 \u2014 n\u00f8gletal",
-        "x_label": "",
-        "y_label": "Indeks",
-        "period_days": 1825,
-        "series_labels": [
-          "S&P 500"
-        ],
-        "before_date": "2021-04-01",
-        "after_date": "latest",
-        "col_before": "For 5 \u00e5r siden",
-        "col_after": "Nu",
-        "note": "Snapshot af S&P 500 sammenlignet med niveauet for 5 \u00e5r siden."
-      },
-      {
-        "type": "A",
-        "title": "EUR/USD \u2014 valutakurs",
-        "x_label": "Dato",
-        "y_label": "USD per EUR",
-        "period_days": 1825,
-        "series_labels": [
-          "EUR/USD"
-        ],
-        "note": "Daglige EUR/USD-kurser de seneste 5 \u00e5r. Kursen viser, hvor mange amerikanske dollars \u00e9n euro kan k\u00f8be, og er verdens mest handlede valutapar."
-      },
-      {
-        "type": "D",
-        "title": "EUR/USD \u2014 n\u00f8gletal",
-        "x_label": "",
-        "y_label": "USD per EUR",
-        "period_days": 1825,
-        "series_labels": [
-          "EUR/USD"
-        ],
-        "before_date": "2021-04-01",
-        "after_date": "latest",
-        "col_before": "For 5 \u00e5r siden",
-        "col_after": "Nu",
-        "note": "Snapshot af EUR/USD-kursen sammenlignet med niveauet for 5 \u00e5r siden."
-      }
-    ]
-  },
   "macro": {
     "series": [
       {
         "ticker": "DGS10",
         "source": "fred",
-        "label": "10-\u00e5rig amerikansk statsrente",
+        "label": "USA 10-\u00e5rig rente",
         "region": "USA",
-        "unit": "%",
-        "transform": "",
-        "conversion": ""
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tyskland 10-\u00e5rig rente",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01GBM156N",
+        "source": "fred",
+        "label": "Storbritannien 10-\u00e5rig rente",
+        "region": "Europa",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01JPM156N",
+        "source": "fred",
+        "label": "Japan 10-\u00e5rig rente",
+        "region": "Asien",
+        "unit": "%"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "10-\u00e5rig amerikansk statsrente",
+        "title": "10-\u00e5rige statsrenter \u2014 USA, Tyskland, Japan og Storbritannien",
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 1825,
         "series_labels": [
-          "10-\u00e5rig amerikansk statsrente"
+          "USA 10-\u00e5rig rente",
+          "Tyskland 10-\u00e5rig rente",
+          "Storbritannien 10-\u00e5rig rente",
+          "Japan 10-\u00e5rig rente"
         ],
-        "note": "Daglige renter p\u00e5 10-\u00e5rige amerikanske statsobligationer de seneste 5 \u00e5r. Den 10-\u00e5rige rente er et centralt referencepunkt for globale finansielle markeder og afspejler markedets forventninger til v\u00e6kst og inflation."
+        "note": "Udviklingen i de 10-\u00e5rige statsobligationsrenter for USA, Tyskland, Japan og Storbritannien over de seneste 5 \u00e5r. Renterne afspejler markedets forventninger til v\u00e6kst, inflation og pengepolitik i de respektive lande."
       },
       {
         "type": "D",
-        "title": "10-\u00e5rig amerikansk statsrente \u2014 n\u00f8gletal",
+        "title": "10-\u00e5rige statsrenter \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
         "period_days": 1825,
         "series_labels": [
-          "10-\u00e5rig amerikansk statsrente"
+          "USA 10-\u00e5rig rente",
+          "Tyskland 10-\u00e5rig rente",
+          "Storbritannien 10-\u00e5rig rente",
+          "Japan 10-\u00e5rig rente"
         ],
         "before_date": "2021-04-01",
         "after_date": "latest",
         "col_before": "For 5 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Snapshot af den 10-\u00e5rige amerikanske statsrente sammenlignet med niveauet for 5 \u00e5r siden. \u00c6ndringer vises i procentpoint."
+        "note": "Snapshot af aktuelle 10-\u00e5rige statsrenter sammenlignet med niveauerne for 5 \u00e5r siden. \u00c6ndringer vises i procentpoint."
       }
     ]
   }

@@ -808,6 +808,7 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
         if len(individual_years) <= 1:
             year = individual_years[0]
             row = wide.loc[year].dropna() if year in wide.index else pd.Series(dtype=float)
+            row = pd.to_numeric(row, errors="coerce").dropna()
             row = row[row > 0]
             if row.empty:
                 return output_path

@@ -1,150 +1,39 @@
 {
-  "brief": "Vis et globalt markedsscorecard: Brent, guld, S&P 500, EUR/USD, 10Y US. [Pr\u00e6ference: Cirkeldiagram/andele]",
+  "brief": "Vis udviklingen i de 10-\u00e5rige statsrenter for USA, Tyskland, Japan og Storbritannien. [Pr\u00e6ference: Cirkeldiagram \u2014 vis fordelingen som et cirkeldiagram]",
   "date": "2026-06-10",
   "figures": [
     {
       "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_00.png",
       "metadata": {
-        "title": "Brent r\u00e5olie \u2014 pris i USD/t\u00f8nde",
+        "title": "10-\u00e5rige statsrenter \u2014 USA, Tyskland, Japan og Storbritannien",
         "chart_type": "A",
         "x_label": "Dato",
-        "y_label": "USD/t\u00f8nde",
-        "note": "Daglige lukkepriser for Brent r\u00e5olie de seneste 5 \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og afspejler udbud og eftersp\u00f8rgsel p\u00e5 verdensmarkedet.",
-        "kilde": "Yahoo Finance",
+        "y_label": "%",
+        "note": "Udviklingen i de 10-\u00e5rige statsobligationsrenter for USA, Tyskland, Japan og Storbritannien over de seneste 5 \u00e5r. Renterne afspejler markedets forventninger til v\u00e6kst, inflation og pengepolitik i de respektive lande.",
+        "kilde": "FRED",
         "region_labels": [
-          "Brent r\u00e5olie"
+          "USA 10-\u00e5rig rente",
+          "Tyskland 10-\u00e5rig rente",
+          "Storbritannien 10-\u00e5rig rente",
+          "Japan 10-\u00e5rig rente"
         ],
-        "excel_path": "figure_00_Brent r\u00e5olie \u2014 pris i USD-t\u00f8nde.xlsx"
+        "excel_path": "figure_00_10-\u00e5rige statsrenter \u2014 USA, Tyskland, Japan o.xlsx"
       }
     },
     {
       "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_01.png",
       "metadata": {
-        "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
+        "title": "10-\u00e5rige statsrenter \u2014 n\u00f8gletal",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af Brent r\u00e5oliepris sammenlignet med niveauet for 5 \u00e5r siden.",
-        "kilde": "Yahoo Finance",
-        "region_labels": [
-          "Brent r\u00e5olie"
-        ]
-      }
-    },
-    {
-      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_02.png",
-      "metadata": {
-        "title": "Guld \u2014 pris i USD/troy oz",
-        "chart_type": "A",
-        "x_label": "Dato",
-        "y_label": "USD/troy oz",
-        "note": "Daglige lukkepriser for guld de seneste 5 \u00e5r. Guld betragtes som et sikkert aktiv og anvendes som inflations- og risikoafd\u00e6kning af investorer globalt.",
-        "kilde": "Yahoo Finance",
-        "region_labels": [
-          "Guld"
-        ],
-        "excel_path": "figure_02_Guld \u2014 pris i USD-troy oz.xlsx"
-      }
-    },
-    {
-      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_03.png",
-      "metadata": {
-        "title": "Guld \u2014 n\u00f8gletal",
-        "chart_type": "D",
-        "x_label": "",
-        "y_label": "",
-        "note": "Snapshot af guldpris sammenlignet med niveauet for 5 \u00e5r siden.",
-        "kilde": "Yahoo Finance",
-        "region_labels": [
-          "Guld"
-        ]
-      }
-    },
-    {
-      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_04.png",
-      "metadata": {
-        "title": "S&P 500 \u2014 indeksudvikling",
-        "chart_type": "A",
-        "x_label": "Dato",
-        "y_label": "Indeks",
-        "note": "Daglige lukkepriser for S&P 500-indekset de seneste 5 \u00e5r. S&P 500 er det bredeste m\u00e5l for det amerikanske aktiemarked og inkluderer 500 af de st\u00f8rste b\u00f8rsnoterede selskaber i USA.",
-        "kilde": "Yahoo Finance",
-        "region_labels": [
-          "S&P 500"
-        ],
-        "reviewer_flag": "Y-axis label 'Indeks' lacks units; for a time-series index chart, it should specify the base or state 'Indekseret (basis=100)' or similar to clarify the scale.",
-        "excel_path": "figure_04_S&P 500 \u2014 indeksudvikling.xlsx"
-      }
-    },
-    {
-      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_05.png",
-      "metadata": {
-        "title": "S&P 500 \u2014 n\u00f8gletal",
-        "chart_type": "D",
-        "x_label": "",
-        "y_label": "",
-        "note": "Snapshot af S&P 500 sammenlignet med niveauet for 5 \u00e5r siden.",
-        "kilde": "Yahoo Finance",
-        "region_labels": [
-          "S&P 500"
-        ]
-      }
-    },
-    {
-      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_06.png",
-      "metadata": {
-        "title": "EUR/USD \u2014 valutakurs",
-        "chart_type": "A",
-        "x_label": "Dato",
-        "y_label": "USD per EUR",
-        "note": "Daglige EUR/USD-kurser de seneste 5 \u00e5r. Kursen viser, hvor mange amerikanske dollars \u00e9n euro kan k\u00f8be, og er verdens mest handlede valutapar.",
-        "kilde": "Yahoo Finance",
-        "region_labels": [
-          "EUR/USD"
-        ],
-        "excel_path": "figure_06_EUR-USD \u2014 valutakurs.xlsx"
-      }
-    },
-    {
-      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_07.png",
-      "metadata": {
-        "title": "EUR/USD \u2014 n\u00f8gletal",
-        "chart_type": "D",
-        "x_label": "",
-        "y_label": "",
-        "note": "Snapshot af EUR/USD-kursen sammenlignet med niveauet for 5 \u00e5r siden.",
-        "kilde": "Yahoo Finance",
-        "region_labels": [
-          "EUR/USD"
-        ]
-      }
-    },
-    {
-      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_08.png",
-      "metadata": {
-        "title": "10-\u00e5rig amerikansk statsrente",
-        "chart_type": "A",
-        "x_label": "Dato",
-        "y_label": "%",
-        "note": "Daglige renter p\u00e5 10-\u00e5rige amerikanske statsobligationer de seneste 5 \u00e5r. Den 10-\u00e5rige rente er et centralt referencepunkt for globale finansielle markeder og afspejler markedets forventninger til v\u00e6kst og inflation.",
+        "note": "Snapshot af aktuelle 10-\u00e5rige statsrenter sammenlignet med niveauerne for 5 \u00e5r siden. \u00c6ndringer vises i procentpoint.",
         "kilde": "FRED",
         "region_labels": [
-          "10-\u00e5rig amerikansk statsrente"
-        ],
-        "excel_path": "figure_08_10-\u00e5rig amerikansk statsrente.xlsx"
-      }
-    },
-    {
-      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_09.png",
-      "metadata": {
-        "title": "10-\u00e5rig amerikansk statsrente \u2014 n\u00f8gletal",
-        "chart_type": "D",
-        "x_label": "",
-        "y_label": "",
-        "note": "Snapshot af den 10-\u00e5rige amerikanske statsrente sammenlignet med niveauet for 5 \u00e5r siden. \u00c6ndringer vises i procentpoint.",
-        "kilde": "FRED",
-        "region_labels": [
-          "10-\u00e5rig amerikansk statsrente"
+          "USA 10-\u00e5rig rente",
+          "Tyskland 10-\u00e5rig rente",
+          "Storbritannien 10-\u00e5rig rente",
+          "Japan 10-\u00e5rig rente"
         ]
       }
     }
