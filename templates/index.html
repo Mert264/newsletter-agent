@@ -279,6 +279,13 @@
       color: #1a2a2a;
     }
     .period-field input:focus { outline: none; border-color: #11716c; }
+    .period-field input[type="date"] { cursor: pointer; }
+    .period-field input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 0.6;
+      filter: invert(30%) sepia(50%) saturate(600%) hue-rotate(140deg);
+    }
+    .period-field input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
 
     /* ── Run row ── */
     .run-row {
