@@ -858,9 +858,9 @@ def render_type_p(df: pd.DataFrame, spec: dict, output_path: str) -> "str | list
         series = df.iloc[:, 0].dropna()
         title_str = spec["title"]
 
+    series = pd.to_numeric(series, errors="coerce").dropna()
     series = series[series > 0]
     if series.empty:
-        # Write nothing — pipeline will skip
         return output_path
 
     return _save_single_pie_figure(series, title_str, spec, output_path)
