@@ -1,40 +1,75 @@
 {
-  "brief": "Vis udviklingen i de 10-\u00e5rige statsrenter for USA, Tyskland, Japan og Storbritannien. [Pr\u00e6ference: Cirkeldiagram \u2014 vis fordelingen som et cirkeldiagram]",
+  "brief": "Hvad er status p\u00e5 inflation i USA, euroomr\u00e5det, Japan og Storbritannien? Sammenlign headline og kerne-inflation. [Pr\u00e6ference: S\u00f8jlediagram \u2014 v\u00e6lg selv lodret, vandret eller stablet efter datans natur]",
   "date": "2026-06-10",
   "figures": [
     {
       "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_00.png",
       "metadata": {
-        "title": "10-\u00e5rige statsrenter \u2014 USA, Tyskland, Japan og Storbritannien",
+        "title": "Headline-inflation \u2014 USA, Euroomr\u00e5det, UK og Japan",
         "chart_type": "A",
         "x_label": "Dato",
         "y_label": "%",
-        "note": "Udviklingen i de 10-\u00e5rige statsobligationsrenter for USA, Tyskland, Japan og Storbritannien over de seneste 5 \u00e5r. Renterne afspejler markedets forventninger til v\u00e6kst, inflation og pengepolitik i de respektive lande.",
-        "kilde": "FRED",
+        "note": "\u00c5rlig forbrugerprisinflation (YoY %) for USA, euroomr\u00e5det, UK og Japan. Alle serier er allerede opgjort som \u00e5rsrate. USA: OECD MEI via FRED; Euroomr\u00e5det: Eurostat HICP; UK: OECD MEI via FRED; Japan: OECD MEI via FRED.",
+        "kilde": "FRED og Eurostat",
         "region_labels": [
-          "USA 10-\u00e5rig rente",
-          "Tyskland 10-\u00e5rig rente",
-          "Storbritannien 10-\u00e5rig rente",
-          "Japan 10-\u00e5rig rente"
+          "USA \u2014 Headline",
+          "Euroomr\u00e5det \u2014 Headline",
+          "UK \u2014 Headline",
+          "Japan \u2014 Headline"
         ],
-        "excel_path": "figure_00_10-\u00e5rige statsrenter \u2014 USA, Tyskland, Japan o.xlsx"
+        "excel_path": "figure_00_Headline-inflation \u2014 USA, Euroomr\u00e5det, UK og .xlsx"
       }
     },
     {
       "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_01.png",
       "metadata": {
-        "title": "10-\u00e5rige statsrenter \u2014 n\u00f8gletal",
+        "title": "Headline-inflation \u2014 n\u00f8gletal",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af aktuelle 10-\u00e5rige statsrenter sammenlignet med niveauerne for 5 \u00e5r siden. \u00c6ndringer vises i procentpoint.",
-        "kilde": "FRED",
+        "note": "Snapshot af headline-inflation i de fire \u00f8konomier. \u00c6ndringen vises i procentpoint (pp) relativt til niveauet for ca. fem \u00e5r siden.",
+        "kilde": "FRED og Eurostat",
         "region_labels": [
-          "USA 10-\u00e5rig rente",
-          "Tyskland 10-\u00e5rig rente",
-          "Storbritannien 10-\u00e5rig rente",
-          "Japan 10-\u00e5rig rente"
+          "USA \u2014 Headline",
+          "Euroomr\u00e5det \u2014 Headline",
+          "UK \u2014 Headline",
+          "Japan \u2014 Headline"
         ]
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_02.png",
+      "metadata": {
+        "title": "Aktuel headline-inflation \u2014 sammenligning p\u00e5 tv\u00e6rs",
+        "chart_type": "B",
+        "x_label": "Land/region",
+        "y_label": "%",
+        "note": "S\u00f8jlediagram med den seneste tilg\u00e6ngelige headline-inflation (YoY %) for hvert land og region. Viser i \u00e9t \u00f8jekast, hvor langt de fire \u00f8konomier er fra 2%-m\u00e5let.",
+        "kilde": "FRED og Eurostat",
+        "region_labels": [
+          "USA \u2014 Headline",
+          "Euroomr\u00e5det \u2014 Headline",
+          "UK \u2014 Headline",
+          "Japan \u2014 Headline"
+        ],
+        "excel_path": "figure_02_Aktuel headline-inflation \u2014 sammenligning p\u00e5 .xlsx"
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_03.png",
+      "metadata": {
+        "title": "USA \u2014 Headline vs. kerne-inflation",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "%",
+        "note": "Sammenligning af USA's headline CPI (OECD MEI), kerne-CPI (ex. f\u00f8devarer og energi) og kerne-PCE (Fed's foretrukne inflationsm\u00e5l) over de seneste fem \u00e5r. Alle serier er opgjort som \u00e5rsrate (YoY %).",
+        "kilde": "FRED og Eurostat",
+        "region_labels": [
+          "USA \u2014 Headline",
+          "USA \u2014 Kerne",
+          "USA \u2014 Kerne PCE"
+        ],
+        "excel_path": "figure_03_USA \u2014 Headline vs. kerne-inflation.xlsx"
       }
     }
   ]

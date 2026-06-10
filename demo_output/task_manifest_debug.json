@@ -5,66 +5,128 @@
   "macro": {
     "series": [
       {
-        "ticker": "DGS10",
+        "ticker": "CPALTT01USM659N",
         "source": "fred",
-        "label": "USA 10-\u00e5rig rente",
+        "label": "USA \u2014 Headline",
         "region": "USA",
         "unit": "%"
       },
       {
-        "ticker": "IRLTLT01DEM156N",
-        "source": "fred",
-        "label": "Tyskland 10-\u00e5rig rente",
-        "region": "Europa",
+        "ticker": "ea_hicp_yoy",
+        "source": "eurostat_ts",
+        "label": "Euroomr\u00e5det \u2014 Headline",
+        "region": "Euroomr\u00e5det",
         "unit": "%"
       },
       {
-        "ticker": "IRLTLT01GBM156N",
+        "ticker": "CPALTT01GBM659N",
         "source": "fred",
-        "label": "Storbritannien 10-\u00e5rig rente",
-        "region": "Europa",
+        "label": "UK \u2014 Headline",
+        "region": "UK",
         "unit": "%"
       },
       {
-        "ticker": "IRLTLT01JPM156N",
+        "ticker": "CPALTT01JPM659N",
         "source": "fred",
-        "label": "Japan 10-\u00e5rig rente",
-        "region": "Asien",
+        "label": "Japan \u2014 Headline",
+        "region": "Japan",
+        "unit": "%"
+      },
+      {
+        "ticker": "CPILFESL",
+        "source": "fred",
+        "label": "USA \u2014 Kerne",
+        "region": "USA",
+        "unit": "%"
+      },
+      {
+        "ticker": "PCEPILFE",
+        "source": "fred",
+        "label": "USA \u2014 Kerne PCE",
+        "region": "USA",
         "unit": "%"
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "10-\u00e5rige statsrenter \u2014 USA, Tyskland, Japan og Storbritannien",
+        "title": "Headline-inflation \u2014 USA, Euroomr\u00e5det, UK og Japan",
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 1825,
         "series_labels": [
-          "USA 10-\u00e5rig rente",
-          "Tyskland 10-\u00e5rig rente",
-          "Storbritannien 10-\u00e5rig rente",
-          "Japan 10-\u00e5rig rente"
+          "USA \u2014 Headline",
+          "Euroomr\u00e5det \u2014 Headline",
+          "UK \u2014 Headline",
+          "Japan \u2014 Headline"
         ],
-        "note": "Udviklingen i de 10-\u00e5rige statsobligationsrenter for USA, Tyskland, Japan og Storbritannien over de seneste 5 \u00e5r. Renterne afspejler markedets forventninger til v\u00e6kst, inflation og pengepolitik i de respektive lande."
+        "note": "\u00c5rlig forbrugerprisinflation (YoY %) for USA, euroomr\u00e5det, UK og Japan. Alle serier er allerede opgjort som \u00e5rsrate. USA: OECD MEI via FRED; Euroomr\u00e5det: Eurostat HICP; UK: OECD MEI via FRED; Japan: OECD MEI via FRED.",
+        "reference_lines": [
+          {
+            "y": 2.0,
+            "label": "2%-m\u00e5l",
+            "color": "#9ca3af"
+          }
+        ]
       },
       {
         "type": "D",
-        "title": "10-\u00e5rige statsrenter \u2014 n\u00f8gletal",
+        "title": "Headline-inflation \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
         "period_days": 1825,
         "series_labels": [
-          "USA 10-\u00e5rig rente",
-          "Tyskland 10-\u00e5rig rente",
-          "Storbritannien 10-\u00e5rig rente",
-          "Japan 10-\u00e5rig rente"
+          "USA \u2014 Headline",
+          "Euroomr\u00e5det \u2014 Headline",
+          "UK \u2014 Headline",
+          "Japan \u2014 Headline"
         ],
         "before_date": "2021-04-01",
         "after_date": "latest",
         "col_before": "For 5 \u00e5r siden",
-        "col_after": "Nu",
-        "note": "Snapshot af aktuelle 10-\u00e5rige statsrenter sammenlignet med niveauerne for 5 \u00e5r siden. \u00c6ndringer vises i procentpoint."
+        "col_after": "Seneste",
+        "note": "Snapshot af headline-inflation i de fire \u00f8konomier. \u00c6ndringen vises i procentpoint (pp) relativt til niveauet for ca. fem \u00e5r siden."
+      },
+      {
+        "type": "B",
+        "title": "Aktuel headline-inflation \u2014 sammenligning p\u00e5 tv\u00e6rs",
+        "x_label": "Land/region",
+        "y_label": "%",
+        "period_days": 1825,
+        "series_labels": [
+          "USA \u2014 Headline",
+          "Euroomr\u00e5det \u2014 Headline",
+          "UK \u2014 Headline",
+          "Japan \u2014 Headline"
+        ],
+        "note": "S\u00f8jlediagram med den seneste tilg\u00e6ngelige headline-inflation (YoY %) for hvert land og region. Viser i \u00e9t \u00f8jekast, hvor langt de fire \u00f8konomier er fra 2%-m\u00e5let.",
+        "reference_lines": [
+          {
+            "y": 2.0,
+            "label": "2%-m\u00e5l",
+            "color": "#9ca3af"
+          }
+        ]
+      },
+      {
+        "type": "A",
+        "title": "USA \u2014 Headline vs. kerne-inflation",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 1825,
+        "series_labels": [
+          "USA \u2014 Headline",
+          "USA \u2014 Kerne",
+          "USA \u2014 Kerne PCE"
+        ],
+        "note": "Sammenligning af USA's headline CPI (OECD MEI), kerne-CPI (ex. f\u00f8devarer og energi) og kerne-PCE (Fed's foretrukne inflationsm\u00e5l) over de seneste fem \u00e5r. Alle serier er opgjort som \u00e5rsrate (YoY %).",
+        "reference_lines": [
+          {
+            "y": 2.0,
+            "label": "2%-m\u00e5l (Fed)",
+            "color": "#9ca3af"
+          }
+        ]
       }
     ]
   }
