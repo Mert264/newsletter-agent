@@ -20,29 +20,29 @@
     "charts": [
       {
         "type": "A",
-        "title": "Brent r\u00e5olie \u2014 kursniveau",
+        "title": "Brent r\u00e5olie \u2014 pris i USD/t\u00f8nde",
         "x_label": "Dato",
         "y_label": "USD/t\u00f8nde",
-        "period_days": 425,
+        "period_days": 1825,
         "series_labels": [
           "Brent r\u00e5olie"
         ],
-        "note": "Daglige lukkepriser for Brent r\u00e5olie over de seneste ca. 14 m\u00e5neder. Brent er det globale benchmark for r\u00e5oliepriser og afspejler udbuddet fra Nords\u00f8en og Mellem\u00f8sten."
+        "note": "Daglige lukkepriser for Brent r\u00e5olie de seneste 5 \u00e5r. Brent er det globale benchmark for r\u00e5oliepriser og afspejler udbud og eftersp\u00f8rgsel p\u00e5 verdensmarkedet."
       },
       {
         "type": "D",
         "title": "Brent r\u00e5olie \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "USD/t\u00f8nde",
-        "period_days": 425,
+        "period_days": 1825,
         "series_labels": [
           "Brent r\u00e5olie"
         ],
-        "before_date": "2025-04-01",
+        "before_date": "2021-04-01",
         "after_date": "latest",
-        "col_before": "1 \u00e5r siden",
+        "col_before": "For 5 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Snapshot af Brent r\u00e5oliepris nu sammenlignet med for et \u00e5r siden."
+        "note": "Snapshot af Brent r\u00e5oliepris sammenlignet med niveauet for 5 \u00e5r siden."
       }
     ]
   },
@@ -61,29 +61,29 @@
     "charts": [
       {
         "type": "A",
-        "title": "Guld \u2014 kursniveau",
+        "title": "Guld \u2014 pris i USD/troy oz",
         "x_label": "Dato",
         "y_label": "USD/troy oz",
-        "period_days": 425,
+        "period_days": 1825,
         "series_labels": [
           "Guld"
         ],
-        "note": "Daglige lukkepriser for guld (spot, USD pr. troy ounce) over de seneste ca. 14 m\u00e5neder. Guld betragtes som et sikkert aktiv og inflationsafd\u00e6kning p\u00e5 de globale finansmarkeder."
+        "note": "Daglige lukkepriser for guld de seneste 5 \u00e5r. Guld betragtes som et sikkert aktiv og anvendes som inflations- og risikoafd\u00e6kning af investorer globalt."
       },
       {
         "type": "D",
         "title": "Guld \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "USD/troy oz",
-        "period_days": 425,
+        "period_days": 1825,
         "series_labels": [
           "Guld"
         ],
-        "before_date": "2025-04-01",
+        "before_date": "2021-04-01",
         "after_date": "latest",
-        "col_before": "1 \u00e5r siden",
+        "col_before": "For 5 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Snapshot af guldpris nu sammenlignet med for et \u00e5r siden."
+        "note": "Snapshot af guldpris sammenlignet med niveauet for 5 \u00e5r siden."
       }
     ]
   },
@@ -111,31 +111,55 @@
     "charts": [
       {
         "type": "A",
-        "title": "S&P 500 og EUR/USD \u2014 indekseret sammenligning",
+        "title": "S&P 500 \u2014 indeksudvikling",
         "x_label": "Dato",
-        "y_label": "Indekseret (basis=100)",
-        "period_days": 425,
+        "y_label": "Indeks",
+        "period_days": 1825,
         "series_labels": [
-          "S&P 500",
-          "EUR/USD"
+          "S&P 500"
         ],
-        "note": "S&P 500 (det brede amerikanske aktieindeks) og EUR/USD-valutakursen indekseret til 100 ved periodens start for sammenlignbarhed. Afspejler henholdsvis udviklingen p\u00e5 det amerikanske aktiemarked og dollarens styrke over for euroen."
+        "note": "Daglige lukkepriser for S&P 500-indekset de seneste 5 \u00e5r. S&P 500 er det bredeste m\u00e5l for det amerikanske aktiemarked og inkluderer 500 af de st\u00f8rste b\u00f8rsnoterede selskaber i USA."
       },
       {
         "type": "D",
-        "title": "S&P 500 og EUR/USD \u2014 n\u00f8gletal",
+        "title": "S&P 500 \u2014 n\u00f8gletal",
         "x_label": "",
-        "y_label": "",
-        "period_days": 425,
+        "y_label": "Indeks",
+        "period_days": 1825,
         "series_labels": [
-          "S&P 500",
+          "S&P 500"
+        ],
+        "before_date": "2021-04-01",
+        "after_date": "latest",
+        "col_before": "For 5 \u00e5r siden",
+        "col_after": "Nu",
+        "note": "Snapshot af S&P 500 sammenlignet med niveauet for 5 \u00e5r siden."
+      },
+      {
+        "type": "A",
+        "title": "EUR/USD \u2014 valutakurs",
+        "x_label": "Dato",
+        "y_label": "USD per EUR",
+        "period_days": 1825,
+        "series_labels": [
           "EUR/USD"
         ],
-        "before_date": "2025-04-01",
+        "note": "Daglige EUR/USD-kurser de seneste 5 \u00e5r. Kursen viser, hvor mange amerikanske dollars \u00e9n euro kan k\u00f8be, og er verdens mest handlede valutapar."
+      },
+      {
+        "type": "D",
+        "title": "EUR/USD \u2014 n\u00f8gletal",
+        "x_label": "",
+        "y_label": "USD per EUR",
+        "period_days": 1825,
+        "series_labels": [
+          "EUR/USD"
+        ],
+        "before_date": "2021-04-01",
         "after_date": "latest",
-        "col_before": "1 \u00e5r siden",
+        "col_before": "For 5 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Snapshot af S&P 500-indeksniveau og EUR/USD-kurs nu sammenlignet med for et \u00e5r siden."
+        "note": "Snapshot af EUR/USD-kursen sammenlignet med niveauet for 5 \u00e5r siden."
       }
     ]
   },
@@ -157,26 +181,26 @@
         "title": "10-\u00e5rig amerikansk statsrente",
         "x_label": "Dato",
         "y_label": "%",
-        "period_days": 425,
+        "period_days": 1825,
         "series_labels": [
           "10-\u00e5rig amerikansk statsrente"
         ],
-        "note": "Den 10-\u00e5rige amerikanske statsobligationsrente (US Treasury 10Y yield) er det vigtigste benchmark for de globale kapitalmarkeder og afspejler forventningerne til v\u00e6kst, inflation og Federal Reserves pengepolitik."
+        "note": "Daglige renter p\u00e5 10-\u00e5rige amerikanske statsobligationer de seneste 5 \u00e5r. Den 10-\u00e5rige rente er et centralt referencepunkt for globale finansielle markeder og afspejler markedets forventninger til v\u00e6kst og inflation."
       },
       {
         "type": "D",
         "title": "10-\u00e5rig amerikansk statsrente \u2014 n\u00f8gletal",
         "x_label": "",
         "y_label": "%",
-        "period_days": 425,
+        "period_days": 1825,
         "series_labels": [
           "10-\u00e5rig amerikansk statsrente"
         ],
-        "before_date": "2025-04-01",
+        "before_date": "2021-04-01",
         "after_date": "latest",
-        "col_before": "1 \u00e5r siden",
+        "col_before": "For 5 \u00e5r siden",
         "col_after": "Nu",
-        "note": "Snapshot af den 10-\u00e5rige amerikanske statsrente nu sammenlignet med for et \u00e5r siden. \u00c6ndringer vises i procentpoint."
+        "note": "Snapshot af den 10-\u00e5rige amerikanske statsrente sammenlignet med niveauet for 5 \u00e5r siden. \u00c6ndringer vises i procentpoint."
       }
     ]
   }

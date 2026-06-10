@@ -1,0 +1,356 @@
+{
+  "1": {
+    "status": "PASS",
+    "figures": 6,
+    "duration": "already tested",
+    "error": null,
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": []
+  },
+  "2": {
+    "status": "PASS",
+    "error": null,
+    "figures": 3,
+    "figure_titles": [
+      "Forsvarsaktier indekseret til 100 — 5-årsperiode",
+      "Event impact — Forsvarsaktier indekseret til 100 — 5-årsperiode",
+      "Forsvarsaktier — nøgletal før og nu"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 19.0
+  },
+  "3": {
+    "status": "PASS",
+    "error": null,
+    "figures": 3,
+    "figure_titles": [
+      "Guld- og kobberpriser — safe haven vs. industrimetal",
+      "Event impact — Guld- og kobberpriser — safe haven vs. industrimetal",
+      "Guld og kobber — før og efter Iran-krigen"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 14.1
+  },
+  "4": {
+    "status": "PASS",
+    "error": null,
+    "figures": 4,
+    "figure_titles": [
+      "10-årige statsobligationsrenter — Europa og USA",
+      "10-årige statsobligationsrenter — historisk udvikling",
+      "10-årige statsobligationsrenter — nøgletal",
+      "Rentespænd til Tyskland — 10-årige statsobligationer"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 31.6
+  },
+  "5": {
+    "status": "PASS",
+    "error": null,
+    "figures": 4,
+    "figure_titles": [
+      "Amerikansk rentekurve — 2-årig og 10-årig statsobligation",
+      "Nøgletal — amerikanske statsobligationsrenter",
+      "Rentespænd 10Y minus 2Y — inverteret rentekurve (USA)",
+      "Nøgletal — rentespænd 10Y-2Y (USA)"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 23.2
+  },
+  "6": {
+    "status": "PASS",
+    "error": null,
+    "figures": 3,
+    "figure_titles": [
+      "Centralbankers politikrenter — Fed, ECB og Bank of England",
+      "Event impact — Centralbankers politikrenter — Fed, ECB og Bank of England",
+      "Politikrenter — nøgletal oversigt"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 16.6
+  },
+  "7": {
+    "status": "PASS",
+    "error": null,
+    "figures": 2,
+    "figure_titles": [
+      "Globale aktiemarkeder — kursudvikling indekseret til 100",
+      "Globale aktiemarkeder — nøgletal"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 16.4
+  },
+  "8": {
+    "status": "PASS",
+    "error": null,
+    "figures": 3,
+    "figure_titles": [
+      "Den amerikanske dollar — DXY og valutakurser",
+      "Event impact — Den amerikanske dollar — DXY og valutakurser",
+      "Nøgletal — DXY og valutakurser"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 24.1
+  },
+  "9": {
+    "status": "PASS",
+    "error": null,
+    "figures": 2,
+    "figure_titles": [
+      "Europæiske vedvarende energiselskaber vs. oliemajorer — kursudvikling indekseret",
+      "Kursudvikling — vedvarende energi vs. oliemajorer, nøgletal"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 16.2
+  },
+  "10": {
+    "status": "PASS",
+    "error": null,
+    "figures": 4,
+    "figure_titles": [
+      "10-årige statsobligationsrenter — absolutte niveauer",
+      "10-årige statsobligationsrenter — nøgletal",
+      "Rentespænd vs. Tyskland — Frankrig og Italien (10-årige statsobligationer)",
+      "Rentespænd vs. Tyskland — nøgletal"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 17.3
+  },
+  "11": {
+    "status": "PASS",
+    "error": null,
+    "figures": 9,
+    "figure_titles": [
+      "Brent råolie — pris pr. tønde",
+      "Event impact — Brent råolie — pris pr. tønde",
+      "Brent råolie — før og efter toldannoncen",
+      "S&P 500 og guld — indekseret prisudvikling",
+      "Event impact — S&P 500 og guld — indekseret prisudvikling",
+      "S&P 500 og guld — før og efter toldannoncen",
+      "EUR/USD valutakurs",
+      "Event impact — EUR/USD valutakurs",
+      "EUR/USD — før og efter toldannoncen"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 27.5
+  },
+  "12": {
+    "status": "PASS",
+    "error": null,
+    "figures": 7,
+    "figure_titles": [
+      "EU's energiomstilling — brændselsmix over tid",
+      "EU's energimix — senest tilgængelige år (2020)",
+      "EU's energimix — senest tilgængelige år (2021)",
+      "EU's energimix — senest tilgængelige år (2022)",
+      "EU's energimix — senest tilgængelige år (2023)",
+      "EU's energimix — senest tilgængelige år (2024)",
+      "EU's energimix — senest tilgængelige år — Sammenligning"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 17.7
+  },
+  "13": {
+    "status": "PASS",
+    "error": null,
+    "figures": 2,
+    "figure_titles": [
+      "Global inflationsudvikling — headline CPI/HICP år-over-år",
+      "Global inflation — nøgletal oversigt"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 15.0
+  },
+  "14": {
+    "status": "PASS",
+    "error": null,
+    "figures": 10,
+    "figure_titles": [
+      "Brent råolie — daglige priser",
+      "Brent råolie — nøgletal",
+      "Guld — daglige priser",
+      "Guld — nøgletal",
+      "S&P 500 — kursudvikling",
+      "S&P 500 — nøgletal",
+      "EUR/USD — valutakurs",
+      "EUR/USD — nøgletal",
+      "10-årig amerikansk statsrente",
+      "10-årig amerikansk statsrente — nøgletal"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [
+      "Y-axis label 'Indeks' lacks units; should specify 'Indekseret (basis=100)' or 'Punkt' to clarify the metric scale for investors."
+    ],
+    "duration": 38.1
+  },
+  "15": {
+    "status": "PASS",
+    "error": null,
+    "figures": 7,
+    "figure_titles": [
+      "EU's elproduktion fordelt på energikilder",
+      "EU's elproduktion — seneste år (snapshot) (2020)",
+      "EU's elproduktion — seneste år (snapshot) (2021)",
+      "EU's elproduktion — seneste år (snapshot) (2022)",
+      "EU's elproduktion — seneste år (snapshot) (2023)",
+      "EU's elproduktion — seneste år (snapshot) (2024)",
+      "EU's elproduktion — seneste år (snapshot) — Sammenligning"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 14.7
+  },
+  "16": {
+    "status": "NO_OUTPUT",
+    "error": null,
+    "figures": 0,
+    "figure_titles": [],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 80.8
+  },
+  "17": {
+    "status": "NO_OUTPUT",
+    "error": null,
+    "figures": 0,
+    "figure_titles": [],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 132.6
+  },
+  "18": {
+    "status": "PASS",
+    "error": null,
+    "figures": 8,
+    "figure_titles": [
+      "Kina — BNP-vækst (%)",
+      "Kina — Nøgletal (oversigt)",
+      "Kina — Inflation, CPI (%)",
+      "Kina — Inflation, CPI (%)",
+      "Kina — Arbejdsløshed (%)",
+      "Kina — Arbejdsløshed (%)",
+      "Kina — Betalingsbalance (% af BNP)",
+      "Kina — Betalingsbalance (% af BNP)"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 49.1
+  },
+  "19": {
+    "status": "PASS",
+    "error": null,
+    "figures": 8,
+    "figure_titles": [
+      "Apple Inc. — Værdiansættelsesoversigt",
+      "Apple Inc. — Regnskabsoversigt",
+      "Apple Inc. — Omsætning & NOPAT (USDmia.)",
+      "Apple Inc. — WACC",
+      "Apple Inc. — DCF-scenarier",
+      "Apple Inc. — DCF Prognose (Basis)",
+      "Apple Inc. — Følsomhed: Fair value / aktie (USD)",
+      "Apple Inc. — Markedsnøgletal"
+    ],
+    "log_errors": [],
+    "log_warns": [
+      "  [annual_report] DA #1 (reformulation): **Devil's Advocate Review:**\n\n• **Cash FCF vs Penman FCF divergence** – WARN\n  Cash FCF (98,767) is 41% higher than Penm...",
+      "  [annual_report] DA #3 (valuation): # Devil's Advocate Review\n\n• **WARN – Valuation severely disconnected from market.** Fair value 90.12 vs. market price 2..."
+    ],
+    "reviewer_flags": [],
+    "duration": 33.7
+  },
+  "20": {
+    "status": "PASS",
+    "error": null,
+    "figures": 9,
+    "figure_titles": [
+      "Amazon.com, Inc. — Værdiansættelsesoversigt",
+      "Revisionsflag",
+      "Amazon.com, Inc. — Regnskabsoversigt",
+      "Amazon.com, Inc. — Omsætning & NOPAT (USDmia.)",
+      "Amazon.com, Inc. — WACC",
+      "Amazon.com, Inc. — DCF-scenarier",
+      "Amazon.com, Inc. — DCF Prognose (Basis)",
+      "Amazon.com, Inc. — Følsomhed: Fair value / aktie (USD)",
+      "Amazon.com, Inc. — Markedsnøgletal"
+    ],
+    "log_errors": [],
+    "log_warns": [],
+    "reviewer_flags": [],
+    "duration": 35.8
+  },
+  "21": {
+    "status": "PASS",
+    "error": null,
+    "figures": 9,
+    "figure_titles": [
+      "Microsoft Corporation — Værdiansættelsesoversigt",
+      "Revisionsflag",
+      "Microsoft Corporation — Regnskabsoversigt",
+      "Microsoft Corporation — Omsætning & NOPAT (USDmia.)",
+      "Microsoft Corporation — WACC",
+      "Microsoft Corporation — DCF-scenarier",
+      "Microsoft Corporation — DCF Prognose (Basis)",
+      "Microsoft Corporation — Følsomhed: Fair value / aktie (USD)",
+      "Microsoft Corporation — Markedsnøgletal"
+    ],
+    "log_errors": [],
+    "log_warns": [
+      "  [annual_report] DA #1 (reformulation): # Devil's Advocate Financial Review\n\n• **Cash FCF vs Penman FCF divergence (2.3x gap)** — WARN. Cash FCF of $71.6k is mo...",
+      "  [annual_report] DA #2 (final): • **Base/Market Ratio Severely Depressed (0.46x) — WARN**: Trading at less than half fair value suggests either (1) mark..."
+    ],
+    "reviewer_flags": [],
+    "duration": 42.8
+  },
+  "22": {
+    "status": "PASS",
+    "error": null,
+    "figures": 9,
+    "figure_titles": [
+      "NVIDIA Corporation — Værdiansættelsesoversigt",
+      "Revisionsflag",
+      "NVIDIA Corporation — Regnskabsoversigt",
+      "NVIDIA Corporation — Omsætning & NOPAT (USDmia.)",
+      "NVIDIA Corporation — WACC",
+      "NVIDIA Corporation — DCF-scenarier",
+      "NVIDIA Corporation — DCF Prognose (Basis)",
+      "NVIDIA Corporation — Følsomhed: Fair value / aktie (USD)",
+      "NVIDIA Corporation — Markedsnøgletal"
+    ],
+    "log_errors": [],
+    "log_warns": [
+      "  [annual_report] DA #1 (reformulation): # Devil's Advocate Review\n\n• **NOA positive but FCF gap unexplained — WARN**\nNOA of 88,217 is healthy, but Cash FCF (96,..."
+    ],
+    "reviewer_flags": [],
+    "duration": 34.3
+  }
+}

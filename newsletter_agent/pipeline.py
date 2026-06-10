@@ -496,8 +496,19 @@ def _patch_chart_spec_for_missing(chart_spec: dict, still_missing: list) -> dict
         title = title.strip(" —,")
         new_spec["title"] = title
 
-    missing_str = ", ".join(still_missing)
+    # Also scrub missing entity names from the original note text so the footer
+    # does not reference countries/series that have no data (e.g. "Sverige" when
+    # Sweden's World Bank series is absent).
     existing_note = new_spec.get("note", "").rstrip(". ")
+    if missing_entities and existing_note:
+        for entity in missing_entities:
+            esc = re.escape(entity)
+            existing_note = re.sub(rf"\s+og\s+{esc}", "", existing_note, flags=re.IGNORECASE)
+            existing_note = re.sub(rf"\b{esc}\s+og\s+", "", existing_note, flags=re.IGNORECASE)
+            existing_note = re.sub(rf",?\s*{esc}\b", "", existing_note, flags=re.IGNORECASE)
+        existing_note = re.sub(r"\s{2,}", " ", existing_note).strip(" —,")
+
+    missing_str = ", ".join(still_missing)
     gap_note = f"Data for {missing_str} ikke tilgængeligt via Verdensbanken."
     new_spec["note"] = f"{existing_note} {gap_note}".strip() if existing_note else gap_note
     return new_spec
@@ -782,6 +793,16 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
                 merged = index_to_100(merged, base_date=base_date_ts)
             else:
                 merged = index_to_100(merged)
+            # Normalise the y_label to the canonical Danish form so the axis is always clear.
+            # Exception: DXY is a natural index — keep "Indeks" without the "(basis=100)" qualifier.
+            _cols_lower_explicit = [c.lower() for c in merged.columns]
+            _has_dxy_explicit = any(
+                "dxy" in c or "dollar index" in c or "dollarindeks" in c
+                for c in _cols_lower_explicit
+            )
+            if not _has_dxy_explicit:
+                chart_spec = {**chart_spec, "y_label": "Indekseret (basis = 100)"}
+                y_label = "Indekseret (basis = 100)"
 
         # Safety net: if series have wildly incompatible scales (>10x range ratio),
         # auto-index even if y_label doesn't request it, to avoid invisible lines.

@@ -394,9 +394,9 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
         if typical_gap <= 10 and len(series) > 60:
             # Daily/weekly → resample to monthly mean (preserves sign of change data)
-            series = series.resample("ME").mean().dropna()
+            series = series.resample("M").mean().dropna()
         elif 20 <= typical_gap <= 45 and len(series) > 120:
-            series = series.resample("QE").mean().dropna()
+            series = series.resample("Q").mean().dropna()
 
         values = series.values
         n_bars = len(values)
