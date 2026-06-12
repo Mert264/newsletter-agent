@@ -460,6 +460,135 @@
       line-height: 1.4;
     }
 
+    /* ── Adjustment chat ── */
+    #adjustmentSection {
+      display: none;
+      grid-column: 1 / -1;
+    }
+    #adjustmentSection .card-body {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .adj-history {
+      max-height: 360px;
+      overflow-y: auto;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .adj-msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .adj-msg.user {
+      align-self: flex-end;
+      background: #11716c;
+      color: #fff;
+      border-bottom-right-radius: 3px;
+    }
+    .adj-msg.system {
+      align-self: flex-start;
+      background: #f0faf9;
+      border: 1px solid #a7d9d5;
+      color: #1a2a2a;
+      border-bottom-left-radius: 3px;
+    }
+    .adj-msg .adj-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      opacity: .7;
+      margin-bottom: 4px;
+    }
+    .adj-msg.user .adj-label { color: rgba(255,255,255,.75); }
+    .adj-msg.system .adj-label { color: #11716c; }
+    .adj-figures-thumb {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .adj-figures-thumb img {
+      height: 80px;
+      border-radius: 5px;
+      border: 1px solid #e4eaea;
+      cursor: zoom-in;
+    }
+    .adj-input-row {
+      display: flex;
+      gap: 10px;
+      padding: 14px 20px;
+      border-top: 1px solid #e4eaea;
+      background: #f8fafa;
+    }
+    #adjInput {
+      flex: 1;
+      border: 1.5px solid #d1d5db;
+      border-radius: 7px;
+      padding: 9px 13px;
+      font-size: 13.5px;
+      font-family: inherit;
+      color: #1a2a2a;
+      transition: border-color .2s;
+    }
+    #adjInput:focus { outline: none; border-color: #11716c; }
+    #adjSendBtn {
+      background: #11716c;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 9px 20px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    #adjSendBtn:hover:not(:disabled) { background: #0d5a56; }
+    #adjSendBtn:disabled { background: #93c5c2; cursor: not-allowed; }
+
+    /* Recent adjustment chips */
+    .adj-recent-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding: 0 20px 12px;
+    }
+    .adj-recent-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      padding: 0 20px;
+      margin-bottom: 4px;
+      margin-top: 6px;
+    }
+    .adj-chip {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      color: #374151;
+      border-radius: 20px;
+      padding: 4px 11px;
+      font-size: 11.5px;
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+      font-family: inherit;
+      max-width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .adj-chip:hover { border-color: #11716c; color: #11716c; background: #f0faf9; }
+
     /* ── Lightbox ── */
     #lightbox {
       display: none;
