@@ -23,9 +23,9 @@ def _get_client():
         return _client
 
     url = os.getenv("SUPABASE_URL")
-    key = os.getenv("SUPABASE_KEY")
+    key = os.getenv("SUPABASE_SERVICE_KEY") or os.getenv("SUPABASE_KEY")
     if not url or not key:
-        logger.debug("SUPABASE_URL/SUPABASE_KEY not set — usage logging disabled")
+        logger.debug("SUPABASE_URL/SUPABASE_SERVICE_KEY not set — usage logging disabled")
         return None
 
     try:
