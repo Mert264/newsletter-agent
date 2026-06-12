@@ -885,6 +885,20 @@
     </div>
   </div>
 
+  <!-- ── Adjustment chat ── -->
+  <div class="card" id="adjustmentSection">
+    <div class="card-header">💬 Tilpas visualiseringen</div>
+    <div class="card-body">
+      <div class="adj-history" id="adjHistory"></div>
+      <div class="adj-recent-label" id="adjRecentLabel" style="display:none">Seneste justeringer</div>
+      <div class="adj-recent-row" id="adjRecentRow"></div>
+      <div class="adj-input-row">
+        <input type="text" id="adjInput" placeholder="Tilpas visualiseringen..." autocomplete="off">
+        <button id="adjSendBtn" onclick="submitAdjustment()">Send</button>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <!-- Lightbox -->
