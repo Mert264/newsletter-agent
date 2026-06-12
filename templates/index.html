@@ -1025,6 +1025,7 @@ function startRun() {
     payload.period_days = activePeriodDays;
   }
   // activePeriodDays === null → LLM decides, no period param sent
+  lastFullBrief = payload.brief;
 
   fetch('/run', {
     method: 'POST',
