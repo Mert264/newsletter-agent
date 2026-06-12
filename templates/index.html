@@ -1065,6 +1065,8 @@ function startStream() {
       statusMsg.textContent = `✓ ${n} figur${n === 1 ? '' : 'er'} klar`;
       document.getElementById('runBtn').disabled = false;
       try { localStorage.setItem('njFigures', JSON.stringify(msg.figures)); } catch(e) {}
+      // Show adjustment section and seed history
+      showAdjustmentSection(msg.figures || []);
       es.close();
     } else if (msg.type === 'error') {
       appendLog('FEJL: ' + msg.text, 'error');
