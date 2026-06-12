@@ -912,6 +912,9 @@
 let activeVizSet = new Set(['figur']);
 let activePeriodDays = null; // null = LLM decides
 let es = null;
+let originalBrief = '';        // stores the raw brief text (without viz hints)
+let lastFullBrief = '';        // stores the full brief sent to /run (with hints)
+let adjustmentHistory = [];    // [{role:'user'|'system', text:..., figures?:...}]
 
 // ── VISUALISERINGSTYPE ──
 function setViz(el) {
