@@ -994,7 +994,13 @@ function startRun() {
   document.getElementById('logBox').innerHTML = '';
   document.getElementById('figuresPanel').style.display = 'none';
   document.getElementById('figuresGrid').innerHTML = '';
+  document.getElementById('adjustmentSection').style.display = 'none';
+  adjustmentHistory = [];
+  document.getElementById('adjHistory').innerHTML = '';
   resetSteps();
+
+  // Track the original brief for adjustments
+  originalBrief = brief;
 
   // Build payload
   const vizHints = {
