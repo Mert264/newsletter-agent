@@ -1215,6 +1215,246 @@ window.addEventListener('load', function() {
   } catch(e) {}
 });
 history.scrollRestoration = 'manual';
+
+// ── Adjustment chat ──
+
+function showAdjustmentSection(figures) {
+  const section = document.getElementById('adjustmentSection');
+  const historyEl = document.getElementById('adjHistory');
+
+  // Only seed original prompt on first show (not on adjustment re-runs)
+  if (adjustmentHistory.length === 0) {
+    adjustmentHistory.push({ role: 'user', text: originalBrief });
+    adjustmentHistory.push({ role: 'system', text: `${figures.length} figur${figures.length === 1 ? '' : 'er'} genereret.`, figures: figures });
+  }
+
+  renderAdjHistory();
+  renderRecentChips();
+  section.style.display = 'block';
+  document.getElementById('adjSendBtn').disabled = false;
+}
+
+function renderAdjHistory() {
+  const historyEl = document.getElementById('adjHistory');
+  historyEl.innerHTML = '';
+  const ts = Date.now();
+  adjustmentHistory.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'adj-msg ' + item.role;
+    const label = item.role === 'user' ? 'Dig' : 'Agent';
+    let html = `<div class="adj-label">${label}</div><div>${escHtml(item.text)}</div>`;
+    if (item.figures && item.figures.length) {
+      html += '<div class="adj-figures-thumb">';
+      item.figures.forEach(fig => {
+        const url = `/figures/${escHtml(fig.path)}?t=${ts}`;
+        html += `<img src="${url}" alt="${escHtml(fig.title)}" onclick="openLightbox('${url}')">`;
+      });
+      html += '</div>';
+    }
+    div.innerHTML = html;
+    historyEl.appendChild(div);
+  });
+  historyEl.scrollTop = historyEl.scrollHeight;
+}
+
+function submitAdjustment() {
+  const input = document.getElementById('adjInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const sendBtn = document.getElementById('adjSendBtn');
+  sendBtn.disabled = true;
+  input.value = '';
+
+  // Add to chat history
+  adjustmentHistory.push({ role: 'user', text: text });
+  renderAdjHistory();
+
+  // Save to recent adjustments in localStorage
+  saveRecentAdjustment(text);
+
+  // Build the combined brief
+  let combinedBrief = lastFullBrief + ' [Justering: ' + text + ']';
+
+  // Extract viz hint from adjustment text
+  let adjVizHint = null;
+  const vizMap = {
+    'søjle': 'soejle', 'søjlediagram': 'soejle', 'bar': 'soejle',
+    'tabel': 'tabel', 'table': 'tabel',
+    'cirkel': 'cirkel', 'cirkeldiagram': 'cirkel', 'pie': 'cirkel',
+    'figur': 'figur', 'linje': 'figur', 'linjegraf': 'figur', 'line': 'figur',
+  };
+  const lowerText = text.toLowerCase();
+  for (const [keyword, vizType] of Object.entries(vizMap)) {
+    if (lowerText.includes(keyword)) {
+      adjVizHint = vizType;
+      break;
+    }
+  }
+
+  // Extract period from adjustment text
+  let adjPeriodDays = null;
+  let adjStartDate = null;
+  let adjEndDate = null;
+
+  // Match "2023-2024" or "2020-2025" style year ranges
+  const yearRangeMatch = text.match(/(\d{4})\s*[-–]\s*(\d{4})/);
+  if (yearRangeMatch) {
+    adjStartDate = yearRangeMatch[1] + '-01-01';
+    adjEndDate = yearRangeMatch[2] + '-12-31';
+  }
+
+  // Match "seneste X år/måneder"
+  const periodMatch = text.match(/seneste\s+(\d+)\s+(år|måned(?:er)?|uge(?:r)?|dag(?:e)?)/i);
+  if (periodMatch) {
+    const num = parseInt(periodMatch[1], 10);
+    const unit = periodMatch[2].toLowerCase();
+    if (unit.startsWith('år')) adjPeriodDays = num * 365;
+    else if (unit.startsWith('måned')) adjPeriodDays = num * 30;
+    else if (unit.startsWith('uge')) adjPeriodDays = num * 7;
+    else adjPeriodDays = num;
+  }
+
+  // Build payload — reuse /run
+  const payload = { brief: combinedBrief };
+  if (adjVizHint) payload.viz_hint = adjVizHint;
+  if (adjStartDate) payload.start_date = adjStartDate;
+  if (adjEndDate) payload.end_date = adjEndDate;
+  if (adjPeriodDays) payload.period_days = adjPeriodDays;
+
+  // Update UI for re-run
+  const runBtn = document.getElementById('runBtn');
+  const statusMsg = document.getElementById('statusMsg');
+  runBtn.disabled = true;
+  statusMsg.className = 'running';
+  statusMsg.textContent = 'Justerer...';
+  document.getElementById('logBox').innerHTML = '';
+  resetSteps();
+
+  // Track the new brief
+  lastFullBrief = combinedBrief;
+
+  fetch('/run', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  }).then(r => r.json()).then(data => {
+    if (data.error) {
+      statusMsg.className = 'error';
+      statusMsg.textContent = '✗ ' + data.error;
+      runBtn.disabled = false;
+      sendBtn.disabled = false;
+      adjustmentHistory.push({ role: 'system', text: 'Fejl: ' + data.error });
+      renderAdjHistory();
+      return;
+    }
+    startAdjustmentStream();
+  }).catch(() => {
+    statusMsg.className = 'error';
+    statusMsg.textContent = '✗ Forbindelsesfejl';
+    runBtn.disabled = false;
+    sendBtn.disabled = false;
+    adjustmentHistory.push({ role: 'system', text: 'Forbindelsesfejl — prøv igen.' });
+    renderAdjHistory();
+  });
+}
+
+function startAdjustmentStream() {
+  if (es) { es.close(); }
+  es = new EventSource('/stream');
+  es.onmessage = function(e) {
+    const msg = JSON.parse(e.data);
+    if (msg.type === 'connected' || msg.type === 'heartbeat') return;
+    if (msg.type === 'log') {
+      appendLog(msg.text);
+      updateSteps(msg.text);
+    } else if (msg.type === 'done') {
+      finishAllSteps();
+      const figures = msg.figures || [];
+      const n = figures.length;
+      renderFigures(figures);
+      const statusMsg = document.getElementById('statusMsg');
+      statusMsg.className = 'done';
+      statusMsg.textContent = `✓ ${n} figur${n === 1 ? '' : 'er'} klar (justeret)`;
+      document.getElementById('runBtn').disabled = false;
+      document.getElementById('adjSendBtn').disabled = false;
+      try { localStorage.setItem('njFigures', JSON.stringify(figures)); } catch(e) {}
+      // Add result to adjustment history
+      adjustmentHistory.push({ role: 'system', text: `${n} figur${n === 1 ? '' : 'er'} genereret.`, figures: figures });
+      renderAdjHistory();
+      es.close();
+    } else if (msg.type === 'error') {
+      appendLog('FEJL: ' + msg.text, 'error');
+      const statusMsg = document.getElementById('statusMsg');
+      statusMsg.className = 'error';
+      statusMsg.textContent = '✗ Fejl — tjek log';
+      document.getElementById('runBtn').disabled = false;
+      document.getElementById('adjSendBtn').disabled = false;
+      adjustmentHistory.push({ role: 'system', text: 'Pipeline-fejl — tjek log.' });
+      renderAdjHistory();
+      es.close();
+    }
+  };
+  es.onerror = function() {
+    appendLog('Streamforbindelsen afbrudt.', 'error');
+    document.getElementById('runBtn').disabled = false;
+    document.getElementById('adjSendBtn').disabled = false;
+    if (es) es.close();
+  };
+}
+
+// ── Enter key support for adjustment input ──
+document.getElementById('adjInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    submitAdjustment();
+  }
+});
+
+// ── Recent adjustments (localStorage) ──
+const ADJ_STORAGE_KEY = 'njRecentAdjustments';
+const ADJ_MAX_RECENT = 5;
+
+function loadRecentAdjustments() {
+  try {
+    return JSON.parse(localStorage.getItem(ADJ_STORAGE_KEY) || '[]');
+  } catch(e) { return []; }
+}
+
+function saveRecentAdjustment(text) {
+  let recent = loadRecentAdjustments();
+  // Remove duplicate if exists
+  recent = recent.filter(r => r !== text);
+  // Add to front
+  recent.unshift(text);
+  // Keep max 5
+  if (recent.length > ADJ_MAX_RECENT) recent = recent.slice(0, ADJ_MAX_RECENT);
+  try { localStorage.setItem(ADJ_STORAGE_KEY, JSON.stringify(recent)); } catch(e) {}
+}
+
+function renderRecentChips() {
+  const recent = loadRecentAdjustments();
+  const label = document.getElementById('adjRecentLabel');
+  const row = document.getElementById('adjRecentRow');
+  if (!recent.length) {
+    label.style.display = 'none';
+    row.innerHTML = '';
+    return;
+  }
+  label.style.display = 'block';
+  row.innerHTML = '';
+  recent.forEach(text => {
+    const chip = document.createElement('button');
+    chip.className = 'adj-chip';
+    chip.textContent = text;
+    chip.title = text;
+    chip.onclick = function() {
+      document.getElementById('adjInput').value = text;
+      document.getElementById('adjInput').focus();
+    };
+    row.appendChild(chip);
+  });
+}
 </script>
 </body>
 </html>
