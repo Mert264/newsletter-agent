@@ -1,75 +1,65 @@
 {
-  "brief": "Hvad er status p\u00e5 inflation i USA, euroomr\u00e5det, Japan og Storbritannien? Sammenlign headline og kerne-inflation. [Pr\u00e6ference: S\u00f8jlediagram \u2014 v\u00e6lg selv lodret, vandret eller stablet efter datans natur]",
-  "date": "2026-06-10",
+  "brief": "Vis guldprisen og den amerikanske realrente (TIPS). Hvad er sammenh\u00e6ngen?",
+  "date": "2026-06-12",
   "figures": [
     {
       "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_00.png",
       "metadata": {
-        "title": "Headline-inflation \u2014 USA, Euroomr\u00e5det, UK og Japan",
+        "title": "Guldpris (USD pr. troy ounce)",
         "chart_type": "A",
         "x_label": "Dato",
-        "y_label": "%",
-        "note": "\u00c5rlig forbrugerprisinflation (YoY %) for USA, euroomr\u00e5det, UK og Japan. Alle serier er allerede opgjort som \u00e5rsrate. USA: OECD MEI via FRED; Euroomr\u00e5det: Eurostat HICP; UK: OECD MEI via FRED; Japan: OECD MEI via FRED.",
-        "kilde": "FRED og Eurostat",
+        "y_label": "USD/troy oz",
+        "note": "Daglige lukkepriser for guld (spot) m\u00e5lt i amerikanske dollar pr. troy ounce. Guld betragtes som et sikkert aktiv og reagerer typisk negativt p\u00e5 stigende realrenter, da det ikke giver l\u00f8bende afkast.",
+        "kilde": "Yahoo Finance",
         "region_labels": [
-          "USA \u2014 Headline",
-          "Euroomr\u00e5det \u2014 Headline",
-          "UK \u2014 Headline",
-          "Japan \u2014 Headline"
+          "Guld"
         ],
-        "excel_path": "figure_00_Headline-inflation \u2014 USA, Euroomr\u00e5det, UK og .xlsx"
+        "excel_path": "figure_00_Guldpris (USD pr. troy ounce).xlsx"
       }
     },
     {
       "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_01.png",
       "metadata": {
-        "title": "Headline-inflation \u2014 n\u00f8gletal",
+        "title": "Guld \u2014 n\u00f8gletal",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af headline-inflation i de fire \u00f8konomier. \u00c6ndringen vises i procentpoint (pp) relativt til niveauet for ca. fem \u00e5r siden.",
-        "kilde": "FRED og Eurostat",
+        "note": "Snapshot af guldprisen sammenlignet med niveauet for ca. fem \u00e5r siden. Viser den absolutte prisudvikling over perioden.",
+        "kilde": "Yahoo Finance",
         "region_labels": [
-          "USA \u2014 Headline",
-          "Euroomr\u00e5det \u2014 Headline",
-          "UK \u2014 Headline",
-          "Japan \u2014 Headline"
+          "Guld"
         ]
       }
     },
     {
       "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_02.png",
       "metadata": {
-        "title": "Aktuel headline-inflation \u2014 sammenligning p\u00e5 tv\u00e6rs",
-        "chart_type": "B",
-        "x_label": "Land/region",
+        "title": "Amerikanske realrenter \u2014 TIPS (5- og 10-\u00e5rig)",
+        "chart_type": "A",
+        "x_label": "Dato",
         "y_label": "%",
-        "note": "S\u00f8jlediagram med den seneste tilg\u00e6ngelige headline-inflation (YoY %) for hvert land og region. Viser i \u00e9t \u00f8jekast, hvor langt de fire \u00f8konomier er fra 2%-m\u00e5let.",
-        "kilde": "FRED og Eurostat",
+        "note": "Daglige realrenter p\u00e5 amerikanske statsobligationer med inflationsbeskyttelse (TIPS) for henholdsvis 5 og 10 \u00e5rs l\u00f8betid. Negative realrenter \u00f8ger typisk guldets relative attraktivitet, da alternativomkostningen ved at holde guld falder.",
+        "kilde": "FRED",
         "region_labels": [
-          "USA \u2014 Headline",
-          "Euroomr\u00e5det \u2014 Headline",
-          "UK \u2014 Headline",
-          "Japan \u2014 Headline"
+          "5-\u00e5rig realrente (TIPS)",
+          "10-\u00e5rig realrente (TIPS)"
         ],
-        "excel_path": "figure_02_Aktuel headline-inflation \u2014 sammenligning p\u00e5 .xlsx"
+        "excel_path": "figure_02_Amerikanske realrenter \u2014 TIPS (5- og 10-\u00e5rig).xlsx"
       }
     },
     {
       "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_03.png",
       "metadata": {
-        "title": "USA \u2014 Headline vs. kerne-inflation",
-        "chart_type": "A",
-        "x_label": "Dato",
-        "y_label": "%",
-        "note": "Sammenligning af USA's headline CPI (OECD MEI), kerne-CPI (ex. f\u00f8devarer og energi) og kerne-PCE (Fed's foretrukne inflationsm\u00e5l) over de seneste fem \u00e5r. Alle serier er opgjort som \u00e5rsrate (YoY %).",
-        "kilde": "FRED og Eurostat",
+        "title": "Realrenter (TIPS) \u2014 n\u00f8gletal",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af de amerikanske realrenter sammenlignet med niveauet for ca. fem \u00e5r siden. \u00c6ndringer vises i procentpoint.",
+        "kilde": "FRED",
         "region_labels": [
-          "USA \u2014 Headline",
-          "USA \u2014 Kerne",
-          "USA \u2014 Kerne PCE"
-        ],
-        "excel_path": "figure_03_USA \u2014 Headline vs. kerne-inflation.xlsx"
+          "5-\u00e5rig realrente (TIPS)",
+          "10-\u00e5rig realrente (TIPS)"
+        ]
       }
     }
   ]

@@ -1,132 +1,101 @@
 {
   "specialists": [
+    "commodities",
     "macro"
   ],
-  "macro": {
+  "commodities": {
     "series": [
       {
-        "ticker": "CPALTT01USM659N",
-        "source": "fred",
-        "label": "USA \u2014 Headline",
-        "region": "USA",
-        "unit": "%"
-      },
-      {
-        "ticker": "ea_hicp_yoy",
-        "source": "eurostat_ts",
-        "label": "Euroomr\u00e5det \u2014 Headline",
-        "region": "Euroomr\u00e5det",
-        "unit": "%"
-      },
-      {
-        "ticker": "CPALTT01GBM659N",
-        "source": "fred",
-        "label": "UK \u2014 Headline",
-        "region": "UK",
-        "unit": "%"
-      },
-      {
-        "ticker": "CPALTT01JPM659N",
-        "source": "fred",
-        "label": "Japan \u2014 Headline",
-        "region": "Japan",
-        "unit": "%"
-      },
-      {
-        "ticker": "CPILFESL",
-        "source": "fred",
-        "label": "USA \u2014 Kerne",
-        "region": "USA",
-        "unit": "%"
-      },
-      {
-        "ticker": "PCEPILFE",
-        "source": "fred",
-        "label": "USA \u2014 Kerne PCE",
-        "region": "USA",
-        "unit": "%"
+        "ticker": "GC=F",
+        "source": "yfinance",
+        "label": "Guld",
+        "region": "Global",
+        "unit": "USD/troy oz",
+        "transform": "",
+        "conversion": ""
       }
     ],
     "charts": [
       {
         "type": "A",
-        "title": "Headline-inflation \u2014 USA, Euroomr\u00e5det, UK og Japan",
+        "title": "Guldpris (USD pr. troy ounce)",
         "x_label": "Dato",
-        "y_label": "%",
+        "y_label": "USD/troy oz",
         "period_days": 1825,
         "series_labels": [
-          "USA \u2014 Headline",
-          "Euroomr\u00e5det \u2014 Headline",
-          "UK \u2014 Headline",
-          "Japan \u2014 Headline"
+          "Guld"
         ],
-        "note": "\u00c5rlig forbrugerprisinflation (YoY %) for USA, euroomr\u00e5det, UK og Japan. Alle serier er allerede opgjort som \u00e5rsrate. USA: OECD MEI via FRED; Euroomr\u00e5det: Eurostat HICP; UK: OECD MEI via FRED; Japan: OECD MEI via FRED.",
-        "reference_lines": [
-          {
-            "y": 2.0,
-            "label": "2%-m\u00e5l",
-            "color": "#9ca3af"
-          }
-        ]
+        "note": "Daglige lukkepriser for guld (spot) m\u00e5lt i amerikanske dollar pr. troy ounce. Guld betragtes som et sikkert aktiv og reagerer typisk negativt p\u00e5 stigende realrenter, da det ikke giver l\u00f8bende afkast."
       },
       {
         "type": "D",
-        "title": "Headline-inflation \u2014 n\u00f8gletal",
+        "title": "Guld \u2014 n\u00f8gletal",
         "x_label": "",
-        "y_label": "%",
+        "y_label": "USD/troy oz",
         "period_days": 1825,
         "series_labels": [
-          "USA \u2014 Headline",
-          "Euroomr\u00e5det \u2014 Headline",
-          "UK \u2014 Headline",
-          "Japan \u2014 Headline"
+          "Guld"
         ],
         "before_date": "2021-04-01",
         "after_date": "latest",
         "col_before": "For 5 \u00e5r siden",
-        "col_after": "Seneste",
-        "note": "Snapshot af headline-inflation i de fire \u00f8konomier. \u00c6ndringen vises i procentpoint (pp) relativt til niveauet for ca. fem \u00e5r siden."
+        "col_after": "Nu",
+        "note": "Snapshot af guldprisen sammenlignet med niveauet for ca. fem \u00e5r siden. Viser den absolutte prisudvikling over perioden."
+      }
+    ]
+  },
+  "macro": {
+    "series": [
+      {
+        "ticker": "DFII5",
+        "source": "fred",
+        "label": "5-\u00e5rig realrente (TIPS)",
+        "unit": "%",
+        "transform": ""
       },
       {
-        "type": "B",
-        "title": "Aktuel headline-inflation \u2014 sammenligning p\u00e5 tv\u00e6rs",
-        "x_label": "Land/region",
-        "y_label": "%",
-        "period_days": 1825,
-        "series_labels": [
-          "USA \u2014 Headline",
-          "Euroomr\u00e5det \u2014 Headline",
-          "UK \u2014 Headline",
-          "Japan \u2014 Headline"
-        ],
-        "note": "S\u00f8jlediagram med den seneste tilg\u00e6ngelige headline-inflation (YoY %) for hvert land og region. Viser i \u00e9t \u00f8jekast, hvor langt de fire \u00f8konomier er fra 2%-m\u00e5let.",
-        "reference_lines": [
-          {
-            "y": 2.0,
-            "label": "2%-m\u00e5l",
-            "color": "#9ca3af"
-          }
-        ]
-      },
+        "ticker": "DFII10",
+        "source": "fred",
+        "label": "10-\u00e5rig realrente (TIPS)",
+        "unit": "%",
+        "transform": ""
+      }
+    ],
+    "charts": [
       {
         "type": "A",
-        "title": "USA \u2014 Headline vs. kerne-inflation",
+        "title": "Amerikanske realrenter \u2014 TIPS (5- og 10-\u00e5rig)",
         "x_label": "Dato",
         "y_label": "%",
         "period_days": 1825,
         "series_labels": [
-          "USA \u2014 Headline",
-          "USA \u2014 Kerne",
-          "USA \u2014 Kerne PCE"
+          "5-\u00e5rig realrente (TIPS)",
+          "10-\u00e5rig realrente (TIPS)"
         ],
-        "note": "Sammenligning af USA's headline CPI (OECD MEI), kerne-CPI (ex. f\u00f8devarer og energi) og kerne-PCE (Fed's foretrukne inflationsm\u00e5l) over de seneste fem \u00e5r. Alle serier er opgjort som \u00e5rsrate (YoY %).",
         "reference_lines": [
           {
-            "y": 2.0,
-            "label": "2%-m\u00e5l (Fed)",
+            "y": 0.0,
+            "label": "Nulgr\u00e6nse",
             "color": "#9ca3af"
           }
-        ]
+        ],
+        "note": "Daglige realrenter p\u00e5 amerikanske statsobligationer med inflationsbeskyttelse (TIPS) for henholdsvis 5 og 10 \u00e5rs l\u00f8betid. Negative realrenter \u00f8ger typisk guldets relative attraktivitet, da alternativomkostningen ved at holde guld falder."
+      },
+      {
+        "type": "D",
+        "title": "Realrenter (TIPS) \u2014 n\u00f8gletal",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 1825,
+        "series_labels": [
+          "5-\u00e5rig realrente (TIPS)",
+          "10-\u00e5rig realrente (TIPS)"
+        ],
+        "before_date": "2021-04-01",
+        "after_date": "latest",
+        "col_before": "For 5 \u00e5r siden",
+        "col_after": "Nu",
+        "note": "Snapshot af de amerikanske realrenter sammenlignet med niveauet for ca. fem \u00e5r siden. \u00c6ndringer vises i procentpoint."
       }
     ]
   }
