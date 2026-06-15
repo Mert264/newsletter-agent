@@ -35,10 +35,6 @@ C25_TOP: dict[str, str] = {
     "Ørsted":        "ORSTED.CO",
 }
 
-_FMP_BASE = "https://financialmodelingprep.com/api/v3"
-_TTL_SECONDS = 6 * 3600  # 6-hour cache for FMP calls (reuse newsletter_agent.cache if available)
-
-
 # ---------------------------------------------------------------------------
 # Internal helpers
 # ---------------------------------------------------------------------------
