@@ -193,6 +193,7 @@ SPECIALIST_MAP = {
     "equities":      fetch_equities,
     "eurostat":      fetch_eurostat,
     "worldbank":     fetch_worldbank,
+    "imf":           fetch_imf,
     "annual_report": fetch_annual_report,
 }
 
