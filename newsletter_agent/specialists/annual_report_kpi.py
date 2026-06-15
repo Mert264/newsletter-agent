@@ -676,7 +676,7 @@ def build_chart_specs(
 
 # ── Peer comparison table ──────────────────────────────────────────────────────
 
-def build_peer_comparison_spec(peer_data: dict, company_name: str, ticker: str) -> dict | None:
+def build_peer_comparison_spec(peer_data: dict, company_name: str, ticker: str):
     """Build a chart spec (type D table) comparing the target company against peers.
 
     peer_data is the dict returned by fetch_peer_comparison().
