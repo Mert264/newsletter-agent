@@ -120,14 +120,26 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
 
 def _dcf_price(reformulated: dict, wacc: float, g: float,
                NFO: float, NCI: float, diluted_shares: float,
-               base_year: int, n_years: int = 5) -> tuple:
+               base_year: int, n_years: int = 5,
+               consensus_revs: list = None) -> tuple:
+    """Build DCF forecast.
+
+    consensus_revs: optional list of analyst consensus revenue values (millions) for
+    years 1..len(consensus_revs).  Those years are labelled '[C]' (consensus) in
+    forecast_years; remaining years fall back to historical CAGR, labelled '[H]'.
+    If None or empty, all years use historical CAGR (pure '[H]' behaviour).
+    """
     avgs     = reformulated["historical_avgs"]
     rev_cagr = avgs["revenue_cagr"]
     og_avg   = avgs["OG"]
     ato_avg  = avgs["ATO"]
     base_rev = reformulated["revenue"][-1]
 
+    # Filter out zero/null consensus values so bad data gracefully falls back to CAGR
+    c_revs = [r for r in (consensus_revs or []) if r and r > 0]
+
     forecast_years, rev_f, oi_f, noa_f, dnoa_f, fcf_f, df_f, pv_f = [], [], [], [], [], [], [], []
+    rev_source = []  # "consensus" or "historical" per year — stored in detail for display
 
     # Q1: If latest reported NOA is anomalous vs historical ATO, normalize the starting point.
     # This prevents a spurious first-year ΔNOA reversal from dominating the valuation.
@@ -139,8 +151,17 @@ def _dcf_price(reformulated: dict, wacc: float, g: float,
         prev_NOA = noa_raw
 
     for t_idx in range(1, n_years + 1):
-        yr_label = f"{base_year + t_idx}E"
-        rev      = base_rev * ((1 + rev_cagr) ** t_idx)
+        # Use analyst consensus for covered years; fall back to CAGR for the rest
+        if t_idx <= len(c_revs):
+            rev    = c_revs[t_idx - 1]
+            source = "consensus"
+            suffix = "[C]"
+        else:
+            rev    = base_rev * ((1 + rev_cagr) ** t_idx)
+            source = "historical"
+            suffix = "[H]"
+
+        yr_label = f"{base_year + t_idx}E{suffix}"
         oi       = rev * og_avg
         noa      = rev / ato_avg if ato_avg != 0 else prev_NOA
         dnoa     = noa - prev_NOA
@@ -151,6 +172,7 @@ def _dcf_price(reformulated: dict, wacc: float, g: float,
         forecast_years.append(yr_label)
         rev_f.append(rev); oi_f.append(oi); noa_f.append(noa)
         dnoa_f.append(dnoa); fcf_f.append(fcf); df_f.append(disc); pv_f.append(pv)
+        rev_source.append(source)
         prev_NOA = noa
 
     total_PV = sum(pv_f)
@@ -170,6 +192,8 @@ def _dcf_price(reformulated: dict, wacc: float, g: float,
         NFO=NFO, NCI=NCI, equity_value=eq_val,
         diluted_shares=diluted_shares, price_per_share=price,
         g=g, n_years=n_years,
+        revenue_source=rev_source,
+        consensus_years=len(c_revs),
     )
     return price, detail
 
