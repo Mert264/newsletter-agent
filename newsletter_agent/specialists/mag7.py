@@ -155,54 +155,52 @@ def _fmt_x(val: float, decimals: int = 1) -> str:
     return "N/A" if np.isnan(val) else f"{val:.{decimals}f}x"
 
 
-def _fetch_fmp_metrics(name: str, ticker: str, api_key: str) -> tuple[str, Optional[dict]]:
-    """Fetch key-metrics-ttm + ratios-ttm for one ticker from FMP."""
-    cache_key_kwargs = dict(ticker=ticker, kind="fmp_ttm")
+def _fetch_yf_metrics(name: str, ticker: str) -> tuple[str, Optional[dict]]:
+    """Fetch fundamentals for one ticker via yfinance ticker.info."""
+    cache_key_kwargs = dict(ticker=ticker, kind="yf_info")
     cached = cache_get("mag7", _TTL, **cache_key_kwargs)
     if cached is not None:
         try:
-            print(f"    [mag7] Cache hit FMP: {ticker}")
+            print(f"    [mag7] Cache hit yf_info: {ticker}")
             return name, cached
         except Exception:
             pass
 
     try:
-        km_url = f"{_FMP_BASE}/key-metrics-ttm/{ticker}"
-        km_resp = requests.get(km_url, params={"apikey": api_key}, timeout=15)
-        km_resp.raise_for_status()
-        km_data = km_resp.json()
-        km = km_data[0] if isinstance(km_data, list) and km_data else {}
+        with YF_LOCK:
+            info = yf.Ticker(ticker).info
 
-        rt_url = f"{_FMP_BASE}/ratios-ttm/{ticker}"
-        rt_resp = requests.get(rt_url, params={"apikey": api_key}, timeout=15)
-        rt_resp.raise_for_status()
-        rt_data = rt_resp.json()
-        rt = rt_data[0] if isinstance(rt_data, list) and rt_data else {}
+        market_cap = _safe_float(info.get("marketCap"))
+        fcf        = _safe_float(info.get("freeCashflow"))
 
-        # Profile for market cap + YTD return
-        prof_url = f"{_FMP_BASE}/profile/{ticker}"
-        prof_resp = requests.get(prof_url, params={"apikey": api_key}, timeout=15)
-        prof_resp.raise_for_status()
-        prof_data = prof_resp.json()
-        prof = prof_data[0] if isinstance(prof_data, list) and prof_data else {}
+        # P/FCF = marketCap / freeCashflow
+        if not np.isnan(market_cap) and not np.isnan(fcf) and fcf != 0:
+            p_fcf = market_cap / fcf
+        else:
+            p_fcf = float("nan")
+
+        # FCF Yield = freeCashflow / marketCap
+        if not np.isnan(fcf) and not np.isnan(market_cap) and market_cap != 0:
+            fcf_yield = fcf / market_cap
+        else:
+            fcf_yield = float("nan")
 
         result = {
-            "market_cap":      _safe_float(prof.get("mktCap")),
-            "price":           _safe_float(prof.get("price")),
-            "pe":              _safe_float(km.get("peRatioTTM") or rt.get("priceEarningsRatioTTM")),
-            "ev_ebitda":       _safe_float(km.get("enterpriseValueOverEBITDATTM")),
-            "ps":              _safe_float(km.get("priceToSalesRatioTTM") or rt.get("priceToSalesRatioTTM")),
-            "p_fcf":           _safe_float(km.get("priceToFreeCashFlowsTTM") or rt.get("priceToFreeCashFlowsTTM")),
-            "rev_growth":      _safe_float(km.get("revenueGrowthTTM") or rt.get("revenueGrowthTTM")),
-            "nopat_margin":    _safe_float(km.get("netProfitMarginTTM") or rt.get("netProfitMarginTTM")),
-            "roe":             _safe_float(km.get("roeTTM") or rt.get("returnOnEquityTTM")),
-            "fcf_yield":       _safe_float(km.get("freeCashFlowYieldTTM")),
+            "market_cap":   market_cap,
+            "pe":           _safe_float(info.get("trailingPE")),
+            "ev_ebitda":    _safe_float(info.get("enterpriseToEbitda")),
+            "ps":           _safe_float(info.get("priceToSalesTrailing12Months")),
+            "p_fcf":        p_fcf,
+            "rev_growth":   _safe_float(info.get("revenueGrowth")),
+            "nopat_margin": _safe_float(info.get("profitMargins")),
+            "roe":          _safe_float(info.get("returnOnEquity")),
+            "fcf_yield":    fcf_yield,
         }
 
         cache_put("mag7", result, **cache_key_kwargs)
         return name, result
     except Exception as e:
-        print(f"    [mag7] FMP fetch error {ticker}: {e}")
+        print(f"    [mag7] yfinance metrics error {ticker}: {e}")
         return name, None
 
 
