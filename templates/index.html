@@ -1037,19 +1037,10 @@ document.getElementById('lightbox').addEventListener('click', function(e) {
   if (e.target === this) closeLightbox();
 });
 
-// ── Restore last run on page load ──
+// ── Clear figures on page load ──
 window.addEventListener('load', function() {
   window.scrollTo(0, 0);
-  try {
-    const saved = JSON.parse(localStorage.getItem('njFigures') || 'null');
-    if (saved && saved.length) {
-      renderFigures(saved);
-      const n = saved.length;
-      const statusMsg = document.getElementById('statusMsg');
-      statusMsg.className = 'done';
-      statusMsg.textContent = `● Seneste kørsel gendannet — ${n} figur(er)`;
-    }
-  } catch(e) {}
+  try { localStorage.removeItem('njFigures'); } catch(e) {}
 });
 history.scrollRestoration = 'manual';
 </script>
