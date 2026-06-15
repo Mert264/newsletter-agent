@@ -960,9 +960,13 @@ function startStream() {
     }
   };
   es.onerror = function() {
-    appendLog('Streamforbindelsen afbrudt.', 'error');
-    document.getElementById('runBtn').disabled = false;
     if (es) es.close();
+    es = null;
+    if (!document.getElementById('runBtn').disabled) return;
+    appendLog('Streamforbindelsen afbrudt — gentilslutter...', 'warn');
+    setTimeout(function() {
+      if (document.getElementById('runBtn').disabled) startStream();
+    }, 3000);
   };
 }
 
