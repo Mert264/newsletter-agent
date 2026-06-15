@@ -351,7 +351,11 @@ def fetch_all(ticker: str, api_key: str) -> dict:
 
     balance   = _get("balance-sheet-statement", api_key, symbol=ticker, period="annual")
     cashflow  = _get("cash-flow-statement",     api_key, symbol=ticker, period="annual")
-    profile   = _get("profile",                 api_key, symbol=ticker)
+    try:
+        profile = _get("profile", api_key, symbol=ticker)
+    except requests.HTTPError:
+        print(f"  [annual_report] FMP profile failed for {ticker} — falling back to yfinance")
+        return _yf_fetch_all(ticker)
     try:
         rating = _get("ratings-snapshot", api_key, symbol=ticker)
     except requests.HTTPError:
