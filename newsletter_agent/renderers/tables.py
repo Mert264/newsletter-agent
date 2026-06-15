@@ -55,10 +55,10 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
         return output_path
 
     n_rows = len(rows)
-    n_cols = len(cols) + 1   # +1 for indicator column
+    n_data_cols = len(cols)
+    n_cols = n_data_cols + 1
 
-    # Dynamic height: taller for more rows
-    row_height = 0.46         # inches per data row
+    row_height = 0.46
     header_h   = 0.50
     fig_h      = max(2.2, header_h + n_rows * row_height + 0.6)
     fig_w = _dynamic_table_width(n_data_cols)
@@ -66,10 +66,6 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     fig, ax = plt.subplots(figsize=(fig_w, fig_h), dpi=BRAND["figure_dpi"])
     ax.axis("off")
     fig.patch.set_facecolor(BRAND["background"])
-
-    # ── Column widths ─────────────────────────────────────────────────────
-    # Shrink indicator column for wide tables so data columns have enough space
-    n_data_cols = len(cols)
     indicator_w = 0.25 if n_data_cols >= 8 else (0.30 if n_data_cols >= 5 else 0.40)
     other_w     = (1.0 - indicator_w) / n_data_cols if n_data_cols else 1.0
     col_widths  = [indicator_w] + [other_w] * n_data_cols
