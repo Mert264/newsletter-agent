@@ -1,141 +1,72 @@
 [
   {
     "figure_id": 0,
-    "specialist": "commodities",
+    "specialist": "macro",
     "series_specs": [
       {
-        "ticker": "GC=F",
-        "source": "yfinance",
-        "label": "Guld",
-        "region": "Global",
-        "unit": "USD/troy oz",
-        "transform": "",
-        "conversion": ""
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA 10-\u00e5rig statsrente",
+        "region": "USA",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tyskland 10-\u00e5rig statsrente",
+        "region": "Europa",
+        "unit": "%"
       }
     ],
     "chart_spec": {
       "type": "A",
-      "title": "Guldpris (USD pr. troy ounce)",
+      "title": "10-\u00e5rige statsrenter \u2014 USA og Tyskland",
       "x_label": "Dato",
-      "y_label": "USD/troy oz",
-      "period_days": 1825,
+      "y_label": "%",
+      "period_days": 730,
       "series_labels": [
-        "Guld"
+        "USA 10-\u00e5rig statsrente",
+        "Tyskland 10-\u00e5rig statsrente"
       ],
-      "note": "Daglige lukkepriser for guld (spot) m\u00e5lt i amerikanske dollar pr. troy ounce. Guld betragtes som et sikkert aktiv og reagerer typisk negativt p\u00e5 stigende realrenter, da det ikke giver l\u00f8bende afkast.",
-      "display_period_days": 1825
+      "note": "M\u00e5nedlige 10-\u00e5rige statsrenter for USA og Tyskland de seneste to \u00e5r. Disse renter er centrale benchmarks for globale finansmarkeder og afspejler forventninger til v\u00e6kst og inflation."
     },
-    "brief": "Vis guldprisen og den amerikanske realrente (TIPS). Hvad er sammenh\u00e6ngen?"
+    "brief": "test"
   },
   {
     "figure_id": 1,
-    "specialist": "commodities",
+    "specialist": "macro",
     "series_specs": [
       {
-        "ticker": "GC=F",
-        "source": "yfinance",
-        "label": "Guld",
-        "region": "Global",
-        "unit": "USD/troy oz",
-        "transform": "",
-        "conversion": ""
+        "ticker": "DGS10",
+        "source": "fred",
+        "label": "USA 10-\u00e5rig statsrente",
+        "region": "USA",
+        "unit": "%"
+      },
+      {
+        "ticker": "IRLTLT01DEM156N",
+        "source": "fred",
+        "label": "Tyskland 10-\u00e5rig statsrente",
+        "region": "Europa",
+        "unit": "%"
       }
     ],
     "chart_spec": {
       "type": "D",
-      "title": "Guld \u2014 n\u00f8gletal",
-      "x_label": "",
-      "y_label": "USD/troy oz",
-      "period_days": 1825,
-      "series_labels": [
-        "Guld"
-      ],
-      "before_date": "2021-04-01",
-      "after_date": "latest",
-      "col_before": "For 5 \u00e5r siden",
-      "col_after": "Nu",
-      "note": "Snapshot af guldprisen sammenlignet med niveauet for ca. fem \u00e5r siden. Viser den absolutte prisudvikling over perioden.",
-      "display_period_days": 1825
-    },
-    "brief": "Vis guldprisen og den amerikanske realrente (TIPS). Hvad er sammenh\u00e6ngen?"
-  },
-  {
-    "figure_id": 2,
-    "specialist": "macro",
-    "series_specs": [
-      {
-        "ticker": "DFII5",
-        "source": "fred",
-        "label": "5-\u00e5rig realrente (TIPS)",
-        "unit": "%",
-        "transform": ""
-      },
-      {
-        "ticker": "DFII10",
-        "source": "fred",
-        "label": "10-\u00e5rig realrente (TIPS)",
-        "unit": "%",
-        "transform": ""
-      }
-    ],
-    "chart_spec": {
-      "type": "A",
-      "title": "Amerikanske realrenter \u2014 TIPS (5- og 10-\u00e5rig)",
-      "x_label": "Dato",
-      "y_label": "%",
-      "period_days": 1825,
-      "series_labels": [
-        "5-\u00e5rig realrente (TIPS)",
-        "10-\u00e5rig realrente (TIPS)"
-      ],
-      "reference_lines": [
-        {
-          "y": 0.0,
-          "label": "Nulgr\u00e6nse",
-          "color": "#9ca3af"
-        }
-      ],
-      "note": "Daglige realrenter p\u00e5 amerikanske statsobligationer med inflationsbeskyttelse (TIPS) for henholdsvis 5 og 10 \u00e5rs l\u00f8betid. Negative realrenter \u00f8ger typisk guldets relative attraktivitet, da alternativomkostningen ved at holde guld falder.",
-      "display_period_days": 1825
-    },
-    "brief": "Vis guldprisen og den amerikanske realrente (TIPS). Hvad er sammenh\u00e6ngen?"
-  },
-  {
-    "figure_id": 3,
-    "specialist": "macro",
-    "series_specs": [
-      {
-        "ticker": "DFII5",
-        "source": "fred",
-        "label": "5-\u00e5rig realrente (TIPS)",
-        "unit": "%",
-        "transform": ""
-      },
-      {
-        "ticker": "DFII10",
-        "source": "fred",
-        "label": "10-\u00e5rig realrente (TIPS)",
-        "unit": "%",
-        "transform": ""
-      }
-    ],
-    "chart_spec": {
-      "type": "D",
-      "title": "Realrenter (TIPS) \u2014 n\u00f8gletal",
+      "title": "10-\u00e5rige statsrenter \u2014 snapshot",
       "x_label": "",
       "y_label": "%",
-      "period_days": 1825,
+      "period_days": 730,
       "series_labels": [
-        "5-\u00e5rig realrente (TIPS)",
-        "10-\u00e5rig realrente (TIPS)"
+        "USA 10-\u00e5rig statsrente",
+        "Tyskland 10-\u00e5rig statsrente"
       ],
-      "before_date": "2021-04-01",
+      "before_date": "2024-04-01",
       "after_date": "latest",
-      "col_before": "For 5 \u00e5r siden",
+      "col_before": "1 \u00e5r siden",
       "col_after": "Nu",
-      "note": "Snapshot af de amerikanske realrenter sammenlignet med niveauet for ca. fem \u00e5r siden. \u00c6ndringer vises i procentpoint.",
-      "display_period_days": 1825
+      "note": "Snapshot af 10-\u00e5rige statsrenter for USA og Tyskland. \u00c6ndringer vises i procentpoint."
     },
-    "brief": "Vis guldprisen og den amerikanske realrente (TIPS). Hvad er sammenh\u00e6ngen?"
+    "brief": "test"
   }
 ]
