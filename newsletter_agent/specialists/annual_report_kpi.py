@@ -434,12 +434,7 @@ def build_chart_specs(
         "x_label": "Regnskabsår",
         "y_label": _unit,
         "series_labels": ["trend_rev_oi"],
-        "note": (
-            f"Viser omsætningsudvikling (toplinje) over for driftsoverskud efter skat (NOPAT = EBIT×(1−{_pct(t)})). "
-            f"Omsætnings-CAGR: {_pct(rev_cagr)} ({cagr_label}). "
-            f"Når NOPAT vokser hurtigere end omsætningen, udvides marginerne — det mest værdiskabende signal. "
-            f"Et voksende gab afslører operationel løftestang; et aftagende gab signalerer omkostningspres."
-        ),
+        "note": f"Omsætning og NOPAT, FY{years[0]}–FY{years[-1]}. Kilde: FMP.",
         "kilde": kilde,
     })
 
