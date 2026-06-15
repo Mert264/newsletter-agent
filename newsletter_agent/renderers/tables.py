@@ -12,11 +12,18 @@ def _wrap_col(text: str, max_chars: int = 14) -> str:
     """Wrap a column header at max_chars so it never overflows narrow cells."""
     return "\n".join(textwrap.wrap(str(text), width=max_chars))
 
-# Table is wider than charts to accommodate more columns
 FIGSIZE_TABLE = (
     BRAND["figure_width_px"] / BRAND["figure_dpi"],
     BRAND["figure_height_px"] * 0.55 / BRAND["figure_dpi"],
 )
+
+def _dynamic_table_width(n_data_cols: int) -> float:
+    base = BRAND["figure_width_px"] / BRAND["figure_dpi"]
+    if n_data_cols >= 10:
+        return base * 1.35
+    if n_data_cols >= 7:
+        return base * 1.15
+    return base
 
 
 def render_type_d(data: dict, spec: dict, output_path: str) -> str:
