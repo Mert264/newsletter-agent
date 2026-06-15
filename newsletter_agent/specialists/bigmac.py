@@ -138,26 +138,24 @@ def fetch_bigmac(task: dict) -> dict:
             dataframes[label_adj] = s_adj
             dataframes[label_price] = s_price
 
-            chart_specs = []
-            if True:
-                chart_specs.append({
-                    "type": "A",
-                    "title": f"Big Mac Index — {country_name}",
-                    "series_labels": [label_raw, label_adj],
-                    "x_label": "",
-                    "y_label": "Over-/undervurdering ift. USD (%)",
-                    "note": "Råindeks og BNP-justeret indeks. Positivt tal = overvurderet valuta.",
-                    "freq": "M",
-                })
-                chart_specs.append({
-                    "type": "A",
-                    "title": f"Big Mac-pris i USD — {country_name}",
-                    "series_labels": [label_price],
-                    "x_label": "",
-                    "y_label": "USD",
-                    "note": "Faktisk pris på en Big Mac i USD.",
-                    "freq": "M",
-                })
+            chart_specs.append({
+                "type": "A",
+                "title": f"Big Mac Index — {country_name}",
+                "series_labels": [label_raw, label_adj],
+                "x_label": "",
+                "y_label": "Over-/undervurdering ift. USD (%)",
+                "note": "Råindeks og BNP-justeret indeks. Positivt tal = overvurderet valuta.",
+                "freq": "M",
+            })
+            chart_specs.append({
+                "type": "A",
+                "title": f"Big Mac-pris i USD — {country_name}",
+                "series_labels": [label_price],
+                "x_label": "",
+                "y_label": "USD",
+                "note": "Faktisk pris på en Big Mac i USD.",
+                "freq": "M",
+            })
         else:
             print(f"    [bigmac] No data for country '{single_iso}'.")
 
