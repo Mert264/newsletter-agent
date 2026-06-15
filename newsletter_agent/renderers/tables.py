@@ -154,7 +154,8 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     for j in range(n_cols):
         cell = table[0, j]
         cell.set_facecolor(BRAND["primary"])
-        cell.set_text_props(color="white", fontweight="bold", fontsize=10)
+        header_font = base_font + 0.5 if n_data_cols >= 8 else base_font + 1
+        cell.set_text_props(color="white", fontweight="bold", fontsize=header_font)
         cell.set_edgecolor("#0a5550")
 
     summary_indicators = {"median", "gennemsnit", "total", "sum", "avg", "mean", "average"}
