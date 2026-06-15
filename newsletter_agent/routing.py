@@ -142,6 +142,17 @@ ROUTING_RULES = [
         "Angiv landet med 'country'-felt (ISO2-kode, fx 'USA', 'DEU', 'GBR', 'FRA', 'JPN'). "
         "Type='A' for tidsserie. y_label fra units i KNOWN_DATASETS.",
     ),
+    # Big Mac Index / PPP / currency valuation → bigmac specialist
+    (
+        lambda b: _BIGMAC.search(b),
+        "For Big Mac Index, PPP og valutavurdering: brug specialist='bigmac', source='the_economist'. "
+        "Enkelt-land: angiv 'country' som ISO-3-kode (fx 'DNK', 'CHN', 'USA') — returnerer tidsserie (type A) "
+        "med USD_raw og USD_adjusted over/undervurdering. "
+        "Lande-sammenligning (standard): udelad 'country' — returnerer snapshot søjlediagram (type B) "
+        "med alle lande rangeret efter over/undervurdering. "
+        "For specifikt udvalg af lande: angiv 'countries' liste med ISO-3-koder. "
+        "y_label='Over-/undervurdering ift. USD (%)'. Kilde='The Economist'.",
+    ),
     # Country economy → World Bank (fires when country-specific economy keyword present, not EU/US)
     (
         lambda b: _COUNTRY_ECON_KW.search(b) and not _EU.search(b) and not _US.search(b),
