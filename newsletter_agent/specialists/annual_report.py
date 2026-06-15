@@ -106,6 +106,12 @@ def fetch_annual_report(task: dict) -> dict:
         reformulated, wacc_data, dcf_scenarios, sensitivity, fmp_data,
     )
 
+    if _data_source == "yfinance" and chart_specs:
+        chart_specs[0]["note"] = (
+            chart_specs[0].get("note", "") +
+            " NB: Baseret på historisk CAGR — ingen analytikerestimater tilgængelige."
+        ).strip()
+
     bear_price = dcf_scenarios["bear"]["price"]
     bull_price = dcf_scenarios["bull"]["price"]
     da5 = review_final(chart_specs, (bear_price, base_price, bull_price), market_price, client)
