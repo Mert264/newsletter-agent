@@ -40,8 +40,7 @@ _BIGMAC    = _re(
     r"\b(big mac|bigmac|big-mac|hamburger index|ppp|purchasing power parity|"
     r"købekraftparitet|købekraft|valutavurdering|valutaværdi|"
     r"overvurderet valuta|undervurderet valuta|currency valuation|"
-    r"overvalued|undervalued currency|the economist index)\b",
-    re.IGNORECASE,
+    r"overvalued|undervalued currency|the economist index)\b"
 )
 
 ROUTING_RULES = [
