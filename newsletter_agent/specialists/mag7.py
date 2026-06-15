@@ -373,7 +373,7 @@ def _build_table() -> tuple[dict, list[str], dict]:
         "table_data": table_data,
     }
 
-    return table_data, ["FMP", "Yahoo Finance"], chart_spec
+    return table_data, ["Yahoo Finance"], chart_spec
 
 
 # ---------------------------------------------------------------------------
