@@ -299,7 +299,7 @@ def _build_table() -> tuple[dict, list[str], dict]:
     # Build rows — sort by market cap descending
     rows = []
     for name in MAG7:
-        metrics = fmp_results.get(name, {})
+        metrics = yf_results.get(name, {})
         row = {
             "indicator":   name,
             "Market Cap":  _fmt_market_cap(metrics.get("market_cap", float("nan"))),
