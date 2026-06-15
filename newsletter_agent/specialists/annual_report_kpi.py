@@ -570,18 +570,19 @@ def build_chart_specs(
         {"indicator": f"Fair value / aktie ({currency})", "Basisscenarie": f"{base_price:.0f}"},
     ]
 
-    specs.append({
-        "type": "D",
-        "title": f"{company_name} — DCF Prognose (Basis)",
-        "note": (
-            f"Basisscenarie: CAGR {_pct(base_sc['cagr'])} (baseret på {_rev_source_note}), "
-            f"NOPAT-margin {_pct(base_sc['og'])} (historisk gennemsnit). "
-            f"WACC {_pct(base_sc['wacc'])} og terminal vækst {_pct(base_sc['g'])} er modelindgange. "
-            f"EV = PV(FCF) + PV(terminalværdi). Egenkapitalværdi = EV − NFO − NCI."
-        ),
-        "kilde": kilde,
-        "table_data": {"columns": ["Basisscenarie"], "rows": dcf_detail_rows},
-    })
+    if False:  # DCF Prognose (Basis) — redundant with DCF-scenarier, not for analysts
+        specs.append({
+            "type": "D",
+            "title": f"{company_name} — DCF Prognose (Basis)",
+            "note": (
+                f"Basisscenarie: CAGR {_pct(base_sc['cagr'])} (baseret på {_rev_source_note}), "
+                f"NOPAT-margin {_pct(base_sc['og'])} (historisk gennemsnit). "
+                f"WACC {_pct(base_sc['wacc'])} og terminal vækst {_pct(base_sc['g'])} er modelindgange. "
+                f"EV = PV(FCF) + PV(terminalværdi). Egenkapitalværdi = EV − NFO − NCI."
+            ),
+            "kilde": kilde,
+            "table_data": {"columns": ["Basisscenarie"], "rows": dcf_detail_rows},
+        })
 
     # ══════════════════════════════════════════════════════════════════════════
     # Chart 7 — Sensitivity
