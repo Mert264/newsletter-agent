@@ -126,6 +126,10 @@ def rate_figure():
     rating = data.get("rating")
     if not figure_id or rating not in (1, 2, 3, 4, 5):
         return jsonify({"error": "Invalid rating"}), 400
+    import re
+    figure_id = re.sub(r"[^a-zA-Z0-9_\-]", "", figure_id)[:120]
+    if not figure_id:
+        return jsonify({"error": "Invalid figure_id"}), 400
     import datetime
     entry = {
         "figure_id": figure_id,
