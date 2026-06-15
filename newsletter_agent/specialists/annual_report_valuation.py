@@ -150,6 +150,25 @@ def _analyst_fwd_cagr(estimates: list, base_rev: float):
     return (est_rev / base_rev) ** (1.0 / n_yrs) - 1
 
 
+def _analyst_consensus_revs(estimates: list, base_year: int, n_consensus: int = 2) -> list:
+    """Return up to `n_consensus` per-year consensus revenue estimates sorted by fiscal year.
+
+    Returns a list of floats (in millions) indexed from year 1 onwards, covering only
+    future fiscal years relative to base_year. Empty list if no usable estimates.
+    """
+    if not estimates:
+        return []
+    future = sorted(
+        [
+            e for e in estimates
+            if (e.get("estimatedRevenueAvg") or 0) > 0
+            and int(str(e.get("date", "0"))[:4]) > base_year
+        ],
+        key=lambda x: x.get("date", ""),
+    )
+    return [float(e["estimatedRevenueAvg"]) for e in future[:n_consensus]]
+
+
 def compute_dcf_scenarios(
     reformulated: dict, wacc_base: float,
     NFO: float, NCI: float, diluted_shares: float, base_year: int,
