@@ -17,6 +17,7 @@ from newsletter_agent.specialists.equities import fetch_equities
 from newsletter_agent.specialists.eurostat import fetch_eurostat
 from newsletter_agent.specialists.worldbank import fetch_worldbank
 from newsletter_agent.specialists.imf import fetch_imf
+from newsletter_agent.specialists.oecd import fetch_oecd
 from newsletter_agent.processors.normalize import drop_nulls, align_dates, index_to_100, compute_yoy
 from newsletter_agent.processors.converters import apply_conversions
 from newsletter_agent.formatting import fmt_da, EXCEL_NUM_FORMAT
