@@ -127,7 +127,7 @@ def _build_price_chart(period_days: int) -> tuple[dict[str, pd.DataFrame], list[
 
 
 # ---------------------------------------------------------------------------
-# FMP fundamentals
+# yfinance fundamentals
 # ---------------------------------------------------------------------------
 
 def _safe_float(val, default: float = float("nan")) -> float:
