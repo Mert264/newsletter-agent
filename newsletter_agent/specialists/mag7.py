@@ -256,16 +256,16 @@ def _one_year_return(name: str, ticker: str) -> tuple[str, Optional[float]]:
         return name, None
 
 
-def _build_table(api_key: str) -> tuple[dict, list[str], dict]:
+def _build_table() -> tuple[dict, list[str], dict]:
     """Build the type-D comparison table for all 7 companies."""
-    fmp_results: dict[str, dict] = {}
+    yf_results: dict[str, dict] = {}
     ytd_results: dict[str, float] = {}
     one_y_results: dict[str, float] = {}
 
-    # Parallel: FMP + YTD + 1Y returns for all 7
+    # Parallel: yfinance fundamentals + YTD + 1Y returns for all 7
     with ThreadPoolExecutor(max_workers=_MAX_WORKERS) as pool:
-        fmp_futures = {
-            pool.submit(_fetch_fmp_metrics, name, ticker, api_key): ("fmp", name)
+        yf_futures = {
+            pool.submit(_fetch_yf_metrics, name, ticker): ("yf", name)
             for name, ticker in MAG7.items()
         }
         ytd_futures = {
@@ -277,14 +277,14 @@ def _build_table(api_key: str) -> tuple[dict, list[str], dict]:
             for name, ticker in MAG7.items()
         }
 
-        for fut in as_completed({**fmp_futures, **ytd_futures, **one_y_futures}):
+        for fut in as_completed({**yf_futures, **ytd_futures, **one_y_futures}):
             try:
                 result = fut.result()
-                if fut in fmp_futures:
-                    kind, name = fmp_futures[fut]
+                if fut in yf_futures:
+                    kind, name = yf_futures[fut]
                     name2, data = result
                     if data:
-                        fmp_results[name2] = data
+                        yf_results[name2] = data
                 elif fut in ytd_futures:
                     name2, val = result
                     if val is not None:
