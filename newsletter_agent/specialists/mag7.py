@@ -369,7 +369,7 @@ def _build_table() -> tuple[dict, list[str], dict]:
         "title": "Magnificent 7 — Nøgletal (TTM)",
         "x_label": "",
         "y_label": "",
-        "note": "TTM = Trailing Twelve Months. Kilde: FMP, Yahoo Finance.",
+        "note": "TTM = Trailing Twelve Months. Kilde: Yahoo Finance.",
         "table_data": table_data,
     }
 
