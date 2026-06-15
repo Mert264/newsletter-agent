@@ -36,6 +36,7 @@ def fetch_annual_report(task: dict) -> dict:
 
     print(f"  [annual_report] Fetching FMP data for {ticker}...")
     fmp_data = fetch_all(ticker, fmp_key)
+    _data_source = fmp_data.get("_source", "FMP")
 
     profile      = fmp_data["profile"]
     hq_country   = profile.get("country", "_default")
