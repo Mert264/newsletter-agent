@@ -14,6 +14,7 @@ from newsletter_agent.specialists.rates import fetch_rates
 from newsletter_agent.specialists.macro import fetch_macro
 from newsletter_agent.specialists.commodities import fetch_commodities
 from newsletter_agent.specialists.equities import fetch_equities
+from newsletter_agent.specialists.danish_equities import fetch_danish_equity
 from newsletter_agent.specialists.eurostat import fetch_eurostat
 from newsletter_agent.specialists.worldbank import fetch_worldbank
 from newsletter_agent.specialists.imf import fetch_imf
