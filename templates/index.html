@@ -453,6 +453,39 @@
       line-height: 1.4;
     }
 
+    /* ── Star rating ── */
+    .fig-rating {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 0 14px 10px;
+    }
+    .fig-rating .star {
+      font-size: 18px;
+      cursor: pointer;
+      color: #d1d5db;
+      transition: color .12s;
+      line-height: 1;
+      user-select: none;
+    }
+    .fig-rating .star.active { color: #d4843e; }
+    .fig-rating .star:hover,
+    .fig-rating .star:hover ~ .star { color: #d4843e; }
+    .fig-rating .rating-label {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-left: 8px;
+      min-width: 40px;
+    }
+    .fig-rating .rating-saved {
+      font-size: 11px;
+      color: #11716c;
+      margin-left: 6px;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .fig-rating .rating-saved.show { opacity: 1; }
+
     /* ── Lightbox ── */
     #lightbox {
       display: none;
