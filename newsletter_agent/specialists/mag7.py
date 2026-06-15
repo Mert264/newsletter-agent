@@ -322,29 +322,15 @@ def _build_table() -> tuple[dict, list[str], dict]:
         del r["_sort_key"]
 
     # Median row
-    def _median_of_pct_col(col_name: str, source: dict) -> str:
-        """Extract numeric from formatted strings in column and return median."""
-        vals = []
-        for name in MAG7:
-            metrics = source.get(name, {})
-            # Use raw values from fmp_results for median
-        return "—"
-
-    def _med(raw_vals: list) -> str:
-        clean = [v for v in raw_vals if not np.isnan(v)]
-        if not clean:
-            return "N/A"
-        return clean[len(clean) // 2] if len(clean) % 2 == 1 else (clean[len(clean)//2 - 1] + clean[len(clean)//2]) / 2
-
     def _med_x(key: str) -> str:
-        vals = sorted([fmp_results[n][key] for n in fmp_results if not np.isnan(fmp_results[n].get(key, float("nan")))])
+        vals = sorted([yf_results[n][key] for n in yf_results if not np.isnan(yf_results[n].get(key, float("nan")))])
         if not vals:
             return "N/A"
         m = vals[len(vals)//2] if len(vals) % 2 == 1 else (vals[len(vals)//2 - 1] + vals[len(vals)//2]) / 2
         return _fmt_x(m)
 
     def _med_pct(key: str) -> str:
-        vals = sorted([fmp_results[n][key] for n in fmp_results if not np.isnan(fmp_results[n].get(key, float("nan")))])
+        vals = sorted([yf_results[n][key] for n in yf_results if not np.isnan(yf_results[n].get(key, float("nan")))])
         if not vals:
             return "N/A"
         m = vals[len(vals)//2] if len(vals) % 2 == 1 else (vals[len(vals)//2 - 1] + vals[len(vals)//2]) / 2
