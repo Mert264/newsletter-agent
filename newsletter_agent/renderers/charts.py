@@ -183,18 +183,19 @@ def _draw_event_legend_strip(fig, events_drawn: list, y_bottom: float) -> float:
 
 def _apply_brand(ax, fig):
     """Apply brand styling to axes."""
+    plt.rcParams["font.family"] = "sans-serif"
+    plt.rcParams["font.sans-serif"] = [BRAND["font"], BRAND.get("font_fallback", "Arial")]
     ax.set_facecolor(BRAND["background"])
     fig.patch.set_facecolor(BRAND["background"])
-    ax.grid(True, color=BRAND["grid_color"], linewidth=0.4, linestyle="-")
+    ax.grid(True, color=BRAND["grid_color"], linewidth=0.35, linestyle="-", alpha=0.7)
     ax.set_axisbelow(True)
-    # Remove all spines for a clean, open look
     for spine in ax.spines.values():
         spine.set_visible(False)
-    # Restore bottom spine only (like Economist / FT style)
     ax.spines["bottom"].set_visible(True)
-    ax.spines["bottom"].set_color(BRAND["grid_color"])
-    ax.tick_params(labelsize=BRAND["font_size_axis"], colors=BRAND["secondary"],
-                   length=0)  # no tick marks, just labels
+    ax.spines["bottom"].set_color("#cccccc")
+    ax.spines["bottom"].set_linewidth(0.8)
+    ax.tick_params(labelsize=BRAND["font_size_axis"], colors="#555555",
+                   length=0)
     ax.title.set_color(BRAND["secondary"])
 
 
