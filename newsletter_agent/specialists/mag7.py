@@ -360,7 +360,7 @@ def _build_table() -> tuple[dict, list[str], dict]:
     rows.append(median_row)
 
     columns = ["Market Cap", "YTD", "1Y Afkast", "P/E", "EV/EBITDA", "P/S", "P/FCF",
-               "Omsætningsvækst", "NOPAT Margin", "ROE", "FCF Yield"]
+               "Rev. Vækst", "Margin", "ROE", "FCF Yield"]
 
     table_data = {"columns": columns, "rows": rows}
 
