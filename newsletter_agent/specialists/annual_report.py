@@ -140,8 +140,9 @@ def fetch_annual_report(task: dict) -> dict:
     except Exception as exc:
         print(f"  [annual_report] Market researcher failed (non-fatal): {exc}")
 
+    source_label = "Yahoo Finance" if _data_source == "yfinance" else "FMP"
     return {
         "dataframes":  dataframes,
-        "kilde":       ["FMP", "Damodaran"],
+        "kilde":       [source_label, "Damodaran"],
         "chart_specs": chart_specs,
     }
