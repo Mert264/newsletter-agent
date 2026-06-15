@@ -391,8 +391,6 @@ def fetch_mag7(task: dict) -> dict:
             "chart_specs": [chart_spec, ...],
         }
     """
-    api_key = API_KEYS.get("fmp", "")
-
     # Determine period from task charts — default 2 years (730 days)
     period_days = max(
         (c.get("period_days", 730) for c in task.get("charts", [])),
@@ -416,17 +414,14 @@ def fetch_mag7(task: dict) -> dict:
         print(f"  [mag7] Price chart error: {e}")
 
     # --- Chart 2: Fundamentals comparison table ---
-    if api_key:
-        try:
-            table_data, tbl_kilde, tbl_spec = _build_table(api_key)
-            for k in tbl_kilde:
-                if k not in all_kilde:
-                    all_kilde.append(k)
-            chart_specs.append(tbl_spec)
-        except Exception as e:
-            print(f"  [mag7] Table build error: {e}")
-    else:
-        print("  [mag7] No FMP API key — skipping fundamentals table.")
+    try:
+        table_data, tbl_kilde, tbl_spec = _build_table()
+        for k in tbl_kilde:
+            if k not in all_kilde:
+                all_kilde.append(k)
+        chart_specs.append(tbl_spec)
+    except Exception as e:
+        print(f"  [mag7] Table build error: {e}")
 
     # Dataframes dict must contain an entry for every series_label referenced
     # in chart_specs (non-table charts). Table charts are self-contained via table_data.
