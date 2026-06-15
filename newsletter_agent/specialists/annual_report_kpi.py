@@ -639,12 +639,7 @@ def build_chart_specs(
     specs.append({
         "type": "D",
         "title": f"{company_name} — Markedsnøgletal",
-        "note": (
-            "Krydstjek af DCF med markedsbaseret prissætning. "
-            "Reference: P/E 15–25×, EV/EBITDA 10–18×, EV/FCF 20–35×, P/B 2–5×, P/S 1–4×. "
-            "Kapitalintensive selskaber i den lave ende, aktivlette platforme i den høje."
-            + _mult_obs
-        ),
+        "note": "TTM-nøgletal vs. sektorreferencer. Kilde: FMP.",
         "kilde": kilde,
         "table_data": {"columns": ["Seneste 12M"], "rows": mult_rows},
     })
