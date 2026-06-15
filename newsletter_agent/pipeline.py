@@ -244,6 +244,8 @@ def _snapshot_value(series: pd.Series, date_str: str) -> float:
     Raises ValueError when the series is empty.
     """
     clean = series.dropna()
+    if clean.empty:
+        raise ValueError("Series is empty after dropna — cannot snapshot.")
     if not date_str or date_str == "latest":
         return float(clean.iloc[-1])
     ts = pd.Timestamp(date_str)
