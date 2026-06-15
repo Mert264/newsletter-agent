@@ -162,6 +162,17 @@ ROUTING_RULES = [
         "Type='A' for kursudvikling (indekseret til 100), type='D' for fundamentals-tabel. "
         "Kilde='Yahoo Finance' og 'Financial Modeling Prep'.",
     ),
+    # Magnificent 7 / Big Tech / FAANG → mag7 specialist
+    (
+        lambda b: _MAG7.search(b),
+        "For Magnificent 7 / Big Tech sammenligning: brug specialist='mag7'. "
+        "Producér to outputs: "
+        "(1) type='A' linjegraf — kursudvikling for alle 7 indekseret til 100 fra startdato (period_days=730 som standard). "
+        "(2) type='D' tabel — nøgletal (Market Cap, YTD, 1Y Afkast, P/E, EV/EBITDA, P/S, P/FCF, "
+        "Omsætningsvækst, NOPAT Margin, ROE, FCF Yield) sorteret efter Market Cap. "
+        "Ingen 'series' liste nødvendig — specialisten håndterer alle 7 selskaber internt. "
+        "Kilde='Yahoo Finance' og 'Financial Modeling Prep'.",
+    ),
     # Big Mac Index / PPP / currency valuation → bigmac specialist
     (
         lambda b: _BIGMAC.search(b),
