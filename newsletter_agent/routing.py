@@ -31,6 +31,8 @@ _EMPL = re.compile(
 )
 # Country economy keyword — fires only with an economy keyword AND a non-EU/US context
 _COUNTRY_ECON_KW = _re(r"\b(økonomi|makroprofil|makroøkonomisk|landeprofil|bnp|inflation i|gæld|betalingsbalance|arbejdsløshed i|ledighed i)\b")
+_IMF   = _re(r"\b(imf|international monetary fund|weo|world economic outlook|ifs|balance of payments|betalingsbalance|gæld til bnp|statsgæld|government debt|financial soundness|fsi)\b")
+_TRADE = _re(r"\b(trade balance|handelsbalance|eksport|import|current account|løbende konto|dots|direction of trade)\b")
 # Scorecard / multi-asset dashboard — enforces FRED-in-macro rule
 _SCORECARD = _re(r"\b(scorecard|dashboard|markedsscorecard|overblik|markedsoverblik|oversigt)\b")
 
