@@ -249,10 +249,7 @@ def build_chart_specs(
             f"større afvigelse skyldes typisk immaterielle aktiver ikke optaget på balancen."
         )
 
-    _exec_note = (
-        f"Penman DCF: FCF = NOPAT − ΔNOA, WACC {_pct(wacc)}, terminal vækst {_pct(base_sc['g'])}. "
-        f"{_model_note} Modeloutput — ikke et faktisk resultat."
-    )
+    _exec_note = f"Penman DCF-værdiansættelse. Kilde: FMP og Damodaran."
 
     specs.append({
         "type": "D",
