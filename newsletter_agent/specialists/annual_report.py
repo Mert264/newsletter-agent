@@ -110,14 +110,15 @@ def fetch_annual_report(task: dict) -> dict:
     da5 = review_final(chart_specs, (bear_price, base_price, bull_price), market_price, client)
     print(f"  [annual_report] DA #2 (final): {da5[:120]}...")
 
-    # Statement Auditor — insert after Valuation Summary (position 1) if flags found
-    print(f"  [annual_report] Running statement auditor...")
-    try:
-        audit_spec = audit_statements(fmp_data, reformulated)
-        if audit_spec:
-            chart_specs.insert(1, audit_spec)
-    except Exception as exc:
-        print(f"  [annual_report] Auditor failed (non-fatal): {exc}")
+    # Statement Auditor — disabled for clean macro-team output
+    # To restore: uncomment the block below
+    # print(f"  [annual_report] Running statement auditor...")
+    # try:
+    #     audit_spec = audit_statements(fmp_data, reformulated)
+    #     if audit_spec:
+    #         chart_specs.insert(1, audit_spec)
+    # except Exception as exc:
+    #     print(f"  [annual_report] Auditor failed (non-fatal): {exc}")
 
     # Peer Comparison — append after main valuation, before news
     print(f"  [annual_report] Fetching peer comparison...")
