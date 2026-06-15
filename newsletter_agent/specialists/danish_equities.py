@@ -1,7 +1,7 @@
 # danish_equities.py
 """
-Danish equities specialist — fetches C25 price history (yfinance) and
-key fundamentals (FMP ratios-ttm / key-metrics-ttm).
+Danish equities specialist — fetches C25 price history and key fundamentals
+entirely via yfinance (ticker.info + ticker.history).
 
 Entry point: fetch_danish_equity(task) → SpecialistResult dict
   {"dataframes": {...}, "kilde": [...], "chart_specs": [...]}
@@ -12,13 +12,12 @@ Routing:
 """
 from __future__ import annotations
 
-import requests
 import pandas as pd
 from datetime import date, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
 
-from newsletter_agent.config import API_KEYS, YF_LOCK
+from newsletter_agent.config import YF_LOCK
 
 # ---------------------------------------------------------------------------
 # C25 top constituents  (display name → yfinance / FMP ticker)
