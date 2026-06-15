@@ -550,6 +550,26 @@ def render_type_b(df: pd.DataFrame, spec: dict, output_path: str) -> str:
                     fontsize=9, fontweight="bold", color=BRAND["secondary"])
 
     ax.axhline(0, color="#888888", linewidth=0.7)
+
+    # Trendline overlay for time-series bar charts (linear only)
+    if is_timeseries:
+        bar_series_specs = spec.get("series", [])
+        tl_type = bar_series_specs[0].get("trendline") if bar_series_specs else None
+        if not tl_type:
+            tl_type = spec.get("trendline")
+        if tl_type:
+            import matplotlib.dates as _mdates_b
+            col = df.columns[0]
+            s_full = df[col].dropna()
+            bar_color_tl = _bar_color
+            # Linear only for bar charts
+            x_num = _mdates_b.date2num(s_full.index.to_pydatetime())
+            coeffs = np.polyfit(x_num, s_full.values, 1)
+            poly_fn = np.poly1d(coeffs)
+            ax.plot(s_full.index, poly_fn(x_num),
+                    color=bar_color_tl, linewidth=1.2, linestyle="--",
+                    alpha=0.75, label=f"{col} (trend)", zorder=5)
+
     ax.set_title(spec["title"], fontsize=BRAND["font_size_title"],
                  fontweight="bold", loc="left", color=BRAND["secondary"], pad=8)
     raw_xlabel = spec.get("x_label", "")
