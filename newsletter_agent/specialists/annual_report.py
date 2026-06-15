@@ -12,7 +12,7 @@ from newsletter_agent.specialists.annual_report_valuation import (
 from newsletter_agent.specialists.annual_report_da import (
     review_reformulation, review_valuation, review_final,
 )
-from newsletter_agent.specialists.annual_report_kpi import build_chart_specs
+from newsletter_agent.specialists.annual_report_kpi import build_chart_specs, build_peer_comparison_spec
 from newsletter_agent.specialists.annual_report_auditor import audit_statements
 from newsletter_agent.specialists.annual_report_market_researcher import fetch_market_researcher
 
