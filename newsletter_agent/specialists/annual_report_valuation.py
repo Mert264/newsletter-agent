@@ -281,7 +281,7 @@ def compute_dcf_scenarios(
     if base_consensus_revs:
         print(f"  [annual_report] INFO: Using analyst consensus for {len(base_consensus_revs)} DCF year(s) "
               f"({', '.join(f'{r:,.0f}' for r in base_consensus_revs)}), "
-              f"falling back to hist CAGR ({hist_cagr:.1%}) for remaining years.")
+              f"falling back to CAGR ({base_cagr:.1%}) for remaining years.")
     else:
         print(f"  [annual_report] INFO: No analyst consensus revenue data — using CAGR ({base_cagr:.1%}) for all DCF years.")
 
