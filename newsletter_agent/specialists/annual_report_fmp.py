@@ -135,14 +135,16 @@ def fetch_peer_comparison(ticker: str, api_key: str = "", peers: list = None) ->
     Returns empty dict on any failure.
     """
     try:
-        import yfinance as yf  # local import — optional dependency
+        import yfinance as yf
+        from newsletter_agent.config import YF_LOCK
 
         # 1. Determine peer tickers
         if peers is not None:
             peer_tickers = [t for t in peers if t != ticker][:5]
         else:
             try:
-                target_info = yf.Ticker(ticker).info
+                with YF_LOCK:
+                    target_info = yf.Ticker(ticker).info
                 sector = target_info.get("sector", "")
             except Exception:
                 sector = ""
@@ -154,7 +156,8 @@ def fetch_peer_comparison(ticker: str, api_key: str = "", peers: list = None) ->
         companies = []
         for t in all_tickers:
             try:
-                info = yf.Ticker(t).info
+                with YF_LOCK:
+                    info = yf.Ticker(t).info
                 if not info:
                     continue
 
