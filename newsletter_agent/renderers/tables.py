@@ -142,7 +142,7 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
         bbox=[0, 0, 1, 1],
     )
     table.auto_set_font_size(False)
-    base_font = 8 if n_data_cols >= 8 else (9 if n_data_cols >= 5 else 10)
+    base_font = 7.5 if n_data_cols >= 10 else (8 if n_data_cols >= 7 else (9 if n_data_cols >= 5 else 10))
     table.set_fontsize(base_font)
 
     # Expand header row height when headers wrap to multiple lines
