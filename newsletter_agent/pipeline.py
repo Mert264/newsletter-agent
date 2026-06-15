@@ -195,6 +195,7 @@ SPECIALIST_MAP = {
     "eurostat":      fetch_eurostat,
     "worldbank":     fetch_worldbank,
     "imf":           fetch_imf,
+    "oecd":          fetch_oecd,
     "annual_report": fetch_annual_report,
 }
 
