@@ -185,6 +185,7 @@ def _enforce_worldbank_single_country_layout(manifest: dict, period_days: int = 
 
 
 from newsletter_agent.specialists.annual_report import fetch_annual_report
+from newsletter_agent.specialists.bigmac import fetch_bigmac
 
 SPECIALIST_MAP = {
     "energy":        fetch_energy,
@@ -197,6 +198,7 @@ SPECIALIST_MAP = {
     "imf":           fetch_imf,
     "oecd":          fetch_oecd,
     "annual_report": fetch_annual_report,
+    "bigmac":        fetch_bigmac,
 }
 
 CHART_RENDERER_MAP = {
