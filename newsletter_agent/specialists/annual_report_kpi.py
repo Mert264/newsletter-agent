@@ -404,13 +404,14 @@ def build_chart_specs(
         + (" ".join(_notes) if _notes else "")
     )
 
-    specs.append({
-        "type": "D",
-        "title": f"{company_name} — Regnskabsoversigt",
-        "note": snap_note,
-        "kilde": kilde,
-        "table_data": {"columns": yr_cols, "rows": snap_rows},
-    })
+    if False:  # Regnskabsoversigt — full financial statements, not for analysts
+        specs.append({
+            "type": "D",
+            "title": f"{company_name} — Regnskabsoversigt",
+            "note": snap_note,
+            "kilde": kilde,
+            "table_data": {"columns": yr_cols, "rows": snap_rows},
+        })
 
     # ══════════════════════════════════════════════════════════════════════════
     # Chart 3 — Revenue & NOPAT Trend
