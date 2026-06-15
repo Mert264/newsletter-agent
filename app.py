@@ -119,6 +119,47 @@ def serve_figure(filename):
     return send_from_directory(OUTPUT_DIR, filename)
 
 
+@app.route("/rate", methods=["POST"])
+def rate_figure():
+    data = request.json or {}
+    figure_id = data.get("figure_id", "").strip()
+    rating = data.get("rating")
+    if not figure_id or rating not in (1, 2, 3, 4, 5):
+        return jsonify({"error": "Invalid rating"}), 400
+    import datetime
+    entry = {
+        "figure_id": figure_id,
+        "rating": rating,
+        "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+    }
+    ratings_path = os.path.join(OUTPUT_DIR, "ratings.jsonl")
+    with open(ratings_path, "a") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    return jsonify({"status": "saved"})
+
+
+@app.route("/ratings")
+def get_ratings():
+    ratings_path = os.path.join(OUTPUT_DIR, "ratings.jsonl")
+    if not os.path.isfile(ratings_path):
+        return jsonify({"ratings": [], "summary": {}})
+    entries = []
+    with open(ratings_path) as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                entries.append(json.loads(line))
+    if not entries:
+        return jsonify({"ratings": entries, "summary": {}})
+    total = len(entries)
+    avg = sum(e["rating"] for e in entries) / total
+    dist = {str(i): sum(1 for e in entries if e["rating"] == i) for i in range(1, 6)}
+    return jsonify({
+        "ratings": entries[-50:],
+        "summary": {"total": total, "average": round(avg, 2), "distribution": dist},
+    })
+
+
 @app.route("/download/excel")
 def download_excel():
     path = os.path.join(OUTPUT_DIR, "data_export.xlsx")
