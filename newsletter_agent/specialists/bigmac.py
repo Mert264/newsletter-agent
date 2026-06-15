@@ -185,26 +185,24 @@ def fetch_bigmac(task: dict) -> dict:
 
             date_str = latest_date.strftime("%B %Y") if hasattr(latest_date, "strftime") else str(latest_date)
 
-            chart_specs = []
-            if True:
-                chart_specs.append({
-                    "type": "B",
-                    "title": f"Big Mac Index — valutaer ift. USD ({date_str})",
-                    "series_labels": [label_raw],
-                    "x_label": "",
-                    "y_label": "Over-/undervurdering ift. USD (%)",
-                    "note": "Råindeks. Positivt tal = overvurderet valuta.",
-                    "freq": "snapshot",
-                })
-                chart_specs.append({
-                    "type": "B",
-                    "title": f"Big Mac Index, BNP-justeret ({date_str})",
-                    "series_labels": [label_adj],
-                    "x_label": "",
-                    "y_label": "Over-/undervurdering ift. USD, BNP-justeret (%)",
-                    "note": "BNP-justeret indeks er mere præcist for rige vs. fattige lande.",
-                    "freq": "snapshot",
-                })
+            chart_specs.append({
+                "type": "B",
+                "title": f"Big Mac Index — valutaer ift. USD ({date_str})",
+                "series_labels": [label_raw],
+                "x_label": "",
+                "y_label": "Over-/undervurdering ift. USD (%)",
+                "note": "Råindeks. Positivt tal = overvurderet valuta.",
+                "freq": "snapshot",
+            })
+            chart_specs.append({
+                "type": "B",
+                "title": f"Big Mac Index, BNP-justeret ({date_str})",
+                "series_labels": [label_adj],
+                "x_label": "",
+                "y_label": "Over-/undervurdering ift. USD, BNP-justeret (%)",
+                "note": "BNP-justeret indeks er mere præcist for rige vs. fattige lande.",
+                "freq": "snapshot",
+            })
         else:
             print("    [bigmac] No snapshot data available.")
 
