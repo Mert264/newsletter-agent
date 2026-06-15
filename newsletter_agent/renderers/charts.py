@@ -230,13 +230,13 @@ def _add_footer(fig, spec: dict) -> float:
     fig.text(
         0.01, 0.005,
         footer_text.replace("$", r"\$"),
-        fontsize=7,
-        color="#888888",
+        fontsize=BRAND["font_size_note"],
+        color="#999999",
         va="bottom",
         ha="left",
         fontstyle="italic",
         transform=fig.transFigure,
-        linespacing=1.5,
+        linespacing=1.4,
     )
     return bottom_frac
 
