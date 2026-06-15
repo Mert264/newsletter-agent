@@ -1,13 +1,58 @@
+import os
+
 from newsletter_agent.specialists.annual_report_constants import (
     RF_BY_COUNTRY, US_MATURE_ERP, MOODY_TO_SPREAD,
     CRP_BY_COUNTRY, STATUTORY_TAX_RATE, normalize_country, icr_to_spread,
 )
 
 
+def _fetch_us10y_from_fred() -> float | None:
+    """Fetch the latest US 10-year Treasury yield (DGS10) from FRED.
+
+    Returns the yield as a decimal (e.g. 0.044 for 4.4%) or None on failure.
+    Never raises — always wraps in try/except so the pipeline cannot crash.
+    """
+    try:
+        from fredapi import Fred
+        api_key = os.getenv("FRED_API_KEY")
+        if not api_key:
+            return None
+        fred = Fred(api_key=api_key)
+        series = fred.get_series("DGS10", observation_start="2020-01-01")
+        series = series.dropna()
+        if series.empty:
+            return None
+        latest_pct = float(series.iloc[-1])   # FRED returns percent (e.g. 4.40)
+        return round(latest_pct / 100, 6)
+    except Exception as exc:
+        print(f"  [annual_report] FRED fetch failed — falling back to hardcoded rf: {exc}")
+        return None
+
+
+def _live_rf(iso3: str, rf_entry: dict) -> tuple:
+    """Return (rf, source_label) using live FRED data for the base rate when available.
+
+    For all countries the US 10-yr Treasury is used as the base risk-free rate
+    (standard global DCF practice); country risk is captured via CRP.
+    If FRED is unavailable, falls back to the hardcoded spot rate in RF_BY_COUNTRY.
+    """
+    us_live = _fetch_us10y_from_fred()
+    if us_live is not None:
+        if iso3 == "USA":
+            return us_live, f"FRED DGS10 live ({us_live * 100:.2f}%)"
+        else:
+            # Shift local hardcoded spot by the delta between live and hardcoded USA spot
+            usa_hardcoded_spot = RF_BY_COUNTRY.get("USA", RF_BY_COUNTRY["_default"])["spot"]
+            delta = us_live - usa_hardcoded_spot
+            adjusted = round(rf_entry["spot"] + delta, 6)
+            return adjusted, f"local govt bond + FRED DGS10 delta ({us_live * 100:.2f}%)"
+    return rf_entry["spot"], "hardcoded spot (FRED unavailable)"
+
+
 def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
     iso3     = normalize_country(hq_country)
     rf_entry = RF_BY_COUNTRY.get(iso3, RF_BY_COUNTRY["_default"])
-    rf       = rf_entry["spot"]
+    rf, rf_source = _live_rf(iso3, rf_entry)
     t        = STATUTORY_TAX_RATE.get(iso3, STATUTORY_TAX_RATE["_default"])
 
     profile  = fmp_data.get("profile", {})
