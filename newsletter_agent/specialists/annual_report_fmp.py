@@ -107,62 +107,66 @@ def _normalize_estimates(e: dict) -> dict:
     return result
 
 
-def fetch_peer_comparison(ticker: str, api_key: str) -> dict:
+# Sector-based peer candidates used when FMP peer endpoint is unavailable
+_SECTOR_PEERS: dict = {
+    "Technology": ["AAPL", "MSFT", "GOOGL", "META", "NVDA", "ORCL", "ADBE", "CRM"],
+    "Communication Services": ["GOOGL", "META", "NFLX", "DIS", "T", "VZ", "CMCSA"],
+    "Consumer Cyclical": ["AMZN", "TSLA", "HD", "MCD", "NKE", "SBUX", "TGT", "LOW"],
+    "Consumer Defensive": ["WMT", "COST", "PG", "KO", "PEP", "CL", "MDLZ", "GIS"],
+    "Healthcare": ["JNJ", "UNH", "PFE", "ABBV", "MRK", "TMO", "ABT", "LLY"],
+    "Financials": ["BRK-B", "JPM", "BAC", "WFC", "GS", "MS", "C", "AXP"],
+    "Industrials": ["HON", "UPS", "CAT", "DE", "MMM", "GE", "RTX", "LMT"],
+    "Energy": ["XOM", "CVX", "COP", "SLB", "EOG", "PXD", "MPC", "VLO"],
+    "Basic Materials": ["LIN", "APD", "ECL", "DD", "NEM", "FCX", "ALB", "CE"],
+    "Real Estate": ["AMT", "PLD", "CCI", "EQIX", "PSA", "O", "DLR", "WELL"],
+    "Utilities": ["NEE", "DUK", "SO", "D", "AEP", "EXC", "SRE", "XEL"],
+}
+
+
+def fetch_peer_comparison(ticker: str, api_key: str = "", peers: list = None) -> dict:
     """Fetch TTM valuation multiples for the target ticker and up to 5 peers.
+
+    Uses yfinance — no FMP subscription required. If `peers` is provided those
+    tickers are used directly; otherwise sector-based candidates are derived
+    from the target ticker's sector.
 
     Returns a dict with key 'companies', each entry having:
         ticker, name, pe, ev_ebitda, pb, ev_fcf, roe
     Returns empty dict on any failure.
     """
     try:
-        # 1. Peer tickers — v3 endpoint (not on stable base)
-        peers_url = f"https://financialmodelingprep.com/api/v3/stock_peers/{ticker}"
-        peers_resp = requests.get(peers_url, params={"apikey": api_key}, timeout=15)
-        peers_resp.raise_for_status()
-        peers_data = peers_resp.json()
-        raw_peers = []
-        if isinstance(peers_data, list) and peers_data:
-            raw_peers = peers_data[0].get("peersList", []) or []
-        elif isinstance(peers_data, dict):
-            raw_peers = peers_data.get("peersList", []) or []
-        peer_tickers = raw_peers[:5]
+        import yfinance as yf  # local import — optional dependency
+
+        # 1. Determine peer tickers
+        if peers is not None:
+            peer_tickers = [t for t in peers if t != ticker][:5]
+        else:
+            try:
+                target_info = yf.Ticker(ticker).info
+                sector = target_info.get("sector", "")
+            except Exception:
+                sector = ""
+            candidates = _SECTOR_PEERS.get(sector, [])
+            peer_tickers = [t for t in candidates if t != ticker][:5]
 
         all_tickers = [ticker] + peer_tickers
 
         companies = []
         for t in all_tickers:
             try:
-                # key-metrics-ttm — v3 endpoint
-                km_url = f"https://financialmodelingprep.com/api/v3/key-metrics-ttm/{t}"
-                km_resp = requests.get(km_url, params={"apikey": api_key}, timeout=15)
-                km_resp.raise_for_status()
-                km_data = km_resp.json()
-                km = km_data[0] if isinstance(km_data, list) and km_data else {}
+                info = yf.Ticker(t).info
+                if not info:
+                    continue
 
-                # ratios-ttm — v3 endpoint
-                rt_url = f"https://financialmodelingprep.com/api/v3/ratios-ttm/{t}"
-                rt_resp = requests.get(rt_url, params={"apikey": api_key}, timeout=15)
-                rt_resp.raise_for_status()
-                rt_data = rt_resp.json()
-                rt = rt_data[0] if isinstance(rt_data, list) and rt_data else {}
-
-                # Company name from profile (best-effort)
-                try:
-                    prof_url = f"https://financialmodelingprep.com/stable/profile"
-                    prof_resp = requests.get(prof_url, params={"apikey": api_key, "symbol": t}, timeout=10)
-                    prof_resp.raise_for_status()
-                    prof_data = prof_resp.json()
-                    prof = prof_data[0] if isinstance(prof_data, list) and prof_data else {}
-                    name = prof.get("companyName") or t
-                except Exception:
-                    name = t
-
-                # Extract multiples — try both camelCase variants used across FMP responses
-                pe      = km.get("peRatioTTM")       or rt.get("peRatioTTM")
-                ev_eb   = km.get("evToEBITDATTM")    or km.get("enterpriseValueOverEBITDATTM") or rt.get("evToEbitdaTTM")
-                pb      = km.get("pbRatioTTM")        or rt.get("priceToBookRatioTTM")
-                ev_fcf  = km.get("evToFreeCashFlowTTM") or rt.get("evToFreeCashFlowTTM")
-                roe     = km.get("roeTTM")             or rt.get("returnOnEquityTTM")
+                name    = info.get("shortName") or info.get("longName") or t
+                pe      = info.get("trailingPE")
+                ev_eb   = info.get("enterpriseToEbitda")
+                pb      = info.get("priceToBook")
+                ev_fcf  = None  # yfinance does not expose EV/FCF directly
+                roe     = info.get("returnOnEquity")
+                # returnOnEquity in yfinance is a decimal (e.g. 0.35 = 35%)
+                if roe is not None:
+                    roe = roe * 100
 
                 companies.append({
                     "ticker":    t,
