@@ -193,6 +193,151 @@ def fetch_peer_comparison(ticker: str, api_key: str = "", peers: list = None) ->
         return {}
 
 
+_YF_INCOME_MAP = {
+    "Total Revenue": "revenue",
+    "Operating Income": "operatingIncome",
+    "Net Income": "netIncome",
+    "Net Income Common Stockholders": "netIncome",
+    "Interest Expense": "interestExpense",
+    "Gross Profit": "grossProfit",
+    "EBITDA": "ebitda",
+    "EBIT": "ebit",
+    "Diluted Average Shares": "weightedAverageShsOutDil",
+    "Basic Average Shares": "weightedAverageShsOut",
+    "Diluted EPS": "epsDiluted",
+    "Basic EPS": "eps",
+    "Reconciled Depreciation": "depreciationAndAmortization",
+    "Tax Provision": "incomeTaxExpense",
+    "Pretax Income": "incomeBeforeTax",
+    "Cost Of Revenue": "costOfRevenue",
+    "Total Expenses": "totalExpenses",
+}
+_YF_BALANCE_MAP = {
+    "Cash And Cash Equivalents": "cashAndCashEquivalents",
+    "Other Short Term Investments": "shortTermInvestments",
+    "Long Term Equity Investment": "longTermInvestments",
+    "Current Debt": "shortTermDebt",
+    "Long Term Debt": "longTermDebt",
+    "Capital Lease Obligations": "capitalLeaseObligations",
+    "Total Assets": "totalAssets",
+    "Total Liabilities Net Minority Interest": "totalLiabilities",
+    "Stockholders Equity": "totalStockholdersEquity",
+    "Total Equity Gross Minority Interest": "totalEquity",
+    "Goodwill And Other Intangible Assets": "goodwillAndIntangibleAssets",
+    "Goodwill": "goodwill",
+    "Common Stock Equity": "commonStockEquity",
+    "Retained Earnings": "retainedEarnings",
+    "Total Debt": "totalDebt",
+    "Net Debt": "netDebt",
+    "Invested Capital": "investedCapital",
+    "Current Assets": "totalCurrentAssets",
+    "Current Liabilities": "totalCurrentLiabilities",
+    "Inventory": "inventory",
+    "Accounts Receivable": "netReceivables",
+    "Accounts Payable": "accountPayables",
+    "Net PPE": "propertyPlantEquipmentNet",
+}
+_YF_CASHFLOW_MAP = {
+    "Operating Cash Flow": "operatingCashFlow",
+    "Capital Expenditure": "capitalExpenditure",
+    "Free Cash Flow": "freeCashFlow",
+    "Depreciation And Amortization": "depreciationAndAmortization",
+    "Change In Working Capital": "changeInWorkingCapital",
+    "Repurchase Of Capital Stock": "commonStockRepurchased",
+    "Cash Dividends Paid": "dividendsPaid",
+    "Stock Based Compensation": "stockBasedCompensation",
+    "Deferred Income Tax": "deferredIncomeTax",
+}
+
+
+def _yf_df_to_fmp_rows(df, field_map: dict, scale: float = 1e-6,
+                        no_scale: set = frozenset()) -> list[dict]:
+    """Convert a yfinance DataFrame (fields×years) into FMP-style list of dicts (newest first)."""
+    if df is None or df.empty:
+        return []
+    rows = []
+    for col in df.columns:
+        row = {"date": col.strftime("%Y-%m-%d") if hasattr(col, "strftime") else str(col)}
+        for yf_name, fmp_name in field_map.items():
+            val = df.at[yf_name, col] if yf_name in df.index else None
+            if val is not None and not (isinstance(val, float) and val != val):
+                if fmp_name in no_scale:
+                    row[fmp_name] = float(val)
+                else:
+                    row[fmp_name] = float(val) * scale
+            else:
+                row[fmp_name] = 0
+        rows.append(row)
+    return rows
+
+
+def _yf_fetch_all(ticker: str) -> dict:
+    """Fallback: build the same dict structure as fetch_all() using yfinance."""
+    import yfinance as yf
+    from newsletter_agent.config import YF_LOCK
+
+    with YF_LOCK:
+        t = yf.Ticker(ticker)
+        info = t.info or {}
+        fin_a = t.financials
+        bs_a = t.balance_sheet
+        cf_a = t.cashflow
+        fin_q = t.quarterly_financials
+        bs_q = t.quarterly_balance_sheet
+        cf_q = t.quarterly_cashflow
+
+    no_scale_income = {"eps", "epsDiluted"}
+    income = _yf_df_to_fmp_rows(fin_a, _YF_INCOME_MAP, no_scale=no_scale_income)
+    balance = _yf_df_to_fmp_rows(bs_a, _YF_BALANCE_MAP)
+    cashflow = _yf_df_to_fmp_rows(cf_a, _YF_CASHFLOW_MAP)
+
+    if not income:
+        raise ValueError(f"No financial data from yfinance for '{ticker}'.")
+
+    income_q = _yf_df_to_fmp_rows(fin_q, _YF_INCOME_MAP, no_scale=no_scale_income)
+    cashflow_q = _yf_df_to_fmp_rows(cf_q, _YF_CASHFLOW_MAP)
+    balance_q = _yf_df_to_fmp_rows(bs_q, _YF_BALANCE_MAP)
+
+    ltm_income = _compute_ltm(income_q, _LTM_INCOME_FIELDS)
+    ltm_cashflow = _compute_ltm(cashflow_q, _LTM_CASHFLOW_FIELDS)
+    ltm_balance = balance_q[0] if balance_q else {}
+
+    mkt_cap_raw = info.get("marketCap", 0) or 0
+    shares_out = info.get("sharesOutstanding", 0) or 0
+    profile_dict = {
+        "companyName": info.get("shortName") or info.get("longName") or ticker,
+        "country": info.get("country", ""),
+        "currency": info.get("currency", "USD"),
+        "marketCap": mkt_cap_raw / 1_000_000,
+        "mktCap": mkt_cap_raw / 1_000_000,
+        "beta": info.get("beta", 1.0),
+        "price": info.get("currentPrice") or info.get("regularMarketPrice") or 0,
+        "sector": info.get("sector", ""),
+        "industry": info.get("industry", ""),
+        "sharesOutstanding": shares_out / 1_000_000,
+    }
+
+    for b in balance:
+        if "minorityInterest" not in b:
+            b["minorityInterest"] = (
+                (b.get("totalEquity") or 0) - (b.get("totalStockholdersEquity") or 0)
+            )
+
+    return {
+        "income": income,
+        "balance": balance,
+        "cashflow": cashflow,
+        "profile": profile_dict,
+        "rating": [],
+        "metrics": [],
+        "estimates": [],
+        "ltm_income": ltm_income,
+        "ltm_cashflow": ltm_cashflow,
+        "ltm_balance": ltm_balance,
+        "_source": "yfinance",
+    }
+
+
 def fetch_all(ticker: str, api_key: str) -> dict:
     income    = _get("income-statement",        api_key, symbol=ticker, period="annual")
     balance   = _get("balance-sheet-statement", api_key, symbol=ticker, period="annual")
