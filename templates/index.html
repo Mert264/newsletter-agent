@@ -1055,6 +1055,10 @@ function renderFigures(figures) {
     const excelBtn = idx === 0
       ? `<a class="fig-dl-btn excel" href="/download/excel" download="maj_invest_data.xlsx">↑ Excel</a>`
       : '';
+    const figId = fig.path.replace(/\.png$/, '');
+    const starsHtml = [1,2,3,4,5].map(n =>
+      `<span class="star" data-fig="${escHtml(figId)}" data-val="${n}" onclick="rateFigure(this)">&#9733;</span>`
+    ).join('');
     card.innerHTML = `
       <img src="${url}" alt="${escHtml(fig.title)}" onclick="openLightbox('${url}')">
       <div class="fig-meta">
@@ -1062,6 +1066,11 @@ function renderFigures(figures) {
         ${fig.note   ? `<div class="fig-note">${escHtml(fig.note)}</div>`   : ''}
         ${fig.kilde  ? `<div class="fig-kilde"><strong>Kilde:</strong> ${escHtml(fig.kilde)}</div>` : ''}
         ${flagHtml}
+      </div>
+      <div class="fig-rating" id="rating-${escHtml(figId)}">
+        ${starsHtml}
+        <span class="rating-label"></span>
+        <span class="rating-saved">Gemt</span>
       </div>
       <div class="fig-actions">
         <a class="fig-dl-btn" href="${url}" download="${dlName}">⬇ Download PNG</a>
