@@ -304,6 +304,8 @@ def _yf_fetch_all(ticker: str) -> dict:
 
     mkt_cap_raw = info.get("marketCap", 0) or 0
     shares_out = info.get("sharesOutstanding", 0) or 0
+    implied_shares = info.get("impliedSharesOutstanding", 0) or 0
+    diluted_shares = implied_shares if implied_shares > shares_out else shares_out * 1.02
     profile_dict = {
         "companyName": info.get("shortName") or info.get("longName") or ticker,
         "country": info.get("country", ""),
@@ -314,7 +316,7 @@ def _yf_fetch_all(ticker: str) -> dict:
         "price": info.get("currentPrice") or info.get("regularMarketPrice") or 0,
         "sector": info.get("sector", ""),
         "industry": info.get("industry", ""),
-        "sharesOutstanding": shares_out / 1_000_000,
+        "sharesOutstanding": diluted_shares / 1_000_000,
     }
 
     for b in balance:
