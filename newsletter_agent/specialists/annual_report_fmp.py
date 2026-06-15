@@ -350,9 +350,18 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     balance   = _get("balance-sheet-statement", api_key, symbol=ticker, period="annual")
     cashflow  = _get("cash-flow-statement",     api_key, symbol=ticker, period="annual")
     profile   = _get("profile",                 api_key, symbol=ticker)
-    rating    = _get("ratings-snapshot",        api_key, symbol=ticker)
-    metrics   = _get("key-metrics",             api_key, symbol=ticker, period="annual")
-    estimates = _get("analyst-estimates",       api_key, symbol=ticker, period="annual")
+    try:
+        rating = _get("ratings-snapshot", api_key, symbol=ticker)
+    except requests.HTTPError:
+        rating = []
+    try:
+        metrics = _get("key-metrics", api_key, symbol=ticker, period="annual")
+    except requests.HTTPError:
+        metrics = []
+    try:
+        estimates = _get("analyst-estimates", api_key, symbol=ticker, period="annual")
+    except requests.HTTPError:
+        estimates = []
 
     income_q   = _get("income-statement",        api_key, symbol=ticker, period="quarter", limit=5)
     cashflow_q = _get("cash-flow-statement",     api_key, symbol=ticker, period="quarter", limit=5)
