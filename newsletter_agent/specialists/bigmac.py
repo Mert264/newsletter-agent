@@ -187,10 +187,8 @@ def fetch_bigmac(task: dict) -> dict:
 
             date_str = latest_date.strftime("%B %Y") if hasattr(latest_date, "strftime") else str(latest_date)
 
-            orch_charts = task.get("charts", [])
-            if orch_charts:
-                chart_specs = list(orch_charts)
-            else:
+            chart_specs = []
+            if True:
                 chart_specs.append({
                     "type": "B",
                     "title": f"Big Mac Index — valutaer ift. USD ({date_str})",
