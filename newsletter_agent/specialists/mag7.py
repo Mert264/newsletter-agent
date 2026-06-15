@@ -352,8 +352,8 @@ def _build_table() -> tuple[dict, list[str], dict]:
         "EV/EBITDA":       _med_x("ev_ebitda"),
         "P/S":             _med_x("ps"),
         "P/FCF":           _med_x("p_fcf"),
-        "Omsætningsvækst": _med_pct("rev_growth"),
-        "NOPAT Margin":    _med_pct("nopat_margin"),
+        "Rev. Vækst": _med_pct("rev_growth"),
+        "Margin":     _med_pct("nopat_margin"),
         "ROE":             _med_pct("roe"),
         "FCF Yield":       _med_pct("fcf_yield"),
     }
