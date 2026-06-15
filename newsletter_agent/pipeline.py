@@ -681,7 +681,13 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
             g_df = list(dfs.values())[0]
         else:
             # Multiple series → take latest value of each, build single-column DF
-            latest = {lbl: float(df.iloc[:, 0].dropna().iloc[-1]) for lbl, df in dfs.items() if not df.empty}
+            latest = {}
+            for lbl, df in dfs.items():
+                if df.empty:
+                    continue
+                vals = df.iloc[:, 0].dropna()
+                if not vals.empty:
+                    latest[lbl] = float(vals.iloc[-1])
             g_df = pd.DataFrame.from_dict(latest, orient="index", columns=[chart_spec.get("y_label", "%")])
         if g_df is None or g_df.empty:
             print(f"    [warn] No data for Type G chart '{chart_spec.get('title')}' — skipping.")
