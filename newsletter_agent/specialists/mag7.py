@@ -36,7 +36,6 @@ MAG7: dict[str, str] = {
 
 _TTL = 4 * 3600          # 4-hour cache
 _MAX_WORKERS = 7         # one thread per company
-_FMP_BASE = "https://financialmodelingprep.com/api/v3"
 
 # ---------------------------------------------------------------------------
 # Price history (yfinance)
