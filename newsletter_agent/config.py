@@ -12,18 +12,20 @@ load_dotenv(find_dotenv(usecwd=False, raise_error_if_not_found=False))
 
 BRAND = {
     "primary":        "#11716c",   # Maj Invest green
+    "primary_light":  "#e6f2f1",   # tinted background for highlights
     "secondary":      "#22312d",   # dark text / title
-    "grid_color":     "#e8e8e8",
+    "accent":         "#d4843e",   # warm amber for highlights / alerts
+    "grid_color":     "#ebebeb",
     "background":     "#ffffff",
-    "font":           "Arial",
-    "font_size_title": 12,         # slightly larger for newsletter readability
+    "font":           "Helvetica Neue",
+    "font_fallback":  "Arial",
+    "font_size_title": 13,
     "font_size_axis":  9,
-    "font_size_label": 8,          # inline line labels (end-of-line annotations)
-    "font_size_note":  8,
-    "figure_width_px": 1050,       # wider for more x-axis detail
-    "figure_height_px": 720,       # taller so chart body fills more of the figure
+    "font_size_label": 8,
+    "font_size_note":  7.5,
+    "figure_width_px": 1050,
+    "figure_height_px": 720,
     "figure_dpi":      150,
-    # Convert px to inches at given DPI: width_in = px / dpi, height_in = height_px / dpi
 }
 
 API_KEYS = {
