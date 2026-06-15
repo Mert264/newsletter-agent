@@ -6,14 +6,10 @@ Run: python3 app.py  →  open http://localhost:5050
 import os
 import sys
 import json
-import time
-import uuid
 import queue
 import threading
 
 from flask import Flask, render_template, request, Response, jsonify, send_from_directory
-
-from newsletter_agent import usage_logger
 
 app = Flask(__name__)
 # Use /tmp on cloud (Railway), local demo_output when running on Mac
@@ -55,10 +51,6 @@ def start_run():
     start_date  = data.get("start_date", "")
     end_date    = data.get("end_date", "")
     period_days = data.get("period_days", None)
-    viz_hint    = data.get("viz_hint", None)
-
-    # Session ID from cookie or generate a new one
-    session_id = request.cookies.get("session_id") or str(uuid.uuid4())
 
     if not _run_lock.acquire(blocking=False):
         return jsonify({"error": "A run is already in progress"}), 429
@@ -73,9 +65,6 @@ def start_run():
     def do_run():
         orig = sys.stdout
         sys.stdout = _StreamWriter(_run_queue, orig)
-        run_start = time.monotonic()
-        run_error = None
-        figures = []
         try:
             from newsletter_agent.pipeline import run
             packages = run(brief, output_dir=OUTPUT_DIR,
@@ -93,39 +82,13 @@ def start_run():
             ]
             _run_queue.put({"type": "done", "figures": figures})
         except Exception as exc:
-            run_error = str(exc)
-            _run_queue.put({"type": "error", "text": run_error})
+            _run_queue.put({"type": "error", "text": str(exc)})
         finally:
-            duration = time.monotonic() - run_start
             sys.stdout = orig
             _run_lock.release()
 
-            # Log usage to Supabase (non-blocking, never crashes)
-            usage_logger.log_run(
-                prompt=brief,
-                viz_hint=viz_hint,
-                period_days=int(period_days) if period_days else None,
-                start_date=start_date or None,
-                end_date=end_date or None,
-                figures=[
-                    {
-                        "title": f.get("title"),
-                        "type": f.get("path", "").rsplit(".", 1)[-1] if f.get("path") else None,
-                        "reviewer_flag": f.get("reviewer_flag"),
-                        "data_sources": f.get("kilde"),
-                    }
-                    for f in figures
-                ],
-                duration_seconds=round(duration, 2),
-                error=run_error,
-                session_id=session_id,
-            )
-
     threading.Thread(target=do_run, daemon=True).start()
-
-    resp = jsonify({"status": "started"})
-    resp.set_cookie("session_id", session_id, max_age=86400, httponly=True, samesite="Lax")
-    return resp
+    return jsonify({"status": "started"})
 
 
 @app.route("/stream")
