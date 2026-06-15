@@ -62,65 +62,45 @@ def _yf_price_history(ticker: str, start: str, end: str) -> Optional[pd.DataFram
         return None
 
 
-def _fmp_ratios(ticker: str) -> dict:
-    """Fetch trailing-twelve-month ratios from FMP for *ticker*. Returns {} on failure."""
-    api_key = API_KEYS.get("fmp", "")
-    if not api_key:
-        return {}
+def _yf_fundamentals(ticker: str) -> dict:
+    """Fetch key fundamentals from yfinance ticker.info for *ticker*. Returns {} on failure."""
     try:
-        # Strip .CO suffix for FMP — Copenhagen tickers on FMP keep the suffix
-        url = f"{_FMP_BASE}/ratios-ttm/{ticker}?apikey={api_key}"
-        resp = requests.get(url, timeout=20)
-        resp.raise_for_status()
-        data = resp.json()
-        if isinstance(data, list) and data:
-            return data[0]
-        return {}
+        import yfinance as yf
+        with YF_LOCK:
+            info = yf.Ticker(ticker).info
+        return info if isinstance(info, dict) else {}
     except Exception as exc:
-        print(f"    [danish_equities] FMP ratios-ttm failed for {ticker}: {exc}")
+        print(f"    [danish_equities] yfinance info failed for {ticker}: {exc}")
         return {}
 
 
-def _fmp_key_metrics(ticker: str) -> dict:
-    """Fetch trailing-twelve-month key metrics from FMP for *ticker*. Returns {} on failure."""
-    api_key = API_KEYS.get("fmp", "")
-    if not api_key:
-        return {}
-    try:
-        url = f"{_FMP_BASE}/key-metrics-ttm/{ticker}?apikey={api_key}"
-        resp = requests.get(url, timeout=20)
-        resp.raise_for_status()
-        data = resp.json()
-        if isinstance(data, list) and data:
-            return data[0]
-        return {}
-    except Exception as exc:
-        print(f"    [danish_equities] FMP key-metrics-ttm failed for {ticker}: {exc}")
-        return {}
-
-
-def _fetch_single(name: str, ticker: str, start: str, end: str) -> tuple[str, Optional[pd.DataFrame], dict, dict]:
+def _fetch_single(name: str, ticker: str, start: str, end: str) -> tuple[str, Optional[pd.DataFrame], dict]:
     """Fetch price history + fundamentals for one company. Thread-safe."""
     df = _yf_price_history(ticker, start, end)
     if df is not None:
         df = df.rename(columns={ticker: name})
-    ratios = _fmp_ratios(ticker)
-    metrics = _fmp_key_metrics(ticker)
-    return name, df, ratios, metrics
+    info = _yf_fundamentals(ticker)
+    return name, df, info
 
 
-def _build_fundamentals_df(name: str, ratios: dict, metrics: dict) -> Optional[pd.DataFrame]:
-    """Convert FMP dicts into a single-row snapshot DataFrame for display in type-D tables."""
-    combined = {**ratios, **metrics}
-    if not combined:
+def _build_fundamentals_df(name: str, info: dict) -> Optional[pd.DataFrame]:
+    """Convert yfinance info dict into a single-row snapshot DataFrame for type-D tables."""
+    if not info:
         return None
+
+    def _pct(val: Optional[float]) -> Optional[float]:
+        return round(val * 100, 2) if val is not None else None
+
+    def _round2(val: Optional[float]) -> Optional[float]:
+        return round(val, 2) if val is not None else None
+
     selected = {
-        "P/E (TTM)":    combined.get("peRatioTTM"),
-        "P/B (TTM)":    combined.get("priceToBookRatioTTM"),
-        "P/S (TTM)":    combined.get("priceToSalesRatioTTM"),
-        "EV/EBITDA":    combined.get("enterpriseValueOverEBITDATTM"),
-        "ROE (%)":      round(combined["returnOnEquityTTM"] * 100, 2) if combined.get("returnOnEquityTTM") is not None else None,
-        "Udbytte (%)":  round(combined["dividendYieldTTM"] * 100, 2) if combined.get("dividendYieldTTM") is not None else None,
+        "P/E (TTM)":   _round2(info.get("trailingPE")),
+        "P/B (TTM)":   _round2(info.get("priceToBook")),
+        "EV/EBITDA":   _round2(info.get("enterpriseToEbitda")),
+        "ROE (%)":     _pct(info.get("returnOnEquity")),
+        "Udbytte (%)": _pct(info.get("dividendYield")),
+        "Margin (%)":  _pct(info.get("profitMargins")),
     }
     row = {k: v for k, v in selected.items() if v is not None}
     if not row:
