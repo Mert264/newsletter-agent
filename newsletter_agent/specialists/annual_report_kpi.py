@@ -593,11 +593,7 @@ def build_chart_specs(
     specs.append({
         "type": "D",
         "title": f"{company_name} — Følsomhed: Fair value / aktie ({currency})",
-        "note": (
-            f"Hver celle viser fair value per aktie ved et givet (WACC, g)-par. "
-            f"Kolonner = WACC, rækker = terminal vækst g. ★ = basisscenarie (WACC {_pct(wacc_base)}, g {_pct(g_base)}). "
-            f"WACC-akse: ±1 ppt i 0,25 ppt-trin. g-akse: 1–3%."
-        ),
+        "note": "Fair value pr. aktie ved varierende WACC og terminal vækst. Kilde: FMP.",
         "kilde": kilde,
         "table_data": {"columns": sens_cols, "rows": sens_rows},
     })
