@@ -20,8 +20,8 @@ from typing import Optional
 from newsletter_agent.config import YF_LOCK
 
 # ---------------------------------------------------------------------------
-# C25 top constituents  (display name → yfinance / FMP ticker)
-# FMP uses the same .CO suffix as yfinance for Copenhagen-listed stocks.
+# C25 top constituents  (display name → yfinance ticker)
+# Copenhagen-listed stocks use the .CO suffix on Yahoo Finance.
 # ---------------------------------------------------------------------------
 C25_TOP: dict[str, str] = {
     "Novo Nordisk":  "NOVO-B.CO",
