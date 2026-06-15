@@ -9,17 +9,15 @@ Cache: 4 hours (intraday data changes; heavier than macro but lighter than tick 
 """
 from __future__ import annotations
 
-import requests
 import pandas as pd
 import numpy as np
-import statistics
 from datetime import date, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
 
 import yfinance as yf
 
-from newsletter_agent.config import API_KEYS, YF_LOCK
+from newsletter_agent.config import YF_LOCK
 from newsletter_agent.cache import get as cache_get, put as cache_put
 
 # ---------------------------------------------------------------------------
