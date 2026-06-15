@@ -1076,6 +1076,19 @@ function renderFigures(figures) {
         ${excelBtn}
       </div>`;
     grid.appendChild(card);
+    const ratingDiv = card.querySelector('.fig-rating');
+    if (ratingDiv) {
+      ratingDiv.addEventListener('mouseover', function(e) {
+        if (!e.target.classList.contains('star')) return;
+        const hoverVal = parseInt(e.target.dataset.val);
+        ratingDiv.querySelectorAll('.star').forEach(s => {
+          s.classList.toggle('hover-on', parseInt(s.dataset.val) <= hoverVal);
+        });
+      });
+      ratingDiv.addEventListener('mouseout', function() {
+        ratingDiv.querySelectorAll('.star').forEach(s => s.classList.remove('hover-on'));
+      });
+    }
   });
 }
 
