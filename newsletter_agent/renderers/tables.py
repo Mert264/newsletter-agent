@@ -20,9 +20,9 @@ FIGSIZE_TABLE = (
 def _dynamic_table_width(n_data_cols: int) -> float:
     base = BRAND["figure_width_px"] / BRAND["figure_dpi"]
     if n_data_cols >= 10:
-        return base * 1.35
+        return base * 1.55
     if n_data_cols >= 7:
-        return base * 1.15
+        return base * 1.2
     return base
 
 
