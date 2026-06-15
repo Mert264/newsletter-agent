@@ -339,7 +339,14 @@ def _yf_fetch_all(ticker: str) -> dict:
 
 
 def fetch_all(ticker: str, api_key: str) -> dict:
-    income    = _get("income-statement",        api_key, symbol=ticker, period="annual")
+    try:
+        income = _get("income-statement", api_key, symbol=ticker, period="annual")
+    except requests.HTTPError as e:
+        if e.response is not None and e.response.status_code in (402, 403):
+            print(f"  [annual_report] FMP returned {e.response.status_code} for {ticker} — falling back to yfinance")
+            return _yf_fetch_all(ticker)
+        raise
+
     balance   = _get("balance-sheet-statement", api_key, symbol=ticker, period="annual")
     cashflow  = _get("cash-flow-statement",     api_key, symbol=ticker, period="annual")
     profile   = _get("profile",                 api_key, symbol=ticker)
@@ -347,7 +354,6 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     metrics   = _get("key-metrics",             api_key, symbol=ticker, period="annual")
     estimates = _get("analyst-estimates",       api_key, symbol=ticker, period="annual")
 
-    # Quarterly data for LTM (Last Twelve Months) computation
     income_q   = _get("income-statement",        api_key, symbol=ticker, period="quarter", limit=5)
     cashflow_q = _get("cash-flow-statement",     api_key, symbol=ticker, period="quarter", limit=5)
     balance_q  = _get("balance-sheet-statement", api_key, symbol=ticker, period="quarter", limit=2)
@@ -355,7 +361,8 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     if isinstance(income, dict) and "Error Message" in income:
         raise ValueError(f"FMP income statement error for '{ticker}': {income['Error Message']}")
     if not income:
-        raise ValueError(f"No income statement data for ticker '{ticker}' — check ticker symbol or FMP subscription.")
+        print(f"  [annual_report] FMP returned empty data for {ticker} — falling back to yfinance")
+        return _yf_fetch_all(ticker)
     if isinstance(balance, dict) and "Error Message" in balance:
         raise ValueError(f"FMP balance sheet error for '{ticker}': {balance['Error Message']}")
     if not balance:
