@@ -41,6 +41,71 @@ def _color_for(i: int) -> str:
     return LINE_COLORS[i % len(LINE_COLORS)]
 
 
+def _draw_trendline(ax, x_dates, y_values, color: str, series_name: str,
+                    trendline_type: str, freq: str = "M") -> None:
+    """
+    Overlay a trendline on a line chart series.
+
+    trendline_type:
+      "linear"  — numpy polyfit degree 1, extended 10% beyond data as dashed projection
+      "ma"      — rolling mean (window=12 for monthly, 4 for quarterly, 3 otherwise)
+      "poly"    — numpy polyfit degree 2, no projection
+
+    Styling: same color as parent series, dashed, linewidth=1.0.
+    The projection segment beyond data is drawn at alpha=0.4.
+    Legend labels: "{series_name} (trend)" / "{series_name} (MA-N)" / "{series_name} (poly)".
+    """
+    import matplotlib.dates as _mdates
+
+    s = pd.Series(y_values, index=x_dates).dropna()
+    if len(s) < 4:
+        return
+
+    tl = trendline_type.lower().strip()
+
+    if tl == "linear":
+        # Convert dates to numeric for polyfit
+        x_num = _mdates.date2num(s.index.to_pydatetime())
+        coeffs = np.polyfit(x_num, s.values, 1)
+        poly   = np.poly1d(coeffs)
+
+        # Data portion
+        ax.plot(s.index, poly(x_num),
+                color=color, linewidth=1.0, linestyle="--",
+                label=f"{series_name} (trend)", zorder=4)
+
+        # Projection: extend 10% beyond data range
+        data_span = x_num[-1] - x_num[0]
+        x_proj = np.linspace(x_num[-1], x_num[-1] + data_span * 0.10, 20)
+        proj_dates = _mdates.num2date(x_proj)
+        ax.plot(proj_dates, poly(x_proj),
+                color=color, linewidth=1.0, linestyle="--",
+                alpha=0.4, zorder=4)
+
+    elif tl == "ma":
+        # Window: 12 for monthly, 4 for quarterly, 3 otherwise
+        if freq in ("M", "ME", "MS"):
+            window = 12
+        elif freq in ("Q", "QE", "QS"):
+            window = 4
+        else:
+            window = 3
+        ma = s.rolling(window=window, min_periods=max(2, window // 2)).mean().dropna()
+        if ma.empty:
+            return
+        ax.plot(ma.index, ma.values,
+                color=color, linewidth=1.0, linestyle="--",
+                label=f"{series_name} (MA-{window})", zorder=4)
+
+    elif tl == "poly":
+        x_num = _mdates.date2num(s.index.to_pydatetime())
+        coeffs = np.polyfit(x_num, s.values, 2)
+        poly   = np.poly1d(coeffs)
+        ax.plot(s.index, poly(x_num),
+                color=color, linewidth=1.0, linestyle="--",
+                label=f"{series_name} (poly)", zorder=4)
+
+
 def _draw_event_markers(ax, spec: dict, df_index) -> list:
     """
     Draw vertical dashed event markers. Each event gets a distinct color.
