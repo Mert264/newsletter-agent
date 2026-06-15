@@ -61,8 +61,7 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
     row_height = 0.46         # inches per data row
     header_h   = 0.50
     fig_h      = max(2.2, header_h + n_rows * row_height + 0.6)
-    base_fig_w = BRAND["figure_width_px"] / BRAND["figure_dpi"]
-    fig_w = base_fig_w  # all tables use the same width for visual consistency
+    fig_w = _dynamic_table_width(n_data_cols)
 
     fig, ax = plt.subplots(figsize=(fig_w, fig_h), dpi=BRAND["figure_dpi"])
     ax.axis("off")
