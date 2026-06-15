@@ -148,6 +148,16 @@ ROUTING_RULES = [
         "Angiv landet med 'country'-felt (ISO2-kode, fx 'USA', 'DEU', 'GBR', 'FRA', 'JPN'). "
         "Type='A' for tidsserie. y_label fra units i KNOWN_DATASETS.",
     ),
+    # Danish equities / C25 → danish_equities specialist
+    (
+        lambda b: _DANISH_EQ.search(b),
+        "For danske aktier og C25-selskaber: brug specialist='danish_equities'. "
+        "Enkelt-selskab: angiv ticker med .CO-suffix (fx 'NOVO-B.CO', 'DSV.CO', 'MAERSK-B.CO'). "
+        "C25-overblik: sæt mode='overview' — henter alle C25_TOP-selskaber parallelt. "
+        "Kurser hentes fra Yahoo Finance (.CO-suffix), nøgletal (P/E, P/B, ROE, udbytte) fra FMP ratios-ttm. "
+        "Type='A' for kursudvikling (indekseret til 100), type='D' for fundamentals-tabel. "
+        "Kilde='Yahoo Finance' og 'Financial Modeling Prep'.",
+    ),
     # Big Mac Index / PPP / currency valuation → bigmac specialist
     (
         lambda b: _BIGMAC.search(b),
