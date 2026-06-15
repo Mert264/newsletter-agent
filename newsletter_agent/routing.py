@@ -103,6 +103,26 @@ ROUTING_RULES = [
         "For Type A oversigtsgraf med blandede enheder: sæt y_label='Indekseret (basis=100)'. "
         "Brug specialist='macro' for ALLE rente- og obligationsserier uanset context.",
     ),
+    # IMF explicit mention → IMF specialist
+    (
+        lambda b: _IMF.search(b),
+        "For IMF-data: brug specialist='imf'. "
+        "Angiv ISO-2 landekode (fx 'US', 'DE', 'CN'). "
+        "Vigtige indikatorer: BNP-vækst (ticker='NGDP_RPCH', dataset='WEO', freq='A'), "
+        "CPI-inflation (ticker='PCPI_IX', dataset='IFS', freq='Q'), "
+        "statsgæld/BNP (ticker='GGXWDG_NGDP', dataset='WEO', freq='A'), "
+        "betalingsbalance i USD (ticker='BCA_BP6_USD', dataset='IFS', freq='Q'), "
+        "ledighed (ticker='LUR_PT', dataset='IFS', freq='Q'). "
+        "Kilde='IMF'. Type='A' for tidsserie, type='D' for tabels.",
+    ),
+    # Trade balance / current account (non-EU) → IMF DOTS or IFS
+    (
+        lambda b: _TRADE.search(b) and not _EU.search(b),
+        "For handelsbalance og betalingsbalance (ikke-EU): brug specialist='imf', "
+        "dataset='IFS', ticker='BCA_BP6_USD' (løbende konto i USD). "
+        "For handelsstrømme mellem lande: dataset='DOTS'. "
+        "Angiv ISO-2 landekode. Type='A'.",
+    ),
     # Country economy → World Bank (fires when country-specific economy keyword present, not EU/US)
     (
         lambda b: _COUNTRY_ECON_KW.search(b) and not _EU.search(b) and not _US.search(b),
