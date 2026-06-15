@@ -267,6 +267,16 @@ def compute_dcf_scenarios(
     fwd_cagr = _analyst_fwd_cagr(estimates, base_rev)
     base_cagr = fwd_cagr if fwd_cagr is not None else hist_cagr
 
+    # Extract per-year consensus revenues for the base scenario (years 1-2).
+    # Bear/bull scenarios keep CAGR-only so the consensus anchor stays in base only.
+    base_consensus_revs = _analyst_consensus_revs(estimates or [], base_year)
+    if base_consensus_revs:
+        print(f"  [annual_report] INFO: Using analyst consensus for {len(base_consensus_revs)} DCF year(s) "
+              f"({', '.join(f'{r:,.0f}' for r in base_consensus_revs)}), "
+              f"falling back to hist CAGR ({hist_cagr:.1%}) for remaining years.")
+    else:
+        print(f"  [annual_report] INFO: No analyst consensus revenue data — using hist CAGR ({hist_cagr:.1%}) for all DCF years.")
+
     scenario_params = {
         "bear": (max(base_cagr - 0.04, -0.02), -0.02, +0.010, 0.015),
         "base": (base_cagr,                     0.00,  0.000,  0.020),
@@ -278,7 +288,10 @@ def compute_dcf_scenarios(
         wacc = wacc_base + wacc_delta
         og   = avgs["OG"] + og_delta
         mod  = {**reformulated, "historical_avgs": {**avgs, "OG": og, "revenue_cagr": cagr}}
-        price, detail = _dcf_price(mod, wacc, g, NFO, NCI, diluted_shares, base_year)
+        # Only the base scenario uses per-year consensus revs; bear/bull use CAGR throughout
+        c_revs = base_consensus_revs if name == "base" else None
+        price, detail = _dcf_price(mod, wacc, g, NFO, NCI, diluted_shares, base_year,
+                                   consensus_revs=c_revs)
         results[name] = {
             "price":  round(price, 2),
             "detail": detail,
