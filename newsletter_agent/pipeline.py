@@ -547,8 +547,9 @@ def _patch_chart_spec_for_missing(chart_spec: dict, still_missing: list) -> dict
 def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
                    global_pool: Optional[dict] = None) -> dict:
     """Render one figure from chart_spec + specialist data. Returns FigurePackage dict."""
-    chart_type = chart_spec["type"]
     dfs = specialist_result["dataframes"]
+    chart_type = _auto_viz_type(chart_spec, dfs)
+    chart_spec = {**chart_spec, "type": chart_type}
     kilde_sources = list(specialist_result["kilde"])
 
     # ── Filter to series for this chart ──────────────────────────────────────
