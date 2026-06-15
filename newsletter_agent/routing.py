@@ -124,6 +124,17 @@ ROUTING_RULES = [
         "For handelsstrømme mellem lande: dataset='DOTS'. "
         "Angiv ISO-2 landekode. Type='A'.",
     ),
+    # OECD leading indicators, confidence indices, productivity → OECD specialist
+    (
+        lambda b: _OECD.search(b),
+        "For OECD-ledende indikatorer, tillidsindekser og produktivitet: brug specialist='oecd'. "
+        "Tilgængelige tickers: 'oecd_cli' (Composite Leading Indicator), 'oecd_bci' (Business Confidence), "
+        "'oecd_cci' (Consumer Confidence), 'oecd_gdp' (BNP-vækst, kvartalsvis), "
+        "'oecd_unemployment' (harmoniseret ledighed), 'oecd_cpi' (forbrugerprisindeks), "
+        "'oecd_mfp' (multifaktorproduktivitet, årlig). "
+        "Angiv landet med 'country'-felt (ISO2-kode, fx 'USA', 'DEU', 'GBR', 'FRA', 'JPN'). "
+        "Type='A' for tidsserie. y_label fra units i KNOWN_DATASETS.",
+    ),
     # Country economy → World Bank (fires when country-specific economy keyword present, not EU/US)
     (
         lambda b: _COUNTRY_ECON_KW.search(b) and not _EU.search(b) and not _US.search(b),
