@@ -550,6 +550,9 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
                    global_pool: Optional[dict] = None) -> dict:
     """Render one figure from chart_spec + specialist data. Returns FigurePackage dict."""
     dfs = specialist_result["dataframes"]
+    if not dfs or all(df.empty for df in dfs.values()):
+        print(f"    [warn] No data for chart '{chart_spec.get('title')}' — skipping.")
+        return None
     chart_type = _auto_viz_type(chart_spec, dfs)
     chart_spec = {**chart_spec, "type": chart_type}
     kilde_sources = list(specialist_result["kilde"])
