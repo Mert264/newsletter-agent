@@ -151,18 +151,21 @@ def render_type_d(data: dict, spec: dict, output_path: str) -> str:
         cell.set_text_props(color="white", fontweight="bold", fontsize=10)
         cell.set_edgecolor("#0a5550")
 
-    # Style data rows
+    summary_indicators = {"median", "gennemsnit", "total", "sum", "avg", "mean", "average"}
     for i in range(1, len(all_text)):
-        # Indicator column: left-aligned, slightly bolder
+        indicator_text = str(rows[i - 1].get("indicator", "")).lower().strip()
+        is_summary = indicator_text in summary_indicators
         table[i, 0].set_text_props(ha="left", fontweight="600",
                                     color=BRAND["secondary"])
         table[i, 0].PAD = 0.08
-        for j in range(1, n_cols):
+        for j in range(0, n_cols):
             cell = table[i, j]
-            cell.set_text_props(color=BRAND["secondary"])
+            if j > 0:
+                cell.set_text_props(color=BRAND["secondary"])
             cell.set_edgecolor("#e4eaea")
-        # Row border
-        table[i, 0].set_edgecolor("#e4eaea")
+            if is_summary:
+                cell.set_facecolor(BRAND.get("primary_light", "#e6f2f1"))
+                cell.set_text_props(fontweight="bold", color=BRAND["primary"])
 
     # Style separator (section-header) rows
     for idx in sep_row_indices:
