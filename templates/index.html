@@ -1092,6 +1092,28 @@ document.getElementById('lightbox').addEventListener('click', function(e) {
   if (e.target === this) closeLightbox();
 });
 
+// ── Star rating ──
+function rateFigure(starEl) {
+  const figId = starEl.dataset.fig;
+  const val = parseInt(starEl.dataset.val);
+  const container = document.getElementById('rating-' + figId);
+  if (!container) return;
+  const stars = container.querySelectorAll('.star');
+  stars.forEach(s => {
+    s.classList.toggle('active', parseInt(s.dataset.val) <= val);
+  });
+  const labels = ['', 'Dårlig', 'Under middel', 'OK', 'God', 'Fremragende'];
+  container.querySelector('.rating-label').textContent = labels[val] || '';
+  const saved = container.querySelector('.rating-saved');
+  fetch('/rate', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({figure_id: figId, rating: val})
+  }).then(r => {
+    if (r.ok) { saved.classList.add('show'); setTimeout(() => saved.classList.remove('show'), 1500); }
+  }).catch(() => {});
+}
+
 // ── Clear figures on page load ──
 window.addEventListener('load', function() {
   window.scrollTo(0, 0);
