@@ -198,8 +198,9 @@ SPECIALIST_MAP = {
     "worldbank":     fetch_worldbank,
     "imf":           fetch_imf,
     "oecd":          fetch_oecd,
-    "annual_report": fetch_annual_report,
-    "bigmac":        fetch_bigmac,
+    "annual_report":    fetch_annual_report,
+    "bigmac":           fetch_bigmac,
+    "danish_equities":  fetch_danish_equity,
 }
 
 CHART_RENDERER_MAP = {
