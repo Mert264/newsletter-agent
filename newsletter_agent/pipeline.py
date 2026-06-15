@@ -221,7 +221,7 @@ def _auto_viz_type(chart_spec: dict, dfs: dict) -> str:
     explicit = chart_spec.get("type")
     if explicit and explicit.upper() != "AUTO":
         return explicit.upper()
-    if chart_spec.get("table_data"):
+    if "table_data" in chart_spec:
         return "D"
     n_series = len(dfs)
     if not dfs:
