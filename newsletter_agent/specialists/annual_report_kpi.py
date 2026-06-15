@@ -672,3 +672,64 @@ def build_chart_specs(
     })
 
     return specs, dfs
+
+
+# ── Peer comparison table ──────────────────────────────────────────────────────
+
+def build_peer_comparison_spec(peer_data: dict, company_name: str, ticker: str) -> dict | None:
+    """Build a chart spec (type D table) comparing the target company against peers.
+
+    peer_data is the dict returned by fetch_peer_comparison().
+    Returns None if peer_data is empty or unusable.
+    """
+    if not peer_data or not peer_data.get("companies"):
+        return None
+
+    companies = peer_data["companies"]
+
+    def _fmt_mult(v, suffix="×", dec=1):
+        if v is None:
+            return "N/A"
+        try:
+            return f"{float(v):.{dec}f}{suffix}"
+        except (TypeError, ValueError):
+            return "N/A"
+
+    def _fmt_pct(v):
+        if v is None:
+            return "N/A"
+        try:
+            val = float(v)
+            # FMP sometimes returns already-multiplied percentages (e.g. 0.15 vs 15.0)
+            if abs(val) < 5:
+                val *= 100
+            return f"{val:.1f}%"
+        except (TypeError, ValueError):
+            return "N/A"
+
+    rows = []
+    for c in companies:
+        label = f"★ {c['ticker']}" if c.get("is_target") else c["ticker"]
+        rows.append({
+            "Selskab":    f"{label} — {c['name']}" if c["name"] != c["ticker"] else label,
+            "P/E":        _fmt_mult(c.get("pe")),
+            "EV/EBITDA":  _fmt_mult(c.get("ev_ebitda")),
+            "P/B":        _fmt_mult(c.get("pb")),
+            "EV/FCF":     _fmt_mult(c.get("ev_fcf")),
+            "ROE":        _fmt_pct(c.get("roe")),
+        })
+
+    n_peers = sum(1 for c in companies if not c.get("is_target"))
+    note = (
+        f"TTM-nøgletal for {company_name} (★) sammenlignet med {n_peers} børsnoterede peers. "
+        f"Kilde: FMP. Alle nøgletal er beregnet på rullende 12-månedersbasis. "
+        f"N/A angiver manglende data for den pågældende peer."
+    )
+
+    return {
+        "type":       "D",
+        "title":      f"{company_name} — Peer-sammenligning",
+        "note":       note,
+        "kilde":      ["FMP"],
+        "table_data": {"columns": ["P/E", "EV/EBITDA", "P/B", "EV/FCF", "ROE"], "rows": rows},
+    }
