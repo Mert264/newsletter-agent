@@ -155,11 +155,11 @@ def _dcf_price(reformulated: dict, wacc: float, g: float,
         if t_idx <= len(c_revs):
             rev    = c_revs[t_idx - 1]
             source = "consensus"
-            suffix = "[C]"
+            suffix = " (est.)"
         else:
             rev    = base_rev * ((1 + rev_cagr) ** t_idx)
             source = "historical"
-            suffix = "[H]"
+            suffix = " (proj.)"
 
         yr_label = f"{base_year + t_idx}E{suffix}"
         oi       = rev * og_avg
