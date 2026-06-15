@@ -516,20 +516,7 @@ def build_chart_specs(
         + ("Bredt spænd indikerer høj modelusikkerhed." if _spread_pct > 0.3 else "Relativt smalt spænd indikerer stabil, forudsigelig forretning.")
     )
 
-    _dcf_note = (
-        f"5-årig Penman FCF (NOPAT − ΔNOA) + Gordon Growth terminalværdi. "
-        f"Bear = lav vækst, pressede marginer, højere WACC. Bull = stærkere vækst, ekspanderende marginer, lavere WACC. "
-        f"{_spread_note} Aktuel kurs = {price:.2f} {currency}."
-    )
-    if price > 0 and abs(upside) > 0.50:
-        if upside < 0:
-            _dcf_note += (
-                f" Alle scenarier under markedskursen — gabet afspejler sandsynligvis immateriel franchise-værdi ikke på balancen."
-            )
-        else:
-            _dcf_note += (
-                f" Alle scenarier over markedskursen — verificer NOA og datakomplethed inden der handles."
-            )
+    _dcf_note = f"5-årig Penman DCF, WACC {_pct(wacc)}, terminal vækst {_pct(base_sc['g'])}. Kilde: FMP."
 
     specs.append({
         "type": "D",
