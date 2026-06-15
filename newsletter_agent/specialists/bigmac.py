@@ -138,11 +138,8 @@ def fetch_bigmac(task: dict) -> dict:
             dataframes[label_adj] = s_adj
             dataframes[label_price] = s_price
 
-            # Pass-through any orchestrator charts, then add defaults if none provided
-            orch_charts = task.get("charts", [])
-            if orch_charts:
-                chart_specs = list(orch_charts)
-            else:
+            chart_specs = []
+            if True:
                 chart_specs.append({
                     "type": "A",
                     "title": f"Big Mac Index — {country_name}",
