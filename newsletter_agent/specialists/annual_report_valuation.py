@@ -200,8 +200,10 @@ def _dcf_price(reformulated: dict, wacc: float, g: float,
 
 def compute_dcf(reformulated: dict, wacc: float, g: float = 0.02,
                 NFO: float = 0.0, NCI: float = 0.0,
-                diluted_shares: float = 1.0, base_year: int = 2024) -> dict:
-    _, detail = _dcf_price(reformulated, wacc, g, NFO, NCI, diluted_shares, base_year)
+                diluted_shares: float = 1.0, base_year: int = 2024,
+                consensus_revs: list = None) -> dict:
+    _, detail = _dcf_price(reformulated, wacc, g, NFO, NCI, diluted_shares, base_year,
+                           consensus_revs=consensus_revs)
     return detail
 
 
