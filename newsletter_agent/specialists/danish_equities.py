@@ -163,7 +163,7 @@ def fetch_danish_equity(task: dict) -> dict:
         }
         for future in as_completed(futures):
             try:
-                name, df, ratios, metrics = future.result()
+                name, df, info = future.result()
             except Exception as exc:
                 print(f"    [danish_equities] Worker failed: {exc}")
                 continue
@@ -177,11 +177,11 @@ def fetch_danish_equity(task: dict) -> dict:
                         kilde.append("Yahoo Finance")
 
             # Fundamentals snapshot (keyed as "<name> — Nøgletal")
-            fund_df = _build_fundamentals_df(name, ratios, metrics)
+            fund_df = _build_fundamentals_df(name, info)
             if fund_df is not None:
                 dataframes[f"{name} — Nøgletal"] = fund_df
-                if "Financial Modeling Prep" not in kilde:
-                    kilde.append("Financial Modeling Prep")
+                if "Yahoo Finance" not in kilde:
+                    kilde.append("Yahoo Finance")
 
     return {
         "dataframes":  dataframes,
