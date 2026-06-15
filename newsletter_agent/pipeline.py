@@ -216,6 +216,26 @@ CHART_RENDERER_MAP = {
 }
 
 
+def _auto_viz_type(chart_spec: dict, dfs: dict) -> str:
+    """Infer the best chart type from data shape when the specialist sets type=None or 'auto'."""
+    explicit = chart_spec.get("type")
+    if explicit and explicit.upper() != "AUTO":
+        return explicit.upper()
+    if chart_spec.get("table_data"):
+        return "D"
+    n_series = len(dfs)
+    if not dfs:
+        return "A"
+    sample_df = next(iter(dfs.values()))
+    is_dt = isinstance(sample_df.index, pd.DatetimeIndex)
+    n_rows = len(sample_df)
+    if not is_dt and n_rows <= 20:
+        return "G"
+    if n_series == 1 and n_rows <= 30:
+        return "B"
+    return "A"
+
+
 def _snapshot_value(series: pd.Series, date_str: str) -> float:
     """Return the series value closest to date_str ('latest' → last observation).
 
