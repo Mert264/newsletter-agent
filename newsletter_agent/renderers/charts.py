@@ -19,16 +19,15 @@ EVENT_COLORS = [
     "#16a34a",   # green
 ]
 
-# Ordered colour palette — matches Maj Invest aesthetic (green first, then contrasting)
 LINE_COLORS = [
-    "#0d9488",   # Maj Invest teal (vivid)
+    "#11716c",   # Maj Invest teal
     "#2563eb",   # blue
-    "#e53e3e",   # bright red
-    "#f59e0b",   # vivid amber
+    "#d4843e",   # warm amber
     "#7c3aed",   # purple
-    "#f97316",   # orange
+    "#e53e3e",   # red
     "#0ea5e9",   # sky blue
-    "#84cc16",   # lime
+    "#16a34a",   # green
+    "#f97316",   # orange
     "#ec4899",   # pink
     "#64748b",   # slate grey
 ]
