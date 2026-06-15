@@ -96,6 +96,7 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
     checker_inputs = {
         "rf_re":         rf,
         "rf_rd":         rf,
+        "rf_source":     rf_source,
         "rating_spread": rs,
         "icr_spread":    rs_icr,
         "beta_raw":      beta_raw,
@@ -103,11 +104,11 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
         "shares_source": "diluted",
         "tax_type":      "statutory",
         "nci_present":   any(v > 0 for v in reformulated["NCI"]),
-        "bond_type":     "spot",
+        "bond_type":     "live" if "FRED" in rf_source else "spot",
     }
 
     return {
-        "rf": rf, "rf_entry": rf_entry, "t": t,
+        "rf": rf, "rf_source": rf_source, "rf_entry": rf_entry, "t": t,
         "beta_raw": beta_raw, "beta_adj": beta_adj,
         "MRP": MRP, "CRP": CRP, "rE": rE,
         "rating": rating, "rs": rs, "rs_moody": rs_moody, "rs_icr": rs_icr,
