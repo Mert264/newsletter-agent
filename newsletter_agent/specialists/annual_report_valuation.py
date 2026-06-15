@@ -266,8 +266,14 @@ def compute_dcf_scenarios(
     else:
         base_rev = reformulated["revenue"][-1]
 
+    _MAX_HIST_CAGR = 0.12
     fwd_cagr = _analyst_fwd_cagr(estimates, base_rev)
-    base_cagr = fwd_cagr if fwd_cagr is not None else hist_cagr
+    if fwd_cagr is not None:
+        base_cagr = fwd_cagr
+    else:
+        base_cagr = min(hist_cagr, _MAX_HIST_CAGR)
+        if hist_cagr > _MAX_HIST_CAGR:
+            print(f"  [annual_report] INFO: Capped hist CAGR from {hist_cagr:.1%} to {_MAX_HIST_CAGR:.0%} (no analyst consensus to validate)")
 
     # Extract per-year consensus revenues for the base scenario (years 1-2).
     # Bear/bull scenarios keep CAGR-only so the consensus anchor stays in base only.
