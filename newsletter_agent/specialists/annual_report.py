@@ -3,7 +3,7 @@ from newsletter_agent.config import API_KEYS
 from newsletter_agent.specialists.annual_report_constants import (
     STATUTORY_TAX_RATE, normalize_country,
 )
-from newsletter_agent.specialists.annual_report_fmp import fetch_all
+from newsletter_agent.specialists.annual_report_fmp import fetch_all, fetch_peer_comparison
 from newsletter_agent.specialists.annual_report_reformulator import reformulate
 from newsletter_agent.specialists.annual_report_checker import check
 from newsletter_agent.specialists.annual_report_valuation import (
