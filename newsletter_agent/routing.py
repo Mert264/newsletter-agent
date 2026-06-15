@@ -36,6 +36,13 @@ _TRADE = _re(r"\b(trade balance|handelsbalance|eksport|import|current account|l�
 # Scorecard / multi-asset dashboard — enforces FRED-in-macro rule
 _SCORECARD = _re(r"\b(scorecard|dashboard|markedsscorecard|overblik|markedsoverblik|oversigt)\b")
 _OECD      = _re(r"\b(oecd|leading indicator|cli|composite leading|forretningsklima|business confidence|bci|consumer confidence|cci|forbrugertillid|erhvervstillid|oecd outlook|multifactor productivity|mfp|total factor productivity|tfp)\b")
+_BIGMAC    = _re(
+    r"\b(big mac|bigmac|big-mac|hamburger index|ppp|purchasing power parity|"
+    r"købekraftparitet|købekraft|valutavurdering|valutaværdi|"
+    r"overvurderet valuta|undervurderet valuta|currency valuation|"
+    r"overvalued|undervalued currency|the economist index)\b",
+    re.IGNORECASE,
+)
 
 ROUTING_RULES = [
     # Annual report / company valuation → annual_report specialist (FMP)
