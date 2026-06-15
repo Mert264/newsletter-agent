@@ -479,18 +479,19 @@ def build_chart_specs(
     ]
 
     _crp_note = f"{_pct(wacc_data['CRP'])} (CRP = 0%)" if wacc_data["CRP"] == 0 else f"{_pct(MRP)} + CRP {_pct(wacc_data['CRP'])}"
-    specs.append({
-        "type": "D",
-        "title": f"{company_name} — WACC",
-        "note": (
-            f"WACC = {_pct(wacc)} — diskonteringsrenten anvendt på alle fremtidige pengestrømme. "
-            f"rf = {rf_entry['bond_name']} spotrente (fremadskuende). Beta Blume-justeret (2/3 × β_raw + 1/3 × 1). "
-            f"MRP = Damodaran US-markedspræmie {_crp_note}. "
-            f"Et WACC-skift på 1 ppt flytter fair value ~15–25%. Typisk interval: 7–10% investment-grade, 10–14% ved højere risiko."
-        ),
-        "kilde": kilde,
-        "table_data": {"columns": ["Parameter", "Værdi", "Kilde"], "rows": wacc_rows},
-    })
+    if False:  # WACC standalone table — detail for internal QA, not for analysts
+        specs.append({
+            "type": "D",
+            "title": f"{company_name} — WACC",
+            "note": (
+                f"WACC = {_pct(wacc)} — diskonteringsrenten anvendt på alle fremtidige pengestrømme. "
+                f"rf = {rf_entry['bond_name']} spotrente (fremadskuende). Beta Blume-justeret (2/3 × β_raw + 1/3 × 1). "
+                f"MRP = Damodaran US-markedspræmie {_crp_note}. "
+                f"Et WACC-skift på 1 ppt flytter fair value ~15–25%. Typisk interval: 7–10% investment-grade, 10–14% ved højere risiko."
+            ),
+            "kilde": kilde,
+            "table_data": {"columns": ["Parameter", "Værdi", "Kilde"], "rows": wacc_rows},
+        })
 
     # ══════════════════════════════════════════════════════════════════════════
     # Chart 5 — DCF Scenarios
