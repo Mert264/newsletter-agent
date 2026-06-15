@@ -42,6 +42,13 @@ _BIGMAC    = _re(
     r"overvurderet valuta|undervurderet valuta|currency valuation|"
     r"overvalued|undervalued currency|the economist index)\b"
 )
+_DANISH_EQ = re.compile(
+    r"\b(c25|omxc25|københavn|copenhagen|novo nordisk|novo-b|dsv\.co|vestas|vws|"
+    r"mærsk|maersk|danske bank|danske\.co|carlsberg|carl-b|pandora|pndora|"
+    r"coloplast|colo-b|ørsted|orsted|danske aktier|dansk aktie|"
+    r"kobenhavn|kobenhavns|kbh aktier)\b",
+    re.IGNORECASE,
+)
 
 ROUTING_RULES = [
     # Annual report / company valuation → annual_report specialist (FMP)
