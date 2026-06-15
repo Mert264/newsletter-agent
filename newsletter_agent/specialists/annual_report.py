@@ -119,6 +119,16 @@ def fetch_annual_report(task: dict) -> dict:
     except Exception as exc:
         print(f"  [annual_report] Auditor failed (non-fatal): {exc}")
 
+    # Peer Comparison — append after main valuation, before news
+    print(f"  [annual_report] Fetching peer comparison...")
+    try:
+        peer_data = fetch_peer_comparison(ticker, fmp_key)
+        peer_spec = build_peer_comparison_spec(peer_data, company_name, ticker)
+        if peer_spec:
+            chart_specs.append(peer_spec)
+    except Exception as exc:
+        print(f"  [annual_report] Peer comparison failed (non-fatal): {exc}")
+
     # Market Researcher — append news card at end
     print(f"  [annual_report] Fetching market news...")
     try:
