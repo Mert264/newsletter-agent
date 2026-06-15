@@ -35,6 +35,7 @@ _IMF   = _re(r"\b(imf|international monetary fund|weo|world economic outlook|ifs
 _TRADE = _re(r"\b(trade balance|handelsbalance|eksport|import|current account|løbende konto|dots|direction of trade)\b")
 # Scorecard / multi-asset dashboard — enforces FRED-in-macro rule
 _SCORECARD = _re(r"\b(scorecard|dashboard|markedsscorecard|overblik|markedsoverblik|oversigt)\b")
+_OECD      = _re(r"\b(oecd|leading indicator|cli|composite leading|forretningsklima|business confidence|bci|consumer confidence|cci|forbrugertillid|erhvervstillid|oecd outlook|multifactor productivity|mfp|total factor productivity|tfp)\b")
 
 ROUTING_RULES = [
     # Annual report / company valuation → annual_report specialist (FMP)
