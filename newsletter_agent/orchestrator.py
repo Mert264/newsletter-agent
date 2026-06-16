@@ -601,9 +601,10 @@ the chart. Place the Type D spec immediately after its paired Type A in the char
   the brief explicitly says "only a chart, no table" or "kun figur".
 
 SNAPSHOT TABLES (type D) and BEFORE/AFTER BAR CHARTS (type E):
-- Use type D when the brief asks for a key-numbers overview, scorecard, or before/after table
-  showing multiple indicators side-by-side as a snapshot (e.g. "show key market indicators
-  before and after the Iran conflict").
+- Use type D when the brief asks for a before/after table showing multiple indicators side-by-side
+  as a snapshot (e.g. "show key market indicators before and after the Iran conflict").
+- For "scorecard", "nøgletal", "overblik", or "dashboard" requests → use type K (KPI strip),
+  NOT type D. See KPI STRIPS section below.
 - Use type E when you want a visual before/after comparison for a small number of series (≤6),
   grouped bars showing the two time points.
 - CRITICAL: NEVER create a second Type A chart that is simply a rebased/indexed version of the
