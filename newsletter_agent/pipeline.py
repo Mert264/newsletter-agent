@@ -1619,4 +1619,10 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     if _specialist_errors:
         for name, err in _specialist_errors.items():
             print(f"  [pipeline] Specialist '{name}' failed: {err}")
+
+    if self_critique:
+        print("\n[self-critique] Running post-render analysis...")
+        n_crit = _self_critique(packages, output_dir)
+        print(f"[self-critique] {n_crit} correction(s) auto-generated")
+
     return packages
