@@ -121,6 +121,8 @@ Note: {metadata.get('note', '[MISSING]')}
 Kilde: {metadata.get('kilde', '[MISSING]')}
 Region labels on chart: {metadata.get('region_labels', [])}
 """
+    if corrections:
+        prompt += f"\n\n{corrections}"
     raw = call_llm_text(prompt)
     raw = re.sub(r"^```(?:json)?\s*", "", raw)
     raw = re.sub(r"\s*```$", "", raw.strip())
