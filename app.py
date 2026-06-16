@@ -164,6 +164,14 @@ def get_ratings():
     })
 
 
+@app.route("/dashboard")
+def serve_dashboard():
+    path = os.path.join(OUTPUT_DIR, "dashboard.png")
+    if os.path.isfile(path):
+        return send_from_directory(OUTPUT_DIR, "dashboard.png")
+    return jsonify({"error": "Intet dashboard tilgængeligt — kør en analyse først."}), 404
+
+
 @app.route("/download/excel")
 def download_excel():
     path = os.path.join(OUTPUT_DIR, "data_export.xlsx")
