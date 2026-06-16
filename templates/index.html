@@ -1282,7 +1282,8 @@ function submitComment(figId) {
     if (r.ok) {
       btn.textContent = 'Gemt!';
       textarea.value = '';
-      setTimeout(() => { commentDiv.classList.remove('show'); btn.disabled = false; btn.textContent = 'Send kommentar'; }, 1500);
+      setTimeout(() => { btn.disabled = false; btn.textContent = 'Send kommentar'; }, 1500);
+      loadCorrections();
     }
   }).catch(() => { btn.disabled = false; btn.textContent = 'Send kommentar'; });
 }
