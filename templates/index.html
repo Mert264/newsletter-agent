@@ -485,10 +485,8 @@
     }
     .fig-rating .rating-saved.show { opacity: 1; }
     .fig-comment {
-      display: none;
       padding: 6px 14px 10px;
     }
-    .fig-comment.show { display: block; }
     .fig-comment textarea {
       width: 100%;
       min-height: 48px;
@@ -517,6 +515,45 @@
       color: #9ca3af;
       margin-bottom: 4px;
     }
+
+    /* ── Corrections management panel ── */
+    #correctionsPanel { grid-column: 1 / -1; display: none; }
+    .corrections-list { max-height: 400px; overflow-y: auto; }
+    .correction-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f4f4;
+      font-size: 12.5px;
+    }
+    .correction-item:last-child { border-bottom: none; }
+    .correction-meta { flex: 1; min-width: 0; }
+    .correction-comment { color: #1a2a2a; font-weight: 500; margin-bottom: 3px; }
+    .correction-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+    .correction-tag {
+      background: #f0faf9;
+      border: 1px solid #a7d9d5;
+      color: #0d6b66;
+      border-radius: 10px;
+      padding: 1px 8px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .correction-tag.disabled { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
+    .correction-toggle {
+      background: #fff;
+      border: 1.5px solid #d1d5db;
+      border-radius: 5px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .correction-toggle:hover { border-color: #11716c; color: #11716c; }
+    .correction-toggle.is-disabled { border-color: #dc2626; color: #dc2626; }
 
     /* ── Lightbox ── */
     #lightbox {
