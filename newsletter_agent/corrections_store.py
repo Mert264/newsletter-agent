@@ -8,8 +8,6 @@ import os
 import requests
 from datetime import datetime
 
-from newsletter_agent.config import API_KEYS
-
 _SUPABASE_URL = os.getenv("SUPABASE_URL", "")
 _SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_KEY", "")
 _REPO_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "corrections.jsonl")
