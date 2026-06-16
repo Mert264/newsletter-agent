@@ -1081,6 +1081,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     if routing_hint:
         print(f"      [routing] Hint injected: {routing_hint.strip()[:80]}...")
     manifest = build_task_manifest(brief, preferred_types=preferred_types, routing_hint=routing_hint, period_days=period_days, model=model)
+    manifest = _expand_regions(manifest)
     manifest = _enforce_worldbank_single_country_layout(manifest, period_days=period_days)
     # Strip accidental source attribution from note fields — LLM occasionally includes
     # "Kilde: X" or "Source: X" despite the prompt rule; enforce it programmatically.
