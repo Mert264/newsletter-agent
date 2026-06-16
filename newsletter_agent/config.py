@@ -35,9 +35,9 @@ API_KEYS = {
     "fmp":       os.getenv("FMP_API_KEY", ""),
 }
 
-# LLM models — orchestrator uses Sonnet for reliable JSON, reviewer uses Haiku (cheaper)
+# LLM models — orchestrator and reviewer both use Sonnet for quality
 ORCHESTRATOR_MODEL = "claude-sonnet-4-6"
-REVIEWER_MODEL     = "claude-haiku-4-5-20251001"
+REVIEWER_MODEL     = "claude-sonnet-4-6-20250514"
 LLM_MODEL = ORCHESTRATOR_MODEL  # backwards-compat alias
 
 # Default date range for data fetching
