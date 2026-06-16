@@ -1184,7 +1184,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
         import re as _re_sp
         for _m in _re_sp.finditer(r"specialist='(\w+)'", routing_hint):
             specialist_names.append(_m.group(1))
-    corrections_text = _load_corrections(specialist_names)
+    corrections_text = _load_corrections(specialist_names, output_dir=output_dir)
     if corrections_text:
         print(f"      [corrections] {corrections_text.count(chr(10))} past correction(s) injected")
     manifest = build_task_manifest(brief, preferred_types=preferred_types, routing_hint=routing_hint, period_days=period_days, model=model, corrections=corrections_text)
