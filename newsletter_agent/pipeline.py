@@ -1429,6 +1429,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
         print(f"       Excel: {n_excel} per-figure workbook(s) written")
 
     # Step 6: Dashboard composite
+    print(f"       Dashboard: {len(packages)} package(s), checking paths...")
     if len(packages) >= 2:
         try:
             from newsletter_agent.renderers.dashboard import render_dashboard
