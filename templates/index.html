@@ -968,9 +968,9 @@ function startRun() {
 
   fetch('/run', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: _authHeaders(),
     body: JSON.stringify(payload),
-  }).then(r => r.json()).then(data => {
+  }).then(r => { if (r.status === 401) { alert('Uautoriseret — brug ?key=DIN_NØGLE i URL.'); runBtn.disabled = false; throw new Error('401'); } return r.json(); }).then(data => {
     if (data.error) {
       statusMsg.className = 'error';
       statusMsg.textContent = '✗ ' + data.error;
