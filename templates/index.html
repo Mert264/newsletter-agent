@@ -1170,13 +1170,58 @@ function rateFigure(starEl) {
   const labels = ['', 'Dårlig', 'Under middel', 'OK', 'God', 'Fremragende'];
   container.querySelector('.rating-label').textContent = labels[val] || '';
   const saved = container.querySelector('.rating-saved');
+  const commentBox = document.getElementById('comment-' + figId);
+  if (commentBox) {
+    commentBox.classList.toggle('show', val <= 2);
+  }
+  const body = {
+    figure_id: figId,
+    rating: val,
+    chart_type: container.dataset.chartType || '',
+    title: container.dataset.title || '',
+    specialist: container.dataset.specialist || '',
+    brief: window._lastBrief || '',
+  };
   fetch('/rate', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({figure_id: figId, rating: val})
+    body: JSON.stringify(body)
   }).then(r => {
     if (r.ok) { saved.classList.add('show'); setTimeout(() => saved.classList.remove('show'), 1500); }
   }).catch(() => {});
+}
+
+function submitComment(figId) {
+  const commentDiv = document.getElementById('comment-' + figId);
+  if (!commentDiv) return;
+  const textarea = commentDiv.querySelector('textarea');
+  const comment = (textarea.value || '').trim();
+  if (!comment) return;
+  const container = document.getElementById('rating-' + figId);
+  const activeStars = container ? container.querySelectorAll('.star.active').length : 0;
+  const body = {
+    figure_id: figId,
+    rating: activeStars || 1,
+    comment: comment,
+    chart_type: container ? container.dataset.chartType || '' : '',
+    title: container ? container.dataset.title || '' : '',
+    specialist: container ? container.dataset.specialist || '' : '',
+    brief: window._lastBrief || '',
+  };
+  const btn = commentDiv.querySelector('button');
+  btn.disabled = true;
+  btn.textContent = 'Sender...';
+  fetch('/rate', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body)
+  }).then(r => {
+    if (r.ok) {
+      btn.textContent = 'Gemt!';
+      textarea.value = '';
+      setTimeout(() => { commentDiv.classList.remove('show'); btn.disabled = false; btn.textContent = 'Send kommentar'; }, 1500);
+    }
+  }).catch(() => { btn.disabled = false; btn.textContent = 'Send kommentar'; });
 }
 
 // ── Clear figures on page load ──
