@@ -638,6 +638,9 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
     # ── Type K — KPI strip (horizontal metric cards) ────────────────────
     if chart_type == "K":
         kpi_metrics = chart_spec.get("metrics", [])
+        needs_fill = kpi_metrics and any(m.get("series") for m in kpi_metrics)
+        if needs_fill:
+            kpi_metrics = _fill_kpi_metrics(kpi_metrics, dfs)
         if kpi_metrics:
             from newsletter_agent.renderers.kpi_strip import render_kpi_strip
             path = render_kpi_strip(kpi_metrics, output_path, title=chart_spec.get("title", "Nøgletal"))
