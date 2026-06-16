@@ -301,6 +301,14 @@ COUNTRY RESOLUTION — CRITICAL:
   referenced country and add a parenthetical to the chart title,
   e.g. "Sydkorea (Republikken Korea)".
 
+REGION GROUPS — use these as shorthand in the "country" or "countries" field:
+  EU (27 members), EUROZONE (20 members), NORDIC (DK/FI/IS/NO/SE),
+  G7 (US/GB/FR/DE/IT/JP/CA), G20, BRICS (BR/RU/IN/CN/ZA),
+  EM (20 major emerging markets), DM (23 developed markets), SCANDINAVIA (DK/NO/SE).
+  The pipeline expands these to individual country codes automatically.
+  For bigmac specialist: use in "countries" list, e.g. "countries": ["NORDIC"].
+  For IMF/OECD/worldbank: use in "country" field, e.g. "country": "EUROZONE".
+
 CORE INDICATORS — always include all five for single-country requests:
   NY.GDP.MKTP.KD.ZG → "BNP-vækst (%)"
   FP.CPI.TOTL.ZG    → "Inflation, CPI (%)"
