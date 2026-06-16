@@ -1287,10 +1287,61 @@ function submitComment(figId) {
   }).catch(() => { btn.disabled = false; btn.textContent = 'Send kommentar'; });
 }
 
+// ── Corrections management panel ──
+function loadCorrections() {
+  fetch('/corrections', { headers: _authHeaders() })
+    .then(r => r.json())
+    .then(data => {
+      const panel = document.getElementById('correctionsPanel');
+      const list = document.getElementById('correctionsList');
+      const count = document.getElementById('correctionCount');
+      const entries = data.corrections || [];
+      if (!entries.length) { panel.style.display = 'none'; return; }
+      panel.style.display = 'block';
+      count.textContent = `${data.active_count || 0} aktive / ${entries.length} total`;
+      list.innerHTML = '';
+      entries.forEach(c => {
+        const isActive = (c.status || 'active') === 'active';
+        const cid = c.id || c.ts || '';
+        const topicTag = c.topic && c.topic !== 'general' ? `<span class="correction-tag">${escHtml(c.topic)}</span>` : '';
+        const typeTag = c.figure_type ? `<span class="correction-tag">Type ${escHtml(c.figure_type)}</span>` : '';
+        const layerTag = c.layer ? `<span class="correction-tag">${escHtml(c.layer)}</span>` : '';
+        const statusTag = !isActive ? `<span class="correction-tag disabled">deaktiveret</span>` : '';
+        const sourceTag = c.source === 'auto-critique' ? `<span class="correction-tag">auto</span>` : '';
+        const item = document.createElement('div');
+        item.className = 'correction-item';
+        item.style.opacity = isActive ? '1' : '0.5';
+        item.innerHTML = `
+          <div class="correction-meta">
+            <div class="correction-comment">${escHtml(c.comment || '')}</div>
+            <div class="correction-tags">${typeTag}${topicTag}${layerTag}${sourceTag}${statusTag}</div>
+            <div style="font-size:10px;color:#9ca3af;margin-top:2px;">${escHtml(c.title || c.figure || '')} — ${escHtml((c.ts || '').slice(0,10))}</div>
+          </div>
+          <button class="correction-toggle ${isActive ? '' : 'is-disabled'}"
+                  onclick="toggleCorrection('${escHtml(cid)}', '${isActive ? 'disabled' : 'active'}')">
+            ${isActive ? 'Deaktivér' : 'Aktivér'}
+          </button>`;
+        list.appendChild(item);
+      });
+    })
+    .catch(() => {});
+}
+
+function toggleCorrection(cid, newStatus) {
+  fetch('/corrections/toggle', {
+    method: 'POST',
+    headers: _authHeaders(),
+    body: JSON.stringify({ id: cid, status: newStatus })
+  }).then(r => {
+    if (r.ok) loadCorrections();
+  }).catch(() => {});
+}
+
 // ── Clear figures on page load ──
 window.addEventListener('load', function() {
   window.scrollTo(0, 0);
   try { localStorage.removeItem('njFigures'); } catch(e) {}
+  loadCorrections();
 });
 history.scrollRestoration = 'manual';
 </script>
