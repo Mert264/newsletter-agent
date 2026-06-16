@@ -16,6 +16,25 @@ app = Flask(__name__)
 OUTPUT_DIR = "/tmp/newsletter_output" if os.getenv("RAILWAY_ENVIRONMENT") else os.path.join(os.path.dirname(__file__), "demo_output")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+_API_KEY = os.getenv("BRAIN_API_KEY", "")
+_PUBLIC_PATHS = {"/health", "/"}
+
+
+@app.before_request
+def _check_api_key():
+    if not _API_KEY:
+        return
+    if request.path in _PUBLIC_PATHS:
+        return
+    key = request.headers.get("X-API-Key") or request.args.get("api_key", "")
+    if key != _API_KEY:
+        return jsonify({"error": "Unauthorized"}), 401
+
+
+@app.route("/health")
+def health():
+    return jsonify({"status": "ok"})
+
 # One global run at a time — good enough for a demo
 _run_queue: queue.Queue = queue.Queue()
 _run_lock = threading.Lock()
