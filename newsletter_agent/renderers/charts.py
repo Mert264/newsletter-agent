@@ -314,7 +314,7 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
 
     # Trendline overlays — drawn after all data lines so they sit on top
     freq = spec.get("freq", "M")
-    global_tl = spec.get("trendline", "auto")
+    global_tl = spec.get("trendline", "none")
     for i, col in enumerate(df.columns):
         s = df[col].dropna()
         if s.empty:
