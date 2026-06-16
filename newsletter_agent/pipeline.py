@@ -1210,9 +1210,12 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
         import re as _re_sp
         for _m in _re_sp.finditer(r"specialist='(\w+)'", routing_hint):
             specialist_names.append(_m.group(1))
-    corrections_text = _load_corrections_for_layer(specialist_names, "orchestrator", output_dir=output_dir)
+    orch_entries = _store_load(specialists=specialist_names, layer="orchestrator", output_dir=output_dir)
+    spec_entries = _store_load(specialists=specialist_names, layer="specialist", output_dir=output_dir)
+    combined = {id(e): e for e in orch_entries + spec_entries}.values()
+    corrections_text = format_corrections_prompt(list(combined))
     if corrections_text:
-        print(f"      [corrections] {corrections_text.count(chr(10))} orchestrator correction(s) injected")
+        print(f"      [corrections] {len(list(combined))} orchestrator+specialist correction(s) injected")
     manifest = build_task_manifest(brief, preferred_types=preferred_types, routing_hint=routing_hint, period_days=period_days, model=model, corrections=corrections_text)
     manifest = _expand_regions(manifest)
     manifest = _enforce_worldbank_single_country_layout(manifest, period_days=period_days)
