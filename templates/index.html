@@ -1237,10 +1237,6 @@ function rateFigure(starEl) {
   const labels = ['', 'Dårlig', 'Under middel', 'OK', 'God', 'Fremragende'];
   container.querySelector('.rating-label').textContent = labels[val] || '';
   const saved = container.querySelector('.rating-saved');
-  const commentBox = document.getElementById('comment-' + figId);
-  if (commentBox) {
-    commentBox.classList.toggle('show', val <= 2);
-  }
   const body = {
     figure_id: figId,
     rating: val,
