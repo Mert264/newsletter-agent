@@ -442,7 +442,7 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     _place_end_labels(ax, df, colors)
 
     xlo, xhi = ax.get_xlim()
-    today_num = _mdates.date2num(pd.Timestamp.today())
+    today_num = mdates.date2num(pd.Timestamp.today())
     if xhi > today_num:
         ax.set_xlim(right=today_num)
 
