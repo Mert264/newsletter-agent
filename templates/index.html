@@ -1110,10 +1110,18 @@ function renderFigures(figures) {
         ${fig.kilde  ? `<div class="fig-kilde"><strong>Kilde:</strong> ${escHtml(fig.kilde)}</div>` : ''}
         ${flagHtml}
       </div>
-      <div class="fig-rating" id="rating-${escHtml(figId)}">
+      <div class="fig-rating" id="rating-${escHtml(figId)}"
+           data-chart-type="${escHtml(fig.chart_type || '')}"
+           data-title="${escHtml(fig.title || '')}"
+           data-specialist="${escHtml(fig.specialist || '')}">
         ${starsHtml}
         <span class="rating-label"></span>
         <span class="rating-saved">Gemt</span>
+      </div>
+      <div class="fig-comment" id="comment-${escHtml(figId)}">
+        <div class="comment-hint">Hvad var galt? Din feedback forbedrer fremtidige figurer.</div>
+        <textarea placeholder="F.eks. Forkert enhed på Y-aksen, manglende data..."></textarea>
+        <button onclick="submitComment('${escHtml(figId)}')">Send kommentar</button>
       </div>
       <div class="fig-actions">
         <a class="fig-dl-btn" href="${url}" download="${dlName}">⬇ Download PNG</a>
