@@ -636,21 +636,24 @@ SNAPSHOT TABLES (type D) and BEFORE/AFTER BAR CHARTS (type E):
 KPI STRIPS (type K):
 - Use type K for a compact horizontal row of key metrics when the brief asks for a "dashboard",
   "nøgletal", "overblik", or "scorecard".
-- The chart spec must include a "metrics" array (not series_labels):
+- The chart spec MUST include a "metrics" array with a "series" key pointing to the data label.
+  The pipeline auto-fills value, change, direction, and note from the fetched data.
+- You MUST also include "series_labels" listing every series used in metrics so the data gets fetched.
   {
     "type": "K",
     "title": "Makroøkonomisk overblik — Danmark",
+    "series_labels": ["BNP-vækst (%)", "Inflation, CPI (%)", "Arbejdsløshed (%)", "Betalingsbalance (% af BNP)"],
     "metrics": [
-      {"name": "BNP-vækst", "value": "2.3%", "change": "+0.4 pp", "direction": "up", "note": "Q1 2025"},
-      {"name": "Inflation", "value": "1.8%", "change": "-0.3 pp", "direction": "down", "lower_is_better": true, "note": "Maj 2025"},
-      {"name": "Ledighed", "value": "4.2%", "change": "+0.1 pp", "direction": "up", "lower_is_better": true, "note": "Apr 2025"},
-      {"name": "10Y Rente", "value": "2.45%", "change": "-12 bp", "direction": "down", "note": "Aktuelt"}
+      {"name": "BNP-vækst", "series": "BNP-vækst (%)", "lower_is_better": false},
+      {"name": "Inflation", "series": "Inflation, CPI (%)", "lower_is_better": true},
+      {"name": "Ledighed", "series": "Arbejdsløshed (%)", "lower_is_better": true},
+      {"name": "Betalingsbalance", "series": "Betalingsbalance (% af BNP)", "lower_is_better": false}
     ],
-    "note": "Udvalgte makronøgletal for Danmark."
+    "note": "Udvalgte makronøgletal for Danmark. Ændringer er år-over-år."
   }
-- KPI strips do NOT require series_labels — they use pre-formatted metric values.
-- Use "lower_is_better": true for metrics where a decrease is positive (inflation, unemployment, P/E).
-- direction: "up" | "down" | "flat" controls the arrow and color.
+- Do NOT hardcode value/change/direction — the pipeline computes them from real data.
+- Use "lower_is_better": true for metrics where a decrease is positive (inflation, unemployment, debt).
+- IMPORTANT: Place the Type K chart FIRST in the charts array, before detailed Type A/D charts.
 
 EVENT MARKERS:
 - ONLY add an "events" array when the brief provides BOTH a specific event name AND an explicit
