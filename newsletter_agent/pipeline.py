@@ -1122,15 +1122,71 @@ def _expand_regions(manifest: dict) -> dict:
     return manifest
 
 
+def _self_critique(packages: list, output_dir: str) -> int:
+    """Optional post-render self-critique: an LLM reviews each figure PNG and writes corrections."""
+    import anthropic
+    from newsletter_agent.config import API_KEYS
+    client = anthropic.Anthropic(api_key=API_KEYS["anthropic"])
+    n_corrections = 0
+    for pkg in packages:
+        path = pkg.get("path", "")
+        meta = pkg.get("metadata", {})
+        if not os.path.isfile(path) or meta.get("_skip_review"):
+            continue
+        try:
+            import base64
+            with open(path, "rb") as f:
+                img_b64 = base64.b64encode(f.read()).decode()
+            resp = client.messages.create(
+                model="claude-sonnet-4-6-20250514",
+                max_tokens=300,
+                messages=[{"role": "user", "content": [
+                    {"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": img_b64}},
+                    {"type": "text", "text": (
+                        f"Title: {meta.get('title', '')}\nType: {meta.get('chart_type', '')}\n"
+                        f"Labels: {meta.get('region_labels', [])}\n\n"
+                        "You are a financial chart quality auditor. Check this chart for:\n"
+                        "1. Missing or invisible data series mentioned in legend\n"
+                        "2. Mislabelled axes (e.g. 'index' label but showing growth rates)\n"
+                        "3. Data that looks implausible for the metric\n"
+                        "4. Visual rendering issues\n\n"
+                        "If you find issues, return JSON: {\"issues\": [{\"comment\": \"...\", \"severity\": \"high|medium|low\"}]}\n"
+                        "If no issues: {\"issues\": []}\n"
+                        "Return ONLY valid JSON, no markdown."
+                    )}
+                ]}],
+            )
+            raw = resp.content[0].text.strip()
+            import re as _re_crit
+            raw = _re_crit.sub(r"^```(?:json)?\s*", "", raw)
+            raw = _re_crit.sub(r"\s*```$", "", raw.strip())
+            result = json.loads(raw)
+            for issue in result.get("issues", []):
+                if issue.get("severity") in ("high", "medium"):
+                    _store_save({
+                        "figure": meta.get("title", ""),
+                        "specialist": meta.get("specialist", ""),
+                        "chart_type": meta.get("chart_type", ""),
+                        "comment": issue["comment"],
+                        "source": "auto-critique",
+                    })
+                    n_corrections += 1
+        except Exception as exc:
+            print(f"  [self-critique] Failed for '{meta.get('title', '')}': {exc}")
+    return n_corrections
+
+
 def run(brief: str, output_dir: str = "output", preferred_types: list = None,
         period_days: int = None, model: str = None,
-        start_date: str = None, end_date: str = None) -> list:
+        start_date: str = None, end_date: str = None,
+        self_critique: bool = False) -> list:
     """
     Main pipeline entry point.
     brief: free-form topic string from department.
     output_dir: where to save PNG files and manifest.json.
     preferred_types: optional list of chart type codes e.g. ["A", "G"] — passed to orchestrator.
     start_date / end_date: explicit ISO date strings — override period_days when provided.
+    self_critique: if True, run post-render self-critique agent to auto-generate corrections.
     Returns list of FigurePackage dicts: [{"path": str, "metadata": dict}, ...]
     """
     # If explicit dates provided, derive period_days from them so existing logic still works
