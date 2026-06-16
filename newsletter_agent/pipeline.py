@@ -1134,7 +1134,7 @@ def _self_critique(packages: list, output_dir: str) -> int:
             with open(path, "rb") as f:
                 img_b64 = base64.b64encode(f.read()).decode()
             resp = client.messages.create(
-                model="claude-sonnet-4-6-20250514",
+                model="claude-sonnet-4-6",
                 max_tokens=300,
                 messages=[{"role": "user", "content": [
                     {"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": img_b64}},
