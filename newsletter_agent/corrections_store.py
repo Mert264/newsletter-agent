@@ -1,7 +1,8 @@
 """Dual-write corrections store: Supabase (source of truth) + repo file (local cache).
 
-Handles layer classification, persistence, and filtered loading for three-layer
-injection (orchestrator, specialist, reviewer).
+Handles layer classification, topic classification, persistence, and filtered
+loading for three-layer injection (orchestrator, specialist, reviewer).
+Supports figure_type + topic matching for global learning across similar charts.
 """
 import json
 import os
@@ -31,6 +32,44 @@ _LAYER_KEYWORDS = {
     ],
 }
 
+_TOPIC_KEYWORDS = {
+    "inflation": [
+        "cpi", "hicp", "inflation", "prisindeks", "forbrugerpriser", "deflation",
+        "price index", "consumer price",
+    ],
+    "gdp": [
+        "gdp", "bnp", "growth", "vækst", "produktion", "recession", "output",
+    ],
+    "employment": [
+        "unemployment", "arbejdsløshed", "ledighed", "jobs", "beskæftigelse",
+        "employment", "labor", "labour", "nonfarm",
+    ],
+    "rates": [
+        "rente", "yield", "obligationer", "bonds", "fed", "ecb", "policy rate",
+        "rentekurve", "treasury", "statsobligation", "spread",
+    ],
+    "energy": [
+        "olie", "gas", "energi", "brent", "wti", "ttf", "henry hub", "oil",
+        "crude", "lng", "pipeline", "hormuz", "opec",
+    ],
+    "equities": [
+        "aktie", "equity", "stock", "indeks", "s&p", "nasdaq", "kospi",
+        "kursudvikling", "børs", "afkast", "return", "p/e",
+    ],
+    "commodities": [
+        "guld", "gold", "sølv", "silver", "kobber", "copper", "råvarer",
+        "commodity", "mining", "precious",
+    ],
+    "defense": [
+        "forsvar", "defense", "military", "rearmament", "oprustning", "nato",
+        "drone", "ammunition",
+    ],
+    "fx": [
+        "valuta", "dollar", "eur/usd", "dxy", "currency", "exchange rate",
+        "krone", "yuan", "yen",
+    ],
+}
+
 
 def classify_layer(comment: str) -> str:
     low = comment.lower()
@@ -43,9 +82,31 @@ def classify_layer(comment: str) -> str:
     return best if scores[best] > 0 else "all"
 
 
+def classify_topic(text: str) -> str:
+    low = text.lower()
+    scores = {topic: 0 for topic in _TOPIC_KEYWORDS}
+    for topic, keywords in _TOPIC_KEYWORDS.items():
+        for kw in keywords:
+            if kw in low:
+                scores[topic] += 1
+    best = max(scores, key=scores.get)
+    return best if scores[best] > 0 else "general"
+
+
 def save_correction(entry: dict) -> bool:
     if "layer" not in entry:
         entry["layer"] = classify_layer(entry.get("comment", ""))
+    if "topic" not in entry:
+        topic_text = " ".join(filter(None, [
+            entry.get("comment", ""),
+            entry.get("title", ""),
+            entry.get("brief", ""),
+        ]))
+        entry["topic"] = classify_topic(topic_text)
+    if "figure_type" not in entry:
+        entry["figure_type"] = entry.get("chart_type", "")
+    if "status" not in entry:
+        entry["status"] = "active"
     if "ts" not in entry:
         entry["ts"] = datetime.utcnow().isoformat() + "Z"
 
@@ -55,12 +116,30 @@ def save_correction(entry: dict) -> bool:
 
 
 def load_corrections(specialists: list[str] = None, layer: str = None,
+                     figure_type: str = None, topic: str = None,
                      limit: int = 5, output_dir: str = "") -> list[dict]:
-    entries = _read_supabase(specialists=specialists, layer=layer, limit=limit)
+    entries = _read_supabase(specialists=specialists, layer=layer,
+                             figure_type=figure_type, topic=topic, limit=limit)
     if not entries:
         entries = _read_local(specialists=specialists, layer=layer,
+                              figure_type=figure_type, topic=topic,
                               limit=limit, output_dir=output_dir)
     return entries
+
+
+def list_all_corrections(limit: int = 100, output_dir: str = "") -> list[dict]:
+    entries = _read_supabase(limit=limit, include_disabled=True)
+    if not entries:
+        entries = _read_local(limit=limit, output_dir=output_dir, include_disabled=True)
+    return entries
+
+
+def toggle_correction(correction_id: str, new_status: str) -> bool:
+    if new_status not in ("active", "disabled"):
+        return False
+    supa_ok = _toggle_supabase(correction_id, new_status)
+    local_ok = _toggle_local(correction_id, new_status)
+    return supa_ok or local_ok
 
 
 def format_corrections_prompt(entries: list[dict], prefix: str = "") -> str:
@@ -72,7 +151,9 @@ def format_corrections_prompt(entries: list[dict], prefix: str = "") -> str:
         ct = e.get("chart_type", "?")
         cmt = e.get("comment", "")
         title = e.get("title", e.get("figure", ""))
-        lines.append(f"  - Type {ct} '{title}': {cmt}")
+        topic = e.get("topic", "")
+        topic_tag = f" [{topic}]" if topic else ""
+        lines.append(f"  - Type {ct}{topic_tag} '{title}': {cmt}")
     return "\n".join(lines)
 
 
