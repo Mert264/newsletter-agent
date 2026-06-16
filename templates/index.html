@@ -955,6 +955,7 @@ function startStream() {
       statusMsg.textContent = `✓ ${n} figur${n === 1 ? '' : 'er'} klar`;
       document.getElementById('runBtn').disabled = false;
       try { localStorage.setItem('njFigures', JSON.stringify(msg.figures)); } catch(e) {}
+      if (n >= 2) document.getElementById('dashboardLink').style.display = 'inline-block';
       es.close();
     } else if (msg.type === 'error') {
       appendLog('FEJL: ' + msg.text, 'error');
