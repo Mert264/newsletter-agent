@@ -374,13 +374,14 @@
     #figuresPanel { grid-column: 1 / -1; display: none; }
     .figures-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 420px));
+      gap: 16px;
     }
     .fig-card {
       border: 1px solid #e4eaea;
       border-radius: 8px;
       overflow: hidden;
+      max-width: 420px;
     }
     .fig-card img {
       width: 100%;
