@@ -632,6 +632,25 @@ SNAPSHOT TABLES (type D) and BEFORE/AFTER BAR CHARTS (type E):
     "col_after": "Nu",
     "note": "Snapshot af udvalgte markedsindikatorer før og efter eskaleringen af Iran-Israel-spændingerne i oktober 2024. Ændringer viser den absolutte bevægelse i procent."
   }
+KPI STRIPS (type K):
+- Use type K for a compact horizontal row of key metrics when the brief asks for a "dashboard",
+  "nøgletal", "overblik", or "scorecard".
+- The chart spec must include a "metrics" array (not series_labels):
+  {
+    "type": "K",
+    "title": "Makroøkonomisk overblik — Danmark",
+    "metrics": [
+      {"name": "BNP-vækst", "value": "2.3%", "change": "+0.4 pp", "direction": "up", "note": "Q1 2025"},
+      {"name": "Inflation", "value": "1.8%", "change": "-0.3 pp", "direction": "down", "lower_is_better": true, "note": "Maj 2025"},
+      {"name": "Ledighed", "value": "4.2%", "change": "+0.1 pp", "direction": "up", "lower_is_better": true, "note": "Apr 2025"},
+      {"name": "10Y Rente", "value": "2.45%", "change": "-12 bp", "direction": "down", "note": "Aktuelt"}
+    ],
+    "note": "Udvalgte makronøgletal for Danmark."
+  }
+- KPI strips do NOT require series_labels — they use pre-formatted metric values.
+- Use "lower_is_better": true for metrics where a decrease is positive (inflation, unemployment, P/E).
+- direction: "up" | "down" | "flat" controls the arrow and color.
+
 EVENT MARKERS:
 - ONLY add an "events" array when the brief provides BOTH a specific event name AND an explicit
   calendar date (e.g. "Trump tariffs on 2 April 2025", "Iran war on 28 February 2026").
