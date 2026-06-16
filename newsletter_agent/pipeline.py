@@ -31,19 +31,23 @@ from newsletter_agent.reviewer import review_figure
 _CORRECTIONS_REPO = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "corrections.jsonl")
 
 
-def _load_corrections(specialists: list[str], limit: int = 5) -> str:
-    """Load past corrections from repo file, filtered by specialist. Returns prompt text."""
-    if not os.path.isfile(_CORRECTIONS_REPO):
-        return ""
+def _load_corrections(specialists: list[str], limit: int = 5, output_dir: str = "") -> str:
+    """Load past corrections from repo + session files, filtered by specialist. Returns prompt text."""
+    sources = [_CORRECTIONS_REPO]
+    if output_dir:
+        sources.append(os.path.join(output_dir, "corrections.jsonl"))
     entries = []
-    with open(_CORRECTIONS_REPO) as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                try:
-                    entries.append(json.loads(line))
-                except json.JSONDecodeError:
-                    continue
+    for src in sources:
+        if not os.path.isfile(src):
+            continue
+        with open(src) as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    try:
+                        entries.append(json.loads(line))
+                    except json.JSONDecodeError:
+                        continue
     if not entries:
         return ""
     relevant = [e for e in entries if e.get("specialist", "") in specialists]
