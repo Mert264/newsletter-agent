@@ -988,7 +988,7 @@ function startRun() {
 // ── SSE stream ──
 function startStream() {
   if (es) { es.close(); }
-  es = new EventSource('/stream');
+  es = new EventSource('/stream' + _authQuery());
   es.onmessage = function(e) {
     const msg = JSON.parse(e.data);
     if (msg.type === 'connected' || msg.type === 'heartbeat') return;
