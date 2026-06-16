@@ -73,13 +73,7 @@ def _draw_trendline(ax, x_dates, y_values, color: str, series_name: str,
                 color=color, linewidth=1.0, linestyle="--",
                 label=f"{series_name} (trend)", zorder=4)
 
-        # Projection: extend 10% beyond data range
-        data_span = x_num[-1] - x_num[0]
-        x_proj = np.linspace(x_num[-1], x_num[-1] + data_span * 0.10, 20)
-        proj_dates = _mdates.num2date(x_proj)
-        ax.plot(proj_dates, poly(x_proj),
-                color=color, linewidth=1.0, linestyle="--",
-                alpha=0.4, zorder=4)
+        # No forward projection — chart must never extend beyond current date
 
     elif tl == "ma":
         # Window: 12 for monthly, 4 for quarterly, 3 otherwise
