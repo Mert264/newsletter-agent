@@ -34,7 +34,7 @@ _COUNTRY_ECON_KW = _re(r"\b(økonomi|makroprofil|makroøkonomisk|landeprofil|bnp
 _IMF   = _re(r"\b(imf|international monetary fund|weo|world economic outlook|ifs|balance of payments|betalingsbalance|gæld til bnp|statsgæld|government debt|financial soundness|fsi)\b")
 _TRADE = _re(r"\b(trade balance|handelsbalance|eksport|import|current account|løbende konto|dots|direction of trade)\b")
 # Scorecard / multi-asset dashboard — enforces FRED-in-macro rule
-_SCORECARD = _re(r"\b(scorecard|dashboard|markedsscorecard|overblik|markedsoverblik|oversigt)\b")
+_SCORECARD = _re(r"\b(scorecard|dashboard|markedsscorecard|overblik|markedsoverblik|oversigt|nøgletal|kpi)\b")
 _OECD      = _re(r"\b(oecd|leading indicator|cli|composite leading|forretningsklima|business confidence|bci|consumer confidence|cci|forbrugertillid|erhvervstillid|oecd outlook|multifactor productivity|mfp|total factor productivity|tfp)\b")
 _MAG7 = _re(
     r"\b(magnificent 7|magnificent seven|mag 7|mag7|"
