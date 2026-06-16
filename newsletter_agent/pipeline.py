@@ -1310,6 +1310,11 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
             if _k not in global_pool["kilde"]:
                 global_pool["kilde"].append(_k)
 
+    # Load reviewer-layer corrections once for all figures
+    _reviewer_corrections = _load_corrections_for_layer(specialists, "rendering", output_dir=output_dir)
+    if _reviewer_corrections:
+        print(f"      [corrections] {_reviewer_corrections.count(chr(10))} rendering correction(s) for reviewer")
+
     # Step 3: Render figures
     print("\n[3/4] Rendering figures...")
     packages = []
