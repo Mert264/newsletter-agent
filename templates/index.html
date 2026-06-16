@@ -1200,7 +1200,7 @@ function rateFigure(starEl) {
   };
   fetch('/rate', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: _authHeaders(),
     body: JSON.stringify(body)
   }).then(r => {
     if (r.ok) { saved.classList.add('show'); setTimeout(() => saved.classList.remove('show'), 1500); }
