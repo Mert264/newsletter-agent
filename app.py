@@ -207,17 +207,8 @@ def get_ratings():
 
 @app.route("/corrections")
 def get_corrections():
-    entries = []
-    for src in [
-        os.path.join(os.path.dirname(__file__), "data", "corrections.jsonl"),
-        os.path.join(OUTPUT_DIR, "corrections.jsonl"),
-    ]:
-        if os.path.isfile(src):
-            with open(src) as f:
-                for line in f:
-                    line = line.strip()
-                    if line:
-                        entries.append(json.loads(line))
+    from newsletter_agent.corrections_store import load_corrections
+    entries = load_corrections(limit=50, output_dir=OUTPUT_DIR)
     return jsonify({"corrections": entries, "count": len(entries)})
 
 
