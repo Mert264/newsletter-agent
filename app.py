@@ -83,7 +83,6 @@ def start_run():
                 for p in packages
             ]
             _run_queue.put({"type": "done", "figures": figures, "brief": brief})
-            _run_queue.put({"type": "done", "figures": figures})
         except Exception as exc:
             _run_queue.put({"type": "error", "text": str(exc)})
         finally:
