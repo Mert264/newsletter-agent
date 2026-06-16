@@ -1011,6 +1011,48 @@ def _write_excel_per_figure(packages: list, specialist_results: dict, output_dir
     return excel_paths
 
 
+def _expand_regions(manifest: dict) -> dict:
+    """Expand region group names (EU, EUROZONE, NORDIC, etc.) in the manifest.
+
+    Handles two patterns:
+    - bigmac "countries" list: ["EUROZONE"] → ["AT", "BE", "CY", ...]
+    - per-series "country" field: if value is a group name, duplicate the series for each country
+    """
+    for spec_name in manifest.get("specialists", []):
+        task = manifest.get(spec_name, {})
+        if spec_name == "bigmac":
+            raw = task.get("countries", [])
+            expanded = []
+            for c in raw:
+                expanded.extend(resolve_countries(c))
+            if expanded != raw:
+                task["countries"] = expanded
+            continue
+
+        iso3_spec = spec_name == "worldbank"
+        series_list = task.get("series", [])
+        new_series = []
+        for s in series_list:
+            country = (s.get("country") or "").strip().upper()
+            if country in GROUPS or country in {"EURO AREA", "EURO", "EZ", "EUROPEAN UNION",
+                                                 "NORDICS", "SKANDINAVIEN", "EMERGING",
+                                                 "EMERGING MARKETS", "DEVELOPED", "DEVELOPED MARKETS"}:
+                codes = resolve_countries(country, iso3=iso3_spec)
+                for code in codes:
+                    entry = dict(s)
+                    entry["country"] = code
+                    base_label = s.get("label", "")
+                    if base_label:
+                        entry["label"] = f"{base_label} ({code})"
+                    new_series.append(entry)
+                print(f"  [regions] Expanded '{country}' → {len(codes)} countries for {spec_name}")
+            else:
+                new_series.append(s)
+        if new_series != series_list:
+            task["series"] = new_series
+    return manifest
+
+
 def run(brief: str, output_dir: str = "output", preferred_types: list = None,
         period_days: int = None, model: str = None,
         start_date: str = None, end_date: str = None) -> list:
