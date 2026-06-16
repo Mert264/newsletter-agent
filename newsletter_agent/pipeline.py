@@ -1368,6 +1368,10 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
                         _p["metadata"]["specialist"] = specialist_name
             elif isinstance(package, dict) and "metadata" in package:
                 package["metadata"]["specialist"] = specialist_name
+                _fig_labels = package["metadata"].get("region_labels", [])
+                for _ws, _wl, _wmsg in _data_warnings:
+                    if _wl in _fig_labels:
+                        package["metadata"]["data_warning"] = _wmsg
 
             # Multi-package return (multi-year pie): add individual year pies directly,
             # then let the combined figure fall through to the review loop below.
