@@ -1300,6 +1300,34 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
                     _df = _df[_df.index <= _net_end_ts]
                 _dfs[_lbl] = _df
 
+    # Step 2c: Post-fetch data validation — flag implausible values
+    _PLAUSIBLE_RANGES = {
+        "cpi": (-10, 50), "inflation": (-10, 50), "hicp": (-5, 30),
+        "gdp": (-25, 30), "bnp": (-25, 30), "growth": (-30, 40),
+        "unemployment": (0, 50), "arbejdsløshed": (0, 50),
+        "interest rate": (-5, 30), "rente": (-5, 30),
+        "yield": (-5, 25), "10y": (-3, 20), "2y": (-3, 20),
+    }
+    _data_warnings = []
+    for _sp in specialists:
+        _dfs = specialist_results.get(_sp, {}).get("dataframes", {})
+        for _lbl, _df in _dfs.items():
+            _lbl_low = _lbl.lower()
+            for _metric, (_lo, _hi) in _PLAUSIBLE_RANGES.items():
+                if _metric in _lbl_low:
+                    _vals = _df.iloc[:, 0] if hasattr(_df, "iloc") and len(_df.shape) == 2 else _df
+                    _vals = pd.to_numeric(_vals, errors="coerce").dropna()
+                    if _vals.empty:
+                        break
+                    _latest = float(_vals.iloc[-1])
+                    if _latest < _lo or _latest > _hi:
+                        msg = f"{_lbl}: latest value {_latest:.2f} outside plausible range [{_lo}, {_hi}]"
+                        _data_warnings.append((_sp, _lbl, msg))
+                        print(f"  [validation] WARNING: {msg}")
+                    break
+    if _data_warnings:
+        print(f"      [validation] {len(_data_warnings)} data warning(s) flagged")
+
     # Build global data pool for cross-specialist chart resolution.
     # Charts authored under specialist A can reference series fetched by specialist B
     # (e.g. global inflation: US/UK/JP from macro + EA from eurostat on one chart).
