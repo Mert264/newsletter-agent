@@ -635,8 +635,18 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
             chart_spec  = {**chart_spec,  "y_label": "USD/MWh"}
     merged_for_events = None  # populated for Type A charts; used by event impact table
 
+    # ── Type K — KPI strip (horizontal metric cards) ────────────────────
+    if chart_type == "K":
+        kpi_metrics = chart_spec.get("metrics", [])
+        if kpi_metrics:
+            from newsletter_agent.renderers.kpi_strip import render_kpi_strip
+            path = render_kpi_strip(kpi_metrics, output_path, title=chart_spec.get("title", "Nøgletal"))
+        else:
+            print(f"    [warn] Type K chart has no metrics — skipping.")
+            return None
+
     # ── Type D — Snapshot / before-after table ────────────────────────────
-    if chart_type == "D":
+    elif chart_type == "D":
         if chart_spec.get("table_data"):
             from newsletter_agent.renderers.tables import render_type_d
             path = render_type_d(
