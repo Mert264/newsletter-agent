@@ -32,8 +32,10 @@ from newsletter_agent.corrections_store import load_corrections as _store_load, 
 
 
 def _load_corrections_for_layer(specialists: list[str], layer: str,
+                                figure_type: str = None, topic: str = None,
                                 limit: int = 5, output_dir: str = "") -> str:
     entries = _store_load(specialists=specialists, layer=layer,
+                          figure_type=figure_type, topic=topic,
                           limit=limit, output_dir=output_dir)
     return format_corrections_prompt(entries)
 
