@@ -1355,6 +1355,13 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
                 fig_idx += 1
                 continue
 
+            if isinstance(package, list):
+                for _p in package:
+                    if isinstance(_p, dict) and "metadata" in _p:
+                        _p["metadata"]["specialist"] = specialist_name
+            elif isinstance(package, dict) and "metadata" in package:
+                package["metadata"]["specialist"] = specialist_name
+
             # Multi-package return (multi-year pie): add individual year pies directly,
             # then let the combined figure fall through to the review loop below.
             n_pre = 0
