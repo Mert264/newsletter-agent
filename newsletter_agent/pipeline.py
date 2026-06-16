@@ -28,48 +28,14 @@ from newsletter_agent.renderers.charts import render_type_a, render_type_b, rend
 from newsletter_agent.renderers.tables import render_type_d
 from newsletter_agent.reviewer import review_figure
 
-_CORRECTIONS_REPO = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "corrections.jsonl")
+from newsletter_agent.corrections_store import load_corrections as _store_load, format_corrections_prompt, save_correction as _store_save
 
 
-def _load_corrections(specialists: list[str], limit: int = 5, output_dir: str = "") -> str:
-    """Load past corrections from repo + session files, filtered by specialist. Returns prompt text."""
-    sources = [_CORRECTIONS_REPO]
-    if output_dir:
-        sources.append(os.path.join(output_dir, "corrections.jsonl"))
-    entries = []
-    for src in sources:
-        if not os.path.isfile(src):
-            continue
-        with open(src) as f:
-            for line in f:
-                line = line.strip()
-                if line:
-                    try:
-                        entries.append(json.loads(line))
-                    except json.JSONDecodeError:
-                        continue
-    if not entries:
-        return ""
-    relevant = [e for e in entries if e.get("specialist", "") in specialists]
-    if not relevant:
-        relevant = entries
-    seen = set()
-    deduped = []
-    for e in relevant:
-        key = (e.get("chart_type", ""), e.get("comment", "").lower()[:80])
-        if key not in seen:
-            seen.add(key)
-            deduped.append(e)
-    top = deduped[-limit:]
-    if not top:
-        return ""
-    lines = ["PAST CORRECTIONS (from user feedback on previous runs — avoid repeating these mistakes):"]
-    for e in top:
-        ct = e.get("chart_type", "?")
-        cmt = e.get("comment", "")
-        title = e.get("title", "")
-        lines.append(f"  - Type {ct} '{title}': {cmt}")
-    return "\n".join(lines)
+def _load_corrections_for_layer(specialists: list[str], layer: str,
+                                limit: int = 5, output_dir: str = "") -> str:
+    entries = _store_load(specialists=specialists, layer=layer,
+                          limit=limit, output_dir=output_dir)
+    return format_corrections_prompt(entries)
 
 _WB_DATA_GAP_COUNTRIES = {"JPN", "CHN", "SAU", "LBY", "ARE", "KWT", "QAT"}
 
