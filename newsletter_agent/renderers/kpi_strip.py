@@ -80,8 +80,12 @@ def render_kpi_strip(metrics: list[dict], output_path: str,
             else:
                 color = "#6b7280"
                 arrow = "●"
-            ax.text(0.5, 0.22, f"{arrow} {change}",
-                    ha="center", va="center", fontsize=9,
+            ax.text(0.42, 0.22, arrow,
+                    ha="center", va="center", fontsize=8,
+                    color=color, fontfamily="DejaVu Sans",
+                    transform=ax.transAxes)
+            ax.text(0.54, 0.22, change,
+                    ha="left", va="center", fontsize=9,
                     color=color, fontfamily=font,
                     transform=ax.transAxes)
 
