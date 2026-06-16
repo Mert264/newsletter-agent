@@ -114,11 +114,13 @@ ROUTING_RULES = [
     # Scorecard / multi-asset dashboard → enforce FRED in macro, rest in domain specialists
     (
         lambda b: _SCORECARD.search(b),
-        "For scorecards og markedsoverblik med blandede aktivklasser: "
-        "ALLE FRED-serier (DGS10, DGS2, DFF, T10Y2Y, T10YIE, osv.) → specialist='macro', source='fred'. "
-        "yfinance-tickers (BZ=F, GC=F, ^GSPC, EURUSD=X, DX-Y.NYB) → domain specialist (energy/commodities/equities/rates). "
-        "DGS10 MÅ ALDRIG placeres under specialist='equities' eller 'rates' — FRED serier går KUN i 'macro'. "
-        "For Type A oversigtsgraf med blandede enheder: sæt y_label='Indekseret (basis=100)'. "
+        "For scorecards og markedsoverblik: "
+        "VIGTIGT — Start ALTID med ÉN Type K (KPI strip) chart som FØRSTE chart i listen. "
+        "Type K bruger metrics-array med 'series' nøgle (IKKE hardcodede values). "
+        "Eksempel: {\"type\":\"K\",\"title\":\"Danmark — Nøgletal\",\"series_labels\":[\"BNP-vækst (%)\",\"Inflation, CPI (%)\",\"Arbejdsløshed (%)\"],\"metrics\":[{\"name\":\"BNP-vækst\",\"series\":\"BNP-vækst (%)\",\"lower_is_better\":false},{\"name\":\"Inflation\",\"series\":\"Inflation, CPI (%)\",\"lower_is_better\":true},{\"name\":\"Ledighed\",\"series\":\"Arbejdsløshed (%)\",\"lower_is_better\":true}]}. "
+        "DEREFTER de detaljerede Type A+D charts. "
+        "For blandede aktivklasser: ALLE FRED-serier → specialist='macro', source='fred'. "
+        "yfinance-tickers → domain specialist. DGS10 MÅ ALDRIG placeres under 'equities'. "
         "Brug specialist='macro' for ALLE rente- og obligationsserier uanset context.",
     ),
     # IMF explicit mention → IMF specialist
