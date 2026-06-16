@@ -77,9 +77,12 @@ def start_run():
                     "note":          p["metadata"]["note"],
                     "kilde":         p["metadata"]["kilde"],
                     "reviewer_flag": p["metadata"].get("reviewer_flag", ""),
+                    "chart_type":    p["metadata"].get("chart_type", ""),
+                    "specialist":    p["metadata"].get("specialist", ""),
                 }
                 for p in packages
             ]
+            _run_queue.put({"type": "done", "figures": figures, "brief": brief})
             _run_queue.put({"type": "done", "figures": figures})
         except Exception as exc:
             _run_queue.put({"type": "error", "text": str(exc)})
