@@ -374,7 +374,7 @@
     #figuresPanel { grid-column: 1 / -1; display: none; }
     .figures-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
       gap: 20px;
     }
     .fig-card {
