@@ -1297,7 +1297,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     _specialist_errors: dict[str, str] = {}
     with ThreadPoolExecutor(max_workers=len(specialists) or 1) as executor:
         futures = {
-            executor.submit(_run_specialist, name, manifest[name], output_dir): name
+            executor.submit(_run_specialist, name, manifest[name]): name
             for name in specialists
         }
         for future in as_completed(futures):
