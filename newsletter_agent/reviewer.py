@@ -89,7 +89,7 @@ def call_llm_text(prompt: str) -> str:
     return message.content[0].text.strip()
 
 
-def review_figure(figure_path: str, metadata: dict) -> dict:
+def review_figure(figure_path: str, metadata: dict, corrections: str = "") -> dict:
     """Review a figure for quality and correctness.
 
     Makes one LLM call per figure. Returns approval status with reason.
@@ -97,6 +97,7 @@ def review_figure(figure_path: str, metadata: dict) -> dict:
     Args:
         figure_path: Path to figure file (PNG, etc).
         metadata: Dict with keys: title, x_label, y_label, note, kilde, region_labels.
+        corrections: Optional past corrections text to inject into reviewer context.
 
     Returns:
         {"status": "APPROVED"|"REVISION NEEDED", "reason": str}
