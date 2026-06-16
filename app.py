@@ -89,7 +89,8 @@ def start_run():
             from newsletter_agent.pipeline import run
             packages = run(brief, output_dir=OUTPUT_DIR,
                            start_date=start_date, end_date=end_date,
-                           period_days=period_days)
+                           period_days=period_days,
+                           self_critique=bool(self_critique))
             figures = [
                 {
                     "path":          os.path.basename(p["path"]),
