@@ -441,6 +441,11 @@ def render_type_a(df: pd.DataFrame, spec: dict, output_path: str) -> str:
     plt.tight_layout(rect=[0.0, bottom, 0.80, 1.0])
     _place_end_labels(ax, df, colors)
 
+    xlo, xhi = ax.get_xlim()
+    today_num = _mdates.date2num(pd.Timestamp.today())
+    if xhi > today_num:
+        ax.set_xlim(right=today_num)
+
     fig.savefig(output_path, dpi=BRAND["figure_dpi"], bbox_inches="tight")
     plt.close(fig)
     return output_path
