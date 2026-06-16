@@ -37,7 +37,7 @@ API_KEYS = {
 
 # LLM models — orchestrator and reviewer both use Sonnet for quality
 ORCHESTRATOR_MODEL = "claude-sonnet-4-6"
-REVIEWER_MODEL     = "claude-sonnet-4-6-20250514"
+REVIEWER_MODEL     = "claude-sonnet-4-6"
 LLM_MODEL = ORCHESTRATOR_MODEL  # backwards-compat alias
 
 # Default date range for data fetching
