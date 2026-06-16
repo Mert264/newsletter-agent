@@ -28,6 +28,45 @@ from newsletter_agent.renderers.charts import render_type_a, render_type_b, rend
 from newsletter_agent.renderers.tables import render_type_d
 from newsletter_agent.reviewer import review_figure
 
+_CORRECTIONS_REPO = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "corrections.jsonl")
+
+
+def _load_corrections(specialists: list[str], limit: int = 5) -> str:
+    """Load past corrections from repo file, filtered by specialist. Returns prompt text."""
+    if not os.path.isfile(_CORRECTIONS_REPO):
+        return ""
+    entries = []
+    with open(_CORRECTIONS_REPO) as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                try:
+                    entries.append(json.loads(line))
+                except json.JSONDecodeError:
+                    continue
+    if not entries:
+        return ""
+    relevant = [e for e in entries if e.get("specialist", "") in specialists]
+    if not relevant:
+        relevant = entries
+    seen = set()
+    deduped = []
+    for e in relevant:
+        key = (e.get("chart_type", ""), e.get("comment", "").lower()[:80])
+        if key not in seen:
+            seen.add(key)
+            deduped.append(e)
+    top = deduped[-limit:]
+    if not top:
+        return ""
+    lines = ["PAST CORRECTIONS (from user feedback on previous runs — avoid repeating these mistakes):"]
+    for e in top:
+        ct = e.get("chart_type", "?")
+        cmt = e.get("comment", "")
+        title = e.get("title", "")
+        lines.append(f"  - Type {ct} '{title}': {cmt}")
+    return "\n".join(lines)
+
 _WB_DATA_GAP_COUNTRIES = {"JPN", "CHN", "SAU", "LBY", "ARE", "KWT", "QAT"}
 
 _WB_TICKER_ORDER = [
