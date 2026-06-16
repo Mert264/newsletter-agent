@@ -1384,7 +1384,7 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
                               "should display category")
 
             for attempt in range(2):
-                review = review_figure(package["path"], package["metadata"])
+                review = review_figure(package["path"], package["metadata"], corrections=_reviewer_corrections)
                 status = review["status"]
                 reason = review.get("reason", "")
                 if status == "APPROVED":
