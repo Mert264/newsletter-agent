@@ -962,19 +962,11 @@ function setPrompt(id) {
 }
 
 // ── Auth ──
-(function() {
-  const p = new URLSearchParams(window.location.search);
-  if (p.get('key')) { localStorage.setItem('brainApiKey', p.get('key')); window.history.replaceState({}, '', window.location.pathname); }
-})();
 function _authHeaders(extra) {
-  const h = Object.assign({'Content-Type': 'application/json'}, extra || {});
-  const k = localStorage.getItem('brainApiKey');
-  if (k) h['X-API-Key'] = k;
-  return h;
+  return Object.assign({'Content-Type': 'application/json'}, extra || {});
 }
 function _authQuery() {
-  const k = localStorage.getItem('brainApiKey');
-  return k ? '?api_key=' + encodeURIComponent(k) : '';
+  return '';
 }
 
 // ── Run ──
