@@ -1418,7 +1418,16 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     if n_excel:
         print(f"       Excel: {n_excel} per-figure workbook(s) written")
 
-    # Step 6: Save manifest
+    # Step 6: Dashboard composite
+    if len(packages) >= 2:
+        from newsletter_agent.renderers.dashboard import render_dashboard
+        dash_path = os.path.join(output_dir, "dashboard.png")
+        fig_paths = [p["path"] for p in packages if os.path.isfile(p["path"])]
+        if fig_paths:
+            render_dashboard(fig_paths, dash_path, title=brief[:80])
+            print(f"       Dashboard: {len(fig_paths)} figures → dashboard.png")
+
+    # Step 7: Save manifest
     manifest_path = os.path.join(output_dir, "manifest.json")
     with open(manifest_path, "w") as f:
         json.dump({"brief": brief, "date": str(date.today()), "figures": packages}, f, indent=2, default=str)
