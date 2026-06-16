@@ -23,6 +23,7 @@ from newsletter_agent.processors.normalize import drop_nulls, align_dates, index
 from newsletter_agent.processors.converters import apply_conversions
 from newsletter_agent.formatting import fmt_da, EXCEL_NUM_FORMAT
 from newsletter_agent.routing import get_routing_hint
+from newsletter_agent.regions import resolve_countries, GROUPS
 from newsletter_agent.renderers.charts import render_type_a, render_type_b, render_type_c, render_type_e, render_type_f, render_type_g, render_type_p
 from newsletter_agent.renderers.tables import render_type_d
 from newsletter_agent.reviewer import review_figure
