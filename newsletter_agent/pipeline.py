@@ -558,7 +558,10 @@ def _fill_kpi_metrics(templates: list[dict], dfs: dict) -> list[dict]:
                 series_key = candidates[0]
             else:
                 continue
-        s = dfs[series_key].dropna()
+        raw = dfs[series_key]
+        if isinstance(raw, pd.DataFrame):
+            raw = raw.iloc[:, 0] if raw.shape[1] == 1 else raw.stack()
+        s = raw.dropna()
         if s.empty:
             continue
         latest = float(s.iloc[-1])
