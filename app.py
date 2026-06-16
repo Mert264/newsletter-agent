@@ -169,7 +169,7 @@ def rate_figure():
     ratings_path = os.path.join(OUTPUT_DIR, "ratings.jsonl")
     with open(ratings_path, "a") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-    if rating <= 2 and comment:
+    if comment:
         from newsletter_agent.corrections_store import save_correction
         save_correction({
             "figure": figure_id,
@@ -178,6 +178,7 @@ def rate_figure():
             "comment": comment,
             "title": entry.get("title", ""),
             "brief": entry.get("brief", ""),
+            "figure_type": entry.get("chart_type", ""),
             "source": "user",
         })
     return jsonify({"status": "saved"})
