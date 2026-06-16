@@ -73,13 +73,13 @@ def render_kpi_strip(metrics: list[dict], output_path: str,
         if change:
             if direction == "up":
                 color = "#dc2626" if lower_better else "#16a34a"
-                arrow = "↑"
+                arrow = "▲"
             elif direction == "down":
                 color = "#16a34a" if lower_better else "#dc2626"
-                arrow = "↓"
+                arrow = "▼"
             else:
                 color = "#6b7280"
-                arrow = "→"
+                arrow = "●"
             ax.text(0.5, 0.22, f"{arrow} {change}",
                     ha="center", va="center", fontsize=9,
                     color=color, fontfamily=font,
