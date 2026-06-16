@@ -1175,7 +1175,15 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
     routing_hint = get_routing_hint(brief)
     if routing_hint:
         print(f"      [routing] Hint injected: {routing_hint.strip()[:80]}...")
-    manifest = build_task_manifest(brief, preferred_types=preferred_types, routing_hint=routing_hint, period_days=period_days, model=model)
+    specialist_names = []
+    if routing_hint:
+        import re as _re_sp
+        for _m in _re_sp.finditer(r"specialist='(\w+)'", routing_hint):
+            specialist_names.append(_m.group(1))
+    corrections_text = _load_corrections(specialist_names)
+    if corrections_text:
+        print(f"      [corrections] {corrections_text.count(chr(10))} past correction(s) injected")
+    manifest = build_task_manifest(brief, preferred_types=preferred_types, routing_hint=routing_hint, period_days=period_days, model=model, corrections=corrections_text)
     manifest = _expand_regions(manifest)
     manifest = _enforce_worldbank_single_country_layout(manifest, period_days=period_days)
     # Strip accidental source attribution from note fields — LLM occasionally includes
