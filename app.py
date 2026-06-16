@@ -67,9 +67,10 @@ def start_run():
     brief = data.get("brief", "").strip()
     if not brief:
         return jsonify({"error": "Brief is required"}), 400
-    start_date  = data.get("start_date", "")
-    end_date    = data.get("end_date", "")
-    period_days = data.get("period_days", None)
+    start_date     = data.get("start_date", "")
+    end_date       = data.get("end_date", "")
+    period_days    = data.get("period_days", None)
+    self_critique  = data.get("self_critique", False)
 
     if not _run_lock.acquire(blocking=False):
         return jsonify({"error": "A run is already in progress"}), 429
