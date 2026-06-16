@@ -182,12 +182,15 @@ def _write_supabase(entry: dict) -> bool:
                 "source": entry.get("source", "user"),
                 "title": entry.get("title", ""),
                 "brief": entry.get("brief", ""),
+                "figure_type": entry.get("figure_type", ""),
+                "topic": entry.get("topic", "general"),
+                "status": entry.get("status", "active"),
             },
             headers={
                 "apikey": _SUPABASE_KEY,
                 "Authorization": f"Bearer {_SUPABASE_KEY}",
                 "Content-Type": "application/json",
-                "Prefer": "return=minimal",
+                "Prefer": "return=representation",
             },
             timeout=5,
         )
@@ -196,12 +199,61 @@ def _write_supabase(entry: dict) -> bool:
         return False
 
 
+def _toggle_supabase(correction_id: str, new_status: str) -> bool:
+    if not _SUPABASE_URL or not _SUPABASE_KEY:
+        return False
+    try:
+        resp = requests.patch(
+            f"{_SUPABASE_URL}/rest/v1/newsletter_corrections",
+            params={"id": f"eq.{correction_id}"},
+            json={"status": new_status},
+            headers={
+                "apikey": _SUPABASE_KEY,
+                "Authorization": f"Bearer {_SUPABASE_KEY}",
+                "Content-Type": "application/json",
+                "Prefer": "return=minimal",
+            },
+            timeout=5,
+        )
+        return resp.status_code in (200, 204)
+    except Exception:
+        return False
+
+
+def _toggle_local(correction_id: str, new_status: str) -> bool:
+    if not os.path.isfile(_REPO_FILE):
+        return False
+    try:
+        lines = []
+        found = False
+        with open(_REPO_FILE) as f:
+            for line in f:
+                stripped = line.strip()
+                if not stripped:
+                    lines.append(line)
+                    continue
+                entry = json.loads(stripped)
+                if entry.get("ts") == correction_id or entry.get("id") == correction_id:
+                    entry["status"] = new_status
+                    found = True
+                lines.append(json.dumps(entry, ensure_ascii=False) + "\n")
+        if found:
+            with open(_REPO_FILE, "w") as f:
+                f.writelines(lines)
+        return found
+    except Exception:
+        return False
+
+
 def _read_supabase(specialists: list[str] = None, layer: str = None,
-                   limit: int = 5) -> list[dict]:
+                   figure_type: str = None, topic: str = None,
+                   limit: int = 5, include_disabled: bool = False) -> list[dict]:
     if not _SUPABASE_URL or not _SUPABASE_KEY:
         return []
     try:
         params = {"order": "ts.desc", "limit": str(limit * 3)}
+        if not include_disabled:
+            params["status"] = "eq.active"
         if layer and layer != "all":
             params["or"] = f"(layer.eq.{layer},layer.eq.all)"
         resp = requests.get(
@@ -221,6 +273,14 @@ def _read_supabase(specialists: list[str] = None, layer: str = None,
                        if e.get("specialist", "") in specialists or not e.get("specialist")]
         if layer and layer != "all":
             entries = [e for e in entries if e.get("layer") in (layer, "all")]
+        if figure_type:
+            typed = [e for e in entries if e.get("figure_type") == figure_type]
+            untyped = [e for e in entries if not e.get("figure_type")]
+            entries = typed + untyped
+        if topic:
+            topical = [e for e in entries if e.get("topic") == topic]
+            general = [e for e in entries if e.get("topic") in ("general", "", None)]
+            entries = topical + general
         seen = set()
         deduped = []
         for e in entries:
@@ -234,7 +294,9 @@ def _read_supabase(specialists: list[str] = None, layer: str = None,
 
 
 def _read_local(specialists: list[str] = None, layer: str = None,
-                limit: int = 5, output_dir: str = "") -> list[dict]:
+                figure_type: str = None, topic: str = None,
+                limit: int = 5, output_dir: str = "",
+                include_disabled: bool = False) -> list[dict]:
     sources = [_REPO_FILE]
     if output_dir:
         sources.append(os.path.join(output_dir, "corrections.jsonl"))
@@ -252,6 +314,8 @@ def _read_local(specialists: list[str] = None, layer: str = None,
                         continue
     if not entries:
         return []
+    if not include_disabled:
+        entries = [e for e in entries if e.get("status", "active") == "active"]
     if specialists:
         relevant = [e for e in entries if e.get("specialist", "") in specialists]
         if not relevant:
@@ -261,6 +325,14 @@ def _read_local(specialists: list[str] = None, layer: str = None,
         filtered = [e for e in entries if e.get("layer", "all") in (layer, "all")]
         if filtered:
             entries = filtered
+    if figure_type:
+        typed = [e for e in entries if e.get("figure_type") == figure_type]
+        untyped = [e for e in entries if not e.get("figure_type")]
+        entries = typed + untyped if typed else entries
+    if topic:
+        topical = [e for e in entries if e.get("topic") == topic]
+        general = [e for e in entries if e.get("topic") in ("general", "", None)]
+        entries = topical + general if topical else entries
     seen = set()
     deduped = []
     for e in entries:
