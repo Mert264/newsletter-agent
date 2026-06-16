@@ -130,15 +130,25 @@ def rate_figure():
     figure_id = re.sub(r"[^a-zA-Z0-9_\-]", "", figure_id)[:120]
     if not figure_id:
         return jsonify({"error": "Invalid figure_id"}), 400
+    comment = data.get("comment", "").strip()[:500]
     import datetime
     entry = {
         "figure_id": figure_id,
         "rating": rating,
+        "comment": comment,
+        "chart_type": data.get("chart_type", ""),
+        "title": data.get("title", ""),
+        "specialist": data.get("specialist", ""),
+        "brief": data.get("brief", ""),
         "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
     }
     ratings_path = os.path.join(OUTPUT_DIR, "ratings.jsonl")
     with open(ratings_path, "a") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    if rating <= 2 and comment:
+        corrections_path = os.path.join(OUTPUT_DIR, "corrections.jsonl")
+        with open(corrections_path, "a") as f:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
     return jsonify({"status": "saved"})
 
 
