@@ -98,6 +98,7 @@ def start_run():
                     "note":          p["metadata"]["note"],
                     "kilde":         p["metadata"]["kilde"],
                     "reviewer_flag": p["metadata"].get("reviewer_flag", ""),
+                    "data_warning":  p["metadata"].get("data_warning", ""),
                     "chart_type":    p["metadata"].get("chart_type", ""),
                     "specialist":    p["metadata"].get("specialist", ""),
                 }
