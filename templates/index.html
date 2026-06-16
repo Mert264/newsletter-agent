@@ -981,6 +981,7 @@ function startStream() {
       updateSteps(msg.text);
     } else if (msg.type === 'done') {
       finishAllSteps();
+      window._lastBrief = msg.brief || '';
       const n = (msg.figures || []).length;
       renderFigures(msg.figures || []);
       const statusMsg = document.getElementById('statusMsg');
