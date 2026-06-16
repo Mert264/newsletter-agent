@@ -769,6 +769,8 @@ def build_task_manifest(brief: str, preferred_types: list = None, routing_hint: 
         )
     if routing_hint:
         parts.append(routing_hint)
+    if corrections:
+        parts.append(corrections)
     prompt = "\n".join(parts)
     manifest = call_llm(prompt, model=model)
     # Strip accidental source attribution from note fields — enforced here so both
