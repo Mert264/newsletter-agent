@@ -986,13 +986,9 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
     return pkg
 
 
-def _run_specialist(name: str, task: dict, output_dir: str = "") -> tuple[str, dict]:
+def _run_specialist(name: str, task: dict) -> tuple[str, dict]:
     """Fetch data for one specialist. Returns (name, SpecialistResult)."""
     print(f"  [{name}] Fetching data...")
-    spec_corrections = _load_corrections_for_layer([name], "specialist", output_dir=output_dir)
-    if spec_corrections:
-        task["_corrections"] = spec_corrections
-        print(f"  [{name}] {spec_corrections.count(chr(10))} specialist correction(s) injected")
     fetch_fn = SPECIALIST_MAP[name]
     result = fetch_fn(task)
     n_series = len(result["dataframes"])
