@@ -1229,7 +1229,7 @@ function submitComment(figId) {
   btn.textContent = 'Sender...';
   fetch('/rate', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: _authHeaders(),
     body: JSON.stringify(body)
   }).then(r => {
     if (r.ok) {
