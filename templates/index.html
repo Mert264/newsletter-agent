@@ -484,6 +484,39 @@
       transition: opacity .3s;
     }
     .fig-rating .rating-saved.show { opacity: 1; }
+    .fig-comment {
+      display: none;
+      padding: 6px 14px 10px;
+    }
+    .fig-comment.show { display: block; }
+    .fig-comment textarea {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid #e4eaea;
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 12px;
+      font-family: inherit;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+    .fig-comment textarea:focus { outline: none; border-color: #11716c; }
+    .fig-comment button {
+      margin-top: 4px;
+      background: #11716c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 12px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .fig-comment button:hover { background: #0d5c58; }
+    .fig-comment .comment-hint {
+      font-size: 10px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
 
     /* ── Lightbox ── */
     #lightbox {
