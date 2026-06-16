@@ -93,7 +93,7 @@ def _write_supabase(entry: dict) -> bool:
         return False
     try:
         resp = requests.post(
-            f"{_SUPABASE_URL}/rest/v1/corrections",
+            f"{_SUPABASE_URL}/rest/v1/newsletter_corrections",
             json={
                 "figure": entry.get("figure", entry.get("title", "")),
                 "specialist": entry.get("specialist", ""),
@@ -126,7 +126,7 @@ def _read_supabase(specialists: list[str] = None, layer: str = None,
         if layer and layer != "all":
             params["or"] = f"(layer.eq.{layer},layer.eq.all)"
         resp = requests.get(
-            f"{_SUPABASE_URL}/rest/v1/corrections",
+            f"{_SUPABASE_URL}/rest/v1/newsletter_corrections",
             params=params,
             headers={
                 "apikey": _SUPABASE_KEY,
