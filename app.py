@@ -208,9 +208,22 @@ def get_ratings():
 
 @app.route("/corrections")
 def get_corrections():
-    from newsletter_agent.corrections_store import load_corrections
-    entries = load_corrections(limit=50, output_dir=OUTPUT_DIR)
-    return jsonify({"corrections": entries, "count": len(entries)})
+    from newsletter_agent.corrections_store import list_all_corrections
+    entries = list_all_corrections(limit=100, output_dir=OUTPUT_DIR)
+    active = [e for e in entries if e.get("status", "active") == "active"]
+    return jsonify({"corrections": entries, "count": len(entries), "active_count": len(active)})
+
+
+@app.route("/corrections/toggle", methods=["POST"])
+def toggle_correction():
+    data = request.json or {}
+    cid = data.get("id", "").strip()
+    new_status = data.get("status", "").strip()
+    if not cid or new_status not in ("active", "disabled"):
+        return jsonify({"error": "Invalid id or status"}), 400
+    from newsletter_agent.corrections_store import toggle_correction as _toggle
+    ok = _toggle(cid, new_status)
+    return jsonify({"status": "toggled" if ok else "not_found"})
 
 
 @app.route("/dashboard")
