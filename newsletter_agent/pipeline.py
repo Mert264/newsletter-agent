@@ -547,6 +547,46 @@ def _patch_chart_spec_for_missing(chart_spec: dict, still_missing: list) -> dict
     return new_spec
 
 
+def _fill_kpi_metrics(templates: list[dict], dfs: dict) -> list[dict]:
+    """Populate Type K metric cards from fetched data series."""
+    filled = []
+    for tpl in templates:
+        series_key = tpl.get("series", "")
+        if not series_key or series_key not in dfs:
+            candidates = [k for k in dfs if series_key.lower() in k.lower()]
+            if candidates:
+                series_key = candidates[0]
+            else:
+                continue
+        s = dfs[series_key].dropna()
+        if s.empty:
+            continue
+        latest = float(s.iloc[-1])
+        latest_date = s.index[-1]
+        yoy_target = latest_date - pd.DateOffset(years=1)
+        yoy_idx = s.index.get_indexer([yoy_target], method="nearest")[0]
+        prev = float(s.iloc[yoy_idx])
+        change_val = latest - prev
+        if abs(change_val) < 0.005:
+            direction = "flat"
+        elif change_val > 0:
+            direction = "up"
+        else:
+            direction = "down"
+        sign = "+" if change_val >= 0 else ""
+        unit = tpl.get("unit", "pp")
+        m = {
+            "name": tpl.get("name", series_key),
+            "value": f"{latest:.1f}%",
+            "change": f"{sign}{change_val:.1f} {unit}",
+            "direction": direction,
+            "lower_is_better": tpl.get("lower_is_better", False),
+            "note": latest_date.strftime("%Y"),
+        }
+        filled.append(m)
+    return filled
+
+
 def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
                    global_pool: Optional[dict] = None) -> dict:
     """Render one figure from chart_spec + specialist data. Returns FigurePackage dict."""
