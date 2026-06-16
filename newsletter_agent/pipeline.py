@@ -1434,8 +1434,10 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
         try:
             from newsletter_agent.renderers.dashboard import render_dashboard
             dash_path = os.path.join(output_dir, "dashboard.png")
-            fig_paths = [p["path"] for p in packages
-                         if p and isinstance(p, dict) and os.path.isfile(p.get("path", ""))]
+            all_paths = [p.get("path", "MISSING") for p in packages if p and isinstance(p, dict)]
+            print(f"       Dashboard: paths = {all_paths[:3]}...")
+            fig_paths = [pp for pp in all_paths if os.path.isfile(pp)]
+            print(f"       Dashboard: {len(fig_paths)}/{len(all_paths)} paths exist on disk")
             if fig_paths:
                 render_dashboard(fig_paths, dash_path, title=brief[:80])
                 print(f"       Dashboard: {len(fig_paths)} figures → dashboard.png")
