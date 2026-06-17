@@ -142,6 +142,22 @@ _SECTOR_PEERS: dict = {
 }
 
 
+def _fetch_fmp_ratios_ttm(ticker: str, api_key: str) -> dict:
+    """Fetch FMP ratios-ttm for a single ticker. Returns dict or {} on failure."""
+    if not api_key:
+        return {}
+    try:
+        url = f"https://financialmodelingprep.com/stable/ratios-ttm"
+        resp = requests.get(url, params={"symbol": ticker, "apikey": api_key}, timeout=10)
+        if resp.status_code in (402, 403):
+            return {}
+        resp.raise_for_status()
+        data = resp.json()
+        return data[0] if isinstance(data, list) and data else (data if isinstance(data, dict) else {})
+    except Exception:
+        return {}
+
+
 def fetch_peer_comparison(ticker: str, api_key: str = "", peers: list = None) -> dict:
     """Fetch TTM valuation multiples for the target ticker and up to 5 peers.
 
