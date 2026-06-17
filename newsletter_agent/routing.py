@@ -53,6 +53,7 @@ _DANISH_EQ = re.compile(
     r"kobenhavn|kobenhavns|kbh aktier)\b",
     re.IGNORECASE,
 )
+_REGION_TAG = re.compile(r"\[Region:\s*([^\]]+)\]", re.IGNORECASE)
 
 ROUTING_RULES = [
     # Annual report / company valuation → annual_report specialist (FMP)
