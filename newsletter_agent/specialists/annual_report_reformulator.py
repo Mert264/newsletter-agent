@@ -3,11 +3,14 @@ def _safe(val, default=0.0):
 
 
 def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
-    income   = list(reversed(fmp_data["income"]))[:n_years_history]
-    balance  = list(reversed(fmp_data["balance"]))[:n_years_history]
-    cf_list  = list(reversed(fmp_data.get("cashflow", [])))[:n_years_history]
-    cf_by_yr = {int(c["date"][:4]): c for c in cf_list if c.get("date")}
-    n = min(len(income), len(balance))
+    inc_by_yr = {int(e["date"][:4]): e for e in fmp_data["income"] if e.get("date")}
+    bal_by_yr = {int(e["date"][:4]): e for e in fmp_data["balance"] if e.get("date")}
+    cf_list   = list(reversed(fmp_data.get("cashflow", [])))[:n_years_history]
+    cf_by_yr  = {int(c["date"][:4]): c for c in cf_list if c.get("date")}
+    common_years = sorted(set(inc_by_yr.keys()) & set(bal_by_yr.keys()))[-n_years_history:]
+    income  = [inc_by_yr[y] for y in common_years]
+    balance = [bal_by_yr[y] for y in common_years]
+    n = len(common_years)
 
     years, revenue_l, NOA_l, NFO_l, OI_l, FCF_l = [], [], [], [], [], []
     RNOA_l, OG_l, ATO_l, FLEV_l, NBC_l, SPREAD_l, ROCE_l = [], [], [], [], [], [], []
