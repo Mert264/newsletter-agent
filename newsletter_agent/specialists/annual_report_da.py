@@ -61,7 +61,7 @@ def review_valuation(wacc_data: dict, dcf_scenarios: dict,
         f"rE: {wacc_data['rE']:.4f}, rD: {wacc_data['rD']:.4f}\n"
         f"β_raw={wacc_data['beta_raw']:.2f}, β_adj={wacc_data['beta_adj']:.4f}\n"
         f"Capital structure: {cap_note}\n"
-        f"Fair value range: {bear_price:.2f} – {bull_price:.2f} (base: {base_price:.2f})\n"
+        f"Fair value range: {bear_price or 'N/A'} – {bull_price or 'N/A'} (base: {base_price or 'N/A'})\n"
         f"Market price: {market_price:.2f} (base ratio: {ratio:.2f}x)\n"
         f"EV (base): {ev:,.0f}, TV share: {tv_share}\n"
         f"g (base)={base['g']:.3f}, Rev CAGR (base)={base['cagr']:.3f}\n\n"
