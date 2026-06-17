@@ -176,20 +176,33 @@ def fetch_peer_comparison(ticker: str, api_key: str = "", peers: list = None) ->
         companies = []
         for t in all_tickers:
             try:
+                fmp_ratios = _fetch_fmp_ratios_ttm(t, api_key) if api_key else {}
                 with YF_LOCK:
-                    info = yf.Ticker(t).info
+                    tk = yf.Ticker(t)
+                    info = tk.info or {}
+                    cf = tk.cashflow
                 if not info:
                     continue
 
-                name    = info.get("shortName") or info.get("longName") or t
-                pe      = info.get("trailingPE")
-                ev_eb   = info.get("enterpriseToEbitda")
-                pb      = info.get("priceToBook")
-                ev_fcf  = None  # yfinance does not expose EV/FCF directly
-                roe     = info.get("returnOnEquity")
-                # returnOnEquity in yfinance is a decimal (e.g. 0.35 = 35%)
+                name = info.get("shortName") or info.get("longName") or t
+                pe = fmp_ratios.get("peRatioTTM") or info.get("trailingPE")
+                ev_eb = fmp_ratios.get("enterpriseValueOverEBITDATTM") or info.get("enterpriseToEbitda")
+                pb = fmp_ratios.get("priceToBookRatioTTM") or info.get("priceToBook")
+                roe = info.get("returnOnEquity")
                 if roe is not None:
                     roe = roe * 100
+
+                ev_fcf = None
+                ev_raw = info.get("enterpriseValue")
+                if ev_raw and cf is not None and not cf.empty:
+                    try:
+                        ocf = float(cf.loc["Operating Cash Flow"].iloc[0]) if "Operating Cash Flow" in cf.index else 0
+                        capex = float(cf.loc["Capital Expenditure"].iloc[0]) if "Capital Expenditure" in cf.index else 0
+                        fcf = ocf + capex
+                        if fcf > 0:
+                            ev_fcf = ev_raw / fcf
+                    except Exception:
+                        pass
 
                 companies.append({
                     "ticker":    t,
@@ -202,7 +215,6 @@ def fetch_peer_comparison(ticker: str, api_key: str = "", peers: list = None) ->
                     "is_target": t == ticker,
                 })
             except Exception:
-                # Skip individual ticker failures silently
                 continue
 
         if not companies:
