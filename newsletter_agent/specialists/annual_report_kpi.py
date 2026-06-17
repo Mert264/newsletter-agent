@@ -201,11 +201,15 @@ def build_chart_specs(
                    + float(_b0.get("capitalLeaseObligations") or 0))
     _gross_debt_str = f"{_num(_gross_debt)}m {currency}" if _gross_debt > 0 else f"0m {currency}"
 
+    _has_fv = base_price > 0
+    def _fv(v, fmt=".0f"):
+        return f"{v:{fmt}}" if v > 0 else "N/A"
+
     exec_rows = [
         {"indicator": "Aktuel kurs",                 "Værdi": f"{price:.2f} {currency}"},
-        {"indicator": "Fair value-interval",         "Værdi": f"{bear_price:.0f} – {bull_price:.0f} {currency}"},
-        {"indicator": "Basis fair value",            "Værdi": f"{base_price:.2f} {currency}"},
-        {"indicator": "Op-/nedside",                 "Værdi": f"{upside:+.1%}"},
+        {"indicator": "Fair value-interval",         "Værdi": f"{_fv(bear_price)} – {_fv(bull_price)} {currency}" if _has_fv else "N/A"},
+        {"indicator": "Basis fair value",            "Værdi": f"{_fv(base_price, '.2f')} {currency}" if _has_fv else "N/A"},
+        {"indicator": "Op-/nedside",                 "Værdi": f"{upside:+.1%}" if _has_fv else "N/A"},
         {"indicator": "",                            "Værdi": ""},
         {"indicator": "WACC",                        "Værdi": _pct(wacc)},
         {"indicator": "Terminal vækst",              "Værdi": _pct(base_sc["g"])},
