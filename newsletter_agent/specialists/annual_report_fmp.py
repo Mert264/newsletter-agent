@@ -164,10 +164,11 @@ def fetch_peer_comparison(ticker: str, api_key: str = "", peers: list = None) ->
             try:
                 with YF_LOCK:
                     target_info = yf.Ticker(ticker).info
+                industry = target_info.get("industry", "")
                 sector = target_info.get("sector", "")
             except Exception:
-                sector = ""
-            candidates = _SECTOR_PEERS.get(sector, [])
+                industry, sector = "", ""
+            candidates = _INDUSTRY_PEERS.get(industry) or _SECTOR_PEERS.get(sector, [])
             peer_tickers = [t for t in candidates if t != ticker][:5]
 
         all_tickers = [ticker] + peer_tickers
