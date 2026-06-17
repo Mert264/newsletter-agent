@@ -178,7 +178,14 @@ def build_chart_specs(
     og_avg     = reformulated["historical_avgs"]["OG"]
     fy_latest  = _fy_label(years[-1])
     n_avg_yrs  = reformulated.get("n_avg_years", len(years))
-    cagr_label = f"FY{years[0]}–FY{years[-1]}"
+    excluded = reformulated.get("excluded_years", set())
+    cagr_years = [y for y in years if y not in excluded]
+    if len(cagr_years) >= 2:
+        cagr_label = f"FY{cagr_years[0]}–FY{cagr_years[-1]}"
+    else:
+        cagr_label = f"FY{years[0]}–FY{years[-1]}"
+    if any("M&A" in f for f in reformulated.get("flags", [])):
+        cagr_label += ", organisk"
     ltm_date   = ltm_inc.get("date", "") if has_ltm else ""
 
     # Gross debt from most recent annual balance sheet
