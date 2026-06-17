@@ -309,12 +309,15 @@ def compute_dcf_scenarios(
     else:
         print(f"  [annual_report] INFO: No analyst consensus revenue data — using CAGR ({base_cagr:.1%}) for all DCF years.")
 
-    bear_cagr = max(base_cagr * 0.65, -0.02)
     bull_cagr = min(base_cagr * 1.35, 0.20)
+    bear_cagr = max(base_cagr * 0.65, -0.02)
+    if bear_cagr > bull_cagr:
+        bear_cagr = max(bull_cagr * 0.65, -0.02)
+    base_cagr_sc = min(base_cagr, bull_cagr)
     scenario_params = {
-        "bear": (bear_cagr, -0.02, +0.010, 0.015),
-        "base": (base_cagr,  0.00,  0.000,  0.020),
-        "bull": (bull_cagr,  0.02,  -0.010, 0.025),
+        "bear": (bear_cagr,    -0.02, +0.010, 0.015),
+        "base": (base_cagr_sc,  0.00,  0.000,  0.020),
+        "bull": (bull_cagr,     0.02,  -0.010, 0.025),
     }
 
     results = {}
