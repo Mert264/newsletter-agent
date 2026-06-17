@@ -963,11 +963,14 @@ function setPrompt(id) {
 }
 
 // ── Auth ──
+const _urlKey = new URLSearchParams(window.location.search).get('key') || '';
 function _authHeaders(extra) {
-  return Object.assign({'Content-Type': 'application/json'}, extra || {});
+  const h = {'Content-Type': 'application/json'};
+  if (_urlKey) h['X-API-Key'] = _urlKey;
+  return Object.assign(h, extra || {});
 }
 function _authQuery() {
-  return '';
+  return _urlKey ? '?key=' + encodeURIComponent(_urlKey) : '';
 }
 
 // ── Run ──
