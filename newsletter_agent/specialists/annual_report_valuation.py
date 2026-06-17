@@ -362,6 +362,24 @@ def compute_dcf_scenarios(
         )
         print(f"  [annual_report] WARNING: Scenario inversion detected (RNOA < WACC) — swapped bull/bear labels")
 
+    # All-None warning: when no scenario produces a valid price, explain why
+    all_none = all(results.get(s, {}).get("price") is None for s in ("bear", "base", "bull"))
+    if all_none:
+        og = avgs["OG"]
+        ato = avgs["ATO"]
+        rnoa = og * ato
+        if og < 0:
+            reason = f"negativ driftsmargin (OG = {og:.1%})"
+        elif rnoa < wacc_base * 0.5:
+            reason = f"RNOA ({rnoa:.1%}) langt under WACC ({wacc_base:.1%})"
+        else:
+            reason = "alle scenarier giver negativ egenkapitalværdi"
+        results["_no_value_warning"] = (
+            f"Modellen kan ikke beregne en meningsfuld fair value — {reason}. "
+            "Penman-reformuleringen er ikke egnet til selskaber med vedvarende negativ eller "
+            "utilstrækkelig driftsrentabilitet."
+        )
+
     mkt_price = market_price
     base_price = results.get("base", {}).get("price")
     if not currency_mismatch and mkt_price > 0 and base_price and base_price > 0:
