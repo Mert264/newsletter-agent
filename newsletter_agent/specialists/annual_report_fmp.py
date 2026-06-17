@@ -70,7 +70,7 @@ def _normalize_metrics(m: dict) -> dict:
     return result
 
 
-def _compute_ev(info: dict) -> float | None:
+def _compute_ev(info: dict) -> Union[float, None]:
     """Compute Enterprise Value manually: market_cap + total_debt - cash.
 
     yfinance's enterpriseValue mixes USD market cap with local-currency debt
