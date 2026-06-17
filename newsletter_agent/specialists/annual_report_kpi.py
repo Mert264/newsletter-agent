@@ -154,6 +154,9 @@ def build_chart_specs(
     base_price = base_sc["price"]
     bear_price = bear_sc["price"]
     bull_price = bull_sc["price"]
+    _all_none  = all(v is None for v in (base_price, bear_price, bull_price))
+    if _all_none:
+        base_price = bear_price = bull_price = 0.0
 
     t = STATUTORY_TAX_RATE.get(iso3, STATUTORY_TAX_RATE["_default"])
 
