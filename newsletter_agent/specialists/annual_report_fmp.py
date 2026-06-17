@@ -485,7 +485,7 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     try:
         income = _get("income-statement", api_key, symbol=ticker, period="annual")
     except requests.HTTPError as e:
-        if e.response is not None and e.response.status_code in (402, 403):
+        if e.response is not None and e.response.status_code in (402, 403, 429):
             print(f"  [annual_report] FMP returned {e.response.status_code} for {ticker} — falling back to yfinance")
             return _yf_fetch_all(ticker)
         raise
@@ -493,14 +493,14 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     try:
         balance = _get("balance-sheet-statement", api_key, symbol=ticker, period="annual")
     except requests.HTTPError as e:
-        if e.response is not None and e.response.status_code in (402, 403):
+        if e.response is not None and e.response.status_code in (402, 403, 429):
             print(f"  [annual_report] FMP balance-sheet {e.response.status_code} for {ticker} — falling back to yfinance")
             return _yf_fetch_all(ticker)
         raise
     try:
         cashflow = _get("cash-flow-statement", api_key, symbol=ticker, period="annual")
     except requests.HTTPError as e:
-        if e.response is not None and e.response.status_code in (402, 403):
+        if e.response is not None and e.response.status_code in (402, 403, 429):
             print(f"  [annual_report] FMP cashflow {e.response.status_code} for {ticker} — falling back to yfinance")
             return _yf_fetch_all(ticker)
         raise
