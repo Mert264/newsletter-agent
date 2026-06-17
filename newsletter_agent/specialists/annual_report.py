@@ -93,9 +93,21 @@ def fetch_annual_report(task: dict) -> dict:
 
     market_price = float(profile.get("price") or 0)
     base_price   = dcf_scenarios["base"]["price"]
-    if base_price < 0:
+    if base_price is not None and base_price < 0:
         print(f"  [annual_report] WARNING: base fair value={base_price:.2f} < 0 "
               f"(EV={dcf_scenarios['base']['detail']['EV']:,.0f} < NFO+NCI={NFO+NCI:,.0f}).")
+
+    base_fcf = dcf_scenarios["base"]["detail"].get("FCF_forecast", [])
+    post_check = check({
+        **wacc_data["checker_inputs"],
+        "scenarios": dcf_scenarios,
+        "diluted_shares": diluted_shares,
+        "fcf_forecast": base_fcf,
+    })
+    if not post_check["passed"]:
+        print(f"  [annual_report] BLOCK: Post-DCF validation failed for {ticker}:")
+        for issue in post_check["issues"]:
+            print(f"    • {issue}")
 
     da3 = review_valuation(wacc_data, dcf_scenarios, market_price, client)
     print(f"  [annual_report] DA #3 (valuation): {da3[:120]}...")
