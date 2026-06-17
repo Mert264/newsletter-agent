@@ -381,9 +381,21 @@ def fetch_all(ticker: str, api_key: str) -> dict:
     except requests.HTTPError:
         estimates = []
 
-    income_q   = _get("income-statement",        api_key, symbol=ticker, period="quarter", limit=5)
-    cashflow_q = _get("cash-flow-statement",     api_key, symbol=ticker, period="quarter", limit=5)
-    balance_q  = _get("balance-sheet-statement", api_key, symbol=ticker, period="quarter", limit=2)
+    try:
+        income_q = _get("income-statement", api_key, symbol=ticker, period="quarter", limit=5)
+    except requests.HTTPError:
+        print(f"  [annual_report] FMP quarterly income failed for {ticker} — using empty")
+        income_q = []
+    try:
+        cashflow_q = _get("cash-flow-statement", api_key, symbol=ticker, period="quarter", limit=5)
+    except requests.HTTPError:
+        print(f"  [annual_report] FMP quarterly cashflow failed for {ticker} — using empty")
+        cashflow_q = []
+    try:
+        balance_q = _get("balance-sheet-statement", api_key, symbol=ticker, period="quarter", limit=2)
+    except requests.HTTPError:
+        print(f"  [annual_report] FMP quarterly balance failed for {ticker} — using empty")
+        balance_q = []
 
     if isinstance(income, dict) and "Error Message" in income:
         raise ValueError(f"FMP income statement error for '{ticker}': {income['Error Message']}")
