@@ -84,6 +84,7 @@ def fetch_annual_report(task: dict) -> dict:
         diluted_shares=diluted_shares, base_year=base_year,
         estimates=estimates,
         ltm_income=fmp_data.get("ltm_income"),
+        market_price=float(profile.get("price") or 0),
     )
     sensitivity = compute_sensitivity(
         reformulated, wacc_base=wacc, g_base=0.02,
