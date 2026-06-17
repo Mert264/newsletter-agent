@@ -204,6 +204,8 @@ def _dcf_price(reformulated: dict, wacc: float, g: float,
         EV       = total_PV + PV_TV
         eq_val   = EV - NFO - NCI
         price    = eq_val / diluted_shares if diluted_shares > 0 else 0
+        if price < 0:
+            price = None
 
     detail = dict(
         forecast_years=forecast_years,
