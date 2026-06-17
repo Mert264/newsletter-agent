@@ -185,10 +185,22 @@ def _fetch_yf_metrics(name: str, ticker: str) -> tuple[str, Optional[dict]]:
         else:
             fcf_yield = float("nan")
 
+        ev_ebitda_val = float("nan")
+        ebitda = _safe_float(info.get("ebitda"))
+        if not np.isnan(market_cap) and market_cap > 0 and not np.isnan(ebitda) and ebitda > 0:
+            debt = _safe_float(info.get("totalDebt"))
+            cash = _safe_float(info.get("totalCash"))
+            debt = 0 if np.isnan(debt) else debt
+            cash = 0 if np.isnan(cash) else cash
+            ev = market_cap + debt - cash
+            ratio = ev / market_cap
+            if 0.3 <= ratio <= 4.0 and ev > 0:
+                ev_ebitda_val = ev / ebitda
+
         result = {
             "market_cap":   market_cap,
             "pe":           _safe_float(info.get("trailingPE")),
-            "ev_ebitda":    _safe_float(info.get("enterpriseToEbitda")),
+            "ev_ebitda":    ev_ebitda_val,
             "ps":           _safe_float(info.get("priceToSalesTrailing12Months")),
             "p_fcf":        p_fcf,
             "rev_growth":   _safe_float(info.get("revenueGrowth")),
