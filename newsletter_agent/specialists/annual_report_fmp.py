@@ -415,10 +415,14 @@ def _yf_fetch_all(ticker: str) -> dict:
     shares_out = info.get("sharesOutstanding", 0) or 0
     implied_shares = info.get("impliedSharesOutstanding", 0) or 0
     diluted_shares = implied_shares if implied_shares > shares_out else shares_out * 1.02
+    quote_ccy = info.get("currency", "USD")
+    fin_ccy = info.get("financialCurrency") or quote_ccy
     profile_dict = {
         "companyName": info.get("shortName") or info.get("longName") or ticker,
         "country": info.get("country", ""),
-        "currency": info.get("currency", "USD"),
+        "currency": quote_ccy,
+        "financialCurrency": fin_ccy,
+        "currencyMismatch": quote_ccy != fin_ccy,
         "marketCap": mkt_cap_raw / 1_000_000,
         "mktCap": mkt_cap_raw / 1_000_000,
         "beta": info.get("beta", 1.0),
