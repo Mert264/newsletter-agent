@@ -179,11 +179,19 @@ def _dcf_price(reformulated: dict, wacc: float, g: float,
 
     total_PV = sum(pv_f)
     fcf_t1   = fcf_f[-1] * (1 + g)
-    TV       = fcf_t1 / (wacc - g) if (wacc - g) > 0 else 0
-    PV_TV    = TV / ((1 + wacc) ** n_years)
-    EV       = total_PV + PV_TV
-    eq_val   = EV - NFO - NCI
-    price    = eq_val / diluted_shares if diluted_shares > 0 else 0
+    if (wacc - g) <= 0:
+        print(f"  [dcf] WARNING: WACC ({wacc:.4f}) ≤ terminal g ({g:.4f}) — terminal value undefined")
+        TV    = 0
+        PV_TV = 0
+        EV    = total_PV
+        eq_val = EV - NFO - NCI
+        price = None
+    else:
+        TV       = fcf_t1 / (wacc - g)
+        PV_TV    = TV / ((1 + wacc) ** n_years)
+        EV       = total_PV + PV_TV
+        eq_val   = EV - NFO - NCI
+        price    = eq_val / diluted_shares if diluted_shares > 0 else 0
 
     detail = dict(
         forecast_years=forecast_years,
