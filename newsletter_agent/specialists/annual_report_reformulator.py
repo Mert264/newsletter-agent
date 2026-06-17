@@ -132,12 +132,13 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
                 excluded_yrs.add(years[i])
 
     for i in range(1, len(OI_l)):
-        if OI_l[i - 1] != 0:
-            chg = abs((OI_l[i] - OI_l[i - 1]) / OI_l[i - 1])
-            if chg > 0.25:
+        if OI_l[i - 1] != 0 and revenue_l[i - 1] != 0:
+            oi_chg = abs((OI_l[i] - OI_l[i - 1]) / OI_l[i - 1])
+            rev_chg = abs((revenue_l[i] - revenue_l[i - 1]) / revenue_l[i - 1])
+            if oi_chg > 0.50 and rev_chg < 0.15:
                 flags.append(
-                    f"{years[i]}: OI changed {chg:.0%} YoY — flagged as potential one-time item, "
-                    f"excluded from historical averages [ASSUMED]"
+                    f"{years[i]}: OI changed {oi_chg:.0%} YoY on only {rev_chg:.0%} revenue change "
+                    f"— likely one-time item, excluded from historical averages [ASSUMED]"
                 )
                 excluded_yrs.add(years[i])
 
@@ -147,8 +148,7 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
             gw_jump = (goodwill_l[i] - goodwill_l[i - 1]) / max(goodwill_l[i - 1], 1)
             debt_jump = ((gross_debt_l[i] - gross_debt_l[i - 1]) / max(gross_debt_l[i - 1], 1)
                          if gross_debt_l[i - 1] > 0 else 0)
-            is_ma = (rev_jump > 0.20
-                     or (rev_jump > 0.10 and gw_jump > 0.25)
+            is_ma = ((rev_jump > 0.10 and gw_jump > 0.25)
                      or (gw_jump > 0.25 and debt_jump > 0.40))
             if is_ma:
                 flags.append(
