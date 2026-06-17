@@ -145,10 +145,13 @@ def _dcf_price(reformulated: dict, wacc: float, g: float,
 
     # Q1: If latest reported NOA is anomalous vs historical ATO, normalize the starting point.
     # This prevents a spurious first-year ΔNOA reversal from dominating the valuation.
+    # Use tighter threshold (1.3x) when M&A flags are present.
     noa_raw         = reformulated["NOA"][-1]
     noa_ato_implied = base_rev / ato_avg if ato_avg > 0 else noa_raw
-    if noa_raw > 2.0 * noa_ato_implied and noa_ato_implied > 0:
-        prev_NOA = noa_ato_implied   # ATO-normalised starting NOA
+    has_ma_flags    = any("M&A" in f for f in reformulated.get("flags", []))
+    noa_threshold   = 1.3 if has_ma_flags else 2.0
+    if noa_raw > noa_threshold * noa_ato_implied and noa_ato_implied > 0:
+        prev_NOA = noa_ato_implied
     else:
         prev_NOA = noa_raw
 
