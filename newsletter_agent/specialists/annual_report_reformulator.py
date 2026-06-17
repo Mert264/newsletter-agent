@@ -142,12 +142,19 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
                 excluded_yrs.add(years[i])
 
     for i in range(1, len(revenue_l)):
-        if revenue_l[i - 1] != 0:
+        if revenue_l[i - 1] != 0 and goodwill_l[i] > goodwill_l[i - 1]:
             rev_jump = (revenue_l[i] - revenue_l[i - 1]) / revenue_l[i - 1]
-            if rev_jump > 0.20 and goodwill_l[i] > goodwill_l[i - 1]:
+            gw_jump = (goodwill_l[i] - goodwill_l[i - 1]) / max(goodwill_l[i - 1], 1)
+            debt_jump = ((gross_debt_l[i] - gross_debt_l[i - 1]) / max(gross_debt_l[i - 1], 1)
+                         if gross_debt_l[i - 1] > 0 else 0)
+            is_ma = (rev_jump > 0.20
+                     or (rev_jump > 0.10 and gw_jump > 0.25)
+                     or (gw_jump > 0.25 and debt_jump > 0.40))
+            if is_ma:
                 flags.append(
-                    f"{years[i]}: Revenue +{rev_jump:.0%} with goodwill increase — CAGR may be "
-                    f"M&A-distorted. Organic CAGR excludes this year [ASSUMED]"
+                    f"{years[i]}: Revenue +{rev_jump:.0%}, goodwill +{gw_jump:.0%}, "
+                    f"debt +{debt_jump:.0%} — M&A-distorted. "
+                    f"Organic CAGR excludes this year [ASSUMED]"
                 )
                 excluded_yrs.add(years[i])
 
