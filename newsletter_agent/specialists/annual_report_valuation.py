@@ -75,8 +75,8 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
 
     income = fmp_data.get("income", [{}])
     ebit   = float(income[0].get("operatingIncome") or 0)
-    int_ex = float(income[0].get("interestExpense") or 1)
-    icr    = ebit / int_ex if int_ex != 0 else 8.5
+    int_ex = float(income[0].get("interestExpense") or 0)
+    icr    = ebit / int_ex if int_ex > 0 else 8.5
     rs_icr = icr_to_spread(icr)
 
     rs = rs_moody if rs_moody is not None else rs_icr
