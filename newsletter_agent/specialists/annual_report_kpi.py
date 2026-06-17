@@ -692,7 +692,7 @@ def build_peer_comparison_spec(peer_data: dict, company_name: str, ticker: str):
     for c in companies:
         label = f"* {c['ticker']}" if c.get("is_target") else c["ticker"]
         rows.append({
-            "Selskab":    f"{label} — {c['name']}" if c["name"] != c["ticker"] else label,
+            "indicator":  f"{label} — {c['name']}" if c["name"] != c["ticker"] else label,
             "P/E":        _fmt_mult(c.get("pe")),
             "EV/EBITDA":  _fmt_mult(c.get("ev_ebitda")),
             "P/B":        _fmt_mult(c.get("pb")),
