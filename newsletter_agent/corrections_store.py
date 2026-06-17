@@ -89,7 +89,7 @@ def classify_topic(text: str) -> str:
         for kw in keywords:
             if kw in low:
                 scores[topic] += 1
-    best = max(scores, key=scores.get)
+    best = max(scores, key=lambda k: (scores[k], k))
     return best if scores[best] > 0 else "general"
 
 
