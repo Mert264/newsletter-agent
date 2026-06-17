@@ -304,18 +304,19 @@ def compute_dcf_scenarios(
         wacc = wacc_base + wacc_delta
         og   = avgs["OG"] + og_delta
         mod  = {**reformulated, "historical_avgs": {**avgs, "OG": og, "revenue_cagr": cagr}}
-        # Only the base scenario uses per-year consensus revs; bear/bull use CAGR throughout
         c_revs = base_consensus_revs if name == "base" else None
         price, detail = _dcf_price(mod, wacc, g, NFO, NCI, diluted_shares, base_year,
                                    consensus_revs=c_revs)
         results[name] = {
-            "price":  round(price, 2),
+            "price":  round(price, 2) if price is not None else None,
             "detail": detail,
             "wacc":   round(wacc, 4),
             "og":     round(og, 4),
             "cagr":   round(cagr, 4),
             "g":      g,
         }
+        if price is None:
+            results[name]["error"] = f"WACC ({wacc:.4f}) ≤ terminal g ({g:.4f}) — valuation undefined"
     return results
 
 
