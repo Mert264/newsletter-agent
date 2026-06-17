@@ -71,6 +71,10 @@ def review_valuation(wacc_data: dict, dcf_scenarios: dict,
         "Is the range bear < base < bull? "
         "IMPORTANT: Do NOT flag WACC = rE as suspicious if the capital structure note says net cash."
     )
+    corrections = load_corrections(specialists=["annual_report"], layer="specialist", limit=5)
+    corr_block = format_corrections_prompt(corrections)
+    if corr_block:
+        user += f"\n\n{corr_block}"
     return _call(client, _SYSTEM, user)
 
 
