@@ -9,14 +9,25 @@ import json
 import queue
 import threading
 
-from flask import Flask, render_template, request, Response, jsonify, send_from_directory
+from flask import Flask, render_template, request, Response, jsonify, send_from_directory, abort
 
 app = Flask(__name__)
 # Use /tmp on cloud (Railway), local demo_output when running on Mac
 OUTPUT_DIR = "/tmp/newsletter_output" if os.getenv("RAILWAY_ENVIRONMENT") else os.path.join(os.path.dirname(__file__), "demo_output")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+_API_KEY = os.getenv("BRAIN_API_KEY", "")
+_PUBLIC_PATHS = {"/health"}
 
+
+@app.before_request
+def _check_api_key():
+    if request.path in _PUBLIC_PATHS:
+        return None
+    key = request.args.get("key") or request.headers.get("X-API-Key") or ""
+    if not _API_KEY or key == _API_KEY:
+        return None
+    return jsonify({"error": "Unauthorized"}), 401
 
 
 
