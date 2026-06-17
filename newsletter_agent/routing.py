@@ -187,6 +187,16 @@ ROUTING_RULES = [
         "For specifikt udvalg af lande: angiv 'countries' liste med ISO-3-koder. "
         "y_label='Over-/undervurdering ift. USD (%)'. Kilde='The Economist'.",
     ),
+    # Region group tag → expand into country-level comparisons
+    (
+        lambda b: _REGION_TAG.search(b),
+        "Brugeren har valgt en regiongruppe. Brug gruppenavnet direkte som 'country' i series-specifikationer — "
+        "pipeline-laget udvider automatisk gruppenavne (EU, EUROZONE, NORDIC, G7, G20, BRICS, EM, DM, SCANDINAVIA) "
+        "til individuelle landekoder. For makrodata: brug specialist='worldbank' eller 'imf' med country=GRUPPENAVN. "
+        "For aktier: brug specialist='equities' med relevante regionale indeks. "
+        "Producér sammenlignende charts (type A indekseret, type D nøgletabel, type G horisontalt søjlediagram) "
+        "der viser forskelle MELLEM landene i gruppen.",
+    ),
     # Country economy → World Bank (fires when country-specific economy keyword present, not EU/US)
     (
         lambda b: _COUNTRY_ECON_KW.search(b) and not _EU.search(b) and not _US.search(b),
