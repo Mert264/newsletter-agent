@@ -45,7 +45,7 @@ def review_valuation(wacc_data: dict, dcf_scenarios: dict,
     base_price = base["price"]
     bear_price = dcf_scenarios["bear"]["price"]
     bull_price = dcf_scenarios["bull"]["price"]
-    ratio      = base_price / market_price if market_price > 0 else 0
+    ratio      = base_price / market_price if market_price > 0 and base_price is not None else 0
     ev         = base["detail"]["EV"]
     tv_share   = f"{base['detail']['PV_TV']/ev:.0%}" if ev != 0 else "N/A (EV≤0)"
     D, E, NFO  = wacc_data["D"], wacc_data["E"], wacc_data.get("D", 0) + wacc_data.get("E", 0)
