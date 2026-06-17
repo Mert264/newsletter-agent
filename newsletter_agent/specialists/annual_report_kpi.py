@@ -580,7 +580,7 @@ def build_chart_specs(
             cell = f"{val:.0f}" if val is not None else "—"
             # Use tolerance of 1e-4 to handle floating-point imprecision
             if abs(w - wacc_base) < 1e-4 and abs(g - g_base) < 1e-4:
-                cell = f"★ {cell}"
+                cell = f"* {cell}"
             row[_pct(w, 2)] = cell
         sens_rows.append(row)
 
@@ -683,7 +683,7 @@ def build_peer_comparison_spec(peer_data: dict, company_name: str, ticker: str):
 
     rows = []
     for c in companies:
-        label = f"★ {c['ticker']}" if c.get("is_target") else c["ticker"]
+        label = f"* {c['ticker']}" if c.get("is_target") else c["ticker"]
         rows.append({
             "Selskab":    f"{label} — {c['name']}" if c["name"] != c["ticker"] else label,
             "P/E":        _fmt_mult(c.get("pe")),
@@ -695,7 +695,7 @@ def build_peer_comparison_spec(peer_data: dict, company_name: str, ticker: str):
 
     n_peers = sum(1 for c in companies if not c.get("is_target"))
     note = (
-        f"TTM-nøgletal for {company_name} (★) sammenlignet med {n_peers} børsnoterede peers. "
+        f"TTM-nøgletal for {company_name} (*) sammenlignet med {n_peers} børsnoterede peers. "
         f"Kilde: FMP. Alle nøgletal er beregnet på rullende 12-månedersbasis. "
         f"N/A angiver manglende data for den pågældende peer."
     )
