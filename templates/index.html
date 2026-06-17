@@ -1366,6 +1366,46 @@ function submitComment(figId) {
   }).catch(() => { btn.disabled = false; btn.textContent = 'Send kommentar'; });
 }
 
+function attachInlineCorrections() {
+  fetch('/corrections', { headers: _authHeaders() })
+    .then(r => r.json())
+    .then(data => {
+      const entries = (data.corrections || []).filter(c => (c.status || 'active') === 'active');
+      if (!entries.length) return;
+      document.querySelectorAll('.fig-card').forEach(card => {
+        const ratingDiv = card.querySelector('.fig-rating');
+        if (!ratingDiv) return;
+        const specialist = ratingDiv.dataset.specialist || '';
+        const chartType = ratingDiv.dataset.chartType || '';
+        const matching = entries.filter(c =>
+          (c.specialist === specialist || !c.specialist) &&
+          (c.figure_type === chartType || !c.figure_type || !chartType)
+        );
+        if (!matching.length) return;
+        const meta = card.querySelector('.fig-meta');
+        if (!meta || meta.querySelector('.fig-corrections-badge')) return;
+        const badgeId = 'corr-' + Math.random().toString(36).slice(2, 8);
+        const badge = document.createElement('div');
+        badge.className = 'fig-corrections-badge';
+        badge.textContent = matching.length + ' korrektion' + (matching.length > 1 ? 'er' : '');
+        badge.onclick = function() {
+          const detail = document.getElementById(badgeId);
+          if (detail) detail.classList.toggle('open');
+        };
+        const detail = document.createElement('div');
+        detail.className = 'fig-corrections-detail';
+        detail.id = badgeId;
+        detail.innerHTML = matching.map(c =>
+          '<div style="margin-bottom:3px;">• ' + escHtml(c.comment || '') +
+          ' <span style="color:#9ca3af;font-size:10px;">' + escHtml(c.layer || '') + '</span></div>'
+        ).join('');
+        meta.appendChild(badge);
+        meta.appendChild(detail);
+      });
+    })
+    .catch(() => {});
+}
+
 // ── Corrections management panel ──
 function loadCorrections() {
   fetch('/corrections', { headers: _authHeaders() })
