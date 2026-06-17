@@ -107,6 +107,25 @@ def _normalize_estimates(e: dict) -> dict:
     return result
 
 
+# Industry-level peers take priority over sector-level when available
+_INDUSTRY_PEERS: dict = {
+    "Beverages - Brewers": ["BUD", "HEINY", "TAP", "STZ", "SAM", "DEO"],
+    "Beverages - Wineries & Distilleries": ["DEO", "BF-B", "STZ", "PRNDY", "CPRI"],
+    "Beverages - Non-Alcoholic": ["KO", "PEP", "MNST", "KDP", "COKE", "FIZZ"],
+    "Drug Manufacturers - General": ["JNJ", "PFE", "MRK", "ABBV", "LLY", "NVS", "AZN"],
+    "Semiconductors": ["NVDA", "AMD", "AVGO", "QCOM", "INTC", "TXN", "MU"],
+    "Software - Infrastructure": ["MSFT", "ORCL", "CRM", "NOW", "ADBE", "INTU"],
+    "Internet Content & Information": ["GOOGL", "META", "SNAP", "PINS", "BIDU"],
+    "Auto Manufacturers": ["TSLA", "TM", "F", "GM", "STLA", "HMC", "RIVN"],
+    "Banks - Diversified": ["JPM", "BAC", "WFC", "C", "USB", "PNC"],
+    "Oil & Gas Integrated": ["XOM", "CVX", "SHEL", "TTE", "BP", "COP"],
+    "Aerospace & Defense": ["RTX", "LMT", "BA", "GD", "NOC", "LHX"],
+    "Restaurants": ["MCD", "SBUX", "YUM", "CMG", "QSR", "DPZ"],
+    "Discount Stores": ["WMT", "COST", "TGT", "DG", "DLTR", "BJ"],
+    "Household & Personal Products": ["PG", "CL", "KMB", "CLX", "CHD", "EL"],
+    "Packaged Foods": ["MDLZ", "GIS", "K", "CAG", "SJM", "HRL", "CPB"],
+}
+
 # Sector-based peer candidates used when FMP peer endpoint is unavailable
 _SECTOR_PEERS: dict = {
     "Technology": ["AAPL", "MSFT", "GOOGL", "META", "NVDA", "ORCL", "ADBE", "CRM"],
