@@ -989,10 +989,16 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
 
 
 def _run_specialist(name: str, task: dict) -> tuple[str, dict]:
-    """Fetch data for one specialist. Returns (name, SpecialistResult)."""
+    """Fetch data for one specialist. Retries once on failure, then raises."""
     print(f"  [{name}] Fetching data...")
     fetch_fn = SPECIALIST_MAP[name]
-    result = fetch_fn(task)
+    try:
+        result = fetch_fn(task)
+    except Exception as first_err:
+        import time
+        print(f"  [{name}] Failed (attempt 1): {first_err} — retrying in 5s...")
+        time.sleep(5)
+        result = fetch_fn(task)
     n_series = len(result["dataframes"])
     print(f"  [{name}] Done — {n_series} series fetched.")
     return name, result
