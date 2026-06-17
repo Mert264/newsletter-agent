@@ -341,6 +341,11 @@ def _yf_df_to_fmp_rows(df, field_map: dict, scale: float = 1e-6,
             else:
                 row[fmp_name] = 0
         rows.append(row)
+    # Drop ghost rows where yfinance returned an empty/NaN column (all financials = 0)
+    key_fields = {"revenue", "totalAssets", "operatingCashFlow"}
+    active_keys = key_fields & set(field_map.values())
+    if active_keys:
+        rows = [r for r in rows if any(r.get(k, 0) != 0 for k in active_keys)]
     return rows
 
 
