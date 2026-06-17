@@ -384,6 +384,8 @@ def _yf_fetch_all(ticker: str) -> dict:
             yf_metrics[fmp_key] = float(val)
     metrics_list = [yf_metrics] if yf_metrics else []
 
+    estimates = _yf_revenue_estimates(t, income)
+
     return {
         "income": income,
         "balance": balance,
@@ -391,7 +393,7 @@ def _yf_fetch_all(ticker: str) -> dict:
         "profile": profile_dict,
         "rating": [],
         "metrics": metrics_list,
-        "estimates": [],
+        "estimates": estimates,
         "ltm_income": ltm_income,
         "ltm_cashflow": ltm_cashflow,
         "ltm_balance": ltm_balance,
