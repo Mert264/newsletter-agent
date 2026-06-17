@@ -345,13 +345,24 @@ def _yf_fetch_all(ticker: str) -> dict:
                 (b.get("totalEquity") or 0) - (b.get("totalStockholdersEquity") or 0)
             )
 
+    yf_metrics = {}
+    for fmp_key, yf_key in [
+        ("peRatio", "trailingPE"), ("evToEbitda", "enterpriseToEbitda"),
+        ("pbRatio", "priceToBook"), ("priceToSalesRatio", "priceToSalesTrailing12Months"),
+        ("evToFCF", "enterpriseToFreeCashflow"),
+    ]:
+        val = info.get(yf_key)
+        if val is not None and val != 0:
+            yf_metrics[fmp_key] = float(val)
+    metrics_list = [yf_metrics] if yf_metrics else []
+
     return {
         "income": income,
         "balance": balance,
         "cashflow": cashflow,
         "profile": profile_dict,
         "rating": [],
-        "metrics": [],
+        "metrics": metrics_list,
         "estimates": [],
         "ltm_income": ltm_income,
         "ltm_cashflow": ltm_cashflow,
