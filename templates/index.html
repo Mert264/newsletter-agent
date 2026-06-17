@@ -1129,6 +1129,7 @@ function startStream() {
       window._lastBrief = msg.brief || '';
       const n = (msg.figures || []).length;
       renderFigures(msg.figures || []);
+      attachInlineCorrections();
       const statusMsg = document.getElementById('statusMsg');
       statusMsg.className = 'done';
       statusMsg.textContent = `✓ ${n} figur${n === 1 ? '' : 'er'} klar`;
