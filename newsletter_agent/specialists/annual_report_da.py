@@ -76,14 +76,17 @@ def review_valuation(wacc_data: dict, dcf_scenarios: dict,
 def review_final(chart_specs: list, price_range: tuple,
                  market_price: float, client: anthropic.Anthropic) -> str:
     bear, base, bull = price_range
-    ratio = base / market_price if market_price > 0 else 0
-    ordering_ok = bear < base < bull
+    ratio = base / market_price if market_price > 0 and base is not None else 0
+    all_valid = all(v is not None for v in (bear, base, bull))
+    ordering_ok = bear < base < bull if all_valid else False
+    def _fmt(v):
+        return f"{v:.2f}" if v is not None else "N/A"
     user = (
-        f"Bear fair value:  {bear:.2f}\n"
-        f"Base fair value:  {base:.2f}\n"
-        f"Bull fair value:  {bull:.2f}\n"
+        f"Bear fair value:  {_fmt(bear)}\n"
+        f"Base fair value:  {_fmt(base)}\n"
+        f"Bull fair value:  {_fmt(bull)}\n"
         f"Market price:     {market_price:.2f} (base/market ratio: {ratio:.2f}x)\n"
-        f"Bear < Base < Bull ordering: {'CORRECT' if ordering_ok else 'VIOLATED'}\n"
+        f"Bear < Base < Bull ordering: {'CORRECT' if ordering_ok else 'N/A — some scenarios undefined' if not all_valid else 'VIOLATED'}\n"
         f"Charts generated: {len(chart_specs)}\n\n"
         "Final gate: confirm ordering is correct, base/market ratio is plausible (0.1x–10x), "
         "and all values are positive. Flag only real issues with WARN or BLOCK."
