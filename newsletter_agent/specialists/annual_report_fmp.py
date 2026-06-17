@@ -70,6 +70,27 @@ def _normalize_metrics(m: dict) -> dict:
     return result
 
 
+def _compute_ev(info: dict) -> float | None:
+    """Compute Enterprise Value manually: market_cap + total_debt - cash.
+
+    yfinance's enterpriseValue mixes USD market cap with local-currency debt
+    for non-US stocks/ADRs, producing wildly wrong numbers. This avoids that.
+    Returns None if market cap is unavailable or EV/mcap ratio is implausible.
+    """
+    mcap = info.get("marketCap")
+    if not mcap or mcap <= 0:
+        return None
+    debt = (info.get("totalDebt") or 0)
+    cash = (info.get("totalCash") or 0)
+    ev = mcap + debt - cash
+    if ev <= 0:
+        return None
+    ratio = ev / mcap
+    if ratio > 4.0 or ratio < 0.3:
+        return None
+    return ev
+
+
 _ESTIMATE_MONETARY_FIELDS = {
     # v3 API names
     "estimatedRevenueLow", "estimatedRevenueAvg", "estimatedRevenueHigh",
