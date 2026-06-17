@@ -961,6 +961,18 @@ function setViz(el) {
   }
 }
 
+// ── REGIONGRUPPE ──
+function toggleRegion(btn) {
+  const region = btn.dataset.region;
+  if (activeRegions.has(region)) {
+    activeRegions.delete(region);
+    btn.classList.remove('active');
+  } else {
+    activeRegions.add(region);
+    btn.classList.add('active');
+  }
+}
+
 // ── TIDSPERIODE ──
 let activePeriodBtn = document.querySelector('.period-btn.llm-btn');
 
