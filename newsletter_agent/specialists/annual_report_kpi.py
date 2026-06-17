@@ -436,6 +436,7 @@ def build_chart_specs(
         "series_labels": ["trend_rev_oi"],
         "note": f"Omsætning og NOPAT, FY{years[0]}–FY{years[-1]}. Kilde: FMP.",
         "kilde": kilde,
+        "skip_auto_index": True,
     })
 
     # ══════════════════════════════════════════════════════════════════════════

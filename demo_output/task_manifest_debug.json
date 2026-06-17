@@ -1,53 +1,10 @@
 {
   "specialists": [
-    "macro"
+    "annual_report"
   ],
-  "macro": {
-    "series": [
-      {
-        "ticker": "DGS10",
-        "source": "fred",
-        "label": "USA 10-\u00e5rig statsrente",
-        "region": "USA",
-        "unit": "%"
-      },
-      {
-        "ticker": "IRLTLT01DEM156N",
-        "source": "fred",
-        "label": "Tyskland 10-\u00e5rig statsrente",
-        "region": "Europa",
-        "unit": "%"
-      }
-    ],
-    "charts": [
-      {
-        "type": "A",
-        "title": "10-\u00e5rige statsrenter \u2014 USA og Tyskland",
-        "x_label": "Dato",
-        "y_label": "%",
-        "period_days": 730,
-        "series_labels": [
-          "USA 10-\u00e5rig statsrente",
-          "Tyskland 10-\u00e5rig statsrente"
-        ],
-        "note": "M\u00e5nedlige 10-\u00e5rige statsrenter for USA og Tyskland de seneste to \u00e5r. Disse renter er centrale benchmarks for globale finansmarkeder og afspejler forventninger til v\u00e6kst og inflation."
-      },
-      {
-        "type": "D",
-        "title": "10-\u00e5rige statsrenter \u2014 snapshot",
-        "x_label": "",
-        "y_label": "%",
-        "period_days": 730,
-        "series_labels": [
-          "USA 10-\u00e5rig statsrente",
-          "Tyskland 10-\u00e5rig statsrente"
-        ],
-        "before_date": "2024-04-01",
-        "after_date": "latest",
-        "col_before": "1 \u00e5r siden",
-        "col_after": "Nu",
-        "note": "Snapshot af 10-\u00e5rige statsrenter for USA og Tyskland. \u00c6ndringer vises i procentpoint."
-      }
-    ]
+  "annual_report": {
+    "ticker": "CARL-B.CO",
+    "label": "Carlsberg A/S \u2014 \u00c5rsregnskabsanalyse og DCF-v\u00e6rdians\u00e6ttelse",
+    "charts": []
   }
 }
