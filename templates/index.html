@@ -1065,6 +1065,10 @@ function startRun() {
   const hintParts = [...activeVizSet].map(v => vizHints[v] || '').filter(Boolean);
   let fullBrief = brief + hintParts.join('');
 
+  if (activeRegions.size > 0) {
+    fullBrief += ' [Region: ' + [...activeRegions].join(', ') + ']';
+  }
+
   const payload = { brief: fullBrief };
 
   if (activePeriodDays === 'custom') {
