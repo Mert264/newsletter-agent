@@ -1,6 +1,7 @@
 import anthropic
 from newsletter_agent.config import REVIEWER_MODEL
 from newsletter_agent.llm_retry import llm_call_with_retry
+from newsletter_agent.corrections_store import load_corrections, format_corrections_prompt
 
 
 def _call(client: anthropic.Anthropic, system: str, user: str) -> str:
