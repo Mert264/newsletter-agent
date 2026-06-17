@@ -406,7 +406,7 @@ def compute_sensitivity(reformulated: dict, wacc_base: float, g_base: float,
                 row.append(None)
             else:
                 price, _ = _dcf_price(reformulated, w, g, NFO, NCI, diluted_shares, base_year)
-                row.append(round(price, 2))
+                row.append(round(price, 2) if price is not None else None)
         grid.append(row)
     return {
         "wacc_axis": wacc_steps,
