@@ -592,6 +592,18 @@
     }
     .correction-toggle:hover { border-color: #11716c; color: #11716c; }
     .correction-toggle.is-disabled { border-color: #dc2626; color: #dc2626; }
+    .fig-corrections-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: #f0faf9; border: 1px solid #a7d9d5; border-radius: 10px;
+      padding: 2px 9px; font-size: 10px; font-weight: 600; color: #0d6b66;
+      cursor: pointer; margin-top: 4px;
+    }
+    .fig-corrections-badge:hover { background: #e0f5f3; }
+    .fig-corrections-detail {
+      display: none; margin-top: 4px; padding: 6px 8px;
+      background: #f8fafa; border-radius: 6px; font-size: 11px; color: #374151;
+    }
+    .fig-corrections-detail.open { display: block; }
 
     /* ── Lightbox ── */
     #lightbox {
