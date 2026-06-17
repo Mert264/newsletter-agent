@@ -48,4 +48,36 @@ def check(wacc_inputs: dict) -> dict:
             "Mixing real rf with nominal g=2% silently inflates terminal value. [BLOCK]"
         )
 
+    # ── Output validation (post-DCF) ──
+    scenarios = wacc_inputs.get("scenarios", {})
+    for sc_name, sc in scenarios.items():
+        sc_wacc = sc.get("wacc", 0)
+        sc_g = sc.get("g", 0)
+        if sc_wacc <= sc_g:
+            issues.append(
+                f"Scenario '{sc_name}': WACC ({sc_wacc:.4f}) ≤ terminal g ({sc_g:.4f}). "
+                f"Terminal value is undefined — valuation invalid. [BLOCK]"
+            )
+        sc_price = sc.get("price")
+        if sc_price is not None and sc_price < 0:
+            issues.append(
+                f"Scenario '{sc_name}': negative equity value (price={sc_price:.2f}). "
+                f"Debt exceeds enterprise value. [BLOCK]"
+            )
+
+    diluted_shares = wacc_inputs.get("diluted_shares", 1)
+    if diluted_shares <= 0:
+        issues.append(
+            f"Diluted shares outstanding = {diluted_shares}. Must be > 0. [BLOCK]"
+        )
+
+    fcf_forecast = wacc_inputs.get("fcf_forecast", [])
+    if fcf_forecast:
+        neg_years = sum(1 for f in fcf_forecast if f < 0)
+        if neg_years > 3:
+            issues.append(
+                f"Negative FCF in {neg_years}/5 forecast years. "
+                f"Persistent negative FCF makes DCF unreliable. [BLOCK]"
+            )
+
     return {"passed": len(issues) == 0, "issues": issues}
