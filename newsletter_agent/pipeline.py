@@ -919,7 +919,7 @@ def _render_figure(chart_spec: dict, specialist_result: dict, output_path: str,
         # Skip when conversions applied, or when y_label is already a rate/% (comparable by definition).
         _is_rate_label = y_label.strip() in ("%", "pp", "PP", "Procentpoint", "Percentage points",
                                               "Basis points (bps)", "YoY %", "YoY%")
-        if not conversions_applied and len(merged.columns) > 1 and not _is_rate_label and "yoy" not in y_label.lower():
+        if not conversions_applied and not chart_spec.get("skip_auto_index") and len(merged.columns) > 1 and not _is_rate_label and "yoy" not in y_label.lower():
             ranges = [merged[c].max() - merged[c].min() for c in merged.columns
                       if merged[c].notna().any()]
             if ranges and max(ranges) / (min(ranges) + 1e-9) > 10:
