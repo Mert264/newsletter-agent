@@ -95,6 +95,13 @@ def fetch_annual_report(task: dict) -> dict:
         market_price=float(profile.get("price") or 0),
         currency_mismatch=bool(profile.get("currencyMismatch")),
     )
+    if _is_financial:
+        dcf_scenarios["_financial_warning"] = (
+            f"{ticker} er en finansiel institution (sektor: {sector}). "
+            "Penman-modellen adskiller drifts- og finansieringsaktiviteter, "
+            "hvilket ikke er meningsfuldt for banker og forsikringsselskaber. "
+            "Fair value-estimaterne er IKKE pålidelige for denne type selskab."
+        )
     sensitivity = compute_sensitivity(
         reformulated, wacc_base=wacc, g_base=0.02,
         NFO=NFO, NCI=NCI,
