@@ -202,21 +202,25 @@ def fetch_peer_comparison(ticker: str, api_key: str = "", peers: list = None) ->
 
                 name = info.get("shortName") or info.get("longName") or t
                 pe = fmp_ratios.get("peRatioTTM") or info.get("trailingPE")
-                ev_eb = fmp_ratios.get("enterpriseValueOverEBITDATTM") or info.get("enterpriseToEbitda")
                 pb = fmp_ratios.get("priceToBookRatioTTM") or info.get("priceToBook")
                 roe = info.get("returnOnEquity")
                 if roe is not None:
                     roe = roe * 100
 
+                ev = _compute_ev(info)
+                ebitda = info.get("ebitda")
+                ev_eb = fmp_ratios.get("enterpriseValueOverEBITDATTM")
+                if not ev_eb and ev and ebitda and ebitda > 0:
+                    ev_eb = ev / ebitda
+
                 ev_fcf = None
-                ev_raw = info.get("enterpriseValue")
-                if ev_raw and cf is not None and not cf.empty:
+                if ev and cf is not None and not cf.empty:
                     try:
                         ocf = float(cf.loc["Operating Cash Flow"].iloc[0]) if "Operating Cash Flow" in cf.index else 0
                         capex = float(cf.loc["Capital Expenditure"].iloc[0]) if "Capital Expenditure" in cf.index else 0
                         fcf = ocf + capex
                         if fcf > 0:
-                            ev_fcf = ev_raw / fcf
+                            ev_fcf = ev / fcf
                     except Exception:
                         pass
 
