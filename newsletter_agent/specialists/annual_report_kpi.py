@@ -528,7 +528,7 @@ def build_chart_specs(
          "Bull": f"{(bull_price - price)/price:+.1%}" if price > 0 and bull_price > 0 else "N/A"},
     ]
 
-    _spread_pct = (bull_price - bear_price) / price if price > 0 else 0
+    _spread_pct = (bull_price - bear_price) / price if price > 0 and bull_price > 0 and bear_price > 0 else 0
     _spread_note = (
         f"Bear-til-bull spænd: {_num(bull_price - bear_price)} {currency} ({_spread_pct:+.0%} af markedskurs). "
         + ("Bredt spænd indikerer høj modelusikkerhed." if _spread_pct > 0.3 else "Relativt smalt spænd indikerer stabil, forudsigelig forretning.")
