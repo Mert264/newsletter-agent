@@ -1316,10 +1316,11 @@ def run(brief: str, output_dir: str = "output", preferred_types: list = None,
             except Exception as exc:
                 import traceback as _tb
                 err_detail = str(exc)
-                print(f"  [{name}] FAILED — skipping specialist: {err_detail}")
+                print(f"  [{name}] FAILED after retry — aborting run: {err_detail}")
                 print(f"  [{name}] Traceback: {_tb.format_exc()[-400:]}")
-                _specialist_errors[name] = err_detail
-                specialists = [s for s in specialists if s != name]
+                for f in futures:
+                    f.cancel()
+                raise RuntimeError(f"Specialist '{name}' failed: {err_detail}") from exc
 
     # Step 2b: Apply unit conversions (date-matched FX where needed)
     for spec_name in specialists:
