@@ -521,11 +521,11 @@ def build_chart_specs(
          "Base": _num(base_sc["detail"]["EV"]),
          "Bull": _num(bull_sc["detail"]["EV"])},
         {"indicator": f"Fair value / aktie ({currency})",
-         "Bear": f"{bear_price:.0f}", "Base": f"{base_price:.0f}", "Bull": f"{bull_price:.0f}"},
+         "Bear": _fv(bear_price), "Base": _fv(base_price), "Bull": _fv(bull_price)},
         {"indicator": "vs. Aktuel kurs",
-         "Bear": f"{(bear_price - price)/price if price > 0 else 0:+.1%}",
-         "Base": f"{(base_price - price)/price if price > 0 else 0:+.1%}",
-         "Bull": f"{(bull_price - price)/price if price > 0 else 0:+.1%}"},
+         "Bear": f"{(bear_price - price)/price:+.1%}" if price > 0 and bear_price > 0 else "N/A",
+         "Base": f"{(base_price - price)/price:+.1%}" if price > 0 and base_price > 0 else "N/A",
+         "Bull": f"{(bull_price - price)/price:+.1%}" if price > 0 and bull_price > 0 else "N/A"},
     ]
 
     _spread_pct = (bull_price - bear_price) / price if price > 0 else 0
