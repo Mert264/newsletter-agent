@@ -314,6 +314,9 @@ def compute_dcf_scenarios(
     if bear_cagr > bull_cagr:
         bear_cagr = max(bull_cagr * 0.65, -0.02)
     base_cagr_sc = min(base_cagr, bull_cagr)
+    if base_cagr_sc < base_cagr:
+        print(f"  [annual_report] INFO: Base CAGR capped from {base_cagr:.1%} to {base_cagr_sc:.1%} "
+              f"(20% max for non-consensus years)")
     scenario_params = {
         "bear": (bear_cagr,    -0.02, +0.010, 0.015),
         "base": (base_cagr_sc,  0.00,  0.000,  0.020),
