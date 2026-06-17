@@ -342,9 +342,15 @@ def compute_dcf_scenarios(
         if price is None:
             results[name]["error"] = f"WACC ({wacc:.4f}) ≤ terminal g ({g:.4f}) — valuation undefined"
 
+    if currency_mismatch:
+        results["_currency_warning"] = (
+            "Regnskabsvaluta og kursvaluta er forskellige (ADR/cross-listing). "
+            "Fair value er i regnskabsvaluta og kan IKKE sammenlignes direkte med markedskursen."
+        )
+
     mkt_price = market_price
     base_price = results.get("base", {}).get("price")
-    if mkt_price > 0 and base_price and base_price > 0:
+    if not currency_mismatch and mkt_price > 0 and base_price and base_price > 0:
         gap = (base_price - mkt_price) / mkt_price
         if gap < -0.50:
             results["_sanity_warning"] = (
