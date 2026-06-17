@@ -263,12 +263,14 @@ def compute_dcf_scenarios(
     avgs      = reformulated["historical_avgs"]
     hist_cagr = avgs["revenue_cagr"]
 
-    # Determine DCF base revenue: LTM > last full FY > 3yr trailing avg (if latest year flagged)
+    # Determine DCF base revenue: LTM > last full FY > 3yr trailing avg (if latest year data-quality flagged)
+    # For M&A-flagged years, keep the latest revenue (acquisition is permanent) but use organic CAGR.
     excluded = reformulated.get("excluded_years", set())
     latest_yr = reformulated["years"][-1] if reformulated["years"] else None
+    has_ma_latest = any("M&A" in f and str(latest_yr) in f for f in reformulated.get("flags", []))
     if ltm_income and float(ltm_income.get("revenue") or 0) > 0:
         base_rev = float(ltm_income["revenue"])
-    elif latest_yr in excluded:
+    elif latest_yr in excluded and not has_ma_latest:
         valid_rev = [(y, r) for y, r in zip(reformulated["years"], reformulated["revenue"])
                      if y not in excluded]
         trailing = valid_rev[-3:] if len(valid_rev) >= 3 else valid_rev
@@ -276,6 +278,8 @@ def compute_dcf_scenarios(
         print(f"  [annual_report] INFO: Latest year {latest_yr} flagged — using 3yr trailing avg revenue as DCF base ({base_rev:,.0f})")
     else:
         base_rev = reformulated["revenue"][-1]
+        if has_ma_latest:
+            print(f"  [annual_report] INFO: {latest_yr} M&A-distorted — keeping post-acquisition revenue ({base_rev:,.0f}) with organic CAGR ({hist_cagr:.1%})")
 
     _MAX_HIST_CAGR = 0.12
     fwd_cagr = _analyst_fwd_cagr(estimates, base_rev)
