@@ -350,6 +350,18 @@ def compute_dcf_scenarios(
             "Fair value er i regnskabsvaluta og kan IKKE sammenlignes direkte med markedskursen."
         )
 
+    # Scenario inversion: when RNOA < WACC, growth destroys value and bull < bear.
+    bear_p = results.get("bear", {}).get("price")
+    bull_p = results.get("bull", {}).get("price")
+    if bear_p is not None and bull_p is not None and bull_p < bear_p:
+        results["bear"], results["bull"] = results["bull"], results["bear"]
+        results["_inversion_warning"] = (
+            "Scenarierne er inverterede: RNOA < WACC, så højere vækst reducerer værdien. "
+            "Bull/bear er ombyttet så bull > bear, men vær opmærksom på at selskabet "
+            "ikke genererer tilstrækkeligt afkast på driftskapitalen til at dække kapitalomkostningen."
+        )
+        print(f"  [annual_report] WARNING: Scenario inversion detected (RNOA < WACC) — swapped bull/bear labels")
+
     mkt_price = market_price
     base_price = results.get("base", {}).get("price")
     if not currency_mismatch and mkt_price > 0 and base_price and base_price > 0:
