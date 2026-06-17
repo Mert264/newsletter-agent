@@ -319,6 +319,37 @@ def _yf_df_to_fmp_rows(df, field_map: dict, scale: float = 1e-6,
     return rows
 
 
+def _yf_revenue_estimates(tk, income: list) -> list:
+    """Extract analyst consensus revenue estimates from yfinance, formatted like FMP estimates."""
+    try:
+        rev_est = tk.revenue_estimate
+        if rev_est is None or rev_est.empty:
+            return []
+        latest_fy = int(income[0]["date"][:4]) if income else 2025
+        scale = 1_000_000
+        estimates = []
+        for period, row in rev_est.iterrows():
+            avg_rev = row.get("avg")
+            if avg_rev is None or avg_rev <= 0:
+                continue
+            if period == "0y":
+                fy = latest_fy + 1
+            elif period == "+1y":
+                fy = latest_fy + 2
+            else:
+                continue
+            estimates.append({
+                "date": f"{fy}-01-01",
+                "estimatedRevenueAvg": float(avg_rev) / scale,
+                "estimatedRevenueLow": float(row.get("low", avg_rev)) / scale,
+                "estimatedRevenueHigh": float(row.get("high", avg_rev)) / scale,
+                "numberAnalysts": int(row.get("numberOfAnalysts", 0)) if row.get("numberOfAnalysts") else 0,
+            })
+        return estimates
+    except Exception:
+        return []
+
+
 def _yf_fetch_all(ticker: str) -> dict:
     """Fallback: build the same dict structure as fetch_all() using yfinance."""
     import yfinance as yf
