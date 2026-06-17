@@ -94,10 +94,21 @@ def _build_fundamentals_df(name: str, info: dict) -> Optional[pd.DataFrame]:
     def _round2(val: Optional[float]) -> Optional[float]:
         return round(val, 2) if val is not None else None
 
+    ev_ebitda = None
+    mcap = info.get("marketCap")
+    ebitda = info.get("ebitda")
+    if mcap and mcap > 0 and ebitda and ebitda > 0:
+        debt = info.get("totalDebt") or 0
+        cash = info.get("totalCash") or 0
+        ev = mcap + debt - cash
+        ratio = ev / mcap
+        if 0.3 <= ratio <= 4.0 and ev > 0:
+            ev_ebitda = ev / ebitda
+
     selected = {
         "P/E (TTM)":   _round2(info.get("trailingPE")),
         "P/B (TTM)":   _round2(info.get("priceToBook")),
-        "EV/EBITDA":   _round2(info.get("enterpriseToEbitda")),
+        "EV/EBITDA":   _round2(ev_ebitda),
         "ROE (%)":     _pct(info.get("returnOnEquity")),
         "Udbytte (%)": _pct(info.get("dividendYield")),
         "Margin (%)":  _pct(info.get("profitMargins")),
