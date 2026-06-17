@@ -431,13 +431,28 @@ def _yf_fetch_all(ticker: str) -> dict:
 
     yf_metrics = {}
     for fmp_key, yf_key in [
-        ("peRatio", "trailingPE"), ("evToEbitda", "enterpriseToEbitda"),
-        ("pbRatio", "priceToBook"), ("priceToSalesRatio", "priceToSalesTrailing12Months"),
-        ("evToFCF", "enterpriseToFreeCashflow"),
+        ("peRatio", "trailingPE"),
+        ("pbRatio", "priceToBook"),
+        ("priceToSalesRatio", "priceToSalesTrailing12Months"),
     ]:
         val = info.get(yf_key)
         if val is not None and val != 0:
             yf_metrics[fmp_key] = float(val)
+    ev = _compute_ev(info)
+    if ev:
+        ebitda = info.get("ebitda")
+        if ebitda and ebitda > 0:
+            yf_metrics["evToEbitda"] = ev / ebitda
+        if cashflow:
+            try:
+                latest_cf = cashflow[0]
+                ocf = latest_cf.get("operatingCashFlow") or 0
+                capex = latest_cf.get("capitalExpenditure") or 0
+                fcf = ocf + capex
+                if fcf > 0:
+                    yf_metrics["evToFCF"] = ev / (fcf * 1_000_000)
+            except Exception:
+                pass
     metrics_list = [yf_metrics] if yf_metrics else []
 
     estimates = _yf_revenue_estimates(t, income)
