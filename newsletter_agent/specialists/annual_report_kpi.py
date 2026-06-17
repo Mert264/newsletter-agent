@@ -564,7 +564,7 @@ def build_chart_specs(
         {"indicator": f"Terminalværdi PV ({currency}m)", "Basisscenarie": _num(_pv_tv)},
         {"indicator": f"Virksomhedsværdi ({currency}m)", "Basisscenarie": _num(_ev_val)},
         {"indicator": f"Egenkapitalværdi ({currency}m)", "Basisscenarie": _num(_eq_val)},
-        {"indicator": f"Fair value / aktie ({currency})", "Basisscenarie": f"{base_price:.0f}"},
+        {"indicator": f"Fair value / aktie ({currency})", "Basisscenarie": _fv(base_price)},
     ]
 
     if False:  # DCF Prognose (Basis) — redundant with DCF-scenarier, not for analysts
