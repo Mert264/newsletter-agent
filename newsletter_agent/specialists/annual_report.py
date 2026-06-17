@@ -44,6 +44,14 @@ def fetch_annual_report(task: dict) -> dict:
     currency     = profile.get("currency", "USD")
     iso3         = normalize_country(hq_country)
     t            = STATUTORY_TAX_RATE.get(iso3, STATUTORY_TAX_RATE["_default"])
+    sector       = profile.get("sector", "")
+
+    _FINANCIAL_SECTORS = {"Financial Services", "Financial"}
+    _is_financial = sector in _FINANCIAL_SECTORS
+    if _is_financial:
+        print(f"  [annual_report] WARNING: {ticker} is in sector '{sector}' — "
+              "Penman reformulation is not designed for banks/insurers. "
+              "Results will carry a reliability warning.")
 
     print(f"  [annual_report] Reformulating Penman financials...")
     reformulated = reformulate(fmp_data, t=t)
