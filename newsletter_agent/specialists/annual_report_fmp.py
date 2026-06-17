@@ -349,8 +349,20 @@ def fetch_all(ticker: str, api_key: str) -> dict:
             return _yf_fetch_all(ticker)
         raise
 
-    balance   = _get("balance-sheet-statement", api_key, symbol=ticker, period="annual")
-    cashflow  = _get("cash-flow-statement",     api_key, symbol=ticker, period="annual")
+    try:
+        balance = _get("balance-sheet-statement", api_key, symbol=ticker, period="annual")
+    except requests.HTTPError as e:
+        if e.response is not None and e.response.status_code in (402, 403):
+            print(f"  [annual_report] FMP balance-sheet {e.response.status_code} for {ticker} — falling back to yfinance")
+            return _yf_fetch_all(ticker)
+        raise
+    try:
+        cashflow = _get("cash-flow-statement", api_key, symbol=ticker, period="annual")
+    except requests.HTTPError as e:
+        if e.response is not None and e.response.status_code in (402, 403):
+            print(f"  [annual_report] FMP cashflow {e.response.status_code} for {ticker} — falling back to yfinance")
+            return _yf_fetch_all(ticker)
+        raise
     try:
         profile = _get("profile", api_key, symbol=ticker)
     except requests.HTTPError:
