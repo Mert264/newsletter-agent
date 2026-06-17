@@ -341,6 +341,17 @@ def compute_dcf_scenarios(
         }
         if price is None:
             results[name]["error"] = f"WACC ({wacc:.4f}) ≤ terminal g ({g:.4f}) — valuation undefined"
+
+    mkt_price = float((fmp_data.get("profile") or {}).get("price") or 0) if fmp_data else 0
+    base_price = results.get("base", {}).get("price")
+    if mkt_price > 0 and base_price and base_price > 0:
+        gap = (base_price - mkt_price) / mkt_price
+        if gap < -0.50:
+            results["_sanity_warning"] = (
+                f"Alle scenarier ligger markant under markedskursen ({mkt_price:,.0f}). "
+                f"Modellen fanger muligvis ikke vækstforventninger, margintendenser eller "
+                f"kvalitetspræmie. Brug resultatet som ét datapunkt, ikke en handelsanbefaling."
+            )
     return results
 
 
