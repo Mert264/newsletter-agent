@@ -51,6 +51,8 @@ def check(wacc_inputs: dict) -> dict:
     # ── Output validation (post-DCF) ──
     scenarios = wacc_inputs.get("scenarios", {})
     for sc_name, sc in scenarios.items():
+        if not isinstance(sc, dict):
+            continue
         sc_wacc = sc.get("wacc", 0)
         sc_g = sc.get("g", 0)
         if sc_wacc <= sc_g:
