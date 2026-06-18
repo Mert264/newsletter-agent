@@ -98,14 +98,11 @@ def fetch_annual_report(task: dict) -> dict:
     print(f"  [annual_report] Reformulating Penman financials...")
     reformulated = reformulate(fmp_data, t=t)
 
-    if reformulated["NOA"][-1] <= 0 and not _is_financial:
+    if reformulated["NOA"][-1] <= 0:
         raise ValueError(
             f"NOA for {ticker} is non-positive ({reformulated['NOA'][-1]:,.0f}). "
             "Check balance sheet classification — possible data quality issue."
         )
-    if reformulated["NOA"][-1] <= 0 and _is_financial:
-        print(f"  [annual_report] WARNING: NOA={reformulated['NOA'][-1]:,.0f} (negative) — "
-              "expected for financial institutions, proceeding with warning")
 
     da1 = review_reformulation(reformulated, client)
     print(f"  [annual_report] DA #1 (reformulation): {da1[:120]}...")
