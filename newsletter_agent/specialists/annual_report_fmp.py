@@ -523,7 +523,7 @@ _NORDIC_TICKERS: dict[str, str] = {
 }
 
 
-def _fmp_search(query: str, api_key: str) -> str | None:
+def _fmp_search(query: str, api_key: str) -> Union[str, None]:
     """Use FMP search endpoint to resolve a ticker. Returns best match or None."""
     if not api_key:
         return None
