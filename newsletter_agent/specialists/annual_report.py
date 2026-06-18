@@ -49,9 +49,50 @@ def fetch_annual_report(task: dict) -> dict:
     _FINANCIAL_SECTORS = {"Financial Services", "Financial"}
     _is_financial = sector in _FINANCIAL_SECTORS
     if _is_financial:
-        print(f"  [annual_report] WARNING: {ticker} is in sector '{sector}' — "
-              "Penman reformulation is not designed for banks/insurers. "
-              "Results will carry a reliability warning.")
+        print(f"  [annual_report] {ticker} is a financial institution (sector: '{sector}') — "
+              "skipping Penman DCF pipeline, running peer comparison + news only.")
+
+        source_label = "Yahoo Finance" if _data_source == "yfinance" else "FMP"
+        chart_specs = []
+
+        # Summary card explaining why DCF was skipped
+        chart_specs.append({
+            "chart_type": "text",
+            "title": f"{company_name} ({ticker}) — Finansiel institution",
+            "body": (
+                f"{company_name} opererer i sektoren '{sector}'. "
+                "Penman-modellen adskiller drifts- og finansieringsaktiviteter, "
+                "hvilket ikke er meningsfuldt for banker, forsikringsselskaber "
+                "og andre finansielle institutioner. DCF-værdiansættelse, "
+                "reformulering, WACC-beregning og DA-reviews er derfor udeladt.\n\n"
+                "Analysen indeholder i stedet en peer-sammenligning og et nyhedsoverblik."
+            ),
+        })
+
+        # Peer comparison
+        print(f"  [annual_report] Fetching peer comparison...")
+        try:
+            peer_data = fetch_peer_comparison(ticker, fmp_key)
+            peer_spec = build_peer_comparison_spec(peer_data, company_name, ticker)
+            if peer_spec:
+                chart_specs.append(peer_spec)
+        except Exception as exc:
+            print(f"  [annual_report] Peer comparison failed (non-fatal): {exc}")
+
+        # Market researcher — news card
+        print(f"  [annual_report] Fetching market news...")
+        try:
+            news_spec = fetch_market_researcher(ticker, company_name, client)
+            if news_spec:
+                chart_specs.append(news_spec)
+        except Exception as exc:
+            print(f"  [annual_report] Market researcher failed (non-fatal): {exc}")
+
+        return {
+            "dataframes":  {},
+            "kilde":       [source_label, "Damodaran"],
+            "chart_specs": chart_specs,
+        }
 
     print(f"  [annual_report] Reformulating Penman financials...")
     reformulated = reformulate(fmp_data, t=t)
