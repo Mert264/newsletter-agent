@@ -62,7 +62,9 @@ def _last_updated(fmp_data: dict, ltm_date: str = "") -> str:
         return date_str[:10]
 
 
-def _confidence(upside: float, reformulated: dict) -> str:
+def _confidence(upside: float, reformulated: dict, has_fair_value: bool = True) -> str:
+    if not has_fair_value:
+        return "Ikke tilgængelig — modellen kan ikke beregne fair value"
     flags = reformulated.get("flags", [])
     bad   = sum(1 for f in flags if "negativ" in f.lower() or "anomali" in f.lower())
     if bad > 2 or abs(upside) > 1.0:
