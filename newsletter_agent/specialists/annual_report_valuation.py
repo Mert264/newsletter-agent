@@ -286,8 +286,12 @@ def compute_dcf_scenarios(
     excluded = reformulated.get("excluded_years", set())
     latest_yr = reformulated["years"][-1] if reformulated["years"] else None
     has_ma_latest = any("M&A" in f and str(latest_yr) in f for f in reformulated.get("flags", []))
-    if ltm_income and float(ltm_income.get("revenue") or 0) > 0:
+    if (ltm_income and float(ltm_income.get("revenue") or 0) > 0
+            and ltm_income.get("_quarters", 4) >= 4):
         base_rev = float(ltm_income["revenue"])
+    elif ltm_income and ltm_income.get("_quarters", 4) < 4:
+        print(f"  [annual_report] WARNING: LTM only has {ltm_income['_quarters']} quarter(s) — falling back to latest annual revenue")
+        base_rev = reformulated["revenue"][-1]
     elif latest_yr in excluded and not has_ma_latest:
         valid_rev = [(y, r) for y, r in zip(reformulated["years"], reformulated["revenue"])
                      if y not in excluded]
