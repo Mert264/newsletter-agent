@@ -269,14 +269,19 @@ def build_chart_specs(
         )
 
     _exec_note = f"Penman DCF-værdiansættelse. Kilde: FMP og Damodaran."
+    if _dcf_warnings:
+        _exec_note += " ⚠ " + " | ".join(_dcf_warnings)
 
-    specs.append({
+    _chart1_spec = {
         "type": "D",
         "title": f"{company_name} — Værdiansættelsesoversigt",
         "note": _exec_note,
         "kilde": kilde,
         "table_data": {"columns": ["Værdi"], "rows": exec_rows},
-    })
+    }
+    if _dcf_warnings:
+        _chart1_spec["data_warning"] = " | ".join(_dcf_warnings)
+    specs.append(_chart1_spec)
 
     # ══════════════════════════════════════════════════════════════════════════
     # Chart 2 — Financial Snapshot (FY + LTM)
