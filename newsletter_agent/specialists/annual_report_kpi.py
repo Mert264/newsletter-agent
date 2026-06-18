@@ -161,6 +161,8 @@ def build_chart_specs(
     if bull_price is None:
         bull_price = 0.0
 
+    _dcf_warnings = [v for k, v in dcf_scenarios.items() if k.startswith("_") and isinstance(v, str)]
+
     t = STATUTORY_TAX_RATE.get(iso3, STATUTORY_TAX_RATE["_default"])
 
     ltm_inc = fmp_data.get("ltm_income",   {}) or {}
