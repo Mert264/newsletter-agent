@@ -304,6 +304,7 @@ def compute_dcf_scenarios(
     NFO: float, NCI: float, diluted_shares: float, base_year: int,
     estimates=None, ltm_income=None, market_price: float = 0,
     currency_mismatch: bool = False,
+    t: float = 0.25,
 ) -> dict:
     """Run Bear / Base / Bull DCF scenarios. Returns dict keyed by scenario name."""
     avgs      = reformulated["historical_avgs"]
