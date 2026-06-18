@@ -94,8 +94,13 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
         rs_icr = 0.0
         rating = "Nettokasse — ingen kreditspænd"
 
-    rs = rs_moody if rs_moody is not None else rs_icr
-    if rs_moody is None and rating == "":
+    is_net_cash = int_ex == 0 and nfo_last < 0
+    if is_net_cash:
+        rs = 0.0
+    elif rs_moody is not None:
+        rs = rs_moody
+    else:
+        rs = rs_icr
         icr_display = "Aaa equiv." if icr > 100 else f"{icr:.1f}"
         rating = f"ICR fallback (ICR={icr_display})"
 
