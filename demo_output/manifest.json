@@ -1,36 +1,51 @@
 {
-  "brief": "test",
-  "date": "2026-06-12",
+  "brief": "ping",
+  "date": "2026-06-18",
   "figures": [
-    {
-      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_00.png",
-      "metadata": {
-        "title": "10-\u00e5rige statsrenter \u2014 USA og Tyskland",
-        "chart_type": "A",
-        "x_label": "Dato",
-        "y_label": "%",
-        "note": "M\u00e5nedlige 10-\u00e5rige statsrenter for USA og Tyskland de seneste to \u00e5r. Disse renter er centrale benchmarks for globale finansmarkeder og afspejler forventninger til v\u00e6kst og inflation.",
-        "kilde": "FRED",
-        "region_labels": [
-          "USA 10-\u00e5rig statsrente",
-          "Tyskland 10-\u00e5rig statsrente"
-        ],
-        "excel_path": "figure_00_10-\u00e5rige statsrenter \u2014 USA og Tyskland.xlsx"
-      }
-    },
     {
       "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_01.png",
       "metadata": {
-        "title": "10-\u00e5rige statsrenter \u2014 snapshot",
+        "title": "Japan CPI \u2014 snapshot",
         "chart_type": "D",
         "x_label": "",
         "y_label": "",
-        "note": "Snapshot af 10-\u00e5rige statsrenter for USA og Tyskland. \u00c6ndringer vises i procentpoint.",
+        "note": "Snapshot af Japans CPI YoY-inflation. \u00c6ndringer vises i procentpoint. Serien er allerede i \u00e5r-over-\u00e5r procent \u2014 ingen yderligere transformation er anvendt.",
         "kilde": "FRED",
         "region_labels": [
-          "USA 10-\u00e5rig statsrente",
-          "Tyskland 10-\u00e5rig statsrente"
-        ]
+          "Japan CPI YoY"
+        ],
+        "specialist": "macro"
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_02.png",
+      "metadata": {
+        "title": "Japans reale BNP-v\u00e6kst (kvartalsvise \u00e6ndringer)",
+        "chart_type": "A",
+        "x_label": "Dato",
+        "y_label": "YoY %",
+        "note": "Japans reale BNP-indeks (OECD, 2015=100) opg\u00f8res kvartalsvist. Y-aksen viser \u00e5r-over-\u00e5r procent\u00e6ndring beregnet af pipeline. Data fra OECD via FRED (NAEXKP01JPQ657S).",
+        "kilde": "FRED",
+        "region_labels": [
+          "Japans reale BNP-v\u00e6kst"
+        ],
+        "specialist": "macro",
+        "excel_path": "figure_01_Japans reale BNP-v\u00e6kst (kvartalsvise \u00e6ndringe.xlsx"
+      }
+    },
+    {
+      "path": "/Users/mertcandogusoy/newsletter-site/demo_output/figure_03.png",
+      "metadata": {
+        "title": "Japans reale BNP-v\u00e6kst \u2014 snapshot",
+        "chart_type": "D",
+        "x_label": "",
+        "y_label": "",
+        "note": "Snapshot af Japans reale BNP-v\u00e6kst \u00e5r-over-\u00e5r. \u00c6ndringer vises i procentpoint. Bem\u00e6rk: NAEXKP01JPQ657S er et indeks (2015=100); pipeline konverterer til YoY % via pct_change(4) p\u00e5 kvartallige data.",
+        "kilde": "FRED",
+        "region_labels": [
+          "Japans reale BNP-v\u00e6kst"
+        ],
+        "specialist": "macro"
       }
     }
   ]

@@ -481,6 +481,91 @@ def _yf_fetch_all(ticker: str) -> dict:
     }
 
 
+# ---------------------------------------------------------------------------
+# Ticker resolution — map company names / bare tickers to exchange-qualified symbols
+# ---------------------------------------------------------------------------
+_NORDIC_TICKERS: dict[str, str] = {
+    # Danish C25 — most common requests
+    "CARL":      "CARL-B.CO",
+    "CARLSBERG": "CARL-B.CO",
+    "NOVO":      "NOVO-B.CO",
+    "NOVONORDISK": "NOVO-B.CO",
+    "NVO":       "NVO",          # US ADR — keep as-is
+    "DSV":       "DSV.CO",
+    "VWS":       "VWS.CO",
+    "VESTAS":    "VWS.CO",
+    "MAERSK":    "MAERSK-B.CO",
+    "DANSKE":    "DANSKE.CO",
+    "DANSKEBANK": "DANSKE.CO",
+    "PNDORA":    "PNDORA.CO",
+    "PANDORA":   "PNDORA.CO",
+    "COLO":      "COLO-B.CO",
+    "COLOPLAST": "COLO-B.CO",
+    "ORSTED":    "ORSTED.CO",
+    "GN":        "GN.CO",
+    "DEMANT":    "DEMANT.CO",
+    "ISS":       "ISS.CO",
+    "TRYG":      "TRYG.CO",
+    "RBREW":     "RBREW.CO",
+    "ROYALUNIBREW": "RBREW.CO",
+    # Swedish large caps
+    "VOLVO":     "VOLV-B.ST",
+    "ERIC":      "ERIC-B.ST",
+    "ERICSSON":  "ERIC-B.ST",
+    "HM":        "HM-B.ST",
+    "ATLAS":     "ATCO-A.ST",
+    # Norwegian
+    "EQNR":     "EQNR.OL",
+    "EQUINOR":  "EQNR.OL",
+    "DNB":      "DNB.OL",
+    # Finnish
+    "NOKIA":    "NOKIA.HE",
+}
+
+
+def _fmp_search(query: str, api_key: str) -> str | None:
+    """Use FMP search endpoint to resolve a ticker. Returns best match or None."""
+    if not api_key:
+        return None
+    try:
+        results = _get("search", api_key, query=query, limit=5)
+        if not results:
+            return None
+        for r in results:
+            sym = r.get("symbol", "")
+            if sym:
+                return sym
+        return None
+    except Exception:
+        return None
+
+
+def resolve_ticker(raw_ticker: str, api_key: str = "") -> str:
+    """Resolve a bare ticker to an exchange-qualified symbol.
+
+    Priority: Nordic mapping → FMP search → original ticker unchanged.
+    """
+    key = raw_ticker.upper().replace(" ", "").replace("-", "")
+    if raw_ticker.upper() in _NORDIC_TICKERS:
+        resolved = _NORDIC_TICKERS[raw_ticker.upper()]
+        print(f"  [annual_report] Resolved {raw_ticker} → {resolved} (Nordic mapping)")
+        return resolved
+    if key in _NORDIC_TICKERS:
+        resolved = _NORDIC_TICKERS[key]
+        print(f"  [annual_report] Resolved {raw_ticker} → {resolved} (Nordic mapping)")
+        return resolved
+    # If ticker already has exchange suffix, keep it
+    if "." in raw_ticker or "-" in raw_ticker:
+        return raw_ticker
+    # Try FMP search for unknown bare tickers
+    if api_key:
+        searched = _fmp_search(raw_ticker, api_key)
+        if searched and searched.upper() != raw_ticker.upper():
+            print(f"  [annual_report] Resolved {raw_ticker} → {searched} (FMP search)")
+            return searched
+    return raw_ticker
+
+
 def fetch_all(ticker: str, api_key: str) -> dict:
     try:
         income = _get("income-statement", api_key, symbol=ticker, period="annual")

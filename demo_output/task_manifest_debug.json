@@ -1,10 +1,77 @@
 {
   "specialists": [
-    "annual_report"
+    "macro"
   ],
-  "annual_report": {
-    "ticker": "GS",
-    "label": "Goldman Sachs Group Inc. \u2014 \u00c5rsregnskabsanalyse",
-    "charts": []
+  "macro": {
+    "series": [
+      {
+        "ticker": "CPALTT01JPM659N",
+        "source": "fred",
+        "label": "Japan CPI YoY",
+        "region": "Japan",
+        "unit": "%"
+      },
+      {
+        "ticker": "NAEXKP01JPQ657S",
+        "source": "fred",
+        "label": "Japans reale BNP-v\u00e6kst",
+        "region": "Japan",
+        "unit": "%"
+      }
+    ],
+    "charts": [
+      {
+        "type": "A",
+        "title": "M\u00e5nedlig inflation \u2014 Japan (CPI YoY)",
+        "x_label": "Dato",
+        "y_label": "%",
+        "period_days": 1095,
+        "series_labels": [
+          "Japan CPI YoY"
+        ],
+        "note": "Japans \u00e5rlige forbrugerprisindeksv\u00e6kst (CPI YoY) i procent. Serien er allerede opgjort som \u00e5r-over-\u00e5r \u00e6ndring og viser den aktuelle inflationstakt. Data fra OECD MEI via FRED."
+      },
+      {
+        "type": "D",
+        "title": "Japan CPI \u2014 snapshot",
+        "x_label": "",
+        "y_label": "%",
+        "period_days": 1095,
+        "series_labels": [
+          "Japan CPI YoY"
+        ],
+        "before_date": "2023-01-01",
+        "after_date": "latest",
+        "col_before": "Jan 2023",
+        "col_after": "Nu",
+        "note": "Snapshot af Japans CPI YoY-inflation. \u00c6ndringer vises i procentpoint. Serien er allerede i \u00e5r-over-\u00e5r procent \u2014 ingen yderligere transformation er anvendt."
+      },
+      {
+        "type": "A",
+        "title": "Japans reale BNP-v\u00e6kst (kvartalsvise \u00e6ndringer)",
+        "x_label": "Dato",
+        "y_label": "YoY %",
+        "period_days": 1460,
+        "series_labels": [
+          "Japans reale BNP-v\u00e6kst"
+        ],
+        "note": "Japans reale BNP-indeks (OECD, 2015=100) opg\u00f8res kvartalsvist. Y-aksen viser \u00e5r-over-\u00e5r procent\u00e6ndring beregnet af pipeline. Data fra OECD via FRED (NAEXKP01JPQ657S)."
+      },
+      {
+        "type": "D",
+        "title": "Japans reale BNP-v\u00e6kst \u2014 snapshot",
+        "x_label": "",
+        "y_label": "YoY %",
+        "period_days": 1460,
+        "series_labels": [
+          "Japans reale BNP-v\u00e6kst"
+        ],
+        "before_date": "2022-01-01",
+        "after_date": "latest",
+        "col_before": "Jan 2022",
+        "col_after": "Senest tilg\u00e6ngelige",
+        "note": "Snapshot af Japans reale BNP-v\u00e6kst \u00e5r-over-\u00e5r. \u00c6ndringer vises i procentpoint. Bem\u00e6rk: NAEXKP01JPQ657S er et indeks (2015=100); pipeline konverterer til YoY % via pct_change(4) p\u00e5 kvartallige data."
+      }
+    ]
   }
 }

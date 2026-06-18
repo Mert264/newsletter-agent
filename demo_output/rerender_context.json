@@ -4,69 +4,103 @@
     "specialist": "macro",
     "series_specs": [
       {
-        "ticker": "DGS10",
+        "ticker": "CPALTT01JPM659N",
         "source": "fred",
-        "label": "USA 10-\u00e5rig statsrente",
-        "region": "USA",
+        "label": "Japan CPI YoY",
+        "region": "Japan",
         "unit": "%"
       },
       {
-        "ticker": "IRLTLT01DEM156N",
+        "ticker": "NAEXKP01JPQ657S",
         "source": "fred",
-        "label": "Tyskland 10-\u00e5rig statsrente",
-        "region": "Europa",
+        "label": "Japans reale BNP-v\u00e6kst",
+        "region": "Japan",
         "unit": "%"
       }
     ],
     "chart_spec": {
-      "type": "A",
-      "title": "10-\u00e5rige statsrenter \u2014 USA og Tyskland",
-      "x_label": "Dato",
+      "type": "D",
+      "title": "Japan CPI \u2014 snapshot",
+      "x_label": "",
       "y_label": "%",
-      "period_days": 730,
+      "period_days": 1095,
       "series_labels": [
-        "USA 10-\u00e5rig statsrente",
-        "Tyskland 10-\u00e5rig statsrente"
+        "Japan CPI YoY"
       ],
-      "note": "M\u00e5nedlige 10-\u00e5rige statsrenter for USA og Tyskland de seneste to \u00e5r. Disse renter er centrale benchmarks for globale finansmarkeder og afspejler forventninger til v\u00e6kst og inflation."
+      "before_date": "2023-01-01",
+      "after_date": "latest",
+      "col_before": "Jan 2023",
+      "col_after": "Nu",
+      "note": "Snapshot af Japans CPI YoY-inflation. \u00c6ndringer vises i procentpoint. Serien er allerede i \u00e5r-over-\u00e5r procent \u2014 ingen yderligere transformation er anvendt."
     },
-    "brief": "test"
+    "brief": "ping"
   },
   {
     "figure_id": 1,
     "specialist": "macro",
     "series_specs": [
       {
-        "ticker": "DGS10",
+        "ticker": "CPALTT01JPM659N",
         "source": "fred",
-        "label": "USA 10-\u00e5rig statsrente",
-        "region": "USA",
+        "label": "Japan CPI YoY",
+        "region": "Japan",
         "unit": "%"
       },
       {
-        "ticker": "IRLTLT01DEM156N",
+        "ticker": "NAEXKP01JPQ657S",
         "source": "fred",
-        "label": "Tyskland 10-\u00e5rig statsrente",
-        "region": "Europa",
+        "label": "Japans reale BNP-v\u00e6kst",
+        "region": "Japan",
+        "unit": "%"
+      }
+    ],
+    "chart_spec": {
+      "type": "A",
+      "title": "Japans reale BNP-v\u00e6kst (kvartalsvise \u00e6ndringer)",
+      "x_label": "Dato",
+      "y_label": "YoY %",
+      "period_days": 1460,
+      "series_labels": [
+        "Japans reale BNP-v\u00e6kst"
+      ],
+      "note": "Japans reale BNP-indeks (OECD, 2015=100) opg\u00f8res kvartalsvist. Y-aksen viser \u00e5r-over-\u00e5r procent\u00e6ndring beregnet af pipeline. Data fra OECD via FRED (NAEXKP01JPQ657S)."
+    },
+    "brief": "ping"
+  },
+  {
+    "figure_id": 2,
+    "specialist": "macro",
+    "series_specs": [
+      {
+        "ticker": "CPALTT01JPM659N",
+        "source": "fred",
+        "label": "Japan CPI YoY",
+        "region": "Japan",
+        "unit": "%"
+      },
+      {
+        "ticker": "NAEXKP01JPQ657S",
+        "source": "fred",
+        "label": "Japans reale BNP-v\u00e6kst",
+        "region": "Japan",
         "unit": "%"
       }
     ],
     "chart_spec": {
       "type": "D",
-      "title": "10-\u00e5rige statsrenter \u2014 snapshot",
+      "title": "Japans reale BNP-v\u00e6kst \u2014 snapshot",
       "x_label": "",
-      "y_label": "%",
-      "period_days": 730,
+      "y_label": "YoY %",
+      "period_days": 1460,
       "series_labels": [
-        "USA 10-\u00e5rig statsrente",
-        "Tyskland 10-\u00e5rig statsrente"
+        "Japans reale BNP-v\u00e6kst"
       ],
-      "before_date": "2024-04-01",
+      "before_date": "2022-01-01",
       "after_date": "latest",
-      "col_before": "1 \u00e5r siden",
-      "col_after": "Nu",
-      "note": "Snapshot af 10-\u00e5rige statsrenter for USA og Tyskland. \u00c6ndringer vises i procentpoint."
+      "col_before": "Jan 2022",
+      "col_after": "Senest tilg\u00e6ngelige",
+      "note": "Snapshot af Japans reale BNP-v\u00e6kst \u00e5r-over-\u00e5r. \u00c6ndringer vises i procentpoint. Bem\u00e6rk: NAEXKP01JPQ657S er et indeks (2015=100); pipeline konverterer til YoY % via pct_change(4) p\u00e5 kvartallige data."
     },
-    "brief": "test"
+    "brief": "ping"
   }
 ]
