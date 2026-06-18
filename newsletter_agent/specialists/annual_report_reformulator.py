@@ -219,6 +219,7 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
         "common_equity":  equity_l,
         "historical_avgs": {
             "OG":           avg_OG,
+            "trend_OG":     trend_OG,
             "ATO":          avg_ATO,
             "revenue_cagr": rev_cagr,
         },
