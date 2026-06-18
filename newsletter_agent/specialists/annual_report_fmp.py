@@ -24,7 +24,7 @@ def _compute_ltm(quarterly_rows: list, fields: list) -> dict:
     last4 = quarterly_rows[:4]
     if not last4:
         return {}
-    ltm = {"date": last4[0].get("date", "")}
+    ltm = {"date": last4[0].get("date", ""), "_quarters": len(last4)}
     for field in fields:
         ltm[field] = sum((r.get(field) or 0) for r in last4)
     return ltm
