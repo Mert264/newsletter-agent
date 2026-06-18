@@ -88,8 +88,14 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
     icr    = ebit / int_ex if int_ex > 0 else 8.5
     rs_icr = icr_to_spread(icr)
 
+    # Zero-debt / net-cash companies: no credit spread needed
+    nfo_last = reformulated["NFO"][-1]
+    if int_ex == 0 and nfo_last < 0:
+        rs_icr = 0.0
+        rating = "Nettokasse — ingen kreditspænd"
+
     rs = rs_moody if rs_moody is not None else rs_icr
-    if rs_moody is None:
+    if rs_moody is None and rating == "":
         icr_display = "Aaa equiv." if icr > 100 else f"{icr:.1f}"
         rating = f"ICR fallback (ICR={icr_display})"
 
