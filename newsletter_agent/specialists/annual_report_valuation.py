@@ -332,7 +332,7 @@ def compute_dcf_scenarios(
         if has_ma_latest:
             print(f"  [annual_report] INFO: {latest_yr} M&A-distorted — keeping post-acquisition revenue ({base_rev:,.0f}) with organic CAGR ({hist_cagr:.1%})")
 
-    _MAX_HIST_CAGR = 0.12
+    _MAX_HIST_CAGR = 0.15
     fwd_cagr = _analyst_fwd_cagr(estimates, base_rev)
     if fwd_cagr is not None:
         base_cagr = fwd_cagr
