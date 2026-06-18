@@ -138,6 +138,7 @@ def fetch_annual_report(task: dict) -> dict:
         ltm_income=fmp_data.get("ltm_income"),
         market_price=float(profile.get("price") or 0),
         currency_mismatch=bool(profile.get("currencyMismatch")),
+        t=wacc_data["t"],
     )
     if _is_financial:
         dcf_scenarios["_financial_warning"] = (
