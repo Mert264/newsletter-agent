@@ -237,6 +237,34 @@ def compute_dcf(reformulated: dict, wacc: float, g: float = 0.02,
     return detail
 
 
+def _analyst_fwd_og(estimates: list, base_rev: float, t: float = 0.25):
+    """Derive forward operating margin (OG) from analyst consensus EBIT/EBITDA estimates.
+
+    Returns the average implied after-tax OG across valid estimate years, or None.
+    """
+    if not estimates or base_rev <= 0:
+        return None
+    valid = [
+        e for e in estimates
+        if (e.get("estimatedRevenueAvg") or 0) > 0
+        and ((e.get("estimatedEbitAvg") or 0) > 0 or (e.get("estimatedEbitdaAvg") or 0) > 0)
+    ]
+    if not valid:
+        return None
+    og_values = []
+    for e in valid:
+        rev = float(e["estimatedRevenueAvg"])
+        ebit = e.get("estimatedEbitAvg") or 0
+        if ebit > 0:
+            implied_og = float(ebit) * (1 - t) / rev
+        else:
+            # Approximate EBIT as 80% of EBITDA
+            ebitda = float(e.get("estimatedEbitdaAvg", 0))
+            implied_og = ebitda * 0.80 * (1 - t) / rev
+        og_values.append(implied_og)
+    return sum(og_values) / len(og_values) if og_values else None
+
+
 def _analyst_fwd_cagr(estimates: list, base_rev: float):
     """Derive forward CAGR from analyst consensus revenue estimates (already in millions)."""
     if not estimates or base_rev <= 0:
