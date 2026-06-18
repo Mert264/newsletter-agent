@@ -252,18 +252,17 @@ def _analyst_fwd_og(estimates: list, base_rev: float, t: float = 0.25):
     valid = [
         e for e in estimates
         if (e.get("estimatedRevenueAvg") or 0) > 0
-        and ((e.get("estimatedEbitAvg") or 0) > 0 or (e.get("estimatedEbitdaAvg") or 0) > 0)
+        and ((e.get("estimatedEbitAvg") or 0) != 0 or (e.get("estimatedEbitdaAvg") or 0) > 0)
     ]
     if not valid:
         return None
     og_values = []
     for e in valid:
         rev = float(e["estimatedRevenueAvg"])
-        ebit = e.get("estimatedEbitAvg") or 0
-        if ebit > 0:
-            implied_og = float(ebit) * (1 - t) / rev
+        ebit = float(e.get("estimatedEbitAvg") or 0)
+        if ebit != 0:
+            implied_og = ebit * (1 - t) / rev
         else:
-            # Approximate EBIT as 80% of EBITDA
             ebitda = float(e.get("estimatedEbitdaAvg", 0))
             implied_og = ebitda * 0.80 * (1 - t) / rev
         og_values.append(implied_og)
