@@ -358,6 +358,22 @@ def compute_dcf_scenarios(
     if base_cagr_sc != base_cagr:
         print(f"  [annual_report] INFO: Base CAGR capped from {base_cagr:.1%} to {base_cagr_sc:.1%} "
               f"(max ±bounds for non-consensus years)")
+
+    # --- OG selection: analyst consensus > trend-weighted > simple average ---
+    analyst_og = _analyst_fwd_og(estimates, base_rev, t)
+    simple_og = avgs["OG"]
+    trend_og = avgs.get("trend_OG", simple_og)
+    if analyst_og is not None:
+        base_og = analyst_og
+        print(f"  [annual_report] INFO: Using analyst consensus OG ({analyst_og:.1%}) "
+              f"instead of simple average ({simple_og:.1%})")
+    elif trend_og != simple_og:
+        base_og = trend_og
+        print(f"  [annual_report] INFO: Using trend-weighted OG ({trend_og:.1%}) "
+              f"instead of simple average ({simple_og:.1%})")
+    else:
+        base_og = simple_og
+
     scenario_params = {
         "bear": (bear_cagr,    -0.02, +0.010, 0.015),
         "base": (base_cagr_sc,  0.00,  0.000,  0.020),
@@ -367,7 +383,7 @@ def compute_dcf_scenarios(
     results = {}
     for name, (cagr, og_delta, wacc_delta, g) in scenario_params.items():
         wacc = wacc_base + wacc_delta
-        og   = avgs["OG"] + og_delta
+        og   = base_og + og_delta
         mod  = {**reformulated, "historical_avgs": {**avgs, "OG": og, "revenue_cagr": cagr}}
         c_revs = base_consensus_revs if name == "base" else None
         price, detail = _dcf_price(mod, wacc, g, NFO, NCI, diluted_shares, base_year,
