@@ -176,6 +176,15 @@ def reformulate(fmp_data: dict, t: float, n_years_history: int = 5) -> dict:
     avg_OG  = sum(OG_l[i]  for i in valid_idx) / len(valid_idx)
     avg_ATO = sum(ATO_l[i] for i in valid_idx) / len(valid_idx)
 
+    # Trend-weighted OG: when margin is trending, weight recent years more heavily
+    if len(valid_idx) >= 3:
+        og_vals = [OG_l[i] for i in valid_idx]
+        n = len(og_vals)
+        weights = [1.5 ** i for i in range(n)]  # e.g., [1, 1.5, 2.25, 3.375, 5.06]
+        trend_OG = sum(w * v for w, v in zip(weights, og_vals)) / sum(weights)
+    else:
+        trend_OG = avg_OG
+
     # CAGR uses ALL available years — OI volatility exclusions apply only to margin/return averages,
     # not to revenue growth (which is a factual trajectory, not a normalised metric).
     # M&A-distorted years (goodwill spike + revenue jump) are still excluded via excluded_yrs
