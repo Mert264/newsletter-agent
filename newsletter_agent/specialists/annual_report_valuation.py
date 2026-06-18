@@ -89,7 +89,8 @@ def compute_wacc(fmp_data: dict, reformulated: dict, hq_country: str) -> dict:
     rs_icr = icr_to_spread(icr)
 
     # Zero-debt / net-cash companies: no credit spread needed
-    nfo_last = reformulated["NFO"][-1]
+    nfo_list = reformulated.get("NFO", [])
+    nfo_last = nfo_list[-1] if nfo_list else 0
     if int_ex == 0 and nfo_last < 0:
         rs_icr = 0.0
         rating = "Nettokasse — ingen kreditspænd"
