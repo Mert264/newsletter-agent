@@ -230,7 +230,7 @@ def build_chart_specs(
         {"indicator": "",                                        "Værdi": ""},
         {"indicator": f"Omsætnings-CAGR ({cagr_label})",       "Værdi": _pct(rev_cagr)},
         {"indicator": f"NOPAT-margin ({n_avg_yrs}år gns.)",    "Værdi": _pct(og_avg)},
-        {"indicator": "Konfidensgrad",                          "Værdi": _confidence(upside, reformulated)},
+        {"indicator": "Konfidensgrad",                          "Værdi": _confidence(upside, reformulated, has_fair_value=_has_fv)},
         {"indicator": "Senest opdateret",                       "Værdi": _last_updated(fmp_data, ltm_date)},
     ]
 
